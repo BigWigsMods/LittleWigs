@@ -10,6 +10,12 @@ mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local callWebTerrorCount = 1
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -47,10 +53,11 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	callWebTerrorCount = 1
 	self:CDBar(450451, 5.1) -- Claw Smash
 	self:CDBar(450505, 8.4) -- Enfeebling Spittle
 	self:CDBar(450492, 10.0) -- Horrendous Roar
-	self:CDBar(450568, 18.5) -- Call Web Terror
+	self:CDBar(450568, 18.5, CL.count:format(self:SpellName(450568), callWebTerrorCount)) -- Call Web Terror
 	self:CDBar(450519, 20.9) -- Angler's Web
 end
 
@@ -84,8 +91,10 @@ function mod:HorrendousRoar(args)
 end
 
 function mod:CallWebTerror(args)
-	self:Message(args.spellId, "cyan")
-	self:CDBar(args.spellId, 41.3)
+	self:StopBar(CL.count:format(args.spellName, callWebTerrorCount))
+	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, callWebTerrorCount))
+	callWebTerrorCount = callWebTerrorCount + 1
+	self:CDBar(args.spellId, 41.3, CL.count:format(args.spellName, callWebTerrorCount))
 	self:PlaySound(args.spellId, "info")
 end
 
