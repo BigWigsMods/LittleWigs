@@ -26,6 +26,7 @@ BigWigs:AddColors("Kobyss Delve Trash", {
 	[445252] = "red",
 	[445407] = {"blue","red"},
 	[445492] = "orange",
+	[445771] = "orange",
 	[445774] = "red",
 	[455932] = "orange",
 })

@@ -30,6 +30,7 @@ if L then
 	L.kobyss_witherer = "Flétrisseur kobyss"
 	L.wandering_gutter = "Éventreur errant"
 	L.crazed_predator = "Prédateur fou"
+	--L.deepwater_makura = "Deepwater Makura"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "frFR")

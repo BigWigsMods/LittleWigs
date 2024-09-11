@@ -9,13 +9,14 @@ mod:RegisterEnableMob(
 	228903, -- Brann Bronzebeard
 	220565, -- Raen Dawncavalyr (The Sinkhole gossip NPC)
 	214628, -- Partially-Chewed Goblin (Tek-Rethan Abyss gossip NPC)
-	215178, -- Vetiverian
+	215178, -- Vetiverian (Tek-Rethan Abyss gossip NPC)
 	214625, -- Kobyss Necromancer
 	220710, -- Leviathan Manipulator
 	214338, -- Kobyss Spearfisher
 	214251, -- Kobyss Witherer
 	214551, -- Wandering Gutter
-	216325 -- Crazed Predator
+	216325, -- Crazed Predator
+	220643 -- Deepwater Makura
 )
 
 --------------------------------------------------------------------------------
@@ -31,6 +32,7 @@ if L then
 	L.kobyss_witherer = "Kobyss Witherer"
 	L.wandering_gutter = "Wandering Gutter"
 	L.crazed_predator = "Crazed Predator"
+	L.deepwater_makura = "Deepwater Makura"
 end
 
 --------------------------------------------------------------------------------
@@ -63,12 +65,15 @@ function mod:GetOptions()
 		-- Crazed Predator
 		445774, -- Thrashing Frenzy
 		374898, -- Enrage
+		-- Deepwater Makura
+		445771, -- Bubble Surge
 	},{
 		[455932] = L.kobyss_necromancer,
 		[430037] = L.kobyss_spearfisher,
 		[440622] = L.kobyss_witherer,
 		[445492] = L.wandering_gutter,
 		[445774] = L.crazed_predator,
+		[445771] = L.deepwater_makura,
 	},{
 		[455932] = CL.frontal_cone, -- Defiling Breath (Frontal Cone)
 		[445252] = CL.explosion, -- Necrotic End (Explosion)
@@ -98,6 +103,9 @@ function mod:OnBossEnable()
 	-- Crazed Predator
 	self:Log("SPELL_CAST_START", "ThrashingFrenzy", 445774)
 	self:Log("SPELL_AURA_APPLIED", "EnrageApplied", 374898)
+
+	-- Deepwater Makura
+	self:Log("SPELL_CAST_START", "BubbleSurge", 445771)
 end
 
 function mod:VerifyEnable(_, mobId)
@@ -195,4 +203,11 @@ end
 function mod:EnrageApplied(args)
 	self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
 	self:PlaySound(args.spellId, "info")
+end
+
+-- Deepwater Makura
+
+function mod:BubbleSurge(args)
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "alarm")
 end
