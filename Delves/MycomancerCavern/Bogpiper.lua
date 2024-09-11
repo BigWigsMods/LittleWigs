@@ -24,25 +24,28 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.bogpiper
+	self:SetSpellRename(454213, CL.charge) -- Muck Charge (Charge)
 end
 
 function mod:GetOptions()
 	return {
 		454213, -- Muck Charge
-		449965, -- Swamp Bolt
+		470582, -- Swamp Bolt
 		453897, -- Sporesong
+	},nil,{
+		[454213] = CL.charge, -- Muck Charge (Charge)
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MuckCharge", 454213)
-	self:Log("SPELL_CAST_START", "SwampBolt", 449965)
-	self:Log("SPELL_CAST_START", "Sporesong", 453897)
+	self:Log("SPELL_CAST_START", "SwampBolt", 470582)
+	self:Log("SPELL_CAST_SUCCESS", "Sporesong", 453897)
 end
 
 function mod:OnEngage()
-	self:CDBar(454213, 6.1) -- Muck Charge
-	self:CDBar(449965, 10.8) -- Swamp Bolt
+	self:CDBar(454213, 6.1, CL.charge) -- Muck Charge
+	self:CDBar(470582, 10.8) -- Swamp Bolt
 	self:CDBar(453897, 15.0) -- Sporesong
 end
 
@@ -51,19 +54,19 @@ end
 --
 
 function mod:MuckCharge(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "red", CL.charge)
+	self:CDBar(args.spellId, 25.4, CL.charge)
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 25.4)
 end
 
 function mod:SwampBolt(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 26.7)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Sporesong(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 28.7)
+	self:PlaySound(args.spellId, "long")
 end
