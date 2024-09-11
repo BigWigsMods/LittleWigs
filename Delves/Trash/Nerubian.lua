@@ -13,12 +13,14 @@ mod:RegisterEnableMob(
 	220462, -- Weaver's Instructions (The Spiral Weave gossip NPC)
 	218103, -- Nerubian Lord
 	208242, -- Nerubian Darkcaster
+	220485, -- Peculiar Nerubian
 	216584, -- Nerubian Captain
 	228954, -- Nerubian Marauder
 	216583, -- Chittering Fearmonger
 	208245, -- Skittering Swarmer
 	216621, -- Nerubian Webspinner
-	219810 -- Nerubian Ritualist
+	219810, -- Nerubian Ritualist
+	220507 -- The Puppetmaster?
 )
 
 --------------------------------------------------------------------------------

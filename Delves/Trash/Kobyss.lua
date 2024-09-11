@@ -39,6 +39,11 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.kobyss_trash
+	self:SetSpellRename(455932, CL.frontal_cone) -- Defiling Breath (Frontal Cone)
+	self:SetSpellRename(445252, CL.explosion) -- Necrotic End (Explosion)
+	self:SetSpellRename(440622, CL.curse) -- Curse of the Depths (Curse)
+	self:SetSpellRename(470588, CL.curse) -- Curse of the Depths (Curse)
+	self:SetSpellRename(445407, CL.fixate) -- Bloodthirsty (Fixate)
 end
 
 local autotalk = mod:AddAutoTalkOption(true)
@@ -57,13 +62,17 @@ function mod:GetOptions()
 		445407, -- Bloodthirsty
 		-- Crazed Predator
 		445774, -- Thrashing Frenzy
-	}, {
+		374898, -- Enrage
+	},{
 		[455932] = L.kobyss_necromancer,
 		[430037] = L.kobyss_spearfisher,
 		[440622] = L.kobyss_witherer,
 		[445492] = L.wandering_gutter,
 		[445774] = L.crazed_predator,
-	}, {
+	},{
+		[455932] = CL.frontal_cone, -- Defiling Breath (Frontal Cone)
+		[445252] = CL.explosion, -- Necrotic End (Explosion)
+		[440622] = CL.curse, -- Curse of the Depths (Curse)
 		[445407] = CL.fixate, -- Bloodthirsty (Fixate)
 	}
 end
@@ -80,7 +89,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Spearfish", 430037)
 
 	-- Kobyss Witherer
-	self:Log("SPELL_CAST_START", "CurseOfTheDepths", 440622)
+	self:Log("SPELL_CAST_START", "CurseOfTheDepths", 440622, 470588)
 
 	-- Wandering Gutter
 	self:Log("SPELL_CAST_START", "SerratedCleave", 445492)
@@ -88,6 +97,7 @@ function mod:OnBossEnable()
 
 	-- Crazed Predator
 	self:Log("SPELL_CAST_START", "ThrashingFrenzy", 445774)
+	self:Log("SPELL_AURA_APPLIED", "EnrageApplied", 374898)
 end
 
 function mod:VerifyEnable(_, mobId)
@@ -127,7 +137,7 @@ do
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "orange")
+			self:Message(args.spellId, "orange", CL.frontal_cone)
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -139,7 +149,7 @@ do
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
-			self:Message(args.spellId, "red")
+			self:Message(args.spellId, "red", CL.explosion)
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -155,8 +165,8 @@ end
 -- Kobyss Witherer
 
 function mod:CurseOfTheDepths(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	self:Message(440622, "yellow", CL.casting:format(CL.curse))
+	self:PlaySound(440622, "alert")
 end
 
 -- Wandering Gutter
@@ -180,4 +190,9 @@ end
 function mod:ThrashingFrenzy(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:EnrageApplied(args)
+	self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
+	self:PlaySound(args.spellId, "info")
 end

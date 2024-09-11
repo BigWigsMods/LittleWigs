@@ -24,6 +24,9 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.undersea_abomination
+	self:SetSpellRename(446300, CL.dodge) -- Deepsea Polyps (Dodge)
+	self:SetSpellRename(446405, CL.frontal_cone) -- Fungal Infection (Frontal Cone)
+	self:SetSpellRename(446230, CL.explosion) -- Repelling Blast (Explosion)
 end
 
 function mod:GetOptions()
@@ -31,6 +34,10 @@ function mod:GetOptions()
 		446300, -- Deepsea Polyps
 		446405, -- Fungal Infection
 		446230, -- Repelling Blast
+	},nil,{
+		[446300] = CL.dodge, -- Deepsea Polyps (Dodge)
+		[446405] = CL.frontal_cone, -- Fungal Infection (Frontal Cone)
+		[446230] = CL.explosion, -- Repelling Blast (Explosion)
 	}
 end
 
@@ -41,9 +48,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(446405, 4.0) -- Fungal Infection
-	self:CDBar(446300, 11.3) -- Deepsea Polyps
-	self:CDBar(446230, 21.0) -- Repelling Blast
+	self:CDBar(446405, 4.0, CL.frontal_cone) -- Fungal Infection
+	self:CDBar(446300, 11.3, CL.dodge) -- Deepsea Polyps
+	self:CDBar(446230, 21.0, CL.explosion) -- Repelling Blast
 end
 
 --------------------------------------------------------------------------------
@@ -51,19 +58,19 @@ end
 --
 
 function mod:FungalInfection(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.frontal_cone)
+	self:CDBar(args.spellId, 21.8, CL.frontal_cone)
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 21.8)
 end
 
 function mod:DeepseaPolyps(args)
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "yellow", CL.extra:format(args.spellName, CL.dodge))
+	self:CDBar(args.spellId, 17.0, CL.dodge)
 	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 17.0)
 end
 
 function mod:RepellingBlast(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.explosion)
+	self:CDBar(args.spellId, 21.9, CL.explosion)
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 21.9)
 end

@@ -24,6 +24,8 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.faceless_one
+	self:SetSpellRename(458849, CL.smash) -- Darkrift Smash (Smash)
+	self:SetSpellRename(458853, CL.health_drain) -- Shadow Drain (Health Drain)
 end
 
 function mod:GetOptions()
@@ -31,6 +33,9 @@ function mod:GetOptions()
 		458849, -- Darkrift Smash
 		458853, -- Shadow Drain
 		458867, -- Lurking Call
+	},nil,{
+		[458849] = CL.smash, -- Darkrift Smash (Smash)
+		[458853] = CL.health_drain, -- Shadow Drain (Health Drain)
 	}
 end
 
@@ -41,8 +46,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(458849, 3.6) -- Darkrift Smash
-	self:CDBar(458853, 13.3) -- Shadow Drain
+	self:CDBar(458849, 3.6, CL.smash) -- Darkrift Smash
+	self:CDBar(458853, 13.3, CL.health_drain) -- Shadow Drain
 	self:CDBar(458867, 20.2) -- Lurking Call
 end
 
@@ -51,19 +56,19 @@ end
 --
 
 function mod:DarkriftSmash(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.smash)
+	self:CDBar(args.spellId, 15.8, CL.smash)
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 15.8)
 end
 
 function mod:ShadowDrain(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(CL.health_drain))
+	self:CDBar(args.spellId, 31.6, CL.health_drain)
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 31.6)
 end
 
 function mod:LurkingCall(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 33.1)
+	self:PlaySound(args.spellId, "long")
 end

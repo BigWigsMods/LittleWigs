@@ -44,6 +44,8 @@ end
 function mod:OnRegister()
 	self.displayName = L.rares
 	self:SetSpellRename(445781, CL.frontal_cone) -- Lava Blast (Frontal Cone)
+	self:SetSpellRename(415253, CL.frontal_cone) -- Fungal Breath (Frontal Cone)
+	self:SetSpellRename(415250, CL.explosion) -- Fungal Bloom (Explosion)
 end
 
 local autotalk = mod:AddAutoTalkOption(true, "boss")
@@ -91,6 +93,8 @@ function mod:GetOptions()
 		[449038] = L.anubvir,
 	},{
 		[445781] = CL.frontal_cone, -- Lava Blast (Frontal Cone)
+		[415253] = CL.frontal_cone, -- Fungal Breath (Frontal Cone)
+		[415250] = CL.explosion, -- Fungal Bloom (Explosion)
 	}
 end
 
@@ -211,20 +215,20 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
-		self:CDBar(args.spellId, 19.4)
+		self:Message(args.spellId, "orange", CL.frontal_cone)
+		self:CDBar(args.spellId, 19.4, CL.frontal_cone)
 		timer = self:ScheduleTimer("InvasiveSporecapDeath", 30)
+		self:PlaySound(args.spellId, "alarm")
 	end
 
 	function mod:FungalBloom(args)
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "red")
-		self:PlaySound(args.spellId, "alert")
-		self:CDBar(args.spellId, 23.1)
+		self:Message(args.spellId, "red", CL.explosion)
+		self:CDBar(args.spellId, 23.1, CL.explosion)
 		timer = self:ScheduleTimer("InvasiveSporecapDeath", 30)
+		self:PlaySound(args.spellId, "warning")
 	end
 
 	function mod:InvasiveSporecapDeath()
@@ -232,8 +236,8 @@ do
 			self:CancelTimer(timer)
 			timer = nil
 		end
-		self:StopBar(415253) -- Fungal Breath
-		self:StopBar(415250) -- Fungal Bloom
+		self:StopBar(CL.frontal_cone) -- Fungal Breath
+		self:StopBar(CL.explosion) -- Fungal Bloom
 	end
 end
 

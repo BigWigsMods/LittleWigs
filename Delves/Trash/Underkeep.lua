@@ -30,6 +30,10 @@ end
 -- Initialization
 --
 
+function mod:OnRegister()
+	self:SetSpellRename(450714, CL.frontal_cone) -- Jagged Barbs (Frontal Cone)
+end
+
 local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
 	return {
@@ -45,11 +49,13 @@ function mod:GetOptions()
 		{448161, "DISPEL"}, -- Enrage
 		-- Web Marauder
 		453149, -- Gossamer Webbing
-	}, {
+	},{
 		[451913] = L.ascended_webfriar,
 		[450714] = L.deepwalker_guardian,
 		[448179] = L.crazed_abomination,
 		[453149] = L.web_marauder,
+	},{
+		[450714] = CL.frontal_cone, -- Jagged Barbs (Frontal Cone)
 	}
 end
 
@@ -103,7 +109,7 @@ end
 -- Deepwalker Guardian
 
 function mod:JaggedBarbs(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.frontal_cone)
 	self:PlaySound(args.spellId, "alarm")
 end
 

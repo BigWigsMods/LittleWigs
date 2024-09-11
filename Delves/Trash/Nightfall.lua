@@ -40,6 +40,8 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.nightfall_trash
+	self:SetSpellRename(443292, CL.frontal_cone) -- Umbral Slam (Frontal Cone)
+	self:SetSpellRename(434281, CL.explosion) -- Echo of Renilash (Explosion)
 end
 
 local autotalk = mod:AddAutoTalkOption(true)
@@ -58,13 +60,16 @@ function mod:GetOptions()
 		443482, -- Blessing of Dusk
 		-- Shadow Elemental
 		440205, -- Inflict Death
-	}, {
+	},{
 		[441129] = L.dark_bombardier,
 		[434740] = L.nightfall_inquisitor,
 		[443292] = L.devouring_shade,
 		[434281] = L.weeping_shade,
 		[443482] = L.nightfall_shadeguard,
 		[440205] = L.shadow_elemental,
+	},{
+		[443292] = CL.frontal_cone, -- Umbral Slam (Frontal Cone)
+		[434281] = CL.explosion, -- Echo of Renilash (Explosion)
 	}
 end
 
@@ -85,10 +90,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "EchoOfRenilash", 434281)
 
 	-- Nightfall Shadeguard
-	self:Log("SPELL_CAST_START", "BlessingOfDusk", 443482)
+	self:Log("SPELL_CAST_START", "BlessingOfDusk", 443482, 470592)
 
 	-- Shadow Elemental
-	self:Log("SPELL_CAST_START", "InflictDeath", 440205)
+	self:Log("SPELL_CAST_START", "InflictDeath", 440205, 470593)
 end
 
 --------------------------------------------------------------------------------
@@ -125,7 +130,7 @@ end
 -- Devouring Shade
 
 function mod:UmbralSlam(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.frontal_cone)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -134,7 +139,7 @@ end
 function mod:EchoOfRenilash(args)
 	-- also cast by a boss (Reformed Fury)
 	if self:MobId(args.sourceGUID) ~= 218034 then -- Reformed Fury
-		self:Message(args.spellId, "yellow")
+		self:Message(args.spellId, "yellow", CL.explosion)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
@@ -144,8 +149,8 @@ end
 function mod:BlessingOfDusk(args)
 	-- also cast by a boss (Speaker Davenruth)
 	if self:MobId(args.sourceGUID) == 217519 then -- Nightfall Shadeguard
-		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
+		self:Message(443482, "red", CL.casting:format(args.spellName))
+		self:PlaySound(443482, "alert")
 	end
 end
 
@@ -154,7 +159,7 @@ end
 function mod:InflictDeath(args)
 	-- also cast by a boss (Reformed Fury)
 	if self:MobId(args.sourceGUID) ~= 218034 then -- Reformed Fury
-		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
+		self:Message(440205, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(440205, "alert")
 	end
 end

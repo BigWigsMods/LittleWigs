@@ -24,6 +24,7 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.researcher_venkex
+	self:SetSpellRename(446832, CL.beams) -- Infusion of Poison (Beams)
 end
 
 function mod:GetOptions()
@@ -31,6 +32,8 @@ function mod:GetOptions()
 		446832, -- Infusion of Poison
 		447187, -- Rend Void
 		447143, -- Encasing Webs
+	},nil,{
+		[446832] = CL.beams, -- Infusion of Poison (Beams)
 	}
 end
 
@@ -44,7 +47,7 @@ end
 function mod:OnEngage()
 	self:CDBar(447187, 6.1) -- Rend Void
 	self:CDBar(447143, 12.2) -- Encasing Webs
-	self:CDBar(446832, 18.3) -- Infusion of Poison
+	self:CDBar(446832, 18.3, CL.beams) -- Infusion of Poison
 end
 
 --------------------------------------------------------------------------------
@@ -52,13 +55,13 @@ end
 --
 
 function mod:InfusionOfPoison(args)
-	self:Message(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan", CL.beams)
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 26.7)
+	self:CDBar(args.spellId, 26.7, CL.beams)
 end
 
 function mod:InfusionOfPoisonApplied(args)
-	self:Bar(args.spellId, 12, CL.onboss:format(args.spellName))
+	self:Bar(args.spellId, 12, CL.onboss:format(CL.beams))
 end
 
 function mod:RendVoid(args)
