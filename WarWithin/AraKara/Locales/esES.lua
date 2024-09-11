@@ -7,6 +7,7 @@ if L then
 	L.nakt = "Nakt"
 	L.atik = "Atik"
 	L.hulking_bloodguard = "Guardia de sangre descomunal"
+	L.sentry_stagshell = "Centinela cornaconcha"
 	L.bloodstained_webmage = "Mago arácnido manchado de sangre"
 	--L.blood_overseer = "Blood Overseer"
 	--L.nerubian_hauler = "Nerubian Hauler"

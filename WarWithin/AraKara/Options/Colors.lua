@@ -25,6 +25,7 @@ BigWigs:AddColors("Ki'katal the Harvester", {
 })
 
 BigWigs:AddColors("Ara-Kara, City of Echoes Trash", {
+	[432967] = "cyan",
 	[433841] = "red",
 	[433845] = "orange",
 	[434252] = "yellow",
@@ -37,4 +38,5 @@ BigWigs:AddColors("Ara-Kara, City of Echoes Trash", {
 	[439208] = "green",
 	[448248] = "red",
 	[453161] = "orange",
+	[465012] = "yellow",
 })

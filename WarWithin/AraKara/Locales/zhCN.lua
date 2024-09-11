@@ -7,6 +7,7 @@ if L then
 	L.nakt = "纳克特"
 	L.atik = "阿提克"
 	L.hulking_bloodguard = "魁梧的血卫"
+	L.sentry_stagshell = "哨兵鹿壳虫"
 	L.bloodstained_webmage = "沾血的网法师"
 	L.blood_overseer = "鲜血监督者"
 	L.nerubian_hauler = "蛛魔搬运者"

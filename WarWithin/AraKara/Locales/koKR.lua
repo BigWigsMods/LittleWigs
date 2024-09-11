@@ -7,6 +7,7 @@ if L then
 	--L.nakt = "Nakt"
 	L.atik = "아틱"
 	--L.hulking_bloodguard = "Hulking Bloodguard"
+	L.sentry_stagshell = "파수꾼 가지뿔껍질"
 	--L.bloodstained_webmage = "Bloodstained Webmage"
 	--L.blood_overseer = "Blood Overseer"
 	--L.nerubian_hauler = "Nerubian Hauler"

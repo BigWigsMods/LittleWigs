@@ -15,6 +15,8 @@ mod:RegisterEnableMob(
 	218324, -- Nakt
 	217533, -- Atik
 	216338, -- Hulking Bloodguard
+	228015, -- Hulking Bloodguard (Sentry Stagshell's summon)
+	216340, -- Sentry Stagshell
 	223253, -- Bloodstained Webmage
 	216364, -- Blood Overseer
 	217039 -- Nerubian Hauler
@@ -32,6 +34,7 @@ if L then
 	L.nakt = "Nakt"
 	L.atik = "Atik"
 	L.hulking_bloodguard = "Hulking Bloodguard"
+	L.sentry_stagshell = "Sentry Stagshell"
 	L.bloodstained_webmage = "Bloodstained Webmage"
 	L.blood_overseer = "Blood Overseer"
 	L.nerubian_hauler = "Nerubian Hauler"
@@ -64,6 +67,9 @@ function mod:GetOptions()
 		438826, -- Poisonous Cloud
 		-- Hulking Bloodguard
 		{453161, "NAMEPLATE"}, -- Impale
+		{465012, "HEALER", "NAMEPLATE"}, -- Slam
+		-- Sentry Stagshell
+		432967, -- Alarm Shrill
 		-- Bloodstained Webmage
 		{448248, "NAMEPLATE"}, -- Revolting Volley
 		-- Blood Overseer
@@ -79,6 +85,7 @@ function mod:GetOptions()
 		[438877] = L.nakt,
 		[438826] = L.atik,
 		[453161] = L.hulking_bloodguard,
+		[432967] = L.sentry_stagshell,
 		[448248] = L.bloodstained_webmage,
 		[433845] = L.blood_overseer,
 		[434252] = L.nerubian_hauler,
@@ -120,7 +127,12 @@ function mod:OnBossEnable()
 
 	-- Hulking Bloodguard
 	self:Log("SPELL_CAST_START", "Impale", 453161)
-	self:Death("HulkingBloodguardDeath", 216338)
+	self:Log("SPELL_CAST_START", "Slam", 465012)
+	self:Death("HulkingBloodguardDeath", 216338, 228015)
+
+	-- Sentry Stagshell
+	self:Log("SPELL_CAST_START", "AlarmShrill", 432967)
+	self:Log("SPELL_SUMMON", "AlarmShrillSummon", 432967)
 
 	-- Bloodstained Webmage
 	self:Log("SPELL_CAST_START", "RevoltingVolley", 448248)
@@ -339,12 +351,37 @@ end
 
 function mod:Impale(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:Slam(args)
+	self:Message(args.spellId, "yellow")
+	self:Nameplate(args.spellId, 25.5, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:HulkingBloodguardDeath(args)
 	self:ClearNameplate(args.destGUID)
+end
+
+-- Sentry Stagshell
+
+do
+	local prev = 0
+	function mod:AlarmShrill(args)
+		local t = args.time
+		if t - prev > 3 then
+			prev = t
+			self:Message(args.spellId, "cyan", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
+		end
+	end
+end
+
+function mod:AlarmShrillSummon(args)
+	self:Message(args.spellId, "cyan", CL.spawning:format(args.destName))
+	self:PlaySound(args.spellId, "warning")
 end
 
 -- Bloodstained Webmage
