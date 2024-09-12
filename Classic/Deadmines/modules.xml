@@ -1,0 +1,14 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="RhahkZor.lua"/>
+<Script file="Sneed.lua"/>
+<Script file="Gilnid.lua"/>
+<Script file="MrSmite.lua"/>
+<Script file="CaptainGreenskin.lua"/>
+<Script file="EdwinVanCleef.lua"/>
+<Script file="Cookie.lua"/>
+
+<Include file="Options\options.xml"/>
+
+</Ui>

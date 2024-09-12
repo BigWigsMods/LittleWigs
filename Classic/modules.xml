@@ -1,6 +1,25 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Include file="BlackrockSpire\modules.xml"/>
+<!-- Vanilla through WotLK and War Within+ only: <Include file="Deadmines\modules.xml"/> -->
+<!-- Vanilla through Cata only: <Include file="BlackrockSpire\modules.xml"/> -->
+<!-- Vanilla only: <Include file="DemonFallCanyon\modules.xml"/> -->
+
+<!--<Include file="BlackrockDepths\modules.xml"/>-->
+<Include file="DireMaul\modules.xml"/>
+<!--<Include file="Maraudon\modules.xml"/>-->
+<!--<Include file="RagefireChasm\modules.xml"/>-->
+<!--<Include file="RazorfenDowns\modules.xml"/>-->
+<!--<Include file="RazorfenKraul\modules.xml"/>-->
+<!--<Include file="ScarletMonastery\modules.xml"/>-->
+<!--<Include file="Scholomance\modules.xml"/>-->
+<!--<Include file="ShadowfangKeep\modules.xml"/>-->
+<Include file="Stratholme\modules.xml"/>
+<!--<Include file="TheStockade\modules.xml"/>-->
+<!--<Include file="Uldaman\modules.xml"/>-->
+<!--<Include file="WailingCaverns\modules.xml"/>-->
+<Include file="ZulFarrak\modules.xml"/>
+
+<Include file="Locales\locales.xml"/>
 
 </Ui>

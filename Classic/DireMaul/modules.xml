@@ -1,0 +1,20 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="TendrisWarpwood.lua"/>
+<Script file="IllyannaRavenoak.lua"/>
+<Script file="MagisterKalendris.lua"/>
+<Script file="Immolthar.lua"/>
+<Script file="PrinceTortheldrin.lua"/>
+<Script file="GuardMoldar.lua"/>
+<Script file="StomperKreeg.lua"/>
+<Script file="ChoRushTheObserver.lua"/>
+<Script file="KingGordok.lua"/>
+<Script file="Lethtendris.lua"/>
+<Script file="Hydrospawn.lua"/>
+<Script file="ZevrimThornhoof.lua"/>
+<Script file="AlzzinTheWildshaper.lua"/>
+
+<Include file="Options\options.xml"/>
+
+</Ui>

@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Cookie", 36, 93)
+local mod, CL = BigWigs:NewBoss("Captain Cookie", 36, 93)
 if not mod then return end
 mod:RegisterEnableMob(47739) -- Cookie
 mod:SetEncounterID(1060)
