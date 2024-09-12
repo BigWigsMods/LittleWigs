@@ -1,7 +1,7 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<!-- Vanilla and Retail only: <Include file="Deadmines\modules.xml"/> -->
+<!-- Vanilla through WotLK and War Within+ only: <Include file="Deadmines\modules.xml"/> -->
 <!-- Vanilla through Cata only: <Include file="BlackrockSpire\modules.xml"/> -->
 <!-- Vanilla only: <Include file="DemonFallCanyon\modules.xml"/> -->
 
