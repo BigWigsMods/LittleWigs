@@ -2,12 +2,13 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Zekvir", 2682)
+local mod, CL = BigWigs:NewBoss("Zekvir 2", 2682)
 if not mod then return end
-mod:RegisterEnableMob(225204) -- Zekvir (Tier ?)
-mod:SetEncounterID(2987)
+mod:RegisterEnableMob(221427) -- Zekvir (Tier ??)
+mod:SetEncounterID(2985)
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -22,7 +23,7 @@ local callWebTerrorCount = 1
 local L = mod:GetLocale()
 if L then
 	L.zekvir = "Zekvir"
-	L.tier = "%s Tier ?"
+	L.tier = "%s Tier ??"
 	L.web_terror = "Web Terror"
 end
 
@@ -41,14 +42,22 @@ function mod:GetOptions()
 		450505, -- Enfeebling Spittle
 		450492, -- Horrendous Roar
 		450519, -- Angler's Web
+		450449, -- Regenerating Carapace
 		450568, -- Call Web Terror
 		-- Web Terror
 		{453937, "CASTBAR"}, -- Hatching
 		webTerrorMarker,
 		{450597, "NAMEPLATE"}, -- Web Blast
+		-- Stage 2
+		451003, -- Black Blood
+		450872, -- Unending Spines
+		450914, -- Blood-Infused Carapace
+		451782, -- Infinite Horror
 	}, {
 		[453937] = L.web_terror,
+		[451003] = CL.stage:format(2),
 	}, {
+		[451003] = CL.stage:format(2), -- Black Blood (Stage 2)
 		[453937] = CL.spawned:format(L.web_terror), -- Hatching... (Web Terror spawned)
 	}
 end
@@ -59,7 +68,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "EnfeeblingSpittleInterrupt", 450505)
 	self:Log("SPELL_CAST_SUCCESS", "EnfeeblingSpittleSuccess", 450505)
 	self:Log("SPELL_CAST_START", "HorrendousRoar", 450492)
-	self:Log("SPELL_CAST_START", "AnglersWeb", 450519)
+	self:Log("SPELL_CAST_START", "AnglersWeb", 450519, 450676) -- Stage 1, Stage 2
+	self:Log("SPELL_CAST_START", "RegeneratingCarapace", 450449)
+	self:Log("SPELL_INTERRUPT", "RegeneratingCarapaceInterrupt", 450449)
+	self:Log("SPELL_CAST_SUCCESS", "RegeneratingCarapaceSuccess", 450449)
 	self:Log("SPELL_CAST_START", "CallWebTerror", 450568)
 	self:Log("SPELL_SUMMON", "WebTerrorSummon", 450568)
 
@@ -70,20 +82,24 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "WebBlastInterrupt", 450597)
 	self:Log("SPELL_CAST_SUCCESS", "WebBlastSuccess", 450597)
 	self:Death("WebTerrorDeath", 224077)
+
+	-- Stage 2
+	self:Log("SPELL_CAST_START", "BlackBlood", 451003)
+	self:Log("SPELL_CAST_START", "UnendingSpines", 450872)
+	self:Log("SPELL_CAST_START", "BloodInfusedCarapace", 450914)
+	self:Log("SPELL_INTERRUPT", "BloodInfusedCarapaceInterrupt", 450914)
+	self:Log("SPELL_CAST_SUCCESS", "BloodInfusedCarapaceSuccess", 450914)
+	self:Log("SPELL_CAST_START", "InfiniteHorror", 451782)
 end
 
 function mod:OnEngage()
-	if self:MobId(self:UnitGUID("boss1")) == 221427 then -- Zekvir Tier ??
-		-- XXX there is a bug where the Zekvir Tier ? ENCOUNTER_START fires halfway through Zekvir Tier ??
-		self:Disable()
-		return
-	end
 	callWebTerrorCount = 1
-	self:CDBar(450451, 4.6) -- Claw Smash
-	self:CDBar(450505, 8.3) -- Enfeebling Spittle
-	self:CDBar(450492, 9.5) -- Horrendous Roar
+	self:SetStage(1)
+	self:CDBar(450451, 4.0) -- Claw Smash
+	self:CDBar(450492, 9.3) -- Horrendous Roar
+	self:CDBar(450505, 16.1) -- Enfeebling Spittle
 	self:CDBar(450568, 18.0, CL.count:format(self:SpellName(450568), callWebTerrorCount)) -- Call Web Terror
-	self:CDBar(450519, 20.4) -- Angler's Web
+	self:CDBar(450519, 24.6) -- Angler's Web
 end
 
 --------------------------------------------------------------------------------
@@ -91,54 +107,67 @@ end
 --
 
 function mod:ClawSmash(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
 		self:Message(args.spellId, "orange")
-		self:CDBar(args.spellId, 18.2)
+		self:CDBar(args.spellId, 15.8)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
 
 function mod:EnfeeblingSpittle(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
 end
 
 function mod:EnfeeblingSpittleInterrupt(args)
-	if self:MobId(args.destGUID) == 225204 then -- Zekvir Tier ?
-		self:CDBar(450505, 15.3)
+	if self:MobId(args.destGUID) == 221427 then -- Zekvir Tier ??
+		self:CDBar(450505, 23.7)
 	end
 end
 
 function mod:EnfeeblingSpittleSuccess(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
-		self:CDBar(args.spellId, 15.3)
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
+		self:CDBar(args.spellId, 23.7)
 	end
 end
 
 function mod:HorrendousRoar(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
 		self:Message(args.spellId, "yellow")
-		self:CDBar(args.spellId, 20.6)
+		self:CDBar(args.spellId, 18.6)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
 
 function mod:AnglersWeb(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
-		self:Message(args.spellId, "orange")
-		self:CDBar(args.spellId, 25.5)
-		self:PlaySound(args.spellId, "alarm")
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
+		self:Message(450519, "orange")
+		self:CDBar(450519, 21.8)
+		self:PlaySound(450519, "alarm")
 	end
 end
 
+function mod:RegeneratingCarapace(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:RegeneratingCarapaceInterrupt(args)
+	self:CDBar(450449, 31.3)
+end
+
+function mod:RegeneratingCarapaceSuccess(args)
+	self:CDBar(args.spellId, 31.3)
+end
+
 function mod:CallWebTerror(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
 		self:StopBar(CL.count:format(args.spellName, callWebTerrorCount))
 		self:Message(args.spellId, "cyan", CL.count:format(args.spellName, callWebTerrorCount))
 		callWebTerrorCount = callWebTerrorCount + 1
-		self:CDBar(args.spellId, 37.6, CL.count:format(args.spellName, callWebTerrorCount))
+		self:CDBar(args.spellId, 41.2, CL.count:format(args.spellName, callWebTerrorCount))
 		self:PlaySound(args.spellId, "long")
 	end
 end
@@ -205,4 +234,46 @@ function mod:WebTerrorDeath(args)
 		self:StopBar(CL.cast:format(self:SpellName(453937))) -- Hatching
 		self:ClearNameplate(args.destGUID)
 	end
+end
+
+-- Stage 2
+
+function mod:BlackBlood(args)
+	self:StopBar(450492) -- Horrendous Roar
+	self:StopBar(450449) -- Regenerating Carapace
+	self:SetStage(2)
+	self:Message(args.spellId, "cyan", CL.percent:format(60, CL.stage:format(2)))
+	self:CDBar(450451, 14.2) -- Claw Smash
+	self:CDBar(450872, 17.8) -- Unending Spines
+	self:CDBar(450505, 25.5) -- Enfeebling Spittle
+	self:CDBar(450914, 25.5) -- Blood-Infused Carapace
+	self:CDBar(450568, 29.2, CL.count:format(self:SpellName(450568), callWebTerrorCount)) -- Call Web Terror
+	self:CDBar(450519, 31.6) -- Angler's Web
+	self:CDBar(451782, 34.0) -- Infinite Horror
+	self:PlaySound(args.spellId, "long")
+end
+
+function mod:UnendingSpines(args)
+	self:Message(args.spellId, "yellow")
+	self:CDBar(args.spellId, 22.2)
+	self:PlaySound(args.spellId, "long")
+end
+
+function mod:BloodInfusedCarapace(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:BloodInfusedCarapaceInterrupt(args)
+	self:CDBar(450914, 31.3)
+end
+
+function mod:BloodInfusedCarapaceSuccess(args)
+	self:CDBar(args.spellId, 31.3)
+end
+
+function mod:InfiniteHorror(args)
+	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 18.2)
+	self:PlaySound(args.spellId, "alarm")
 end

@@ -2,6 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Zekvir.lua"/>
+<Script file="Zekvir2.lua"/>
 
 <Include file="Options\options.xml"/>
 
