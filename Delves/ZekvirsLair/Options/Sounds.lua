@@ -2,7 +2,7 @@
 BigWigs:AddSounds("Zekvir", {
 	[450451] = "alarm",
 	[450492] = "alarm",
-	[450505] = "alert",
+	[450505] = {"alert","info"},
 	[450519] = "alarm",
 	[450568] = "long",
 	[450597] = "warning",
@@ -13,7 +13,7 @@ BigWigs:AddSounds("Zekvir 2", {
 	[450449] = "warning",
 	[450451] = "alarm",
 	[450492] = "alarm",
-	[450505] = "alert",
+	[450505] = {"alert","info"},
 	[450519] = "alarm",
 	[450568] = "long",
 	[450597] = "warning",

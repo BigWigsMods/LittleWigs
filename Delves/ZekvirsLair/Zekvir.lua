@@ -58,6 +58,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "EnfeeblingSpittle", 450505)
 	self:Log("SPELL_INTERRUPT", "EnfeeblingSpittleInterrupt", 450505)
 	self:Log("SPELL_CAST_SUCCESS", "EnfeeblingSpittleSuccess", 450505)
+	self:Log("SPELL_AURA_APPLIED", "EnfeeblingSpittleApplied", 450505)
 	self:Log("SPELL_CAST_START", "HorrendousRoar", 450492)
 	self:Log("SPELL_CAST_START", "AnglersWeb", 450519)
 	self:Log("SPELL_CAST_START", "CallWebTerror", 450568)
@@ -114,6 +115,15 @@ end
 function mod:EnfeeblingSpittleSuccess(args)
 	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
 		self:CDBar(args.spellId, 15.3)
+	end
+end
+
+function mod:EnfeeblingSpittleApplied(args)
+	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
+		if self:Me(args.destGUID) then
+			self:PersonalMessage(args.spellId)
+			self:PlaySound(args.spellId, "info", nil, args.destName)
+		end
 	end
 end
 
