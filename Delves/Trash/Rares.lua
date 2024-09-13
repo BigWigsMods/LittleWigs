@@ -566,8 +566,8 @@ do
 				self:CancelTimer(timer)
 				timer = nil
 			end
-			self:Message(args.spellId, "yellow")
-			self:CDBar(args.spellId, 18.2)
+			self:Message(args.spellId, "yellow", CL.fear)
+			self:CDBar(args.spellId, 18.2, CL.fear)
 			timer = self:ScheduleTimer("ZekvirDeath", 30)
 			self:PlaySound(args.spellId, "alarm")
 		end
@@ -592,7 +592,7 @@ do
 			timer = nil
 		end
 		self:StopBar(450505) -- Enfeebling Spittle
-		self:StopBar(450492) -- Horrendous Roar
+		self:StopBar(CL.fear) -- Horrendous Roar
 		self:StopBar(450519) -- Angler's Web
 	end
 end

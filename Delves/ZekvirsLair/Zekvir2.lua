@@ -22,8 +22,7 @@ local callWebTerrorCount = 1
 
 local L = mod:GetLocale()
 if L then
-	L.zekvir = "Zekvir"
-	L.tier = "%s Tier ??"
+	L.zekvir = "Zekvir (Tier 2)"
 	L.web_terror = "Web Terror"
 end
 
@@ -32,7 +31,8 @@ end
 --
 
 function mod:OnRegister()
-	self.displayName = L.tier:format(L.zekvir)
+	self.displayName = L.zekvir
+	self:SetSpellRename(450492, CL.fear) -- Horrendous Roar (Fear)
 end
 
 local webTerrorMarker = mod:AddMarkerOption(true, "npc", 8, "web_terror", 8) -- Web Terror
@@ -57,6 +57,7 @@ function mod:GetOptions()
 		[453937] = L.web_terror,
 		[451003] = CL.stage:format(2),
 	}, {
+		[450492] = CL.fear, -- Horrendous Roar (Fear)
 		[451003] = CL.stage:format(2), -- Black Blood (Stage 2)
 		[453937] = CL.spawned:format(L.web_terror), -- Hatching... (Web Terror spawned)
 	}
@@ -97,7 +98,7 @@ function mod:OnEngage()
 	callWebTerrorCount = 1
 	self:SetStage(1)
 	self:CDBar(450451, 4.0) -- Claw Smash
-	self:CDBar(450492, 9.3) -- Horrendous Roar
+	self:CDBar(450492, 9.3, CL.fear) -- Horrendous Roar
 	self:CDBar(450505, 16.1) -- Enfeebling Spittle
 	self:CDBar(450568, 18.0, CL.count:format(self:SpellName(450568), callWebTerrorCount)) -- Call Web Terror
 	self:CDBar(450519, 24.6) -- Angler's Web
@@ -145,8 +146,8 @@ end
 
 function mod:HorrendousRoar(args)
 	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
-		self:Message(args.spellId, "yellow")
-		self:CDBar(args.spellId, 18.6)
+		self:Message(args.spellId, "yellow", CL.fear)
+		self:CDBar(args.spellId, 18.6, CL.fear)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
@@ -249,7 +250,7 @@ end
 -- Stage 2
 
 function mod:BlackBlood(args)
-	self:StopBar(450492) -- Horrendous Roar
+	self:StopBar(CL.fear) -- Horrendous Roar
 	self:StopBar(450449) -- Regenerating Carapace
 	self:SetStage(2)
 	self:Message(args.spellId, "cyan", CL.percent:format(60, CL.stage:format(2)))
