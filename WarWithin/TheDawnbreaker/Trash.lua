@@ -62,6 +62,7 @@ function mod:GetOptions()
 		{431364, "NAMEPLATE"}, -- Tormenting Ray
 		-- Nightfall Commander
 		{450756, "NAMEPLATE"}, -- Abyssal Howl
+		{431491, "TANK", "NAMEPLATE"}, -- Tainted Slash
 		-- Sureki Webmage
 		{451107, "SAY", "NAMEPLATE"}, -- Bursting Cocoon
 		-- Arathi Bomb
@@ -127,6 +128,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AbyssalHowl", 450756)
 	self:Log("SPELL_INTERRUPT", "AbyssalHowlInterrupt", 450756)
 	self:Log("SPELL_CAST_SUCCESS", "AbyssalHowlSuccess", 450756)
+	self:Log("SPELL_CAST_START", "TaintedSlash", 431491)
 	self:Death("NightfallCommanderDeath", 214762)
 
 	-- Sureki Webmage
@@ -274,6 +276,12 @@ end
 
 function mod:AbyssalHowlSuccess(args)
 	self:Nameplate(args.spellId, 25.2, args.sourceGUID)
+end
+
+function mod:TaintedSlash(args)
+	self:Message(args.spellId, "purple")
+	self:Nameplate(args.spellId, 8.5, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:NightfallCommanderDeath(args)
