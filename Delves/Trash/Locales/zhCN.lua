@@ -79,4 +79,5 @@ if L then
 	L.tala = "塔拉"
 	L.velo = "威罗"
 	L.anubvir = "阿努布维尔"
+	--L.zekvir = "Zekvir (Random Spawn)"
 end

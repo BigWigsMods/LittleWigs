@@ -14,7 +14,8 @@ mod:RegisterEnableMob(
 	227635, -- Kas'dru
 	227513, -- Tala
 	227514, -- Velo
-	227573 -- Anub'vir
+	227573, -- Anub'vir
+	217208 -- Zekvir
 )
 
 --------------------------------------------------------------------------------
@@ -35,6 +36,7 @@ if L then
 	L.tala = "Tala"
 	L.velo = "Velo"
 	L.anubvir = "Anub'vir"
+	L.zekvir = "Zekvir (Random Spawn)"
 end
 
 --------------------------------------------------------------------------------
@@ -46,6 +48,7 @@ function mod:OnRegister()
 	self:SetSpellRename(445781, CL.frontal_cone) -- Lava Blast (Frontal Cone)
 	self:SetSpellRename(415253, CL.frontal_cone) -- Fungal Breath (Frontal Cone)
 	self:SetSpellRename(415250, CL.explosion) -- Fungal Bloom (Explosion)
+	self:SetSpellRename(450492, CL.fear) -- Horrendous Roar (Fear)
 end
 
 local autotalk = mod:AddAutoTalkOption(true, "boss")
@@ -80,6 +83,10 @@ function mod:GetOptions()
 		458099, -- Grasping Darkness
 		-- Anub'vir
 		449038, -- Impaling Spikes
+		-- Zekvir
+		450519, -- Angler's Web
+		450492, -- Horrendous Roar
+		450505, -- Enfeebling Spittle
 	},{
 		[445781] = L.stolen_loader,
 		[415253] = L.invasive_sporecap,
@@ -91,10 +98,12 @@ function mod:GetOptions()
 		[458104] = L.tala,
 		[458090] = L.velo,
 		[449038] = L.anubvir,
+		[450519] = L.zekvir,
 	},{
 		[445781] = CL.frontal_cone, -- Lava Blast (Frontal Cone)
 		[415253] = CL.frontal_cone, -- Fungal Breath (Frontal Cone)
 		[415250] = CL.explosion, -- Fungal Bloom (Explosion)
+		[450492] = CL.fear, -- Horrendous Roar (Fear)
 	}
 end
 
@@ -152,6 +161,15 @@ function mod:OnBossEnable()
 	-- Anub'vir
 	self:Log("SPELL_CAST_START", "ImpalingSpikes", 449038)
 	self:Death("AnubvirDeath", 227573)
+
+	-- Zekvir
+	self:Log("SPELL_CAST_START", "EnfeeblingSpittle", 450505)
+	self:Log("SPELL_INTERRUPT", "EnfeeblingSpittleInterrupt", 450505)
+	self:Log("SPELL_CAST_SUCCESS", "EnfeeblingSpittleSuccess", 450505)
+	self:Log("SPELL_AURA_APPLIED", "EnfeeblingSpittleApplied", 450505)
+	self:Log("SPELL_CAST_START", "HorrendousRoar", 450492)
+	self:Log("SPELL_CAST_START", "AnglersWeb", 450519)
+	self:Death("ZekvirDeath", 217208)
 end
 
 --------------------------------------------------------------------------------
@@ -496,5 +514,85 @@ do
 			timer = nil
 		end
 		self:StopBar(449038) -- Impaling Spikes
+	end
+end
+
+-- Zekvir
+
+do
+	local timer
+
+	function mod:EnfeeblingSpittle(args)
+		if self:MobId(args.sourceGUID) == 217208 then -- Zekvir rare spawn
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+
+	function mod:EnfeeblingSpittleInterrupt(args)
+		if self:MobId(args.destGUID) == 217208 then -- Zekvir rare spawn
+			if timer then
+				self:CancelTimer(timer)
+				timer = nil
+			end
+			self:CDBar(450505, 15.3)
+			timer = self:ScheduleTimer("ZekvirDeath", 30)
+		end
+	end
+
+	function mod:EnfeeblingSpittleSuccess(args)
+		if self:MobId(args.sourceGUID) == 217208 then -- Zekvir rare spawn
+			if timer then
+				self:CancelTimer(timer)
+				timer = nil
+			end
+			self:CDBar(args.spellId, 15.3)
+			timer = self:ScheduleTimer("ZekvirDeath", 30)
+		end
+	end
+
+	function mod:EnfeeblingSpittleApplied(args)
+		if self:MobId(args.sourceGUID) == 217208 then -- Zekvir rare spawn
+			if self:Me(args.destGUID) then
+				self:PersonalMessage(args.spellId)
+				self:PlaySound(args.spellId, "info", nil, args.destName)
+			end
+		end
+	end
+
+	function mod:HorrendousRoar(args)
+		if self:MobId(args.sourceGUID) == 217208 then -- Zekvir rare spawn
+			if timer then
+				self:CancelTimer(timer)
+				timer = nil
+			end
+			self:Message(args.spellId, "yellow")
+			self:CDBar(args.spellId, 18.2)
+			timer = self:ScheduleTimer("ZekvirDeath", 30)
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+
+	function mod:AnglersWeb(args)
+		if self:MobId(args.sourceGUID) == 217208 then -- Zekvir rare spawn
+			if timer then
+				self:CancelTimer(timer)
+				timer = nil
+			end
+			self:Message(args.spellId, "orange")
+			self:CDBar(args.spellId, 23.1)
+			timer = self:ScheduleTimer("ZekvirDeath", 30)
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+
+	function mod:ZekvirDeath()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(450505) -- Enfeebling Spittle
+		self:StopBar(450492) -- Horrendous Roar
+		self:StopBar(450519) -- Angler's Web
 	end
 end
