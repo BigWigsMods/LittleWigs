@@ -79,5 +79,5 @@ if L then
 	L.tala = "Tala"
 	L.velo = "Velo"
 	L.anubvir = "Anub'vir"
-	--L.zekvir = "Zekvir (Random Spawn)"
+	L.zekvir = "Zekvir (Zufälliges Erscheinen)"
 end
