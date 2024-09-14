@@ -24,6 +24,7 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.overseer_kaskel
+	self:SetSpellRename(449038, CL.spikes) -- Impaling Spikes (Spikes)
 end
 
 function mod:GetOptions()
@@ -31,6 +32,9 @@ function mod:GetOptions()
 		449038, -- Impaling Spikes
 		448644, -- Burrowing Terrors
 		449072, -- Call Drones
+	},nil,{
+		[449038] = CL.spikes, -- Impaling Spikes (Spikes)
+		[449072] = CL.adds, -- Call Drones (Adds)
 	}
 end
 
@@ -41,9 +45,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(449038, 6.0) -- Impaling Spikes
+	self:CDBar(449038, 6.0, CL.spikes) -- Impaling Spikes
 	self:CDBar(448644, 12.1) -- Burrowing Tremors
-	self:CDBar(449072, 26.7) -- Call Drones
+	self:CDBar(449072, 23.1, CL.adds) -- Call Drones
 end
 
 --------------------------------------------------------------------------------
@@ -51,19 +55,19 @@ end
 --
 
 function mod:ImpalingSpikes(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "orange", CL.spikes)
+	self:CDBar(args.spellId, 21.9, CL.spikes)
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 25.1)
 end
 
 function mod:BurrowingTremors(args)
 	self:Message(args.spellId, "red")
+	self:CDBar(args.spellId, 31.6)
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 21.6)
 end
 
 function mod:CallDrones(args)
-	self:Message(args.spellId, "cyan")
+	self:Message(args.spellId, "cyan", CL.adds)
+	self:CDBar(args.spellId, 30.4, CL.adds)
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 30.4)
 end
