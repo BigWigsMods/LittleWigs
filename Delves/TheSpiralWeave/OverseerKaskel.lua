@@ -29,7 +29,7 @@ end
 
 function mod:GetOptions()
 	return {
-		449038, -- Impaling Spikes
+		{449038, "EMPHASIZE"}, -- Impaling Spikes
 		448644, -- Burrowing Terrors
 		449072, -- Call Drones
 	},nil,{
@@ -57,7 +57,7 @@ end
 function mod:ImpalingSpikes(args)
 	self:Message(args.spellId, "orange", CL.spikes)
 	self:CDBar(args.spellId, 21.9, CL.spikes)
-	self:PlaySound(args.spellId, "alarm")
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:BurrowingTremors(args)
