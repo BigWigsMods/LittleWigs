@@ -52,7 +52,6 @@ local mobsNeeded = {
 local L = mod:GetLocale()
 if L then
 	L.awakening_the_machine = "Awakening the Machine"
-
 	L.stages_desc = "Show an alert when a new wave of enemies spawns."
 	L.stages_icon = "inv_cape_armor_earthencivilian_d_02_silver"
 
@@ -63,6 +62,8 @@ if L then
 	L.medbot = "Medbot"
 	L.nullbot = "Nullbot"
 	L.awakened_phalanx = "Awakened Phalanx"
+
+	L.start_waves_trigger = "Watch my back while I commune with the machine"
 end
 
 --------------------------------------------------------------------------------
@@ -113,6 +114,7 @@ end
 
 function mod:OnBossEnable()
 	-- Waves
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 	self:RegisterWidgetEvent(5573, "Waves")
 	self:Death("MobDeath", 229691, 229695, 229769, 229729) -- 229778 is covered in :AutomaticIronstriderDeath
 	self:Log("SPELL_CAST_SUCCESS", "MobDeath", 288774, 462826) -- Shutdown, Self Destruct
@@ -150,6 +152,16 @@ end
 
 -- Waves
 
+function mod:CHAT_MSG_MONSTER_SAY(_, msg)
+	if msg:find(L.start_waves_trigger, nil, true) then
+		local stage = self:GetStage()
+		if stage < 1 then
+			stage = 0
+		end
+		self:Bar("stages", 9.8, CL.wave:format(stage + 1), L.stages_icon)
+	end
+end
+
 do
 	local waveStart = 0
 
@@ -159,6 +171,7 @@ do
 		-- [UPDATE_UI_WIDGET] widgetID:5573, widgetType:8, text:Wave 20
 		local wave = tonumber(text:match("%d+"))
 		if wave and wave ~= 0 then -- widget is reset to 0 once you kill the Awakened Phalanx
+			self:StopBar(CL.wave:format(wave))
 			self:SetStage(wave)
 			self:Message("stages", "cyan", CL.wave_count:format(wave, 20), L.stages_icon)
 			self:PlaySound("stages", "info")
@@ -166,6 +179,7 @@ do
 	end
 
 	function mod:Intermission()
+		self:StopBar(CL.intermission)
 		self:Message("stages", "green", CL.intermission, L.stages_icon)
 		self:PlaySound("stages", "info")
 	end

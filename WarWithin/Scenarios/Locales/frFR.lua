@@ -2,7 +2,6 @@ local L = BigWigs:NewBossLocale("Awakening the Machine", "frFR")
 if not L then return end
 if L then
 	L.awakening_the_machine = "L’éveil de la machine"
-
 	L.stages_desc = "Affiche une alerte lorsqu'une nouvelle vague d'ennemis apparaît."
 
 	L.corrupted_machinist = "Machiniste corrompu(e)"
@@ -12,4 +11,6 @@ if L then
 	L.medbot = "Robot médica"
 	L.nullbot = "Robot nul"
 	L.awakened_phalanx = "Phalange éveillée"
+
+	--L.start_waves_trigger = "Watch my back while I commune with the machine"
 end
