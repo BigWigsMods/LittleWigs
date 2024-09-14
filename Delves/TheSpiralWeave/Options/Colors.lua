@@ -6,5 +6,6 @@ BigWigs:AddColors("Overseer Kaskel", {
 })
 
 BigWigs:AddColors("The Puppetmaster", {
-	[451913] = "red",
+	[448663] = "red",
+	[451913] = "orange",
 })

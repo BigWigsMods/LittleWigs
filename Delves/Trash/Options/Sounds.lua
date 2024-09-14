@@ -69,7 +69,7 @@ BigWigs:AddSounds("Delve Rares", {
 	[418297] = "alert",
 	[445718] = "alert",
 	[445781] = "alarm",
-	[449038] = "alarm",
+	[449038] = "warning",
 	[450492] = "alarm",
 	[450505] = {"alert","info"},
 	[450519] = "alarm",
