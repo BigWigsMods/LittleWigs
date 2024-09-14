@@ -12,5 +12,5 @@ if L then
 	L.nullbot = "Nullbot"
 	L.awakened_phalanx = "Erweckte Phalanx"
 
-	--L.start_waves_trigger = "Watch my back while I commune with the machine"
+	L.start_waves_trigger = "Haltet mir den Rücken frei, während ich mit der Maschine Zwiesprache halte!"
 end
