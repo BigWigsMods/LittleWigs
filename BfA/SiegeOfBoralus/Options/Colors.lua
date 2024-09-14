@@ -6,7 +6,7 @@ BigWigs:AddColors("Chopper Redhook", {
 	[257459] = {"blue","yellow"},
 	[257585] = "orange",
 	[273721] = {"green","orange"},
-	["adds"] = "yellow",
+	[274002] = "yellow",
 })
 
 BigWigs:AddColors("Sergeant Bainbridge", {
