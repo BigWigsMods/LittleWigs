@@ -179,7 +179,6 @@ do
 	end
 
 	function mod:Intermission()
-		self:StopBar(CL.intermission)
 		self:Message("stages", "green", CL.intermission, L.stages_icon)
 		self:PlaySound("stages", "info")
 	end
