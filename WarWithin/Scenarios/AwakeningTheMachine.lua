@@ -112,7 +112,7 @@ end
 
 function mod:OnBossEnable()
 	-- Waves
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "npc")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "npc", "softfriend")
 	self:RegisterWidgetEvent(5573, "Waves")
 	self:Death("MobDeath", 229691, 229695, 229769, 229729) -- 229778 is covered in :AutomaticIronstriderDeath
 	self:Log("SPELL_CAST_SUCCESS", "MobDeath", 288774, 462826) -- Shutdown, Self Destruct
@@ -150,13 +150,17 @@ end
 
 -- Waves
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 433923 then -- [DNT] Kuldas Machine Speaker Ritual - Cosmetic Channel
-		local stage = self:GetStage()
-		if stage < 1 then
-			stage = 0
+do
+	local prev
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
+		if castGUID ~= prev and spellId == 433923 then -- [DNT] Kuldas Machine Speaker Ritual - Cosmetic Channel
+			prev = castGUID
+			local stage = self:GetStage()
+			if stage < 1 then
+				stage = 0
+			end
+			self:Bar("stages", 10, CL.wave:format(stage + 1), L.stages_icon)
 		end
-		self:Bar("stages", 10, CL.wave:format(stage + 1), L.stages_icon)
 	end
 end
 
