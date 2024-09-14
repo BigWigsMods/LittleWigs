@@ -11,6 +11,4 @@ if L then
 	--L.medbot = "Medbot"
 	--L.nullbot = "Nullbot"
 	--L.awakened_phalanx = "Awakened Phalanx"
-
-	--L.start_waves_trigger = "Watch my back while I commune with the machine"
 end

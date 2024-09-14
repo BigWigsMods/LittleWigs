@@ -11,6 +11,4 @@ if L then
 	L.medbot = "Robot médica"
 	L.nullbot = "Robot nul"
 	L.awakened_phalanx = "Phalange éveillée"
-
-	--L.start_waves_trigger = "Watch my back while I commune with the machine"
 end

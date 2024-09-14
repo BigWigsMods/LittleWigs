@@ -11,6 +11,4 @@ if L then
 	L.medbot = "医疗机器人"
 	L.nullbot = "空值机器人"
 	L.awakened_phalanx = "觉醒的方阵兵"
-
-	--L.start_waves_trigger = "Watch my back while I commune with the machine"
 end
