@@ -85,9 +85,7 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	local info = self:GetWidgetInfo("delve", 6183)
-	local level = info and tonumber(info.tierText)
-	if (not level or level > 3) and self:GetOption(autotalk) then
+	if self:GetOption(autotalk) then
 		if self:GetGossipID(119802) then -- Kriegval's Rest, start Delve (Kuvkel)
 			-- 119802:I'll get your valuables back from the kobolds.
 			self:SelectGossipID(119802)

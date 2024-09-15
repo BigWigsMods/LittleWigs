@@ -87,9 +87,7 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	local info = self:GetWidgetInfo("delve", 6183)
-	local level = info and tonumber(info.tierText)
-	if (not level or level > 3) and self:GetOption(autotalk) then
+	if self:GetOption(autotalk) then
 		if self:GetGossipID(121502) then -- The Underkeep, start Delve (Weaver's Instructions)
 			-- 121502:|cFF0000FF(Delve)|r <Close the scroll and look for the Weaver's special pheromone to help combat these failed experiments.>
 			self:SelectGossipID(121502)

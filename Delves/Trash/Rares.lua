@@ -181,9 +181,7 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	local info = self:GetWidgetInfo("delve", 6183)
-	local level = info and tonumber(info.tierText)
-	if (not level or level > 3) and self:GetOption(autotalk) then
+	if self:GetOption(autotalk) then
 		if self:GetGossipID(123520) then -- Reno Jackson, start combat
 			-- 123520:Let's fight!
 			self:SelectGossipID(123520)

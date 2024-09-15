@@ -124,9 +124,7 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	local info = self:GetWidgetInfo("delve", 6183)
-	local level = info and tonumber(info.tierText)
-	if (not level or level > 3) and self:GetOption(autotalk) then
+	if self:GetOption(autotalk) then
 		if self:GetGossipID(111366) then -- Fungal Folly, start Delve (Stoneguard Benston)
 			-- 111366:I'll dive into this cavern and get your friends back.
 			self:SelectGossipID(111366)

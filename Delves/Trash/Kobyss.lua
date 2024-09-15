@@ -121,9 +121,7 @@ end
 -- Autotalk
 
 function mod:GOSSIP_SHOW()
-	local info = self:GetWidgetInfo("delve", 6183)
-	local level = info and tonumber(info.tierText)
-	if (not level or level > 3) and self:GetOption(autotalk) then
+	if self:GetOption(autotalk) then
 		if self:GetGossipID(121578) then -- The Sinkhole, start Delve (Raen Dawncavalyr)
 			-- 121578:|cFF0000FF(Delve)|r I'll take your special boots and recover missing relics from the kobyss.
 			self:SelectGossipID(121578)
