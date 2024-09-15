@@ -38,7 +38,7 @@ function mod:OnRegister()
 	self:SetSpellRename(445210, CL.charge) -- Fire Charge (Charge)
 end
 
-local autotalk = mod:AddAutoTalkOption(true)
+local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()
 	return {
 		autotalk,

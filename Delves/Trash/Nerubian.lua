@@ -53,7 +53,7 @@ function mod:OnRegister()
 	self:SetSpellRename(450197, CL.charge) -- Skitter Charge (Charge)
 end
 
-local autotalk = mod:AddAutoTalkOption(true)
+local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()
 	return {
 		autotalk,

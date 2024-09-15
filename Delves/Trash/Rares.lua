@@ -52,7 +52,7 @@ function mod:OnRegister()
 	self:SetSpellRename(450492, CL.fear) -- Horrendous Roar (Fear)
 end
 
-local autotalk = mod:AddAutoTalkOption(true, "boss")
+local autotalk = mod:AddAutoTalkOption(false, "boss")
 function mod:GetOptions()
 	return {
 		autotalk,

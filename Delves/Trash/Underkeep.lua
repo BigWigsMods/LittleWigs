@@ -34,7 +34,7 @@ function mod:OnRegister()
 	self:SetSpellRename(450714, CL.frontal_cone) -- Jagged Barbs (Frontal Cone)
 end
 
-local autotalk = mod:AddAutoTalkOption(true)
+local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()
 	return {
 		autotalk,

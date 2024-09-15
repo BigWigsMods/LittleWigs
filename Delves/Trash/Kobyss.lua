@@ -48,7 +48,7 @@ function mod:OnRegister()
 	self:SetSpellRename(445407, CL.fixate) -- Bloodthirsty (Fixate)
 end
 
-local autotalk = mod:AddAutoTalkOption(true)
+local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()
 	return {
 		autotalk,

@@ -44,7 +44,7 @@ function mod:OnRegister()
 	self:SetSpellRename(434281, CL.explosion) -- Echo of Renilash (Explosion)
 end
 
-local autotalk = mod:AddAutoTalkOption(true)
+local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()
 	return {
 		autotalk,

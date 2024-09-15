@@ -53,7 +53,7 @@ function mod:OnRegister()
 	self:SetSpellRename(372529, CL.fear) -- Hideous Laughter (Fear)
 end
 
-local autotalk = mod:AddAutoTalkOption(true)
+local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()
 	return {
 		autotalk,
