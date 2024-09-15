@@ -53,6 +53,7 @@ BigWigs:AddColors("Grim Batol Trash", {
 	[451224] = {"blue","orange"},
 	[451387] = "cyan",
 	[451391] = {"blue","cyan","orange"},
+	[451395] = "blue",
 	[451613] = {"blue","red"},
 	[451871] = "red",
 	[451939] = "yellow",

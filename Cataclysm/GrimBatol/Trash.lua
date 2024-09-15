@@ -62,6 +62,7 @@ function mod:GetOptions()
 		451387, -- Ascension
 		-- Faceless Corruptor
 		{451391, "NAMEPLATE"}, -- Mind Piercer
+		{451395, "NAMEPLATE"}, -- Corrupt
 	}, {
 		[451871] = L.twilight_earthcaller,
 		[456696] = L.twilight_brute,
@@ -128,6 +129,8 @@ function mod:OnBossEnable()
 		-- Faceless Corruptor
 		self:Log("SPELL_CAST_START", "MindPiercer", 451391)
 		self:Log("SPELL_AURA_APPLIED", "MindPiercerApplied", 451394)
+		self:Log("SPELL_CAST_SUCCESS", "Corrupt", 451395)
+		self:Log("SPELL_AURA_APPLIED", "CorruptApplied", 451395)
 		self:Death("FacelessCorruptorDeath", 39392)
 	end
 end
@@ -359,6 +362,17 @@ do
 			prev = t
 			self:PlaySound(451391, "info", nil, args.destName)
 		end
+	end
+end
+
+function mod:Corrupt(args)
+	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+end
+
+function mod:CorruptApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "alert")
 	end
 end
 

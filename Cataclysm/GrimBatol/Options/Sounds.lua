@@ -49,6 +49,7 @@ BigWigs:AddSounds("Grim Batol Trash", {
 	[451224] = "alert",
 	[451387] = "info",
 	[451391] = {"alarm","info"},
+	[451395] = "alert",
 	[451613] = "alert",
 	[451871] = "alert",
 	[451939] = "alarm",
