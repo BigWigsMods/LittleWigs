@@ -33,7 +33,7 @@ function mod:GetOptions()
 		-- Void Tendril
 		450087, -- Depth's Grasp
 		-- Mythic
-		448057, -- Abyssal Corruption
+		{448057, "SAY"}, -- Abyssal Corruption
 	}, {
 		[450087] = -29619, -- Void Tendril
 		[448057] = CL.mythic,
@@ -53,6 +53,7 @@ function mod:OnBossEnable()
 
 	-- Mythic
 	self:Log("SPELL_CAST_START", "AbyssalCorruption", 448057)
+	self:Log("SPELL_AURA_APPLIED", "AbyssalCorruptionApplied", 448057)
 end
 
 function mod:OnEngage()
@@ -132,10 +133,23 @@ end
 
 -- Mythic
 
-function mod:AbyssalCorruption(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 50.0)
+do
+	local playerList = {}
+
+	function mod:AbyssalCorruption(args)
+		playerList = {}
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:CDBar(args.spellId, 50.0)
+	end
+
+	function mod:AbyssalCorruptionApplied(args)
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(args.spellId, "red", playerList, 3)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId, nil, nil, "Abyssal Corruption")
+		end
+		self:PlaySound(args.spellId, "alarm", nil, playerList)
+	end
 end
 
 --------------------------------------------------------------------------------
