@@ -19,8 +19,7 @@ mod:RegisterEnableMob(
 	216583, -- Chittering Fearmonger
 	208245, -- Skittering Swarmer
 	216621, -- Nerubian Webspinner
-	219810, -- Nerubian Ritualist
-	220507 -- The Puppetmaster?
+	219810 -- Nerubian Ritualist
 )
 
 --------------------------------------------------------------------------------
@@ -63,7 +62,7 @@ function mod:GetOptions()
 		-- Nerubian Darkcaster
 		{449318, "SAY", "SAY_COUNTDOWN"}, -- Shadows of Strife
 		-- Nerubian Captain / Nerubian Marauder
-		450546, -- Webbed Aegis
+		{450546, "DISPEL"}, -- Webbed Aegis
 		450509, -- Wide Swipe
 		-- Chittering Fearmonger
 		433410, -- Fearful Shriek
@@ -157,8 +156,10 @@ end
 -- Nerubian Lord
 
 function mod:JaggedBarbs(args)
-	self:Message(args.spellId, "orange", CL.frontal_cone)
-	self:PlaySound(args.spellId, "alarm")
+	if self:MobId(args.sourceGUID) == 220510 then -- Nerubian Lord
+		self:Message(args.spellId, "orange", CL.frontal_cone)
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 function mod:LeechingSwarm(args)
@@ -189,16 +190,22 @@ end
 -- Nerubian Captain / Nerubian Marauder
 
 function mod:WebbedAegis(args)
-	self:Message(args.spellId, "red", CL.casting:format(CL.shield))
-	self:PlaySound(args.spellId, "alert")
+	local mobId = self:MobId(args.sourceGUID)
+	if mobId == 216584 or mobId == 228954 then -- Nerubian Captain, Nerubian Marauder
+		self:Message(args.spellId, "red", CL.casting:format(CL.shield))
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 function mod:WebbedAegisApplied(args)
-	if self:Player(args.destFlags) then
-		self:TargetMessage(args.spellId, "green", args.destName)
-	else
-		self:Message(args.spellId, "red", CL.other:format(CL.shield, args.destName))
-		self:PlaySound(args.spellId, "alert")
+	local mobId = self:MobId(args.sourceGUID)
+	if self:Dispeller("magic", true, args.spellId) and (mobId == 216584 or mobId == 228954) then -- Nerubian Captain, Nerubian Marauder
+		if self:Player(args.destFlags) then
+			self:TargetMessage(args.spellId, "green", args.destName, CL.shield)
+		else
+			self:Message(args.spellId, "red", CL.other:format(CL.shield, args.destName))
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
 end
 
@@ -224,8 +231,10 @@ end
 -- Skittering Swarmer
 
 function mod:SkitterCharge(args)
-	self:Message(args.spellId, "yellow", CL.charge)
-	self:PlaySound(args.spellId, "alarm")
+	if self:MobId(args.sourceGUID) == 208245 then -- Skittering Swarmer
+		self:Message(args.spellId, "yellow", CL.charge)
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 -- Nerubian Webspinner
