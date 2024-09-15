@@ -101,7 +101,8 @@ function mod:OnEngage()
 	self:CDBar(450492, 9.3, CL.fear) -- Horrendous Roar
 	self:CDBar(450505, 16.1) -- Enfeebling Spittle
 	self:CDBar(450568, 18.0, CL.count:format(self:SpellName(450568), callWebTerrorCount)) -- Call Web Terror
-	self:CDBar(450519, 24.6) -- Angler's Web
+	self:CDBar(450519, 23.1) -- Angler's Web
+	-- Regenerating Carapace not cast until 95%
 end
 
 --------------------------------------------------------------------------------
@@ -111,7 +112,7 @@ end
 function mod:ClawSmash(args)
 	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
 		self:Message(args.spellId, "orange")
-		self:CDBar(args.spellId, 15.8)
+		self:CDBar(args.spellId, 15.1)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
@@ -147,7 +148,7 @@ end
 function mod:HorrendousRoar(args)
 	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
 		self:Message(args.spellId, "yellow", CL.fear)
-		self:CDBar(args.spellId, 18.6, CL.fear)
+		self:CDBar(args.spellId, 17.4, CL.fear)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
