@@ -95,7 +95,7 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(120018) then -- The Waterworks, start Delve (Foreman Bruknar)
 			-- 120018:|cFF0000FF(Delve)|r I'll rescue the rest of your workers from the kobolds.
 			self:SelectGossipID(120018)
-		elseif self:GetGossipID(120096) then
+		elseif self:GetGossipID(120096) then -- The Waterworks, continue Delve (Foreman Bruknar)
 			-- 120096:|cFF0000FF(Delve)|r I'll take the stomping shoes and use them to get your stolen goods back.
 			self:SelectGossipID(120096)
 		elseif self:GetGossipID(120081) then -- The Waterworks, start Delve (Pagsly)
