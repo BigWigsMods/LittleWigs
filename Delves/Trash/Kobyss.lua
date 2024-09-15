@@ -172,9 +172,15 @@ end
 
 -- Kobyss Witherer
 
-function mod:CurseOfTheDepths(args)
-	self:Message(440622, "yellow", CL.casting:format(CL.curse))
-	self:PlaySound(440622, "alert")
+do
+	local prev = 0
+	function mod:CurseOfTheDepths(args)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(440622, "yellow", CL.casting:format(CL.curse))
+			self:PlaySound(440622, "alert")
+		end
+	end
 end
 
 -- Wandering Gutter
