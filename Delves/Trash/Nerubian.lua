@@ -154,7 +154,7 @@ end
 -- Nerubian Lord
 
 function mod:JaggedBarbs(args)
-	if self:MobId(args.sourceGUID) == 220510 then -- Nerubian Lord
+	if self:MobId(args.sourceGUID) == 218103 then -- Nerubian Lord
 		self:Message(args.spellId, "orange", CL.frontal_cone)
 		self:PlaySound(args.spellId, "alarm")
 	end
