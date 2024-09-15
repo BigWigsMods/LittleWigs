@@ -55,7 +55,7 @@ end
 
 function mod:MuckCharge(args)
 	self:Message(args.spellId, "red", CL.charge)
-	self:CDBar(args.spellId, 25.4, CL.charge)
+	self:CDBar(args.spellId, 25.1, CL.charge)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -67,6 +67,6 @@ end
 
 function mod:Sporesong(args)
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 28.7)
+	self:CDBar(args.spellId, 25.1)
 	self:PlaySound(args.spellId, "long")
 end
