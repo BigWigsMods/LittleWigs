@@ -89,7 +89,8 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 end
 
 function mod:CallIrontide(args)
-	if self:GetHealth("boss") > 33 then -- Spams every second under 33% but doesn't actually spawn adds
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
+	if unit and self:GetHealth(unit) > 33 then -- Spams every second under 33% but doesn't actually spawn adds
 		self:Message(args.spellId, "yellow", CL.adds_spawning, L["274002_icon"])
 		self:PlaySound(args.spellId, "long")
 	end
