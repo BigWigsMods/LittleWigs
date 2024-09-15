@@ -14,9 +14,9 @@ BigWigs:AddSounds("Sergeant Bainbridge", {
 	[260924] = "alarm",
 	[260954] = "warning",
 	[261428] = "alert",
+	[274002] = "long",
 	[277965] = {"alert","info"},
 	[279761] = "alert",
-	["adds"] = "long",
 })
 
 BigWigs:AddSounds("Dread Captain Lockwood", {

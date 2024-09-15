@@ -21,8 +21,7 @@ local bombsRemaining = 0
 
 local L = mod:GetLocale()
 if L then
-	L.adds = 274002 -- Call Adds
-	L.adds_icon = "inv_misc_groupneedmore"
+	L["274002_icon"] = "inv_misc_groupneedmore"
 end
 
 --------------------------------------------------------------------------------
@@ -33,7 +32,7 @@ end
 -- most changes have not made it to Bainbridge as of aug 6 2024
 function mod:GetOptions()
 	return {
-		"adds",
+		274002, -- Call Irontide
 		260954, -- Iron Gaze
 		261428, -- Hangman's Noose
 		260924, -- Steel Tempest
@@ -41,9 +40,10 @@ function mod:GetOptions()
 		277965, -- Heavy Ordnance
 		279761, -- Heavy Slash
 	}, {
-		["adds"] = "general",
+		[274002] = "general",
 		[279761] = -17762, -- Kul Tiran Vanguard
 	}, {
+		[274002] = CL.adds, -- Call Irontide (Adds)
 		[260954] = CL.fixate, -- Iron Gaze (Fixate)
 	}
 end
@@ -52,6 +52,7 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss2", "boss3", "boss4", "boss5")
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 
+	self:Log("SPELL_CAST_SUCCESS", "CallIrontide", 274002)
 	self:Log("SPELL_AURA_APPLIED", "IronGaze", 260954)
 	self:Log("SPELL_AURA_REMOVED", "IronGazeRemoved", 260954)
 	self:Log("SPELL_AURA_APPLIED", "HangmansNoose", 261428)
@@ -77,19 +78,20 @@ function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 257540 then -- Cannon Barrage
 		bombsRemaining = 3
 		self:Message(257585, "orange")
 		self:PlaySound(257585, "warning")
 		self:CDBar(257585, 60)
 		self:Bar(277965, 42, CL.count:format(self:SpellName(277965), bombsRemaining)) -- Heavy Ordnance
-	elseif spellId == 274002 then -- Call Adds
-		local hp = self:GetHealth(unit)
-		if hp > 33 then -- Spams every second under 33% but doesn't actually spawn adds
-			self:Message("adds", "yellow", CL.incoming:format(CL.adds), false)
-			self:PlaySound("adds", "long")
-		end
+	end
+end
+
+function mod:CallIrontide(args)
+	if self:GetHealth("boss") > 33 then -- Spams every second under 33% but doesn't actually spawn adds
+		self:Message(args.spellId, "yellow", CL.adds_spawning, L["274002_icon"])
+		self:PlaySound(args.spellId, "long")
 	end
 end
 

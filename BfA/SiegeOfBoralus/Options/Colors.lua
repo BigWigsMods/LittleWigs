@@ -14,9 +14,9 @@ BigWigs:AddColors("Sergeant Bainbridge", {
 	[260924] = "orange",
 	[260954] = {"blue","yellow"},
 	[261428] = {"blue","red"},
+	[274002] = "yellow",
 	[277965] = {"green","orange"},
 	[279761] = "orange",
-	["adds"] = "yellow",
 })
 
 BigWigs:AddColors("Dread Captain Lockwood", {
