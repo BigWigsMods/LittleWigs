@@ -210,9 +210,9 @@ end
 do
 	local prev = 0
 	function mod:WideSwipe(args)
-		local t = args.time
-		if t - prev > 2 then
-			prev = t
+		local mobId = self:MobId(args.sourceGUID)
+		if args.time - prev > 2 and (mobId == 216584 or mobId == 228954) then -- Nerubian Captain, Nerubian Marauder
+			prev = args.time
 			self:Message(args.spellId, "purple", CL.frontal_cone)
 			self:PlaySound(args.spellId, "alarm")
 		end
