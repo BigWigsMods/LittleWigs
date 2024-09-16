@@ -180,7 +180,7 @@ function mod:JaggedBarbs(args)
 	-- this spellId can also be cast by trash
 	if self:MobId(args.sourceGUID) == 220510 then -- The Puppetmaster? (Final Stage)
 		self:Message(args.spellId, "orange", CL.frontal_cone)
-		self:CDBar(args.spellId, 12.1)
+		self:CDBar(args.spellId, 12.1, CL.frontal_cone)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
