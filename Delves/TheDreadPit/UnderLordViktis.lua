@@ -77,7 +77,7 @@ function mod:BurrowingTremors(args)
 	-- 10.91 minimum to Impale or Stinging Swarm
 	if nextImpale - t < 10.91 then
 		nextImpale = t + 10.91
-		self:CDBar(448634, {10.91, 14.5}) -- Impale
+		self:CDBar(448634, {10.91, 14.5}, CL.frontal_cone) -- Impale
 	end
 	if nextStingingSwarm - t < 10.91 then
 		nextStingingSwarm = t + 10.91
@@ -94,7 +94,7 @@ function mod:StingingSwarm(args)
 	-- 8.51 minimum to Impale
 	if nextImpale - t < 8.51 then
 		nextImpale = t + 8.51
-		self:CDBar(448634, {8.51, 14.5}) -- Impale
+		self:CDBar(448634, {8.51, 14.5}, CL.frontal_cone) -- Impale
 	end
 	self:PlaySound(args.spellId, "alert")
 end
