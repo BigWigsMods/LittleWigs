@@ -9,6 +9,7 @@ if L then
 	--L.infected_beast = "Infected Beast"
 	--L.fungal_gutter = "Fungal Gutter"
 	--L.fungarian_flinger = "Fungarian Flinger"
+	--L.fungal_rotcaster = "Fungal Rotcaster"
 	--L.particularly_bad_guy = "Particularly Bad Guy"
 end
 

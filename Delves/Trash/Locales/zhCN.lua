@@ -9,6 +9,7 @@ if L then
 	L.infected_beast = "被感染的野兽"
 	L.fungal_gutter = "真菌开膛者"
 	L.fungarian_flinger = "真菌人投掷者"
+	L.fungal_rotcaster = "真菌腐法师"
 	L.particularly_bad_guy = "特别坏的家伙"
 end
 

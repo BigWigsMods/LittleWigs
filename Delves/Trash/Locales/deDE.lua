@@ -9,6 +9,7 @@ if L then
 	L.infected_beast = "Infiziertes Wildtier"
 	L.fungal_gutter = "Pilzschlitzer"
 	L.fungarian_flinger = "Fungianischer Werfer"
+	L.fungal_rotcaster = "Pilzverfallwirker"
 	L.particularly_bad_guy = "Besonders fieser Bösewicht"
 end
 

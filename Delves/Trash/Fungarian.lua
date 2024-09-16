@@ -21,6 +21,7 @@ mod:RegisterEnableMob(
 	210478, -- Infected Beast
 	207454, -- Fungal Gutter
 	207460, -- Fungarian Flinger
+	207459, -- Fungal Rotcaster
 	220432 -- Particularly Bad Guy
 )
 
@@ -38,6 +39,7 @@ if L then
 	L.infected_beast = "Infected Beast"
 	L.fungal_gutter = "Fungal Gutter"
 	L.fungarian_flinger = "Fungarian Flinger"
+	L.fungal_rotcaster = "Fungal Rotcaster"
 	L.particularly_bad_guy = "Particularly Bad Guy"
 end
 
@@ -71,6 +73,8 @@ function mod:GetOptions()
 		-- Fungarian Flinger
 		425040, -- Rotwave Volley
 		425042, -- Sporewave
+		-- Fungal Rotcaster
+		{424750, "DISPEL"}, -- Infectious Spores
 		-- Particularly Bad Guy
 		372529, -- Hideous Laughter
 	},{
@@ -112,6 +116,10 @@ function mod:OnBossEnable()
 	-- Fungarian Flinger
 	self:Log("SPELL_CAST_START", "RotwaveVolley", 425040)
 	self:Log("SPELL_CAST_START", "Sporewave", 425042)
+
+	-- Fungal Rotcaster
+	self:Log("SPELL_CAST_START", "InfectiousSpores", 424750)
+	self:Log("SPELL_AURA_APPLIED", "InfectiousSporesApplied", 424738)
 
 	-- Particularly Bad Guy
 	self:Log("SPELL_CAST_START", "HideousLaughter", 372529)
@@ -229,6 +237,20 @@ end
 function mod:Sporewave(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Fungal Rotcaster
+
+function mod:InfectiousSpores(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:InfectiousSporesApplied(args)
+	if self:Me(args.destGUID) or self:Dispeller("disease", nil, 424750) then
+		self:TargetMessage(424750, "yellow", args.destName)
+		self:PlaySound(424750, "info", nil, args.destName)
+	end
 end
 
 -- Particularly Bad Guy

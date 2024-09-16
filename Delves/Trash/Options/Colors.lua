@@ -3,6 +3,7 @@ BigWigs:AddColors("Fungarian Delve Trash", {
 	[372529] = "orange",
 	[414944] = "red",
 	[424704] = "yellow",
+	[424750] = {"blue","yellow"},
 	[424773] = "red",
 	[424798] = "orange",
 	[424891] = "orange",

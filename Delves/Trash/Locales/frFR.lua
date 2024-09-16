@@ -9,6 +9,7 @@ if L then
 	L.infected_beast = "Bête infestée"
 	L.fungal_gutter = "Éventreur fongique"
 	L.fungarian_flinger = "Lanceur fongicien"
+	L.fungal_rotcaster = "Lance-putréfaction fongique"
 	L.particularly_bad_guy = "Gros vilain méchant"
 end
 
