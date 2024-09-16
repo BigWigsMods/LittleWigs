@@ -55,6 +55,7 @@ function mod:GetOptions()
 	return {
 		-- Scrimshaw Enforcer / Kul Tiran Halberd
 		{256627, "NAMEPLATE"}, -- Slobber Knocker
+		{257732, "NAMEPLATE"}, -- Shattering Bellow
 		-- Blacktar Bomber
 		{256640, "NAMEPLATE"}, -- Burning Tar
 		-- Irontide Waveshaper / Kul Tiran Wavetender
@@ -102,6 +103,7 @@ function mod:OnBossEnable()
 	-- Scrimshaw Enforcer / Kul Tiran Halberd
 	self:Log("SPELL_CAST_START", "SlobberKnocker", 256627)
 	self:Log("SPELL_CAST_SUCCESS", "SlobberKnockerSuccess", 256627)
+	self:Log("SPELL_CAST_START", "ShatteringBellow", 257732)
 	self:Death("KulTiranHalberdDeath", 141283, 129374) -- Enforcer, Halberd
 
 	-- Blacktar Bomber
@@ -182,6 +184,12 @@ end
 
 function mod:SlobberKnockerSuccess(args)
 	self:Nameplate(args.spellId, 15.4, args.sourceGUID)
+end
+
+function mod:ShatteringBellow(args)
+	self:Message(args.spellId, "yellow")
+	self:Nameplate(args.spellId, 27.9, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:KulTiranHalberdDeath(args)
