@@ -197,7 +197,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NourishTheForest", 324914)
 	self:Log("SPELL_INTERRUPT", "NourishTheForestInterrupt", 324914)
 	self:Log("SPELL_CAST_SUCCESS", "NourishTheForestSuccess", 324914)
-	self:Log("SPELL_AURA_APPLIED", "NourishTheForestApplied", 324914)
 	self:Death("MistveilTenderDeath", 166299)
 
 	-- Spinemaw Acidgullet
@@ -600,7 +599,7 @@ end
 -- Mistveil Tender
 
 function mod:NourishTheForest(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
 end
@@ -609,14 +608,15 @@ function mod:NourishTheForestInterrupt(args)
 	self:Nameplate(324914, 16.4, args.destGUID)
 end
 
-function mod:NourishTheForestSuccess(args)
-	self:Nameplate(args.spellId, 16.4, args.sourceGUID)
-end
-
-function mod:NourishTheForestApplied(args)
-	if self:Dispeller("magic", true, args.spellId) and not self:Friendly(args.destFlags) then
-		self:Message(args.spellId, "red")
-		self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:NourishTheForestSuccess(args)
+		self:Nameplate(args.spellId, 16.4, args.sourceGUID)
+		if args.time - prev > 2 and self:Dispeller("magic", true, args.spellId) then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "warning")
+		end
 	end
 end
 
