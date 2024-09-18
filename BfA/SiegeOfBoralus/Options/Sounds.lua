@@ -3,7 +3,7 @@ BigWigs:AddSounds("Chopper Redhook", {
 	[257288] = "alarm",
 	[257326] = "alarm",
 	[257348] = {"alarm","alert"},
-	[257459] = {"alarm","warning"},
+	[257459] = "warning",
 	[257585] = "alarm",
 	[273721] = "info",
 	[274002] = "long",

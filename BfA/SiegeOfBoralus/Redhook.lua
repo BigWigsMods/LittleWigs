@@ -43,11 +43,12 @@ function mod:GetOptions()
 		257585, -- Cannon Barrage
 		273721, -- Heavy Ordnance
 		-- Irontide Cleaver
-		257288, -- Heavy Slash
+		{257288, "NAMEPLATE"}, -- Heavy Slash
 	}, {
 		[274002] = "general",
 		[257288] = -17725, -- Irontide Cleaver
 	}, {
+		[274002] = CL.adds, -- Call Irontide (Adds)
 		[257459] = CL.fixate, -- On the Hook (Fixate)
 	}
 end
@@ -102,8 +103,6 @@ function mod:OnTheHookApplied(args)
 	self:TargetBar(args.spellId, 20, args.destName, CL.fixate)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning")
-	else
-		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
 end
 
@@ -193,10 +192,17 @@ end
 
 -- Irontide Cleaver
 
-function mod:HeavySlash(args)
-	local mobId = self:MobId(args.sourceGUID)
-	if mobId == 129879 or mobId == 129996 then -- Irontide Cleaver (initial spawn), Irontide Cleaver (boss summon)
-		self:Message(args.spellId, "purple")
-		self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:HeavySlash(args)
+		local mobId = self:MobId(args.sourceGUID)
+		if mobId == 129879 or mobId == 129996 then -- Irontide Cleaver (initial spawn), Irontide Cleaver (boss summon)
+			self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+			if args.time - prev > 2 then
+				prev = args.time
+				self:Message(args.spellId, "purple")
+				self:PlaySound(args.spellId, "alarm")
+			end
+		end
 	end
 end
