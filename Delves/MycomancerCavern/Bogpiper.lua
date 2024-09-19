@@ -40,12 +40,12 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MuckCharge", 454213)
 	self:Log("SPELL_CAST_START", "SwampBolt", 470582)
-	self:Log("SPELL_CAST_SUCCESS", "Sporesong", 453897)
+	self:Log("SPELL_CAST_START", "Sporesong", 453897)
 end
 
 function mod:OnEngage()
-	self:CDBar(454213, 6.1, CL.charge) -- Muck Charge
-	self:CDBar(470582, 10.8) -- Swamp Bolt
+	self:CDBar(454213, 5.7, CL.charge) -- Muck Charge
+	self:CDBar(470582, 10.5) -- Swamp Bolt
 	self:CDBar(453897, 15.0) -- Sporesong
 end
 
@@ -55,7 +55,7 @@ end
 
 function mod:MuckCharge(args)
 	self:Message(args.spellId, "red", CL.charge)
-	self:CDBar(args.spellId, 25.1, CL.charge)
+	self:CDBar(args.spellId, 25.0, CL.charge)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -67,6 +67,6 @@ end
 
 function mod:Sporesong(args)
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 25.1)
+	self:CDBar(args.spellId, 27.9)
 	self:PlaySound(args.spellId, "long")
 end
