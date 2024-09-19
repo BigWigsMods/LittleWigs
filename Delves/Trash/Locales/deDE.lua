@@ -75,7 +75,7 @@ if L then
 	L.reno_jackson = "Reno Jackson"
 	L.sir_finley_mrgglton = "Sir Finley Mrrgglton"
 	L.treasure_wraith = "Schatzgespenst"
-	--L.venombite = "Venombite"
+	L.venombite = "Giftbiss"
 	L.kasdru = "Kas'dru"
 	L.tala = "Tala"
 	L.velo = "Velo"
