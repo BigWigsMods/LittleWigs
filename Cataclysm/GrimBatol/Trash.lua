@@ -57,6 +57,7 @@ function mod:GetOptions()
 		{451224, "DISPEL", "NAMEPLATE"}, -- Enveloping Shadowflame
 		-- Twilight Flamerender
 		{462216, "NAMEPLATE"}, -- Blazing Shadowflame
+		{451241, "TANK_HEALER", "NAMEPLATE"}, -- Shadowflame Slash
 		-- Twilight Lavabender
 		{456711, "NAMEPLATE"}, -- Shadowlava Blast
 		{456713, "NAMEPLATE"}, -- Dark Eruption
@@ -121,6 +122,8 @@ function mod:OnBossEnable()
 		-- Twilight Flamerender
 		self:Log("SPELL_CAST_START", "BlazingShadowflame", 462216)
 		self:Log("SPELL_CAST_SUCCESS", "BlazingShadowflameSuccess", 462216)
+		self:Log("SPELL_CAST_START", "ShadowflameSlash", 451241)
+		self:Log("SPELL_CAST_SUCCESS", "ShadowflameSlashSuccess", 451241)
 		self:Death("TwilightFlamerenderDeath", 224240)
 
 		-- Twilight Lavabender
@@ -322,6 +325,21 @@ end
 
 function mod:BlazingShadowflameSuccess(args)
 	self:Nameplate(args.spellId, 16.4, args.sourceGUID)
+end
+
+do
+	local prev = 0
+	function mod:ShadowflameSlash(args)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:ShadowflameSlashSuccess(args)
+	self:Nameplate(args.spellId, 16.7, args.sourceGUID)
 end
 
 function mod:TwilightFlamerenderDeath(args)
