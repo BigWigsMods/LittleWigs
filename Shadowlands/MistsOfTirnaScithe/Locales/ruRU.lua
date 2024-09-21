@@ -17,6 +17,7 @@ if L then
 	L.spinemaw_acidgullet = "Иглобрюх-кислотник"
 	L.spinemaw_staghorn = "Иглобрюх-рогач"
 	L.spinemaw_gorger = "Иглобрюх-поглотитель"
+	L.gormling_larva = "Личинка горма"
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "ruRU")

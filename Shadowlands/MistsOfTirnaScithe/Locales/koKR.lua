@@ -17,6 +17,7 @@ if L then
 	L.spinemaw_acidgullet = "가시아귀 산성식도"
 	L.spinemaw_staghorn = "가시아귀 사슴뿔"
 	L.spinemaw_gorger = "가시아귀 먹보"
+	L.gormling_larva = "게걸충 애벌레"
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "koKR")

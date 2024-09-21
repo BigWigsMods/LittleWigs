@@ -41,6 +41,7 @@ BigWigs:AddSounds("Mists of Tirna Scithe Trash", {
 	[325021] = "alert",
 	[325224] = "alarm",
 	[325418] = "alert",
+	[326017] = "underyou",
 	[326021] = "alarm",
 	[326046] = {"alert","warning"},
 	[340160] = "alarm",
@@ -52,7 +53,8 @@ BigWigs:AddSounds("Mists of Tirna Scithe Trash", {
 	[340304] = "alarm",
 	[340305] = "alarm",
 	[340544] = "alert",
+	[460092] = "alert",
 	[463217] = "alert",
 	[463248] = "alert",
-	[463256] = "alarm",
+	[463256] = {"alarm","underyou"},
 })

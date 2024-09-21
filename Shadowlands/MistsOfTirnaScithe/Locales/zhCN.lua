@@ -17,6 +17,7 @@ if L then
 	L.spinemaw_acidgullet = "锥喉酸咽者"
 	L.spinemaw_staghorn = "锥喉鹿角巨虫"
 	L.spinemaw_gorger = "锥喉饕餮者"
+	L.gormling_larva = "戈姆蛴幼虫"
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "zhCN")

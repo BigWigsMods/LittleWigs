@@ -24,7 +24,8 @@ mod:RegisterEnableMob(
 	166299, -- Mistveil Tender
 	167113, -- Spinemaw Acidgullet
 	167111, -- Spinemaw Staghorn
-	172312 -- Spinemaw Gorger
+	172312, -- Spinemaw Gorger
+	165560 -- Gormling Larva
 )
 
 --------------------------------------------------------------------------------
@@ -49,6 +50,7 @@ if L then
 	L.spinemaw_acidgullet = "Spinemaw Acidgullet"
 	L.spinemaw_staghorn = "Spinemaw Staghorn"
 	L.spinemaw_gorger = "Spinemaw Gorger"
+	L.gormling_larva = "Gormling Larva"
 end
 
 --------------------------------------------------------------------------------
@@ -99,8 +101,11 @@ function mod:GetOptions()
 		-- Spinemaw Staghorn
 		{340544, "NAMEPLATE"}, -- Stimulate Regeneration
 		{326046, "DISPEL", "NAMEPLATE"}, -- Stimulate Resistance
+		{460092, "NAMEPLATE"}, -- Acid Nova
 		-- Spinemaw Gorger
 		{326021, "NAMEPLATE"}, -- Acid Globule
+		-- Gormling Larva
+		326017, -- Decomposing Acid
 	}, {
 		[autotalk] = CL.general,
 		[321968] = L.tirnenn_villager,
@@ -119,6 +124,7 @@ function mod:GetOptions()
 		[325418] = L.spinemaw_acidgullet,
 		[340544] = L.spinemaw_staghorn,
 		[326021] = L.spinemaw_gorger,
+		[326017] = L.gormling_larva,
 	}
 end
 
@@ -152,6 +158,8 @@ function mod:OnBossEnable()
 
 	-- Mistveil Defender
 	self:Log("SPELL_CAST_START", "MistWard", 463256)
+	self:Log("SPELL_PERIODIC_DAMAGE", "MistWardDamage", 463257)
+	self:Log("SPELL_PERIODIC_MISSED", "MistWardDamage", 463257)
 	self:Log("SPELL_CAST_START", "Expel", 463248)
 	self:Death("MistveilDefenderDeath", 171772, 163058)
 
@@ -209,12 +217,17 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "StimulateResistance", 326046)
 	self:Log("SPELL_INTERRUPT", "StimulateResistanceInterrupt", 326046)
 	self:Log("SPELL_CAST_SUCCESS", "StimulateResistanceSuccess", 326046)
+	self:Log("SPELL_CAST_START", "AcidNova", 460092)
 	self:Death("SpinemawStaghornDeath", 167111)
 
 	-- Spinemaw Gorger
 	self:Log("SPELL_CAST_START", "AcidGlobule", 326021)
 	self:Log("SPELL_CAST_SUCCESS", "AcidGlobuleSuccess", 326021)
 	self:Death("SpinemawGorgerDeath", 172312)
+
+	-- Gormling Larva
+	self:Log("SPELL_PERIODIC_DAMAGE", "DecomposingAcidDamage", 326017)
+	self:Log("SPELL_PERIODIC_MISSED", "DecomposingAcidDamage", 326017)
 end
 
 --------------------------------------------------------------------------------
@@ -239,12 +252,12 @@ end
 
 function mod:BewilderingPollen(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 do
-	local function printTarget(self, name, guid)
+	local function printTarget(self, name)
 		self:TargetMessage(322486, "yellow", name)
 		self:PlaySound(322486, "alert", nil, name)
 	end
@@ -267,8 +280,8 @@ end
 
 function mod:HarvestEssence(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:DrustHarvesterDeath(args)
@@ -358,8 +371,8 @@ end
 
 function mod:BrambleBurst(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:DrustBoughbreakerDeath(args)
@@ -370,8 +383,19 @@ end
 
 function mod:MistWard(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 25.5, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local prev = 0
+	function mod:MistWardDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(463256, "underyou")
+			self:PlaySound(463256, "underyou")
+		end
+	end
 end
 
 do
@@ -440,8 +464,8 @@ end
 
 function mod:AnimaSlash(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:MistveilGuardianDeath(args)
@@ -458,8 +482,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "cyan")
-		self:PlaySound(args.spellId, "info")
 		self:CDBar(args.spellId, 27.9)
+		self:PlaySound(args.spellId, "info")
 		timer = self:ScheduleTimer("MistveilMatriarchDeath", 30)
 	end
 
@@ -468,8 +492,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 12.1)
+		self:PlaySound(args.spellId, "alarm")
 		timer = self:ScheduleTimer("MistveilMatriarchDeath", 30)
 	end
 
@@ -478,8 +502,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "purple")
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 13.4)
+		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("MistveilMatriarchDeath", 30)
 	end
 
@@ -504,8 +528,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "purple")
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 12.1)
+		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("MistveilNightblossomDeath", 30)
 	end
 
@@ -518,16 +542,16 @@ do
 				self:CancelTimer(timer)
 			end
 			self:Message(args.spellId, "orange")
-			self:PlaySound(args.spellId, "alarm")
 			--self:CDBar(args.spellId, 16) -- TODO get timer
+			self:PlaySound(args.spellId, "alarm")
 			timer = self:ScheduleTimer("MistveilNightblossomDeath", 30)
 		end
 
 		function mod:PoisonousDischargeApplied(args)
 			if self:Dispeller("poison", nil, 340279) then
 				playerList[#playerList + 1] = args.destName
-				self:PlaySound(340279, "info", nil, playerList)
 				self:TargetsMessage(340279, "yellow", playerList, 5)
+				self:PlaySound(340279, "info", nil, playerList)
 			end
 		end
 	end
@@ -547,8 +571,8 @@ end
 function mod:BramblethornCoat(args)
 	-- this is only cast if the Mistveil Shaper is being meleed
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:BramblethornCoatInterrupt(args)
@@ -600,8 +624,8 @@ end
 
 function mod:NourishTheForest(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:NourishTheForestInterrupt(args)
@@ -646,14 +670,14 @@ end
 
 function mod:StimulateRegeneration(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 24.3, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:StimulateResistance(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:StimulateResistanceInterrupt(args)
@@ -666,6 +690,12 @@ function mod:StimulateResistanceSuccess(args)
 		self:PlaySound(args.spellId, "warning")
 	end
 	self:Nameplate(args.spellId, 15.2, args.sourceGUID)
+end
+
+function mod:AcidNova(args)
+	self:Message(args.spellId, "yellow")
+	self:Nameplate(args.spellId, 21.8, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:SpinemawStaghornDeath(args)
@@ -692,4 +722,17 @@ end
 
 function mod:SpinemawGorgerDeath(args)
 	self:ClearNameplate(args.destGUID)
+end
+
+-- Gormling Larva
+
+do
+	local prev = 0
+	function mod:DecomposingAcidDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
 end

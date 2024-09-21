@@ -17,6 +17,7 @@ if L then
 	L.spinemaw_acidgullet = "Gargantácida faucespina"
 	L.spinemaw_staghorn = "Astado faucespina"
 	L.spinemaw_gorger = "Engullidor faucespina"
+	L.gormling_larva = "Larva de gormito"
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "esES") or BigWigs:NewBossLocale("Mistcaller", "esMX")
