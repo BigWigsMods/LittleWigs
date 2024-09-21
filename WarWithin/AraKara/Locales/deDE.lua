@@ -18,5 +18,5 @@ end
 
 L = BigWigs:NewBossLocale("Anub'zekt", "deDE")
 if L then
-	--L.bloodstained_webmage_desc = "Anub'zekt summons a Bloodstained Webmage.\n\n{-28975}"
+	L.bloodstained_webmage_desc = "Anub'zekt beschwört einen Blutbefleckten Netzmagier.\n\n{-28975}"
 end
