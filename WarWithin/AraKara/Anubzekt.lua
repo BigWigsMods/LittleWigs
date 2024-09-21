@@ -169,7 +169,7 @@ end
 function mod:BloodstainedWebmage()
 	-- always spawns ~3s after Burrow Charge cast start, and there's an additional spawn 17s after every even add spawn
 	self:StopBar(CL.count:format(CL.add_spawning, bloodstainedWebmageCount))
-	self:Message("bloodstained_webmage", "cyan", CL.count:format(CL.add_spawning, bloodstainedWebmageCount), L.bloodstained_webmage_icon)
+	self:Message("bloodstained_webmage", "cyan", CL.count:format(CL.add_spawned, bloodstainedWebmageCount), L.bloodstained_webmage_icon)
 	bloodstainedWebmageCount = bloodstainedWebmageCount + 1
 	if bloodstainedWebmageCount % 2 == 1 then -- schedule the 3rd, 5th, 7th... etc alert
 		self:CDBar("bloodstained_webmage", 17.0, CL.count:format(CL.add_spawning, bloodstainedWebmageCount), L.bloodstained_webmage_icon)
