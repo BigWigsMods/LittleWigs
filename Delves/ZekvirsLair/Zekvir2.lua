@@ -259,8 +259,8 @@ function mod:BlackBlood(args)
 	self:CDBar(450872, 17.8) -- Unending Spines
 	self:CDBar(450505, 25.5) -- Enfeebling Spittle
 	self:CDBar(450914, 25.5) -- Blood-Infused Carapace
-	self:CDBar(450568, 29.2, CL.count:format(self:SpellName(450568), callWebTerrorCount)) -- Call Web Terror
-	self:CDBar(450519, 31.6) -- Angler's Web
+	self:CDBar(450568, 28.3, CL.count:format(self:SpellName(450568), callWebTerrorCount)) -- Call Web Terror
+	self:CDBar(450519, 30.3) -- Angler's Web
 	self:CDBar(451782, 34.0) -- Infinite Horror
 	self:PlaySound(args.spellId, "long")
 end
