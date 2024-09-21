@@ -14,6 +14,7 @@ BigWigs:AddSounds("Anub'zekt", {
 	[435012] = "alarm",
 	[439506] = "alarm",
 	[442210] = "alert",
+	["bloodstained_webmage"] = "info",
 })
 
 BigWigs:AddSounds("Ki'katal the Harvester", {

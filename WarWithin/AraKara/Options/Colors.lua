@@ -14,6 +14,7 @@ BigWigs:AddColors("Anub'zekt", {
 	[435012] = "purple",
 	[439506] = {"blue","orange"},
 	[442210] = "red",
+	["bloodstained_webmage"] = "cyan",
 })
 
 BigWigs:AddColors("Ki'katal the Harvester", {
