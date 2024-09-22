@@ -11,5 +11,5 @@ BigWigs:AddSounds("The Puppetmaster", {
 	[450509] = "alarm",
 	[450546] = "alert",
 	[450714] = "alarm",
-	[451913] = "alarm",
+	[451913] = {"alarm","underyou"},
 })

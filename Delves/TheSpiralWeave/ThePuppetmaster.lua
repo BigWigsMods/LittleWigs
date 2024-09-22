@@ -63,6 +63,8 @@ end
 function mod:OnBossEnable()
 	-- The Puppetmaster? (First Stage)
 	self:Log("SPELL_CAST_START", "GrimweaveOrb", 451913)
+	self:Log("SPELL_AURA_APPLIED", "GrimweaveOrbDamage", 452041)
+	self:Log("SPELL_AURA_REFRESH", "GrimweaveOrbDamage", 452041)
 	self:Death("Stage1Death", 220507)
 
 	-- The Puppetmaster? (Second Stage)
@@ -103,6 +105,20 @@ do
 			self:CDBar(args.spellId, 23.0)
 			timer = self:ScheduleTimer("Stage1Death", 30)
 			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+
+	do
+		local prev = 0
+		function mod:GrimweaveOrbDamage(args)
+			-- this spellId can also be cast by trash
+			if self:MobId(args.sourceGUID) == 220507 then -- The Puppetmaster?
+				if self:Me(args.destGUID) and args.time - prev > 1.5 then
+					prev = args.time
+					self:PersonalMessage(451913, "near")
+					self:PlaySound(451913, "underyou")
+				end
+			end
 		end
 	end
 
