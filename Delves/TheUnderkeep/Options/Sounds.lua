@@ -9,4 +9,5 @@ BigWigs:AddSounds("Researcher Xik'vik", {
 	[446832] = "info",
 	[447143] = "alert",
 	[447187] = "alarm",
+	[463408] = "info",
 })
