@@ -12,11 +12,11 @@ if L then
 	L.blood_overseer = "鲜血监督者"
 	L.nerubian_hauler = "蛛魔搬运者"
 
-	--L.avanoxx_warmup_trigger = "The Attendants have been silenced... something emerges!"
+	L.avanoxx_warmup_trigger = "侍从沉默了……有什么东西来了！"
 	L.custom_on_autotalk_desc = "|cFFFF0000需要至少25点卡兹阿加裁缝技能。|r 自动选择和NPC对话选项，拉扯蛛丝获得“缠丝束缚”使用时点击额外快捷键。"
 end
 
 L = BigWigs:NewBossLocale("Anub'zekt", "zhCN")
 if L then
-	--L.bloodstained_webmage_desc = "Anub'zekt summons a Bloodstained Webmage.\n\n{-28975}"
+	L.bloodstained_webmage_desc = "阿努布泽克特召唤了一个沾血的网法师\n\n{-28975}"
 end
