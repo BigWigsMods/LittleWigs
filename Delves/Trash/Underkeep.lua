@@ -65,6 +65,8 @@ function mod:OnBossEnable()
 
 	-- Ascended Webfriar
 	self:Log("SPELL_CAST_START", "GrimweaveOrb", 451913)
+	self:Log("SPELL_AURA_APPLIED", "GrimweaveOrbDamage", 452041)
+	self:Log("SPELL_AURA_REFRESH", "GrimweaveOrbDamage", 452041)
 
 	-- Deepwalker Guardian
 	self:Log("SPELL_CAST_START", "JaggedBarbs", 450714)
@@ -102,6 +104,20 @@ function mod:GrimweaveOrb(args)
 	if self:MobId(args.sourceGUID) == 219022 then -- Ascended Webfriar
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "alarm")
+	end
+end
+
+do
+	local prev = 0
+	function mod:GrimweaveOrbDamage(args)
+		-- this ability can also be cast by one of the Delve bosses (The Puppetmaster)
+		if self:MobId(args.sourceGUID) == 219022 then -- Ascended Webfriar
+			if self:Me(args.destGUID) and args.time - prev > 1.5 then
+				prev = args.time
+				self:PersonalMessage(451913, "near")
+				self:PlaySound(451913, "underyou")
+			end
+		end
 	end
 end
 

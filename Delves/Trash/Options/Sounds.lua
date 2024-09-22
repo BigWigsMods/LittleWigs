@@ -58,7 +58,7 @@ BigWigs:AddSounds("The Underkeep Trash", {
 	[448179] = "alert",
 	[450637] = "info",
 	[450714] = "alarm",
-	[451913] = "alarm",
+	[451913] = {"alarm","underyou"},
 	[453149] = "alert",
 })
 
