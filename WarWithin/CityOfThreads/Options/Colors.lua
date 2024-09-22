@@ -20,6 +20,7 @@ BigWigs:AddColors("Fangs of the Queen", {
 BigWigs:AddColors("The Coaglamation", {
 	[441289] = "red",
 	[441395] = "yellow",
+	[461825] = "blue",
 	[461842] = "purple",
 	[461880] = "orange",
 })

@@ -37,6 +37,7 @@ function mod:GetOptions()
 		{461842, "TANK_HEALER"}, -- Oozing Smash
 		441395, -- Dark Pulse
 		461880, -- Blood Surge
+		461825, -- Black Blood
 	}
 end
 
@@ -45,6 +46,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "OozingSmash", 461842)
 	self:Log("SPELL_CAST_START", "DarkPulse", 441395)
 	self:Log("SPELL_CAST_START", "BloodSurge", 438658, 461880) -- Normal/Heroic, Mythic
+	-- 443311 arena (sides), 462439 arena (stairs), 461825 Mythic pools, 445435 non-Mythic pools
+	self:Log("SPELL_PERIODIC_DAMAGE", "BlackBloodDamage", 443311, 462439, 461825, 445435)
+	self:Log("SPELL_PERIODIC_MISSED", "BlackBloodDamage", 443311, 462439, 461825, 445435)
 end
 
 function mod:OnEngage()
@@ -81,7 +85,6 @@ end
 function mod:OozingSmash(args)
 	self:StopBar(CL.count:format(args.spellName, oozingSmashCount))
 	self:Message(args.spellId, "purple", CL.count:format(args.spellName, oozingSmashCount))
-	self:PlaySound(args.spellId, "alert")
 	oozingSmashCount = oozingSmashCount + 1
 	if self:Mythic() then
 		if oozingSmashCount % 2 == 0 then
@@ -92,28 +95,40 @@ function mod:OozingSmash(args)
 	else
 		self:CDBar(args.spellId, 77.5, CL.count:format(args.spellName, oozingSmashCount))
 	end
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:ViscousDarkness(args)
 	self:StopBar(CL.count:format(args.spellName, viscousDarknessCount))
 	self:Message(441289, "red", CL.count:format(args.spellName, viscousDarknessCount))
-	self:PlaySound(441289, "long")
 	viscousDarknessCount = viscousDarknessCount + 1
 	self:CDBar(441289, 37.2, CL.count:format(args.spellName, viscousDarknessCount))
+	self:PlaySound(441289, "long")
 end
 
 function mod:DarkPulse(args)
 	self:StopBar(CL.count:format(args.spellName, darkPulseCount))
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, darkPulseCount))
-	self:PlaySound(args.spellId, "alert")
 	darkPulseCount = darkPulseCount + 1
 	self:CDBar(args.spellId, 77.2, CL.count:format(args.spellName, darkPulseCount))
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:BloodSurge(args)
 	self:StopBar(CL.count:format(args.spellName, bloodSurgeCount))
 	self:Message(461880, "orange", CL.count:format(args.spellName, bloodSurgeCount))
-	self:PlaySound(461880, "alarm")
 	bloodSurgeCount = bloodSurgeCount + 1
 	self:CDBar(461880, 77.2, CL.count:format(args.spellName, bloodSurgeCount))
+	self:PlaySound(461880, "alarm")
+end
+
+do
+	local prev = 0
+	function mod:BlackBloodDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(461825, "underyou", nil, args.spellId) -- arena damage has a different icon than pool damage
+			self:PlaySound(461825, "underyou")
+		end
+	end
 end

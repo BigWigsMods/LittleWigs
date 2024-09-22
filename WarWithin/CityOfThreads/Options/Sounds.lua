@@ -20,6 +20,7 @@ BigWigs:AddSounds("Fangs of the Queen", {
 BigWigs:AddSounds("The Coaglamation", {
 	[441289] = "long",
 	[441395] = "alert",
+	[461825] = "underyou",
 	[461842] = "alert",
 	[461880] = "alarm",
 })
