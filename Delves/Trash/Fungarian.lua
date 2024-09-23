@@ -247,7 +247,7 @@ function mod:InfectiousSpores(args)
 end
 
 function mod:InfectiousSporesApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("disease", nil, 424750) then
+	if self:Me(args.destGUID) or (self:Dispeller("disease", nil, 424750) and self:Player(args.destFlags)) then
 		self:TargetMessage(424750, "yellow", args.destName)
 		self:PlaySound(424750, "info", nil, args.destName)
 	end
