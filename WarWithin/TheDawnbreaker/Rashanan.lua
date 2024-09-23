@@ -115,6 +115,11 @@ function mod:OnEngage()
 	self:CDBar(448888, 20.0, CL.count:format(self:SpellName(448888), erosiveSprayCount)) -- Erosive Spray
 end
 
+function mod:VerifyEnable(unit)
+	-- encounter ends at 59.5% HP
+	return self:GetHealth(unit) > 60
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
