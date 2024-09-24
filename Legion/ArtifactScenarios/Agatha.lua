@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -153,13 +152,15 @@ do
 	-- 4+: Umbral x2, Fuming, Smoldering x2
 	local prev, count = 0, 0
 	function mod:ShadowShield(args)
-		local t = GetTime()
-		if t-prev > 5 then
+		local t = args.time
+		if t - prev > 5 then
 			prev = t
 			count = 0
-			self:MessageOld(args.spellId, "orange", "alert", CL.count:format(args.spellName, partyCount))
+			self:StopBar(CL.count:format(args.spellName, partyCount))
+			self:Message(args.spellId, "orange", CL.count:format(args.spellName, partyCount))
 			partyCount = partyCount + 1
 			self:CDBar(args.spellId, 61, CL.count:format(args.spellName, partyCount))
+			self:PlaySound(args.spellId, "alert")
 		end
 		count = count + 1
 	end
