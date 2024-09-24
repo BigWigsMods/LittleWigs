@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -116,21 +115,27 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 234428 then -- Summon Tormenting Eye
-		self:MessageOld(spellId, "yellow", "info")
+		self:Message(spellId, "yellow")
 		self:CDBar(spellId, 17)
+		self:PlaySound(spellId, "info")
 	elseif spellId == 235110 then -- Nether Aberration
+		self:StopBar(CL.count:format(self:SpellName(spellId), aberrationCounter))
+		self:Message("nether_aberration", "cyan", CL.count:format(CL.incoming:format(self:SpellName(spellId)), aberrationCounter), L.nether_aberration_icon)
 		aberrationCounter = aberrationCounter + 1
-		self:MessageOld("nether_aberration", "yellow", "info", CL.incoming:format(CL.count:format(self:SpellName(spellId), aberrationCounter-1)), L.nether_aberration_icon)
 		self:CDBar("nether_aberration", 35, CL.count:format(self:SpellName(spellId), aberrationCounter), L.nether_aberration_icon)
+		self:PlaySound("nether_aberration", "info")
 	elseif spellId == 235112 then -- Smoldering Infernal Summon
-		self:MessageOld("smoldering_infernal", "yellow", "info", CL.incoming:format(L.smoldering_infernal), L.smoldering_infernal_icon)
+		self:Message("smoldering_infernal", "yellow", CL.incoming:format(L.smoldering_infernal), L.smoldering_infernal_icon)
 		self:CDBar("smoldering_infernal", 65, L.smoldering_infernal, L.smoldering_infernal_icon)
+		self:PlaySound("smoldering_infernal", "info")
 	elseif spellId == 234920 then -- Shadow Sweep
-		self:MessageOld(spellId, "yellow", "info", CL.incoming:format(self:SpellName(spellId)))
+		self:Message(spellId, "yellow", CL.incoming:format(self:SpellName(spellId)))
 		self:Bar(spellId, 20.7)
+		self:PlaySound(spellId, "info")
 	elseif spellId == 234673 then -- Netherstomp
-		self:MessageOld(spellId, "orange", "alert")
+		self:Message(spellId, "orange")
 		self:Bar(spellId, 15.8)
+		self:PlaySound(spellId, "alert")
 	elseif spellId == 233458 then -- Gift of Sargeras
 		-- Spoiler: HE EXPLODES!
 		self:Win()
@@ -140,50 +145,61 @@ end
 do
 	local prev = 0
 	function mod:NetherStorm(args)
-		local t = GetTime()
-		if t-prev > 1 then
+		local t = args.time
+		if t - prev > 1 then
 			prev = t
-			self:MessageOld(args.spellId, "red", "warning", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning")
 		end
 	end
 end
 
 function mod:DrainLife(args)
-	self:MessageOld(args.spellId, "orange", "alert", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 23)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:HolyWard(args)
-	self:MessageOld(args.spellId, "green", "long", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "green", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 8)
 	self:CDBar(args.spellId, 35)
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:AuraOfDecay(args)
 	local amount = args.amount or 1
-	self:StackMessageOld(args.spellId, args.destName, amount, "blue", amount > 3 and "warning")
+	self:StackMessage(args.spellId, "blue", args.destName, amount, 3)
+	if amount > 3 then
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 function mod:Smash(args)
-	self:MessageOld(args.spellId, "red", "alarm", args.spellName)
+	self:Message(args.spellId, "red")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:KruulIncoming(args)
-	self:MessageOld("stages", "green", "long", CL.incoming:format(L.name), "warlock_summon_doomguard")
+	self:Message("stages", "green", CL.incoming:format(L.name), "warlock_summon_doomguard")
 	self:StopBar(L.smoldering_infernal) -- Smoldering Infernal
 	self:StopBar(234423) -- Drain Life
 	self:StopBar(234428) -- Summon Tormenting Eye
+	self:PlaySound("stages", "long")
 end
 
 function mod:Annihilate(args)
-	self:MessageOld(args.spellId, "red", "alarm", CL.casting:format(CL.count:format(args.spellName, annihilateCounter)))
+	self:Message(args.spellId, "red", CL.casting:format(CL.count:format(args.spellName, annihilateCounter)))
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:AnnihilateSuccess(args)
+	self:StopBar(CL.count:format(args.spellName, annihilateCounter))
 	annihilateCounter = annihilateCounter + 1
 	self:CDBar(args.spellId, 27, CL.count:format(args.spellName, annihilateCounter))
 end
 
 function mod:TwistedReflections(args)
-	self:MessageOld(args.spellId, "orange", "warning", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 end

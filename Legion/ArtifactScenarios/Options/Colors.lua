@@ -29,7 +29,7 @@ BigWigs:AddColors("Kruul", {
 	[234920] = "yellow",
 	[236572] = "red",
 	[240790] = "red",
-	["nether_aberration"] = "yellow",
+	["nether_aberration"] = "cyan",
 	["smoldering_infernal"] = "yellow",
 	["stages"] = "green",
 })
