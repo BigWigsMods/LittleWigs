@@ -61,6 +61,7 @@ function mod:GetOptions()
 		-- Irontide Waveshaper / Kul Tiran Wavetender
 		{256957, "NAMEPLATE"}, -- Watertight Shell
 		-- Irontide Raider
+		{272662, "NAMEPLATE"}, -- Iron Hook
 		{257170, "NAMEPLATE"}, -- Savage Tempest
 		-- Kul Tiran Vanguard
 		{257288, "NAMEPLATE"}, -- Heavy Slash
@@ -84,7 +85,7 @@ function mod:GetOptions()
 		[256627] = L.halberd.." / "..L.enforcer,
 		[256640] = L.bomber,
 		[256957] = L.wavetender.." / "..L.waveshaper,
-		[257170] = L.raider,
+		[272662] = L.raider,
 		[257288] = L.vanguard,
 		[454437] = L.commander,
 		[272421] = L.spotter,
@@ -99,7 +100,6 @@ end
 function mod:OnBossEnable()
 	-- Scrimshaw Enforcer / Kul Tiran Halberd
 	self:Log("SPELL_CAST_START", "SlobberKnocker", 256627)
-	self:Log("SPELL_CAST_SUCCESS", "SlobberKnockerSuccess", 256627)
 	self:Log("SPELL_CAST_START", "ShatteringBellow", 257732)
 	self:Death("KulTiranHalberdDeath", 141283, 129374) -- Enforcer, Halberd
 
@@ -115,6 +115,7 @@ function mod:OnBossEnable()
 	self:Death("KulTiranWavetenderDeath", 129370, 141284) -- Waveshaper, Wavetender
 
 	-- Irontide Raider
+	self:Log("SPELL_CAST_START", "IronHook", 272662)
 	self:Log("SPELL_CAST_START", "SavageTempest", 257170)
 	self:Death("IrontideRaiderDeath", 129369)
 
@@ -167,11 +168,8 @@ end
 
 function mod:SlobberKnocker(args)
 	self:Message(args.spellId, "purple")
+	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:SlobberKnockerSuccess(args)
-	self:Nameplate(args.spellId, 15.4, args.sourceGUID)
 end
 
 function mod:ShatteringBellow(args)
@@ -207,16 +205,16 @@ end
 
 function mod:WatertightShell(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:WatertightShellInterrupt(args)
-	self:Nameplate(256957, 46.3, args.destGUID)
+	self:Nameplate(256957, 30.9, args.destGUID)
 end
 
 function mod:WatertightShellSuccess(args)
-	self:Nameplate(args.spellId, 46.3, args.sourceGUID)
+	self:Nameplate(args.spellId, 30.9, args.sourceGUID)
 end
 
 function mod:WatertightShellApplied(args)
@@ -232,10 +230,19 @@ end
 
 -- Irontide Raider
 
+function mod:IronHook(args)
+	-- this is also cast by the first boss in the Alliance version (Chopper Redhook)
+	if self:MobId(args.sourceGUID) == 129369 then -- Irontide Raider
+		self:Message(args.spellId, "cyan")
+		self:Nameplate(args.spellId, 23.0, args.sourceGUID)
+		self:PlaySound(args.spellId, "info")
+	end
+end
+
 function mod:SavageTempest(args)
 	self:Message(args.spellId, "yellow")
+	self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 	self:PlaySound(args.spellId, "long")
-	self:Nameplate(args.spellId, 19.4, args.sourceGUID)
 end
 
 function mod:IrontideRaiderDeath(args)
