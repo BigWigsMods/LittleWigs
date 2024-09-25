@@ -13,6 +13,7 @@ mod:RegisterEnableMob(
 	163126, -- Brittlebone Mage
 	165919, -- Skeletal Marauder
 	165222, -- Zolramus Bonemender
+	163128, -- Zolramus Sorcerer
 	165824, -- Nar'zudah
 	165197, -- Skeletal Monstrosity
 	173016, -- Corpse Collector
@@ -39,6 +40,7 @@ if L then
 	L.brittlebone_mage = "Brittlebone Mage"
 	L.skeletal_marauder = "Skeletal Marauder"
 	L.zolramus_bonemender = "Zolramus Bonemender"
+	L.zolramus_sorcerer = "Zolramus Sorcerer"
 	L.narzudah = "Nar'zudah"
 	L.skeletal_monstrosity = "Skeletal Monstrosity"
 	L.corpse_collector = "Corpse Collector"
@@ -74,6 +76,8 @@ function mod:GetOptions()
 		-- Zolramus Bonemender
 		{335143, "NAMEPLATE"}, -- Bonemend
 		320822, -- Final Bargain
+		-- Zolramus Sorcerer
+		{320464, "NAMEPLATE"},
 		-- Nar'zudah
 		335141, -- Dark Shroud
 		345623, -- Death Burst
@@ -105,6 +109,7 @@ function mod:GetOptions()
 		[328667] = L.brittlebone_mage,
 		[324293] = L.skeletal_marauder,
 		[335143] = L.zolramus_bonemender,
+		[320464] = L.zolramus_sorcerer,
 		[335141] = L.narzudah,
 		[324394] = L.skeletal_monstrosity,
 		[338353] = L.corpse_collector,
@@ -160,6 +165,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "BonemendSuccess", 335143)
 	self:Log("SPELL_CAST_START", "FinalBargain", 320822)
 	self:Death("ZolramusBonemenderDeath", 165222)
+
+	-- Zolramus Sorcerer
+	self:Log("SPELL_CAST_START", "ShadowWell", 320464)
+	self:Log("SPELL_CAST_SUCCESS", "ShadowWellSuccess", 320464)
+	self:Death("ZolramusSorcererDeath", 165222)
 
 	-- Nar'zudah
 	self:Log("SPELL_CAST_START", "DarkShroud", 335141)
@@ -414,6 +424,31 @@ function mod:FinalBargain(args)
 end
 
 function mod:ZolramusBonemenderDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Zolramus Sorcerer
+
+do
+	local prev = 0
+	function mod:ShadowWell(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:ShadowWellSuccess(args)
+	self:Nameplate(args.spellId, 12.1, args.sourceGUID)
+end
+
+function mod:ZolramusSorcererDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
