@@ -126,11 +126,9 @@ function mod:OnBossEnable()
 	-- Warmup
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 
-	-- Interrupts
-	self:Log("SPELL_INTERRUPT", "Interrupt", "*")
-
 	-- Corpse Harvester
 	self:Log("SPELL_CAST_START", "DrainFluids", 334748)
+	self:Log("SPELL_INTERRUPT", "DrainFluidsInterrupt", 334748)
 	self:Log("SPELL_CAST_SUCCESS", "DrainFluidsSuccess", 334748)
 	self:Death("CorpseHarvesterDeath", 166302)
 
@@ -151,17 +149,20 @@ function mod:OnBossEnable()
 
 	-- Brittlebone Mage
 	self:Log("SPELL_CAST_START", "FrostboltVolley", 328667) -- Mythic only
+	self:Log("SPELL_INTERRUPT", "FrostboltVolleyInterrupt", 328667)
 	self:Log("SPELL_CAST_SUCCESS", "FrostboltVolleySuccess", 328667)
 	self:Death("BrittleboneMageDeath", 163126)
 
 	-- Skeletal Marauder
 	self:Log("SPELL_CAST_START", "RaspingScream", 324293)
+	self:Log("SPELL_INTERRUPT", "RaspingScreamInterrupt", 324293)
 	self:Log("SPELL_CAST_SUCCESS", "RaspingScreamSuccess", 324293)
 	self:Log("SPELL_CAST_SUCCESS", "BoneshatterShield", 343470)
 	self:Death("SkeletalMarauderDeath", 165919)
 
 	-- Zolramus Bonemender
 	self:Log("SPELL_CAST_START", "Bonemend", 335143)
+	self:Log("SPELL_INTERRUPT", "BonemendInterrupt", 335143)
 	self:Log("SPELL_CAST_SUCCESS", "BonemendSuccess", 335143)
 	self:Log("SPELL_CAST_START", "FinalBargain", 320822)
 	self:Death("ZolramusBonemenderDeath", 165222)
@@ -185,6 +186,7 @@ function mod:OnBossEnable()
 
 	-- Corpse Collector
 	self:Log("SPELL_CAST_START", "Goresplatter", 338353)
+	self:Log("SPELL_INTERRUPT", "GoresplatterInterrupt", 338353)
 	self:Log("SPELL_CAST_SUCCESS", "GoresplatterSuccess", 338353)
 	self:Death("CorpseCollectorDeath", 173016)
 
@@ -240,22 +242,6 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 	end
 end
 
--- Interrupts
-
-function mod:Interrupt(args)
-	if args.extraSpellId == 334748 then -- Drain Fluids
-		self:Nameplate(334748, 15.0, args.destGUID)
-	elseif args.extraSpellId == 324293 then -- Rasping Scream
-		self:Nameplate(324293, 16.2, args.destGUID)
-	elseif args.extraSpellId == 335143 then -- Bonemend
-		self:Nameplate(335143, 7.0, args.destGUID)
-	elseif args.extraSpellId == 338353 then -- Goresplatter
-		self:Nameplate(338353, 21.0, args.destGUID)
-	elseif args.extraSpellId == 328667 then -- Frostbolt Volley
-		self:Nameplate(328667, 16.1, args.destGUID)
-	end
-end
-
 -- Corpse Harvester
 
 do
@@ -272,6 +258,10 @@ do
 		end
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
+end
+
+function mod:DrainFluidsInterrupt(args)
+	self:Nameplate(334748, 15.0, args.destGUID)
 end
 
 function mod:DrainFluidsSuccess(args)
@@ -368,6 +358,12 @@ function mod:FrostboltVolley(args)
 	end
 end
 
+function mod:FrostboltVolleyInterrupt(args)
+	if self:MobId(args.destGUID) == 163126 then -- Brittlebone Mage, Amarth has adds that cast this spell
+		self:Nameplate(328667, 16.1, args.destGUID)
+	end
+end
+
 function mod:FrostboltVolleySuccess(args)
 	if self:MobId(args.sourceGUID) == 163126 then -- Brittlebone Mage, Amarth has adds that cast this spell
 		self:Nameplate(args.spellId, 16.1, args.sourceGUID)
@@ -384,6 +380,10 @@ function mod:RaspingScream(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:RaspingScreamInterrupt(args)
+	self:Nameplate(324293, 16.2, args.destGUID)
 end
 
 function mod:RaspingScreamSuccess(args)
@@ -409,6 +409,10 @@ function mod:Bonemend(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:BonemendInterrupt(args)
+	self:Nameplate(335143, 7.0, args.destGUID)
 end
 
 function mod:BonemendSuccess(args)
@@ -556,6 +560,10 @@ function mod:Goresplatter(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:GoresplatterInterrupt(args)
+	self:Nameplate(338353, 21.0, args.destGUID)
 end
 
 function mod:GoresplatterSuccess(args)
