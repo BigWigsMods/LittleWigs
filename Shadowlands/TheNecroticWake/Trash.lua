@@ -429,17 +429,23 @@ end
 
 -- Zolramus Sorcerer
 
-function mod:ShadowWell(args)
-	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
-		return
+do
+	local prev = 0
+	function mod:ShadowWell(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
 	end
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
 end
 
 function mod:ShadowWellSuccess(args)
-	self:Nameplate(args.spellId, 13.6, args.sourceGUID)
+	self:Nameplate(args.spellId, 12.1, args.sourceGUID)
 end
 
 function mod:ZolramusSorcererDeath(args)
