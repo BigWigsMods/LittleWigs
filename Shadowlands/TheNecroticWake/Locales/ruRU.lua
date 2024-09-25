@@ -9,6 +9,7 @@ if L then
 	L.brittlebone_mage = "Хрупкий маг"
 	L.skeletal_marauder = "Скелет-мародер"
 	L.zolramus_bonemender = "Костоправ с \"Золрамуса\""
+	L.zolramus_sorcerer = "Чародей с \"Золрамуса\""
 	L.narzudah = "Нар'зуда"
 	L.skeletal_monstrosity = "Костяное чудовище"
 	L.corpse_collector = "Собиратель трупов"

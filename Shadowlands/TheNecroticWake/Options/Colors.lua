@@ -35,6 +35,7 @@ BigWigs:AddColors("Nalthor the Rimebinder", {
 })
 
 BigWigs:AddColors("The Necrotic Wake Trash", {
+	[320464] = "purple",
 	[320822] = "yellow",
 	[321780] = "red",
 	[322756] = "red",

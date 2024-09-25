@@ -9,6 +9,7 @@ if L then
 	L.brittlebone_mage = "脆骨法师"
 	L.skeletal_marauder = "骷髅劫掠者"
 	L.zolramus_bonemender = "佐尔拉姆斯愈骨者"
+	L.zolramus_sorcerer = "佐尔拉姆斯巫师"
 	L.narzudah = "纳祖达"
 	L.skeletal_monstrosity = "骸骨巨怪"
 	L.corpse_collector = "尸体采集者"

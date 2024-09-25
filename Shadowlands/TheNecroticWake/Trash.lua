@@ -420,7 +420,7 @@ function mod:FinalBargain(args)
 		return
 	end
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:ZolramusBonemenderDeath(args)
@@ -438,7 +438,7 @@ do
 		local t = args.time
 		if t - prev > 2 then
 			prev = t
-			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alert")
 		end
 	end

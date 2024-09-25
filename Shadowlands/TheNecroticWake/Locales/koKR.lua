@@ -9,6 +9,7 @@ if L then
 	L.brittlebone_mage = "불완전뼈 마법사"
 	L.skeletal_marauder = "해골 약탈자"
 	L.zolramus_bonemender = "조르라무스 뼈치유사"
+	L.zolramus_sorcerer = "조르라무스 마술사"
 	L.narzudah = "나르주다"
 	L.skeletal_monstrosity = "해골 흉물"
 	L.corpse_collector = "시체 수집꾼"

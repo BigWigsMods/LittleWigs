@@ -9,6 +9,7 @@ if L then
 	L.brittlebone_mage = "Morschknochenmagier"
 	L.skeletal_marauder = "Skelettmarodeur"
 	L.zolramus_bonemender = "Knochenheiler von Zolramus"
+	L.zolramus_sorcerer = "Zauberer von Zolramus"
 	L.narzudah = "Nar'zudah"
 	L.skeletal_monstrosity = "Skelettmonstrum"
 	L.corpse_collector = "Leichensammler"
