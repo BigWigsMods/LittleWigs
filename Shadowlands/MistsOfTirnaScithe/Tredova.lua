@@ -178,7 +178,9 @@ do
 
 	function mod:MindLinkAppliedPrimary(args)
 		primaryTarget = args.destName
-		self:PersonalMessage(322614)
+		if self:Me(args.destGUID) then
+			self:PersonalMessage(322614)
+		end
 	end
 
 	function mod:MindLinkApplied(args)
