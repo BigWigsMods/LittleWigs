@@ -83,7 +83,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WebBlast", 450597)
 	self:Log("SPELL_INTERRUPT", "WebBlastInterrupt", 450597)
 	self:Log("SPELL_CAST_SUCCESS", "WebBlastSuccess", 450597)
-	self:Death("WebTerrorDeath", 224077)
+	self:Death("WebTerrorDeath", 224077, 234024)
 
 	-- Stage 2
 	self:Log("SPELL_CAST_START", "BlackBlood", 451003)
