@@ -62,7 +62,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "EnfeeblingSpittleApplied", 450505)
 	self:Log("SPELL_CAST_START", "HorrendousRoar", 450492)
 	self:Log("SPELL_CAST_START", "AnglersWeb", 450519)
-	self:Log("SPELL_CAST_START", "CallWebTerror", 450568)
+	self:Log("SPELL_CAST_START", "CallWebTerror", 450568, 472158)
 	self:Log("SPELL_SUMMON", "WebTerrorSummon", 450568)
 
 	-- Web Terror
@@ -147,10 +147,10 @@ end
 function mod:CallWebTerror(args)
 	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
 		self:StopBar(CL.count:format(args.spellName, callWebTerrorCount))
-		self:Message(args.spellId, "cyan", CL.count:format(args.spellName, callWebTerrorCount))
+		self:Message(450568, "cyan", CL.count:format(args.spellName, callWebTerrorCount))
 		callWebTerrorCount = callWebTerrorCount + 1
-		self:CDBar(args.spellId, 37.6, CL.count:format(args.spellName, callWebTerrorCount))
-		self:PlaySound(args.spellId, "long")
+		self:CDBar(450568, 37.6, CL.count:format(args.spellName, callWebTerrorCount))
+		self:PlaySound(450568, "long")
 	end
 end
 
@@ -180,7 +180,7 @@ end
 
 function mod:Hatching(args)
 	if self:IsEngaged() then -- same spellId and same mobId as other Zekvir
-		self:CastBar(args.spellId, 15)
+		self:CastBar(args.spellId, 20)
 	end
 end
 
