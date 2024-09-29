@@ -1,22 +1,22 @@
 local L = BigWigs:NewBossLocale("Cinderbrew Meadery Trash", "esES") or BigWigs:NewBossLocale("Cinderbrew Meadery Trash", "esMX")
 if not L then return end
 if L then
-	--L.venture_co_pyromaniac = "Venture Co. Pyromaniac"
-	--L.hired_muscle = "Hired Muscle"
-	--L.tasting_room_attendant = "Tasting Room Attendant"
-	--L.chef_chewie = "Chef Chewie"
-	--L.cooking_pot = "Cooking Pot"
-	--L.flamethrower = "Flamethrower"
-	--L.flavor_scientist = "Flavor Scientist"
-	--L.careless_hopgoblin = "Careless Hopgoblin"
+	L.venture_co_pyromaniac = "Pirómano de Ventura y Cía."
+	L.hired_muscle = "Matón contratado"
+	L.tasting_room_attendant = "Auxiliar de la sala de cata"
+	L.chef_chewie = "Chef Mordi"
+	L.cooking_pot = "Olla de cocina"
+	L.flamethrower = "Lanzallamas"
+	L.flavor_scientist = "Gustóloga"
+	L.careless_hopgoblin = "Lupugoblin descuidado"
 	L.brew_drop = "Hidromiel derramado"
-	--L.bee_wrangler = "Bee Wrangler"
-	--L.venture_co_honey_harvester = "Venture Co. Honey Harvester"
-	--L.royal_jelly_purveyor = "Royal Jelly Purveyor"
-	--L.yes_man = "Yes Man"
+	L.bee_wrangler = "Retador de abejas"
+	L.venture_co_honey_harvester = "Cosechadora de miel de Ventura y Cía."
+	L.royal_jelly_purveyor = "Abastecedor de jalea real"
+	L.yes_man = "Subordinado"
 
-	--L.custom_on_cooking_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Alchemy or Cooking.|r Automatically select the NPC dialog option that grants you 'Sticky Honey' which you can use by clicking your extra action button.\n\n|T451169:16|tSticky Honey\n{438997}"
-	--L.custom_on_flamethrower_autotalk_desc = "|cFFFF0000Requires Gnome, Goblin, Mechagnome, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you 'Flame On' which you can use by clicking your extra action button.\n\n|T135789:16|tFlame On\n{439616}"
+	L.custom_on_cooking_autotalk_desc = "|cFFFF0000Requiere 25 de habilidad en Alquimia o Cocina de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del NPC que te otorga 'Miel Pegajosa', la cual puedes usar haciendo clic en tu botón de acción extra.\n\n|T451169:16|tMiel Pegajosa\n{438997}"
+	L.custom_on_flamethrower_autotalk_desc = "|cFFFF0000Requiere Gnomo, Goblin, Mecagnomo, o 25 de habilidad en Ingeniería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del NPC que te otorga '¡Que arda todo!', la cual puedes usar haciendo clic en tu botón de acción extra.\n\n|T135789:16|t¡Que arda todo!\n{439616}"
 end
 
 L = BigWigs:NewBossLocale("Brew Master Aldryr", "esES") or BigWigs:NewBossLocale("Brew Master Aldryr", "esMX")
