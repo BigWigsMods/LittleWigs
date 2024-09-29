@@ -31,7 +31,7 @@ if L then
 	L.kobyss_witherer = "Flétrisseur kobyss"
 	L.wandering_gutter = "Éventreur errant"
 	L.crazed_predator = "Prédateur fou"
-	--L.deepwater_makura = "Deepwater Makura"
+	L.deepwater_makura = "Makrura eaux-profondes"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "frFR")
@@ -80,5 +80,5 @@ if L then
 	L.tala = "Tala"
 	L.velo = "Velo"
 	L.anubvir = "Anub'vir"
-	--L.zekvir = "Zekvir (Random Spawn)"
+	L.zekvir = "Zekvir (Apparition aléatoire)"
 end
