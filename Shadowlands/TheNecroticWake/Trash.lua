@@ -96,7 +96,7 @@ function mod:GetOptions()
 		-- Loyal Creation
 		{327240, "NAMEPLATE"}, -- Spine Crush
 		-- Separation Assistant
-		{338606, "NAMEPLATE"}, -- Morbid Fixation
+		{338606, "ME_ONLY_EMPHASIZE", "NAMEPLATE"}, -- Morbid Fixation
 		-- Goregrind
 		333477, -- Gut Slice
 		-- Rotspew
@@ -301,8 +301,8 @@ end
 
 function mod:WrathOfZolramus(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:ZolramusGatekeeperDeath(args)
@@ -313,9 +313,9 @@ end
 
 function mod:AnimateDead(args)
 	-- these NPCs can be mind-controlled by Priests but cannot cast Animate Dead while MC'd
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 	self:Nameplate(args.spellId, 29.2, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:GrimFate(args)
@@ -327,7 +327,7 @@ function mod:GrimFate(args)
 end
 
 function mod:GrimFateApplied(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId, nil, nil, "Grim Fate")
@@ -352,7 +352,7 @@ function mod:FrostboltVolley(args)
 		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
 			return
 		end
-		self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
@@ -466,8 +466,12 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red")
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 22.3)
+		if self:Dispeller("magic", true) then
+			self:PlaySound(args.spellId, "warning")
+		else
+			self:PlaySound(args.spellId, "alert")
+		end
 		timer = self:ScheduleTimer("NarzudahDeath", 30)
 	end
 
@@ -515,8 +519,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "purple")
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 17.0)
+		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("SkeletalMonstrosityDeath", 30)
 	end
 
@@ -525,8 +529,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 12.1)
+		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("SkeletalMonstrosityDeath", 30)
 	end
 
@@ -535,8 +539,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 20.2)
+		self:PlaySound(args.spellId, "alarm")
 		timer = self:ScheduleTimer("SkeletalMonstrosityDeath", 30)
 	end
 
@@ -558,8 +562,8 @@ function mod:Goresplatter(args)
 		return
 	end
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:GoresplatterInterrupt(args)
@@ -612,8 +616,8 @@ function mod:RepairFlesh(args)
 		return
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 16.3, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:ThrowCleaver(args)
@@ -624,13 +628,13 @@ do
 	local prevOnMe = 0
 	function mod:ThrowCleaverApplied(args)
 		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "info", nil, args.destName)
 		local t = args.time
 		if self:Me(args.destGUID) and t - prevOnMe > 2 then
 			prevOnMe = t
 			self:Say(args.spellId, nil, nil, "Throw Cleaver")
 		end
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
 
@@ -666,7 +670,7 @@ do
 	local function printTarget(self, name, guid)
 		self:TargetMessage(338606, "yellow", name)
 		if self:Me(guid) then
-			self:PlaySound(338606, "alarm", nil, name)
+			self:PlaySound(338606, "warning", nil, name)
 		else
 			self:PlaySound(338606, "info", nil, name)
 		end
