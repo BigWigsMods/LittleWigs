@@ -34,15 +34,15 @@ end
 L = BigWigs:NewBossLocale("Ring of Booty", "esES") or BigWigs:NewBossLocale("Ring of Booty", "esMX")
 if L then
 	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
-	--L.lightning_warmup = "new set of vict--"
+	L.lightning_warmup = "nuevo grupo de víct--"
 	-- It's a greased up pig? I'm beginning to think this is not a professional setup. Oh well... grab the pig and you win
-	--L.lightning_warmup_2 = "not a professional setup"
+	L.lightning_warmup_2 = "no es muy profesional"
 
 	L.lightning = "Relámpago"
 	L.lightning_caught = "¡Relámpago atrapado después de %.1f segundos!"
 	L.ludwig = "Ludwig Von Tortollan"
 	L.trothak = "Trothak"
 
-	--L.left = "%s (Left)"
-	--L.right = "%s (Right)"
+	--L.left = "%s (Izquierda)"
+	--L.right = "%s (Derecha)"
 end
