@@ -69,6 +69,7 @@ function mod:GetOptions()
 		451091, -- Plant Arathi Bomb
 		-- Ascendant Vis'coxria
 		451102, -- Shadowy Decay
+		{451119, "ME_ONLY"}, -- Abyssal Blast
 		-- Deathscreamer Iken'tak
 		450854, -- Dark Orb
 		-- Ixkreten the Unbreakable
@@ -138,6 +139,9 @@ function mod:OnBossEnable()
 
 	-- Arathi Bomb
 	self:Log("SPELL_CAST_START", "PlantArathiBomb", 451091)
+
+	-- Ascendant Vis'coxria / Deathscreamer Iken'tak / Ixkreten the Unbreakable
+	self:Log("SPELL_CAST_START", "AbyssalBlast", 451119)
 
 	-- Ascendant Vis'coxria
 	self:Log("SPELL_CAST_START", "ShadowyDecay", 451102)
@@ -314,6 +318,33 @@ function mod:PlantArathiBomb(args)
 	self:Bar(args.spellId, 15, CL.explosion)
 end
 
+-- Ascendant Vis'coxria / Deathscreamer Iken'tak / Ixkreten the Unbreakable
+
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(451119, "red", name, CL.casting:format(self:SpellName(451119)))
+		if self:Me(guid) then
+			self:PlaySound(451119, "alarm", nil, name)
+		else
+			self:PlaySound(451119, "alert", nil, name)
+		end
+	end
+
+	function mod:AbyssalBlast(args)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		self:CDBar(args.spellId, 10.9)
+		-- reschedule timer cancellations
+		local mobId = self:MobId(args.sourceGUID)
+		if mobId == 211261 then -- Ascendant Vis'coxria
+			self:AbyssalBlastAscendantViscoxria()
+		elseif mobId == 211263 then -- Deathscreamer Iken'tak
+			self:AbyssalBlastDeathscreamerIkentak()
+		else -- 211262, Ixkreten the Unbreakable
+			self:AbyssalBlastIxkretenTheUnbreakable()
+		end
+	end
+end
+
 -- Ascendant Vis'coxria
 
 do
@@ -329,11 +360,19 @@ do
 		timer = self:ScheduleTimer("AscendantViscoxriaDeath", 30)
 	end
 
+	function mod:AbyssalBlastAscendantViscoxria()
+		if timer then
+			self:CancelTimer(timer)
+		end
+		timer = self:ScheduleTimer("AscendantViscoxriaDeath", 30)
+	end
+
 	function mod:AscendantViscoxriaDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
+		self:StopBar(451119) -- Abyssal Blast
 		self:StopBar(451102) -- Shadowy Decay
 	end
 end
@@ -353,11 +392,19 @@ do
 		timer = self:ScheduleTimer("DeathscreamerIkentakDeath", 30)
 	end
 
+	function mod:AbyssalBlastDeathscreamerIkentak()
+		if timer then
+			self:CancelTimer(timer)
+		end
+		timer = self:ScheduleTimer("DeathscreamerIkentakDeath", 30)
+	end
+
 	function mod:DeathscreamerIkentakDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
+		self:StopBar(451119) -- Abyssal Blast
 		self:StopBar(450854) -- Dark Orb
 	end
 end
@@ -377,11 +424,19 @@ do
 		timer = self:ScheduleTimer("IxkretenTheUnbreakableDeath", 30)
 	end
 
+	function mod:AbyssalBlastIxkretenTheUnbreakable()
+		if timer then
+			self:CancelTimer(timer)
+		end
+		timer = self:ScheduleTimer("IxkretenTheUnbreakableDeath", 30)
+	end
+
 	function mod:IxkretenTheUnbreakableDeath()
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
+		self:StopBar(451119) -- Abyssal Blast
 		self:StopBar(451117) -- Terrifying Slam
 	end
 end
