@@ -18,6 +18,10 @@ function mod:GetOptions()
 		321368, -- Icebound Aegis
 		{320788, "ICON", "SAY"}, -- Frozen Binds
 		321894, -- Dark Exile
+		-- Mythic
+		{328181, "ME_ONLY", "SAY_COUNTDOWN"}, -- Frigid Cold
+	}, {
+		[328181] = CL.mythic,
 	}
 end
 
@@ -30,6 +34,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "FrozenBindsRemoved", 320788)
 	self:Log("SPELL_MISSED", "FrozenBindsRemoved", 320788) -- Anti-Magic Shell, Blessing of Freedom, immunities, etc.
 	self:Log("SPELL_CAST_SUCCESS", "DarkExile", 321894)
+
+	-- Mythic
+	self:Log("SPELL_AURA_APPLIED", "ChampionsBoonApplied", 345323) -- for Frigid Cold
+	self:Log("SPELL_AURA_REMOVED", "FrigidColdRemoved", 328181)
 end
 
 function mod:OnEngage()
@@ -98,4 +106,23 @@ function mod:DarkExile(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "long", nil, args.destName)
 	self:CDBar(args.spellId, 35.2)
+end
+
+function mod:ChampionsBoonApplied(args)
+	if self:Mythic() then
+		-- Frigid Cold is removed 5s after gaining Champion's Boon, which drops Razorshard Ice
+		self:TargetMessage(328181, "yellow", args.destName) -- Frigid Cold
+		self:PlaySound(328181, "alert", nil, args.destName) -- Frigid Cold
+		self:TargetBar(328181, 5.0, args.destName) -- Frigid Cold
+		if self:Me(args.destGUID) then
+			self:SayCountdown(328181, 5.0) -- Frigid Cold
+		end
+	end
+end
+
+function mod:FrigidColdRemoved(args)
+	self:StopBar(args.spellId, args.destName)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(args.spellId)
+	end
 end

@@ -32,6 +32,7 @@ BigWigs:AddSounds("Nalthor the Rimebinder", {
 	[320788] = {"alarm","alert"},
 	[321368] = {"alert","info"},
 	[321894] = "long",
+	[328181] = "alert",
 })
 
 BigWigs:AddSounds("The Necrotic Wake Trash", {
