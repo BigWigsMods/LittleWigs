@@ -231,13 +231,13 @@ end
 
 function mod:WebBlastInterrupt(args)
 	if self:IsEngaged() then -- same spellId and same mobId as other Zekvir
-		self:Nameplate(450597, 12.1, args.destGUID)
+		self:Nameplate(450597, 10.8, args.destGUID)
 	end
 end
 
 function mod:WebBlastSuccess(args)
 	if self:IsEngaged() then -- same spellId and same mobId as other Zekvir
-		self:Nameplate(args.spellId, 12.1, args.sourceGUID)
+		self:Nameplate(args.spellId, 10.8, args.sourceGUID)
 	end
 end
 
