@@ -65,28 +65,28 @@ end
 
 function mod:LandOfTheDead(args)
 	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 42.1)
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:FinalHarvest(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
 	self:CastBar(args.spellId, 4)
 	self:CDBar(args.spellId, 44.8)
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:NecroticBreath(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 40.9)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:UnholyFrenzy(args)
 	if self:Tank() or self:Dispeller("enrage", true, args.spellId) then
 		self:Message(args.spellId, "purple")
-		self:PlaySound(args.spellId, "info")
 		self:CDBar(args.spellId, 44.5)
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
@@ -101,6 +101,8 @@ end
 -- Reanimated Mage
 
 function mod:FrostboltVolley(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+	if self:MobId(args.sourceGUID) == 164414 then -- Reanimated Mage, boss summon
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
 end
