@@ -46,7 +46,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ShockBarrier", 46165)
 
 	if self:Classic() then
-		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+		self:CheckForEngage()
 		self:RegisterEvent("UNIT_HEALTH")
 	else
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
@@ -58,7 +58,7 @@ end
 function mod:OnEngage()
 	self:UnregisterEvent("CHAT_MSG_MONSTER_YELL") -- if you engage him before killing the trash pack in front of him, he skips roleplaying
 	if self:Classic() then
-		self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+		self:CheckForWipe()
 	end
 	if not self:Normal() then
 		self:CDBar(-5180, 60) -- Shock Barrier

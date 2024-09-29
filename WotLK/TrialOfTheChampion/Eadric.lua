@@ -17,8 +17,7 @@ end
 
 function mod:OnBossEnable()
 	if self:Classic() then
-		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-		self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+		self:CheckForEngage()
 	else
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	end
@@ -29,6 +28,12 @@ end
 
 function mod:VerifyEnable(unit) -- becomes friendly after being defeated
 	return UnitCanAttack("player", unit)
+end
+
+function mod:OnEngage()
+	if self:Classic() then
+		self:CheckForWipe()
+	end
 end
 
 -------------------------------------------------------------------------------

@@ -25,12 +25,12 @@ end
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:CheckForEngage()
 	self:Death("Win", 17537)
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:CheckForWipe()
 	self:RegisterEvent("UNIT_HEALTH")
 end
 

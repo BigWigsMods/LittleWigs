@@ -25,12 +25,12 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Fear", 33547)
 
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:CheckForEngage()
 	self:Death("Win", 18731)
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:CheckForWipe()
 	self:CDBar(33547, 15) -- Fear
 	if not self:Normal() then
 		self:Berserk(180)

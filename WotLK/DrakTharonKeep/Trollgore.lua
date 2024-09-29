@@ -22,8 +22,7 @@ end
 
 function mod:OnBossEnable()
 	if self:Classic() then
-		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-		self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+		self:CheckForEngage()
 	else
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	end
@@ -37,6 +36,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	if self:Classic() then
+		self:CheckForWipe()
+	end
 	self:CDBar(49639, 8.5) -- Crush
 	self:CDBar(59803, 15.6) -- Consume
 	self:CDBar(49637, 19.2) -- Infected Wound

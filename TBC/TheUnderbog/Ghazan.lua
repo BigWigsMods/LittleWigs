@@ -31,7 +31,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 15716)
 
 	if self:Classic() then
-		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+		self:CheckForEngage()
 		self:RegisterEvent("UNIT_HEALTH")
 	else
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
@@ -42,7 +42,7 @@ end
 
 function mod:OnEngage()
 	if self:Classic() then
-		self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+		self:CheckForWipe()
 	end
 end
 

@@ -71,7 +71,7 @@ function mod:OnEngage()
 	deaths = 0
 
 	self:UnregisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT") -- Reset fires after Gekkan dies, even if the encounter hasn't ended
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:CheckForWipe()
 end
 
 --------------------------------------------------------------------------------

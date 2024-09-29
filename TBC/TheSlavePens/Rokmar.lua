@@ -27,12 +27,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "EnsnaringMossRemoved", 31948)
 	self:Log("SPELL_AURA_APPLIED", "GrievousWound", 31956, 38801)
 
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:CheckForEngage()
 	self:Death("Win", 17991)
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:CheckForWipe()
 	self:RegisterEvent("UNIT_HEALTH")
 end
 

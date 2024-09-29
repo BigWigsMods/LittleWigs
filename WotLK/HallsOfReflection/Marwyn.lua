@@ -29,12 +29,17 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "CorruptedTouchRemoved", 72383)
 
 	if self:Classic() then
-		self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
-		self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+		self:CheckForEngage()
 	else
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	end
 	self:Death("Win", 38113)
+end
+
+function mod:OnEngage()
+	if self:Classic() then
+		self:CheckForWipe()
+	end
 end
 
 -------------------------------------------------------------------------------

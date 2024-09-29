@@ -32,12 +32,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "GraveyardGasCast", 96338)
 	self:Log("SPELL_AURA_REMOVED", "GraveyardGasCastOver", 96338)
 
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:CheckForEngage()
 	self:Death("Win", 52053)
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:CheckForWipe()
 end
 
 -------------------------------------------------------------------------------

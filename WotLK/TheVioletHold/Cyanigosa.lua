@@ -33,12 +33,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ManaDestruction", 59374)
 	self:Log("SPELL_AURA_REMOVED", "ManaDestructionRemoved", 59374)
 
-	self:RegisterEvent("PLAYER_REGEN_DISABLED", "CheckForEngage")
+	self:CheckForEngage()
 	self:Death("Win", 31134)
 end
 
 function mod:OnEngage()
-	self:RegisterEvent("PLAYER_REGEN_ENABLED", "CheckForWipe")
+	self:CheckForWipe()
 
 	self:CDBar(58688, 7) -- Uncontrollable Energy
 	self:CDBar(58694, 26) -- Arcane Vacuum
