@@ -14,5 +14,5 @@ end
 
 L = BigWigs:NewBossLocale("Lord Aurius Rivendare", "esES")
 if L then
-	--L.death_pact_trigger = "intenta lanzar Pacto de la Muerte sobre sus sirvientes!"
+	--L.death_pact_trigger = "attempts to cast Death Pact on his servants!"
 end
