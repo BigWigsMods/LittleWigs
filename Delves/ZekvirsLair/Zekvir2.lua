@@ -112,7 +112,7 @@ end
 function mod:ClawSmash(args)
 	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
 		self:Message(args.spellId, "orange")
-		self:CDBar(args.spellId, 15.1)
+		self:CDBar(args.spellId, 15.7)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
@@ -126,13 +126,13 @@ end
 
 function mod:EnfeeblingSpittleInterrupt(args)
 	if self:MobId(args.destGUID) == 221427 then -- Zekvir Tier ??
-		self:CDBar(450505, 23.7)
+		self:CDBar(450505, 25.2)
 	end
 end
 
 function mod:EnfeeblingSpittleSuccess(args)
 	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
-		self:CDBar(450505, 23.7)
+		self:CDBar(450505, 25.2)
 	end
 end
 
@@ -148,7 +148,7 @@ end
 function mod:HorrendousRoar(args)
 	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
 		self:Message(args.spellId, "yellow", CL.fear)
-		self:CDBar(args.spellId, 17.4, CL.fear)
+		self:CDBar(args.spellId, 18.2, CL.fear)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
