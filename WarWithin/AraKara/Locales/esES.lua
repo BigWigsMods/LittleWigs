@@ -9,14 +9,14 @@ if L then
 	L.hulking_bloodguard = "Guardia de sangre descomunal"
 	L.sentry_stagshell = "Centinela cornaconcha"
 	L.bloodstained_webmage = "Mago arácnido manchado de sangre"
-	--L.blood_overseer = "Blood Overseer"
-	--L.nerubian_hauler = "Nerubian Hauler"
+	L.blood_overseer = "Sobrestante sanguino"
+	L.nerubian_hauler = "Transportista nerubiano"
 
-	--L.avanoxx_warmup_trigger = "The Attendants have been silenced... something emerges!"
-	--L.custom_on_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Tailoring.|r Automatically select the NPC dialog option that grants you 'Silk Wrap' which you can use by clicking your extra action button."
+	L.avanoxx_warmup_trigger = "Los asistentes han sido silenciados… ¡algo emerge!"
+	L.custom_on_autotalk_desc = "|cFFFF0000Requiere 25 de habilidad en Sastrería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del NPC que te otorga 'Envoltura de Seda', la cual puedes usar haciendo clic en tu botón de acción extra."
 end
 
 L = BigWigs:NewBossLocale("Anub'zekt", "esES") or BigWigs:NewBossLocale("Anub'zekt", "esMX")
 if L then
-	--L.bloodstained_webmage_desc = "Anub'zekt summons a Bloodstained Webmage.\n\n{-28975}"
+	L.bloodstained_webmage_desc = "Anub'zekt invoca a un Tejehechizos Manchado de Sangre.\n\n{-28975}"
 end

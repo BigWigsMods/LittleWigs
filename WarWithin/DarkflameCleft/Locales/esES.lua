@@ -1,16 +1,16 @@
 local L = BigWigs:NewBossLocale("Darkflame Cleft Trash", "esES") or BigWigs:NewBossLocale("Darkflame Cleft Trash", "esMX")
 if not L then return end
 if L then
-	--L.rank_overseer = "Rank Overseer"
-	--L.lowly_moleherd = "Lowly Moleherd"
+	L.rank_overseer = "Sobrestante rancio"
+	L.lowly_moleherd = "Pastor de topos humilde"
 	L.kobold_taskworker = "Completatareas kóbold"
-	--L.wandering_candle = "Wandering Candle"
-	--L.blazing_fiend = "Blazing Fiend"
-	--L.sootsnout = "Sootsnout"
-	--L.torchsnarl = "Torchsnarl"
+	L.wandering_candle = "Vela errante"
+	L.blazing_fiend = "Maligno llameante"
+	L.sootsnout = "Hocicollín, El Brutal"
+	L.torchsnarl = "Torchogruñido"
 	L.skittering_darkness = "Oscuridad deslizante"
-	--L.shuffling_horror = "Shuffling Horror"
-	--L.creaky_mine_cart = "Creaky Mine Cart"
+	L.shuffling_horror = "Horror esquivo"
+	L.creaky_mine_cart = "Vagoneta chirriante"
 
 	--L.minecart = "Mine Cart Minigame"
 	--L.hits = "Hits"
