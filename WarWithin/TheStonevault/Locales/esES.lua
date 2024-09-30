@@ -13,7 +13,7 @@ if L then
 	L.forge_loader = "Cargador de forja"
 	L.cursedforge_honor_guard = "Guardia de honor forjamaldita"
 	L.cursedforge_stoneshaper = "Labrapiedras forjamaldita"
-	L.rock_smasher = "Machacador de rocaMachacador de roca"
+	L.rock_smasher = "Machacador de roca"
 
 	--L.edna_warmup_trigger = "What's this? Is that golem fused with something else?"
 	L.custom_on_autotalk_desc = "|cFFFF0000Requiere Guerrero, Enano, o 25 de habilidad en Herrería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del NPC que otorga a tu grupo el aura 'Energía de hierro imbuido'."
