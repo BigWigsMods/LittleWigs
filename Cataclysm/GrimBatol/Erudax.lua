@@ -144,7 +144,7 @@ do
 
 	function mod:AbyssalCorruptionApplied(args)
 		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(args.spellId, "red", playerList, 3)
+		self:TargetsMessage(args.spellId, "red", playerList, 2)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId, nil, nil, "Abyssal Corruption")
 		end
