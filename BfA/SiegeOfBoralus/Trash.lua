@@ -124,7 +124,8 @@ function mod:OnBossEnable()
 	self:Death("KulTiranVanguardDeath", 138019)
 
 	-- Ashvane Commander
-	self:Log("SPELL_AURA_APPLIED", "AzeriteCharge", 454437)
+	self:Log("SPELL_CAST_SUCCESS", "AzeriteCharge", 454437)
+	self:Log("SPELL_AURA_APPLIED", "AzeriteChargeApplied", 454437)
 	self:Log("SPELL_CAST_START", "BolsteringShout", 275826)
 	self:Log("SPELL_INTERRUPT", "BolsteringShoutInterrupt", 275826)
 	self:Log("SPELL_CAST_SUCCESS", "BolsteringShoutSuccess", 275826)
@@ -266,13 +267,16 @@ end
 -- Ashvane Commander
 
 function mod:AzeriteCharge(args)
+	self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+end
+
+function mod:AzeriteChargeApplied(args)
 	if self:Player(args.destFlags) then -- can be cast on friendly NPCs during RP fighting
 		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId, nil, nil, "Azerite Charge")
 		end
-		self:Nameplate(args.spellId, 15.0, args.sourceGUID)
 	end
 end
 
