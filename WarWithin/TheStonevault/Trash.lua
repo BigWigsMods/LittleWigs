@@ -366,11 +366,11 @@ function mod:CensoringGear(args)
 end
 
 function mod:CensoringGearInterrupt(args)
-	self:Nameplate(429545, 15.7, args.destGUID)
+	self:Nameplate(429545, 18.0, args.destGUID)
 end
 
 function mod:CensoringGearSuccess(args)
-	self:Nameplate(args.spellId, 15.7, args.sourceGUID)
+	self:Nameplate(args.spellId, 18.0, args.sourceGUID)
 end
 
 function mod:TurnedSpeakerDeath(args)
@@ -506,7 +506,7 @@ do
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		self:Nameplate(args.spellId, 23.0, args.sourceGUID)
+		self:Nameplate(args.spellId, 28.4, args.sourceGUID)
 	end
 end
 
@@ -519,7 +519,7 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		self:Nameplate(args.spellId, 24.3, args.sourceGUID)
+		self:Nameplate(args.spellId, 28.0, args.sourceGUID)
 	end
 end
 
