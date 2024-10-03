@@ -53,7 +53,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ClearTheDeck", 269029)
 	self:Log("SPELL_CAST_START", "GutShot", 273470)
 	--self:Log("SPELL_CAST_SUCCESS", "MassBombardment", 463185) TODO eventually
-	self:Log("SPELL_AURA_APPLIED", "SightedArtilleryApplied", 272421) -- Mass Bombardment
+	self:Log("SPELL_AURA_APPLIED", "SightedArtilleryApplied", 471578) -- Mass Bombardment
 	self:Log("SPELL_CAST_START", "FieryRicochet", 463182)
 	self:Log("SPELL_CAST_SUCCESS", "Withdraw", 268752)
 	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Withdraw over
@@ -84,8 +84,8 @@ end
 
 function mod:ClearTheDeck(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 18.2)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 do
@@ -106,11 +106,11 @@ do
 	function mod:SightedArtilleryApplied(args)
 		-- throttle because this is applied to everyone
 		local t = args.time
-		if t - prev > 5 and self:MobId(args.sourceGUID) == 129208 then -- Dread Captain Lockwood
+		if t - prev > 5 then
 			prev = t
 			self:Message(463185, "yellow") -- Mass Bombardment
-			self:PlaySound(463185, "info")
 			self:CDBar(463185, 25.0)
+			self:PlaySound(463185, "info")
 		end
 	end
 end
@@ -122,28 +122,28 @@ function mod:FieryRicochet(args)
 end
 
 function mod:Withdraw(args)
+	local percent = withdrawCount == 1 and 66 or 33
+	withdrawCount = withdrawCount + 1
 	self:StopBar(269029) -- Clear the Deck
 	self:StopBar(463182) -- Fiery Ricochet
 	if self:Mythic() then
 		self:StopBar(463185) -- Mass Bombardment
 	end
 	self:SetStage(2)
-	self:CDBar(268260, 11.2) -- Broadside
-	local percent = withdrawCount == 1 and 66 or 33
 	self:Message(args.spellId, "cyan", CL.percent:format(percent, args.spellName))
+	self:CDBar(268260, 11.2) -- Broadside
 	self:PlaySound(args.spellId, "long")
-	withdrawCount = withdrawCount + 1
 end
 
 function mod:EncounterEvent() -- Withdraw over
 	self:SetStage(1)
 	self:Message(268752, "green", CL.over:format(self:SpellName(268752))) -- Withdraw
-	self:PlaySound(268752, "info")
 	self:CDBar(269029, 3.3) -- Clear the Deck
 	self:CDBar(463182, 8.2) -- Fiery Ricochet
 	if self:Mythic() then
 		self:CDBar(463185, 25.0) -- Mass Bombardment
 	end
+	self:PlaySound(268752, "info")
 end
 
 -- Ashvane Deckhand
