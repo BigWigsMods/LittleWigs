@@ -9,6 +9,7 @@ mod:RegisterEnableMob(
 	164929, -- Tirnenn Villager
 	164921, -- Drust Harvester
 	164920, -- Drust Soulcleaver
+	165111, -- Drust Spiteclaw
 	164926, -- Drust Boughbreaker
 	357703, -- Depleted Anima Seed
 	357707, -- Depleted Anima Seed
@@ -25,7 +26,8 @@ mod:RegisterEnableMob(
 	167113, -- Spinemaw Acidgullet
 	167111, -- Spinemaw Staghorn
 	172312, -- Spinemaw Gorger
-	165560 -- Gormling Larva
+	165560, -- Gormling Larva
+	167116 -- Spinemaw Reaver
 )
 
 --------------------------------------------------------------------------------
@@ -37,6 +39,7 @@ if L then
 	L.tirnenn_villager = "Tirnenn Villager"
 	L.drust_harvester = "Drust Harvester"
 	L.drust_soulcleaver = "Drust Soulcleaver"
+	L.drust_spiteclaw = "Drust Spiteclaw"
 	L.drust_boughbreaker = "Drust Boughbreaker"
 	L.mistveil_defender = "Mistveil Defender"
 	L.mistveil_gorgegullet = "Mistveil Gorgegullet"
@@ -51,6 +54,7 @@ if L then
 	L.spinemaw_staghorn = "Spinemaw Staghorn"
 	L.spinemaw_gorger = "Spinemaw Gorger"
 	L.gormling_larva = "Gormling Larva"
+	L.spinemaw_reaver = "Spinemaw Reaver"
 end
 
 --------------------------------------------------------------------------------
@@ -69,6 +73,8 @@ function mod:GetOptions()
 		-- Drust Soulcleaver
 		{322569, "TANK", "NAMEPLATE"}, -- Hand of Thros
 		{322557, "DISPEL", "NAMEPLATE"}, -- Soul Split
+		-- Drust Spiteclaw
+		322968, -- Dying Breath
 		-- Drust Boughbreaker
 		324909, -- Furious Thrashing
 		{324923, "NAMEPLATE"}, -- Bramble Burst
@@ -106,11 +112,14 @@ function mod:GetOptions()
 		{326021, "NAMEPLATE"}, -- Acid Globule
 		-- Gormling Larva
 		326017, -- Decomposing Acid
+		-- Spinemaw Reaver
+		{326090, "DISPEL", "NAMEPLATE"}, -- Stinging Assault
 	}, {
 		[autotalk] = CL.general,
 		[321968] = L.tirnenn_villager,
 		[322938] = L.drust_harvester,
 		[322569] = L.drust_soulcleaver,
+		[322968] = L.drust_spiteclaw,
 		[324909] = L.drust_boughbreaker,
 		[463256] = L.mistveil_defender,
 		[340304] = L.mistveil_gorgegullet,
@@ -125,6 +134,7 @@ function mod:GetOptions()
 		[340544] = L.spinemaw_staghorn,
 		[326021] = L.spinemaw_gorger,
 		[326017] = L.gormling_larva,
+		[326090] = L.spinemaw_reaver,
 	}
 end
 
@@ -150,6 +160,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SoulSplitApplied", 322557)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SoulSplitApplied", 322557)
 	self:Death("DrustSoulcleaverDeath", 164920)
+
+	-- Drust Spiteclaw
+	self:Log("SPELL_CAST_START", "DyingBreath", 322968)
 
 	-- Drust Boughbreaker
 	self:Log("SPELL_CAST_START", "FuriousThrashing", 324909)
@@ -228,6 +241,12 @@ function mod:OnBossEnable()
 	-- Gormling Larva
 	self:Log("SPELL_PERIODIC_DAMAGE", "DecomposingAcidDamage", 326017)
 	self:Log("SPELL_PERIODIC_MISSED", "DecomposingAcidDamage", 326017)
+
+	-- Spinemaw Reaver
+	self:Log("SPELL_CAST_SUCCESS", "StingingAssault", 326090)
+	self:Log("SPELL_AURA_APPLIED", "DebilitatingPoisonApplied", 326092)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "DebilitatingPoisonApplied", 326092)
+	self:Death("SpinemawReaverDeath", 167116)
 end
 
 --------------------------------------------------------------------------------
@@ -360,6 +379,19 @@ end
 
 function mod:DrustSoulcleaverDeath(args)
 	self:ClearNameplate(args.destGUID)
+end
+
+-- Drust Spiteclaw
+
+do
+	local prev = 0
+	function mod:DyingBreath(args)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Drust Boughbreaker
@@ -542,7 +574,7 @@ do
 				self:CancelTimer(timer)
 			end
 			self:Message(args.spellId, "orange")
-			--self:CDBar(args.spellId, 16) -- TODO get timer
+			self:CDBar(args.spellId, 19.4)
 			self:PlaySound(args.spellId, "alarm")
 			timer = self:ScheduleTimer("MistveilNightblossomDeath", 30)
 		end
@@ -735,4 +767,25 @@ do
 			self:PlaySound(args.spellId, "underyou")
 		end
 	end
+end
+
+-- Spinemaw Reaver
+
+function mod:StingingAssault(args)
+	self:Nameplate(args.spellId, 10.9, args.sourceGUID)
+end
+
+do
+	local prev = 0
+	function mod:DebilitatingPoisonApplied(args)
+		if args.time - prev > 2 and self:Dispeller("poison", nil, 326090) then -- Stinging Assault
+			prev = args.time
+			self:StackMessage(326090, "orange", args.destName, args.amount, 2, args.spellName)
+			self:PlaySound(326090, "alert", nil, args.destName)
+		end
+	end
+end
+
+function mod:SpinemawReaverDeath(args)
+	self:ClearNameplate(args.destGUID)
 end

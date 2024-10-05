@@ -4,6 +4,7 @@ if L then
 	L.tirnenn_villager = "티르넨 주민"
 	L.drust_harvester = "드러스트 수확자"
 	L.drust_soulcleaver = "드러스트 영혼절단자"
+	L.drust_spiteclaw = "드러스트 원한발톱"
 	L.drust_boughbreaker = "드러스트 가지파괴자"
 	L.mistveil_defender = "안개장막 수호병"
 	L.mistveil_gorgegullet = "안개장막 포식귀"
@@ -18,6 +19,7 @@ if L then
 	L.spinemaw_staghorn = "가시아귀 사슴뿔"
 	L.spinemaw_gorger = "가시아귀 먹보"
 	L.gormling_larva = "게걸충 애벌레"
+	L.spinemaw_reaver = "가시아귀 약탈자"
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "koKR")

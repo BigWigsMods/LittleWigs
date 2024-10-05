@@ -4,6 +4,7 @@ if L then
 	L.tirnenn_villager = "仙木灵居民"
 	L.drust_harvester = "德鲁斯特收割者"
 	L.drust_soulcleaver = "德鲁斯特斩魂者"
+	L.drust_spiteclaw = "德鲁斯特恶爪者"
 	L.drust_boughbreaker = "德鲁斯特碎枝者"
 	L.mistveil_defender = "纱雾防御者"
 	L.mistveil_gorgegullet = "纱雾噬喉者"
@@ -18,6 +19,7 @@ if L then
 	L.spinemaw_staghorn = "锥喉鹿角巨虫"
 	L.spinemaw_gorger = "锥喉饕餮者"
 	L.gormling_larva = "戈姆蛴幼虫"
+	L.spinemaw_reaver = "锥喉掠夺者"
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "zhCN")

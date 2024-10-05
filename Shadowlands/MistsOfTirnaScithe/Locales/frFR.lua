@@ -4,6 +4,7 @@ if L then
 	L.tirnenn_villager = "Villageoise tirnenn"
 	L.drust_harvester = "Moissonneur drust"
 	L.drust_soulcleaver = "Tranchâmes drust"
+	L.drust_spiteclaw = "Malegriffe drust"
 	L.drust_boughbreaker = "Elagueur drust"
 	L.mistveil_defender = "Défenseur voile-de-brume"
 	L.mistveil_gorgegullet = "Gonfle-gosier voile-de-brume"
@@ -18,6 +19,7 @@ if L then
 	L.spinemaw_staghorn = "Corne-cerf gueule-épine"
 	L.spinemaw_gorger = "Goinfre gueule-épine"
 	L.gormling_larva = "Larve gormeline"
+	L.spinemaw_reaver = "Saccageur gueule-épine"
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "frFR")
