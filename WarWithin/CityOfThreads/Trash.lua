@@ -65,6 +65,7 @@ function mod:GetOptions()
 		{443430, "NAMEPLATE"}, -- Silk Binding
 		-- Royal Swarmguard
 		{443500, "NAMEPLATE"}, -- Earthshatter
+		{443507, "NAMEPLATE"}, -- Ravenous Swarm
 		-- Xeph'itik
 		450784, -- Perfume Toss
 		451423, -- Gossamer Barrage
@@ -123,6 +124,7 @@ function mod:OnBossEnable()
 
 	-- Royal Swarmguard
 	self:Log("SPELL_CAST_START", "Earthshatter", 443500)
+	self:Log("SPELL_CAST_START", "RavenousSwarm", 443507)
 	self:Death("RoyalSwarmguardDeath", 220197, 220423) -- Royal Swarmguard, Retired Lord Vul'azak
 
 	-- Xeph'itik
@@ -270,8 +272,14 @@ end
 
 function mod:Earthshatter(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:RavenousSwarm(args)
+	self:Message(args.spellId, "yellow")
+	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:RoyalSwarmguardDeath(args)
