@@ -40,7 +40,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Call of the Deep
 	self:Log("SPELL_CAST_SUCCESS", "DamageBoss35", 269984)
 	self:Log("SPELL_CAST_SUCCESS", "PutridWaters", 274991)
 	self:Log("SPELL_AURA_APPLIED", "PutridWatersApplied", 275014)
@@ -57,11 +57,16 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:SetStage(1)
 	markCount = 1
 	eradicationCount = 1
+	self:SetStage(1)
 	self:CDBar(275014, 3.2) -- Putrid Waters
 	self:CDBar(270185, 7.0) -- Call of the Deep
+end
+
+function mod:VerifyEnable(unit)
+	-- boss stays at 1 HP for a few seconds after the fight ends
+	return self:GetHealth(unit) > 1
 end
 
 --------------------------------------------------------------------------------
