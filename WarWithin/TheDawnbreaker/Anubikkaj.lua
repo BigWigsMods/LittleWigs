@@ -181,7 +181,11 @@ do
 			self:TargetMessage(426860, "orange", destName)
 			if self:Me(self:UnitGUID(destName)) then
 				self:Say(426860, nil, nil, "Dark Orb")
-				self:SayCountdown(426860, 4 + startTime - GetTime())
+				-- guard against a missing startTime or a long delay
+				local seconds = 4 + startTime - GetTime()
+				if seconds > 3.2 then
+					self:SayCountdown(426860, seconds)
+				end
 				-- private aura sound (426865) plays
 			else
 				self:PlaySound(426860, "alarm", nil, destName)
