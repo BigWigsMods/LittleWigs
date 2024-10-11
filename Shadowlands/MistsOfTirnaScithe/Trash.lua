@@ -82,18 +82,18 @@ function mod:GetOptions()
 		{463256, "NAMEPLATE"}, -- Mist Ward
 		{463248, "ME_ONLY", "NAMEPLATE"}, -- Expel
 		-- Mistveil Gorgegullet
-		340304, -- Poisonous Secretions
-		340305, -- Crushing Leap
-		{340300, "TANK_HEALER"}, -- Tongue Lashing
+		{340304, "NAMEPLATE"}, -- Poisonous Secretions
+		{340305, "NAMEPLATE"}, -- Crushing Leap
+		{340300, "TANK_HEALER", "NAMEPLATE"}, -- Tongue Lashing
 		-- Mistveil Guardian
 		{463217, "TANK_HEALER", "NAMEPLATE"}, -- Anima Slash
 		-- Mistveil Matriarch
-		340189, -- Pool of Radiance
-		340160, -- Radiant Breath
-		{340208, "TANK_HEALER"}, -- Shred Armor
+		{340189, "NAMEPLATE"}, -- Pool of Radiance
+		{340160, "NAMEPLATE"}, -- Radiant Breath
+		{340208, "TANK_HEALER", "NAMEPLATE"}, -- Shred Armor
 		-- Mistveil Nightblossom
-		{340289, "TANK_HEALER"}, -- Triple Bite
-		{340279, "DISPEL"}, -- Poisonous Discharge
+		{340289, "TANK_HEALER", "NAMEPLATE"}, -- Triple Bite
+		{340279, "DISPEL", "NAMEPLATE"}, -- Poisonous Discharge
 		-- Mistveil Shaper
 		{324776, "NAMEPLATE"}, -- Bramblethorn Coat
 		-- Mistveil Stalker
@@ -143,16 +143,19 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
 	-- Tirnenn Villager
+	self:RegisterEngageMob("TirnennVillagerEngaged", 164929)
 	self:Log("SPELL_CAST_START", "BewilderingPollen", 321968)
 	self:Log("SPELL_CAST_SUCCESS", "Overgrowth", 322486)
 	self:Log("SPELL_AURA_REMOVED", "SoulShackleRemoved", 321952) -- becomes friendly
 	self:Death("TirnennVillagerDeath", 164929) -- if you overgear the content
 
 	-- Drust Harvester
+	self:RegisterEngageMob("DrustHarvesterEngaged", 164921)
 	self:Log("SPELL_CAST_SUCCESS", "HarvestEssence", 322938)
 	self:Death("DrustHarvesterDeath", 164921)
 
 	-- Drust Soulcleaver
+	self:RegisterEngageMob("DrustSoulcleaverEngaged", 164920)
 	self:Log("SPELL_CAST_SUCCESS", "HandOfThros", 322569)
 	self:Log("SPELL_AURA_APPLIED", "HandOfThrosApplied", 322569)
 	self:Log("SPELL_CAST_START", "SoulSplit", 322557)
@@ -165,11 +168,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DyingBreath", 322968)
 
 	-- Drust Boughbreaker
+	self:RegisterEngageMob("DrustBoughbreakerEngaged", 164926)
 	self:Log("SPELL_CAST_START", "FuriousThrashing", 324909)
 	self:Log("SPELL_CAST_START", "BrambleBurst", 324923)
 	self:Death("DrustBoughbreakerDeath", 164926)
 
 	-- Mistveil Defender
+	self:RegisterEngageMob("MistveilDefenderEngaged", 171772, 163058)
 	self:Log("SPELL_CAST_START", "MistWard", 463256)
 	self:Log("SPELL_PERIODIC_DAMAGE", "MistWardDamage", 463257)
 	self:Log("SPELL_PERIODIC_MISSED", "MistWardDamage", 463257)
@@ -177,55 +182,65 @@ function mod:OnBossEnable()
 	self:Death("MistveilDefenderDeath", 171772, 163058)
 
 	-- Mistveil Gorgegullet
+	self:RegisterEngageMob("MistveilGorgegulletEngaged", 173720)
 	self:Log("SPELL_CAST_START", "PoisonousSecretions", 340304)
 	self:Log("SPELL_CAST_SUCCESS", "CrushingLeap", 340305)
 	self:Log("SPELL_CAST_START", "TongueLashing", 340300)
 	self:Death("MistveilGorgegulletDeath", 173720)
 
 	-- Mistveil Guardian
+	self:RegisterEngageMob("MistveilGuardianEngaged", 166276)
 	self:Log("SPELL_CAST_START", "AnimaSlash", 463217)
 	self:Death("MistveilGuardianDeath", 166276)
 
 	-- Mistveil Matriarch
+	self:RegisterEngageMob("MistveilMatriarchEngaged", 173655)
 	self:Log("SPELL_CAST_START", "PoolOfRadiance", 340189)
 	self:Log("SPELL_CAST_START", "RadiantBreath", 340160)
 	self:Log("SPELL_CAST_START", "ShredArmor", 340208)
 	self:Death("MistveilMatriarchDeath", 173655)
 
 	-- Mistveil Nightblossom
+	self:RegisterEngageMob("MistveilNightblossomEngaged", 173714)
 	self:Log("SPELL_CAST_START", "TripleBite", 340289)
 	self:Log("SPELL_CAST_SUCCESS", "PoisonousDischarge", 340279)
 	self:Log("SPELL_AURA_APPLIED", "PoisonousDischargeApplied", 340283)
 	self:Death("MistveilNightblossomDeath", 173714)
 
 	-- Mistveil Shaper
+	self:RegisterEngageMob("MistveilShaperEngaged", 166275)
 	self:Log("SPELL_CAST_START", "BramblethornCoat", 324776)
 	self:Log("SPELL_INTERRUPT", "BramblethornCoatInterrupt", 324776)
 	self:Log("SPELL_CAST_SUCCESS", "BramblethornCoatSuccess", 324776)
 	self:Death("MistveilShaperDeath", 166275)
 
 	-- Mistveil Stalker
+	self:RegisterEngageMob("MistveilStalkerEngaged", 166301)
 	self:Log("SPELL_CAST_SUCCESS", "MistveilBite", 324986)
 	self:Log("SPELL_AURA_APPLIED", "MistveilTear", 325021)
 	self:Death("MistveilStalkerDeath", 166301)
 
 	-- Mistveil Stinger
+	self:RegisterEngageMob("MistveilStingerEngaged", 166304)
 	self:Log("SPELL_CAST_SUCCESS", "AnimaInjection", 325224)
 	self:Log("SPELL_AURA_APPLIED", "AnimaInjectionApplied", 325224)
 	self:Death("MistveilStingerDeath", 166304)
 
 	-- Mistveil Tender
+	self:RegisterEngageMob("MistveilTenderEngaged", 166299)
 	self:Log("SPELL_CAST_START", "NourishTheForest", 324914)
 	self:Log("SPELL_INTERRUPT", "NourishTheForestInterrupt", 324914)
 	self:Log("SPELL_CAST_SUCCESS", "NourishTheForestSuccess", 324914)
 	self:Death("MistveilTenderDeath", 166299)
 
 	-- Spinemaw Acidgullet
+	self:RegisterEngageMob("SpinemawAcidgulletEngaged", 167113)
 	self:Log("SPELL_CAST_SUCCESS", "VolatileAcidSuccess", 325413)
 	self:Log("SPELL_AURA_APPLIED", "VolatileAcidApplied", 325418)
 	self:Death("SpinemawAcidgulletDeath", 167113)
 
 	-- Spinemaw Staghorn
+	self:RegisterEngageMob("SpinemawStaghornEngaged", 167111)
 	self:Log("SPELL_CAST_SUCCESS", "StimulateRegeneration", 340544)
 	self:Log("SPELL_CAST_START", "StimulateResistance", 326046)
 	self:Log("SPELL_INTERRUPT", "StimulateResistanceInterrupt", 326046)
@@ -234,6 +249,7 @@ function mod:OnBossEnable()
 	self:Death("SpinemawStaghornDeath", 167111)
 
 	-- Spinemaw Gorger
+	self:RegisterEngageMob("SpinemawGorgerEngaged", 172312)
 	self:Log("SPELL_CAST_START", "AcidGlobule", 326021)
 	self:Log("SPELL_CAST_SUCCESS", "AcidGlobuleSuccess", 326021)
 	self:Death("SpinemawGorgerDeath", 172312)
@@ -243,6 +259,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_MISSED", "DecomposingAcidDamage", 326017)
 
 	-- Spinemaw Reaver
+	self:RegisterEngageMob("SpinemawReaverEngaged", 167116)
 	self:Log("SPELL_CAST_SUCCESS", "StingingAssault", 326090)
 	self:Log("SPELL_AURA_APPLIED", "DebilitatingPoisonApplied", 326092)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DebilitatingPoisonApplied", 326092)
@@ -268,6 +285,11 @@ function mod:GOSSIP_SHOW()
 end
 
 -- Tirnenn Villager
+
+function mod:TirnennVillagerEngaged(guid)
+	self:Nameplate(321968, 7.1, guid) -- Bewildering Pollen
+	self:Nameplate(322486, 12.5, guid) -- Overgrowth
+end
 
 function mod:BewilderingPollen(args)
 	self:Message(args.spellId, "red")
@@ -297,6 +319,10 @@ end
 
 -- Drust Harvester
 
+function mod:DrustHarvesterEngaged(guid)
+	self:Nameplate(322938, 0.9, guid) -- Harvest Essence
+end
+
 function mod:HarvestEssence(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:Nameplate(args.spellId, 15.8, args.sourceGUID)
@@ -308,6 +334,11 @@ function mod:DrustHarvesterDeath(args)
 end
 
 -- Drust Soulcleaver
+
+function mod:DrustSoulcleaverEngaged(guid)
+	self:Nameplate(322557, 5.0, guid) -- Soul Split
+	self:Nameplate(322569, 8.2, guid) -- Hand of Thros
+end
 
 function mod:HandOfThros(args)
 	if self:MobId(args.sourceGUID) == 172991 then
@@ -396,6 +427,10 @@ end
 
 -- Drust Boughbreaker
 
+function mod:DrustBoughbreakerEngaged(guid)
+	self:Nameplate(324923, 8.1, guid) -- Bramble Burst
+end
+
 function mod:FuriousThrashing(args)
 	self:Message(args.spellId, "yellow", CL.percent:format(50, args.spellName))
 	self:PlaySound(args.spellId, "long")
@@ -412,6 +447,11 @@ function mod:DrustBoughbreakerDeath(args)
 end
 
 -- Mistveil Defender
+
+function mod:MistveilDefenderEngaged(guid)
+	self:Nameplate(463248, 3.9, guid) -- Expel
+	self:Nameplate(463256, 12.0, guid) -- Mist Ward
+end
 
 function mod:MistWard(args)
 	self:Message(args.spellId, "orange")
@@ -451,12 +491,23 @@ end
 do
 	local timer
 
+	function mod:MistveilGorgegulletEngaged(guid)
+		self:CDBar(340300, 5.9) -- Tongue Lashing
+		self:Nameplate(340300, 5.9, guid) -- Tongue Lashing
+		self:CDBar(340305, 17.9) -- Crushing Leap
+		self:Nameplate(340305, 17.9, guid) -- Crushing Leap
+		self:CDBar(340304, 23.0) -- Poisonous Secretions
+		self:Nameplate(340304, 23.0, guid) -- Poisonous Secretions
+		timer = self:ScheduleTimer("MistveilGorgegulletDeath", 30)
+	end
+
 	function mod:PoisonousSecretions(args)
 		if timer then
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red")
 		self:CDBar(args.spellId, 24.3)
+		self:Nameplate(args.spellId, 24.3, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
 		timer = self:ScheduleTimer("MistveilGorgegulletDeath", 30)
 	end
@@ -467,6 +518,7 @@ do
 		end
 		self:Message(args.spellId, "orange")
 		self:CDBar(args.spellId, 12.1)
+		self:Nameplate(args.spellId, 12.1, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
 		timer = self:ScheduleTimer("MistveilGorgegulletDeath", 30)
 	end
@@ -477,6 +529,7 @@ do
 		end
 		self:Message(args.spellId, "purple")
 		self:CDBar(args.spellId, 8.5)
+		self:Nameplate(args.spellId, 8.5, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("MistveilGorgegulletDeath", 30)
 	end
@@ -489,10 +542,17 @@ do
 		self:StopBar(340304) -- Poisonous Secretions
 		self:StopBar(340305) -- Crushing Leap
 		self:StopBar(340300) -- Tongue Lashing
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
 	end
 end
 
 -- Mistveil Guardian
+
+function mod:MistveilGuardianEngaged(guid)
+	self:Nameplate(463217, 4.8, guid) -- Anima Slash
+end
 
 function mod:AnimaSlash(args)
 	self:Message(args.spellId, "purple")
@@ -509,12 +569,23 @@ end
 do
 	local timer
 
+	function mod:MistveilMatriarchEngaged(guid)
+		self:CDBar(340208, 4.9) -- Shred Armor
+		self:Nameplate(340208, 7.1, guid) -- Shred Armor
+		self:CDBar(340160, 13.3) -- Radiant Breath
+		self:Nameplate(340160, 13.3, guid) -- Radiant Breath
+		self:CDBar(340189, 24.2) -- Pool of Radiance
+		self:Nameplate(340189, 24.2, guid) -- Pool of Radiance
+		timer = self:ScheduleTimer("MistveilMatriarchDeath", 30)
+	end
+
 	function mod:PoolOfRadiance(args)
 		if timer then
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "cyan")
 		self:CDBar(args.spellId, 27.9)
+		self:Nameplate(args.spellId, 27.9, args.sourceGUID)
 		self:PlaySound(args.spellId, "info")
 		timer = self:ScheduleTimer("MistveilMatriarchDeath", 30)
 	end
@@ -525,6 +596,7 @@ do
 		end
 		self:Message(args.spellId, "orange")
 		self:CDBar(args.spellId, 12.1)
+		self:Nameplate(args.spellId, 12.1, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
 		timer = self:ScheduleTimer("MistveilMatriarchDeath", 30)
 	end
@@ -535,6 +607,7 @@ do
 		end
 		self:Message(args.spellId, "purple")
 		self:CDBar(args.spellId, 13.4)
+		self:Nameplate(args.spellId, 13.4, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("MistveilMatriarchDeath", 30)
 	end
@@ -547,6 +620,9 @@ do
 		self:StopBar(340189) -- Pool of Radiance
 		self:StopBar(340160) -- Radiant Breath
 		self:StopBar(340208) -- Shred Armor
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
 	end
 end
 
@@ -555,12 +631,21 @@ end
 do
 	local timer
 
+	function mod:MistveilNightblossomEngaged(guid)
+		self:CDBar(340289, 7.1) -- Triple Bite
+		self:Nameplate(340289, 7.1, guid) -- Triple Bite
+		self:CDBar(340279, 18.6) -- Poisonous Discharge
+		self:Nameplate(340279, 18.6, guid) -- Poisonous Discharge
+		timer = self:ScheduleTimer("MistveilNightblossomDeath", 30)
+	end
+
 	function mod:TripleBite(args)
 		if timer then
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "purple")
 		self:CDBar(args.spellId, 12.1)
+		self:Nameplate(args.spellId, 12.1, args.destGUID)
 		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("MistveilNightblossomDeath", 30)
 	end
@@ -575,6 +660,7 @@ do
 			end
 			self:Message(args.spellId, "orange")
 			self:CDBar(args.spellId, 19.4)
+			self:Nameplate(args.spellId, 19.4, args.destGUID)
 			self:PlaySound(args.spellId, "alarm")
 			timer = self:ScheduleTimer("MistveilNightblossomDeath", 30)
 		end
@@ -595,10 +681,17 @@ do
 		end
 		self:StopBar(340289) -- Triple Bite
 		self:StopBar(340279) -- Poisonous Discharge
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
 	end
 end
 
 -- Mistveil Shaper
+
+function mod:MistveilShaperEngaged(guid)
+	self:Nameplate(324776, 7.9, guid) -- Bramblethorn Coat
+end
 
 function mod:BramblethornCoat(args)
 	-- this is only cast if the Mistveil Shaper is being meleed
@@ -621,6 +714,10 @@ end
 
 -- Mistveil Stalker
 
+function mod:MistveilStalkerEngaged(guid)
+	self:Nameplate(325021, 9.6, guid) -- Mistveil Tear
+end
+
 function mod:MistveilBite(args)
 	self:Nameplate(325021, 14.6, args.sourceGUID)
 end
@@ -635,6 +732,10 @@ function mod:MistveilStalkerDeath(args)
 end
 
 -- Mistveil Stinger
+
+function mod:MistveilStingerEngaged(guid)
+	self:Nameplate(325224, 7.3, guid) -- Anima Injection
+end
 
 function mod:AnimaInjection(args)
 	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
@@ -653,6 +754,10 @@ function mod:MistveilStingerDeath(args)
 end
 
 -- Mistveil Tender
+
+function mod:MistveilTenderEngaged(guid)
+	self:Nameplate(324914, 9.7, guid) -- Nourish the Forest
+end
 
 function mod:NourishTheForest(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
@@ -682,6 +787,10 @@ end
 
 -- Spinemaw Acidgullet
 
+function mod:SpinemawAcidgulletEngaged(guid)
+	self:Nameplate(325418, 7.8, guid) -- Volatile Acid
+end
+
 function mod:VolatileAcidSuccess(args)
 	self:Nameplate(325418, 15.8, args.sourceGUID)
 end
@@ -699,6 +808,12 @@ function mod:SpinemawAcidgulletDeath(args)
 end
 
 -- Spinemaw Staghorn
+
+function mod:SpinemawStaghornEngaged(guid)
+	self:Nameplate(326046, 5.3, guid) -- Stimulate Resistance
+	self:Nameplate(460092, 10.1, guid) -- Acid Nova
+	self:Nameplate(340544, 15.0, guid) -- Stimulate Regeneration
+end
 
 function mod:StimulateRegeneration(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
@@ -736,6 +851,10 @@ end
 
 -- Spinemaw Gorger
 
+function mod:SpinemawGorgerEngaged(guid)
+	self:Nameplate(326021, 10.2, guid) -- Acid Globule
+end
+
 do
 	local prev = 0
 	function mod:AcidGlobule(args)
@@ -770,6 +889,10 @@ do
 end
 
 -- Spinemaw Reaver
+
+function mod:SpinemawReaverEngaged(guid)
+	self:Nameplate(326090, 5.7, guid) -- Stinging Assault
+end
 
 function mod:StingingAssault(args)
 	self:Nameplate(args.spellId, 10.9, args.sourceGUID)
