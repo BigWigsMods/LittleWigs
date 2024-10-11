@@ -17,7 +17,7 @@ if L then
 	L.tempest = "水鼠帮唤风者"
 	L.invader = "艾什凡入侵者"
 
-	--L.gate_open_desc = "Show a bar indicating when the Kul Tiran Wavetender will open the gate after Dread Captain Lockwood."
+	L.gate_open_desc = "显示库尔提拉斯护潮者在恐怖船长洛克伍德击杀后打开大门的计时条。"
 end
 
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "zhCN")
