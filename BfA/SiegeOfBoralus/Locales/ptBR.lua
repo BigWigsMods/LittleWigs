@@ -16,6 +16,8 @@ if L then
 	L.pillager = "Pilhador Rato de Porão"
 	L.tempest = "Trovoeiro Rato de Porão"
 	L.invader = "Invasor Grimpagris"
+
+	--L.gate_open_desc = "Show a bar indicating when the Kul Tiran Wavetender will open the gate after Dread Captain Lockwood."
 end
 
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "ptBR")

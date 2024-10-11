@@ -45,6 +45,10 @@ if L then
 	L.pillager = "Bilge Rat Pillager"
 	L.tempest = "Bilge Rat Tempest"
 	L.invader = "Ashvane Invader"
+
+	L.gate_open = CL.gate_open
+	L.gate_open_desc = "Show a bar indicating when the Kul Tiran Wavetender will open the gate after Dread Captain Lockwood."
+	L.gate_open_icon = "achievement_dungeon_siegeofboralus"
 end
 
 --------------------------------------------------------------------------------
@@ -53,6 +57,8 @@ end
 
 function mod:GetOptions()
 	return {
+		-- RP Timers
+		"gate_open",
 		-- Scrimshaw Enforcer / Kul Tiran Halberd
 		{256627, "NAMEPLATE"}, -- Slobber Knocker
 		{257732, "NAMEPLATE"}, -- Shattering Bellow
@@ -164,6 +170,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- RP Timers
+
+-- triggered from Dread Captain Lockwood's :OnWin
+function mod:LockwoodDefeated()
+	self:Bar("gate_open", 4.8, L.gate_open, L.gate_open_icon)
+end
 
 -- Scrimshaw Enforcer / Kul Tiran Halberd
 

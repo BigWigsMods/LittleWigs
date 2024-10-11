@@ -16,6 +16,8 @@ if L then
 	L.pillager = "항만의 시궁쥐단 강탈자"
 	L.tempest = "항만의 시궁쥐단 폭풍우소환사"
 	L.invader = "애쉬베인 침략자"
+
+	--L.gate_open_desc = "Show a bar indicating when the Kul Tiran Wavetender will open the gate after Dread Captain Lockwood."
 end
 
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "koKR")

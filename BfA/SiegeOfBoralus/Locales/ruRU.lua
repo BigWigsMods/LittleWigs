@@ -16,6 +16,8 @@ if L then
 	L.pillager = "Разоритель из братства Трюмных Крыс"
 	L.tempest = "Воин бури из братства Трюмных Крыс"
 	L.invader = "Захватчик дома Эшвейнов"
+
+	--L.gate_open_desc = "Show a bar indicating when the Kul Tiran Wavetender will open the gate after Dread Captain Lockwood."
 end
 
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "ruRU")
