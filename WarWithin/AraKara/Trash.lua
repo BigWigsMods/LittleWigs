@@ -59,12 +59,12 @@ function mod:GetOptions()
 		-- Trilling Attendant
 		{434793, "NAMEPLATE"}, -- Resonant Barrage
 		-- Ixin
-		434824, -- Web Spray
-		434802, -- Horrifying Shrill
+		{434824, "NAMEPLATE"}, -- Web Spray
+		{434802, "NAMEPLATE"}, -- Horrifying Shrill
 		-- Nakt
-		438877, -- Call of the Brood
+		{438877, "NAMEPLATE"}, -- Call of the Brood
 		-- Atik
-		438826, -- Poisonous Cloud
+		{438826, "NAMEPLATE"}, -- Poisonous Cloud
 		-- Hulking Bloodguard
 		{453161, "NAMEPLATE"}, -- Impale
 		{465012, "HEALER", "NAMEPLATE"}, -- Slam
@@ -104,6 +104,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ToxicRupture", 438622)
 
 	-- Trilling Attendant
+	self:RegisterEngageMob("TrillingAttendantEngaged", 216293)
 	self:Log("SPELL_CAST_SUCCESS", "ResonantBarrage", 434793)
 	self:Death("TrillingAttendantDeath", 216293)
 
@@ -111,21 +112,25 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WebSpray", 434824)
 
 	-- Ixin
+	self:RegisterEngageMob("IxinEngaged", 217531)
 	self:Log("SPELL_CAST_START", "HorrifyingShrill", 434802)
 	self:Log("SPELL_INTERRUPT", "HorrifyingShrillInterrupt", 434802)
 	self:Log("SPELL_CAST_SUCCESS", "HorrifyingShrillSuccess", 434802)
 	self:Death("IxinDeath", 217531)
 
 	-- Nakt
+	self:RegisterEngageMob("NaktEngaged", 218324)
 	self:Log("SPELL_CAST_START", "CallOfTheBrood", 438877)
 	self:Death("NaktDeath", 218324)
 
 	-- Atik
+	self:RegisterEngageMob("AtikEngaged", 217533)
 	self:Log("SPELL_CAST_START", "PoisonousCloud", 438826)
 	self:Log("SPELL_PERIODIC_DAMAGE", "PoisonousCloudDamage", 438825)
 	self:Death("AtikDeath", 217533)
 
 	-- Hulking Bloodguard
+	self:RegisterEngageMob("HulkingBloodguardEngaged", 216338, 228015)
 	self:Log("SPELL_CAST_START", "Impale", 453161)
 	self:Log("SPELL_CAST_START", "Slam", 465012)
 	self:Death("HulkingBloodguardDeath", 216338, 228015)
@@ -135,12 +140,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_SUMMON", "AlarmShrillSummon", 432967)
 
 	-- Bloodstained Webmage
+	self:RegisterEngageMob("BloodstainedWebmageEngaged", 223253)
 	self:Log("SPELL_CAST_START", "RevoltingVolley", 448248)
 	self:Log("SPELL_INTERRUPT", "RevoltingVolleyInterrupt", 448248)
 	self:Log("SPELL_CAST_SUCCESS", "RevoltingVolleySuccess", 448248)
 	self:Death("BloodstainedWebmageDeath", 223253)
 
 	-- Blood Overseer
+	self:RegisterEngageMob("BloodOverseerEngaged", 216364)
 	self:Log("SPELL_CAST_START", "EruptingWebs", 433845)
 	self:Log("SPELL_CAST_START", "VenomVolley", 433841)
 	self:Log("SPELL_INTERRUPT", "VenomVolleyInterrupt", 433841)
@@ -148,6 +155,7 @@ function mod:OnBossEnable()
 	self:Death("BloodOverseerDeath", 216364)
 
 	-- Nerubian Hauler
+	self:RegisterEngageMob("NerubianHaulerEngaged", 217039)
 	self:Log("SPELL_CAST_START", "MassiveSlam", 434252)
 	self:Death("NerubianHaulerDeath", 217039)
 end
@@ -204,6 +212,10 @@ end
 
 -- Trilling Attendant
 
+function mod:TrillingAttendantEngaged(guid)
+	self:Nameplate(434793, 2.5, guid) -- Resonant Barrage
+end
+
 do
 	local prev = 0
 	function mod:ResonantBarrage(args)
@@ -226,6 +238,7 @@ end
 function mod:WebSpray(args)
 	self:Message(args.spellId, "orange")
 	self:CDBar(args.spellId, 10.9)
+	self:Nameplate(args.spellId, 10.9, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 	local mobId = self:MobId(args.sourceGUID)
 	if mobId == 217531 then -- Ixin
@@ -242,6 +255,14 @@ end
 do
 	local timer
 
+	function mod:IxinEngaged(guid)
+		self:CDBar(434824, 4.8) -- Web Spray
+		self:Nameplate(434824, 4.8, guid) -- Web Spray
+		self:CDBar(434802, 10.7) -- Horrifying Shrill
+		self:Nameplate(434802, 10.7, guid) -- Horrifying Shrill
+		timer = self:ScheduleTimer("IxinDeath", 30)
+	end
+
 	function mod:IxinWebSpray()
 		if timer then
 			self:CancelTimer(timer)
@@ -254,25 +275,31 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:Nameplate(args.spellId, 0.0, args.sourceGUID)
 		self:PlaySound(args.spellId, "warning")
 		timer = self:ScheduleTimer("IxinDeath", 30)
 	end
 
-	function mod:HorrifyingShrillInterrupt()
+	function mod:HorrifyingShrillInterrupt(args)
 		self:CDBar(434802, 13.1)
+		self:Nameplate(434802, 13.1, args.destGUID)
 	end
 
 	function mod:HorrifyingShrillSuccess(args)
 		self:CDBar(args.spellId, 13.1)
+		self:Nameplate(args.spellId, 13.1, args.sourceGUID)
 	end
 
-	function mod:IxinDeath()
+	function mod:IxinDeath(args)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(434824) -- Web Spray
 		self:StopBar(434802) -- Horrifying Shrill
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
 	end
 end
 
@@ -280,6 +307,14 @@ end
 
 do
 	local timer
+
+	function mod:NaktEngaged(guid)
+		self:CDBar(438877, 6.0) -- Call of the Brood
+		self:Nameplate(438877, 6.0, guid) -- Call of the Brood
+		self:CDBar(434824, 9.0) -- Web Spray
+		self:Nameplate(434824, 9.0, guid) -- Web Spray
+		timer = self:ScheduleTimer("NaktDeath", 30)
+	end
 
 	function mod:NaktWebSpray()
 		if timer then
@@ -294,17 +329,21 @@ do
 		end
 		self:Message(args.spellId, "cyan")
 		self:CDBar(args.spellId, 26.7)
+		self:Nameplate(args.spellId, 26.7, args.sourceGUID)
 		self:PlaySound(args.spellId, "info")
 		timer = self:ScheduleTimer("NaktDeath", 30)
 	end
 
-	function mod:NaktDeath()
+	function mod:NaktDeath(args)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(434824) -- Web Spray
 		self:StopBar(438877) -- Call of the Brood
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
 	end
 end
 
@@ -312,6 +351,14 @@ end
 
 do
 	local timer
+
+	function mod:AtikEngaged(guid)
+		self:CDBar(434824, 3.6) -- Web Spray
+		self:Nameplate(434824, 3.6, guid) -- Web Spray
+		self:CDBar(438826, 9.3) -- Poisonous Cloud
+		self:Nameplate(438826, 9.3, guid) -- Poisonous Cloud
+		timer = self:ScheduleTimer("AtikDeath", 30)
+	end
 
 	function mod:AtikWebSpray()
 		if timer then
@@ -326,6 +373,7 @@ do
 		end
 		self:Message(args.spellId, "yellow")
 		self:CDBar(args.spellId, 15.8)
+		self:Nameplate(args.spellId, 15.8, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("AtikDeath", 30)
 	end
@@ -337,17 +385,25 @@ do
 		end
 	end
 
-	function mod:AtikDeath()
+	function mod:AtikDeath(args)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(434824) -- Web Spray
 		self:StopBar(438826) -- Poisonous Cloud
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
 	end
 end
 
 -- Hulking Bloodguard
+
+function mod:HulkingBloodguardEngaged(guid)
+	self:Nameplate(453161, 5.2, guid) -- Impale
+	self:Nameplate(465012, 11.9, guid) -- Slam
+end
 
 function mod:Impale(args)
 	self:Message(args.spellId, "orange")
@@ -386,6 +442,10 @@ end
 
 -- Bloodstained Webmage
 
+function mod:BloodstainedWebmageEngaged(guid)
+	self:Nameplate(448248, 2.8, guid) -- Revolting Volley
+end
+
 do
 	local prev = 0
 	function mod:RevoltingVolley(args)
@@ -412,6 +472,11 @@ function mod:BloodstainedWebmageDeath(args)
 end
 
 -- Blood Overseer
+
+function mod:BloodOverseerEngaged(guid)
+	self:Nameplate(433841, 6.0, guid) -- Venom Volley
+	self:Nameplate(433845, 12.0, guid) -- Erupting Webs
+end
 
 do
 	local prev = 0
@@ -452,6 +517,10 @@ function mod:BloodOverseerDeath(args)
 end
 
 -- Nerubian Hauler
+
+function mod:NerubianHaulerEngaged(guid)
+	self:Nameplate(434252, 3.6, guid) -- Massive Slam
+end
 
 function mod:MassiveSlam(args)
 	self:Message(args.spellId, "yellow")
