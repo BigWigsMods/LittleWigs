@@ -17,7 +17,7 @@ if L then
 	L.tempest = "Orkan der Bilgeratten"
 	L.invader = "Aschenwindeindringling"
 
-	--L.gate_open_desc = "Show a bar indicating when the Kul Tiran Wavetender will open the gate after Dread Captain Lockwood."
+	L.gate_open_desc = "Zeigt einen Timer wann der Wellenzähmer von Kul Tiras das Tor hinter Schreckenskapitänin Luebke öffnet."
 end
 
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "deDE")
