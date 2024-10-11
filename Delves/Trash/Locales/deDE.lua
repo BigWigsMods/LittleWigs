@@ -81,8 +81,8 @@ if L then
 	L.velo = "Velo"
 	L.anubvir = "Anub'vir"
 	L.zekvir = "Zekvir"
-	--L.zekvirs_influence = "Zekvir's Influence"
+	L.zekvirs_influence = "Zekvirs Einfluss"
 	L.zekvir_random = "Zekvir (Zufälliges Erscheinen)"
-	--L.zekvir_breach = "Zekvir incoming"
-	--L.zekvir_breach_desc = "Show an alert when Zekvir is spawning in the Delve."
+	L.zekvir_breach = "Zekvir erscheint"
+	L.zekvir_breach_desc = "Zeigt eine Meldung wenn Zekvir in der Tiefe erscheint."
 end
