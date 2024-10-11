@@ -74,6 +74,8 @@ BigWigs:AddColors("Delve Rares", {
 	[450492] = "yellow",
 	[450505] = {"blue","red"},
 	[450519] = "orange",
+	[457448] = "orange",
+	[457880] = "yellow",
 	[458090] = "yellow",
 	[458099] = "red",
 	[458104] = {"red","yellow"},
@@ -84,4 +86,5 @@ BigWigs:AddColors("Delve Rares", {
 	[459421] = "yellow",
 	[461741] = {"blue","orange"},
 	[462686] = "red",
+	["zekvir_breach"] = "cyan",
 })

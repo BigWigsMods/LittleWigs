@@ -123,6 +123,12 @@ function mod:OnBossEnable()
 
 	-- Particularly Bad Guy
 	self:Log("SPELL_CAST_START", "HideousLaughter", 372529)
+
+	-- also enable the Rares module
+	local raresModule = BigWigs:GetBossModule("Delve Rares", true)
+	if raresModule then
+		raresModule:Enable()
+	end
 end
 
 --------------------------------------------------------------------------------

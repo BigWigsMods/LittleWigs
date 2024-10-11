@@ -94,6 +94,12 @@ function mod:OnBossEnable()
 
 	-- Shadow Elemental
 	self:Log("SPELL_CAST_START", "InflictDeath", 440205, 470593)
+
+	-- also enable the Rares module
+	local raresModule = BigWigs:GetBossModule("Delve Rares", true)
+	if raresModule then
+		raresModule:Enable()
+	end
 end
 
 --------------------------------------------------------------------------------

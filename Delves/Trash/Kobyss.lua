@@ -106,6 +106,12 @@ function mod:OnBossEnable()
 
 	-- Deepwater Makura
 	self:Log("SPELL_CAST_START", "BubbleSurge", 445771)
+
+	-- also enable the Rares module
+	local raresModule = BigWigs:GetBossModule("Delve Rares", true)
+	if raresModule then
+		raresModule:Enable()
+	end
 end
 
 function mod:VerifyEnable(_, mobId)

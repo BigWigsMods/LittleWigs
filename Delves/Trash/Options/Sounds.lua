@@ -74,6 +74,8 @@ BigWigs:AddSounds("Delve Rares", {
 	[450492] = "alarm",
 	[450505] = {"alert","info"},
 	[450519] = "alarm",
+	[457448] = "alarm",
+	[457880] = "long",
 	[458090] = "alarm",
 	[458099] = "alert",
 	[458104] = "alert",
@@ -84,4 +86,5 @@ BigWigs:AddSounds("Delve Rares", {
 	[459421] = "alert",
 	[461741] = {"alarm","underyou"},
 	[462686] = "alert",
+	["zekvir_breach"] = "long",
 })

@@ -80,5 +80,9 @@ if L then
 	L.tala = "塔拉"
 	L.velo = "威罗"
 	L.anubvir = "阿努布维尔"
-	L.zekvir = "泽克维尔（随机出现）"
+	L.zekvir = "泽克维尔"
+	--L.zekvirs_influence = "Zekvir's Influence"
+	L.zekvir_random = "泽克维尔（随机出现）"
+	--L.zekvir_breach = "Zekvir incoming"
+	--L.zekvir_breach_desc = "Show an alert when Zekvir is spawning in the Delve."
 end
