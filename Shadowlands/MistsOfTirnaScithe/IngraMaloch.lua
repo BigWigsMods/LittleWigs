@@ -68,6 +68,14 @@ function mod:OnEngage()
 	self:CDBar(323149, 35.3, CL.count:format(self:SpellName(323149), embraceDarknessCount)) -- Embrace Darkness
 end
 
+function mod:VerifyEnable(_, mobId)
+	if mobId == 164804 then -- Droman Oulfarran is friendly after the fight
+		local info = C_ScenarioInfo.GetCriteriaInfo(1)
+		return info and not info.completed
+	end
+	return true
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
