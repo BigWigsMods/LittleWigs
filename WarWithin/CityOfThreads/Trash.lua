@@ -12,7 +12,7 @@ mod:RegisterEnableMob(
 	220197, -- Royal Swarmguard
 	219984, -- Xeph'itik
 	220401, -- Pale Priest
-	220003, -- Eye of the Queen
+	219983, -- Eye of the Queen
 	223844, -- Covert Webmancer
 	224732, -- Covert Webmancer
 	220423, -- Retired Lord Vul'azak
@@ -142,7 +142,7 @@ function mod:OnBossEnable()
 	-- Eye of the Queen
 	self:Log("SPELL_CAST_START", "NullSlam", 451543)
 	self:Log("SPELL_CAST_START", "VoidRush", 451222)
-	self:Death("EyeOfTheQueenDeath", 220003)
+	self:Death("EyeOfTheQueenDeath", 219983)
 
 	-- Covert Webmancer
 	self:Log("SPELL_CAST_START", "MendingWeb", 452162)
