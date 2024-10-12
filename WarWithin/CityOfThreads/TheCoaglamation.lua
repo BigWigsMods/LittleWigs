@@ -46,9 +46,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "OozingSmash", 461842)
 	self:Log("SPELL_CAST_START", "BloodSurge", 438658, 461880) -- Normal/Heroic, Mythic
 	self:Log("SPELL_CAST_START", "DarkPulse", 441395)
-	-- 443311 arena (sides), 462439 arena (stairs), 461825 Mythic pools, 445435 non-Mythic pools
-	self:Log("SPELL_PERIODIC_DAMAGE", "BlackBloodDamage", 443311, 462439, 461825, 445435)
-	self:Log("SPELL_PERIODIC_MISSED", "BlackBloodDamage", 443311, 462439, 461825, 445435)
+	-- 443311 arena (sides), 462439 arena (stairs), 461825 pools
+	self:Log("SPELL_PERIODIC_DAMAGE", "BlackBloodDamage", 443311, 462439)
+	self:Log("SPELL_PERIODIC_MISSED", "BlackBloodDamage", 443311, 462439)
+	self:Log("SPELL_DAMAGE", "BlackBloodDamage", 461825)
+	self:Log("SPELL_MISSED", "BlackBloodDamage", 461825)
 end
 
 function mod:OnEngage()
