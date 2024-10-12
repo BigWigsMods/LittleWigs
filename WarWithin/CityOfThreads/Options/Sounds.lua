@@ -46,6 +46,7 @@ BigWigs:AddSounds("City of Threads Trash", {
 	[447271] = "alarm",
 	[448047] = "info",
 	[450784] = "alarm",
+	[451222] = "info",
 	[451423] = "long",
 	[451543] = "alarm",
 	[452162] = "alert",

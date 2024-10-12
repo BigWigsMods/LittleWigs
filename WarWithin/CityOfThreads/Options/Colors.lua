@@ -46,6 +46,7 @@ BigWigs:AddColors("City of Threads Trash", {
 	[447271] = "orange",
 	[448047] = {"blue","cyan"},
 	[450784] = "orange",
+	[451222] = "yellow",
 	[451423] = "red",
 	[451543] = "orange",
 	[452162] = "red",

@@ -74,6 +74,7 @@ function mod:GetOptions()
 		448047, -- Web Wrap
 		-- Eye of the Queen
 		{451543, "NAMEPLATE"}, -- Null Slam
+		{451222, "NAMEPLATE"}, -- Void Rush
 		-- Covert Webmancer
 		{452162, "NAMEPLATE"}, -- Mending Web
 		-- Royal Venomshell
@@ -130,7 +131,7 @@ function mod:OnBossEnable()
 	-- Xeph'itik
 	self:Log("SPELL_CAST_START", "PerfumeToss", 450784)
 	self:Log("SPELL_CAST_START", "GossamerBarrage", 451423)
-	self:Log("SPELL_CAST_SUCCESS", "PheromoneVeil", 441795)
+	self:Log("SPELL_CAST_SUCCESS", "PheromoneVeil", 441795) -- Xeph'itik defeated
 	self:Log("SPELL_AURA_APPLIED", "PheromoneVeilApplied", 441795)
 
 	-- Pale Priest
@@ -138,6 +139,7 @@ function mod:OnBossEnable()
 
 	-- Eye of the Queen
 	self:Log("SPELL_CAST_START", "NullSlam", 451543)
+	self:Log("SPELL_CAST_START", "VoidRush", 451222)
 	self:Death("EyeOfTheQueenDeath", 220003)
 
 	-- Covert Webmancer
@@ -252,8 +254,8 @@ function mod:SilkBinding(args)
 		return
 	end
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:SilkBindingInterrupt(args)
@@ -296,8 +298,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 15.8)
+		self:PlaySound(args.spellId, "alarm")
 		timer = self:ScheduleTimer("XephitikDefeated", 30)
 	end
 
@@ -306,8 +308,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red")
-		self:PlaySound(args.spellId, "long")
 		self:CDBar(args.spellId, 23.1)
+		self:PlaySound(args.spellId, "long")
 		timer = self:ScheduleTimer("XephitikDefeated", 30)
 	end
 
@@ -352,8 +354,14 @@ end
 
 function mod:NullSlam(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 26.7, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:VoidRush(args)
+	self:Message(args.spellId, "yellow")
+	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:EyeOfTheQueenDeath(args)
@@ -364,8 +372,8 @@ end
 
 function mod:MendingWeb(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:MendingWebInterrupt(args)
@@ -384,8 +392,8 @@ end
 
 function mod:VenomousSpray(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
 	self:Nameplate(args.spellId, 24.2, args.sourceGUID)
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:RoyalVenomshellDeath(args)
@@ -396,8 +404,8 @@ end
 
 function mod:DarkBarrage(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "long")
 	self:Nameplate(args.spellId, 27.9, args.sourceGUID)
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:UnstableTestSubjectDeath(args)
