@@ -17,7 +17,7 @@ if L then
 	L.xephitik_defeated_trigger = "Genug!"
 	L.fangs_of_the_queen_warmup_trigger = "Das Transformatorium war einst Heimat heiligster Evolution."
 	L.izo_warmup_trigger = "Genug! Ihr habt einen Platz in meiner Sammlung verdient. Lasst Euch aufnehmen."
-	L.custom_on_autotalk_desc = "|cFFFF0000Benötigt Schurke, Priester oder 25 Fertigkeitspunkte der Ingenieurskunst von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Aura 'Gestohlene Kraft' gewährt.\n\n|T135888:16|tGestohlene Kraft\n{448305}"
+	L.custom_on_autotalk_desc = "|cFFFF0000Benötigt Schurke, Priester oder 25 Fertigkeitspunkte der Ingenieurskunst von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Aura 'Gestohlene Kraft' gewährt."
 end
 
 L = BigWigs:NewBossLocale("Fangs of the Queen", "deDE")

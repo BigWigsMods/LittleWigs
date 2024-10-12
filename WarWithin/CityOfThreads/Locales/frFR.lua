@@ -17,7 +17,7 @@ if L then
 	L.xephitik_defeated_trigger = "Assez !"
 	L.fangs_of_the_queen_warmup_trigger = "La Transformacie était autrefois le siège de notre évolution sacrée."
 	L.izo_warmup_trigger = "Assez ! Vous méritez une place dans ma collection. Je vais vous ranger."
-	L.custom_on_autotalk_desc = "|cFFFF0000Nécessite au moins 25 points de compétence en ingénierie de khaz Algar ou que vous soyez un voleur ou un prêtre.|r Sélectionne automatiquement le dialogue avec le PNJ qui vous octroie l'amélioration 'Puissance dérobée' que vous pourrez utilisez en cliquant sur l'extra bouton.\n\n|T135888:16|tPuissance dérobée\n{448305}"
+	L.custom_on_autotalk_desc = "|cFFFF0000Nécessite au moins 25 points de compétence en ingénierie de khaz Algar ou que vous soyez un voleur ou un prêtre.|r Sélectionne automatiquement le dialogue avec le PNJ qui vous octroie l'amélioration 'Puissance dérobée' que vous pourrez utilisez en cliquant sur l'extra bouton."
 end
 
 L = BigWigs:NewBossLocale("Fangs of the Queen", "frFR")

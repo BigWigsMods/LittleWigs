@@ -48,7 +48,7 @@ if L then
 	L.fangs_of_the_queen_warmup_trigger = "The Transformatory was once the home of our sacred evolution."
 	L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
 	L.custom_on_autotalk = CL.autotalk
-	L.custom_on_autotalk_desc = "|cFFFF0000Requires Rogue, Priest, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you the 'Stolen Power' aura.\n\n|T135888:16|tStolen Power\n{448305}"
+	L.custom_on_autotalk_desc = "|cFFFF0000Requires Rogue, Priest, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you the 'Stolen Power' aura."
 	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
 end
 
@@ -59,6 +59,7 @@ end
 function mod:GetOptions()
 	return {
 		"custom_on_autotalk",
+		448305, -- Stolen Power
 		-- Herald of Ansurek
 		{443437, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Shadows of Doubt
 		-- Sureki Silkbinder
@@ -110,6 +111,7 @@ function mod:OnBossEnable()
 
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
+	self:Log("SPELL_AURA_APPLIED", "StolenPowerApplied", 448305)
 
 	-- Herald of Ansurek
 	self:Log("SPELL_CAST_SUCCESS", "ShadowsOfDoubt", 443436)
@@ -219,6 +221,13 @@ function mod:GOSSIP_SHOW()
 			-- 122353:<Manipulate the device with shadow magic and steal some of its power.>\r\n[Requires Rogue, Priest, or at least 25 skill in Khaz Algar Engineering.]|r
 			self:SelectGossipID(122353)
 		end
+	end
+end
+
+function mod:StolenPowerApplied(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "green", CL.on_group:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
