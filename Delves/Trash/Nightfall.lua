@@ -127,8 +127,11 @@ end
 -- Nightfall Inquisitor
 
 function mod:ShadowBarrier(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "info")
+	-- also cast by a boss (Inquisitor Speaker)
+	if self:MobId(args.sourceGUID) == 217518 then -- Nightfall Inquisitor
+		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 -- Devouring Shade
