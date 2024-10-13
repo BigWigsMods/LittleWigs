@@ -10,6 +10,7 @@ mod:RegisterEnableMob(
 	141283, -- Kul Tiran Halberd (Horde)
 	129372, -- Blacktar Bomber
 	129370, -- Irontide Waveshaper
+	144071, -- Irontide Waveshaper
 	141284, -- Kul Tiran Wavetender (Horde)
 	129369, -- Irontide Raider
 	138019, -- Kul Tiran Vanguard (Horde)
@@ -83,6 +84,8 @@ function mod:GetOptions()
 		{272711, "NAMEPLATE"}, -- Crushing Slam
 		-- Bilge Rat Buccaneer
 		{272546, "NAMEPLATE"}, -- Banana Rampage
+		-- Bilge Rat Pillager
+		{454440, "NAMEPLATE"}, -- Stinky Vomit
 		-- Bilge Rat Tempest
 		{272571, "NAMEPLATE"}, -- Choking Waters
 		-- Ashvane Invader
@@ -98,6 +101,7 @@ function mod:GetOptions()
 		[268260] = L.cannoneer,
 		[257169] = L.demolisher,
 		[272546] = L.buccaneer,
+		[454440] = L.pillager,
 		[272571] = L.tempest,
 		[275835] = L.invader,
 	}
@@ -119,7 +123,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "WatertightShellInterrupt", 256957)
 	self:Log("SPELL_CAST_SUCCESS", "WatertightShellSuccess", 256957)
 	self:Log("SPELL_AURA_APPLIED", "WatertightShellApplied", 256957)
-	self:Death("KulTiranWavetenderDeath", 129370, 141284) -- Waveshaper, Wavetender
+	self:Death("KulTiranWavetenderDeath", 129370, 144071, 141284) -- Waveshaper, Waveshaper, Wavetender
 
 	-- Irontide Raider
 	self:Log("SPELL_CAST_START", "IronHook", 272662)
@@ -156,6 +160,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BananaRampage", 272546)
 	self:Log("SPELL_CAST_SUCCESS", "BananaRampageSuccess", 272546)
 	self:Death("BilgeRatBuccaneerDeath", 129366)
+
+	-- Bilge Rat Pillager
+	self:Log("SPELL_CAST_START", "StinkyVomit", 454440)
+	self:Log("SPELL_INTERRUPT", "StinkyVomitInterrupt", 454440)
+	self:Log("SPELL_CAST_SUCCESS", "StinkyVomitSuccess", 454440)
+	self:Death("BilgeRatPillagerDeath", 135241)
 
 	-- Bilge Rat Tempest
 	self:Log("SPELL_CAST_START", "ChokingWaters", 272571)
@@ -202,13 +212,13 @@ end
 do
 	local prev = 0
 	function mod:BurningTar(args)
+		self:Nameplate(args.spellId, 20.3, args.sourceGUID)
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		self:Nameplate(args.spellId, 20.3, args.sourceGUID)
 	end
 end
 
@@ -281,8 +291,8 @@ end
 function mod:HeavySlash(args)
 	if self:MobId(args.sourceGUID) == 138019 then -- Horde-only trash version
 		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alert")
 		self:Nameplate(args.spellId, 20.2, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
 	end
 end
 
@@ -307,9 +317,10 @@ function mod:AzeriteChargeApplied(args)
 end
 
 function mod:BolsteringShout(args)
+	-- only cast if there are nearby mobs
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:BolsteringShoutInterrupt(args)
@@ -357,8 +368,8 @@ end
 function mod:Broadside(args)
 	if self:MobId(args.sourceGUID) == 138465 then -- trash version
 		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
 		self:Nameplate(args.spellId, 11.0, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
 	end
 end
 
@@ -370,14 +381,14 @@ end
 
 function mod:TerrifyingRoar(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
 	self:Nameplate(args.spellId, 29.2, args.sourceGUID)
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:CrushingSlam(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
 	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:BilgeRatDemolisherDeath(args)
@@ -406,12 +417,38 @@ function mod:BilgeRatBuccaneerDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
+-- Bilge Rat Pillager
+
+do
+	local prev = 0
+	function mod:StinkyVomit(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:StinkyVomitInterrupt(args)
+	self:Nameplate(454440, 14.0, args.destGUID)
+end
+
+function mod:StinkyVomitSuccess(args)
+	self:Nameplate(args.spellId, 14.0, args.sourceGUID)
+end
+
+function mod:BilgeRatPillagerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Bilge Rat Tempest
 
 function mod:ChokingWaters(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:ChokingWatersInterrupt(args)
