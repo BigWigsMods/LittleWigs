@@ -35,6 +35,7 @@ BigWigs:AddSounds("Izo, the Grand Splicer", {
 
 BigWigs:AddSounds("City of Threads Trash", {
 	[434137] = "long",
+	[436205] = "info",
 	[441795] = "info",
 	[443430] = "alert",
 	[443437] = "alarm",

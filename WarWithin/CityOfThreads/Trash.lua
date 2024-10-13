@@ -82,6 +82,7 @@ function mod:GetOptions()
 		{434137, "NAMEPLATE"}, -- Venomous Spray
 		-- Unstable Test Subject
 		{445813, "NAMEPLATE"}, -- Dark Barrage
+		{436205, "NAMEPLATE"}, -- Fierce Stomping
 		-- Sureki Unnaturaler
 		{446086, "NAMEPLATE"}, -- Void Wave
 		-- Elder Shadeweaver
@@ -156,6 +157,7 @@ function mod:OnBossEnable()
 
 	-- Unstable Test Subject
 	self:Log("SPELL_CAST_START", "DarkBarrage", 445813)
+	self:Log("SPELL_CAST_START", "FierceStomping", 436205)
 	self:Death("UnstableTestSubjectDeath", 216328)
 
 	-- Sureki Unnaturaler
@@ -415,6 +417,12 @@ function mod:DarkBarrage(args)
 	self:Message(args.spellId, "orange")
 	self:Nameplate(args.spellId, 27.9, args.sourceGUID)
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:FierceStomping(args)
+	self:Message(args.spellId, "yellow")
+	self:Nameplate(args.spellId, 27.9, args.sourceGUID)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:UnstableTestSubjectDeath(args)
