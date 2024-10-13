@@ -43,14 +43,14 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ViscousDarkness", 441289, 447146) -- odd casts, even casts
-	self:Log("SPELL_CAST_START", "OozingSmash", 461842)
-	self:Log("SPELL_CAST_START", "BloodSurge", 438658, 461880) -- Normal/Heroic, Mythic
+	self:Log("SPELL_CAST_START", "OozingSmash", 461842, 461989)
+	self:Log("SPELL_CAST_START", "BloodSurge", 461880, 438658) -- all difficulties, non-Mythic
 	self:Log("SPELL_CAST_START", "DarkPulse", 441395)
-	-- 443311 arena (sides), 462439 arena (stairs), 461825 pools
+	-- 443311 arena (sides), 462439 arena (stairs), 461825 pools, 438601 non-Mythic pools
 	self:Log("SPELL_PERIODIC_DAMAGE", "BlackBloodDamage", 443311, 462439)
 	self:Log("SPELL_PERIODIC_MISSED", "BlackBloodDamage", 443311, 462439)
-	self:Log("SPELL_DAMAGE", "BlackBloodDamage", 461825)
-	self:Log("SPELL_MISSED", "BlackBloodDamage", 461825)
+	self:Log("SPELL_DAMAGE", "BlackBloodDamage", 461825, 438601)
+	self:Log("SPELL_MISSED", "BlackBloodDamage", 461825, 438601)
 end
 
 function mod:OnEngage()
@@ -102,14 +102,14 @@ end
 
 function mod:OozingSmash(args)
 	self:StopBar(CL.count:format(args.spellName, oozingSmashCount))
-	self:Message(args.spellId, "purple", CL.count:format(args.spellName, oozingSmashCount))
+	self:Message(461842, "purple", CL.count:format(args.spellName, oozingSmashCount))
 	oozingSmashCount = oozingSmashCount + 1
 	if oozingSmashCount == 2 then
-		self:CDBar(args.spellId, 54.6, CL.count:format(args.spellName, oozingSmashCount))
+		self:CDBar(461842, 54.6, CL.count:format(args.spellName, oozingSmashCount))
 	else -- 3+
-		self:CDBar(args.spellId, 75.3, CL.count:format(args.spellName, oozingSmashCount))
+		self:CDBar(461842, 75.3, CL.count:format(args.spellName, oozingSmashCount))
 	end
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(461842, "alert")
 end
 
 function mod:BloodSurge(args)
