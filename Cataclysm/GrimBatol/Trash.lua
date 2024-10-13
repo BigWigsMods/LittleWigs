@@ -45,7 +45,7 @@ function mod:GetOptions()
 		-- Twilight Brute
 		{456696, "NAMEPLATE"}, -- Obsidian Stomp
 		-- Twilight Destroyer
-		{451613, "SAY", "NAMEPLATE"}, -- Twilight Flame
+		{451612, "SAY", "NAMEPLATE"}, -- Twilight Flame
 		451614, -- Twilight Ember
 		{451939, "NAMEPLATE"}, -- Umbral Wind
 		-- Twilight Beguiler
@@ -68,7 +68,7 @@ function mod:GetOptions()
 	}, {
 		[451871] = L.twilight_earthcaller,
 		[456696] = L.twilight_brute,
-		[451613] = L.twilight_destroyer,
+		[451612] = L.twilight_destroyer,
 		[76711] = L.twilight_beguiler,
 		[451965] = L.molten_giant,
 		[451224] = L.twilight_warlock,
@@ -83,17 +83,20 @@ end
 function mod:OnBossEnable()
 	if self:Retail() then
 		-- Twilight Earthcaller
+		self:RegisterEngageMob("TwilightEarthcallerEngaged", 224219)
 		self:Log("SPELL_CAST_START", "MassTremor", 451871)
 		self:Log("SPELL_INTERRUPT", "MassTremorInterrupt", 451871)
 		self:Log("SPELL_CAST_SUCCESS", "MassTremorSuccess", 451871)
 		self:Death("TwilightEarthcallerDeath", 224219)
 
 		-- Twilight Brute
+		self:RegisterEngageMob("TwilightBruteEngaged", 224152)
 		self:Log("SPELL_CAST_SUCCESS", "ObsidianStomp", 456696)
 		self:Death("TwilightBruteDeath", 224152)
 
 		-- Twilight Destroyer
-		self:Log("SPELL_CAST_SUCCESS", "TwilightFlame", 451613)
+		self:RegisterEngageMob("TwilightDestroyerEngaged", 224609)
+		self:Log("SPELL_CAST_SUCCESS", "TwilightFlame", 451612)
 		self:Log("SPELL_AURA_APPLIED", "TwilightFlameApplied", 451613)
 		self:Log("SPELL_PERIODIC_DAMAGE", "TwilightEmberDamage", 451614)
 		self:Log("SPELL_PERIODIC_MISSED", "TwilightEmberDamage", 451614)
@@ -105,21 +108,25 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SearMind", 76711) -- Chained Mind on classic
 
 	if self:Retail() then
+		self:RegisterEngageMob("TwilightBeguilerEngaged", 40167)
 		self:Log("SPELL_INTERRUPT", "SearMindInterrupt", 76711)
 		self:Log("SPELL_CAST_SUCCESS", "SearMindSuccess", 76711)
 		self:Death("TwilightBeguilerDeath", 40167)
 
 		-- Molten Giant
+		self:RegisterEngageMob("MoltenGiantEngaged", 40166)
 		self:Log("SPELL_CAST_START", "MoltenWake", 451965)
 		self:Log("SPELL_CAST_START", "LavaFist", 451971)
 		self:Death("MoltenGiantDeath", 40166)
 
 		-- Twilight Warlock
+		self:RegisterEngageMob("TwilightWarlockEngaged", 224271)
 		self:Log("SPELL_CAST_SUCCESS", "EnvelopingShadowflame", 451224)
 		self:Log("SPELL_AURA_APPLIED", "EnvelopingShadowflameApplied", 451224)
 		self:Death("TwilightWarlockDeath", 224271)
 
 		-- Twilight Flamerender
+		self:RegisterEngageMob("TwilightFlamerenderEngaged", 224240)
 		self:Log("SPELL_CAST_START", "BlazingShadowflame", 462216)
 		self:Log("SPELL_CAST_SUCCESS", "BlazingShadowflameSuccess", 462216)
 		self:Log("SPELL_CAST_START", "ShadowflameSlash", 451241)
@@ -127,12 +134,14 @@ function mod:OnBossEnable()
 		self:Death("TwilightFlamerenderDeath", 224240)
 
 		-- Twilight Lavabender
+		self:RegisterEngageMob("TwilightLavabenderEngaged", 224249)
 		self:Log("SPELL_CAST_START", "ShadowlavaBlast", 456711)
 		self:Log("SPELL_CAST_START", "DarkEruption", 456713)
 		self:Log("SPELL_CAST_START", "Ascension", 451387)
 		self:Death("TwilightLavabenderDeath", 224249)
 
 		-- Faceless Corruptor
+		self:RegisterEngageMob("FacelessCorruptorEngaged", 39392)
 		self:Log("SPELL_CAST_START", "MindPiercer", 451391)
 		self:Log("SPELL_AURA_APPLIED", "MindPiercerApplied", 451394)
 		self:Log("SPELL_CAST_SUCCESS", "Corrupt", 451395)
@@ -162,10 +171,18 @@ end
 
 -- Twilight Earthcaller
 
+function mod:TwilightEarthcallerEngaged(guid)
+	if UnitInVehicle("player") then
+		-- don't start timers when attacking from Battered Red Drake
+		return
+	end
+	self:Nameplate(451871, 8.2, guid) -- Mass Tremor
+end
+
 function mod:MassTremor(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:MassTremorInterrupt(args)
@@ -181,6 +198,14 @@ function mod:TwilightEarthcallerDeath(args)
 end
 
 -- Twilight Brute
+
+function mod:TwilightBruteEngaged(guid)
+	if UnitInVehicle("player") then
+		-- don't start timers when attacking from Battered Red Drake
+		return
+	end
+	self:Nameplate(456696, 10.3, guid) -- Obsidian Stomp
+end
 
 do
 	local prev = 0
@@ -205,15 +230,24 @@ end
 
 -- Twilight Destroyer
 
+function mod:TwilightDestroyerEngaged(guid)
+	if UnitInVehicle("player") then
+		-- don't start timers when attacking from Battered Red Drake
+		return
+	end
+	self:Nameplate(451612, 4.9, guid) -- Twilight Flame
+	self:Nameplate(451939, 8.6, guid) -- Umbral Wind
+end
+
 function mod:TwilightFlame(args)
 	self:Nameplate(args.spellId, 20.7, args.sourceGUID)
 end
 
 function mod:TwilightFlameApplied(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
+	self:TargetMessage(451612, "red", args.destName)
+	self:PlaySound(451612, "alert", nil, args.destName)
 	if self:Me(args.destGUID) then
-		self:Say(args.spellId, nil, nil, "Twilight Flame")
+		self:Say(451612, nil, nil, "Twilight Flame")
 	end
 end
 
@@ -230,8 +264,8 @@ end
 
 function mod:UmbralWind(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 23.1, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:TwilightDestroyerDeath(args)
@@ -239,6 +273,10 @@ function mod:TwilightDestroyerDeath(args)
 end
 
 -- Twilight Beguiler
+
+function mod:TwilightBeguilerEngaged(guid)
+	self:Nameplate(76711, 5.7, guid) -- Sear Mind
+end
 
 function mod:SearMind(args) -- Chained Mind on Classic
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
@@ -262,16 +300,21 @@ end
 
 -- Molten Giant
 
+function mod:MoltenGiantEngaged(guid)
+	self:Nameplate(451965, 4.7, guid) -- Molten Wake
+	self:Nameplate(451971, 10.8, guid) -- Lava Fist
+end
+
 function mod:MoltenWake(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
 	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:LavaFist(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
 	self:Nameplate(args.spellId, 15.0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:MoltenGiantDeath(args)
@@ -279,6 +322,10 @@ function mod:MoltenGiantDeath(args)
 end
 
 -- Twilight Warlock
+
+function mod:TwilightWarlockEngaged(guid)
+	self:Nameplate(451224, 10.0, guid) -- Enveloping Shadowflame
+end
 
 function mod:EnvelopingShadowflame(args)
 	local unit = self:UnitTokenFromGUID(args.sourceGUID)
@@ -299,7 +346,7 @@ do
 				playerList = {}
 			end
 			playerList[#playerList + 1] = args.destName
-			self:TargetsMessage(args.spellId, "orange", playerList, 2, nil, nil, .5) -- goes on 2 players at a time
+			self:TargetsMessage(args.spellId, "orange", playerList, 2, nil, nil, .5)
 			self:PlaySound(args.spellId, "alert", nil, playerList)
 		end
 	end
@@ -311,6 +358,11 @@ end
 
 -- Twilight Flamerender
 
+function mod:TwilightFlamerenderEngaged(guid)
+	self:Nameplate(451241, 4.6, guid) -- Shadowflame Slash
+	self:Nameplate(462216, 8.4, guid) -- Blazing Shadowflame
+end
+
 do
 	local prev = 0
 	function mod:BlazingShadowflame(args)
@@ -320,6 +372,7 @@ do
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alarm")
 		end
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
 end
 
@@ -335,6 +388,7 @@ do
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alert")
 		end
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
 end
 
@@ -348,16 +402,21 @@ end
 
 -- Twilight Lavabender
 
+function mod:TwilightLavabenderEngaged(guid)
+	self:Nameplate(456711, 3.3, guid) -- Shadowlava Blast
+	self:Nameplate(456713, 9.1, guid) -- Dark Eruption
+end
+
 function mod:ShadowlavaBlast(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 17.8, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:DarkEruption(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 20.3, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:Ascension(args)
@@ -370,6 +429,11 @@ function mod:TwilightLavabenderDeath(args)
 end
 
 -- Faceless Corruptor
+
+function mod:FacelessCorruptorEngaged(guid)
+	self:Nameplate(451391, 3.6, guid) -- Mind Piercer
+	self:Nameplate(451395, 10.2, guid) -- Corrupt
+end
 
 do
 	local prev = 0
