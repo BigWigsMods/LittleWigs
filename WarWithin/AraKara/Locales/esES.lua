@@ -11,6 +11,7 @@ if L then
 	L.bloodstained_webmage = "Mago arácnido manchado de sangre"
 	L.blood_overseer = "Sobrestante sanguino"
 	L.nerubian_hauler = "Transportista nerubiano"
+	L.winged_carrier = "Portador alado"
 
 	L.avanoxx_warmup_trigger = "Los asistentes han sido silenciados… ¡algo emerge!"
 	L.custom_on_autotalk_desc = "|cFFFF0000Requiere 25 de habilidad en Sastrería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del NPC que te otorga 'Envoltura de Seda', la cual puedes usar haciendo clic en tu botón de acción extra."

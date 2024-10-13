@@ -11,6 +11,7 @@ if L then
 	L.bloodstained_webmage = "Arantéliste ensanglanté"
 	L.blood_overseer = "Surveillant du sang"
 	L.nerubian_hauler = "Haleuse nérubienne"
+	L.winged_carrier = "Transporteur ailé"
 
 	L.avanoxx_warmup_trigger = "Les voix des auxiliaires ont été réduites au silence… Quelque chose apparaît !"
 	L.custom_on_autotalk_desc = "|cFFFF0000Nécessite au moins 25 en couture de Khaz Algar.|r Sélectionne automatiquement le dialogue avec le PNJ qui vous octroie 'Enveloppement de soie' que vous pourrez utilisez en cliquant sur l'extra bouton."

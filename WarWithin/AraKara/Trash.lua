@@ -19,7 +19,8 @@ mod:RegisterEnableMob(
 	216340, -- Sentry Stagshell
 	223253, -- Bloodstained Webmage
 	216364, -- Blood Overseer
-	217039 -- Nerubian Hauler
+	217039, -- Nerubian Hauler
+	216365 -- Winged Carrier
 )
 
 --------------------------------------------------------------------------------
@@ -38,6 +39,7 @@ if L then
 	L.bloodstained_webmage = "Bloodstained Webmage"
 	L.blood_overseer = "Blood Overseer"
 	L.nerubian_hauler = "Nerubian Hauler"
+	L.winged_carrier = "Winged Carrier"
 
 	L.avanoxx_warmup_trigger = "The Attendants have been silenced... something emerges!"
 	L.custom_on_autotalk = CL.autotalk
@@ -77,6 +79,8 @@ function mod:GetOptions()
 		{433841, "NAMEPLATE"}, -- Venom Volley
 		-- Nerubian Hauler
 		{434252, "NAMEPLATE"}, -- Massive Slam
+		-- Winged Carrier
+		{433821, "NAMEPLATE", "OFF"}, -- Dashing Strike
 	}, {
 		["custom_on_autotalk"] = CL.general,
 		[438622] = L.engorged_crawler,
@@ -89,6 +93,7 @@ function mod:GetOptions()
 		[448248] = L.bloodstained_webmage,
 		[433845] = L.blood_overseer,
 		[434252] = L.nerubian_hauler,
+		[433821] = L.winged_carrier,
 	}
 end
 
@@ -158,6 +163,11 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("NerubianHaulerEngaged", 217039)
 	self:Log("SPELL_CAST_START", "MassiveSlam", 434252)
 	self:Death("NerubianHaulerDeath", 217039)
+
+	-- Winged Carrier
+	self:RegisterEngageMob("WingedCarrierEngaged", 216365)
+	self:Log("SPELL_CAST_SUCCESS", "DashingStrike", 433821)
+	self:Death("WingedCarrierDeath", 216365)
 end
 
 --------------------------------------------------------------------------------
@@ -353,8 +363,8 @@ do
 	local timer
 
 	function mod:AtikEngaged(guid)
-		self:CDBar(434824, 3.6) -- Web Spray
-		self:Nameplate(434824, 3.6, guid) -- Web Spray
+		self:CDBar(434824, 3.5) -- Web Spray
+		self:Nameplate(434824, 3.5, guid) -- Web Spray
 		self:CDBar(438826, 9.3) -- Poisonous Cloud
 		self:Nameplate(438826, 9.3, guid) -- Poisonous Cloud
 		timer = self:ScheduleTimer("AtikDeath", 30)
@@ -401,7 +411,7 @@ end
 -- Hulking Bloodguard
 
 function mod:HulkingBloodguardEngaged(guid)
-	self:Nameplate(453161, 5.2, guid) -- Impale
+	self:Nameplate(453161, 4.8, guid) -- Impale
 	self:Nameplate(465012, 11.9, guid) -- Slam
 end
 
@@ -529,5 +539,19 @@ function mod:MassiveSlam(args)
 end
 
 function mod:NerubianHaulerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Winged Carrier
+
+function mod:WingedCarrierEngaged(guid)
+	self:Nameplate(433821, 4.4, guid) -- Dashing Strike
+end
+
+function mod:DashingStrike(args)
+	self:Nameplate(args.spellId, 4.8, args.sourceGUID)
+end
+
+function mod:WingedCarrierDeath(args)
 	self:ClearNameplate(args.destGUID)
 end

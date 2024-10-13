@@ -11,6 +11,7 @@ if L then
 	L.bloodstained_webmage = "Окровавленный маг паутины"
 	L.blood_overseer = "Кровавый надсмотрщик"
 	L.nerubian_hauler = "Нерубская погрузчица"
+	L.winged_carrier = "Крылатый переносчик"
 
 	--L.avanoxx_warmup_trigger = "The Attendants have been silenced... something emerges!"
 	--L.custom_on_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Tailoring.|r Automatically select the NPC dialog option that grants you 'Silk Wrap' which you can use by clicking your extra action button."

@@ -11,6 +11,7 @@ if L then
 	L.bloodstained_webmage = "Mago delle Tele Macchiato di Sangue"
 	L.blood_overseer = "Sovrintendente del Sangue"
 	L.nerubian_hauler = "Trasportatrice Nerubiana"
+	L.winged_carrier = "Trasportatore Alato"
 
 	--L.avanoxx_warmup_trigger = "The Attendants have been silenced... something emerges!"
 	--L.custom_on_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Tailoring.|r Automatically select the NPC dialog option that grants you 'Silk Wrap' which you can use by clicking your extra action button."
