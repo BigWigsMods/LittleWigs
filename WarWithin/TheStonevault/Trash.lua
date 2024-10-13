@@ -117,67 +117,80 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ImbuedIronEnergyApplied", 462500)
 
 	-- Earth Infused Golem
+	self:RegisterEngageMob("EarthInfusedGolemEngaged", 210109)
 	self:Log("SPELL_CAST_START", "SeismicWave", 425027)
 	self:Log("SPELL_CAST_START", "GroundPound", 425974)
 	self:Death("EarthInfusedGolemDeath", 210109)
 
 	-- Repurposed Loaderbot
+	self:RegisterEngageMob("RepurposedLoaderbotEngaged", 222923)
 	self:Log("SPELL_CAST_START", "PulverizingPounce", 447141)
 	self:Death("RepurposedLoaderbotDeath", 222923)
 
 	-- Ghastly Voidsoul
+	self:RegisterEngageMob("GhastlyVoidsoulEngaged", 212453)
 	self:Log("SPELL_CAST_START", "HowlingFear", 449455)
 	self:Log("SPELL_INTERRUPT", "HowlingFearInterrupt", 449455)
 	self:Log("SPELL_CAST_SUCCESS", "HowlingFearSuccess", 449455)
 	self:Death("GhastlyVoidsoulDeath", 212453)
 
 	-- Cursedheart Invader
+	self:RegisterEngageMob("CursedheartInvaderEngaged", 212389, 212403)
 	self:Log("SPELL_CAST_SUCCESS", "VoidInfection", 426308)
 	self:Log("SPELL_AURA_APPLIED", "VoidInfectionApplied", 426308)
 	self:Death("CursedheartInvaderDeath", 212389, 212403)
 
 	-- Void Bound Despoiler
+	self:RegisterEngageMob("VoidBoundDespoilerEngaged", 212765)
 	self:Log("SPELL_CAST_START", "VoidOutburst", 426771)
 	self:Log("SPELL_CAST_START", "ShadowClaw", 459210)
 	self:Death("VoidBoundDespoilerDeath", 212765)
 
 	-- Void Bound Howler
+	self:RegisterEngageMob("VoidBoundHowlerEngaged", 221979)
 	self:Log("SPELL_CAST_START", "PiercingWail", 445207)
 	self:Log("SPELL_INTERRUPT", "PiercingWailInterrupt", 445207)
 	self:Log("SPELL_CAST_SUCCESS", "PiercingWailSuccess", 445207)
 	self:Death("VoidBoundHowlerDeath", 221979)
 
 	-- Turned Speaker
+	self:RegisterEngageMob("TurnedSpeakerEngaged", 214350)
 	self:Log("SPELL_CAST_START", "CensoringGear", 429545)
 	self:Log("SPELL_INTERRUPT", "CensoringGearInterrupt", 429545)
 	self:Log("SPELL_CAST_SUCCESS", "CensoringGearSuccess", 429545)
 	self:Death("TurnedSpeakerDeath", 214350)
 
 	-- Void Touched Elemental
+	self:RegisterEngageMob("VoidTouchedElementalEngaged", 212400)
 	self:Log("SPELL_CAST_SUCCESS", "CrystalSalvo", 426345)
 	self:Death("VoidTouchedElementalDeath", 212400)
 
 	-- Forgebound Mender / Cursedforge Mender
+	--self:RegisterEngageMob("MenderEngaged", 213338, 224962) -- Forgebound Mender, Cursedforge Mender
 	self:Log("SPELL_CAST_START", "RestoringMetals", 429109)
 	self:Log("SPELL_INTERRUPT", "RestoringMetalsInterrupt", 429109)
 	self:Log("SPELL_CAST_SUCCESS", "RestoringMetalsSuccess", 429109)
 	self:Death("MenderDeath", 213338, 224962) -- Forgebound Mender, Cursedforge Mender
 
 	-- Forge Loader
+	self:RegisterEngageMob("ForgeLoaderEngaged", 213343)
 	self:Log("SPELL_CAST_START", "LavaCannon", 449130)
 	self:Log("SPELL_CAST_SUCCESS", "MoltenMortar", 449154)
 	self:Death("ForgeLoaderDeath", 213343)
 
 	-- Cursedforge Honor Guard
+	self:RegisterEngageMob("CursedforgeHonorGuardEngaged", 214264)
 	self:Log("SPELL_CAST_START", "ShieldStampede", 448640)
 	self:Death("CursedforgeHonorGuardDeath", 214264)
 
 	-- Cursedforge Stoneshaper
+	self:RegisterEngageMob("CursedforgeStoneshaperEngaged", 214066)
 	self:Log("SPELL_CAST_SUCCESS", "EarthBurstTotem", 429427)
 	self:Log("SPELL_SUMMON", "EarthBurstTotemSummon", 429427)
 	self:Death("CursedforgeStoneshaperDeath", 214066)
 
 	-- Rock Smasher
+	self:RegisterEngageMob("RockSmasherEngaged", 213954)
 	self:Log("SPELL_CAST_START", "SmashRock", 428879)
 	self:Log("SPELL_CAST_START", "GraniteEruption", 428703)
 	self:Death("RockSmasherDeath", 213954)
@@ -226,6 +239,11 @@ end
 
 -- Earth Infused Golem
 
+function mod:EarthInfusedGolemEngaged(guid)
+	self:Nameplate(425027, 5.5, guid, 1016245) -- Seismic Wave, fileId for L["425027_icon"]
+	self:Nameplate(425974, 13.4, guid) -- Ground Pound
+end
+
 function mod:SeismicWave(args)
 	self:Message(args.spellId, "purple", nil, L["425027_icon"])
 	self:Nameplate(args.spellId, 18.2, args.sourceGUID, 1016245) -- fileId for L["425027_icon"]
@@ -243,6 +261,10 @@ function mod:EarthInfusedGolemDeath(args)
 end
 
 -- Repurposed Loaderbot
+
+function mod:RepurposedLoaderbotEngaged(guid)
+	self:Nameplate(447141, 4.2, guid) -- Pulverizing Pounce
+end
 
 do
 	local prev = 0
@@ -262,6 +284,10 @@ function mod:RepurposedLoaderbotDeath(args)
 end
 
 -- Ghastly Voidsoul
+
+function mod:GhastlyVoidsoulEngaged(guid)
+	self:Nameplate(449455, 6.8, guid) -- Howling Fear
+end
 
 function mod:HowlingFear(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
@@ -286,6 +312,10 @@ end
 
 -- Cursedheart Invader
 
+function mod:CursedheartInvaderEngaged(guid)
+	self:Nameplate(426308, 5.2, guid) -- Void Infection
+end
+
 function mod:VoidInfection(args)
 	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 end
@@ -308,6 +338,11 @@ end
 
 -- Void Bound Despoiler
 
+function mod:VoidBoundDespoilerEngaged(guid)
+	self:Nameplate(459210, 5.4, guid) -- Shadow Claw
+	self:Nameplate(426771, 6.6, guid) -- Void Outburst
+end
+
 function mod:VoidOutburst(args)
 	self:Message(args.spellId, "yellow")
 	self:Nameplate(args.spellId, 27.9, args.sourceGUID)
@@ -325,6 +360,10 @@ function mod:VoidBoundDespoilerDeath(args)
 end
 
 -- Void Bound Howler
+
+function mod:VoidBoundHowlerEngaged(guid)
+	self:Nameplate(445207, 4.7, guid) -- Piercing Wail
+end
 
 do
 	local prev = 0
@@ -356,6 +395,10 @@ end
 
 -- Turned Speaker
 
+function mod:TurnedSpeakerEngaged(guid)
+	self:Nameplate(429545, 1.1, guid) -- Censoring Gear
+end
+
 function mod:CensoringGear(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
 		return
@@ -379,6 +422,10 @@ end
 
 -- Void Touched Elemental
 
+function mod:VoidTouchedElementalEngaged(guid)
+	self:Nameplate(426345, 5.4, guid) -- Crystal Salvo
+end
+
 function mod:CrystalSalvo(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
 		return
@@ -393,6 +440,11 @@ function mod:VoidTouchedElementalDeath(args)
 end
 
 -- Forgebound Mender / Cursedforge Mender
+
+--function mod:MenderEngaged(guid)
+	-- seems to be health based for the first cast, so an initial timer is not very useful
+	--self:Nameplate(429109, 7.5, guid) -- Restoring Metals
+--end
 
 do
 	local prev = 0
@@ -423,6 +475,11 @@ function mod:MenderDeath(args)
 end
 
 -- Forge Loader
+
+function mod:ForgeLoaderEngaged(guid)
+	self:Nameplate(449130, 8.4, guid) -- Lava Cannon
+	self:Nameplate(449154, 14.5, guid) -- Molten Mortar
+end
 
 do
 	local prev = 0
@@ -456,6 +513,10 @@ end
 
 -- Cursedforge Honor Guard
 
+function mod:CursedforgeHonorGuardEngaged(guid)
+	self:Nameplate(448640, 6.8, guid) -- Shield Stampede
+end
+
 do
 	local prev = 0
 	function mod:ShieldStampede(args)
@@ -474,6 +535,10 @@ function mod:CursedforgeHonorGuardDeath(args)
 end
 
 -- Cursedforge Stoneshaper
+
+function mod:CursedforgeStoneshaperEngaged(guid)
+	self:Nameplate(429427, 4.6, guid) -- Earth Burst Totem
+end
 
 function mod:EarthBurstTotem(args)
 	self:Nameplate(args.spellId, 31.6, args.sourceGUID)
@@ -496,6 +561,11 @@ function mod:CursedforgeStoneshaperDeath(args)
 end
 
 -- Rock Smasher
+
+function mod:RockSmasherEngaged(guid)
+	self:Nameplate(428879, 8.1, guid) -- Smash Rock
+	self:Nameplate(428703, 14.5, guid) -- Granite Eruption
+end
 
 do
 	local prev = 0
