@@ -49,7 +49,7 @@ BigWigs:AddSounds("Viq'Goth", {
 
 BigWigs:AddSounds("Siege of Boralus Trash", {
 	[256627] = "alarm",
-	[256640] = "alarm",
+	[256640] = {"alarm","underyou"},
 	[256957] = {"alert","warning"},
 	[257169] = "warning",
 	[257170] = "long",

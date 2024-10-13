@@ -73,11 +73,11 @@ function mod:GetOptions()
 		{257288, "NAMEPLATE"}, -- Heavy Slash
 		-- Ashvane Commander
 		{454437, "SAY", "NAMEPLATE"}, -- Azerite Charge
+		{275826, "NAMEPLATE"}, -- Bolstering Shout
 		-- Ashvane Spotter
 		{272421, "SAY", "NAMEPLATE"}, -- Sighted Artillery
 		-- Ashvane Cannoneer
 		{268260, "NAMEPLATE"}, -- Broadside
-		{275826, "NAMEPLATE"}, -- Bolstering Shout
 		-- Bilge Rat Demolisher
 		{257169, "NAMEPLATE"}, -- Terrifying Roar
 		{272711, "NAMEPLATE"}, -- Crushing Slam
@@ -111,6 +111,7 @@ function mod:OnBossEnable()
 
 	-- Blacktar Bomber
 	self:Log("SPELL_CAST_SUCCESS", "BurningTar", 256640)
+	self:Log("SPELL_PERIODIC_DAMAGE", "BurningTarDamage", 256663)
 	self:Death("BlacktarBomberDeath", 129372)
 
 	-- Irontide Waveshaper / Kul Tiran Wavetender
@@ -208,6 +209,18 @@ do
 			self:PlaySound(args.spellId, "alarm")
 		end
 		self:Nameplate(args.spellId, 20.3, args.sourceGUID)
+	end
+end
+
+do
+	local prev = 0
+	function mod:BurningTarDamage(args)
+		local t = args.time
+		if t - prev > 1.5 then
+			prev = t
+			self:PersonalMessage(256640, "underyou")
+			self:PlaySound(256640, "underyou")
+		end
 	end
 end
 
