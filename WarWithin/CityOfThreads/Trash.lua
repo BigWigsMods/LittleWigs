@@ -62,6 +62,7 @@ function mod:GetOptions()
 		448305, -- Stolen Power
 		-- Herald of Ansurek
 		{443437, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Shadows of Doubt
+		443433, -- Twist Thoughts
 		-- Sureki Silkbinder
 		{443430, "NAMEPLATE"}, -- Silk Binding
 		-- Royal Swarmguard
@@ -119,6 +120,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ShadowsOfDoubt", 443436)
 	self:Log("SPELL_AURA_APPLIED", "ShadowsOfDoubtApplied", 443437)
 	self:Log("SPELL_AURA_REMOVED", "ShadowsOfDoubtRemoved", 443437)
+	self:Log("SPELL_CAST_START", "TwistThoughts", 443433)
+	self:Log("SPELL_PERIODIC_DAMAGE", "TwistThoughtsDamage", 443435)
+	self:Log("SPELL_PERIODIC_MISSED", "TwistThoughtsDamage", 443435)
 	self:Death("HeraldOfAnsurekDeath", 220196)
 
 	-- Sureki Silkbinder
@@ -266,6 +270,25 @@ end
 function mod:ShadowsOfDoubtRemoved(args)
 	if self:Me(args.destGUID) then
 		self:CancelSayCountdown(args.spellId)
+	end
+end
+
+function mod:TwistThoughts(args)
+	local _, isReady = self:Interrupter()
+	if isReady then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
+do
+	local prev = 0
+	function mod:TwistThoughtsDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(443433, "underyou")
+			self:PlaySound(443433, "underyou")
+		end
 	end
 end
 
