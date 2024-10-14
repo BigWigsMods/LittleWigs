@@ -5,7 +5,7 @@ BigWigs:AddColors("Shadowcrown", {
 	[428086] = "red",
 	[445996] = "orange",
 	[451026] = "cyan",
-	[453140] = "orange",
+	[453140] = {"blue","orange"},
 	[453212] = "purple",
 })
 

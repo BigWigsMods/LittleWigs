@@ -5,7 +5,7 @@ BigWigs:AddSounds("Shadowcrown", {
 	[428086] = "alert",
 	[445996] = "long",
 	[451026] = "warning",
-	[453140] = "long",
+	[453140] = {"long","underyou"},
 	[453212] = "alarm",
 })
 
