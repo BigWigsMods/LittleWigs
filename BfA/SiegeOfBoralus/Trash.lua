@@ -22,7 +22,8 @@ mod:RegisterEnableMob(
 	129366, -- Bilge Rat Buccaneer
 	135241, -- Bilge Rat Pillager
 	129367, -- Bilge Rat Tempest
-	137516 -- Ashvane Invader
+	137516, -- Ashvane Invader
+	129371 -- Riptide Shredder
 )
 
 --------------------------------------------------------------------------------
@@ -46,6 +47,7 @@ if L then
 	L.pillager = "Bilge Rat Pillager"
 	L.tempest = "Bilge Rat Tempest"
 	L.invader = "Ashvane Invader"
+	L.shredder = "Riptide Shredder"
 
 	L.gate_open = CL.gate_open
 	L.gate_open_desc = "Show a bar indicating when the Kul Tiran Wavetender will open the gate after Dread Captain Lockwood."
@@ -90,6 +92,8 @@ function mod:GetOptions()
 		{272571, "NAMEPLATE"}, -- Choking Waters
 		-- Ashvane Invader
 		{275835, "TANK", "NAMEPLATE"}, -- Stinging Venom Coating
+		-- Riptide Shredder
+		{257270, "NAMEPLATE"}, -- Iron Ambush
 	}, {
 		[256627] = L.halberd.." / "..L.enforcer,
 		[256640] = L.bomber,
@@ -104,6 +108,7 @@ function mod:GetOptions()
 		[454440] = L.pillager,
 		[272571] = L.tempest,
 		[275835] = L.invader,
+		[257270] = L.shredder,
 	}
 end
 
@@ -189,6 +194,11 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("AshvaneInvaderEngaged", 137516)
 	self:Log("SPELL_CAST_SUCCESS", "StingingVenomCoating", 275835)
 	self:Death("AshvaneInvaderDeath", 137516)
+
+	-- Riptide Shredder
+	self:RegisterEngageMob("RiptideShredderEngaged", 129371)
+	self:Log("SPELL_CAST_SUCCESS", "IronAmbush", 257270)
+	self:Death("RiptideShredderDeath", 129371)
 end
 
 --------------------------------------------------------------------------------
@@ -207,6 +217,7 @@ end
 function mod:KulTiranHalberdEngaged(guid)
 	self:Nameplate(256627, 7.1, guid) -- Slobber Knocker
 	self:Nameplate(257732, 13.1, guid) -- Shattering Bellow
+	self:CDBar(257732, 13.1) -- Shattering Bellow
 end
 
 function mod:SlobberKnocker(args)
@@ -219,10 +230,12 @@ function mod:ShatteringBellow(args)
 	self:Message(args.spellId, "yellow")
 	self:Nameplate(args.spellId, 27.9, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
+	self:CDBar(args.spellId, 27.9)
 end
 
 function mod:KulTiranHalberdDeath(args)
 	self:ClearNameplate(args.destGUID)
+	self:StopBar(257732) -- Shattering Bellow
 end
 
 -- Blacktar Bomber
@@ -295,6 +308,7 @@ end
 
 function mod:IrontideRaiderEngaged(guid)
 	self:Nameplate(272662, 5.6, guid) -- Iron Hook
+	self:CDBar(272662, 5.6) -- Iron Hook
 	self:Nameplate(257170, 8.0, guid) -- Savage Tempest
 end
 
@@ -304,6 +318,7 @@ function mod:IronHook(args)
 		self:Message(args.spellId, "cyan")
 		self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 		self:PlaySound(args.spellId, "info")
+		self:CDBar(args.spellId, 23.0)
 	end
 end
 
@@ -315,6 +330,7 @@ end
 
 function mod:IrontideRaiderDeath(args)
 	self:ClearNameplate(args.destGUID)
+	self:StopBar(272662) -- Iron Hook
 end
 
 -- Kul Tiran Vanguard (Horde-only)
@@ -550,4 +566,23 @@ end
 
 function mod:AshvaneInvaderDeath(args)
 	self:ClearNameplate(args.destGUID)
+end
+
+-- Riptide Shredder
+
+function mod:RiptideShredderEngaged(guid)
+	self:CDBar(257270, 14.5) -- Iron Ambush
+	self:Nameplate(257270, 14.5, guid) -- Iron Ambush
+end
+
+function mod:IronAmbush(args)
+	self:Message(args.spellId, "purple")
+	self:Nameplate(args.spellId, 25.5, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
+	self:CDBar(args.spellId, 25.5)
+end
+
+function mod:RiptideShredderDeath(args)
+	self:ClearNameplate(args.destGUID)
+	self:StopBar(257270) -- Iron Ambush
 end
