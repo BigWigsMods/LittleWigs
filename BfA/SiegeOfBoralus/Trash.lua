@@ -217,7 +217,6 @@ end
 function mod:KulTiranHalberdEngaged(guid)
 	self:Nameplate(256627, 7.1, guid) -- Slobber Knocker
 	self:Nameplate(257732, 13.1, guid) -- Shattering Bellow
-	self:CDBar(257732, 13.1) -- Shattering Bellow
 end
 
 function mod:SlobberKnocker(args)
@@ -230,12 +229,10 @@ function mod:ShatteringBellow(args)
 	self:Message(args.spellId, "yellow")
 	self:Nameplate(args.spellId, 27.9, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 27.9)
 end
 
 function mod:KulTiranHalberdDeath(args)
 	self:ClearNameplate(args.destGUID)
-	self:StopBar(257732) -- Shattering Bellow
 end
 
 -- Blacktar Bomber
@@ -308,7 +305,6 @@ end
 
 function mod:IrontideRaiderEngaged(guid)
 	self:Nameplate(272662, 5.6, guid) -- Iron Hook
-	self:CDBar(272662, 5.6) -- Iron Hook
 	self:Nameplate(257170, 8.0, guid) -- Savage Tempest
 end
 
@@ -318,7 +314,6 @@ function mod:IronHook(args)
 		self:Message(args.spellId, "cyan")
 		self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 		self:PlaySound(args.spellId, "info")
-		self:CDBar(args.spellId, 23.0)
 	end
 end
 
@@ -330,7 +325,6 @@ end
 
 function mod:IrontideRaiderDeath(args)
 	self:ClearNameplate(args.destGUID)
-	self:StopBar(272662) -- Iron Hook
 end
 
 -- Kul Tiran Vanguard (Horde-only)
@@ -571,7 +565,6 @@ end
 -- Riptide Shredder
 
 function mod:RiptideShredderEngaged(guid)
-	self:CDBar(257270, 14.5) -- Iron Ambush
 	self:Nameplate(257270, 14.5, guid) -- Iron Ambush
 end
 
@@ -579,10 +572,8 @@ function mod:IronAmbush(args)
 	self:Message(args.spellId, "purple")
 	self:Nameplate(args.spellId, 25.5, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 25.5)
 end
 
 function mod:RiptideShredderDeath(args)
 	self:ClearNameplate(args.destGUID)
-	self:StopBar(257270) -- Iron Ambush
 end
