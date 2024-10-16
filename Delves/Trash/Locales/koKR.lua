@@ -1,37 +1,37 @@
 local L = BigWigs:NewBossLocale("Fungarian Delve Trash", "koKR")
 if not L then return end
 if L then
-	--L.fungarian_trash = "Fungarian Trash"
+	L.fungarian_trash = "광란의 버섯"
 
-	--L.sporbit = "Sporbit"
-	--L.fungal_speartender = "Fungal Speartender"
-	--L.gnarled_reviver = "Gnarled Reviver"
-	--L.infected_beast = "Infected Beast"
-	--L.fungal_gutter = "Fungal Gutter"
-	--L.fungarian_flinger = "Fungarian Flinger"
+	L.sporbit = "포자 파편"
+	L.fungal_speartender = "균류 창지기"
+	L.gnarled_reviver = "옹이진 부활자"
+	L.infected_beast = "감염된 야수"
+	L.fungal_gutter = "균류 도살자"
+	L.fungarian_flinger = "버섯전사 투척꾼"
 	L.fungal_rotcaster = "균류 부패마술사"
-	--L.particularly_bad_guy = "Particularly Bad Guy"
+	L.particularly_bad_guy = "지독한 악당"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "koKR")
 if L then
-	--L.kobold_trash = "Kobold Trash"
+	L.kobold_trash = "코볼트"
 
-	--L.kobold_taskfinder = "Kobold Taskfinder"
-	--L.spitfire_charger = "Spitfire Charger"
-	--L.spitfire_fusetender = "Spitfire Fusetender"
+	L.kobold_taskfinder = "코볼트 막일꾼"
+	L.spitfire_charger = "화염분사 돌격자"
+	L.spitfire_fusetender = "화염분사 심지지기"
 end
 
 L = BigWigs:NewBossLocale("Kobyss Delve Trash", "koKR")
 if L then
-	--L.kobyss_trash = "Kobyss Trash"
+	L.kobyss_trash = "코비스"
 
-	--L.kobyss_necromancer = "Kobyss Necromancer"
-	--L.kobyss_spearfisher = "Kobyss Spearfisher"
-	--L.kobyss_witherer = "Kobyss Witherer"
-	--L.wandering_gutter = "Wandering Gutter"
-	--L.crazed_predator = "Crazed Predator"
-	--L.deepwater_makura = "Deepwater Makura"
+	L.kobyss_necromancer = "코비스 강령술사"
+	L.kobyss_spearfisher = "코비스 작살어부"
+	L.kobyss_witherer = "코비스 부패자"
+	L.wandering_gutter = "방랑하는 도살자"
+	L.crazed_predator = "광기 어린 포식자"
+	L.deepwater_makura = "깊은물 마쿠라"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "koKR")
