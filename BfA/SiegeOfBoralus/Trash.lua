@@ -13,6 +13,7 @@ mod:RegisterEnableMob(
 	144071, -- Irontide Waveshaper
 	141284, -- Kul Tiran Wavetender (Horde)
 	129369, -- Irontide Raider
+	129371, -- Riptide Shredder
 	138019, -- Kul Tiran Vanguard (Horde)
 	128969, -- Ashvane Commander
 	135263, -- Ashvane Spotter
@@ -22,8 +23,7 @@ mod:RegisterEnableMob(
 	129366, -- Bilge Rat Buccaneer
 	135241, -- Bilge Rat Pillager
 	129367, -- Bilge Rat Tempest
-	137516, -- Ashvane Invader
-	129371 -- Riptide Shredder
+	137516 -- Ashvane Invader
 )
 
 --------------------------------------------------------------------------------
@@ -38,6 +38,7 @@ if L then
 	L.waveshaper = "Irontide Waveshaper"
 	L.wavetender = "Kul Tiran Wavetender"
 	L.raider = "Irontide Raider"
+	L.shredder = "Riptide Shredder"
 	L.vanguard = "Kul Tiran Vanguard"
 	L.commander = "Ashvane Commander"
 	L.spotter = "Ashvane Spotter"
@@ -47,7 +48,6 @@ if L then
 	L.pillager = "Bilge Rat Pillager"
 	L.tempest = "Bilge Rat Tempest"
 	L.invader = "Ashvane Invader"
-	L.shredder = "Riptide Shredder"
 
 	L.gate_open = CL.gate_open
 	L.gate_open_desc = "Show a bar indicating when the Kul Tiran Wavetender will open the gate after Dread Captain Lockwood."
@@ -72,6 +72,8 @@ function mod:GetOptions()
 		-- Irontide Raider
 		{272662, "NAMEPLATE"}, -- Iron Hook
 		{257170, "NAMEPLATE"}, -- Savage Tempest
+		-- Riptide Shredder
+		{257270, "NAMEPLATE", "OFF"}, -- Iron Ambush
 		-- Kul Tiran Vanguard
 		{257288, "NAMEPLATE"}, -- Heavy Slash
 		-- Ashvane Commander
@@ -92,13 +94,12 @@ function mod:GetOptions()
 		{272571, "NAMEPLATE"}, -- Choking Waters
 		-- Ashvane Invader
 		{275835, "TANK", "NAMEPLATE"}, -- Stinging Venom Coating
-		-- Riptide Shredder
-		{257270, "NAMEPLATE"}, -- Iron Ambush
 	}, {
 		[256627] = L.halberd.." / "..L.enforcer,
 		[256640] = L.bomber,
 		[256957] = L.wavetender.." / "..L.waveshaper,
 		[272662] = L.raider,
+		[257270] = L.shredder,
 		[257288] = L.vanguard,
 		[454437] = L.commander,
 		[272421] = L.spotter,
@@ -108,7 +109,6 @@ function mod:GetOptions()
 		[454440] = L.pillager,
 		[272571] = L.tempest,
 		[275835] = L.invader,
-		[257270] = L.shredder,
 	}
 end
 
@@ -138,6 +138,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "IronHook", 272662)
 	self:Log("SPELL_CAST_START", "SavageTempest", 257170)
 	self:Death("IrontideRaiderDeath", 129369)
+
+	-- Riptide Shredder
+	self:RegisterEngageMob("RiptideShredderEngaged", 129371)
+	self:Log("SPELL_CAST_SUCCESS", "IronAmbush", 257270)
+	self:Death("RiptideShredderDeath", 129371)
 
 	-- Kul Tiran Vanguard (Horde-only)
 	self:RegisterEngageMob("KulTiranVanguardEngaged", 138019)
@@ -194,11 +199,6 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("AshvaneInvaderEngaged", 137516)
 	self:Log("SPELL_CAST_SUCCESS", "StingingVenomCoating", 275835)
 	self:Death("AshvaneInvaderDeath", 137516)
-
-	-- Riptide Shredder
-	self:RegisterEngageMob("RiptideShredderEngaged", 129371)
-	self:Log("SPELL_CAST_SUCCESS", "IronAmbush", 257270)
-	self:Death("RiptideShredderDeath", 129371)
 end
 
 --------------------------------------------------------------------------------
@@ -324,6 +324,28 @@ function mod:SavageTempest(args)
 end
 
 function mod:IrontideRaiderDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Riptide Shredder
+
+function mod:RiptideShredderEngaged(guid)
+	self:Nameplate(257270, 14.5, guid) -- Iron Ambush
+end
+
+do
+	local prev = 0
+	function mod:IronAmbush(args)
+		self:Nameplate(args.spellId, 25.5, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:TargetMessage(args.spellId, "yellow", args.destName)
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+function mod:RiptideShredderDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
@@ -559,21 +581,5 @@ do
 end
 
 function mod:AshvaneInvaderDeath(args)
-	self:ClearNameplate(args.destGUID)
-end
-
--- Riptide Shredder
-
-function mod:RiptideShredderEngaged(guid)
-	self:Nameplate(257270, 14.5, guid) -- Iron Ambush
-end
-
-function mod:IronAmbush(args)
-	self:Message(args.spellId, "purple")
-	self:Nameplate(args.spellId, 25.5, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:RiptideShredderDeath(args)
 	self:ClearNameplate(args.destGUID)
 end

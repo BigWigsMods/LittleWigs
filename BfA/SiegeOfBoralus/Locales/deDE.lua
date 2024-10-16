@@ -7,6 +7,7 @@ if L then
 	L.waveshaper = "Wellenformer der Eisenfluträuber"
 	L.wavetender = "Wellenzähmer von Kul Tiras"
 	L.raider = "Eisenfluträuber"
+	L.shredder = "Springflutschredder"
 	L.vanguard = "Vorhut von Kul Tiras"
 	L.commander = "Aschenwindkommandant"
 	L.spotter = "Aschenwindkundschafter"

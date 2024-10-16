@@ -7,6 +7,7 @@ if L then
 	L.waveshaper = "Moldaonda Maré-férrea"
 	L.wavetender = "Zelamar Kultireno"
 	L.raider = "Saqueador Maré-férrea"
+	L.shredder = "Retalhador Contracorrente"
 	L.vanguard = "Vanguarda Kultirena"
 	L.commander = "Comandante Grimpagris"
 	L.spotter = "Avistador Grimpagris"

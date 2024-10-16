@@ -7,6 +7,7 @@ if L then
 	L.waveshaper = "Plasmaonde Marferreo"
 	L.wavetender = "Tracciaonde di Kul Tiras"
 	L.raider = "Incursore Marferreo"
+	L.shredder = "Sminuzzatore Squarciamaree"
 	L.vanguard = "Avanguardia di Kul Tiras"
 	L.commander = "Comandante dei Bracescura"
 	L.spotter = "Ricognitore dei Bracescura"

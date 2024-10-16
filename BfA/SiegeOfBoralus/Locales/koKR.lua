@@ -7,6 +7,7 @@ if L then
 	L.waveshaper = "무쇠파도 물결구체자"
 	L.wavetender = "쿨 티란 파도지기"
 	L.raider = "무쇠파도 약탈단"
+	L.shredder = "성난파도 파쇄꾼"
 	L.vanguard = "쿨 티란 선봉대원"
 	L.commander = "애쉬베인 지휘관"
 	L.spotter = "애쉬베인 관측병"

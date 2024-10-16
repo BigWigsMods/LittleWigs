@@ -7,6 +7,7 @@ if L then
 	L.waveshaper = "铁潮塑浪者"
 	L.wavetender = "库尔提拉斯护潮者"
 	L.raider = "铁潮袭击者"
+	L.shredder = "激流破浪者"
 	L.vanguard = "库尔提拉斯先锋"
 	L.commander = "艾什凡指挥官"
 	L.spotter = "艾什凡观察员"

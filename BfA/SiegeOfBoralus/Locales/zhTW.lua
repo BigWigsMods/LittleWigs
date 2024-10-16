@@ -7,6 +7,7 @@ if L then
 	--L.waveshaper = "Irontide Waveshaper"
 	L.wavetender = "庫爾提拉斯平浪者"
 	L.raider = "鐵潮劫掠者"
+	--L.shredder = "Riptide Shredder"
 	L.vanguard = "庫爾提拉斯先鋒"
 	L.commander = "艾胥凡指揮官"
 	L.spotter = "艾胥凡偵察兵"
