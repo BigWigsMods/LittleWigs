@@ -1,10 +1,10 @@
 local L = BigWigs:NewBossLocale("The Dawnbreaker Trash", "koKR")
 if not L then return end
 if L then
-	--L.arathi_lamplighter = "Arathi Lamplighter"
-	--L.nightfall_shadowmage = "Nightfall Shadowmage"
-	--L.nightfall_ritualist = "Nightfall Ritualist"
-	--L.nightfall_commander = "Nightfall Commander"
+	--L.arathi_lamplighter = "아라시 점등원"
+	--L.nightfall_shadowmage = "일몰 어둠마법사"
+	--L.nightfall_ritualist = "일몰 의식술사"
+	--L.nightfall_commander = "일몰 사령관"
 	--L.sureki_webmage = "Sureki Webmage"
 	--L.arathi_bomb = "Arathi Bomb"
 	--L.ascendant_viscoxria = "Ascendant Vis'coxria"
