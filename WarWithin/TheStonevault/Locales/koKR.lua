@@ -10,11 +10,11 @@ if L then
 	L.turned_speaker = "변절한 대변자"
 	L.void_touched_elemental = "공허에 물든 정령"
 	L.forgebound_mender = "제련결속 치유사"
-	--L.forge_loader = "가열로 운반꾼"
-	--L.cursedforge_honor_guard = "저주가열로 근위병"
+	L.forge_loader = "가열로 운반꾼"
+	L.cursedforge_honor_guard = "저주가열로 근위병"
 	L.cursedforge_stoneshaper = "저주가열로 바위구체자"
-	--L.rock_smasher = "Rock Smasher"
+	L.rock_smasher = "바위 강타자"
 
 	--L.edna_warmup_trigger = "What's this? Is that golem fused with something else?"
-	--L.custom_on_autotalk_desc = "|cFFFF0000Requires Warrior, Dwarf, or 25 skill in Khaz Algar Blacksmithing.|r Automatically select the NPC dialog option that grants your group the 'Imbued Iron Energy' aura."
+	L.custom_on_autotalk_desc = "|cFFFF0000전사, 드워프 또는 카즈 알가르 대장장이 기술 25가 필요합니다.|r 파티에 '마력 깃든 강철 마력' 오라를 부여하는 NPC 대화 옵션을 자동으로 선택합니다."
 end
