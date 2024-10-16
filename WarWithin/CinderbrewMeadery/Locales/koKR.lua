@@ -11,9 +11,9 @@ if L then
 	L.careless_hopgoblin = "부주의한 술고래블린"
 	L.brew_drop = "맥주 방울"
 	L.bee_wrangler = "벌 조련사"
-	L.venture_co_honey_harvester = "Venture Co. Honey Harvester"
-	--L.royal_jelly_purveyor = "Royal Jelly Purveyor"
-	--L.yes_man = "Yes Man"
+	L.venture_co_honey_harvester = "투자개발회사 꿀 수확자"
+	L.royal_jelly_purveyor = "로열젤리 공급자"
+	L.yes_man = "아첨꾼"
 
 	--L.custom_on_cooking_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Alchemy or Cooking.|r Automatically select the NPC dialog option that grants you 'Sticky Honey' which you can use by clicking your extra action button.\n\n|T451169:16|tSticky Honey\n{438997}"
 	--L.custom_on_flamethrower_autotalk_desc = "|cFFFF0000Requires Gnome, Goblin, Mechagnome, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you 'Flame On' which you can use by clicking your extra action button.\n\n|T135789:16|tFlame On\n{439616}"
@@ -21,5 +21,5 @@ end
 
 L = BigWigs:NewBossLocale("Brew Master Aldryr", "koKR")
 if L then
-	--L.cinderbrew_delivered = "Cinderbrew delivered"
+	L.cinderbrew_delivered = "잿불맥주가 배달되었습니다"
 end
