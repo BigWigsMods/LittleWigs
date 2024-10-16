@@ -1,12 +1,12 @@
 local L = BigWigs:NewBossLocale("Priory of the Sacred Flame Trash", "koKR")
 if not L then return end
 if L then
-	--L.sacred_flame = "Sacred Flame"
-	--L.guard_captain_suleyman = "Guard Captain Suleyman"
-	--L.forge_master_damian = "Forge Master Damian"
-	--L.high_priest_aemya = "High Priest Aemya"
-	--L.sergeant_shaynemail = "Sergeant Shaynemail"
-	--L.elaena_emberlanz = "Elaena Emberlanz"
+	L.sacred_flame = "신성한 불꽃"
+	--L.guard_captain_suleyman = "경비대장 슐레이만"
+	--L.forge_master_damian = "제련장인 데미안"
+	--L.high_priest_aemya = "대사제 에이므야"
+	--L.sergeant_shaynemail = "하사관 셰인메일"
+	--L.elaena_emberlanz = "엘레나 엠버랜즈"
 	--L.taener_duelmal = "Taener Duelmal"
 	--L.arathi_knight = "Arathi Knight"
 	--L.arathi_footman = "Arathi Footman"
