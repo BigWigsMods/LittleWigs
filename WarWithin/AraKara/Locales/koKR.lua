@@ -14,7 +14,7 @@ if L then
 	L.winged_carrier = "날개 달린 운반자"
 
 	L.avanoxx_warmup_trigger = "수행원들이 침묵하고... 무언가가 나타납니다!"
-	--L.custom_on_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Tailoring.|r Automatically select the NPC dialog option that grants you 'Silk Wrap' which you can use by clicking your extra action button."
+	L.custom_on_autotalk_desc = "|cFFFF0000카즈 알가르 재봉 기술 25가 필요합니다.|r 엑스트라 버튼을 클릭하면 사용할 수 있는 '비단 감싸기'를 부여하는 NPC 대화 옵션이 자동으로 선택됩니다."
 end
 
 L = BigWigs:NewBossLocale("Anub'zekt", "koKR")
