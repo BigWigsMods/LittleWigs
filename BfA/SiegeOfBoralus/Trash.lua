@@ -22,7 +22,8 @@ mod:RegisterEnableMob(
 	129366, -- Bilge Rat Buccaneer
 	135241, -- Bilge Rat Pillager
 	129367, -- Bilge Rat Tempest
-	137516 -- Ashvane Invader
+	137516, -- Ashvane Invader
+	129371 -- Riptide Shredder
 )
 
 --------------------------------------------------------------------------------
@@ -46,6 +47,7 @@ if L then
 	L.pillager = "Bilge Rat Pillager"
 	L.tempest = "Bilge Rat Tempest"
 	L.invader = "Ashvane Invader"
+	L.shredder = "Riptide Shredder"
 
 	L.gate_open = CL.gate_open
 	L.gate_open_desc = "Show a bar indicating when the Kul Tiran Wavetender will open the gate after Dread Captain Lockwood."
@@ -90,6 +92,8 @@ function mod:GetOptions()
 		{272571, "NAMEPLATE"}, -- Choking Waters
 		-- Ashvane Invader
 		{275835, "TANK", "NAMEPLATE"}, -- Stinging Venom Coating
+		-- Riptide Shredder
+		{257270, "NAMEPLATE"}, -- Iron Ambush
 	}, {
 		[256627] = L.halberd.." / "..L.enforcer,
 		[256640] = L.bomber,
@@ -104,6 +108,7 @@ function mod:GetOptions()
 		[454440] = L.pillager,
 		[272571] = L.tempest,
 		[275835] = L.invader,
+		[257270] = L.shredder,
 	}
 end
 
@@ -189,6 +194,11 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("AshvaneInvaderEngaged", 137516)
 	self:Log("SPELL_CAST_SUCCESS", "StingingVenomCoating", 275835)
 	self:Death("AshvaneInvaderDeath", 137516)
+
+	-- Riptide Shredder
+	self:RegisterEngageMob("RiptideShredderEngaged", 129371)
+	self:Log("SPELL_CAST_SUCCESS", "IronAmbush", 257270)
+	self:Death("RiptideShredderDeath", 129371)
 end
 
 --------------------------------------------------------------------------------
@@ -549,5 +559,21 @@ do
 end
 
 function mod:AshvaneInvaderDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Riptide Shredder
+
+function mod:RiptideShredderEngaged(guid)
+	self:Nameplate(257270, 14.5, guid) -- Iron Ambush
+end
+
+function mod:IronAmbush(args)
+	self:Message(args.spellId, "purple")
+	self:Nameplate(args.spellId, 25.5, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:RiptideShredderDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
