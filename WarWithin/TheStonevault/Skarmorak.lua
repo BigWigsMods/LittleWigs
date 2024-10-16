@@ -52,8 +52,8 @@ end
 function mod:OnEngage()
 	fortifiedShellCount = 1
 	self:SetStage(1)
-	self:CDBar(422233, 3.9) -- Crystalline Smash
-	self:CDBar(423538, 10.9) -- Unstable Crash
+	self:CDBar(422233, 4.5) -- Crystalline Smash
+	self:CDBar(423538, 10.6) -- Unstable Crash
 	self:CDBar(423200, 37.5, CL.count:format(self:SpellName(423200), fortifiedShellCount)) -- Fortified Shell
 end
 
@@ -63,7 +63,7 @@ end
 
 function mod:CrystallineSmash(args)
 	self:Message(args.spellId, "purple")
-	self:CDBar(args.spellId, 16.6)
+	self:CDBar(args.spellId, 17.0)
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -119,9 +119,9 @@ do
 	function mod:FortifiedShellRemoved(args)
 		self:SetStage(1)
 		self:Message(423200, "green", CL.removed_after:format(args.spellName, args.time - fortifiedShellStart)) -- Fortified Shell
-		self:CDBar(422233, 6.9) -- Crystalline Smash
-		self:CDBar(423538, 14.2) -- Unstable Crash
-		self:CDBar(423200, 40.9, CL.count:format(self:SpellName(423200), fortifiedShellCount)) -- Fortified Shell
+		self:CDBar(422233, 10.0) -- Crystalline Smash
+		self:CDBar(423538, 16.1) -- Unstable Crash
+		self:CDBar(423200, 42.8, CL.count:format(self:SpellName(423200), fortifiedShellCount)) -- Fortified Shell
 		self:PlaySound(423200, "info") -- Fortified Shell
 	end
 end
