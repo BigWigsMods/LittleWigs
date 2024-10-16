@@ -36,32 +36,32 @@ end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "koKR")
 if L then
-	--L.nerubian_trash = "Nerubian Trash"
+	L.nerubian_trash = "네루비안"
 
-	--L.nerubian_lord = "Nerubian Lord"
-	--L.nerubian_darkcaster = "Nerubian Darkcaster"
-	--L.nerubian_captain = "Nerubian Captain"
-	--L.chittering_fearmonger = "Chittering Fearmonger"
-	--L.skittering_swarmer = "Skittering Swarmer"
-	--L.nerubian_webspinner = "Nerubian Webspinner"
+	L.nerubian_lord = "네루비안 군주"
+	L.nerubian_darkcaster = "네루비안 암흑술사"
+	L.nerubian_captain = "네루비안 대장"
+	L.chittering_fearmonger = "딸깍거리는 공포전사"
+	L.skittering_swarmer = "땅거미"
+	L.nerubian_webspinner = "네루비안 그물마귀"
 end
 
 L = BigWigs:NewBossLocale("Nightfall Delve Trash", "koKR")
 if L then
-	--L.nightfall_trash = "Nightfall Trash"
+	L.nightfall_trash = "일몰"
 
-	--L.dark_bombardier = "Dark Bombardier"
-	--L.nightfall_inquisitor = "Nightfall Inquisitor"
-	--L.devouring_shade = "Devouring Shade"
-	--L.weeping_shade = "Weeping Shade"
-	--L.nightfall_shadeguard = "Nightfall Shadeguard"
-	--L.shadow_elemental = "Shadow Elemental"
+	L.dark_bombardier = "암흑 폭격수"
+	L.nightfall_inquisitor = "일몰 심문관"
+	L.devouring_shade = "포식하는 망령"
+	L.weeping_shade = "흐느끼는 망령"
+	L.nightfall_shadeguard = "일몰 그늘경비병"
+	L.shadow_elemental = "암흑의 정령"
 end
 
 L = BigWigs:NewBossLocale("The Underkeep Trash", "koKR")
 if L then
-	--L.ascended_webfriar = "Ascended Webfriar"
-	--L.deepwalker_guardian = "Deepwalker Guardian"
+	L.ascended_webfriar = "승천한 그물수사"
+	L.deepwalker_guardian = "심연방랑자 수호자"
 	--L.crazed_abomination = "Crazed Abomination"
 	--L.web_marauder = "Web Marauder"
 end
