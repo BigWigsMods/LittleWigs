@@ -1,17 +1,17 @@
 local L = BigWigs:NewBossLocale("Cinderbrew Meadery Trash", "koKR")
 if not L then return end
 if L then
-	--L.venture_co_pyromaniac = "Venture Co. Pyromaniac"
-	--L.hired_muscle = "Hired Muscle"
-	--L.tasting_room_attendant = "Tasting Room Attendant"
-	--L.chef_chewie = "Chef Chewie"
-	--L.cooking_pot = "Cooking Pot"
-	--L.flamethrower = "Flamethrower"
-	--L.flavor_scientist = "Flavor Scientist"
-	--L.careless_hopgoblin = "Careless Hopgoblin"
+	L.venture_co_pyromaniac = "투자개발회사 불놀이꾼"
+	L.hired_muscle = "고용된 불한당"
+	L.tasting_room_attendant = "시식실 수행원"
+	L.chef_chewie = "주방장 츄이"
+	L.cooking_pot = "요리 냄비"
+	L.flamethrower = "화염방사기"
+	L.flavor_scientist = "풍미 과학자"
+	L.careless_hopgoblin = "부주의한 술고래블린"
 	L.brew_drop = "맥주 방울"
-	--L.bee_wrangler = "Bee Wrangler"
-	--L.venture_co_honey_harvester = "Venture Co. Honey Harvester"
+	L.bee_wrangler = "벌 조련사"
+	L.venture_co_honey_harvester = "Venture Co. Honey Harvester"
 	--L.royal_jelly_purveyor = "Royal Jelly Purveyor"
 	--L.yes_man = "Yes Man"
 
