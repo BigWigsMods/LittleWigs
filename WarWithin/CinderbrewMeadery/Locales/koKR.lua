@@ -15,8 +15,8 @@ if L then
 	L.royal_jelly_purveyor = "로열젤리 공급자"
 	L.yes_man = "아첨꾼"
 
-	--L.custom_on_cooking_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Alchemy or Cooking.|r Automatically select the NPC dialog option that grants you 'Sticky Honey' which you can use by clicking your extra action button.\n\n|T451169:16|tSticky Honey\n{438997}"
-	--L.custom_on_flamethrower_autotalk_desc = "|cFFFF0000Requires Gnome, Goblin, Mechagnome, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you 'Flame On' which you can use by clicking your extra action button.\n\n|T135789:16|tFlame On\n{439616}"
+	L.custom_on_cooking_autotalk_desc = "|cFFFF0000카즈 알가르 연금술 또는 요리에 25 스킬이 필요합니다.|r 추가 작업 버튼을 클릭하여 사용할 수 있는 '끈적끈적한 꿀'을 제공하는 NPC 대화 옵션을 자동으로 선택합니다.\n\n|T451169:16|t끈적끈적한 꿀\n{438997}"
+	--L.custom_on_flamethrower_autotalk_desc = "|cFFFF0000노음, 고블린, 메카노움 또는 카즈 알가르 기계공학 기술 25가 필요합니다.|r 엑스트라 버튼을 클릭하여 사용할 수 있는 '불길!'을 부여하는 NPC 대화 옵션을 자동으로 선택합니다.\n\n|T135789:16|t불길!\n{439616}"
 end
 
 L = BigWigs:NewBossLocale("Brew Master Aldryr", "koKR")
