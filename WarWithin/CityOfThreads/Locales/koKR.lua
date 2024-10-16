@@ -17,7 +17,7 @@ if L then
 	--L.xephitik_defeated_trigger = "Enough!"
 	--L.fangs_of_the_queen_warmup_trigger = "The Transformatory was once the home of our sacred evolution."
 	--L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
-	--L.custom_on_autotalk_desc = "|cFFFF0000Requires Rogue, Priest, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you the 'Stolen Power' aura."
+	L.custom_on_autotalk_desc = "|cFFFF0000도적, 사제 또는 카즈 알가르 기계공학 기술 25가 필요합니다.|r '훔쳐낸 힘' 오라를 부여하는 NPC 대화 옵션을 자동으로 선택합니다."
 end
 
 L = BigWigs:NewBossLocale("Fangs of the Queen", "koKR")
