@@ -62,8 +62,8 @@ L = BigWigs:NewBossLocale("The Underkeep Trash", "koKR")
 if L then
 	L.ascended_webfriar = "승천한 그물수사"
 	L.deepwalker_guardian = "심연방랑자 수호자"
-	--L.crazed_abomination = "Crazed Abomination"
-	--L.web_marauder = "Web Marauder"
+	L.crazed_abomination = "광기 어린 흉물"
+	L.web_marauder = "거미줄 약탈자"
 end
 
 L = BigWigs:NewBossLocale("Delve Rares", "koKR")
