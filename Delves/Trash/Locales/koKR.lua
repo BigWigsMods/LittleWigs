@@ -68,11 +68,11 @@ end
 
 L = BigWigs:NewBossLocale("Delve Rares", "koKR")
 if L then
-	--L.rares = "Rares"
+	L.rares = "희귀"
 
-	--L.stolen_loader = "Stolen Loader"
-	--L.invasive_sporecap = "Invasive Sporecap"
-	--L.reno_jackson = "Reno Jackson"
+	L.stolen_loader = "도둑맞은 운반로봇"
+	L.invasive_sporecap = "침략하는 포자갓"
+	L.reno_jackson = "리노 잭슨"
 	--L.sir_finley_mrgglton = "Sir Finley Mrgglton"
 	--L.treasure_wraith = "Treasure Wraith"
 	--L.venombite = "Venombite"
