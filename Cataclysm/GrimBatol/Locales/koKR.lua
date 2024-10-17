@@ -9,13 +9,13 @@ end
 
 L = BigWigs:NewBossLocale("Grim Batol Trash", "koKR")
 if L then
-	--L.twilight_earthcaller = "Twilight Earthcaller"
-	--L.twilight_brute = "Twilight Brute"
-	--L.twilight_destroyer = "Twilight Destroyer"
-	--L.twilight_beguiler = "Twilight Beguiler"
-	--L.molten_giant = "Molten Giant"
-	--L.twilight_warlock = "Twilight Warlock"
-	--L.twilight_flamerender = "Twilight Flamerender"
-	--L.twilight_lavabender = "Twilight Lavabender"
-	--L.faceless_corruptor = "Faceless Corruptor"
+	L.twilight_earthcaller = "황혼의 대지술사"
+	L.twilight_brute = "황혼의 투사"
+	L.twilight_destroyer = "황혼의 파괴자"
+	L.twilight_beguiler = "황혼의 현혹술사"
+	L.molten_giant = "용암거인"
+	L.twilight_warlock = "황혼의 흑마법사"
+	L.twilight_flamerender = "황혼의 화염분쇄자"
+	L.twilight_lavabender = "황혼의 용암술사"
+	L.faceless_corruptor = "얼굴 없는 타락자"
 end
