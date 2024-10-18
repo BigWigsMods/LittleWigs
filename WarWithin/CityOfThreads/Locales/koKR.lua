@@ -14,13 +14,13 @@ if L then
 	L.elder_shadeweaver = "장로 암흑술사"
 	L.hulking_warshell = "가공할 전쟁등껍질"
 
-	--L.xephitik_defeated_trigger = "Enough!"
-	--L.fangs_of_the_queen_warmup_trigger = "The Transformatory was once the home of our sacred evolution."
-	--L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
+	L.xephitik_defeated_trigger = "그만!"
+	L.fangs_of_the_queen_warmup_trigger = "변신소는 원래 신성한 진화의 본산이었다."
+	L.izo_warmup_trigger = "그만! 너도 내 수집품으로 삼아주마. 자, 이리로 와라."
 	L.custom_on_autotalk_desc = "|cFFFF0000도적, 사제 또는 카즈 알가르 기계공학 기술 25가 필요합니다.|r '훔쳐낸 힘' 오라를 부여하는 NPC 대화 옵션을 자동으로 선택합니다."
 end
 
 L = BigWigs:NewBossLocale("Fangs of the Queen", "koKR")
 if L then
-	--L.ice_sickles_trigger = "...and the frost bites!"
+	L.ice_sickles_trigger = "...동상에 걸려라!"
 end
