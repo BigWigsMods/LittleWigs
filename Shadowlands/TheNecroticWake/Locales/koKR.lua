@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "koKR")
 if not L then return end
 if L then
-	--L.amarth_warmup_trigger = "You will be brought to justice!"
+	L.amarth_warmup_trigger = "네놈에게 정의의 심판을 내리겠다!"
 	L.corpse_harvester = "시체 수확자"
 	L.stitched_vanguard = "누더기 선봉대"
 	L.zolramus_gatekeeper = "조르라무스 문지기"
