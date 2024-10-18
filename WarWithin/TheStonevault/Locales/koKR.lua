@@ -15,6 +15,6 @@ if L then
 	L.cursedforge_stoneshaper = "저주가열로 바위구체자"
 	L.rock_smasher = "바위 강타자"
 
-	--L.edna_warmup_trigger = "What's this? Is that golem fused with something else?"
+	L.edna_warmup_trigger = "이게 뭐죠? 골렘이 다른 무언가랑 융합한 것 같은데?"
 	L.custom_on_autotalk_desc = "|cFFFF0000전사, 드워프 또는 카즈 알가르 대장장이 기술 25가 필요합니다.|r 파티에 '마력 깃든 강철 마력' 오라를 부여하는 NPC 대화 옵션을 자동으로 선택합니다."
 end
