@@ -26,6 +26,7 @@ function mod:GetOptions()
 	return {
 		427461, -- Void Corruption
 		427852, -- Entropic Reckoning
+		457465, -- Entropy
 		427869, -- Unbridled Void
 	}
 end
@@ -35,6 +36,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "VoidCorruptionApplied", 427329)
 	self:Log("SPELL_AURA_REMOVED", "VoidCorruptionRemoved", 427329)
 	self:Log("SPELL_CAST_START", "EntropicReckoning", 427852)
+	self:Log("SPELL_PERIODIC_DAMAGE", "EntropyDamage", 457465)
+	self:Log("SPELL_PERIODIC_MISSED", "EntropyDamage", 457465)
 	self:Log("SPELL_CAST_START", "UnbridledVoid", 427869)
 end
 
@@ -110,6 +113,17 @@ function mod:EntropicReckoning(args)
 		self:CDBar(427869, {6.05, 20.6}) -- Unbridled Void
 	end
 	self:PlaySound(args.spellId, "alert")
+end
+
+do
+	local prev = 0
+	function mod:EntropyDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
 end
 
 function mod:UnbridledVoid(args)

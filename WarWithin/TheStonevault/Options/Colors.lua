@@ -28,6 +28,7 @@ BigWigs:AddColors("Void Speaker Eirich", {
 	[427461] = {"blue","green","yellow"},
 	[427852] = "red",
 	[427869] = "orange",
+	[457465] = "blue",
 })
 
 BigWigs:AddColors("The Stonevault Trash", {
