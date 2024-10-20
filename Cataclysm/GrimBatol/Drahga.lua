@@ -16,6 +16,7 @@ mod:SetStage(1)
 -- Locals
 --
 
+local shouldAdjustTimers = false
 local invocationOfShadowflameCount = 1
 local twilightBuffetCount = 1
 
@@ -54,6 +55,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "InvocationOfShadowflame", 448013)
 	self:Log("SPELL_AURA_APPLIED", "FlamingFixateApplied", 82850)
 	self:Log("SPELL_AURA_REMOVED", "FlamingFixateRemoved", 82850)
+	self:Log("SPELL_CAST_START", "CurseOfEntropyStart", 450095)
 	self:Log("SPELL_CAST_SUCCESS", "CurseOfEntropy", 450095)
 	self:Log("SPELL_AURA_APPLIED", "CurseOfEntropyApplied", 450095)
 	self:Log("SPELL_CAST_START", "ShadowflameBolt", 447966)
@@ -64,12 +66,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	shouldAdjustTimers = false
 	invocationOfShadowflameCount = 1
 	twilightBuffetCount = 1
 	self:SetStage(1)
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT") -- Staging
 	self:CDBar(448013, 8.0, CL.count:format(CL.add, invocationOfShadowflameCount)) -- Invocation of Shadowflame
-	self:CDBar(450095, 19.0) -- Curse of Entropy
+	self:CDBar(450095, 17.0) -- Curse of Entropy
 end
 
 --------------------------------------------------------------------------------
@@ -107,23 +110,23 @@ end
 -- Stages
 
 function mod:TwilightProtection(args)
+	-- starting timers here is more accurate than starting in IEEU, but there's still about ~1s of variance
+	shouldAdjustTimers = true
 	self:StopBar(CL.count:format(CL.add, invocationOfShadowflameCount)) -- Invocation of Shadowflame
-	self:StopBar(450095) -- Curse of Entropy
+	self:CDBar(450095, 21.1) -- Curse of Entropy
+	self:CDBar(448013, 21.12, CL.count:format(CL.adds, invocationOfShadowflameCount)) -- Invocation of Shadowflame
+	self:CDBar(456751, 32.1, CL.count:format(self:SpellName(456751), twilightBuffetCount)) -- Twilight Buffet
+	if self:Mythic() then
+		self:CDBar(448105, 42.1) -- Devouring Flame
+	end
 end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
 	if self:GetBossId(40320) then -- Valiona
 		self:UnregisterEvent(event)
-		self:StopBar(CL.count:format(CL.add, invocationOfShadowflameCount)) -- Invocation of Shadowflame
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.stage:format(2), false)
 		self:PlaySound("stages", "long")
-		self:CDBar(448013, 3.4, CL.count:format(CL.adds, invocationOfShadowflameCount)) -- Invocation of Shadowflame
-		self:CDBar(456751, 11.4, CL.count:format(self:SpellName(456751), twilightBuffetCount)) -- Twilight Buffet
-		self:CDBar(450095, 15.3) -- Curse of Entropy
-		if self:Mythic() then
-			self:CDBar(448105, 21.7) -- Devouring Flame
-		end
 	end
 end
 
@@ -134,7 +137,7 @@ function mod:InvocationOfShadowflame(args)
 		self:StopBar(CL.count:format(CL.add, invocationOfShadowflameCount))
 		self:Message(args.spellId, "yellow", CL.count:format(CL.add_spawning, invocationOfShadowflameCount))
 		invocationOfShadowflameCount = invocationOfShadowflameCount + 1
-		self:CDBar(args.spellId, 26.0, CL.count:format(CL.add, invocationOfShadowflameCount))
+		self:CDBar(args.spellId, 18.0, CL.count:format(CL.add, invocationOfShadowflameCount))
 		self:PlaySound(args.spellId, "info")
 	else -- Stage 2, 2 adds spawn
 		self:StopBar(CL.count:format(CL.adds, invocationOfShadowflameCount))
@@ -145,12 +148,18 @@ function mod:InvocationOfShadowflame(args)
 	end
 end
 
-function mod:FlamingFixateApplied(args)
-	self:TargetMessage(args.spellId, "red", args.destName, CL.fixate)
-	if self:Me(args.destGUID) then
-		self:Nameplate(args.spellId, 60, args.sourceGUID, CL.fixate)
-		self:Say(args.spellId, CL.fixate, nil, "Fixate")
-		self:PlaySound(args.spellId, "warning", nil, args.destName)
+do
+	local prevOnMe = 0
+	function mod:FlamingFixateApplied(args)
+		self:TargetMessage(args.spellId, "red", args.destName, CL.fixate)
+		if self:Me(args.destGUID) then
+			self:Nameplate(args.spellId, 60, args.sourceGUID, CL.fixate)
+			if args.time - prevOnMe > 2 then
+				prevOnMe = args.time
+				self:Say(args.spellId, CL.fixate, nil, "Fixate")
+				self:PlaySound(args.spellId, "warning", nil, args.destName)
+			end
+		end
 	end
 end
 
@@ -160,13 +169,26 @@ function mod:FlamingFixateRemoved(args)
 	end
 end
 
+function mod:CurseOfEntropyStart()
+	-- this eliminates the ~1s of variance from timers started in :TwilightProtection
+	if shouldAdjustTimers then
+		shouldAdjustTimers = false
+		self:CDBar(450095, {2.0, 21.1}) -- Curse of Entropy
+		self:CDBar(448013, {2.02, 21.1}, CL.count:format(CL.adds, invocationOfShadowflameCount)) -- Invocation of Shadowflame
+		self:CDBar(456751, {13.0, 32.1}, CL.count:format(self:SpellName(456751), twilightBuffetCount)) -- Twilight Buffet
+		if self:Mythic() then
+			self:CDBar(448105, {23.0, 42.1}) -- Devouring Flame
+		end
+	end
+end
+
 do
 	local playerList = {}
 
 	function mod:CurseOfEntropy(args)
 		playerList = {}
 		if self:GetStage() == 1 then
-			self:CDBar(args.spellId, 26.0)
+			self:CDBar(args.spellId, 18.0)
 		else
 			self:CDBar(args.spellId, 35.0)
 		end
