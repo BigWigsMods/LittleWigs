@@ -9,3 +9,10 @@ if L then
 	L.speaker_davenruth = "대변자 데이븐루스"
 	L.reformed_fury = "재형성된 격노"
 end
+
+L = BigWigs:NewBossLocale("Cult Leaders", "koKR")
+if L then
+	--L.cult_leaders = "Cult Leaders"
+	--L.inquisitor_speaker = "Inquisitor Speaker"
+	--L.shadeguard_speaker = "Shadeguard Speaker"
+end

@@ -13,3 +13,9 @@ BigWigs:AddSounds("Speaker Halven", {
 	[443840] = "long",
 	[443908] = "alarm",
 })
+
+BigWigs:AddSounds("Cult Leaders", {
+	[434740] = "info",
+	[443482] = {"alert","info"},
+	[458874] = "alarm",
+})
