@@ -10,3 +10,8 @@ if L then
 	--L.guardian_tentacle = "Guardian Tentacle"
 	--L.slamming_tentacles = "Slamming Tentacles" -- plural
 end
+
+L = BigWigs:NewBossLocale("Cragpie", "koKR")
+if L then
+	L.cragpie = "크랙파이"
+end
