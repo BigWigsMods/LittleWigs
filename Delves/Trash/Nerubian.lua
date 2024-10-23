@@ -18,6 +18,7 @@ mod:RegisterEnableMob(
 	228954, -- Nerubian Marauder
 	216583, -- Chittering Fearmonger
 	208245, -- Skittering Swarmer
+	220148, -- Gem Hoarder
 	216621, -- Nerubian Webspinner
 	219810 -- Nerubian Ritualist
 )
