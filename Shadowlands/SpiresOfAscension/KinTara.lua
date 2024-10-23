@@ -159,8 +159,9 @@ do
 
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		if spellId == 321088 then -- Charged Spear (targetting)
-			local destName = self:UnitName(unit.."target")
-			if destName and not self:Tanking(unit, destName) then
+			local unitToken = unit.."target"
+			local destName = self:UnitName(unitToken)
+			if destName and not self:Tanking(unit, unitToken) then
 				printTarget(self, destName, 0)
 			else
 				self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
