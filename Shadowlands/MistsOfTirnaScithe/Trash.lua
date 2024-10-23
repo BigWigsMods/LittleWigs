@@ -645,7 +645,7 @@ do
 		end
 		self:Message(args.spellId, "purple")
 		self:CDBar(args.spellId, 12.1)
-		self:Nameplate(args.spellId, 12.1, args.destGUID)
+		self:Nameplate(args.spellId, 12.1, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("MistveilNightblossomDeath", 30)
 	end
@@ -660,7 +660,7 @@ do
 			end
 			self:Message(args.spellId, "orange")
 			self:CDBar(args.spellId, 19.4)
-			self:Nameplate(args.spellId, 19.4, args.destGUID)
+			self:Nameplate(args.spellId, 19.4, args.sourceGUID)
 			self:PlaySound(args.spellId, "alarm")
 			timer = self:ScheduleTimer("MistveilNightblossomDeath", 30)
 		end
@@ -719,7 +719,7 @@ function mod:MistveilStalkerEngaged(guid)
 end
 
 function mod:MistveilBite(args)
-	self:Nameplate(325021, 14.6, args.sourceGUID)
+	self:Nameplate(325021, 14.6, args.sourceGUID) -- Mistveil Tear
 end
 
 function mod:MistveilTear(args)
