@@ -12,7 +12,7 @@ end
 
 L = BigWigs:NewBossLocale("Cult Leaders", "koKR")
 if L then
-	--L.cult_leaders = "Cult Leaders"
-	--L.inquisitor_speaker = "Inquisitor Speaker"
-	--L.shadeguard_speaker = "Shadeguard Speaker"
+	L.cult_leaders = "이교 우두머리"
+	L.inquisitor_speaker = "심문관 대변자"
+	L.shadeguard_speaker = "망령수호병 대변자"
 end
