@@ -84,7 +84,7 @@ function mod:GetOptions()
 		-- Mistveil Gorgegullet
 		{340304, "NAMEPLATE"}, -- Poisonous Secretions
 		{340305, "NAMEPLATE"}, -- Crushing Leap
-		{340300, "TANK_HEALER", "NAMEPLATE"}, -- Tongue Lashing
+		{340300, "NAMEPLATE"}, -- Tongue Lashing
 		-- Mistveil Guardian
 		{463217, "TANK_HEALER", "NAMEPLATE"}, -- Anima Slash
 		-- Mistveil Matriarch
@@ -428,7 +428,7 @@ end
 -- Drust Boughbreaker
 
 function mod:DrustBoughbreakerEngaged(guid)
-	self:Nameplate(324923, 8.1, guid) -- Bramble Burst
+	self:Nameplate(324923, 7.3, guid) -- Bramble Burst
 end
 
 function mod:FuriousThrashing(args)
@@ -492,12 +492,12 @@ do
 	local timer
 
 	function mod:MistveilGorgegulletEngaged(guid)
-		self:CDBar(340300, 5.9) -- Tongue Lashing
-		self:Nameplate(340300, 5.9, guid) -- Tongue Lashing
-		self:CDBar(340305, 17.9) -- Crushing Leap
-		self:Nameplate(340305, 17.9, guid) -- Crushing Leap
-		self:CDBar(340304, 23.0) -- Poisonous Secretions
-		self:Nameplate(340304, 23.0, guid) -- Poisonous Secretions
+		self:CDBar(340300, 3.2) -- Tongue Lashing
+		self:Nameplate(340300, 3.2, guid) -- Tongue Lashing
+		self:CDBar(340305, 11.5) -- Crushing Leap
+		self:Nameplate(340305, 11.5, guid) -- Crushing Leap
+		self:CDBar(340304, 22.6) -- Poisonous Secretions
+		self:Nameplate(340304, 22.6, guid) -- Poisonous Secretions
 		timer = self:ScheduleTimer("MistveilGorgegulletDeath", 30)
 	end
 
@@ -571,11 +571,11 @@ do
 
 	function mod:MistveilMatriarchEngaged(guid)
 		self:CDBar(340208, 4.9) -- Shred Armor
-		self:Nameplate(340208, 7.1, guid) -- Shred Armor
-		self:CDBar(340160, 13.3) -- Radiant Breath
-		self:Nameplate(340160, 13.3, guid) -- Radiant Breath
-		self:CDBar(340189, 24.2) -- Pool of Radiance
-		self:Nameplate(340189, 24.2, guid) -- Pool of Radiance
+		self:Nameplate(340208, 4.9, guid) -- Shred Armor
+		self:CDBar(340160, 11.8) -- Radiant Breath
+		self:Nameplate(340160, 11.8, guid) -- Radiant Breath
+		self:CDBar(340189, 21.4) -- Pool of Radiance
+		self:Nameplate(340189, 21.4, guid) -- Pool of Radiance
 		timer = self:ScheduleTimer("MistveilMatriarchDeath", 30)
 	end
 
@@ -634,8 +634,8 @@ do
 	function mod:MistveilNightblossomEngaged(guid)
 		self:CDBar(340289, 7.1) -- Triple Bite
 		self:Nameplate(340289, 7.1, guid) -- Triple Bite
-		self:CDBar(340279, 18.6) -- Poisonous Discharge
-		self:Nameplate(340279, 18.6, guid) -- Poisonous Discharge
+		self:CDBar(340279, 16.9) -- Poisonous Discharge
+		self:Nameplate(340279, 16.9, guid) -- Poisonous Discharge
 		timer = self:ScheduleTimer("MistveilNightblossomDeath", 30)
 	end
 
@@ -715,7 +715,7 @@ end
 -- Mistveil Stalker
 
 function mod:MistveilStalkerEngaged(guid)
-	self:Nameplate(325021, 9.6, guid) -- Mistveil Tear
+	self:Nameplate(325021, 7.4, guid) -- Mistveil Tear
 end
 
 function mod:MistveilBite(args)
@@ -734,7 +734,7 @@ end
 -- Mistveil Stinger
 
 function mod:MistveilStingerEngaged(guid)
-	self:Nameplate(325224, 7.3, guid) -- Anima Injection
+	self:Nameplate(325224, 5.2, guid) -- Anima Injection
 end
 
 function mod:AnimaInjection(args)
