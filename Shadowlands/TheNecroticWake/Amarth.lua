@@ -22,7 +22,7 @@ function mod:GetOptions()
 		{320012, "DISPEL"}, -- Unholy Frenzy
 		{320171, "OFF"}, -- Necrotic Bolt
 		-- Reanimated Mage
-		328667, -- Frostbolt Volley
+		{328667, "NAMEPLATE"}, -- Frostbolt Volley
 	}, {
 		[328667] = -22042, -- Reanimated Mage
 	}
@@ -37,7 +37,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NecroticBolt", 320171)
 
 	-- Reanimated Mage
+	self:Log("SPELL_SUMMON", "LandOfTheDeadSummon", 333627) -- summons Reanimated Mage
 	self:Log("SPELL_CAST_START", "FrostboltVolley", 328667)
+	self:Log("SPELL_INTERRUPT", "FrostboltVolleyInterrupt", 328667)
+	self:Log("SPELL_CAST_SUCCESS", "FrostboltVolleySuccess", 328667)
+	self:Death("ReanimatedMageDeath", 164414)
 end
 
 function mod:OnEngage()
@@ -105,9 +109,33 @@ end
 
 -- Reanimated Mage
 
+function mod:LandOfTheDeadSummon(args)
+	self:Nameplate(328667, 7.0, args.destGUID) -- Frostbolt Volley
+end
+
 function mod:FrostboltVolley(args)
 	if self:MobId(args.sourceGUID) == 164414 then -- Reanimated Mage, boss summon
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 	end
+end
+
+function mod:FrostboltVolleyInterrupt(args)
+	if self:MobId(args.destGUID) == 164414 then -- Reanimated Mage, boss summon
+		self:Nameplate(328667, 12.1, args.destGUID)
+	end
+end
+
+function mod:FrostboltVolleySuccess(args)
+	if self:MobId(args.sourceGUID) == 164414 then -- Reanimated Mage, boss summon
+		self:Nameplate(args.spellId, 12.1, args.sourceGUID)
+	end
+end
+
+function mod:ReanimatedMageDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
