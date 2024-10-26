@@ -8,6 +8,7 @@ if L then
 	L.pale_priest = "Sacerdotisa pálida"
 	L.eye_of_the_queen = "Residente de las cuencas"
 	L.covert_webmancer = "Telamante encubierta"
+	L.web_marauder = "Maleante de telaraña"
 	L.royal_venomshell = "Conchaveneno real"
 	L.unstable_test_subject = "Sujeto de pruebas inestable"
 	L.sureki_unnaturaler = "Antinaturalista sureki"

@@ -8,6 +8,7 @@ if L then
 	L.pale_priest = "Prêtresse pâle"
 	L.eye_of_the_queen = "Œil de la Reine"
 	L.covert_webmancer = "Toilemancienne secrète"
+	L.web_marauder = "Maraudeur des toiles"
 	L.royal_venomshell = "Croquevenin royal"
 	L.unstable_test_subject = "Cobaye instable"
 	L.sureki_unnaturaler = "Dénatureur sureki"

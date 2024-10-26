@@ -8,6 +8,7 @@ if L then
 	L.pale_priest = "Blasse Priesterin"
 	L.eye_of_the_queen = "Auge der Königin"
 	L.covert_webmancer = "Verdeckte Netzmagierin"
+	L.web_marauder = "Netzmarodeur"
 	L.royal_venomshell = "Königlicher Giftpanzer"
 	L.unstable_test_subject = "Instabiles Versuchsobjekt"
 	L.sureki_unnaturaler = "Entnaturisierer der Sureki"

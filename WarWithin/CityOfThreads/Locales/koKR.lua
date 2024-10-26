@@ -8,6 +8,7 @@ if L then
 	L.pale_priest = "창백의 사제"
 	L.eye_of_the_queen = "여왕의 눈"
 	L.covert_webmancer = "은밀한 그물술사"
+	L.web_marauder = "거미줄 약탈자"
 	L.royal_venomshell = "왕실 맹독껍질"
 	L.unstable_test_subject = "불안정한 실험 대상"
 	L.sureki_unnaturaler = "수레키 기괴술사"

@@ -8,6 +8,7 @@ if L then
 	--L.pale_priest = "Pale Priest"
 	--L.eye_of_the_queen = "Eye of the Queen"
 	--L.covert_webmancer = "Covert Webmancer"
+	--L.web_marauder = "Web Marauder"
 	--L.royal_venomshell = "Royal Venomshell"
 	--L.unstable_test_subject = "Unstable Test Subject"
 	--L.sureki_unnaturaler = "Sureki Unnaturaler"

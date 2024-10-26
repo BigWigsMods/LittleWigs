@@ -13,8 +13,10 @@ mod:RegisterEnableMob(
 	219984, -- Xeph'itik
 	220401, -- Pale Priest
 	219983, -- Eye of the Queen
-	223844, -- Covert Webmancer
-	224732, -- Covert Webmancer
+	223844, -- Covert Webmancer (with Eye of the Queen)
+	224732, -- Covert Webmancer (after Fangs of the Queen)
+	223182, -- Web Marauder (with Eye of the Queen)
+	224731, -- Web Marauder (after Fangs of the Queen)
 	220423, -- Retired Lord Vul'azak
 	220777, -- Executor Nizrek (warmup NPC)
 	220730, -- Royal Venomshell
@@ -38,6 +40,7 @@ if L then
 	L.pale_priest = "Pale Priest"
 	L.eye_of_the_queen = "Eye of the Queen"
 	L.covert_webmancer = "Covert Webmancer"
+	L.web_marauder = "Web Marauder"
 	L.royal_venomshell = "Royal Venomshell"
 	L.unstable_test_subject = "Unstable Test Subject"
 	L.sureki_unnaturaler = "Sureki Unnaturaler"
@@ -79,6 +82,8 @@ function mod:GetOptions()
 		{451222, "NAMEPLATE"}, -- Void Rush
 		-- Covert Webmancer
 		{452162, "NAMEPLATE"}, -- Mending Web
+		-- Web Marauder
+		{452151, "TANK", "NAMEPLATE", "OFF"}, -- Rigorous Jab
 		-- Royal Venomshell
 		{434137, "NAMEPLATE"}, -- Venomous Spray
 		-- Unstable Test Subject
@@ -98,6 +103,7 @@ function mod:GetOptions()
 		[448047] = L.pale_priest,
 		[451543] = L.eye_of_the_queen,
 		[452162] = L.covert_webmancer,
+		[452151] = L.web_marauder,
 		[434137] = L.royal_venomshell,
 		[445813] = L.unstable_test_subject,
 		[446086] = L.sureki_unnaturaler,
@@ -160,6 +166,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "MendingWebInterrupt", 452162)
 	self:Log("SPELL_CAST_SUCCESS", "MendingWebSuccess", 452162)
 	self:Death("CovertWebmancerDeath", 223844, 224732)
+
+	-- Web Marauder
+	self:RegisterEngageMob("WebMarauderEngaged", 223182, 224731)
+	self:Log("SPELL_CAST_SUCCESS", "RigorousJab", 452151)
+	self:Log("SPELL_AURA_APPLIED", "RigorousJabApplied", 452151)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "RigorousJabApplied", 452151)
+	self:Death("WebMarauderDeath", 223182, 224731)
 
 	-- Royal Venomshell
 	self:RegisterEngageMob("RoyalVenomshellEngaged", 220730)
@@ -326,8 +339,8 @@ end
 -- Royal Swarmguard
 
 function mod:RoyalSwarmguardEngaged(guid)
-	self:Nameplate(443500, 5.9, guid) -- Earthshatter
-	self:Nameplate(443507, 12.0, guid) -- Ravenous Swarm
+	self:Nameplate(443500, 5.5, guid) -- Earthshatter
+	self:Nameplate(443507, 10.4, guid) -- Ravenous Swarm
 end
 
 function mod:Earthshatter(args)
@@ -456,7 +469,7 @@ end
 -- Covert Webmancer
 
 function mod:CovertWebmancerEngaged(guid)
-	self:Nameplate(452162, 6.0, guid) -- Mending Web
+	self:Nameplate(452162, 5.8, guid) -- Mending Web
 end
 
 function mod:MendingWeb(args)
@@ -474,6 +487,31 @@ function mod:MendingWebSuccess(args)
 end
 
 function mod:CovertWebmancerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Web Marauder
+
+function mod:WebMarauderEngaged(guid)
+	self:Nameplate(452151, 3.7, guid) -- Rigorous Jab
+end
+
+function mod:RigorousJab(args)
+	self:Nameplate(args.spellId, 6.1, args.sourceGUID)
+end
+
+do
+	local prev = 0
+	function mod:RigorousJabApplied(args)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:StackMessage(args.spellId, "purple", args.destName, args.amount, 5)
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
+		end
+	end
+end
+
+function mod:WebMarauderDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
