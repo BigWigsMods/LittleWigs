@@ -60,6 +60,8 @@ function mod:GetOptions()
 	return {
 		-- Corpse Harvester
 		{334748, "NAMEPLATE"}, -- Drain Fluids
+		-- Stitched Vanguard
+		{320696, "NAMEPLATE", "OFF"}, -- Bone Claw
 		-- Zolramus Gatekeeper
 		{323347, "NAMEPLATE"}, -- Clinging Darkness
 		{322756, "NAMEPLATE"}, -- Wrath of Zolramus
@@ -71,6 +73,7 @@ function mod:GetOptions()
 		-- Skeletal Marauder
 		{324293, "NAMEPLATE"}, -- Rasping Scream
 		{343470, "NAMEPLATE"}, -- Boneshatter Shield
+		{324323, "NAMEPLATE", "OFF"}, -- Gruesome Cleave
 		-- Zolramus Bonemender
 		{335143, "NAMEPLATE"}, -- Bonemend
 		320822, -- Final Bargain
@@ -101,6 +104,7 @@ function mod:GetOptions()
 		{333479, "SAY", "NAMEPLATE"}, -- Spew Disease
 	}, {
 		[334748] = L.corpse_harvester,
+		[320696] = L.stitched_vanguard,
 		[323347] = L.zolramus_gatekeeper,
 		[321780] = L.zolramus_necromancer,
 		[328667] = L.brittlebone_mage,
@@ -130,6 +134,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "DrainFluidsSuccess", 334748)
 	self:Death("CorpseHarvesterDeath", 166302)
 
+	-- Stitched Vanguard
+	self:RegisterEngageMob("StitchedVanguardEngaged", 163121)
+	self:Log("SPELL_CAST_START", "BoneClaw", 320696)
+	self:Death("StitchedVanguardDeath", 163121)
+
 	-- Zolramus Gatekeeper
 	self:RegisterEngageMob("ZolramusGatekeeperEngaged", 165137)
 	self:Log("SPELL_CAST_SUCCESS", "ClingingDarkness", 323347) -- Mythic only
@@ -158,6 +167,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "RaspingScreamInterrupt", 324293)
 	self:Log("SPELL_CAST_SUCCESS", "RaspingScreamSuccess", 324293)
 	self:Log("SPELL_CAST_SUCCESS", "BoneshatterShield", 343470)
+	self:Log("SPELL_CAST_START", "GruesomeCleave", 324323)
 	self:Death("SkeletalMarauderDeath", 165919)
 
 	-- Zolramus Bonemender
@@ -257,7 +267,7 @@ end
 -- Corpse Harvester
 
 function mod:CorpseHarvesterEngaged(guid)
-	self:Nameplate(334748, 5.8, guid) -- Drain Fluids
+	self:Nameplate(334748, 5.6, guid) -- Drain Fluids
 end
 
 do
@@ -285,6 +295,35 @@ function mod:DrainFluidsSuccess(args)
 end
 
 function mod:CorpseHarvesterDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Stitched Vanguard
+
+function mod:StitchedVanguardEngaged(guid)
+	self:Nameplate(320696, 5.6, guid) -- Bone Claw
+end
+
+do
+	local prev = 0
+	function mod:BoneClaw(args)
+		if self:MobId(args.sourceGUID) == 163121 then -- Stitched Vanguard
+			self:Nameplate(args.spellId, 9.7, args.sourceGUID)
+		else -- 165911, Loyal Creation
+			self:Nameplate(args.spellId, 10.9, args.sourceGUID)
+		end
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:StitchedVanguardDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
@@ -322,7 +361,7 @@ end
 
 function mod:ZolramusNecromancerEngaged(guid)
 	self:Nameplate(327396, 10.5, guid) -- Grim Fate
-	self:Nameplate(321780, 17.1, guid) -- Animate Dead
+	self:Nameplate(321780, 16.6, guid) -- Animate Dead
 end
 
 function mod:AnimateDead(args)
@@ -395,7 +434,10 @@ end
 -- Skeletal Marauder
 
 function mod:SkeletalMarauderEngaged(guid)
-	self:Nameplate(343470, 11.3, guid) -- Boneshatter Shield
+	self:Nameplate(324323, 2.4, guid) -- Gruesome Cleave
+	if not self:Normal() then
+		self:Nameplate(343470, 11.3, guid) -- Boneshatter Shield
+	end
 	self:Nameplate(324293, 13.3, guid) -- Rasping Scream
 end
 
@@ -417,6 +459,18 @@ function mod:BoneshatterShield(args)
 	self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.sourceName))
 	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
+end
+
+do
+	local prev = 0
+	function mod:GruesomeCleave(args)
+		self:Nameplate(args.spellId, 11.2, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:SkeletalMarauderDeath(args)
@@ -563,12 +617,12 @@ do
 	local timer
 
 	function mod:SkeletalMonstrosityEngaged(guid)
-		self:CDBar(324394, 6.1) -- Shatter
-		self:Nameplate(324394, 6.1, guid) -- Shatter
-		self:CDBar(324372, 10.5) -- Reaping Winds
-		self:Nameplate(324372, 10.5, guid) -- Reaping Winds
-		self:CDBar(324387, 16.6) -- Rigid Spikes
-		self:Nameplate(324387, 16.6, guid) -- Rigid Spikes
+		self:CDBar(324394, 4.6) -- Shatter
+		self:Nameplate(324394, 4.6, guid) -- Shatter
+		self:CDBar(324372, 9.5) -- Reaping Winds
+		self:Nameplate(324372, 9.5, guid) -- Reaping Winds
+		self:CDBar(324387, 15.6) -- Rigid Spikes
+		self:Nameplate(324387, 15.6, guid) -- Rigid Spikes
 		timer = self:ScheduleTimer("SkeletalMonstrosityDeath", 30)
 	end
 
@@ -623,7 +677,7 @@ end
 
 function mod:CorpseCollectorEngaged(guid)
 	self:Nameplate(338353, 5.5, guid) -- Goresplatter
-	self:Nameplate(334748, 8.4, guid) -- Drain Fluids
+	self:Nameplate(334748, 6.6, guid) -- Drain Fluids
 end
 
 function mod:Goresplatter(args)
@@ -650,8 +704,8 @@ end
 -- Kyrian Stitchwerk
 
 function mod:KyrianStitchwerkEngaged(guid)
-	self:Nameplate(338357, 5.6, guid) -- Tenderize
-	self:Nameplate(338456, 9.2, guid) -- Mutilate
+	self:Nameplate(338357, 5.4, guid) -- Tenderize
+	self:Nameplate(338456, 9.0, guid) -- Mutilate
 end
 
 function mod:Mutilate(args)
@@ -724,11 +778,16 @@ end
 -- Loyal Creation
 
 function mod:LoyalCreationEngaged(guid)
-	self:Nameplate(327240, 12.6, guid) -- Spine Crush
+	self:Nameplate(320696, 4.2, guid) -- Bone Claw
+	self:Nameplate(327240, 8.6, guid) -- Spine Crush
 end
 
 function mod:SpineCrush(args)
+	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+		return
+	end
 	self:Message(args.spellId, "orange")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -793,12 +852,12 @@ do
 	local timer
 
 	function mod:GoregrindEngaged(guid)
-		self:CDBar(338357, 5.0) -- Tenderize
-		self:Nameplate(338357, 5.0, guid) -- Tenderize
-		self:CDBar(338456, 8.7) -- Mutilate
-		self:Nameplate(338456, 8.7, guid) -- Mutilate
-		self:CDBar(333477, 11.1) -- Gut Slice
-		self:Nameplate(333477, 11.1, guid) -- Gut Slice
+		self:CDBar(338357, 4.3) -- Tenderize
+		self:Nameplate(338357, 4.3, guid) -- Tenderize
+		self:CDBar(338456, 7.9) -- Mutilate
+		self:Nameplate(338456, 7.9, guid) -- Mutilate
+		self:CDBar(333477, 10.3) -- Gut Slice
+		self:Nameplate(333477, 10.3, guid) -- Gut Slice
 		timer = self:ScheduleTimer("GoregrindDeath", 30)
 	end
 
