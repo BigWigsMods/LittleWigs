@@ -470,8 +470,8 @@ do
 	local timer
 
 	function mod:IxkretenTheUnbreakableEngaged(guid)
-		self:CDBar(451119, 5.0) -- Abyssal Blast
-		self:Nameplate(451119, 5.0, guid) -- Abyssal Blast
+		self:CDBar(451119, 4.5) -- Abyssal Blast
+		self:Nameplate(451119, 4.5, guid) -- Abyssal Blast
 		self:CDBar(451117, 6.4) -- Terrifying Slam
 		self:Nameplate(451117, 6.4, guid) -- Terrifying Slam
 		timer = self:ScheduleTimer("IxkretenTheUnbreakableDeath", 30)
