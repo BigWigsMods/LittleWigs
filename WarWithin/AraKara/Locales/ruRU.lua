@@ -9,8 +9,10 @@ if L then
 	L.atik = "Атик"
 	L.hulking_bloodguard = "Громадный кровостраж"
 	L.sentry_stagshell = "Оленепанцирник-дозорный"
+	L.bloodstained_assistant = "Окровавленный боец"
 	L.bloodstained_webmage = "Окровавленный маг паутины"
 	L.blood_overseer = "Кровавый надсмотрщик"
+	L.reinforced_drone = "Укрепленный трутень"
 	L.nerubian_hauler = "Нерубская погрузчица"
 	L.winged_carrier = "Крылатый переносчик"
 

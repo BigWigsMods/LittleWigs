@@ -9,8 +9,10 @@ if L then
 	L.atik = "阿提克"
 	L.hulking_bloodguard = "魁梧的血卫"
 	L.sentry_stagshell = "哨兵鹿壳虫"
+	L.bloodstained_assistant = "沾血的助手"
 	L.bloodstained_webmage = "沾血的网法师"
 	L.blood_overseer = "鲜血监督者"
+	L.reinforced_drone = "强化雄虫"
 	L.nerubian_hauler = "蛛魔搬运者"
 	L.winged_carrier = "飞翼运输者"
 

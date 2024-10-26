@@ -25,6 +25,8 @@ BigWigs:AddSounds("Ki'katal the Harvester", {
 
 BigWigs:AddSounds("Ara-Kara, City of Echoes Trash", {
 	[432967] = {"info","warning"},
+	[433002] = "alert",
+	[433785] = "alert",
 	[433841] = "alert",
 	[433845] = "alarm",
 	[434252] = "info",

@@ -9,8 +9,10 @@ if L then
 	--L.atik = "Atik"
 	--L.hulking_bloodguard = "Hulking Bloodguard"
 	--L.sentry_stagshell = "Sentry Stagshell"
+	--L.bloodstained_assistant = "Bloodstained Assistant"
 	--L.bloodstained_webmage = "Bloodstained Webmage"
 	--L.blood_overseer = "Blood Overseer"
+	--L.reinforced_drone = "Reinforced Drone"
 	--L.nerubian_hauler = "Nerubian Hauler"
 	--L.winged_carrier = "Winged Carrier"
 

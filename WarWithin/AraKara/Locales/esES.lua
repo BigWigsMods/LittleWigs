@@ -9,8 +9,10 @@ if L then
 	L.atik = "Atik"
 	L.hulking_bloodguard = "Guardia de sangre descomunal"
 	L.sentry_stagshell = "Centinela cornaconcha"
+	L.bloodstained_assistant = "Ayudante manchado de sangre"
 	L.bloodstained_webmage = "Mago arácnido manchado de sangre"
 	L.blood_overseer = "Sobrestante sanguino"
+	L.reinforced_drone = "Dron reforzado"
 	L.nerubian_hauler = "Transportista nerubiano"
 	L.winged_carrier = "Portador alado"
 

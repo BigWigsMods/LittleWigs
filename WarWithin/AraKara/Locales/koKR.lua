@@ -9,8 +9,10 @@ if L then
 	L.atik = "아틱"
 	L.hulking_bloodguard = "거구의 혈투사"
 	L.sentry_stagshell = "파수꾼 가지뿔껍질"
+	L.bloodstained_assistant = "피로 물든 조수"
 	L.bloodstained_webmage = "피로 물든 거미줄마법사"
 	L.blood_overseer = "피의 감독관"
+	L.reinforced_drone = "강화된 일꾼"
 	L.nerubian_hauler = "네루비안 운반꾼"
 	L.winged_carrier = "날개 달린 운반자"
 
