@@ -23,7 +23,7 @@ BigWigs:AddSounds("Surgeon Stitchflesh", {
 	[320376] = "alert",
 	[322681] = {"info","warning"},
 	[327100] = "underyou",
-	[334476] = "alarm",
+	[334476] = {"alarm","underyou"},
 	[334488] = "alert",
 	[343556] = "warning",
 })

@@ -48,8 +48,11 @@ function mod:OnBossEnable()
 	-- Stage 1
 	self:Log("SPELL_CAST_START", "AwakenCreation", 320358)
 	self:Log("SPELL_CAST_SUCCESS", "EmbalmingIchor", 327664, 334476) -- Stage 1, Stage 2
+	self:Log("SPELL_PERIODIC_DAMAGE", "EmbalmingIchorDamage", 320366)
+	self:Log("SPELL_PERIODIC_MISSED", "EmbalmingIchorDamage", 320366)
 	self:Log("SPELL_AURA_APPLIED", "StitchneedleApplied", 320200)
-	self:Log("SPELL_AURA_APPLIED", "NoxiousFogApplied", 327100)
+	self:Log("SPELL_PERIODIC_DAMAGE", "NoxiousFogDamage", 327100)
+	self:Log("SPELL_PERIODIC_MISSED", "NoxiousFogDamage", 327100)
 
 	-- Stage 2
 	self:Log("SPELL_CAST_START", "SeverFlesh", 334488)
@@ -102,15 +105,30 @@ function mod:EmbalmingIchor(args)
 	-- timer would just be noise, 18.6 in Stage 1 and 11.3 in Stage 2
 end
 
+do
+	local prev = 0
+	function mod:EmbalmingIchorDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.75 then
+			prev = args.time
+			self:PersonalMessage(334476, "underyou")
+			self:PlaySound(334476, "underyou")
+		end
+	end
+end
+
 function mod:StitchneedleApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
 	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end
 
-function mod:NoxiousFogApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, "underyou")
-		self:PlaySound(args.spellId, "underyou")
+do
+	local prev = 0
+	function mod:NoxiousFogDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
 	end
 end
 
