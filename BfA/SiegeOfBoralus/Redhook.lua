@@ -15,7 +15,7 @@ mod:SetRespawnTime(30)
 local callIrontideCount = 1
 --local ordnanceRemaining = 0
 local ordnanceCollector = {}
-local ordnanceExplosionTime = 0
+--local ordnanceExplosionTime = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -74,7 +74,7 @@ function mod:OnEngage()
 	callIrontideCount = 1
 	--ordnanceRemaining = 0
 	ordnanceCollector = {}
-	ordnanceExplosionTime = 0
+	--ordnanceExplosionTime = 0
 	self:CDBar(257585, 11.1) -- Cannon Barrage
 end
 
@@ -154,7 +154,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 257540 then -- Cannon Barrage
 		--ordnanceRemaining = 3 -- was 3, 3, 4, 6, 5, 7, 6, 3...
 		ordnanceCollector = {}
-		ordnanceExplosionTime = GetTime() + 52.5
+		--ordnanceExplosionTime = GetTime() + 52.5
 		self:Message(257585, "orange")
 		self:CDBar(257585, 60.7)
 		--self:Bar(273721, 52.5, CL.count:format(self:SpellName(273721), ordnanceRemaining)) -- Heavy Ordnance
