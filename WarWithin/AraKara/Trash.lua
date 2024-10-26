@@ -6,11 +6,11 @@ local mod, CL = BigWigs:NewBoss("Ara-Kara, City of Echoes Trash", 2660)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	219420, -- Discordant Attendant (gossip NPC)
 	216336, -- Ravenous Crawler
 	216341, -- Jabbing Flyer
 	214840, -- Engorged Crawler
 	216293, -- Trilling Attendant
-	219420, -- Discordant Attendant (gossip NPC)
 	217531, -- Ixin
 	218324, -- Nakt
 	217533, -- Atik
@@ -29,6 +29,8 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.vile_webbing = 434830
+	L.discordant_attendant = "Discordant Attendant"
 	L.engorged_crawler = "Engorged Crawler"
 	L.trilling_attendant = "Trilling Attendant"
 	L.ixin = "Ixin"
@@ -53,7 +55,10 @@ end
 
 function mod:GetOptions()
 	return {
-		-- Autotalk
+		-- Vile Webbing
+		434830, -- Vile Webbing
+		{436614, "DISPEL"}, -- Web Wrap
+		-- Discordant Attendant
 		"custom_on_autotalk",
 		439208, -- Silk Wrap
 		-- Engorged Crawler
@@ -82,7 +87,8 @@ function mod:GetOptions()
 		-- Winged Carrier
 		{433821, "NAMEPLATE", "OFF"}, -- Dashing Strike
 	}, {
-		["custom_on_autotalk"] = CL.general,
+		[434830] = L.vile_webbing,
+		["custom_on_autotalk"] = L.discordant_attendant,
 		[438622] = L.engorged_crawler,
 		[434793] = L.trilling_attendant,
 		[434824] = L.ixin,
@@ -101,7 +107,12 @@ function mod:OnBossEnable()
 	-- Warmup
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 
-	-- Autotalk
+	-- Vile Webbing
+	self:Log("SPELL_AURA_APPLIED", "VileWebbingApplied", 434830)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "VileWebbingApplied", 434830)
+	self:Log("SPELL_AURA_APPLIED", "WebWrapApplied", 436614)
+
+	-- Discordant Attendant
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_AURA_APPLIED", "SilkThreadApplied", 439201)
 
@@ -187,7 +198,26 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	end
 end
 
--- Autotalk
+-- Vile Webbing
+
+function mod:VileWebbingApplied(args)
+	if self:Me(args.destGUID) then
+		local amount = args.amount or 1
+		if amount % 2 == 0 then -- alert 2, 4, stuns at 6
+			self:StackMessage(args.spellId, "blue", args.destName, amount, 3)
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
+end
+
+function mod:WebWrapApplied(args)
+	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "orange", args.destName)
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	end
+end
+
+-- Discordant Attendant
 
 function mod:GOSSIP_SHOW()
 	if self:GetOption("custom_on_autotalk") and self:GetGossipID(121214) then

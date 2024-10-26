@@ -1,7 +1,5 @@
 
 BigWigs:AddSounds("Avanoxx", {
-	[434830] = "underyou",
-	[436614] = "warning",
 	[438471] = "alert",
 	[438473] = "long",
 	[438476] = "info",
@@ -33,6 +31,8 @@ BigWigs:AddSounds("Ara-Kara, City of Echoes Trash", {
 	[434793] = "alert",
 	[434802] = "warning",
 	[434824] = "alarm",
+	[434830] = "underyou",
+	[436614] = "warning",
 	[438622] = "alarm",
 	[438826] = {"alert","underyou"},
 	[438877] = "info",

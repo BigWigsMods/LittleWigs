@@ -1,7 +1,5 @@
 
 BigWigs:AddColors("Avanoxx", {
-	[434830] = "blue",
-	[436614] = {"blue","orange"},
 	[438471] = "purple",
 	[438473] = "red",
 	[438476] = "yellow",
@@ -33,6 +31,8 @@ BigWigs:AddColors("Ara-Kara, City of Echoes Trash", {
 	[434793] = "red",
 	[434802] = "red",
 	[434824] = "orange",
+	[434830] = "blue",
+	[436614] = {"blue","orange"},
 	[438622] = "yellow",
 	[438826] = {"blue","yellow"},
 	[438877] = "cyan",

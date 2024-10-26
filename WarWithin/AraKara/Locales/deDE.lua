@@ -1,6 +1,7 @@
 local L = BigWigs:NewBossLocale("Ara-Kara, City of Echoes Trash", "deDE")
 if not L then return end
 if L then
+	L.discordant_attendant = "Disharmonischer Bediensteter"
 	L.engorged_crawler = "Vollgefressener Krabbler"
 	L.trilling_attendant = "Trillernder Bediensteter"
 	L.ixin = "Ixin"
