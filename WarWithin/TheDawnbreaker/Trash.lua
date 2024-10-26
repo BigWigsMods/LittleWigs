@@ -79,6 +79,7 @@ function mod:GetOptions()
 		{451097, "NAMEPLATE"}, -- Silken Shell
 		-- Nightfall Tactician
 		{431494, "NAMEPLATE"}, -- Black Edge
+		{451112, "DISPEL", "NAMEPLATE"}, -- Tactician's Rage
 		-- Nightfall Darkcaster
 		{432520, "NAMEPLATE"}, -- Umbral Barrier
 		-- Manifested Shadow
@@ -173,6 +174,8 @@ function mod:OnBossEnable()
 	-- Nightfall Tactician
 	self:RegisterEngageMob("NightfallTacticianEngaged", 213934)
 	self:Log("SPELL_CAST_START", "BlackEdge", 431494)
+	self:Log("SPELL_CAST_SUCCESS", "TacticiansRage", 451112)
+	self:Log("SPELL_AURA_APPLIED", "TacticiansRageApplied", 451112)
 	self:Death("NightfallTacticianDeath", 213934)
 
 	-- Nightfall Darkcaster
@@ -382,10 +385,10 @@ do
 	local timer
 
 	function mod:AscendantViscoxriaEngaged(guid)
-		self:CDBar(451102, 4.9) -- Shadowy Decay
-		self:Nameplate(451102, 4.9, guid) -- Shadowy Decay
-		self:CDBar(451119, 14.6) -- Abyssal Blast
-		self:Nameplate(451119, 14.6, guid) -- Abyssal Blast
+		self:CDBar(451102, 4.7) -- Shadowy Decay
+		self:Nameplate(451102, 4.7, guid) -- Shadowy Decay
+		self:CDBar(451119, 14.4) -- Abyssal Blast
+		self:Nameplate(451119, 14.4, guid) -- Abyssal Blast
 		timer = self:ScheduleTimer("AscendantViscoxriaDeath", 30)
 	end
 
@@ -470,8 +473,8 @@ do
 	local timer
 
 	function mod:IxkretenTheUnbreakableEngaged(guid)
-		self:CDBar(451119, 4.5) -- Abyssal Blast
-		self:Nameplate(451119, 4.5, guid) -- Abyssal Blast
+		self:CDBar(451119, 3.5) -- Abyssal Blast
+		self:Nameplate(451119, 3.5, guid) -- Abyssal Blast
 		self:CDBar(451117, 6.4) -- Terrifying Slam
 		self:Nameplate(451117, 6.4, guid) -- Terrifying Slam
 		timer = self:ScheduleTimer("IxkretenTheUnbreakableDeath", 30)
@@ -543,6 +546,9 @@ end
 
 function mod:NightfallTacticianEngaged(guid)
 	self:Nameplate(431494, 3.5, guid) -- Black Edge
+	if self:Dispeller("enrage", true, 451112) then
+		self:Nameplate(451112, 9.5, guid) -- Tactician's Rage
+	end
 end
 
 do
@@ -555,6 +561,23 @@ do
 			self:PlaySound(args.spellId, "alarm")
 		end
 		self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+	end
+end
+
+function mod:TacticiansRage(args)
+	if self:Dispeller("enrage", true, args.spellId) then
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	end
+end
+
+do
+	local prev = 0
+	function mod:TacticiansRageApplied(args)
+		if self:Dispeller("enrage", true, args.spellId) and args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+			self:PlaySound(args.spellId, "info")
+		end
 	end
 end
 
