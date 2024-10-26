@@ -52,6 +52,11 @@ function mod:OnEngage()
 	self:CDBar(321247, 38.5) -- Final Harvest
 end
 
+function mod:VerifyEnable(unit)
+	-- the boss flies around for some RP
+	return UnitCanAttack("player", unit)
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
