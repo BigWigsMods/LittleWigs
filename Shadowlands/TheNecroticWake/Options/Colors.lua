@@ -2,6 +2,7 @@
 BigWigs:AddColors("Blightbone", {
 	[320596] = {"blue","red"},
 	[320630] = {"blue","cyan"},
+	[320631] = "red",
 	[320637] = "yellow",
 	[320655] = "purple",
 })

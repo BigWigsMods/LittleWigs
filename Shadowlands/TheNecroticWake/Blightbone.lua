@@ -15,18 +15,30 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		{320596, "SAY"}, -- Heaving Retch
-		320630, -- Blood Gorge
 		320637, -- Fetid Gas
 		{320655, "TANK"}, -- Crunch
+		-- Carrion Worm
+		{320717, "NAMEPLATE"}, -- Blood Hunger
+		320630, -- Blood Gorge
+		320631, -- Carrion Eruption
+	}, {
+		[320717] = -21604, -- Carrion Worm
+	}, {
+		[320717] = CL.fixate, -- Blood Hunger (Fixate)
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HeavingRetch", 320596)
-	self:Log("SPELL_AURA_APPLIED", "BloodGorgeApplied", 320630)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "BloodGorgeApplied", 320630)
 	self:Log("SPELL_CAST_START", "FetidGas", 320637)
 	self:Log("SPELL_CAST_START", "Crunch", 320655)
+
+	-- Carrion Worm
+	self:Log("SPELL_AURA_APPLIED", "BloodHungerApplied", 320717)
+	self:Log("SPELL_AURA_REMOVED", "BloodHungerRemoved", 320717)
+	self:Log("SPELL_AURA_APPLIED", "BloodGorgeApplied", 320630)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "BloodGorgeApplied", 320630)
+	self:Log("SPELL_CAST_START", "CarrionEruption", 320631)
 end
 
 function mod:OnEngage()
@@ -56,27 +68,51 @@ do
 	end
 end
 
+function mod:FetidGas(args)
+	self:Message(args.spellId, "yellow")
+	self:CDBar(args.spellId, 25.5)
+	self:PlaySound(args.spellId, "long")
+end
+
+function mod:Crunch(args)
+	self:Message(args.spellId, "purple")
+	self:CDBar(args.spellId, 12.1)
+	self:PlaySound(args.spellId, "alert")
+end
+
+-- Carrion Worm
+
+function mod:BloodHungerApplied(args)
+	if self:Me(args.destGUID) then
+		self:Nameplate(args.spellId, 60, args.sourceGUID, CL.fixate)
+	end
+end
+
+function mod:BloodHungerRemoved(args)
+	if self:Me(args.destGUID) then
+		self:StopNameplate(args.spellId, args.sourceGUID, CL.fixate)
+	end
+end
+
 do
 	local prev = 0
 	function mod:BloodGorgeApplied(args)
 		local amount = args.amount or 1
-		self:StackMessage(args.spellId, "cyan", args.destName, amount, 2)
-		local t = args.time
-		if amount > 2 and t - prev > 1.5 then
-			prev = t
+		self:StackMessage(args.spellId, "cyan", args.destName, amount, 3)
+		if amount > 2 and args.time - prev > 2 then
+			prev = args.time
 			self:PlaySound(args.spellId, "warning")
 		end
 	end
 end
 
-function mod:FetidGas(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
-	self:CDBar(args.spellId, 25.5)
-end
-
-function mod:Crunch(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 12.1)
+do
+	local prev = 0
+	function mod:CarrionEruption(args)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning")
+		end
+	end
 end
