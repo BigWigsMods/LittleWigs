@@ -13,7 +13,7 @@ if L then
 	L.unstable_test_subject = "Sujeto de pruebas inestable"
 	L.sureki_unnaturaler = "Antinaturalista sureki"
 	L.elder_shadeweaver = "Tejesombras anciano"
-	--L.hulking_warshell = "Hulking Warshell"
+	L.hulking_warshell = "Concha de guerra descomunal"
 
 	--L.xephitik_defeated_trigger = "Enough!"
 	--L.fangs_of_the_queen_warmup_trigger = "The Transformatory was once the home of our sacred evolution."
