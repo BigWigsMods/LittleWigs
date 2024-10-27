@@ -11,7 +11,7 @@ if L then
 	L.arathi_knight = "Caballero arathi"
 	L.arathi_footman = "Lacayo arathi"
 	L.devout_priest = "Sacerdote devoto"
-	--L.fanatical_mage = "Fanatical Mage"
+	L.fanatical_conjuror = "Conjuradora fanática"
 	L.lightspawn = "Engendro de luz"
 	L.ardent_paladin = "Paladín ardoroso"
 	L.risen_mage = "Mago resucitado"
