@@ -4,6 +4,9 @@
 
 local mod, CL = BigWigs:NewBoss("Forgemaster Throngus", 670, 132)
 if not mod then return end
+if mod:Retail() then
+	mod:SetJournalID(2627) -- updated in TWW
+end
 mod:RegisterEnableMob(40177) -- Forgemaster Throngus
 mod:SetEncounterID(1050)
 mod:SetRespawnTime(30)

@@ -4,6 +4,9 @@
 
 local mod, CL = BigWigs:NewBoss("Erudax", 670, 134)
 if not mod then return end
+if mod:Retail() then
+	mod:SetJournalID(2619) -- updated in TWW
+end
 mod:RegisterEnableMob(40484) -- Erudax
 mod:SetEncounterID(1049)
 mod:SetRespawnTime(30)
