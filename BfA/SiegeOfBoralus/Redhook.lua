@@ -78,6 +78,14 @@ function mod:OnEngage()
 	self:CDBar(257585, 11.1) -- Cannon Barrage
 end
 
+function mod:OnWin()
+	local trashMod = BigWigs:GetBossModule("Siege of Boralus Trash", true)
+	if trashMod then
+		trashMod:Enable()
+		trashMod:LockwoodDefeated(5)
+	end
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --

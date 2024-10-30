@@ -208,8 +208,8 @@ end
 -- RP Timers
 
 -- triggered from Dread Captain Lockwood's :OnWin
-function mod:LockwoodDefeated()
-	self:Bar("gate_open", 4.8, L.gate_open, L.gate_open_icon)
+function mod:LockwoodDefeated(duration)
+	self:Bar("gate_open", duration, L.gate_open, L.gate_open_icon)
 end
 
 -- Scrimshaw Enforcer / Kul Tiran Halberd

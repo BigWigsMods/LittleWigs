@@ -77,11 +77,11 @@ function mod:OnEngage()
 end
 
 function mod:OnWin()
-    local trashMod = BigWigs:GetBossModule("Siege of Boralus Trash", true)
-    if trashMod then
-        trashMod:Enable()
-        trashMod:LockwoodDefeated()
-    end
+	local trashMod = BigWigs:GetBossModule("Siege of Boralus Trash", true)
+	if trashMod then
+		trashMod:Enable()
+		trashMod:LockwoodDefeated(4.8)
+	end
 end
 
 --------------------------------------------------------------------------------

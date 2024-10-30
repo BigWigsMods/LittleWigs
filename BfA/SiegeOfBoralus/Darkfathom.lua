@@ -32,6 +32,14 @@ function mod:OnEngage()
 	self:CDBar(276068, 23.3) -- Tidal Surge
 end
 
+function mod:OnWin()
+	local trashMod = BigWigs:GetBossModule("Siege of Boralus Trash", true)
+	if trashMod then
+		trashMod:Enable()
+		trashMod:LockwoodDefeated(13)
+	end
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
