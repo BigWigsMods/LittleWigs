@@ -59,11 +59,11 @@ function mod:OnEngage()
 end
 
 function mod:OnWin()
-    local trashMod = BigWigs:GetBossModule("Black Rook Hold Trash", true)
-    if trashMod then
-        trashMod:Enable()
-        trashMod:AmalgamOfSoulsDefeated()
-    end
+	local trashMod = BigWigs:GetBossModule("Black Rook Hold Trash", true)
+	if trashMod then
+		trashMod:Enable()
+		trashMod:AmalgamOfSoulsDefeated()
+	end
 end
 
 --------------------------------------------------------------------------------

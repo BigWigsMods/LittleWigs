@@ -52,11 +52,11 @@ function mod:OnEngage()
 end
 
 function mod:OnWin()
-    local trashMod = BigWigs:GetBossModule("The Everbloom Trash", true)
-    if trashMod then
-        trashMod:Enable()
-        trashMod:ArchmageSolDefeated()
-    end
+	local trashMod = BigWigs:GetBossModule("The Everbloom Trash", true)
+	if trashMod then
+		trashMod:Enable()
+		trashMod:ArchmageSolDefeated()
+	end
 end
 
 --------------------------------------------------------------------------------
