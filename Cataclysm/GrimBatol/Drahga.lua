@@ -4,6 +4,9 @@
 
 local mod, CL = BigWigs:NewBoss("Drahga Shadowburner", 670, 133)
 if not mod then return end
+if mod:Retail() then
+	mod:SetJournalID(2618) -- updated in TWW
+end
 mod:RegisterEnableMob(
 	40319, -- Drahga Shadowburner
 	40320 -- Valiona
