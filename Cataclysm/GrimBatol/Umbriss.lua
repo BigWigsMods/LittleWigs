@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("General Umbriss", 670, 131)
 if not mod then return end
 if mod:Retail() then
-	mod:SetJournalID(2617) -- updated in TWW
+	mod:SetJournalID(2617) -- Journal ID was changed in The War Within
 end
 mod:RegisterEnableMob(39625) -- General Umbriss
 mod:SetEncounterID(1051)

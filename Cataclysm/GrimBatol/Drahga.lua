@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Drahga Shadowburner", 670, 133)
 if not mod then return end
 if mod:Retail() then
-	mod:SetJournalID(2618) -- updated in TWW
+	mod:SetJournalID(2618) -- Journal ID was changed in The War Within
 end
 mod:RegisterEnableMob(
 	40319, -- Drahga Shadowburner

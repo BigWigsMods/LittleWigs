@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Erudax", 670, 134)
 if not mod then return end
 if mod:Retail() then
-	mod:SetJournalID(2619) -- updated in TWW
+	mod:SetJournalID(2619) -- Journal ID was changed in The War Within
 end
 mod:RegisterEnableMob(40484) -- Erudax
 mod:SetEncounterID(1049)
