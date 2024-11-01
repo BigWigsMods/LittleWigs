@@ -54,8 +54,13 @@ function mod:OnEngage()
 	self:CDBar(447143, 12.0) -- Encasing Webs
 	-- this boss has different variants depending on the scenario.
 	-- the variants determine if it casts Infusion of Poison, Infusion of Frost, or neither.
-	--self:CDBar(446832, 18.1, CL.beams) -- Infusion of Poison
-	--self:CDBar(463408, 18.1, CL.beams) -- Infusion of Frost
+	local info = C_ScenarioInfo.GetScenarioInfo()
+	local scenarioID = info and info.scenarioID
+	if scenarioID == 2426 then -- Torture Victims
+		self:CDBar(446832, 18.1, CL.beams) -- Infusion of Poison
+	elseif scenarioID == 2427 then -- Weaver Rescue
+		self:CDBar(463408, 18.1, CL.beams) -- Infusion of Frost
+	end -- in 2387 (Evolved Research) the boss does not cast either ability
 end
 
 --------------------------------------------------------------------------------
