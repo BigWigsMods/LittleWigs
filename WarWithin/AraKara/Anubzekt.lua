@@ -61,6 +61,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "EyeOfTheSwarmOver", 434408)
 
 	-- Bloodstained Webmage (Mythic)
+	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Bloodstained Webmage spawning
 	self:Log("SPELL_CAST_START", "SilkenRestraints", 442210)
 end
 
@@ -73,7 +74,7 @@ function mod:OnEngage()
 	self:CDBar(435012, 4.6) -- Impale
 	self:CDBar(439506, 14.3) -- Burrow Charge
 	if self:Mythic() then
-		self:CDBar("bloodstained_webmage", 17.3, CL.count:format(CL.add_spawning, bloodstainedWebmageCount), L.bloodstained_webmage_icon) -- Bloodstained Webmage
+		self:CDBar("bloodstained_webmage", 17.5, CL.count:format(CL.add_spawning, bloodstainedWebmageCount), L.bloodstained_webmage_icon) -- Bloodstained Webmage
 	end
 	self:CDBar(433766, 29.1, CL.count:format(self:SpellName(433766), eyeOfTheSwarmCount)) -- Eye of the Swarm
 end
@@ -113,9 +114,6 @@ do
 			self:StopBar(args.spellId)
 		end
 		self:CDBar(435012, 4.8) -- Impale
-		if self:Mythic() then
-			self:ScheduleTimer("BloodstainedWebmage", 3.0)
-		end
 	end
 end
 
@@ -149,7 +147,7 @@ function mod:EyeOfTheSwarm(args)
 	self:CDBar(435012, 10.9) -- Impale
 	self:CDBar(439506, 46.9) -- Burrow Charge
 	if self:Mythic() then
-		self:CDBar("bloodstained_webmage", 49.9, CL.count:format(CL.add_spawning, bloodstainedWebmageCount), L.bloodstained_webmage_icon) -- Bloodstained Webmage
+		self:CDBar("bloodstained_webmage", 49.8, CL.count:format(CL.add_spawning, bloodstainedWebmageCount), L.bloodstained_webmage_icon) -- Bloodstained Webmage
 	end
 	self:CDBar(args.spellId, 78.9, CL.count:format(args.spellName, eyeOfTheSwarmCount))
 	self:PlaySound(args.spellId, "long")
@@ -166,19 +164,18 @@ function mod:EyeOfTheSwarmOver(args)
 	self:PlaySound(433766, "info")
 end
 
-function mod:BloodstainedWebmage()
-	-- always spawns ~3s after Burrow Charge cast start, and there's an additional spawn 17s after every even add spawn
+-- Bloodstained Webmage (Mythic)
+
+function mod:EncounterEvent(args) -- Bloodstained Webmage spawning
+	-- always spawns ~3s after Burrow Charge cast start, and there's an additional spawn ~17s after every even add spawn
 	self:StopBar(CL.count:format(CL.add_spawning, bloodstainedWebmageCount))
 	self:Message("bloodstained_webmage", "cyan", CL.count:format(CL.add_spawned, bloodstainedWebmageCount), L.bloodstained_webmage_icon)
 	bloodstainedWebmageCount = bloodstainedWebmageCount + 1
-	if bloodstainedWebmageCount % 2 == 1 then -- schedule the 3rd, 5th, 7th... etc alert
-		self:CDBar("bloodstained_webmage", 17.0, CL.count:format(CL.add_spawning, bloodstainedWebmageCount), L.bloodstained_webmage_icon)
-		self:ScheduleTimer("BloodstainedWebmage", 17.0)
+	if bloodstainedWebmageCount % 2 == 1 then -- the 3rd, 5th, 7th... etc spawn
+		self:CDBar("bloodstained_webmage", 17.4, CL.count:format(CL.add_spawning, bloodstainedWebmageCount), L.bloodstained_webmage_icon)
 	end
 	self:PlaySound("bloodstained_webmage", "info")
 end
-
--- Bloodstained Webmage (Mythic)
 
 function mod:SilkenRestraints(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
