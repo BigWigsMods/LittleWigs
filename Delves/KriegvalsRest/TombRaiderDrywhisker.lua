@@ -36,6 +36,8 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Flamestorm", 449242)
+	self:Log("SPELL_PERIODIC_DAMAGE", "FlamestormDamage", 449266)
+	self:Log("SPELL_PERIODIC_MISSED", "FlamestormDamage", 449266)
 	self:Log("SPELL_CAST_START", "GroundSlam", 449295)
 	self:Log("SPELL_CAST_START", "RagingTantrum", 449339)
 	self:Log("SPELL_INTERRUPT", "RagingTantrumInterrupt", 449339)
@@ -56,6 +58,17 @@ function mod:Flamestorm(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 17.8)
+end
+
+do
+	local prev = 0
+	function mod:FlamestormDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(449242, "underyou")
+			self:PlaySound(449242, "underyou")
+		end
+	end
 end
 
 function mod:GroundSlam(args)
