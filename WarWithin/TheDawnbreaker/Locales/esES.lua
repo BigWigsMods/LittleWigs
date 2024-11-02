@@ -13,6 +13,7 @@ if L then
 	L.sureki_militant = "Militante sureki"
 	L.nightfall_tactician = "Táctica del ocaso"
 	L.nightfall_darkcaster = "Taumaturga oscura del Ocaso"
+	L.nightfall_shadowalker = "Acechador sombrío del Ocaso"
 	L.manifested_shadow = "Sombra manifestada"
 	L.nightfall_dark_architect = "Arquitecta oscura del Ocaso"
 end

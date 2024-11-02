@@ -13,6 +13,7 @@ if L then
 	--L.sureki_militant = "Sureki Militant"
 	--L.nightfall_tactician = "Nightfall Tactician"
 	--L.nightfall_darkcaster = "Nightfall Darkcaster"
+	L.nightfall_shadowalker = "Camminatore dell'Ombra del Tramonto"
 	--L.manifested_shadow = "Manifested Shadow"
 	--L.nightfall_dark_architect = "Nightfall Dark Architect"
 end

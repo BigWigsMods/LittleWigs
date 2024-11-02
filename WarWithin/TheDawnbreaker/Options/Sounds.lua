@@ -35,6 +35,7 @@ BigWigs:AddSounds("The Dawnbreaker Trash", {
 	[431364] = "alert",
 	[431491] = "alert",
 	[431494] = "alarm",
+	[431637] = "alert",
 	[432448] = "alarm",
 	[432520] = "alert",
 	[432565] = "alarm",

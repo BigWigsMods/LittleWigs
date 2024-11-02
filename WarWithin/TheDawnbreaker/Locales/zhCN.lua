@@ -13,6 +13,7 @@ if L then
 	L.sureki_militant = "苏雷吉好战者"
 	L.nightfall_tactician = "夜幕战略家"
 	L.nightfall_darkcaster = "夜幕暗法师"
+	L.nightfall_shadowalker = "夜幕影行者"
 	L.manifested_shadow = "暗影具象"
 	L.nightfall_dark_architect = "夜幕黑暗建筑师"
 end

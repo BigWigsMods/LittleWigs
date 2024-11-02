@@ -13,6 +13,7 @@ if L then
 	L.sureki_militant = "수레키 전투원"
 	L.nightfall_tactician = "일몰 전술가"
 	L.nightfall_darkcaster = "일몰 암흑술사"
+	L.nightfall_shadowalker = "일몰 어둠방랑자"
 	L.manifested_shadow = "실체화된 어둠"
 	L.nightfall_dark_architect = "일몰 암흑 설계사"
 end
