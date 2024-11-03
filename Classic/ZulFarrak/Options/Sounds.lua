@@ -1,5 +1,9 @@
 
 BigWigs:AddSounds("Theka the Martyr", {
+	[8600] = {"alarm","alert"},
+	[15654] = "alarm",
+	[17228] = "alert",
+	[450933] = "warning",
 })
 
 BigWigs:AddSounds("Antu'sul", {
