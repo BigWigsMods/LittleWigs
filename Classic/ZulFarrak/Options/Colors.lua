@@ -18,4 +18,7 @@ BigWigs:AddColors("Nekrum & Sezz'ziz", {
 })
 
 BigWigs:AddColors("Chief Ukorz Sandscalp", {
+	[8269] = "orange",
+	[15496] = "blue",
+	[454632] = "red",
 })
