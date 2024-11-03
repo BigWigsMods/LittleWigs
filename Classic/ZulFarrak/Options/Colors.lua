@@ -12,6 +12,8 @@ BigWigs:AddColors("Witch Doctor Zum'rah", {
 })
 
 BigWigs:AddColors("Gahz'rilla", {
+	[11836] = {"blue","red","yellow"},
+	[11902] = "orange",
 })
 
 BigWigs:AddColors("Nekrum & Sezz'ziz", {

@@ -12,6 +12,8 @@ BigWigs:AddSounds("Witch Doctor Zum'rah", {
 })
 
 BigWigs:AddSounds("Gahz'rilla", {
+	[11836] = {"alert","warning"},
+	[11902] = "alarm",
 })
 
 BigWigs:AddSounds("Nekrum & Sezz'ziz", {
