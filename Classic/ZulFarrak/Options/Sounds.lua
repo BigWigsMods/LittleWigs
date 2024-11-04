@@ -35,6 +35,10 @@ BigWigs:AddSounds("Gahz'rilla", {
 })
 
 BigWigs:AddSounds("Nekrum & Sezz'ziz", {
+	[8362] = {"alarm","alert"},
+	[8600] = {"alarm","alert"},
+	[12039] = "alert",
+	[13704] = "info",
 })
 
 BigWigs:AddSounds("Chief Ukorz Sandscalp", {
