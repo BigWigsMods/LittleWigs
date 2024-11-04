@@ -24,6 +24,9 @@ BigWigs:AddSounds("Baroness Anastari", {
 })
 
 BigWigs:AddSounds("Nerub'enkan", {
+	[4962] = "alarm",
+	[6016] = "alert",
+	[17235] = "info",
 })
 
 BigWigs:AddSounds("Maleki the Pallid", {
