@@ -74,8 +74,7 @@ function mod:FeveredPlague(args)
 end
 
 function mod:FeveredPlagueApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("disease", nil, args.spellId)
-			and self:MobId(args.sourceGUID) == 7796 then -- Nekrum Gutchewer
+	if (self:Me(args.destGUID) or self:Dispeller("disease", nil, args.spellId)) and self:MobId(args.sourceGUID) == 7796 then -- Nekrum Gutchewer
 		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
