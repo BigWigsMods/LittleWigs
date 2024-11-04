@@ -27,6 +27,8 @@ BigWigs:AddSounds("Nerub'enkan", {
 })
 
 BigWigs:AddSounds("Maleki the Pallid", {
+	[16869] = {"alert","warning"},
+	[17620] = "alert",
 })
 
 BigWigs:AddSounds("Magistrate Barthilas", {

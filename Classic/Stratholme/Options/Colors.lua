@@ -27,6 +27,8 @@ BigWigs:AddColors("Nerub'enkan", {
 })
 
 BigWigs:AddColors("Maleki the Pallid", {
+	[16869] = {"blue","red","yellow"},
+	[17620] = "orange",
 })
 
 BigWigs:AddColors("Magistrate Barthilas", {
