@@ -30,6 +30,10 @@ BigWigs:AddColors("Maleki the Pallid", {
 })
 
 BigWigs:AddColors("Magistrate Barthilas", {
+	[10887] = "red",
+	[14099] = "purple",
+	[16791] = "yellow",
+	[455596] = "orange",
 })
 
 BigWigs:AddColors("Ramstein the Gorger", {

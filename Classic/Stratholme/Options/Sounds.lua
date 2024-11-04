@@ -30,6 +30,10 @@ BigWigs:AddSounds("Maleki the Pallid", {
 })
 
 BigWigs:AddSounds("Magistrate Barthilas", {
+	[10887] = "alert",
+	[14099] = "alarm",
+	[16791] = "info",
+	[455596] = "alarm",
 })
 
 BigWigs:AddSounds("Ramstein the Gorger", {
