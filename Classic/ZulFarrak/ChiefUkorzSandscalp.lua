@@ -75,7 +75,7 @@ do
 		if self:Tank() or self:Solo() then return end -- unavoidable for tank/solo
 		local mobId = self:MobId(args.sourceGUID)
 		local castByBoss = mobId == 7267 or mobId == 7797
-		if castByBoss and self:Me(args.destGUID) and args.time - prev > 1.5 and then
+		if castByBoss and self:Me(args.destGUID) and args.time - prev > 1.5 then
 			prev = args.time
 			self:PersonalMessage(args.spellId, "near")
 			self:PlaySound(args.spellId, "alarm")
