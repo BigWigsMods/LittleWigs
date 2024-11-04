@@ -39,4 +39,6 @@ BigWigs:AddSounds("Postmaster Malown", {
 })
 
 BigWigs:AddSounds("Lord Aurius Rivendare", {
+	[17434] = "alert",
+	[17473] = "info",
 })
