@@ -74,8 +74,7 @@ function mod:FeveredPlague(args)
 end
 
 function mod:FeveredPlagueApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("disease", nil, args.spellId)
-			and self:MobId(args.sourceGUID) == 7272 then -- Theka the Martyr
+	if (self:Me(args.destGUID) or self:Dispeller("disease", nil, args.spellId)) and self:MobId(args.sourceGUID) == 7272 then -- Theka the Martyr
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "alarm", nil, args.destName)
 	end
