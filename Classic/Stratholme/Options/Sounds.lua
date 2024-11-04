@@ -33,6 +33,8 @@ BigWigs:AddSounds("Magistrate Barthilas", {
 })
 
 BigWigs:AddSounds("Ramstein the Gorger", {
+	[5568] = "info",
+	[17307] = "alert",
 })
 
 BigWigs:AddSounds("Postmaster Malown", {
