@@ -72,9 +72,10 @@ end
 do
 	local prev = 0
 	function mod:CleaveDamage(args)
+		if self:Tank() or self:Solo() then return end -- unavoidable for tank/solo
 		local mobId = self:MobId(args.sourceGUID)
-		if self:Me(args.destGUID) and not self:Tank() and not self:Solo()
-				and args.time - prev > 1.5 and (mobId == 7267 or mobId == 7797) then
+		local castByBoss = mobId == 7267 or mobId == 7797
+		if castByBoss and self:Me(args.destGUID) and args.time - prev > 1.5 and then
 			prev = args.time
 			self:PersonalMessage(args.spellId, "near")
 			self:PlaySound(args.spellId, "alarm")
