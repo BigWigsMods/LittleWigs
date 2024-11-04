@@ -127,7 +127,7 @@ function mod:BossDeath(args)
 	if self:Heroic() and deaths == 2 then -- no encounter events in Timewalking
 		deaths = 0
 		self:Win()
-	elseif self:MobId(args.destGUID) == 7796 then -- Nekrum Gutchewer
+	elseif args.mobId == 7796 then -- Nekrum Gutchewer
 		self:StopBar(8600) -- Fevered Plague
 	else -- 7275, Shadowpriest Sezz'ziz
 		self:StopBar(13704) -- Psychic Scream
