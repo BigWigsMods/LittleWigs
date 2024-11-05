@@ -53,4 +53,7 @@ BigWigs:AddColors("Postmaster Malown", {
 })
 
 BigWigs:AddColors("Lord Aurius Rivendare", {
+	[17434] = "red",
+	[17471] = "yellow",
+	[17473] = "cyan",
 })
