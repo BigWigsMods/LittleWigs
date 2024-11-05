@@ -254,36 +254,42 @@ end
 
 -- Mythic
 
-function mod:AnimateShadows(args)
-	local t = GetTime()
-	self:Message(args.spellId, "cyan")
-	slamOrOrbCount = 1
-	shadowyDecayLast = false
-	nextAnimateShadows = t + 34.5
-	self:CDBar(args.spellId, 34.5)
-	-- 7.5 minimum to next ability
-	if terrifyingSlamLast then
-		if nextDarkOrb - t < 7.5 then
-			nextDarkOrb = t + 7.5
-			self:CDBar(426860, {7.5, 16.0}) -- Dark Orb
+do
+	local function printTarget(self, name)
+		self:TargetMessage(452127, "cyan", name)
+		self:PlaySound(452127, "info", nil, name)
+	end
+
+	function mod:AnimateShadows(args)
+		local t = GetTime()
+		slamOrOrbCount = 1
+		shadowyDecayLast = false
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
+		nextAnimateShadows = t + 34.5
+		self:CDBar(args.spellId, 34.5)
+		-- 7.5 minimum to next ability
+		if terrifyingSlamLast then
+			if nextDarkOrb - t < 7.5 then
+				nextDarkOrb = t + 7.5
+				self:CDBar(426860, {7.5, 16.0}) -- Dark Orb
+			end
+			if nextTerrifyingSlam - t < 16.5 then
+				nextTerrifyingSlam = t + 16.5
+				self:CDBar(427001, 16.5) -- Terrifying Slam
+			end
+		else -- Dark Orb was more recent than Terrifying Slam
+			if nextTerrifyingSlam - t < 7.5 then
+				nextTerrifyingSlam = t + 7.5
+				self:CDBar(427001, {7.5, 16.0}) -- Terrifying Slam
+			end
+			if nextDarkOrb - t < 14.5 then
+				nextDarkOrb = t + 14.5
+				self:CDBar(426860, {14.5, 16.0}) -- Dark Orb
+			end
 		end
-		if nextTerrifyingSlam - t < 16.5 then
-			nextTerrifyingSlam = t + 16.5
-			self:CDBar(427001, 16.5) -- Terrifying Slam
-		end
-	else -- Dark Orb was more recent than Terrifying Slam
-		if nextTerrifyingSlam - t < 7.5 then
-			nextTerrifyingSlam = t + 7.5
-			self:CDBar(427001, {7.5, 16.0}) -- Terrifying Slam
-		end
-		if nextDarkOrb - t < 14.5 then
-			nextDarkOrb = t + 14.5
-			self:CDBar(426860, {14.5, 16.0}) -- Dark Orb
+		if nextShadowyDecay - t < 7.5 then
+			nextShadowyDecay = t + 7.5
+			self:CDBar(426787, {7.5, 34.5}) -- Shadowy Decay
 		end
 	end
-	if nextShadowyDecay - t < 7.5 then
-		nextShadowyDecay = t + 7.5
-		self:CDBar(426787, {7.5, 34.5}) -- Shadowy Decay
-	end
-	self:PlaySound(args.spellId, "info")
 end
