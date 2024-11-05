@@ -27,6 +27,9 @@ BigWigs:AddColors("Baroness Anastari", {
 })
 
 BigWigs:AddColors("Nerub'enkan", {
+	[4962] = {"blue","yellow"},
+	[6016] = "purple",
+	[17235] = "cyan",
 })
 
 BigWigs:AddColors("Maleki the Pallid", {
