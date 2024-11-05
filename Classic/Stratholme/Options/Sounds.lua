@@ -21,6 +21,9 @@ BigWigs:AddSounds("Balnazzar", {
 })
 
 BigWigs:AddSounds("Baroness Anastari", {
+	[16867] = "info",
+	[17244] = {"info","warning"},
+	[18327] = "alarm",
 })
 
 BigWigs:AddSounds("Nerub'enkan", {

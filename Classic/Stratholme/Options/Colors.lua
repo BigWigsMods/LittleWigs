@@ -21,6 +21,9 @@ BigWigs:AddColors("Balnazzar", {
 })
 
 BigWigs:AddColors("Baroness Anastari", {
+	[16867] = {"blue","yellow"},
+	[17244] = {"blue","green","yellow"},
+	[18327] = "orange",
 })
 
 BigWigs:AddColors("Nerub'enkan", {
