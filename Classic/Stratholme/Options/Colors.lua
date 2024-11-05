@@ -3,6 +3,8 @@ BigWigs:AddColors("Hearthsinger Forresten", {
 })
 
 BigWigs:AddColors("The Unforgiven", {
+	[14907] = "yellow",
+	[122832] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Timmy the Cruel", {

@@ -3,6 +3,8 @@ BigWigs:AddSounds("Hearthsinger Forresten", {
 })
 
 BigWigs:AddSounds("The Unforgiven", {
+	[14907] = "alert",
+	[122832] = "alert",
 })
 
 BigWigs:AddSounds("Timmy the Cruel", {
