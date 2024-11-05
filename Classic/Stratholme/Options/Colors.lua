@@ -15,6 +15,10 @@ BigWigs:AddColors("Willey Hopebreaker", {
 })
 
 BigWigs:AddColors("Instructor Galford", {
+	[17274] = "red",
+	[17293] = {"blue","orange","yellow"},
+	[17366] = "yellow",
+	[33975] = "red",
 })
 
 BigWigs:AddColors("Balnazzar", {
