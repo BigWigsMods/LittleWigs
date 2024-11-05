@@ -22,6 +22,10 @@ BigWigs:AddSounds("Willey Hopebreaker", {
 })
 
 BigWigs:AddSounds("Instructor Galford", {
+	[17274] = "alert",
+	[17293] = {"alarm","alert"},
+	[17366] = "alarm",
+	[33975] = "alert",
 })
 
 BigWigs:AddSounds("Balnazzar", {
