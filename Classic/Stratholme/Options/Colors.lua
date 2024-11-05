@@ -36,6 +36,14 @@ BigWigs:AddColors("Instructor Galford", {
 })
 
 BigWigs:AddColors("Balnazzar", {
+	[12098] = {"blue","cyan","red"},
+	[13704] = "yellow",
+	[17286] = "orange",
+	[17287] = "red",
+	[17405] = {"blue","cyan","orange"},
+	[80750] = "red",
+	[452927] = "orange",
+	[452928] = {"blue","cyan","red"},
 })
 
 BigWigs:AddColors("Baroness Anastari", {
