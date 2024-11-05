@@ -10,6 +10,9 @@ BigWigs:AddColors("The Unforgiven", {
 })
 
 BigWigs:AddColors("Timmy the Cruel", {
+	[8599] = "cyan",
+	[12021] = {"blue","red"},
+	[17470] = "purple",
 })
 
 BigWigs:AddColors("Commander Malor", {
