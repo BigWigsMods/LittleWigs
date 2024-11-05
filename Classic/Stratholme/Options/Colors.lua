@@ -1,5 +1,7 @@
 
 BigWigs:AddColors("Hearthsinger Forresten", {
+	[16244] = "yellow",
+	[16798] = {"blue","orange","red"},
 })
 
 BigWigs:AddColors("The Unforgiven", {

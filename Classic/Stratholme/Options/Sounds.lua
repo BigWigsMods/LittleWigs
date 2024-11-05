@@ -1,5 +1,7 @@
 
 BigWigs:AddSounds("Hearthsinger Forresten", {
+	[16244] = "alert",
+	[16798] = {"alarm","alert"},
 })
 
 BigWigs:AddSounds("The Unforgiven", {
