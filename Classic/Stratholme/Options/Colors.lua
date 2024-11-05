@@ -45,6 +45,8 @@ BigWigs:AddColors("Magistrate Barthilas", {
 })
 
 BigWigs:AddColors("Ramstein the Gorger", {
+	[5568] = "yellow",
+	[17307] = {"blue","purple"},
 })
 
 BigWigs:AddColors("Postmaster Malown", {
