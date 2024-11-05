@@ -16,6 +16,10 @@ BigWigs:AddColors("Timmy the Cruel", {
 })
 
 BigWigs:AddColors("Commander Malor", {
+	[12734] = "orange",
+	[15493] = "red",
+	[16172] = "purple",
+	[17228] = "red",
 })
 
 BigWigs:AddColors("Willey Hopebreaker", {
