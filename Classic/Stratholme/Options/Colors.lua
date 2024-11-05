@@ -12,6 +12,9 @@ BigWigs:AddColors("Commander Malor", {
 })
 
 BigWigs:AddColors("Willey Hopebreaker", {
+	[10101] = "purple",
+	[17279] = "cyan",
+	[110762] = "purple",
 })
 
 BigWigs:AddColors("Instructor Galford", {
