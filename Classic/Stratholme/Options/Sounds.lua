@@ -23,6 +23,9 @@ BigWigs:AddSounds("Commander Malor", {
 })
 
 BigWigs:AddSounds("Willey Hopebreaker", {
+	[10101] = "alert",
+	[17279] = "info",
+	[110762] = "alert",
 })
 
 BigWigs:AddSounds("Instructor Galford", {
