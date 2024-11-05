@@ -54,6 +54,8 @@ BigWigs:AddSounds("Ramstein the Gorger", {
 })
 
 BigWigs:AddSounds("Postmaster Malown", {
+	[6253] = "alert",
+	[12741] = "alert",
 })
 
 BigWigs:AddSounds("Lord Aurius Rivendare", {
