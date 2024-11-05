@@ -129,7 +129,7 @@ end
 
 function mod:Domination(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:CDBar(args.spellId, 21.8)
+	self:CDBar(args.spellId, 29.1)
 	self:PlaySound(args.spellId, "warning")
 end
 
@@ -140,7 +140,7 @@ end
 
 function mod:Sleep(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:CDBar(args.spellId, 21.8)
+	self:CDBar(args.spellId, 20.6)
 	self:PlaySound(args.spellId, "alert")
 end
 
