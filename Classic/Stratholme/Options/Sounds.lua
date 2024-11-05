@@ -6,6 +6,9 @@ BigWigs:AddSounds("The Unforgiven", {
 })
 
 BigWigs:AddSounds("Timmy the Cruel", {
+	[8599] = "long",
+	[12021] = "alarm",
+	[17470] = "alert",
 })
 
 BigWigs:AddSounds("Commander Malor", {
