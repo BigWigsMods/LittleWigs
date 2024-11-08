@@ -1,15 +1,15 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Ghaz'an", 546, 577)
 if not mod then return end
 mod:RegisterEnableMob(18105)
--- mod.engageId = 1945 -- sometimes doesn't fire ENCOUNTER_END on a wipe
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod:SetEncounterID(1945) -- sometimes doesn't fire ENCOUNTER_END on a wipe
+--mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -25,8 +25,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "AcidBreath", 34268)
 	self:Log("SPELL_AURA_REMOVED", "AcidBreathRemoved", 34268)
 
-	self:Log("SPELL_DAMAGE", "TailSweep", 34267, 38737) -- normal, heroic
-	self:Log("SPELL_MISSED", "TailSweep", 34267, 38737)
+	self:Log("SPELL_DAMAGE", "TailSweep", 38737)
+	self:Log("SPELL_MISSED", "TailSweep", 38737)
+	if self:Classic() then
+		-- Retail: 38737 is used in all difficulties, 34267 was removed in 11.0.5
+		-- Classic: 38737 is used in Heroic, 34267 is used in Normal
+		self:Log("SPELL_DAMAGE", "TailSweep", 34267)
+		self:Log("SPELL_MISSED", "TailSweep", 34267)
+	end
 
 	self:Log("SPELL_AURA_APPLIED", "Enrage", 15716)
 
@@ -47,7 +53,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 do
