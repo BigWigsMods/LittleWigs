@@ -6,7 +6,7 @@ BigWigs:AddColors("Chopper Redhook", {
 	[257459] = {"blue","yellow"},
 	[257585] = "orange",
 	[272662] = "cyan",
-	[273721] = {"green","orange"},
+	[273721] = {"blue","green","orange"},
 	[274002] = "yellow",
 })
 

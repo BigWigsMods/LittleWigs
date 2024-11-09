@@ -184,7 +184,11 @@ do
 				--self:Bar(273721, ordnanceTimeLeft, CL.count:format(args.spellName, ordnanceRemaining))
 			--end
 			--self:Message(273721, "orange", CL.extra:format(CL.on:format(args.spellName, args.destName), CL.remaining:format(ordnanceRemaining)))
-			self:Message(273721, "orange", CL.on:format(args.spellName, args.destName))
+			if self:Player(args.destFlags) then
+				self:TargetMessage(273721, "orange", args.destName)
+			else
+				self:Message(273721, "orange", CL.on:format(args.spellName, args.destName))
+			end
 			if args.time - prevSound > 1.5 then
 				prevSound = args.time
 				self:PlaySound(273721, "info")
