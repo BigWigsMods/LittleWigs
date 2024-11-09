@@ -36,7 +36,7 @@ function mod:OnWin()
 	local trashMod = BigWigs:GetBossModule("Siege of Boralus Trash", true)
 	if trashMod then
 		trashMod:Enable()
-		trashMod:LockwoodDefeated(13)
+		trashMod:DarkfathomDefeated()
 	end
 end
 

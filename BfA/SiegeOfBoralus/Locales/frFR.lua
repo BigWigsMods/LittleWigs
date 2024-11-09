@@ -20,7 +20,7 @@ if L then
 	L.tempest = "Tempête des Soutaillons"
 	L.invader = "Envahisseur corsandre"
 
-	--L.gate_open_desc = "Show a bar indicating when the Kul Tiran Wavetender will open the gate after Dread Captain Lockwood."
+	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
 end
 
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "frFR")

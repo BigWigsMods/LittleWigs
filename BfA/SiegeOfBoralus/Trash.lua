@@ -56,7 +56,7 @@ if L then
 	L.invader = "Ashvane Invader"
 
 	L.gate_open = CL.gate_open
-	L.gate_open_desc = "Show a bar indicating when the Kul Tiran Wavetender will open the gate after Dread Captain Lockwood."
+	L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
 	L.gate_open_icon = "achievement_dungeon_siegeofboralus"
 end
 
@@ -230,9 +230,23 @@ end
 
 -- RP Timers
 
+-- triggered from Chopper Redhook's and Sergeant Bainbridge's :OnWin
+function mod:FirstBossDefeated()
+	self:Bar("gate_open", 4.2, L.gate_open, L.gate_open_icon)
+end
+
 -- triggered from Dread Captain Lockwood's :OnWin
-function mod:LockwoodDefeated(duration)
-	self:Bar("gate_open", duration, L.gate_open, L.gate_open_icon)
+function mod:LockwoodDefeated()
+	self:Bar("gate_open", 4.8, L.gate_open, L.gate_open_icon)
+end
+
+-- triggered from Hadal Darkfathom's :OnWin
+function mod:DarkfathomDefeated()
+	if self:Mythic() or self:Heroic() then -- Alliance version
+		self:Bar("gate_open", 12.3, L.gate_open, L.gate_open_icon)
+	--else -- we might be in the Horde version which has a shorter timer
+		--self:Bar("gate_open", 4.9, L.gate_open, L.gate_open_icon)
+	end
 end
 
 -- Scrimshaw Enforcer / Kul Tiran Halberd
