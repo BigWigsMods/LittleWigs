@@ -9,6 +9,7 @@ mod:RegisterEnableMob(
 	224219, -- Twilight Earthcaller
 	224152, -- Twilight Brute
 	224609, -- Twilight Destroyer
+	224221, -- Twilight Overseer
 	40167, -- Twilight Beguiler
 	40166, -- Molten Giant
 	224271, -- Twilight Warlock
@@ -26,6 +27,7 @@ if L then
 	L.twilight_earthcaller = "Twilight Earthcaller"
 	L.twilight_brute = "Twilight Brute"
 	L.twilight_destroyer = "Twilight Destroyer"
+	L.twilight_overseer = "Twilight Overseer"
 	L.twilight_beguiler = "Twilight Beguiler"
 	L.molten_giant = "Molten Giant"
 	L.twilight_warlock = "Twilight Warlock"
@@ -48,6 +50,8 @@ function mod:GetOptions()
 		{451612, "SAY", "NAMEPLATE"}, -- Twilight Flame
 		451614, -- Twilight Ember
 		{451939, "NAMEPLATE"}, -- Umbral Wind
+		-- Twilight Overseer
+		{451378, "TANK", "NAMEPLATE"}, -- Rive
 		-- Twilight Beguiler
 		{76711, "NAMEPLATE"}, -- Sear Mind
 		-- Molten Giant
@@ -69,6 +73,7 @@ function mod:GetOptions()
 		[451871] = L.twilight_earthcaller,
 		[456696] = L.twilight_brute,
 		[451612] = L.twilight_destroyer,
+		[451378] = L.twilight_overseer,
 		[76711] = L.twilight_beguiler,
 		[451965] = L.molten_giant,
 		[451224] = L.twilight_warlock,
@@ -102,6 +107,11 @@ function mod:OnBossEnable()
 		self:Log("SPELL_PERIODIC_MISSED", "TwilightEmberDamage", 451614)
 		self:Log("SPELL_CAST_START", "UmbralWind", 451939)
 		self:Death("TwilightDestroyerDeath", 224609)
+
+		-- Twilight Overseer
+		self:RegisterEngageMob("TwilightOverseerEngaged", 224221)
+		self:Log("SPELL_CAST_START", "Rive", 451378)
+		self:Death("TwilightOverseerDeath", 224221)
 	end
 
 	-- Twilight Beguiler
@@ -269,6 +279,26 @@ function mod:UmbralWind(args)
 end
 
 function mod:TwilightDestroyerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Twilight Overseer
+
+function mod:TwilightOverseerEngaged(guid)
+	if UnitInVehicle("player") then
+		-- don't start timers when attacking from Battered Red Drake
+		return
+	end
+	self:Nameplate(451378, 4.3, guid) -- Rive
+end
+
+function mod:Rive(args)
+	self:Message(args.spellId, "purple")
+	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:TwilightOverseerDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 

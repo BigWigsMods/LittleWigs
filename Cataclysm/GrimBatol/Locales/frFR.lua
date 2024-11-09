@@ -12,6 +12,7 @@ if L then
 	L.twilight_earthcaller = "Implorateur(trice) de la terre du Crépuscule"
 	L.twilight_brute = "Brute du Crépuscule"
 	L.twilight_destroyer = "Destructeur du Crépuscule"
+	L.twilight_overseer = "Surveillant du Crépuscule"
 	L.twilight_beguiler = "Imposteur du Crépuscule"
 	L.molten_giant = "Géant de lave"
 	L.twilight_warlock = "Démoniste du Crépuscule"

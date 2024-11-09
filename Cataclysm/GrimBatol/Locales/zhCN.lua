@@ -12,6 +12,7 @@ if L then
 	L.twilight_earthcaller = "暮光唤地者"
 	L.twilight_brute = "暮光蛮兵"
 	L.twilight_destroyer = "暮光毁灭者"
+	L.twilight_overseer = "暮光监督者"
 	L.twilight_beguiler = "暮光欺诈者"
 	L.molten_giant = "熔核巨人"
 	L.twilight_warlock = "暮光术士"

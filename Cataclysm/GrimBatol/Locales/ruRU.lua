@@ -12,6 +12,7 @@ if L then
 	--L.twilight_earthcaller = "Twilight Earthcaller"
 	--L.twilight_brute = "Twilight Brute"
 	--L.twilight_destroyer = "Twilight Destroyer"
+	L.twilight_overseer = "Сумеречный надзиратель"
 	--L.twilight_beguiler = "Twilight Beguiler"
 	--L.molten_giant = "Molten Giant"
 	--L.twilight_warlock = "Twilight Warlock"

@@ -12,6 +12,7 @@ if L then
 	L.twilight_earthcaller = "Zwielichterdruferin"
 	L.twilight_brute = "Zwielichtschläger"
 	L.twilight_destroyer = "Zwielichtzerstörer"
+	L.twilight_overseer = "Zwielichtvorarbeiter"
 	L.twilight_beguiler = "Zwielichtbetörer"
 	L.molten_giant = "Geschmolzener Riese"
 	L.twilight_warlock = "Zwielichthexenmeister"

@@ -12,6 +12,7 @@ if L then
 	L.twilight_earthcaller = "황혼의 대지술사"
 	L.twilight_brute = "황혼의 투사"
 	L.twilight_destroyer = "황혼의 파괴자"
+	L.twilight_overseer = "황혼의 감독관"
 	L.twilight_beguiler = "황혼의 현혹술사"
 	L.molten_giant = "용암거인"
 	L.twilight_warlock = "황혼의 흑마법사"
