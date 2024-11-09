@@ -12,6 +12,7 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
+local bossCollector = {}
 local callIrontideCount = 1
 --local ordnanceRemaining = 0
 local ordnanceCollector = {}
@@ -68,14 +69,22 @@ function mod:OnBossEnable()
 
 	-- Irontide Cleaver
 	self:Log("SPELL_CAST_START", "HeavySlash", 257288)
+	self:Death("IrontideCleaverDeath", 129879, 129996) -- initial spawn, boss summon
 end
 
 function mod:OnEngage()
+	bossCollector = {}
 	callIrontideCount = 1
 	--ordnanceRemaining = 0
 	ordnanceCollector = {}
 	--ordnanceExplosionTime = 0
 	self:CDBar(257585, 11.1) -- Cannon Barrage
+	local _, guid = self:GetBossId(129879) -- Irontide Cleaver
+	if guid then
+		bossCollector[guid] = true
+		self:Nameplate(257288, 6.2, guid) -- Heavy Slash
+	end
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 end
 
 function mod:OnWin()
@@ -89,6 +98,21 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
+	for i = 1, 5 do
+		local guid = self:UnitGUID(("boss%d"):format(i))
+		if guid and not bossCollector[guid] then
+			bossCollector[guid] = true
+			local mobId = self:MobId(guid)
+			if mobId == 129879 then -- Irontide Cleaver (initial spawn)
+				self:Nameplate(257288, 6.2, guid) -- Heavy Slash
+			elseif mobId == 129996 then -- Irontide Cleaver (boss summon)
+				self:Nameplate(257288, 3.6, guid) -- Heavy Slash
+			end
+		end
+	end
+end
 
 function mod:CallIrontide(args)
 	if callIrontideCount <= 3 then -- ignore any additional casts
@@ -228,4 +252,8 @@ do
 			end
 		end
 	end
+end
+
+function mod:IrontideCleaverDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
