@@ -7,6 +7,7 @@ if L then
 	L.zolramus_gatekeeper = "Gardien de porte de Zolramus"
 	L.zolramus_necromancer = "Nécromancien de Zolramus"
 	L.brittlebone_mage = "Mage os-vermoulu"
+	L.zolramus_bonecarver = "Sculpteur d'os de Zolramus"
 	L.skeletal_marauder = "Maraudeur squelette"
 	L.zolramus_bonemender = "Soigne-os de Zolramus"
 	L.zolramus_sorcerer = "Ensorceleur de Zolramus"

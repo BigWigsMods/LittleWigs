@@ -7,6 +7,7 @@ if L then
 	L.zolramus_gatekeeper = "조르라무스 문지기"
 	L.zolramus_necromancer = "조르라무스 강령술사"
 	L.brittlebone_mage = "불완전뼈 마법사"
+	L.zolramus_bonecarver = "조르라무스 뼈분리자"
 	L.skeletal_marauder = "해골 약탈자"
 	L.zolramus_bonemender = "조르라무스 뼈치유사"
 	L.zolramus_sorcerer = "조르라무스 마술사"

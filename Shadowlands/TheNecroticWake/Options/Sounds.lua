@@ -41,6 +41,7 @@ BigWigs:AddSounds("The Necrotic Wake Trash", {
 	[320696] = "alert",
 	[320822] = "info",
 	[321780] = "alert",
+	[321807] = "alert",
 	[322756] = "alarm",
 	[323347] = "info",
 	[323471] = "info",

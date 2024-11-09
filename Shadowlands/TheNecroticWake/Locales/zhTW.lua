@@ -7,6 +7,7 @@ if L then
 	L.zolramus_gatekeeper = "佐拉慕斯守門者"
 	--L.zolramus_necromancer = "Zolramus Necromancer"
 	L.brittlebone_mage = "脆骨法師"
+	--L.zolramus_bonecarver = "Zolramus Bonecarver"
 	L.skeletal_marauder = "骷髏掠奪者"
 	L.zolramus_bonemender = "佐拉慕斯修骨者"
 	--L.zolramus_sorcerer = "Zolramus Sorcerer"

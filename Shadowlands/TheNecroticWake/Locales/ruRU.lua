@@ -7,6 +7,7 @@ if L then
 	L.zolramus_gatekeeper = "Хранитель врат с \"Золрамуса\""
 	L.zolramus_necromancer = "Некромант с \"Золрамуса\""
 	L.brittlebone_mage = "Хрупкий маг"
+	L.zolramus_bonecarver = "Резчик с \"Золрамуса\""
 	L.skeletal_marauder = "Скелет-мародер"
 	L.zolramus_bonemender = "Костоправ с \"Золрамуса\""
 	L.zolramus_sorcerer = "Чародей с \"Золрамуса\""

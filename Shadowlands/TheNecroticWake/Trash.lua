@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 	165137, -- Zolramus Gatekeeper
 	163618, -- Zolramus Necromancer
 	163126, -- Brittlebone Mage
+	163619, -- Zolramus Bonecarver
 	165919, -- Skeletal Marauder
 	165222, -- Zolramus Bonemender
 	163128, -- Zolramus Sorcerer
@@ -38,6 +39,7 @@ if L then
 	L.zolramus_gatekeeper = "Zolramus Gatekeeper"
 	L.zolramus_necromancer = "Zolramus Necromancer"
 	L.brittlebone_mage = "Brittlebone Mage"
+	L.zolramus_bonecarver = "Zolramus Bonecarver"
 	L.skeletal_marauder = "Skeletal Marauder"
 	L.zolramus_bonemender = "Zolramus Bonemender"
 	L.zolramus_sorcerer = "Zolramus Sorcerer"
@@ -70,6 +72,8 @@ function mod:GetOptions()
 		{327396, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Grim Fate
 		-- Brittlebone Mage
 		{328667, "NAMEPLATE"}, -- Frostbolt Volley
+		-- Zolramus Bonecarver
+		{321807, "TANK", "NAMEPLATE"}, -- Boneflay
 		-- Skeletal Marauder
 		{324293, "NAMEPLATE"}, -- Rasping Scream
 		{343470, "NAMEPLATE"}, -- Boneshatter Shield
@@ -160,6 +164,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "FrostboltVolleyInterrupt", 328667)
 	self:Log("SPELL_CAST_SUCCESS", "FrostboltVolleySuccess", 328667)
 	self:Death("BrittleboneMageDeath", 163126)
+
+	-- Zolramus Bonecarver
+	self:RegisterEngageMob("ZolramusBonecarverEngaged", 163619)
+	self:Log("SPELL_CAST_START", "Boneflay", 321807)
+	self:Log("SPELL_CAST_SUCCESS", "BoneflaySuccess", 321807)
+	self:Death("ZolramusBonecarverDeath", 163619)
 
 	-- Skeletal Marauder
 	self:RegisterEngageMob("SkeletalMarauderEngaged", 165919)
@@ -428,6 +438,35 @@ function mod:FrostboltVolleySuccess(args)
 end
 
 function mod:BrittleboneMageDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Zolramus Bonecarver
+
+function mod:ZolramusBonecarverEngaged(guid)
+	self:Nameplate(321807, 6.7, guid) -- Boneflay
+end
+
+do
+	local prev = 0
+	function mod:Boneflay(args)
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+			return
+		end
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:BoneflaySuccess(args)
+	self:Nameplate(args.spellId, 15.0, args.sourceGUID)
+end
+
+function mod:ZolramusBonecarverDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
