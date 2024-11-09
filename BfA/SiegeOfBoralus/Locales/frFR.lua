@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	L.enforcer = "Massacreur sculptivoire"
 	L.halberd = "Hallebardier kultirassien"
+	L.gutter = "Eviscérateur sculptivoire"
 	L.bomber = "Bombardier carbutan"
 	L.waveshaper = "Sculpte-vagues des Lamineurs"
 	L.wavetender = "Soigne-vagues kultirassien"
@@ -10,6 +11,7 @@ if L then
 	L.shredder = "Déchiqueteur des marées"
 	L.vanguard = "Avant-garde de Kul Tiras"
 	L.commander = "Commandant corsandre"
+	L.curseblade = "Lame maudite des Lamineurs"
 	L.spotter = "Guetteur corsandre"
 	L.cannoneer = "Canonnier corsandre"
 	L.demolisher = "Démolisseur des Soutaillons"

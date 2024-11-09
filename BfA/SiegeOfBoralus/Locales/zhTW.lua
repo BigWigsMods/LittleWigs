@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	--L.enforcer = "Scrimshaw Enforcer"
 	L.halberd = "庫爾提拉斯長戟兵"
+	--L.gutter = "Scrimshaw Gutter"
 	--L.bomber = "Blackar Bomber"
 	--L.waveshaper = "Irontide Waveshaper"
 	L.wavetender = "庫爾提拉斯平浪者"
@@ -10,6 +11,7 @@ if L then
 	--L.shredder = "Riptide Shredder"
 	L.vanguard = "庫爾提拉斯先鋒"
 	L.commander = "艾胥凡指揮官"
+	--L.curseblade = "Irontide Curseblade"
 	L.spotter = "艾胥凡偵察兵"
 	L.cannoneer = "艾胥凡砲手"
 	L.demolisher = "污鼠會毀滅者"

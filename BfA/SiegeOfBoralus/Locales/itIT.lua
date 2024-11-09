@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	L.enforcer = "Scagnozzo Bendarozza"
 	L.halberd = "Alabardiere di Kul Tiras"
+	L.gutter = "Sbudellatore Bendarozza"
 	L.bomber = "Bombardiere Pecenera"
 	L.waveshaper = "Plasmaonde Marferreo"
 	L.wavetender = "Tracciaonde di Kul Tiras"
@@ -10,6 +11,7 @@ if L then
 	L.shredder = "Sminuzzatore Squarciamaree"
 	L.vanguard = "Avanguardia di Kul Tiras"
 	L.commander = "Comandante dei Bracescura"
+	L.curseblade = "Lama Maledetta dei Marferreo"
 	L.spotter = "Ricognitore dei Bracescura"
 	L.cannoneer = "Cannoniere dei Bracescura"
 	L.demolisher = "Demolitore dei Ratti di Sentina"

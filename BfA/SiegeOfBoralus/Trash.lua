@@ -8,6 +8,8 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	129374, -- Scrimshaw Enforcer (Alliance)
 	141283, -- Kul Tiran Halberd (Horde)
+	138002, -- Scrimshaw Gutter (Alliance, RP fights)
+	133990, -- Scrimshaw Gutter (Alliance)
 	129372, -- Blacktar Bomber
 	129370, -- Irontide Waveshaper
 	144071, -- Irontide Waveshaper
@@ -16,6 +18,8 @@ mod:RegisterEnableMob(
 	129371, -- Riptide Shredder
 	138019, -- Kul Tiran Vanguard (Horde)
 	128969, -- Ashvane Commander
+	135258, -- Irontide Curseblade
+	138247, -- Irontide Curseblade (RP fights)
 	135263, -- Ashvane Spotter
 	138255, -- Ashvane Spotter
 	138465, -- Ashvane Cannoneer
@@ -34,6 +38,7 @@ local L = mod:GetLocale()
 if L then
 	L.enforcer = "Scrimshaw Enforcer"
 	L.halberd = "Kul Tiran Halberd"
+	L.gutter = "Scrimshaw Gutter"
 	L.bomber = "Blackar Bomber"
 	L.waveshaper = "Irontide Waveshaper"
 	L.wavetender = "Kul Tiran Wavetender"
@@ -41,6 +46,7 @@ if L then
 	L.shredder = "Riptide Shredder"
 	L.vanguard = "Kul Tiran Vanguard"
 	L.commander = "Ashvane Commander"
+	L.curseblade = "Irontide Curseblade"
 	L.spotter = "Ashvane Spotter"
 	L.cannoneer = "Ashvane Cannoneer"
 	L.demolisher = "Bilge Rat Demolisher"
@@ -65,6 +71,8 @@ function mod:GetOptions()
 		-- Scrimshaw Enforcer / Kul Tiran Halberd
 		{256627, "NAMEPLATE"}, -- Slobber Knocker
 		{257732, "NAMEPLATE"}, -- Shattering Bellow
+		-- Scrimshaw Gutter
+		{256616, "TANK", "NAMEPLATE"}, -- Tooth Breaker
 		-- Blacktar Bomber
 		{256640, "NAMEPLATE"}, -- Burning Tar
 		-- Irontide Waveshaper / Kul Tiran Wavetender
@@ -79,6 +87,8 @@ function mod:GetOptions()
 		-- Ashvane Commander
 		{454437, "SAY", "NAMEPLATE"}, -- Azerite Charge
 		{275826, "NAMEPLATE"}, -- Bolstering Shout
+		-- Irontide Curseblade
+		{257168, "TANK", "NAMEPLATE", "OFF"}, -- Cursed Slash
 		-- Ashvane Spotter
 		{272421, "SAY", "NAMEPLATE"}, -- Sighted Artillery
 		-- Ashvane Cannoneer
@@ -96,12 +106,14 @@ function mod:GetOptions()
 		{275835, "TANK", "NAMEPLATE"}, -- Stinging Venom Coating
 	}, {
 		[256627] = L.halberd.." / "..L.enforcer,
+		[256616] = L.gutter,
 		[256640] = L.bomber,
 		[256957] = L.wavetender.." / "..L.waveshaper,
 		[272662] = L.raider,
 		[257270] = L.shredder,
 		[257288] = L.vanguard,
 		[454437] = L.commander,
+		[257168] = L.curseblade,
 		[272421] = L.spotter,
 		[268260] = L.cannoneer,
 		[257169] = L.demolisher,
@@ -118,6 +130,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SlobberKnocker", 256627)
 	self:Log("SPELL_CAST_START", "ShatteringBellow", 257732)
 	self:Death("KulTiranHalberdDeath", 141283, 129374) -- Enforcer, Halberd
+
+	-- Scrimshaw Gutter
+	self:RegisterEngageMob("ScrimshawGutterEngaged", 133990) -- 138002 RP fights
+	self:Log("SPELL_CAST_START", "ToothBreaker", 256616)
+	self:Log("SPELL_CAST_SUCCESS", "ToothBreakerSuccess", 256616)
+	self:Death("ScrimshawGutterDeath", 138002, 133990)
 
 	-- Blacktar Bomber
 	self:RegisterEngageMob("BlacktarBomberEngaged", 129372)
@@ -157,6 +175,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "BolsteringShoutInterrupt", 275826)
 	self:Log("SPELL_CAST_SUCCESS", "BolsteringShoutSuccess", 275826)
 	self:Death("AshvaneCommanderDeath", 128969)
+
+	-- Irontide Curseblade
+	self:RegisterEngageMob("IrontideCursebladeEngaged", 135258) -- 138247 RP fights
+	self:Log("SPELL_CAST_SUCCESS", "CursedSlash", 257168)
+	self:Death("IrontideCursebladeDeath", 135258, 138247)
 
 	-- Ashvane Spotter
 	self:RegisterEngageMob("AshvaneSpotterEngaged", 135263, 138255)
@@ -215,7 +238,7 @@ end
 -- Scrimshaw Enforcer / Kul Tiran Halberd
 
 function mod:KulTiranHalberdEngaged(guid)
-	self:Nameplate(256627, 7.1, guid) -- Slobber Knocker
+	self:Nameplate(256627, 5.6, guid) -- Slobber Knocker
 	self:Nameplate(257732, 13.1, guid) -- Shattering Bellow
 end
 
@@ -232,6 +255,32 @@ function mod:ShatteringBellow(args)
 end
 
 function mod:KulTiranHalberdDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Scrimshaw Gutter
+
+function mod:ScrimshawGutterEngaged(guid)
+	self:Nameplate(256616, 2.3, guid) -- Tooth Breaker
+end
+
+do
+	local prev = 0
+	function mod:ToothBreaker(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:ToothBreakerSuccess(args)
+	self:Nameplate(args.spellId, 18.0, args.sourceGUID)
+end
+
+function mod:ScrimshawGutterDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
@@ -408,6 +457,28 @@ function mod:BolsteringShoutSuccess(args)
 end
 
 function mod:AshvaneCommanderDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Irontide Curseblade
+
+function mod:IrontideCursebladeEngaged(guid)
+	self:Nameplate(257168, 3.5, guid) -- Cursed Slash
+end
+
+do
+	local prev = 0
+	function mod:CursedSlash(args)
+		self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:IrontideCursebladeDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
