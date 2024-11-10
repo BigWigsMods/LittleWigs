@@ -20,7 +20,7 @@ if L then
 	L.tempest = "水鼠帮唤风者"
 	L.invader = "艾什凡入侵者"
 
-	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
+	L.gate_open_desc = "显示在击杀首领后通往下个区域屏障移除的计时条。"
 end
 
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "zhCN")
