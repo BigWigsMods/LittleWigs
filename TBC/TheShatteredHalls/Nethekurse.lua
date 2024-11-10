@@ -1,13 +1,12 @@
-
 --------------------------------------------------------------------------------
--- Module declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Grand Warlock Nethekurse", 540, 566)
 if not mod then return end
 mod:RegisterEnableMob(16807)
-mod.engageId = 1936
--- mod.respawnTime = 0 -- resets, doesn't respawn
+mod:SetEncounterID(1936)
+--mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -24,8 +23,13 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "DeathCoil", 30500)
 	self:Log("SPELL_AURA_APPLIED", "DeathCoilApplied", 30500)
-	self:Log("SPELL_DAMAGE", "ConsumptionDamage", 35951)
-	self:Log("SPELL_MISSED", "ConsumptionDamage", 35951)
+	if self:Retail() then
+		self:Log("SPELL_PERIODIC_DAMAGE", "ConsumptionDamage", 30498)
+		self:Log("SPELL_PERIODIC_MISSED", "ConsumptionDamage", 30498)
+	else -- Classic
+		self:Log("SPELL_DAMAGE", "ConsumptionDamage", 35951)
+		self:Log("SPELL_MISSED", "ConsumptionDamage", 35951)
+	end
 	self:Log("SPELL_AURA_APPLIED", "DarkSpin", 30502)
 
 	if self:Classic() then
