@@ -20,7 +20,7 @@ if L then
 	L.tempest = "항만의 시궁쥐단 폭풍우소환사"
 	L.invader = "애쉬베인 침략자"
 
-	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
+	L.gate_open_desc = "각 보스를 처치한 후 다음 지역으로 가는 문이 언제 열리는지 표시하는 바를 표시합니다."
 end
 
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "koKR")
