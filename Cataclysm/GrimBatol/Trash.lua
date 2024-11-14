@@ -46,6 +46,7 @@ function mod:GetOptions()
 		{451871, "NAMEPLATE"}, -- Mass Tremor
 		-- Twilight Brute
 		{456696, "NAMEPLATE"}, -- Obsidian Stomp
+		{451364, "TANK", "NAMEPLATE", "OFF"}, -- Brutal Strike
 		-- Twilight Destroyer
 		{451612, "SAY", "NAMEPLATE"}, -- Twilight Flame
 		451614, -- Twilight Ember
@@ -97,6 +98,8 @@ function mod:OnBossEnable()
 		-- Twilight Brute
 		self:RegisterEngageMob("TwilightBruteEngaged", 224152)
 		self:Log("SPELL_CAST_SUCCESS", "ObsidianStomp", 456696)
+		self:Log("SPELL_CAST_START", "BrutalStrike", 451364)
+		self:Log("SPELL_CAST_SUCCESS", "BrutalStrikeSuccess", 451364)
 		self:Death("TwilightBruteDeath", 224152)
 
 		-- Twilight Destroyer
@@ -214,6 +217,7 @@ function mod:TwilightBruteEngaged(guid)
 		-- don't start timers when attacking from Battered Red Drake
 		return
 	end
+	self:Nameplate(451364, 3.4, guid) -- Brutal Strike
 	self:Nameplate(456696, 10.3, guid) -- Obsidian Stomp
 end
 
@@ -224,7 +228,7 @@ do
 		local unit = self:UnitTokenFromGUID(args.sourceGUID)
 		if unit and UnitCanAttack("player", unit) then
 			local t = args.time
-			if t - prev > 2 then
+			if t - prev > 1.5 then
 				prev = t
 				self:Message(args.spellId, "orange")
 				self:PlaySound(args.spellId, "alarm")
@@ -232,6 +236,22 @@ do
 			self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 		end
 	end
+end
+
+do
+	local prev = 0
+	function mod:BrutalStrike(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:BrutalStrikeSuccess(args)
+	self:Nameplate(args.spellId, 15.0, args.sourceGUID)
 end
 
 function mod:TwilightBruteDeath(args)
