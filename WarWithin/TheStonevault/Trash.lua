@@ -85,6 +85,7 @@ function mod:GetOptions()
 		{449154, "HEALER", "NAMEPLATE"}, -- Molten Mortar
 		-- Cursedforge Honor Guard
 		{448640, "NAMEPLATE"}, -- Shield Stampede
+		{428894, "TANK", "NAMEPLATE", "OFF"}, -- Stonebreaker Strike
 		-- Cursedforge Stoneshaper
 		{429427, "NAMEPLATE"}, -- Earth Burst Totem
 		-- Rock Smasher
@@ -181,6 +182,8 @@ function mod:OnBossEnable()
 	-- Cursedforge Honor Guard
 	self:RegisterEngageMob("CursedforgeHonorGuardEngaged", 214264)
 	self:Log("SPELL_CAST_START", "ShieldStampede", 448640)
+	self:Log("SPELL_CAST_START", "StonebreakerStrike", 428894)
+	self:Log("SPELL_CAST_SUCCESS", "StonebreakerStrikeSuccess", 428894)
 	self:Death("CursedforgeHonorGuardDeath", 214264)
 
 	-- Cursedforge Stoneshaper
@@ -515,6 +518,7 @@ end
 
 function mod:CursedforgeHonorGuardEngaged(guid)
 	self:Nameplate(448640, 6.8, guid) -- Shield Stampede
+	self:Nameplate(428894, 14.4, guid) -- Stonebreaker Strike
 end
 
 do
@@ -528,6 +532,22 @@ do
 		end
 		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 	end
+end
+
+do
+	local prev = 0
+	function mod:StonebreakerStrike(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:StonebreakerStrikeSuccess(args)
+	self:Nameplate(args.spellId, 15.2, args.sourceGUID)
 end
 
 function mod:CursedforgeHonorGuardDeath(args)
