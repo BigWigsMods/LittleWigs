@@ -2,6 +2,7 @@ local L = BigWigs:NewBossLocale("City of Threads Trash", "koKR")
 if not L then return end
 if L then
 	L.herald_of_ansurek = "안수레크의 전령"
+	L.sureki_venomblade = "수레키 맹독칼날"
 	L.sureki_silkbinder = "수레키 비단결속사"
 	L.royal_swarmguard = "왕실 무리수호병"
 	L.xephitik = "제프이티크"

@@ -8,6 +8,7 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	223254, -- Queen Ansurek / The Vizier (gossip NPC)
 	220196, -- Herald of Ansurek
+	220193, -- Sureki Venomblade
 	220195, -- Sureki Silkbinder
 	220197, -- Royal Swarmguard
 	219984, -- Xeph'itik
@@ -34,6 +35,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	L.herald_of_ansurek = "Herald of Ansurek"
+	L.sureki_venomblade = "Sureki Venomblade"
 	L.sureki_silkbinder = "Sureki Silkbinder"
 	L.royal_swarmguard = "Royal Swarmguard"
 	L.xephitik = "Xeph'itik"
@@ -66,6 +68,8 @@ function mod:GetOptions()
 		-- Herald of Ansurek
 		{443437, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Shadows of Doubt
 		443433, -- Twist Thoughts
+		-- Sureki Venomblade
+		{443397, "DISPEL", "NAMEPLATE"}, -- Venom Strike
 		-- Sureki Silkbinder
 		{443430, "NAMEPLATE"}, -- Silk Binding
 		-- Royal Swarmguard
@@ -97,6 +101,7 @@ function mod:GetOptions()
 		{447271, "NAMEPLATE"}, -- Tremor Slam
 	}, {
 		[443437] = L.herald_of_ansurek,
+		[443397] = L.sureki_venomblade,
 		[443430] = L.sureki_silkbinder,
 		[443500] = L.royal_swarmguard,
 		[450784] = L.xephitik,
@@ -130,6 +135,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "TwistThoughtsDamage", 443435)
 	self:Log("SPELL_PERIODIC_MISSED", "TwistThoughtsDamage", 443435)
 	self:Death("HeraldOfAnsurekDeath", 220196)
+
+	-- Sureki Venomblade
+	self:RegisterEngageMob("SurekiVenombladeEngaged", 220193)
+	self:Log("SPELL_CAST_SUCCESS", "VenomStrikeSuccess", 443397)
+	self:Log("SPELL_AURA_APPLIED", "VenomStrikeApplied", 443401)
+	self:Death("SurekiVenombladeDeath", 220193)
 
 	-- Sureki Silkbinder
 	self:RegisterEngageMob("SurekiSilkbinderEngaged", 220195)
@@ -306,6 +317,36 @@ do
 end
 
 function mod:HeraldOfAnsurekDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Sureki Venomblade
+
+function mod:SurekiVenombladeEngaged(guid)
+	if self:Tank() or self:Dispeller("poison", nil, 443397) then
+		self:Nameplate(443397, 2.6, guid) -- Silk Binding
+	end
+end
+
+function mod:VenomStrikeSuccess(args)
+	if self:Tank() or self:Dispeller("poison", nil, args.spellId) then
+		self:Nameplate(args.spellId, 11.1, args.sourceGUID)
+	end
+end
+
+do
+	local prev = 0
+	function mod:VenomStrikeApplied(args)
+		-- throttle because separate debuffs can be applied by multiple mobs at once
+		if (self:Me(args.destGUID) or (self:Dispeller("poison", nil, 443397) and self:Friendly(args.destFlags))) and args.time - prev > 2.5 then
+			prev = args.time
+			self:TargetMessage(443397, "purple", args.destName)
+			self:PlaySound(443397, "alert", nil, args.destName)
+		end
+	end
+end
+
+function mod:SurekiVenombladeDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
