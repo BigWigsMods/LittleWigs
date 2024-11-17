@@ -88,14 +88,22 @@ function mod:ViscousDarkness(args)
 	self:StopBar(CL.count:format(args.spellName, viscousDarknessCount))
 	self:Message(441289, "red", CL.count:format(args.spellName, viscousDarknessCount))
 	viscousDarknessCount = viscousDarknessCount + 1
-	if viscousDarknessCount == 2 then
-		self:CDBar(441289, 21.8, CL.count:format(args.spellName, viscousDarknessCount))
-	elseif viscousDarknessCount == 3 then
-		self:CDBar(441289, 32.8, CL.count:format(args.spellName, viscousDarknessCount))
-	elseif viscousDarknessCount % 2 == 0 then -- 4, 6...
-		self:CDBar(441289, 36.4, CL.count:format(args.spellName, viscousDarknessCount))
-	else -- 5, 7...
-		self:CDBar(441289, 38.9, CL.count:format(args.spellName, viscousDarknessCount))
+	if self:Mythic() then
+		if viscousDarknessCount == 2 then
+			self:CDBar(441289, 21.8, CL.count:format(args.spellName, viscousDarknessCount))
+		elseif viscousDarknessCount == 3 then
+			self:CDBar(441289, 32.8, CL.count:format(args.spellName, viscousDarknessCount))
+		elseif viscousDarknessCount % 2 == 0 then -- 4, 6...
+			self:CDBar(441289, 36.4, CL.count:format(args.spellName, viscousDarknessCount))
+		else -- 5, 7...
+			self:CDBar(441289, 38.8, CL.count:format(args.spellName, viscousDarknessCount))
+		end
+	else -- Heroic, Normal
+		if viscousDarknessCount % 2 == 0 then -- 2, 4...
+			self:CDBar(441289, 36.4, CL.count:format(args.spellName, viscousDarknessCount))
+		else -- 3, 5...
+			self:CDBar(441289, 38.8, CL.count:format(args.spellName, viscousDarknessCount))
+		end
 	end
 	self:PlaySound(441289, "long")
 end
@@ -104,10 +112,22 @@ function mod:OozingSmash(args)
 	self:StopBar(CL.count:format(args.spellName, oozingSmashCount))
 	self:Message(461842, "purple", CL.count:format(args.spellName, oozingSmashCount))
 	oozingSmashCount = oozingSmashCount + 1
-	if oozingSmashCount == 2 then
-		self:CDBar(461842, 54.6, CL.count:format(args.spellName, oozingSmashCount))
-	else -- 3+
-		self:CDBar(461842, 75.3, CL.count:format(args.spellName, oozingSmashCount))
+	if self:Mythic() then
+		if oozingSmashCount == 2 then
+			self:CDBar(461842, 54.2, CL.count:format(args.spellName, oozingSmashCount))
+		elseif oozingSmashCount % 2 == 1 then -- 3, 5...
+			self:CDBar(461842, 15.7, CL.count:format(args.spellName, oozingSmashCount))
+		else -- 4, 6...
+			self:CDBar(461842, 59.4, CL.count:format(args.spellName, oozingSmashCount))
+		end
+	else -- Heroic, Normal
+		if oozingSmashCount == 2 then
+			self:CDBar(461842, 47.3, CL.count:format(args.spellName, oozingSmashCount))
+		elseif oozingSmashCount % 2 == 1 then -- 3, 5...
+			self:CDBar(461842, 15.7, CL.count:format(args.spellName, oozingSmashCount))
+		else -- 4, 6...
+			self:CDBar(461842, 59.4, CL.count:format(args.spellName, oozingSmashCount))
+		end
 	end
 	self:PlaySound(461842, "alert")
 end
@@ -116,10 +136,18 @@ function mod:BloodSurge(args)
 	self:StopBar(CL.count:format(args.spellName, bloodSurgeCount))
 	self:Message(461880, "orange", CL.count:format(args.spellName, bloodSurgeCount))
 	bloodSurgeCount = bloodSurgeCount + 1
-	if bloodSurgeCount == 2 then
-		self:CDBar(461880, 68.0, CL.count:format(args.spellName, bloodSurgeCount))
-	else -- 3+
-		self:CDBar(461880, 75.3, CL.count:format(args.spellName, bloodSurgeCount))
+	if self:Mythic() then
+		if bloodSurgeCount == 2 then
+			self:CDBar(461880, 68.0, CL.count:format(args.spellName, bloodSurgeCount))
+		else -- 3+
+			self:CDBar(461880, 75.2, CL.count:format(args.spellName, bloodSurgeCount))
+		end
+	else -- Heroic, Normal
+		if bloodSurgeCount == 2 then
+			self:CDBar(461880, 87.3, CL.count:format(args.spellName, bloodSurgeCount))
+		else -- 3+
+			self:CDBar(461880, 75.2, CL.count:format(args.spellName, bloodSurgeCount))
+		end
 	end
 	self:PlaySound(461880, "alarm")
 end
@@ -128,7 +156,7 @@ function mod:DarkPulse(args)
 	self:StopBar(CL.count:format(args.spellName, darkPulseCount))
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, darkPulseCount))
 	darkPulseCount = darkPulseCount + 1
-	self:CDBar(args.spellId, 75.3, CL.count:format(args.spellName, darkPulseCount))
+	self:CDBar(args.spellId, 75.2, CL.count:format(args.spellName, darkPulseCount))
 	self:PlaySound(args.spellId, "alert")
 end
 
