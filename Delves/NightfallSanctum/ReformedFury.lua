@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 mod:SetEncounterID(2998)
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -69,6 +70,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:SetStage(1)
 	self:CDBar(443837, 3.6, CL.frontal_cone) -- Shadow Sweep
 	self:CDBar(443482, 7.2) -- Blessing of Dusk
 	self:CDBar(444408, 16.2, CL.dodge) -- Speaker's Wrath
@@ -102,11 +104,15 @@ function mod:SpeakersWrath(args)
 end
 
 function mod:SpeakerDavenruthDeath()
-	self:StopBar(CL.frontal_cone) -- Shadow Sweep
-	self:StopBar(443482) -- Blessing of Dusk
-	self:StopBar(CL.dodge) -- Speaker's Wrath
-	self:Bar("warmup", 4.7, CL.active, L.warmup_icon) -- time until Reformed Fury spawns
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT") -- to detect Reformed Fury engage
+	-- this event sometimes fires again later on, use the stage to throttle
+	if self:GetStage() == 1 then
+		self:SetStage(2)
+		self:StopBar(CL.frontal_cone) -- Shadow Sweep
+		self:StopBar(443482) -- Blessing of Dusk
+		self:StopBar(CL.dodge) -- Speaker's Wrath
+		self:Bar("warmup", 4.7, CL.active, L.warmup_icon) -- time until Reformed Fury spawns
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT") -- to detect Reformed Fury engage
+	end
 end
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
