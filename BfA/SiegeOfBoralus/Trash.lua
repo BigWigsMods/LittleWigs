@@ -27,6 +27,7 @@ mod:RegisterEnableMob(
 	129366, -- Bilge Rat Buccaneer
 	135241, -- Bilge Rat Pillager
 	129367, -- Bilge Rat Tempest
+	137511, -- Bilge Rat Cutthroat
 	137516 -- Ashvane Invader
 )
 
@@ -53,6 +54,7 @@ if L then
 	L.buccaneer = "Bilge Rat Buccaneer"
 	L.pillager = "Bilge Rat Pillager"
 	L.tempest = "Bilge Rat Tempest"
+	L.cutthroat = "Bilge Rat Cutthroat"
 	L.invader = "Ashvane Invader"
 
 	L.gate_open = CL.gate_open
@@ -82,6 +84,7 @@ function mod:GetOptions()
 		{257170, "NAMEPLATE"}, -- Savage Tempest
 		-- Riptide Shredder
 		{257270, "NAMEPLATE", "OFF"}, -- Iron Ambush
+		{256709, "NAMEPLATE", "TANK", "OFF"}, -- Singing Steel
 		-- Kul Tiran Vanguard
 		{257288, "NAMEPLATE"}, -- Heavy Slash
 		-- Ashvane Commander
@@ -102,6 +105,8 @@ function mod:GetOptions()
 		{454440, "NAMEPLATE"}, -- Stinky Vomit
 		-- Bilge Rat Tempest
 		{272571, "NAMEPLATE"}, -- Choking Waters
+		-- Bilge Rat Cutthroat
+		{272588, "DISPEL", "NAMEPLATE"}, -- Rotting Wounds
 		-- Ashvane Invader
 		{275835, "TANK", "NAMEPLATE"}, -- Stinging Venom Coating
 	}, {
@@ -120,6 +125,7 @@ function mod:GetOptions()
 		[272546] = L.buccaneer,
 		[454440] = L.pillager,
 		[272571] = L.tempest,
+		[272588] = L.cutthroat,
 		[275835] = L.invader,
 	}
 end
@@ -160,6 +166,8 @@ function mod:OnBossEnable()
 	-- Riptide Shredder
 	self:RegisterEngageMob("RiptideShredderEngaged", 129371)
 	self:Log("SPELL_CAST_SUCCESS", "IronAmbush", 257270)
+	self:Log("SPELL_CAST_START", "SingingSteel", 256709)
+	self:Log("SPELL_CAST_SUCCESS", "SingingSteelSuccess", 256709)
 	self:Death("RiptideShredderDeath", 129371)
 
 	-- Kul Tiran Vanguard (Horde-only)
@@ -217,6 +225,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "ChokingWatersInterrupt", 272571)
 	self:Log("SPELL_CAST_SUCCESS", "ChokingWatersSuccess", 272571)
 	self:Death("BilgeRatTempestDeath", 129367)
+
+	-- Bilge Rat Cutthroat
+	self:RegisterEngageMob("BilgeRatCutthroatEngaged", 137511)
+	self:Log("SPELL_CAST_START", "RottingWounds", 272588)
+	self:Log("SPELL_CAST_SUCCESS", "RottingWoundsSuccess", 272588)
+	self:Log("SPELL_AURA_APPLIED", "RottingWoundsApplied", 272588)
+	self:Death("BilgeRatCutthroatDeath", 137511)
 
 	-- Ashvane Invader
 	self:RegisterEngageMob("AshvaneInvaderEngaged", 137516)
@@ -393,6 +408,7 @@ end
 -- Riptide Shredder
 
 function mod:RiptideShredderEngaged(guid)
+	self:Nameplate(256709, 3.3, guid) -- Singing Steel
 	self:Nameplate(257270, 14.5, guid) -- Iron Ambush
 end
 
@@ -406,6 +422,22 @@ do
 			self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		end
 	end
+end
+
+do
+	local prev = 0
+	function mod:SingingSteel(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:SingingSteelSuccess(args)
+	self:Nameplate(args.spellId, 12.3, args.sourceGUID)
 end
 
 function mod:RiptideShredderDeath(args)
@@ -643,6 +675,41 @@ function mod:ChokingWatersSuccess(args)
 end
 
 function mod:BilgeRatTempestDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Bilge Rat Cutthroat
+
+function mod:BilgeRatCutthroatEngaged(guid)
+	if self:Tank() or self:Dispeller("disease", nil, 272588) then -- Rotting Wounds
+		self:Nameplate(272588, 2.1, guid) -- Rotting Wounds
+	end
+end
+
+function mod:RottingWounds(args)
+	if self:Tank() or self:Dispeller("disease", nil, args.spellId) then
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+	end
+end
+
+function mod:RottingWoundsSuccess(args)
+	if self:Tank() or self:Dispeller("disease", nil, args.spellId) then
+		self:Nameplate(args.spellId, 15.9, args.sourceGUID)
+	end
+end
+
+do
+	local prev = 0
+	function mod:RottingWoundsApplied(args)
+		if self:Dispeller("disease", nil, args.spellId) and args.time - prev > 2 then
+			prev = args.time
+			self:TargetMessage(args.spellId, "purple", args.destName)
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
+		end
+	end
+end
+
+function mod:BilgeRatCutthroatDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 

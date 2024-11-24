@@ -18,6 +18,7 @@ if L then
 	L.buccaneer = "Bucanero de las Ratas de Pantoque"
 	L.pillager = "Saqueador de las Ratas de Pantoque"
 	L.tempest = "Tempestad de las Ratas de Pantoque"
+	L.cutthroat = "Degollador de las Ratas de Pantoque"
 	L.invader = "Invasor de los Gobernalle"
 
 	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."

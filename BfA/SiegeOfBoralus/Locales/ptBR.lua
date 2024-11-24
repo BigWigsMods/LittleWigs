@@ -18,6 +18,7 @@ if L then
 	L.buccaneer = "Bucaneiro Rato de Porão"
 	L.pillager = "Pilhador Rato de Porão"
 	L.tempest = "Trovoeiro Rato de Porão"
+	L.cutthroat = "Degolador Rato de Porão"
 	L.invader = "Invasor Grimpagris"
 
 	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."

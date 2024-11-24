@@ -18,6 +18,7 @@ if L then
 	L.buccaneer = "Bucaniere dei Ratti di Sentina"
 	L.pillager = "Sciacallo dei Ratti di Sentina"
 	L.tempest = "Tempesta dei Ratti di Sentina"
+	L.cutthroat = "Tagliagole dei Ratti di Sentina"
 	L.invader = "Invasore dei Bracescura"
 
 	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."

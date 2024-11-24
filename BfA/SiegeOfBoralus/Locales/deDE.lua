@@ -18,6 +18,7 @@ if L then
 	L.buccaneer = "Bukanier der Bilgeratten"
 	L.pillager = "Brandschatzer der Bilgeratten"
 	L.tempest = "Orkan der Bilgeratten"
+	L.cutthroat = "Halsabschneider der Bilgeratten"
 	L.invader = "Aschenwindeindringling"
 
 	L.gate_open_desc = "Zeigt einen Timer wann das Tor zum nächsten Gebiet nach einer Bossbegegnung geöffnet wird."

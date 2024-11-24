@@ -18,6 +18,7 @@ if L then
 	L.buccaneer = "污鼠會海盜"
 	L.pillager = "污鼠會掠取者"
 	L.tempest = "污鼠會風暴法師"
+	--L.cutthroat = "Bilge Rat Cutthroat"
 	L.invader = "艾胥凡入侵者"
 
 	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."

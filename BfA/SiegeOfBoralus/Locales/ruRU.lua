@@ -18,6 +18,7 @@ if L then
 	L.buccaneer = "Буканьер из братства Трюмных Крыс"
 	L.pillager = "Разоритель из братства Трюмных Крыс"
 	L.tempest = "Воин бури из братства Трюмных Крыс"
+	L.cutthroat = "Головорез из братства Трюмных Крыс"
 	L.invader = "Захватчик дома Эшвейнов"
 
 	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."

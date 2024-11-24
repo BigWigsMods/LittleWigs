@@ -18,6 +18,7 @@ if L then
 	L.buccaneer = "水鼠帮海盗"
 	L.pillager = "水鼠帮劫掠者"
 	L.tempest = "水鼠帮唤风者"
+	L.cutthroat = "水鼠帮杀手"
 	L.invader = "艾什凡入侵者"
 
 	L.gate_open_desc = "显示在击杀首领后打开通往下个区域屏障的计时条。"

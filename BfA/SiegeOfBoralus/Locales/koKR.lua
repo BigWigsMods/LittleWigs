@@ -18,6 +18,7 @@ if L then
 	L.buccaneer = "항만의 시궁쥐단 해적단원"
 	L.pillager = "항만의 시궁쥐단 강탈자"
 	L.tempest = "항만의 시궁쥐단 폭풍우소환사"
+	L.cutthroat = "항만의 시궁쥐단 자객"
 	L.invader = "애쉬베인 침략자"
 
 	L.gate_open_desc = "각 보스를 처치한 후 다음 지역으로 가는 문이 언제 열리는지 표시하는 바를 표시합니다."

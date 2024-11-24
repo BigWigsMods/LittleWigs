@@ -18,6 +18,7 @@ if L then
 	L.buccaneer = "Boucanier des Soutaillons"
 	L.pillager = "Pilleur des Soutaillons"
 	L.tempest = "Tempête des Soutaillons"
+	L.cutthroat = "Coupe-gorge des Soutaillons"
 	L.invader = "Envahisseur corsandre"
 
 	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
