@@ -47,13 +47,13 @@ end
 
 function mod:OnEngage()
 	nextPoisonCast = GetTime() + 12.0
-	self:CDBar(432130, 6.5) -- Erupting Webs
+	self:CDBar(432130, 6.1) -- Erupting Webs
 	if self:Mythic() then
 		self:CDBar(461487, 12.0) -- Cultivated Poisons
 	else -- Normal, Heroic
 		self:CDBar(432227, 12.0) -- Venom Volley
 	end
-	self:CDBar(432117, 34.8) -- Cosmic Singularity
+	self:CDBar(432117, 27.9) -- Cosmic Singularity
 end
 
 --------------------------------------------------------------------------------
@@ -64,20 +64,21 @@ function mod:CosmicSingularity(args)
 	local t = GetTime()
 	self:Message(args.spellId, "cyan")
 	if self:Mythic() then
-		-- 17.0s minimum to next Cultivated Poisons
-		if nextPoisonCast - t < 17.0 then
-			nextPoisonCast = t + 17.0
-			self:CDBar(461487, {17.0, 21.8}) -- Cultivated Poisons
+		-- 13.3s minimum to next Cultivated Poisons
+		if nextPoisonCast - t < 13.3 then
+			nextPoisonCast = t + 13.3
+			self:CDBar(461487, {13.3, 21.8}) -- Cultivated Poisons
 		end
 	else
-		-- 7.3 minimum to next Venom Volley
+		-- 7.3s minimum to next Venom Volley
 		if nextPoisonCast - t < 7.3 then
 			nextPoisonCast = t + 7.3
 			self:CDBar(432227, {7.3, 23.0}) -- Venom Volley
 		end
 	end
-	self:CDBar(432130, {13.3, 18.2}) -- Erupting Webs
-	self:CDBar(args.spellId, 46.2)
+	-- 7.3s minimum to next Erupting Webs
+	self:CDBar(432130, {7.3, 18.2}) -- Erupting Webs
+	self:CDBar(args.spellId, 46.1)
 	self:PlaySound(args.spellId, "long")
 end
 
