@@ -33,7 +33,7 @@ function mod:GetOptions()
 		321834, -- Dodge Ball
 		{321828, "ME_ONLY_EMPHASIZE"}, -- Patty Cake
 		341709, -- Freeze Tag
-		{321891, "SAY", "ME_ONLY_EMPHASIZE"}, -- Freeze Tag Fixation
+		{321891, "SAY", "ME_ONLY_EMPHASIZE", "NAMEPLATE"}, -- Freeze Tag Fixation
 	},nil,{
 		[341709] = L.vulpin, -- Freeze Tag (Vulpin)
 		[321891] = CL.fixate, -- Freeze Tag Fixation (Fixate)
@@ -45,7 +45,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DodgeBall", 321834)
 	self:Log("SPELL_CAST_START", "PattyCake", 321828)
 	self:Log("SPELL_CAST_START", "FreezeTag", 341709)
-	self:Log("SPELL_AURA_APPLIED", "FreezeTagFixation", 321891)
+	self:Log("SPELL_AURA_APPLIED", "FreezeTagFixationApplied", 321891)
+	self:Log("SPELL_AURA_REMOVED", "FreezeTagFixationRemoved", 321891)
 end
 
 function mod:OnEngage()
@@ -86,12 +87,19 @@ function mod:FreezeTag(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:FreezeTagFixation(args)
+function mod:FreezeTagFixationApplied(args)
 	self:TargetMessage(args.spellId, "red", args.destName, CL.fixate)
 	if self:Me(args.destGUID) then
+		self:Nameplate(args.spellId, 60, args.sourceGUID, CL.fixate)
 		self:PlaySound(args.spellId, "warning")
 		self:Say(args.spellId, CL.fixate, nil, "Fixate")
 	else
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
+
+function mod:FreezeTagFixationRemoved(args)
+	if self:Me(args.destGUID) then
+		self:StopNameplate(args.spellId, args.sourceGUID, CL.fixate)
 	end
 end
