@@ -110,7 +110,7 @@ end
 -- Reanimated Mage
 
 function mod:LandOfTheDeadSummon(args)
-	self:Nameplate(328667, 7.0, args.destGUID) -- Frostbolt Volley
+	self:Nameplate(328667, 2.0, args.destGUID) -- Frostbolt Volley
 end
 
 function mod:FrostboltVolley(args)
