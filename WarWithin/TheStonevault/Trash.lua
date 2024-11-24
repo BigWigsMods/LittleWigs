@@ -342,7 +342,7 @@ end
 -- Void Bound Despoiler
 
 function mod:VoidBoundDespoilerEngaged(guid)
-	self:Nameplate(459210, 5.4, guid) -- Shadow Claw
+	self:Nameplate(459210, 3.2, guid) -- Shadow Claw
 	self:Nameplate(426771, 6.6, guid) -- Void Outburst
 end
 
