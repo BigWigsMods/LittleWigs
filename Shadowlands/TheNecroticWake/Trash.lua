@@ -370,8 +370,8 @@ end
 -- Zolramus Necromancer
 
 function mod:ZolramusNecromancerEngaged(guid)
-	self:Nameplate(327396, 10.5, guid) -- Grim Fate
-	self:Nameplate(321780, 16.6, guid) -- Animate Dead
+	self:Nameplate(327396, 10.4, guid) -- Grim Fate
+	self:Nameplate(321780, 13.3, guid) -- Animate Dead
 end
 
 function mod:AnimateDead(args)
