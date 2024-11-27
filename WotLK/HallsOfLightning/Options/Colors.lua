@@ -9,8 +9,8 @@ BigWigs:AddColors("Volkhan", {
 })
 
 BigWigs:AddColors("Ionar", {
-	[52770] = "orange",
-	[59795] = {"blue","yellow"},
+	[52658] = {"blue","yellow"},
+	[52770] = "cyan",
 })
 
 BigWigs:AddColors("Loken", {

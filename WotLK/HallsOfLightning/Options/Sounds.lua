@@ -6,8 +6,8 @@ BigWigs:AddSounds("Volkhan", {
 })
 
 BigWigs:AddSounds("Ionar", {
+	[52658] = "alarm",
 	[52770] = "info",
-	[59795] = "alarm",
 })
 
 BigWigs:AddSounds("Loken", {
