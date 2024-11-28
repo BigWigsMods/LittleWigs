@@ -17,6 +17,7 @@ local inBurrowChargeCombo = false
 local burrowChargeRemaining = 1
 local eyeOfTheSwarmCount = 1
 local bloodstainedWebmageCount = 1
+local nextInfestation = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -54,7 +55,8 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Impale", 435012)
 	self:Log("SPELL_CAST_START", "BurrowCharge", 439506)
-	self:Log("SPELL_AURA_APPLIED", "Infestation", 433740)
+	self:Log("SPELL_CAST_SUCCESS", "Infestation", 433740)
+	self:Log("SPELL_AURA_APPLIED", "InfestationApplied", 433740)
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:Log("SPELL_CAST_START", "EyeOfTheSwarm", 433766)
 	self:Log("SPELL_AURA_APPLIED", "EyeOfTheSwarmApplied", 434408)
@@ -71,6 +73,7 @@ function mod:OnEngage()
 	eyeOfTheSwarmCount = 1
 	bloodstainedWebmageCount = 1
 	self:SetStage(1)
+	-- Infestation is cast immmediately on pull
 	self:CDBar(435012, 4.6) -- Impale
 	self:CDBar(439506, 14.3) -- Burrow Charge
 	if self:Mythic() then
@@ -91,6 +94,21 @@ function mod:Impale(args)
 		self:CDBar(args.spellId, 5.8)
 	else
 		self:CDBar(args.spellId, 8.5)
+	end
+	-- 3.5s-5s minimum to Infestation
+	-- this varies by difficulty because Impale cast time is 2.5s Mythic, 4s Normal/Heroic
+	if self:Healer() then
+		if self:Mythic() then
+			if nextInfestation - args.time < 3.5 then
+				nextInfestation = args.time + 3.5
+				self:CDBar(433740, {3.5, 8.5}) -- Infestation
+			end
+		else -- Heroic, Normal
+			if nextInfestation - args.time < 5.0 then
+				nextInfestation = args.time + 5.0
+				self:CDBar(433740, {5.0, 8.5}) -- Infestation
+			end
+		end
 	end
 	self:PlaySound(args.spellId, "alarm")
 end
@@ -114,22 +132,47 @@ do
 			self:StopBar(args.spellId)
 		end
 		self:CDBar(435012, 4.8) -- Impale
+		-- 8.5-9.8s minimum to Infestation
+		-- this varies by difficulty because Impale cast time is 2.5s Mythic, 4s Normal/Heroic
+		if self:Healer() then
+			if self:Mythic() then
+				nextInfestation = args.time + 8.5
+				self:CDBar(433740, {8.5, 10.1}) -- Infestation
+			else -- Heroic, Normal
+				nextInfestation = args.time + 9.8
+				self:CDBar(433740, {9.8, 10.1}) -- Infestation
+			end
+		end
 	end
 end
 
 function mod:Infestation(args)
+	if self:Healer() then
+		if self:GetStage() == 1 then
+			nextInfestation = args.time + 10.1
+			self:CDBar(args.spellId, 10.1)
+		else -- Stage 2
+			nextInfestation = args.time + 8.5
+			self:CDBar(args.spellId, 8.5)
+		end
+	end
+end
+
+function mod:InfestationApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
-	--self:CDBar(args.spellId, 8.1)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId, nil, nil, "Infestation")
 	end
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if msg:find("433779", nil, true) then -- Eye of the Swarm
 		-- [CHAT_MSG_RAID_BOSS_EMOTE] Anub'zekt prepares to trap you within the |TInterface\\ICONS\\Spell_Shadow_UnholyFrenzy.blp:20|t |cFFFF0000|Hspell:433779|h[Eye of the Swarm]|h|r!#Anub'zekt
 		-- boss runs to the center on this emote, these bars will be restarted when the cast begins
+		if self:Healer() then
+			self:StopBar(433740) -- Infestation
+		end
 		self:StopBar(435012) -- Impale
 		self:StopBar(439506) -- Burrow Charge
 		if self:Mythic() then
@@ -144,6 +187,10 @@ function mod:EyeOfTheSwarm(args)
 	self:SetStage(2)
 	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, eyeOfTheSwarmCount))
 	eyeOfTheSwarmCount = eyeOfTheSwarmCount + 1
+	if self:Healer() then
+		nextInfestation = args.time + 7.3
+		self:CDBar(433740, 7.3) -- Infestation
+	end
 	self:CDBar(435012, 10.9) -- Impale
 	self:CDBar(439506, 46.9) -- Burrow Charge
 	if self:Mythic() then
