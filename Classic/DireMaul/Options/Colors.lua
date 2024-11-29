@@ -18,6 +18,10 @@ BigWigs:AddColors("Guard Mol'dar", {
 })
 
 BigWigs:AddColors("Stomper Kreeg", {
+	[15578] = "yellow",
+	[16740] = "red",
+	[22833] = "purple",
+	[22835] = "cyan",
 })
 
 BigWigs:AddColors("Cho'Rush the Observer", {
