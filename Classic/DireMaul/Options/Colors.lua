@@ -36,4 +36,11 @@ BigWigs:AddColors("Zevrim Thornhoof", {
 })
 
 BigWigs:AddColors("Alzzin the Wildshaper", {
+	[7948] = "yellow",
+	[10101] = "purple",
+	[22415] = "orange",
+	[22661] = "yellow",
+	[22662] = {"blue","orange","red"},
+	[22689] = {"blue","orange"},
+	["stages"] = "cyan",
 })
