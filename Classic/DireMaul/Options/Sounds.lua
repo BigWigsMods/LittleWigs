@@ -3,6 +3,10 @@ BigWigs:AddSounds("Tendris Warpwood", {
 })
 
 BigWigs:AddSounds("Illyanna Ravenoak", {
+	[22910] = "info",
+	[22911] = "alarm",
+	[22914] = "alert",
+	[30933] = "alarm",
 })
 
 BigWigs:AddSounds("Magister Kalendris", {
