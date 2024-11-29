@@ -15,6 +15,10 @@ BigWigs:AddColors("Prince Tortheldrin", {
 })
 
 BigWigs:AddColors("Guard Mol'dar", {
+	[8269] = "cyan",
+	[11972] = {"blue","orange"},
+	[14516] = "purple",
+	[15749] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Stomper Kreeg", {
