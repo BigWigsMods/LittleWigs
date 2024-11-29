@@ -37,3 +37,6 @@ BigWigs:AddSounds("Zevrim Thornhoof", {
 
 BigWigs:AddSounds("Alzzin the Wildshaper", {
 })
+
+BigWigs:AddSounds("Dire Maul Trash", {
+})

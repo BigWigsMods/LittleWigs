@@ -14,6 +14,7 @@
 <Script file="Hydrospawn.lua"/>
 <Script file="ZevrimThornhoof.lua"/>
 <Script file="AlzzinTheWildshaper.lua"/>
+<Script file="Trash.lua"/>
 
 <Include file="Options\options.xml"/>
 

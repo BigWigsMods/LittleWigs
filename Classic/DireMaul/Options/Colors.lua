@@ -37,3 +37,6 @@ BigWigs:AddColors("Zevrim Thornhoof", {
 
 BigWigs:AddColors("Alzzin the Wildshaper", {
 })
+
+BigWigs:AddColors("Dire Maul Trash", {
+})
