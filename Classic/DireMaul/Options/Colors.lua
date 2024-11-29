@@ -12,6 +12,8 @@ BigWigs:AddColors("Immol'thar", {
 })
 
 BigWigs:AddColors("Prince Tortheldrin", {
+	[22995] = {"blue","cyan"},
+	[67037] = "orange",
 })
 
 BigWigs:AddColors("Guard Mol'dar", {

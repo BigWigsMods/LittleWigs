@@ -12,6 +12,8 @@ BigWigs:AddSounds("Immol'thar", {
 })
 
 BigWigs:AddSounds("Prince Tortheldrin", {
+	[22995] = "info",
+	[67037] = "alarm",
 })
 
 BigWigs:AddSounds("Guard Mol'dar", {
