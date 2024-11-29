@@ -24,6 +24,10 @@ BigWigs:AddColors("Cho'Rush the Observer", {
 })
 
 BigWigs:AddColors("King Gordok", {
+	[15572] = "purple",
+	[16727] = "red",
+	[16856] = "purple",
+	[22886] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Lethtendris", {

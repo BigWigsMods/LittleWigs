@@ -24,6 +24,10 @@ BigWigs:AddSounds("Cho'Rush the Observer", {
 })
 
 BigWigs:AddSounds("King Gordok", {
+	[15572] = "alert",
+	[16727] = "alarm",
+	[16856] = "alarm",
+	[22886] = "info",
 })
 
 BigWigs:AddSounds("Lethtendris", {
