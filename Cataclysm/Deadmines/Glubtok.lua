@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Glubtok", 36, 89)
 if not mod then return end
 mod:RegisterEnableMob(47162) -- Glubtok
-mod:SetEncounterID(1064)
+mod:SetEncounterID(mod:Retail() and 2981 or 1064)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
 
@@ -27,6 +27,17 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	if self:Retail() then
+		if self:Normal() then
+			self:SetEncounterID(2976)
+		else -- Heroic
+			self:SetEncounterID(2981)
+		end
+		-- no ENCOUNTER_END in Retail since 11.0.5
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 47162) -- Glubtok
+	end
+
 	-- Stage One: Fists of Flame and Frost
 	self:Log("SPELL_CAST_START", "FistsOfFlame", 87859)
 	self:Log("SPELL_CAST_START", "FistsOfFrost", 87861)

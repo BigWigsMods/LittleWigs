@@ -39,6 +39,12 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	if self:Retail() then
+		-- no ENCOUNTER_END in Retail since 11.0.5
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 49541) -- Vanessa VanCleef
+	end
+
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
 
