@@ -33,6 +33,9 @@ BigWigs:AddSounds("Hydrospawn", {
 })
 
 BigWigs:AddSounds("Zevrim Thornhoof", {
+	[17228] = "alert",
+	[22478] = "alert",
+	[22651] = "alarm",
 })
 
 BigWigs:AddSounds("Alzzin the Wildshaper", {
