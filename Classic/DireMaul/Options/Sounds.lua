@@ -30,6 +30,9 @@ BigWigs:AddSounds("Lethtendris", {
 })
 
 BigWigs:AddSounds("Hydrospawn", {
+	[22419] = "alert",
+	[22421] = "alarm",
+	[22714] = "info",
 })
 
 BigWigs:AddSounds("Zevrim Thornhoof", {
