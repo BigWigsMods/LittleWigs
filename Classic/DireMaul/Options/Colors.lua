@@ -3,6 +3,10 @@ BigWigs:AddColors("Tendris Warpwood", {
 })
 
 BigWigs:AddColors("Illyanna Ravenoak", {
+	[22910] = "orange",
+	[22911] = {"blue","red"},
+	[22914] = "yellow",
+	[30933] = "red",
 })
 
 BigWigs:AddColors("Magister Kalendris", {
