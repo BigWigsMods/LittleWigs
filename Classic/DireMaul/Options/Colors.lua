@@ -13,6 +13,11 @@ BigWigs:AddColors("Magister Kalendris", {
 })
 
 BigWigs:AddColors("Immol'thar", {
+	[5568] = "orange",
+	[22899] = "cyan",
+	[22950] = {"blue","yellow"},
+	[451127] = "cyan",
+	[452516] = "orange",
 })
 
 BigWigs:AddColors("Prince Tortheldrin", {
