@@ -10,6 +10,8 @@ BigWigs:AddSounds("Illyanna Ravenoak", {
 })
 
 BigWigs:AddSounds("Magister Kalendris", {
+	[7645] = "alert",
+	[22917] = "info",
 })
 
 BigWigs:AddSounds("Immol'thar", {

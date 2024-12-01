@@ -10,6 +10,8 @@ BigWigs:AddColors("Illyanna Ravenoak", {
 })
 
 BigWigs:AddColors("Magister Kalendris", {
+	[7645] = {"blue","yellow"},
+	[22917] = "cyan",
 })
 
 BigWigs:AddColors("Immol'thar", {
