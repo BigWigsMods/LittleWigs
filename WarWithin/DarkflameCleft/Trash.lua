@@ -105,28 +105,33 @@ end
 
 function mod:OnBossEnable()
 	-- Rank Overseer
+	self:RegisterEngageMob("RankOverseerEngaged", 211121)
 	self:Log("SPELL_CAST_START", "WildWallop", 423501)
 	self:Log("SPELL_CAST_START", "OverpoweringRoar", 428066)
 	self:Death("RankOverseerDeath", 211121)
 
 	-- Lowly Moleherd
+	self:RegisterEngageMob("LowlyMoleherdEngaged", 210818)
 	self:Log("SPELL_CAST_START", "MoleFrenzy", 425536)
 	self:Log("SPELL_INTERRUPT", "MoleFrenzyInterrupt", 425536)
 	self:Log("SPELL_CAST_SUCCESS", "MoleFrenzySuccess", 425536)
 	self:Death("LowlyMoleherdDeath", 210818)
 
 	-- Royal Wicklighter
+	self:RegisterEngageMob("RoyalWicklighterEngaged", 210812)
 	self:Log("SPELL_CAST_START", "Flashpoint", 428019)
 	self:Log("SPELL_CAST_SUCCESS", "FlashpointSuccess", 428019)
 	self:Log("SPELL_AURA_APPLIED", "FlashpointApplied", 428019)
 	self:Death("RoyalWicklighterDeath", 210812)
 
 	-- Kobold Taskworker
+	self:RegisterEngageMob("KoboldTaskworkerEngaged", 212383)
 	self:Log("SPELL_CAST_START", "Bonk", 426883)
 	self:Log("SPELL_CAST_SUCCESS", "BonkSuccess", 426883)
 	self:Death("KoboldTaskworkerDeath", 212383)
 
 	-- Wandering Candle
+	self:RegisterEngageMob("WanderingCandleEngaged", 208450)
 	self:Log("SPELL_CAST_START", "SurgingWax", 440652)
 	self:Log("SPELL_PERIODIC_DAMAGE", "SurgingWaxDamage", 440653)
 	self:Log("SPELL_PERIODIC_MISSED", "SurgingWaxDamage", 440653)
@@ -135,17 +140,20 @@ function mod:OnBossEnable()
 	self:Death("WanderingCandleDeath", 208450)
 
 	-- Blazing Fiend
+	self:RegisterEngageMob("BlazingFiendEngaged", 220815, 211228, 223770, 223772, 223773, 223774, 223775, 223776, 223777)
 	self:Log("SPELL_CAST_START", "ExplosiveFlame", 424322)
 	self:Log("SPELL_INTERRUPT", "ExplosiveFlameInterrupt", 424322)
 	self:Log("SPELL_CAST_SUCCESS", "ExplosiveFlameSuccess", 424322)
 	self:Death("BlazingFiendDeath", 220815, 211228, 223770, 223772, 223773, 223774, 223775, 223776, 223777)
 
 	-- Sootsnout
+	self:RegisterEngageMob("SootsnoutEngaged", 212412)
 	self:Log("SPELL_CAST_START", "CeaselessFlame", 426261)
 	self:Log("SPELL_CAST_START", "FlamingTether", 426295)
 	self:Death("SootsnoutDeath", 212412)
 
 	-- Torchsnarl
+	self:RegisterEngageMob("TorchsnarlEngaged", 212411)
 	self:Log("SPELL_CAST_START", "OneHandHeadlock", 426619)
 	self:Log("SPELL_AURA_APPLIED", "OneHandHeadlockApplied", 426277)
 	self:Log("SPELL_CAST_START", "Pyropummel", 426260)
@@ -155,6 +163,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SuffocatingDarkness", 422393)
 
 	-- Shuffling Horror
+	self:RegisterEngageMob("ShufflingHorrorEngaged", 208456)
 	self:Log("SPELL_CAST_START", "ShadowSmash", 422414)
 	self:Log("SPELL_CAST_SUCCESS", "ShadowSmashSuccess", 422414)
 	self:Log("SPELL_CAST_START", "DrainLight", 422541)
@@ -170,6 +179,11 @@ end
 --
 
 -- Rank Overseer
+
+function mod:RankOverseerEngaged(guid)
+	self:Nameplate(423501, 5.1, guid) -- Wild Wallop
+	self:Nameplate(428066, 14.9, guid) -- Overpowering Roar
+end
 
 do
 	local prev = 0
@@ -201,6 +215,10 @@ end
 
 -- Lowly Moleherd
 
+function mod:LowlyMoleherdEngaged(guid)
+	self:Nameplate(425536, 5.8, guid) -- Mole Frenzy
+end
+
 do
 	local prev = 0
 	function mod:MoleFrenzy(args)
@@ -227,6 +245,10 @@ function mod:LowlyMoleherdDeath(args)
 end
 
 -- Royal Wicklighter
+
+function mod:RoyalWicklighterEngaged(guid)
+	self:Nameplate(428019, 5.7, guid) -- Flashpoint
+end
 
 function mod:Flashpoint(args)
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
@@ -258,6 +280,10 @@ end
 
 -- Kobold Taskworker
 
+function mod:KoboldTaskworkerEngaged(guid)
+	self:Nameplate(426883, 8.4, guid) -- Bonk!
+end
+
 function mod:Bonk(args)
 	self:Message(args.spellId, "orange")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
@@ -273,6 +299,11 @@ function mod:KoboldTaskworkerDeath(args)
 end
 
 -- Wandering Candle
+
+function mod:WanderingCandleEngaged(guid)
+	self:Nameplate(430171, 8.0, guid) -- Quenching Blast
+	self:Nameplate(440652, 16.4, guid) -- Surging Wax
+end
 
 function mod:SurgingWax(args)
 	self:Message(args.spellId, "orange")
@@ -317,6 +348,10 @@ end
 
 -- Blazing Fiend
 
+function mod:BlazingFiendEngaged(guid)
+	self:Nameplate(424322, 6.7, guid) -- Explosive Flame
+end
+
 function mod:ExplosiveFlame(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
@@ -339,6 +374,12 @@ end
 
 do
 	local timer
+
+	function mod:SootsnoutEngaged(guid)
+		self:CDBar(426295, 19.1) -- Flaming Tether
+		self:Nameplate(426295, 19.1, guid) -- Flaming Tether
+		timer = self:ScheduleTimer("SootsnoutDeath", 40)
+	end
 
 	function mod:CeaselessFlame(args)
 		if timer then
@@ -377,6 +418,12 @@ end
 
 do
 	local timer
+
+	function mod:TorchsnarlEngaged(guid)
+		self:CDBar(426619, 0.9) -- One-Hand Headlock
+		self:Nameplate(426619, 0.9, guid) -- One-Hand Headlock
+		timer = self:ScheduleTimer("TorchsnarlDeath", 45)
+	end
 
 	do
 		local function printTarget(self, name, guid)
@@ -442,6 +489,10 @@ do
 end
 
 -- Shuffling Horror
+
+function mod:ShufflingHorrorEngaged(guid)
+	self:Nameplate(422414, 12.0, guid) -- Shadow Smash
+end
 
 function mod:ShadowSmash(args)
 	self:Message(args.spellId, "orange")
