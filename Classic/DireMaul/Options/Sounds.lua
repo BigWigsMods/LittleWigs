@@ -39,4 +39,11 @@ BigWigs:AddSounds("Zevrim Thornhoof", {
 })
 
 BigWigs:AddSounds("Alzzin the Wildshaper", {
+	[7948] = "warning",
+	[10101] = "alert",
+	[22415] = "alert",
+	[22661] = "alert",
+	[22662] = {"alarm","alert"},
+	[22689] = "alarm",
+	["stages"] = "long",
 })
