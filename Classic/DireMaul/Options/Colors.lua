@@ -52,6 +52,9 @@ BigWigs:AddColors("Hydrospawn", {
 })
 
 BigWigs:AddColors("Zevrim Thornhoof", {
+	[17228] = "red",
+	[22478] = "orange",
+	[22651] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Alzzin the Wildshaper", {
