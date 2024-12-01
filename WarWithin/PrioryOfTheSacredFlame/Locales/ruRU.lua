@@ -10,6 +10,7 @@ if L then
 	--L.taener_duelmal = "Taener Duelmal"
 	--L.arathi_knight = "Arathi Knight"
 	--L.arathi_footman = "Arathi Footman"
+	L.fervent_sharpshooter = "Яростный снайпер"
 	--L.devout_priest = "Devout Priest"
 	L.fanatical_conjuror = "Окудница-фанатичка"
 	--L.lightspawn = "Lightspawn"

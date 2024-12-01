@@ -14,6 +14,7 @@ mod:RegisterEnableMob(
 	211289, -- Taener Duelmal
 	206696, -- Arathi Knight
 	206705, -- Arathi Footman
+	206694, -- Fervent Sharpshooter
 	206697, -- Devout Priest
 	206698, -- Fanatical Conjuror
 	206710, -- Lightspawn
@@ -37,6 +38,7 @@ if L then
 	L.taener_duelmal = "Taener Duelmal"
 	L.arathi_knight = "Arathi Knight"
 	L.arathi_footman = "Arathi Footman"
+	L.fervent_sharpshooter = "Fervent Sharpshooter"
 	L.devout_priest = "Devout Priest"
 	L.fanatical_conjuror = "Fanatical Conjuror"
 	L.lightspawn = "Lightspawn"
@@ -60,28 +62,31 @@ function mod:GetOptions()
 		"custom_on_autotalk",
 		435088, -- Blessing of the Sacred Flame
 		-- Guard Captain Suleyman
-		{448485, "TANK_HEALER"}, -- Shield Slam
-		448492, -- Thunderclap
+		{448485, "TANK_HEALER", "NAMEPLATE"}, -- Shield Slam
+		{448492, "NAMEPLATE"}, -- Thunderclap
 		-- Forge Master Damian
-		427897, -- Heat Wave
-		427950, -- Seal of Flame
+		{427897, "NAMEPLATE"}, -- Heat Wave
+		{427950, "NAMEPLATE"}, -- Seal of Flame
 		-- High Priest Aemya
-		429091, -- Inner Fire
-		428150, -- Reflective Shield
+		{429091, "NAMEPLATE"}, -- Inner Fire
+		{428150, "NAMEPLATE"}, -- Reflective Shield
 		-- Sergeant Shaynemail
-		424621, -- Brutal Smash
-		424423, -- Lunging Strike
+		{424621, "NAMEPLATE"}, -- Brutal Smash
+		{424423, "NAMEPLATE"}, -- Lunging Strike
 		-- Elaena Emberlanz
-		{424431, "HEALER"}, -- Holy Radiance
-		{448515, "TANK"}, -- Divine Judgment
-		427583, -- Repentance
+		{424431, "HEALER", "NAMEPLATE"}, -- Holy Radiance
+		{448515, "TANK", "NAMEPLATE"}, -- Divine Judgment
+		{427583, "NAMEPLATE"}, -- Repentance
 		-- Taener Duelmal
-		{424420, "DISPEL"}, -- Cinderblast
-		424462, -- Ember Storm
+		{424420, "DISPEL", "NAMEPLATE"}, -- Cinderblast
+		{424462, "NAMEPLATE"}, -- Ember Storm
 		-- Arathi Knight
 		{427609, "NAMEPLATE"}, -- Disrupting Shout
 		-- Arathi Footman
 		{427342, "NAMEPLATE"}, -- Defend
+		{426964, "TANK", "NAMEPLATE"}, -- Mortal Strike
+		-- Fervent Sharpshooter
+		{453458, "DISPEL", "NAMEPLATE"}, -- Caltrops
 		-- Devout Priest
 		{427356, "NAMEPLATE"}, -- Greater Heal
 		{427346, "DISPEL", "NAMEPLATE"}, -- Inner Fire
@@ -103,6 +108,7 @@ function mod:GetOptions()
 		[424420] = L.taener_duelmal,
 		[427609] = L.arathi_knight,
 		[427342] = L.arathi_footman,
+		[453458] = L.fervent_sharpshooter,
 		[427356] = L.devout_priest,
 		[427484] = L.fanatical_conjuror,
 		[427601] = L.lightspawn,
@@ -132,11 +138,14 @@ function mod:OnBossEnable()
 	-- High Priest Aemya
 	self:Log("SPELL_CAST_START", "InnerFireAemya", 429091)
 	self:Log("SPELL_CAST_START", "ReflectiveShield", 428150)
+	self:Log("SPELL_CAST_SUCCESS", "ReflectiveShieldSuccess", 428150)
+	self:Log("SPELL_AURA_REMOVED", "ReflectiveShieldRemoved", 428150)
 	self:Death("HighPriestAemyaDeath", 212827)
 
 	-- Sergeant Shaynemail
 	self:Log("SPELL_CAST_START", "BrutalSmash", 424621)
 	self:Log("SPELL_CAST_START", "LungingStrike", 424423)
+	self:Log("SPELL_CAST_SUCCESS", "LungingStrikeSuccess", 424423)
 	self:Death("SergeantShaynemailDeath", 211291)
 
 	-- Elaena Emberlanz
@@ -147,6 +156,8 @@ function mod:OnBossEnable()
 
 	-- Taener Duelmal
 	self:Log("SPELL_CAST_START", "Cinderblast", 424420)
+	self:Log("SPELL_INTERRUPT", "CinderblastInterrupt", 424420)
+	self:Log("SPELL_CAST_SUCCESS", "CinderblastSuccess", 424420)
 	self:Log("SPELL_AURA_APPLIED", "CinderblastApplied", 424420)
 	self:Log("SPELL_CAST_START", "EmberStorm", 424462)
 	self:Death("TaenerDuelmalDeath", 211289)
@@ -157,7 +168,14 @@ function mod:OnBossEnable()
 
 	-- Arathi Footman
 	self:Log("SPELL_CAST_SUCCESS", "Defend", 427342)
+	self:Log("SPELL_CAST_START", "MortalStrike", 426964)
+	self:Log("SPELL_CAST_SUCCESS", "MortalStrikeSuccess", 426964)
 	self:Death("ArathiFootmanDeath", 206705)
+
+	-- Fervent Sharpshooter
+	self:Log("SPELL_CAST_SUCCESS", "Caltrops", 453458)
+	self:Log("SPELL_AURA_APPLIED", "CaltropsApplied", 453461)
+	self:Death("FerventSharpshooterDeath", 206694)
 
 	-- Devout Priest
 	self:Log("SPELL_CAST_START", "GreaterHeal", 427356)
@@ -239,8 +257,13 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "purple")
-		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 14.6)
+		self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+		if self:Tank() then
+			self:PlaySound(args.spellId, "alarm")
+		else
+			self:PlaySound(args.spellId, "info")
+		end
 		timer = self:ScheduleTimer("GuardCaptainSuleymanDeath", 30)
 	end
 
@@ -249,18 +272,22 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red")
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 15.8)
+		self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("GuardCaptainSuleymanDeath", 30)
 	end
 
-	function mod:GuardCaptainSuleymanDeath()
+	function mod:GuardCaptainSuleymanDeath(args)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(448485) -- Shield Slam
 		self:StopBar(448492) -- Thunderclap
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
 	end
 end
 
@@ -274,8 +301,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 17.0)
+		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
 		timer = self:ScheduleTimer("ForgeMasterDamianDeath", 30)
 	end
 
@@ -284,18 +312,22 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red")
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 17.0)
+		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("ForgeMasterDamianDeath", 30)
 	end
 
-	function mod:ForgeMasterDamianDeath()
+	function mod:ForgeMasterDamianDeath(args)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(427897) -- Heat Wave
 		self:StopBar(427950) -- Seal of Flame
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
 	end
 end
 
@@ -315,8 +347,9 @@ do
 		end
 		-- TODO is this still cast in combat?
 		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "info")
 		self:CDBar(args.spellId, 30.3)
+		self:Nameplate(args.spellId, 30.3, args.sourceGUID)
+		self:PlaySound(args.spellId, "info")
 		timer = self:ScheduleTimer("HighPriestAemyaDeath", 60)
 	end
 
@@ -326,17 +359,31 @@ do
 		end
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "alert")
-		self:CDBar(args.spellId, 53.4)
 		timer = self:ScheduleTimer("HighPriestAemyaDeath", 60)
 	end
 
-	function mod:HighPriestAemyaDeath()
+	function mod:ReflectiveShieldSuccess(args)
+		self:StopBar(args.spellId)
+		self:StopNameplate(args.spellId, args.sourceGUID)
+	end
+
+	function mod:ReflectiveShieldRemoved(args)
+		self:Message(args.spellId, "green")
+		self:CDBar(args.spellId, 20.1)
+		self:Nameplate(args.spellId, 20.1, args.sourceGUID)
+		self:PlaySound(args.spellId, "info")
+	end
+
+	function mod:HighPriestAemyaDeath(args)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(429091) -- Inner Fire
 		self:StopBar(428150) -- Reflective Shield
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
 	end
 end
 
@@ -350,8 +397,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 26.7)
+		self:Nameplate(args.spellId, 26.7, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
 		timer = self:ScheduleTimer("SergeantShaynemailDeath", 30)
 	end
 
@@ -361,18 +409,26 @@ do
 		end
 		-- TODO targetscan?
 		self:Message(args.spellId, "red")
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
-		self:CDBar(args.spellId, 14.6)
 		timer = self:ScheduleTimer("SergeantShaynemailDeath", 30)
 	end
 
-	function mod:SergeantShaynemailDeath()
+	function mod:LungingStrikeSuccess(args)
+		self:CDBar(args.spellId, 13.1)
+		self:Nameplate(args.spellId, 13.1, args.sourceGUID)
+	end
+
+	function mod:SergeantShaynemailDeath(args)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(424621) -- Brutal Smash
 		self:StopBar(424423) -- Lunging Strike
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
 	end
 end
 
@@ -386,8 +442,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 36.4)
+		self:Nameplate(args.spellId, 36.4, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("ElaenaEmberlanzDeath", 30)
 	end
 
@@ -396,8 +453,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "purple")
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 13.4)
+		self:Nameplate(args.spellId, 13.4, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("ElaenaEmberlanzDeath", 30)
 	end
 
@@ -406,12 +464,13 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "warning")
 		self:CDBar(args.spellId, 20.6)
+		self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+		self:PlaySound(args.spellId, "warning")
 		timer = self:ScheduleTimer("ElaenaEmberlanzDeath", 30)
 	end
 
-	function mod:ElaenaEmberlanzDeath()
+	function mod:ElaenaEmberlanzDeath(args)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -419,6 +478,9 @@ do
 		self:StopBar(424431) -- Holy Radiance
 		self:StopBar(448515) -- Divine Judgment
 		self:StopBar(427583) -- Repentance
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
 	end
 end
 
@@ -432,11 +494,21 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		if self:Interrupter() then
 			self:PlaySound(args.spellId, "warning")
 		end
-		self:CDBar(args.spellId, 17.0)
 		timer = self:ScheduleTimer("TaenerDuelmalDeath", 30)
+	end
+
+	function mod:CinderblastInterrupt(args)
+		self:CDBar(424420, 15.0)
+		self:Nameplate(424420, 15.0, args.destGUID)
+	end
+
+	function mod:CinderblastSuccess(args)
+		self:CDBar(args.spellId, 15.0)
+		self:Nameplate(args.spellId, 15.0, args.sourceGUID)
 	end
 
 	function mod:CinderblastApplied(args)
@@ -456,18 +528,22 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "yellow")
+		self:CDBar(args.spellId, 34.0)
+		self:Nameplate(args.spellId, 34.0, args.sourceGUID)
 		self:PlaySound(args.spellId, "long")
-		self:CDBar(args.spellId, 34.1)
 		timer = self:ScheduleTimer("TaenerDuelmalDeath", 30)
 	end
 
-	function mod:TaenerDuelmalDeath()
+	function mod:TaenerDuelmalDeath(args)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(424420) -- Cinderblast
 		self:StopBar(424462) -- Ember Storm
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
 	end
 end
 
@@ -475,8 +551,8 @@ end
 
 function mod:DisruptingShout(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
 	self:Nameplate(args.spellId, 21.8, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:ArathiKnightDeath(args)
@@ -488,17 +564,63 @@ end
 do
 	local prev = 0
 	function mod:Defend(args)
+		if self:Normal() then
+			self:Nameplate(args.spellId, 60.7, args.sourceGUID)
+		else -- Heroic, Mythic
+			self:Nameplate(args.spellId, 31.6, args.sourceGUID)
+		end
 		local t = args.time
 		if t - prev > 2 then
 			prev = t
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "info")
 		end
-		self:Nameplate(args.spellId, 31.6, args.sourceGUID)
 	end
 end
 
+do
+	local prev = 0
+	function mod:MortalStrike(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:MortalStrikeSuccess(args)
+	self:Nameplate(args.spellId, 15.5, args.sourceGUID)
+end
+
 function mod:ArathiFootmanDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Fervent Sharpshooter
+
+do
+	local prev = 0
+	function mod:Caltrops(args)
+		self:Nameplate(args.spellId, 27.9, args.sourceGUID)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+function mod:CaltropsApplied(args)
+	if self:Me(args.destGUID) or self:Dispeller("movement", nil, 453458) then
+		self:TargetMessage(453458, "yellow", args.destName)
+		self:PlaySound(453458, "info", nil, args.destName)
+	end
+end
+
+function mod:FerventSharpshooterDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
@@ -507,13 +629,13 @@ end
 do
 	local prev = 0
 	function mod:GreaterHeal(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "warning")
 		end
-		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
 end
 
@@ -525,8 +647,16 @@ function mod:GreaterHealSuccess(args)
 	self:Nameplate(args.spellId, 25.5, args.sourceGUID)
 end
 
-function mod:InnerFire(args)
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
+do
+	local prev = 0
+	function mod:InnerFire(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:InnerFireInterrupt(args)
@@ -553,13 +683,13 @@ end
 do
 	local prev = 0
 	function mod:Flamestrike(args)
+		self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
-		self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 	end
 end
 
@@ -607,13 +737,13 @@ end
 do
 	local prev = 0
 	function mod:FireballVolley(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
-		self:Nameplate(args.spellId, 0, args.sourceGUID)
 	end
 end
 

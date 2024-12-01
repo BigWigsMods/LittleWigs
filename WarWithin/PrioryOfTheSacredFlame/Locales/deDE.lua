@@ -10,6 +10,7 @@ if L then
 	L.taener_duelmal = "Taener Duelmal"
 	L.arathi_knight = "Ritter der Arathi"
 	L.arathi_footman = "Fußsoldat der Arathi"
+	L.fervent_sharpshooter = "Feurige Scharfschützin"
 	L.devout_priest = "Frommer Priester"
 	L.fanatical_conjuror = "Fanatische Herbeizauberin"
 	L.lightspawn = "Lichtbrut"
