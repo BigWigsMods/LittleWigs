@@ -30,6 +30,9 @@ BigWigs:AddColors("Lethtendris", {
 })
 
 BigWigs:AddColors("Hydrospawn", {
+	[22419] = "red",
+	[22421] = "orange",
+	[22714] = "cyan",
 })
 
 BigWigs:AddColors("Zevrim Thornhoof", {
