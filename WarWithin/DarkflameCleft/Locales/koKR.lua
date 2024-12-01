@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	L.rank_overseer = "무리 감독관r"
 	L.lowly_moleherd = "하찮은 두더지목동"
+	L.royal_wicklighter = "왕실 심지점화자"
 	L.kobold_taskworker = "코볼트 잡부"
 	L.wandering_candle = "떠도는 양초"
 	L.blazing_fiend = "타오르는 마귀"

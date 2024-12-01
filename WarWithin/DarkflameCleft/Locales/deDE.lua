@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	L.rank_overseer = "Unverschämter Aufseher"
 	L.lowly_moleherd = "Einfacher Maulwurfhirte"
+	L.royal_wicklighter = "Königlicher Dochtzündler"
 	L.kobold_taskworker = "Koboldauftragnehmer"
 	L.wandering_candle = "Wandernde Kerze"
 	L.blazing_fiend = "Lodernder Unhold"

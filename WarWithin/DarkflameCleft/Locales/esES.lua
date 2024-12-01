@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	L.rank_overseer = "Sobrestante rancio"
 	L.lowly_moleherd = "Pastor de topos humilde"
+	L.royal_wicklighter = "Prendemechas real"
 	L.kobold_taskworker = "Completatareas kóbold"
 	L.wandering_candle = "Vela errante"
 	L.blazing_fiend = "Maligno llameante"

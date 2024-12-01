@@ -3,6 +3,7 @@ if not L then return end
 if L then
 	--L.rank_overseer = "Rank Overseer"
 	--L.lowly_moleherd = "Lowly Moleherd"
+	L.royal_wicklighter = "Attizzamicce Reale"
 	L.kobold_taskworker = "Svolgimansioni Coboldo"
 	--L.wandering_candle = "Wandering Candle"
 	--L.blazing_fiend = "Blazing Fiend"
