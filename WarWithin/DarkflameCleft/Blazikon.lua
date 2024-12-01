@@ -43,7 +43,7 @@ end
 
 function mod:OnEngage()
 	if self:Mythic() then
-		-- TODO real timer
+		-- TODO guessed
 		self:CDBar(425394, 3.4) -- Extinguishing Gust
 	else
 		self:CDBar(425394, 3.4) -- Dousing Breath
@@ -75,14 +75,14 @@ end
 
 function mod:InciteFlames(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 31.6)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:EnkindlingInferno(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "warning")
 	self:CDBar(args.spellId, 31.6)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:BlazingStorms(args)
@@ -93,16 +93,18 @@ function mod:BlazingStorms(args)
 	end
 end
 
+-- Normal / Heroic
+
 function mod:DousingBreath(args)
 	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 31.6)
+	self:PlaySound(args.spellId, "info")
 end
 
 -- Mythic
 
 function mod:ExtinguishingGust(args)
 	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 31.6) -- TODO guessed
+	self:PlaySound(args.spellId, "info")
 end
