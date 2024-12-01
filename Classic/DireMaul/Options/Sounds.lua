@@ -35,6 +35,10 @@ BigWigs:AddSounds("Guard Mol'dar", {
 })
 
 BigWigs:AddSounds("Stomper Kreeg", {
+	[15578] = "alert",
+	[16740] = "alert",
+	[22833] = "alarm",
+	[22835] = "long",
 })
 
 BigWigs:AddSounds("Cho'Rush the Observer", {
