@@ -1,5 +1,7 @@
 
 BigWigs:AddSounds("Tendris Warpwood", {
+	[22924] = "alert",
+	[22994] = {"alarm","alert"},
 })
 
 BigWigs:AddSounds("Illyanna Ravenoak", {
