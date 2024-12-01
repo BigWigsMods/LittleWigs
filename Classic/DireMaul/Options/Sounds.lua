@@ -28,6 +28,10 @@ BigWigs:AddSounds("Prince Tortheldrin", {
 })
 
 BigWigs:AddSounds("Guard Mol'dar", {
+	[8269] = "long",
+	[11972] = "alarm",
+	[14516] = "alert",
+	[15749] = "alert",
 })
 
 BigWigs:AddSounds("Stomper Kreeg", {
