@@ -89,26 +89,31 @@ do
 	end
 end
 
-function mod:Consumption(args)
-	if self:Mythic() then
-		self:StopBar(322654) -- Acid Expulsion
-		self:StopBar(CL.adds) -- Accelerated Incubation
-		self:StopBar(322614) -- Mind Link
-		self:StopBar(463602) -- Coalescing Poison
-	end
-	if self:GetStage() == 1 then -- first Consumption
-		self:SetStage(2)
-		self:Message(args.spellId, "cyan", CL.percent:format(70, args.spellName))
-	else -- second Consumption
-		self:SetStage(3)
-		self:Message(args.spellId, "cyan", CL.percent:format(40, args.spellName))
-	end
-	self:PlaySound(args.spellId, "long")
-end
+do
+	local consumptionStart = 0
 
-function mod:GorgingShieldRemoved(args)
-	self:Message(args.spellId, "green", CL.removed:format(args.spellName))
-	self:PlaySound(args.spellId, "info")
+	function mod:Consumption(args)
+		consumptionStart = args.time
+		if self:Mythic() then
+			self:StopBar(322654) -- Acid Expulsion
+			self:StopBar(CL.adds) -- Accelerated Incubation
+			self:StopBar(322614) -- Mind Link
+			self:StopBar(463602) -- Coalescing Poison
+		end
+		if self:GetStage() == 1 then -- first Consumption
+			self:SetStage(2)
+			self:Message(args.spellId, "cyan", CL.percent:format(70, args.spellName))
+		else -- second Consumption
+			self:SetStage(3)
+			self:Message(args.spellId, "cyan", CL.percent:format(40, args.spellName))
+		end
+		self:PlaySound(args.spellId, "long")
+	end
+
+	function mod:GorgingShieldRemoved(args)
+		self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, args.time - consumptionStart))
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 function mod:ConsumptionRemoved(args)
