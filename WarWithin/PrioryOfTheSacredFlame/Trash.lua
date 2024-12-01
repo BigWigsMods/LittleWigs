@@ -126,16 +126,19 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "BlessingOfTheSacredFlame", 435088)
 
 	-- Guard Captain Suleyman
+	self:RegisterEngageMob("GuardCaptainSuleymanEngaged", 212826)
 	self:Log("SPELL_CAST_START", "ShieldSlam", 448485)
 	self:Log("SPELL_CAST_START", "Thunderclap", 448492)
 	self:Death("GuardCaptainSuleymanDeath", 212826)
 
 	-- Forge Master Damian
+	self:RegisterEngageMob("ForgeMasterDamianEngaged", 212831)
 	self:Log("SPELL_CAST_START", "HeatWave", 427897)
 	self:Log("SPELL_CAST_START", "SealOfFlame", 427950)
 	self:Death("ForgeMasterDamianDeath", 212831)
 
 	-- High Priest Aemya
+	self:RegisterEngageMob("HighPriestAemyaEngaged", 212827)
 	self:Log("SPELL_CAST_START", "InnerFireAemya", 429091)
 	self:Log("SPELL_CAST_START", "ReflectiveShield", 428150)
 	self:Log("SPELL_CAST_SUCCESS", "ReflectiveShieldSuccess", 428150)
@@ -143,18 +146,21 @@ function mod:OnBossEnable()
 	self:Death("HighPriestAemyaDeath", 212827)
 
 	-- Sergeant Shaynemail
+	self:RegisterEngageMob("SergeantShaynemailEngaged", 211291)
 	self:Log("SPELL_CAST_START", "BrutalSmash", 424621)
 	self:Log("SPELL_CAST_START", "LungingStrike", 424423)
 	self:Log("SPELL_CAST_SUCCESS", "LungingStrikeSuccess", 424423)
 	self:Death("SergeantShaynemailDeath", 211291)
 
 	-- Elaena Emberlanz
+	self:RegisterEngageMob("ElaenaEmberlanzEngaged", 211290)
 	self:Log("SPELL_CAST_START", "HolyRadiance", 424431)
 	self:Log("SPELL_CAST_START", "DivineJudgment", 448515)
 	self:Log("SPELL_CAST_START", "Repentance", 427583)
 	self:Death("ElaenaEmberlanzDeath", 211290)
 
 	-- Taener Duelmal
+	self:RegisterEngageMob("TaenerDuelmalEngaged", 211289)
 	self:Log("SPELL_CAST_START", "Cinderblast", 424420)
 	self:Log("SPELL_INTERRUPT", "CinderblastInterrupt", 424420)
 	self:Log("SPELL_CAST_SUCCESS", "CinderblastSuccess", 424420)
@@ -163,21 +169,25 @@ function mod:OnBossEnable()
 	self:Death("TaenerDuelmalDeath", 211289)
 
 	-- Arathi Knight
+	self:RegisterEngageMob("ArathiKnightEngaged", 206696)
 	self:Log("SPELL_CAST_START", "DisruptingShout", 427609)
 	self:Death("ArathiKnightDeath", 206696)
 
 	-- Arathi Footman
+	self:RegisterEngageMob("ArathiFootmanEngaged", 206705)
 	self:Log("SPELL_CAST_SUCCESS", "Defend", 427342)
 	self:Log("SPELL_CAST_START", "MortalStrike", 426964)
 	self:Log("SPELL_CAST_SUCCESS", "MortalStrikeSuccess", 426964)
 	self:Death("ArathiFootmanDeath", 206705)
 
 	-- Fervent Sharpshooter
+	self:RegisterEngageMob("FerventSharpshooterEngaged", 206694)
 	self:Log("SPELL_CAST_SUCCESS", "Caltrops", 453458)
 	self:Log("SPELL_AURA_APPLIED", "CaltropsApplied", 453461)
 	self:Death("FerventSharpshooterDeath", 206694)
 
 	-- Devout Priest
+	self:RegisterEngageMob("DevoutPriestEngaged", 206697)
 	self:Log("SPELL_CAST_START", "GreaterHeal", 427356)
 	self:Log("SPELL_INTERRUPT", "GreaterHealInterrupt", 427356)
 	self:Log("SPELL_CAST_SUCCESS", "GreaterHealSuccess", 427356)
@@ -188,6 +198,7 @@ function mod:OnBossEnable()
 	self:Death("DevoutPriestDeath", 206697)
 
 	-- Fanatical Conjuror
+	self:RegisterEngageMob("FanaticalConjurorEngaged", 206698)
 	self:Log("SPELL_CAST_START", "Flamestrike", 427484)
 	self:Death("FanaticalConjurorDeath", 206698)
 
@@ -195,12 +206,14 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BurstOfLight", 427601)
 
 	-- Ardent Paladin
+	self:RegisterEngageMob("ArdentPaladinEngaged", 206704)
 	self:Log("SPELL_CAST_SUCCESS", "Consecration", 424429)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ConsecrationDamage", 424430) -- no alert on APPLIED, doesn't damage for 1.5s
 	self:Log("SPELL_PERIODIC_MISSED", "ConsecrationDamage", 424430)
 	self:Death("ArdentPaladinDeath", 206704)
 
 	-- Risen Mage
+	self:RegisterEngageMob("RisenMageEngaged", 221760)
 	self:Log("SPELL_CAST_START", "FireballVolley", 444743)
 	self:Log("SPELL_INTERRUPT", "FireballVolleyInterrupt", 444743)
 	self:Log("SPELL_CAST_SUCCESS", "FireballVolleySuccess", 444743)
@@ -252,6 +265,14 @@ end
 do
 	local timer
 
+	function mod:GuardCaptainSuleymanEngaged(guid)
+		self:CDBar(448485, 2.3) -- Shield Slam
+		self:Nameplate(448485, 2.3, guid) -- Shield Slam
+		self:CDBar(448492, 15.7) -- Thunderclap
+		self:Nameplate(448492, 15.7, guid) -- Thunderclap
+		timer = self:ScheduleTimer("GuardCaptainSuleymanDeath", 30)
+	end
+
 	function mod:ShieldSlam(args)
 		if timer then
 			self:CancelTimer(timer)
@@ -296,6 +317,14 @@ end
 do
 	local timer
 
+	function mod:ForgeMasterDamianEngaged(guid)
+		self:CDBar(427950, 6.0) -- Seal of Flame
+		self:Nameplate(427950, 6.0, guid) -- Seal of Flame
+		self:CDBar(427897, 8.4) -- Heat Wave
+		self:Nameplate(427897, 8.4, guid) -- Heat Wave
+		timer = self:ScheduleTimer("ForgeMasterDamianDeath", 30)
+	end
+
 	function mod:HeatWave(args)
 		if timer then
 			self:CancelTimer(timer)
@@ -335,6 +364,14 @@ end
 
 do
 	local timer
+
+	function mod:HighPriestAemyaEngaged(guid)
+		--self:CDBar(429091, 100) -- Inner Fire
+		--self:Nameplate(429091, 100, guid) -- Inner Fire
+		self:CDBar(428150, 21.4) -- Reflective Shield
+		self:Nameplate(428150, 21.4, guid) -- Reflective Shield
+		timer = self:ScheduleTimer("HighPriestAemyaDeath", 60)
+	end
 
 	function mod:InnerFireAemya(args)
 		local unit = self:UnitTokenFromGUID(args.sourceGUID)
@@ -392,6 +429,14 @@ end
 do
 	local timer
 
+	function mod:SergeantShaynemailEngaged(guid)
+		self:CDBar(424423, 5.8) -- Lunging Strike
+		self:Nameplate(424423, 5.8, guid) -- Lunging Strike
+		self:CDBar(424621, 25.3) -- Brutal Smash
+		self:Nameplate(424621, 25.3, guid) -- Brutal Smash
+		timer = self:ScheduleTimer("SergeantShaynemailDeath", 30)
+	end
+
 	function mod:BrutalSmash(args)
 		if timer then
 			self:CancelTimer(timer)
@@ -436,6 +481,16 @@ end
 
 do
 	local timer
+
+	function mod:ElaenaEmberlanzEngaged(guid)
+		self:CDBar(448515, 4.0) -- Divine Judgment
+		self:Nameplate(448515, 4.0, guid) -- Divine Judgment
+		self:CDBar(427583, 7.6) -- Repentance
+		self:Nameplate(427583, 7.6, guid) -- Repentance
+		self:CDBar(424431, 14.3) -- Holy Radiance
+		self:Nameplate(424431, 14.3, guid) -- Holy Radiance
+		timer = self:ScheduleTimer("ElaenaEmberlanzDeath", 30)
+	end
 
 	function mod:HolyRadiance(args)
 		if timer then
@@ -488,6 +543,14 @@ end
 
 do
 	local timer
+
+	function mod:TaenerDuelmalEngaged(guid)
+		self:CDBar(424462, 2.1) -- Ember Storm
+		self:Nameplate(424462, 2.1, guid) -- Ember Storm
+		self:CDBar(424420, 5.6) -- Cinderblast
+		self:Nameplate(424420, 5.6, guid) -- Cinderblast
+		timer = self:ScheduleTimer("TaenerDuelmalDeath", 30)
+	end
 
 	function mod:Cinderblast(args)
 		if timer then
@@ -549,6 +612,10 @@ end
 
 -- Arathi Knight
 
+function mod:ArathiKnightEngaged(guid)
+	self:Nameplate(427609, 20.2, guid) -- Disrupting Shout
+end
+
 function mod:DisruptingShout(args)
 	self:Message(args.spellId, "red")
 	self:Nameplate(args.spellId, 21.8, args.sourceGUID)
@@ -560,6 +627,11 @@ function mod:ArathiKnightDeath(args)
 end
 
 -- Arathi Footman
+
+function mod:ArathiFootmanEngaged(guid)
+	-- Defend isn't cast until 50% (in Normal)
+	self:Nameplate(426964, 2.7, guid) -- Mortal Strike
+end
 
 do
 	local prev = 0
@@ -600,6 +672,10 @@ end
 
 -- Fervent Sharpshooter
 
+function mod:FerventSharpshooterEngaged(guid)
+	self:Nameplate(453458, 9.1, guid) -- Caltrops
+end
+
 do
 	local prev = 0
 	function mod:Caltrops(args)
@@ -625,6 +701,11 @@ function mod:FerventSharpshooterDeath(args)
 end
 
 -- Devout Priest
+
+function mod:DevoutPriestEngaged(guid)
+	-- Greater Heal is not cast until a mob's health is low
+	self:Nameplate(427346, 7.1, guid) -- Inner Fire
+end
 
 do
 	local prev = 0
@@ -680,6 +761,10 @@ end
 
 -- Fanatical Conjuror
 
+function mod:FanaticalConjurorEngaged(guid)
+	self:Nameplate(427484, 6.0, guid) -- Flamestrike
+end
+
 do
 	local prev = 0
 	function mod:Flamestrike(args)
@@ -713,6 +798,10 @@ end
 
 -- Ardent Paladin
 
+function mod:ArdentPaladinEngaged(guid)
+	self:Nameplate(424429, 8.0, guid) -- Consecration
+end
+
 function mod:Consecration(args)
 	self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 end
@@ -733,6 +822,10 @@ function mod:ArdentPaladinDeath(args)
 end
 
 -- Risen Mage
+
+function mod:RisenMageEngaged(guid)
+	self:Nameplate(444743, 8.0, guid) -- Fireball Volley
+end
 
 do
 	local prev = 0
