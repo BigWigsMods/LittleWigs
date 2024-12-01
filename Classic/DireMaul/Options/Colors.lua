@@ -66,3 +66,6 @@ BigWigs:AddColors("Alzzin the Wildshaper", {
 	[22689] = {"blue","orange"},
 	["stages"] = "cyan",
 })
+
+BigWigs:AddColors("Dire Maul Trash", {
+})

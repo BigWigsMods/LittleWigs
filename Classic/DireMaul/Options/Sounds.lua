@@ -63,3 +63,6 @@ BigWigs:AddSounds("Alzzin the Wildshaper", {
 	[22689] = "alarm",
 	["stages"] = "long",
 })
+
+BigWigs:AddSounds("Dire Maul Trash", {
+})
