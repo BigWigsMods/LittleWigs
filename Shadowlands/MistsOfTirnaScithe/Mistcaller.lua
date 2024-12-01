@@ -56,6 +56,14 @@ function mod:OnEngage()
 	self:CDBar(341709, 17.0, L.vulpin) -- Freeze Tag
 end
 
+function mod:OnWin()
+	local trashMod = BigWigs:GetBossModule("Mists of Tirna Scithe Trash", true)
+	if trashMod then
+		trashMod:Enable()
+		trashMod:MistcallerDefeated()
+	end
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --

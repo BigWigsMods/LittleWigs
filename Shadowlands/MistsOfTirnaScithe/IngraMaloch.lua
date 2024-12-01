@@ -76,6 +76,14 @@ function mod:VerifyEnable(_, mobId)
 	return true
 end
 
+function mod:OnWin()
+	local trashMod = BigWigs:GetBossModule("Mists of Tirna Scithe Trash", true)
+	if trashMod then
+		trashMod:Enable()
+		trashMod:IngraMalochDefeated()
+	end
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --

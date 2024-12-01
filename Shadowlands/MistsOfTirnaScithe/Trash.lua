@@ -55,6 +55,10 @@ if L then
 	L.spinemaw_gorger = "Spinemaw Gorger"
 	L.gormling_larva = "Gormling Larva"
 	L.spinemaw_reaver = "Spinemaw Reaver"
+
+	L.gate_open = CL.gate_open
+	L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
+	L.gate_open_icon = "achievement_dungeon_mistsoftirnascithe"
 end
 
 --------------------------------------------------------------------------------
@@ -65,6 +69,7 @@ local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
 	return {
 		autotalk,
+		"gate_open",
 		-- Tirnenn Villager
 		{321968, "NAMEPLATE"}, -- Bewildering Pollen
 		{322486, "NAMEPLATE"}, -- Overgrowth
@@ -282,6 +287,18 @@ function mod:GOSSIP_SHOW()
 			self:SelectGossipID(52980)
 		end
 	end
+end
+
+-- RP Timers
+
+-- triggered from Ingra Maloch's :OnWin
+function mod:IngraMalochDefeated()
+	self:Bar("gate_open", 4.6, L.gate_open, L.gate_open_icon)
+end
+
+-- triggered from Mistcaller's :OnWin
+function mod:MistcallerDefeated()
+	self:Bar("gate_open", 17.7, L.gate_open, L.gate_open_icon)
 end
 
 -- Tirnenn Villager

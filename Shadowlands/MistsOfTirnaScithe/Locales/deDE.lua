@@ -20,6 +20,8 @@ if L then
 	L.spinemaw_gorger = "Stachelschlundfresser"
 	L.gormling_larva = "Gormlinglarve"
 	L.spinemaw_reaver = "Stachelschlundhäscher"
+
+	L.gate_open_desc = "Zeigt einen Timer wann das Tor zum nächsten Gebiet nach einer Bossbegegnung geöffnet wird."
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "deDE")

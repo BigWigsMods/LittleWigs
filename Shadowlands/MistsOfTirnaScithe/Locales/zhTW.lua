@@ -20,6 +20,8 @@ if L then
 	--L.spinemaw_gorger = "Spinemaw Gorger"
 	--L.gormling_larva = "Gormling Larva"
 	--L.spinemaw_reaver = "Spinemaw Reaver"
+
+	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "zhTW")

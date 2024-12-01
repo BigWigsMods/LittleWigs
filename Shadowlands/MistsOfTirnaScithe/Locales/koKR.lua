@@ -20,6 +20,8 @@ if L then
 	L.spinemaw_gorger = "가시아귀 먹보"
 	L.gormling_larva = "게걸충 애벌레"
 	L.spinemaw_reaver = "가시아귀 약탈자"
+
+	L.gate_open_desc = "각 보스를 처치한 후 다음 지역으로 가는 문이 언제 열리는지 표시하는 바를 표시합니다."
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "koKR")

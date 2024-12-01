@@ -20,6 +20,8 @@ if L then
 	L.spinemaw_gorger = "锥喉饕餮者"
 	L.gormling_larva = "戈姆蛴幼虫"
 	L.spinemaw_reaver = "锥喉掠夺者"
+
+	L.gate_open_desc = "显示在击杀首领后打开通往下个区域屏障的计时条。"
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "zhCN")
