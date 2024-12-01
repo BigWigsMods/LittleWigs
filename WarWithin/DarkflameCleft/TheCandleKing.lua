@@ -34,7 +34,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(420659, 6.1) -- Eerie Molds
+	self:CDBar(420659, 6.0) -- Eerie Molds
 	self:CDBar(426145, 10.5) -- Paranoid Mind
 	self:CDBar(422648, 15.4) -- Darkflame Pickaxe
 	self:CDBar(420696, 22.6) -- Throw Darkflame
@@ -46,8 +46,8 @@ end
 
 function mod:EerieMolds(args)
 	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 31.6)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:DarkflamePickaxe(args)
@@ -70,14 +70,14 @@ end
 
 function mod:ParanoidMind(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 20.7)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 420696 then -- Throw Darkflame
 		self:Message(spellId, "orange")
-		--self:PlaySound(spellId, "alarm") private aura sound
 		self:CDBar(spellId, 17.0) -- TODO often delayed
+		--self:PlaySound(spellId, "alarm") private aura sound
 	end
 end
