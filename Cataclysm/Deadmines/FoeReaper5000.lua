@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Foe Reaper 5000", 36, 91)
 if not mod then return end
 mod:RegisterEnableMob(43778) -- Foe Reaper 5000
-mod:SetEncounterID(1063)
+mod:SetEncounterID(mod:Retail() and 2980 or 1063)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
 
@@ -22,6 +22,17 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	if self:Retail() then
+		if self:Normal() then
+			self:SetEncounterID(2975)
+		else -- Heroic
+			self:SetEncounterID(2980)
+		end
+		-- no ENCOUNTER_END in Retail since 11.0.5
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 43778) -- Foe Reaper 5000
+	end
+
 	self:Log("SPELL_CAST_START", "Overdrive", 88481)
 	self:Log("SPELL_CAST_START", "Harvest", 88495)
 	self:Log("SPELL_CAST_SUCCESS", "SafetyRestrictionsOffline", 88522)

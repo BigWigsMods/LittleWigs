@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Captain Cookie", 36, 93)
 if not mod then return end
 mod:RegisterEnableMob(47739) -- Cookie
-mod:SetEncounterID(1060)
+mod:SetEncounterID(mod:Retail() and 2978 or 1060)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
@@ -21,6 +21,17 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	if self:Retail() then
+		if self:Normal() then
+			self:SetEncounterID(2973)
+		else -- Heroic
+			self:SetEncounterID(2978)
+		end
+		-- no ENCOUNTER_END in Retail since 11.0.5
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 47739) -- Cookie
+	end
+
 	self:Log("SPELL_CAST_SUCCESS", "CauldronFire", 89252) -- Throw Food (first one only)
 	self:Log("SPELL_AURA_APPLIED", "SatiatedApplied", 89267)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SatiatedApplied", 89267)

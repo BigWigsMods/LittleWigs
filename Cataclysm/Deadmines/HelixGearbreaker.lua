@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Helix Gearbreaker", 36, 90)
 if not mod then return end
 mod:RegisterEnableMob(47296, 47297) -- Helix Gearbreaker, Lumbering Oaf
-mod:SetEncounterID(1065)
+mod:SetEncounterID(mod:Retail() and 2982 or 1065)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
 
@@ -26,6 +26,17 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	if self:Retail() then
+		if self:Normal() then
+			self:SetEncounterID(2977)
+		else -- Heroic
+			self:SetEncounterID(2982)
+		end
+		-- no ENCOUNTER_END in Retail since 11.0.5
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 47296) -- Helix Gearbreaker
+	end
+
 	-- Lumbering Oaf
 	self:Log("SPELL_CAST_SUCCESS", "Charge", 88288) -- Oaf Smash
 	self:Death("LumberingOafDeath", 47297)
