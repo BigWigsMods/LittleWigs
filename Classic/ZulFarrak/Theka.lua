@@ -31,10 +31,10 @@ function mod:OnBossEnable()
 		self:Log("SPELL_AURA_APPLIED", "ShadowWordPainApplied", 15654)
 		self:Log("SPELL_CAST_SUCCESS", "CurseOfTheMartyr", 450933)
 		self:Log("SPELL_AURA_APPLIED", "CurseOfTheMartyrApplied", 450933)
-		if self:Heroic() then -- no encounter events in Timewalking
-			self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-			self:Death("Win", 7272)
-		end
+	end
+	if self:Heroic() or (self:Classic() and not self:Vanilla()) then -- no encounter events in Timewalking or Cataclysm Classic
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 7272)
 	end
 end
 
