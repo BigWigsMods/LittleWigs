@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Fungarian Delve Trash", "zhCN")
 if not L then return end
 if L then
-	L.fungarian_trash = "真菌小怪"
+	L.fungarian_trash = "真菌人小怪"
 
 	L.sporbit = "孢点"
 	L.fungal_speartender = "真菌护矛者"
@@ -15,7 +15,7 @@ end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "zhCN")
 if L then
-	L.kobold_trash = "狗头小怪"
+	L.kobold_trash = "狗头人小怪"
 
 	L.kobold_taskfinder = "狗头人领职者"
 	L.spitfire_charger = "喷火冲锋者"
@@ -24,11 +24,11 @@ end
 
 L = BigWigs:NewBossLocale("Kobyss Delve Trash", "zhCN")
 if L then
-	L.kobyss_trash = "唇鱼小怪"
+	L.kobyss_trash = "蜃鱼人小怪"
 
-	L.kobyss_necromancer = "唇鱼人通灵师"
-	L.kobyss_spearfisher = "唇鱼人矛渔夫"
-	L.kobyss_witherer = "唇鱼人枯败者"
+	L.kobyss_necromancer = "蜃鱼人通灵师"
+	L.kobyss_spearfisher = "蜃鱼人矛渔夫"
+	L.kobyss_witherer = "蜃鱼人枯败者"
 	L.wandering_gutter = "游荡的开膛者"
 	L.crazed_predator = "狂乱掠食者"
 	L.deepwater_makura = "深水龙虾人"
@@ -48,7 +48,7 @@ end
 
 L = BigWigs:NewBossLocale("Nightfall Delve Trash", "zhCN")
 if L then
-	L.nightfall_trash = "夜幕小怪"
+	L.nightfall_trash = "玄夜会小怪"
 
 	L.dark_bombardier = "黑暗投弹手"
 	L.nightfall_inquisitor = "夜幕审判者"
