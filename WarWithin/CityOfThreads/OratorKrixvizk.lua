@@ -22,7 +22,7 @@ local vociferousIndoctrinationCount = 1
 
 function mod:GetOptions()
 	return {
-		434722, -- Subjugate
+		{434722, "TANK_HEALER"}, -- Subjugate
 		434779, -- Terrorize
 		434829, -- Vociferous Indoctrination
 		434926, -- Lingering Influence
