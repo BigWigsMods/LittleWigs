@@ -363,7 +363,7 @@ end
 
 function mod:LavaFist(args)
 	self:Message(args.spellId, "purple")
-	self:Nameplate(args.spellId, 15.0, args.sourceGUID)
+	self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
 end
 
