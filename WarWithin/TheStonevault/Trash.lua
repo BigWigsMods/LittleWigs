@@ -354,7 +354,7 @@ end
 
 function mod:ShadowClaw(args)
 	self:Message(args.spellId, "purple")
-	self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+	self:Nameplate(args.spellId, 22.7, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
 end
 
