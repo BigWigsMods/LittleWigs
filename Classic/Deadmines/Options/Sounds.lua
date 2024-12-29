@@ -15,6 +15,8 @@ BigWigs:AddSounds("Captain Greenskin", {
 })
 
 BigWigs:AddSounds("Edwin VanCleef", {
+	[5200] = "long",
+	[450564] = "info",
 })
 
 BigWigs:AddSounds("Cookie", {
