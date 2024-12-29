@@ -18,4 +18,6 @@ BigWigs:AddColors("Edwin VanCleef", {
 })
 
 BigWigs:AddColors("Cookie", {
+	[5174] = "red",
+	[6306] = {"blue","orange","yellow"},
 })
