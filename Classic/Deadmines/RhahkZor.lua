@@ -1,4 +1,3 @@
-if BigWigsLoader.isRetail and select(4, GetBuildInfo()) < 110005 then return end -- XXX remove check when 11.0.5 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -15,25 +14,55 @@ mod:SetEncounterID(mod:Retail() and 2967 or 2741)
 
 function mod:GetOptions()
 	return {
-
+		6304, -- Rhahk'Zor Slam
+		450515, -- Whirling Rage
+		--455010, -- Fixate, hidden
 	}
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_SUCCESS", "RhahkZorSlam", 6304)
 	if self:Retail() then
-		self:RegisterEvent("ENCOUNTER_START") -- XXX no boss frames
+		self:Log("SPELL_CAST_START", "WhirlingRage", 450515)
 	end
 end
 
 function mod:OnEngage()
+	if self:Retail() then
+		-- Rhahk'Zor Slam can be cast on pull in Classic, Whirling Rage is Retail-only
+		self:CDBar(6304, 3.6) -- Rhahk'Zor Slam
+		self:CDBar(450515, 6.1) -- Whirling Rage
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Classic Initialization
+--
+
+if mod:Classic() then
+	function mod:GetOptions()
+		return {
+			6304, -- Rhahk'Zor Slam
+		}
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:ENCOUNTER_START(_, id) -- XXX no boss frames
-	if id == self.engageId then
-		self:Engage()
+function mod:RhahkZorSlam(args)
+	self:Message(args.spellId, "purple")
+	if self:Retail() then
+		self:CDBar(args.spellId, 15.8)
+	else -- Classic
+		self:CDBar(args.spellId, 17.8)
 	end
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:WhirlingRage(args)
+	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 17.0)
+	self:PlaySound(args.spellId, "alarm")
 end

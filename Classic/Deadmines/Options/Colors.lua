@@ -1,5 +1,7 @@
 
 BigWigs:AddColors("Rhahk'Zor", {
+	[6304] = "purple",
+	[450515] = "orange",
 })
 
 BigWigs:AddColors("Sneed", {

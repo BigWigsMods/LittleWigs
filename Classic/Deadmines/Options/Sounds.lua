@@ -1,5 +1,7 @@
 
 BigWigs:AddSounds("Rhahk'Zor", {
+	[6304] = "alert",
+	[450515] = "alarm",
 })
 
 BigWigs:AddSounds("Sneed", {
