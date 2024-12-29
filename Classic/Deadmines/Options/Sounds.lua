@@ -6,6 +6,9 @@ BigWigs:AddSounds("Sneed", {
 })
 
 BigWigs:AddSounds("Gilnid", {
+	[5159] = {"alarm","alert"},
+	[5213] = {"alert","info"},
+	[450542] = "long",
 })
 
 BigWigs:AddSounds("Mr. Smite", {
