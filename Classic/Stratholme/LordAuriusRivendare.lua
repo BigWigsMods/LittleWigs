@@ -37,7 +37,7 @@ function mod:OnBossEnable()
 	end
 	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
 	self:Log("SPELL_CAST_START", "ShadowBomb", 17434)
-	if self:Heroic() then -- no encounter events in Timewalking
+	if self:Heroic() or (self:Classic() and not self:Vanilla()) then -- no encounter events in Timewalking or Cataclysm Classic
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 		self:Death("Win", 45412)
 	end
