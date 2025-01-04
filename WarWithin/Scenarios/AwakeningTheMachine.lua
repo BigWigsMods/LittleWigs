@@ -75,10 +75,12 @@ function mod:OnRegister()
 	self:SetSpellRename(463081, CL.charge) -- Earthshaking Charge (Charge)
 end
 
+local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()
 	return {
 		-- Waves
 		"stages",
+		autotalk,
 		-- Corrupted Machinist
 		462802, -- Purging Flames
 		-- Explosive Bomberbot
@@ -116,6 +118,9 @@ function mod:OnBossEnable()
 	self:RegisterWidgetEvent(5573, "Waves")
 	self:Death("MobDeath", 229691, 229695, 229769, 229729) -- 229778 is covered in :AutomaticIronstriderDeath
 	self:Log("SPELL_CAST_SUCCESS", "MobDeath", 288774, 462826) -- Shutdown, Self Destruct
+
+	-- Autotalk
+	self:RegisterEvent("GOSSIP_SHOW")
 
 	-- Corrupted Machinist
 	self:Log("SPELL_CAST_START", "PurgingFlames", 462802)
@@ -199,6 +204,15 @@ do
 				self:Bar("stages", nextWave, CL.wave:format(stage + 1), L.stages_icon)
 			end
 		end
+	end
+end
+
+-- Autotalk
+
+function mod:GOSSIP_SHOW()
+	if self:GetOption(autotalk) and self:GetGossipID(120555) then
+		-- 120555:I'm ready to continue.
+		self:SelectGossipID(120555)
 	end
 end
 
