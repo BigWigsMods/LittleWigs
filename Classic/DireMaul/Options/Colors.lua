@@ -44,9 +44,6 @@ BigWigs:AddColors("Stomper Kreeg", {
 	[22835] = "cyan",
 })
 
-BigWigs:AddColors("Cho'Rush the Observer", {
-})
-
 BigWigs:AddColors("King Gordok", {
 	[15572] = "purple",
 	[16727] = "red",

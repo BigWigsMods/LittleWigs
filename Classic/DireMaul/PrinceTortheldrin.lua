@@ -24,7 +24,7 @@ function mod:OnBossEnable()
 	if self:Retail() then
 		self:Log("SPELL_CAST_START", "WhirlingStrike", 67037)
 	end
-	if self:Heroic() then -- no encounter events in Timewalking
+	if self:Heroic() or (self:Classic() and not self:Vanilla()) then -- no encounter events in Timewalking or Cataclysm Classic
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 		self:Death("Win", 11486)
 	end
