@@ -27,7 +27,7 @@ function mod:OnBossEnable()
 		self:Log("SPELL_CAST_START", "Entangle", 451014)
 	end
 	self:Log("SPELL_AURA_APPLIED", "EntangleApplied", 22994)
-	if self:Heroic() then -- no encounter events in Timewalking
+	if self:Heroic() or (self:Classic() and not self:Vanilla()) then -- no encounter events in Timewalking or Cataclysm Classic
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 		self:Death("Win", 11489)
 	end

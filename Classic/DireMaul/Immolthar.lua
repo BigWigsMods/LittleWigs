@@ -24,15 +24,15 @@ function mod:OnBossEnable()
 	if self:Retail() then
 		self:Log("SPELL_CAST_SUCCESS", "EyesOfImmolthar", 451127)
 		self:Log("SPELL_CAST_SUCCESS", "Trample", 452516)
-		if self:Heroic() then -- no encounter events in Timewalking
-			self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-			self:Death("Win", 11496)
-		end
 	else -- Classic
 		self:Log("SPELL_CAST_SUCCESS", "EyesOfImmolthar", 22899) -- Eye of Immolthar
 		self:Log("SPELL_CAST_SUCCESS", "Trample", 5568)
 	end
 	self:Log("SPELL_CAST_SUCCESS", "PortalOfImmolthar", 22950)
+	if self:Heroic() or (self:Classic() and not self:Vanilla()) then -- no encounter events in Timewalking or Cataclysm Classic
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 11496)
+	end
 end
 
 function mod:OnEngage()

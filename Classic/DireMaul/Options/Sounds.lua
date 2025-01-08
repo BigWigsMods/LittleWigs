@@ -41,9 +41,6 @@ BigWigs:AddSounds("Stomper Kreeg", {
 	[22835] = "long",
 })
 
-BigWigs:AddSounds("Cho'Rush the Observer", {
-})
-
 BigWigs:AddSounds("King Gordok", {
 	[15572] = "alert",
 	[16727] = "alarm",

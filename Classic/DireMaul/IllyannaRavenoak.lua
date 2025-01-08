@@ -39,7 +39,7 @@ function mod:OnBossEnable()
 		self:Log("SPELL_CAST_SUCCESS", "ImmolationTrap", 22910)
 	end
 	self:Log("SPELL_CAST_SUCCESS", "ConcussiveShot", 22914)
-	if self:Heroic() then -- no encounter events in Timewalking
+	if self:Heroic() or (self:Classic() and not self:Vanilla()) then -- no encounter events in Timewalking or Cataclysm Classic
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 		self:Death("Win", 11488)
 	end

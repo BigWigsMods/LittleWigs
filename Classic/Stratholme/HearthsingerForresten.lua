@@ -23,7 +23,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "EnchantingLullaby", 16798)
 	self:Log("SPELL_AURA_APPLIED", "EnchantingLullabyApplied", 16798)
 	self:Log("SPELL_CAST_SUCCESS", "DemoralizingShout", 16244)
-	if self:Heroic() then -- no encounter events in Timewalking
+	if self:Heroic() or (self:Classic() and not self:Vanilla()) then -- no encounter events in Timewalking or Cataclysm Classic
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 		self:Death("Win", 10558)
 	end
