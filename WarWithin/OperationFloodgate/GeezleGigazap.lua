@@ -8,6 +8,9 @@ if not mod then return end
 mod:RegisterEnableMob(226404) -- Geezle Gigazap
 mod:SetEncounterID(3054)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	468811, -- Gigazap
+})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -25,7 +28,7 @@ function mod:GetOptions()
 	return {
 		465463, -- Turbo Charge
 		468841, -- Leaping Sparks
-		468813, -- Gigazap
+		{468813, "PRIVATE"}, -- Gigazap
 		{466190, "TANK_HEALER"}, -- Thunder Punch
 		468723, -- Shock Water
 	}
@@ -76,7 +79,6 @@ function mod:LeapingSparkApplied(args)
 end
 
 function mod:Gigazap(args)
-	-- TODO target?
 	self:StopBar(CL.count:format(args.spellName, gigazapCount))
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, gigazapCount))
 	gigazapCount = gigazapCount + 1
