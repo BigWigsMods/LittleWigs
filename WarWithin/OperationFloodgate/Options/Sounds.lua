@@ -6,6 +6,9 @@ BigWigs:AddSounds("Demolition Duo", {
 })
 
 BigWigs:AddSounds("Swampface", {
+	[469478] = "alert",
+	[473070] = "long",
+	[473114] = "alarm",
 })
 
 BigWigs:AddSounds("Geezle Gigazap", {
