@@ -1,4 +1,3 @@
-if BigWigsLoader.isRetail and select(4, GetBuildInfo()) < 110005 then return end -- XXX remove check when 11.0.5 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -15,25 +14,63 @@ mod:SetEncounterID(mod:Retail() and 2986 or 2746)
 
 function mod:GetOptions()
 	return {
-
+		5174, -- Cookie's Cooking
+		{6306, "DISPEL"}, -- Acid Splash
 	}
 end
 
 function mod:OnBossEnable()
-	if self:Retail() then
-		self:RegisterEvent("ENCOUNTER_START") -- XXX no boss frames
+	self:Log("SPELL_CAST_START", "CookiesCooking", 5174)
+	self:Log("SPELL_CAST_START", "AcidSplash", 6306)
+	self:Log("SPELL_AURA_APPLIED", "AcidSplashApplied", 6306)
+	if self:Classic() then
+		-- no ENCOUNTER_END on Classic
+		self:Death("Win", 645)
 	end
 end
 
 function mod:OnEngage()
+	-- Cookie's Cooking is only cast below a certain hp
+	self:CDBar(6306, 2.4) -- Acid Splash
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:ENCOUNTER_START(_, id) -- XXX no boss frames
-	if id == self.engageId then
-		self:Engage()
+function mod:CookiesCooking(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:CDBar(args.spellId, 21.0)
+	self:PlaySound(args.spellId, "warning")
+end
+
+do
+	local playerList = {}
+
+	function mod:AcidSplash(args)
+		playerList = {}
+		self:Message(args.spellId, "orange")
+		if self:Retail() then
+			self:CDBar(args.spellId, 13.3)
+		else -- Classic
+			self:CDBar(args.spellId, 55.0)
+		end
+	end
+
+	function mod:AcidSplashApplied(args)
+		if self:Retail() then
+			if self:Dispeller("poison", nil, args.spellId) and self:Player(args.destFlags) then
+				playerList[#playerList + 1] = args.destName
+				self:TargetsMessage(args.spellId, "yellow", playerList, 5)
+				self:PlaySound(args.spellId, "alert", nil, playerList)
+			end
+		else -- Classic
+			-- not dispellable on Classic
+			if self:Me(args.destGUID) or (self:Healer() and self:Player(args.destFlags)) then
+				playerList[#playerList + 1] = args.destName
+				self:TargetsMessage(args.spellId, "yellow", playerList, 5)
+				self:PlaySound(args.spellId, "alert", nil, playerList)
+			end
+		end
 	end
 end
