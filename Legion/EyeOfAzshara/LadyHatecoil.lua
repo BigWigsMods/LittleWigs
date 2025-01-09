@@ -86,7 +86,7 @@ end
 
 function mod:CurseOfTheWitchRemoved(args)
 	if self:Me(args.destGUID) then
-		self:PesronalMessage(args.spellId, "removed")
+		self:PersonalMessage(args.spellId, "removed")
 		self:StopBar(args.spellName, args.destName)
 	end
 end
