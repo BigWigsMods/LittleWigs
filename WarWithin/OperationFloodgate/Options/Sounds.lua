@@ -21,6 +21,7 @@ BigWigs:AddSounds("Demolition Duo", {
 
 BigWigs:AddSounds("Swampface", {
 	[469478] = "alert",
+	[470039] = "info",
 	[473070] = "long",
 	[473114] = "alarm",
 })

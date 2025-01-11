@@ -21,6 +21,7 @@ BigWigs:AddColors("Demolition Duo", {
 
 BigWigs:AddColors("Swampface", {
 	[469478] = "purple",
+	[470039] = "blue",
 	[473070] = "yellow",
 	[473114] = "orange",
 })
