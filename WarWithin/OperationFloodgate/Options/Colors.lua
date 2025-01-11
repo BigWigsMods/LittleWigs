@@ -37,11 +37,13 @@ BigWigs:AddColors("Geezle Gigazap", {
 BigWigs:AddColors("Operation: Floodgate Trash", {
 	[462771] = "red",
 	[463058] = "red",
+	[465408] = "cyan",
 	[465666] = "purple",
 	[465682] = "orange",
 	[465754] = "yellow",
 	[465813] = {"blue","yellow"},
 	[465827] = "yellow",
+	[468726] = "cyan",
 	[469721] = "yellow",
 	[469799] = {"blue","orange"},
 	[469818] = "red",

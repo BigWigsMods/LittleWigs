@@ -13,8 +13,10 @@ mod:RegisterEnableMob(
 	229212, -- Darkfuse Demolitionist
 	231385, -- Darkfuse Inspector
 	230748, -- Darkfuse Bloodwarper
-	229686, -- Venture Co. Surveyor
 	231380, -- Undercrawler
+	229686, -- Venture Co. Surveyor
+	229251, -- Venture Co. Architect
+	231496, -- Venture Co. Diver
 	231223, -- Disturbed Kelp
 	234373, -- Bomb Pile
 	231197, -- Bubbles
@@ -38,8 +40,10 @@ if L then
 	L.darkfuse_demolitionist = "Darkfuse Demolitionist"
 	L.darkfuse_inspector = "Darkfuse Inspector"
 	L.darkfuse_bloodwarper = "Darkfuse Bloodwarper"
-	L.venture_co_surveyor = "Venture Co. Surveyor"
 	L.undercrawler = "Undercrawler"
+	L.venture_co_surveyor = "Venture Co. Surveyor"
+	L.venture_co_architect = "Venture Co. Architect"
+	L.venture_co_diver = "Venture Co. Diver"
 	L.disturbed_kelp = "Disturbed Kelp"
 	L.bomb_pile = "Bomb Pile"
 	L.bubbles = "Bubbles"
@@ -68,10 +72,14 @@ function mod:GetOptions()
 		{465682, "NAMEPLATE"}, -- Surprise Inspection
 		-- Darkfuse Bloodwarper
 		{465827, "NAMEPLATE"}, -- Warp Blood
-		-- Venture Co. Surveyor
-		{462771, "NAMEPLATE"}, -- Surveying Beam
 		-- Undercrawler
 		{465813, "DISPEL", "NAMEPLATE"}, -- Lethargic Venom
+		-- Venture Co. Surveyor
+		{462771, "NAMEPLATE"}, -- Surveying Beam
+		-- Venture Co. Architect
+		{465408, "NAMEPLATE"}, -- Rapid Construction
+		-- Venture Co. Diver
+		{468726, "NAMEPLATE"}, -- Plant Seaforium Charge
 		-- Disturbed Kelp
 		{471736, "NAMEPLATE"}, -- Jettison Kelp
 		{471733, "NAMEPLATE"}, -- Restorative Algae
@@ -93,8 +101,10 @@ function mod:GetOptions()
 		[1216039] = L.darkfuse_demolitionist,
 		[465682] = L.darkfuse_inspector,
 		[465827] = L.darkfuse_bloodwarper,
-		[462771] = L.venture_co_surveyor,
 		[465813] = L.undercrawler,
+		[462771] = L.venture_co_surveyor,
+		[465408] = L.venture_co_architect,
+		[468726] = L.venture_co_diver,
 		[471733] = L.disturbed_kelp,
 		[1214337] = L.bomb_pile,
 		[469818] = L.bubbles,
@@ -149,13 +159,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WarpBlood", 465827)
 	self:Death("DarkfuseBloodwarperDeath", 230748)
 
-	-- Venture Co. Surveyor
-	self:RegisterEngageMob("VentureCoSurveyorEngaged", 229686)
-	self:Log("SPELL_CAST_START", "SurveyingBeam", 462771)
-	self:Log("SPELL_INTERRUPT", "SurveyingBeamInterrupt", 462771)
-	self:Log("SPELL_CAST_SUCCESS", "SurveyingBeamSuccess", 462771)
-	self:Death("VentureCoSurveyorDeath", 229686)
-
 	-- Undercrawler
 	self:RegisterEngageMob("UndercrawlerEngaged", 231380)
 	self:Log("SPELL_CAST_START", "LethargicVenom", 465813)
@@ -164,8 +167,22 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "LethargicVenomApplied", 465813)
 	self:Death("UndercrawlerDeath", 231380)
 
+	-- Venture Co. Surveyor
+	self:RegisterEngageMob("VentureCoSurveyorEngaged", 229686)
+	self:Log("SPELL_CAST_START", "SurveyingBeam", 462771)
+	self:Log("SPELL_INTERRUPT", "SurveyingBeamInterrupt", 462771)
+	self:Log("SPELL_CAST_SUCCESS", "SurveyingBeamSuccess", 462771)
+	self:Death("VentureCoSurveyorDeath", 229686)
+
+	-- Venture Co. Architect
+	self:Log("SPELL_AURA_REMOVED", "HighGroundRemoved", 465420)
+	self:Log("SPELL_CAST_START", "RapidConstruction", 465408)
+	self:Death("VentureCoArchitectDeath", 229686)
+
 	-- Venture Co. Diver
-	-- TODO Plant Seaforium Charge
+	self:RegisterEngageMob("VentureCoDiverEngaged", 231496)
+	self:Log("SPELL_CAST_START", "PlantSeaforiumCharge", 468726)
+	self:Death("VentureCoDiverDeath", 231496)
 
 	-- Disturbed Kelp
 	self:RegisterEngageMob("DisturbedKelpEngaged", 231223)
@@ -252,7 +269,7 @@ end
 do
 	local prev = 0
 	function mod:Trickshot(args)
-		-- TODO is this a success/interrupt timer?
+		-- unlike most interruptible abilities this goes on cooldown on cast start
 		self:Nameplate(args.spellId, 11.0, args.sourceGUID)
 		if args.time - prev > 1.5 then
 			prev = args.time
@@ -350,6 +367,37 @@ function mod:DarkfuseBloodwarperDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
+-- Undercrawler
+
+function mod:UndercrawlerEngaged(guid)
+	self:Nameplate(465813, 8.3, guid) -- Lethargic Venom
+end
+
+function mod:LethargicVenom(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:LethargicVenomInterrupt(args)
+	self:Nameplate(465813, 10.1, args.destGUID)
+end
+
+function mod:LethargicVenomSuccess(args)
+	self:Nameplate(args.spellId, 10.1, args.sourceGUID)
+end
+
+function mod:LethargicVenomApplied(args)
+	if self:Dispeller("poison", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+end
+
+function mod:UndercrawlerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Venture Co. Surveyor
 
 function mod:VentureCoSurveyorEngaged(guid)
@@ -380,42 +428,49 @@ function mod:VentureCoSurveyorDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
--- Undercrawler
+-- Venture Co. Architect
 
-function mod:UndercrawlerEngaged(guid)
-	self:Nameplate(465813, 9.6, guid) -- Lethargic Venom
+function mod:HighGroundRemoved(args)
+	self:Nameplate(465408, 21.4, args.destGUID) -- Rapid Construction
 end
 
-function mod:LethargicVenom(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
+function mod:RapidConstruction(args)
+	self:Message(args.spellId, "cyan")
+	self:StopNameplate(args.spellId, args.sourceGUID)
+	self:PlaySound(args.spellId, "info")
 end
 
-function mod:LethargicVenomInterrupt(args)
-	self:Nameplate(465813, 10.1, args.destGUID)
+function mod:VentureCoArchitectDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
-function mod:LethargicVenomSuccess(args)
-	self:Nameplate(args.spellId, 10.1, args.sourceGUID)
+-- Venture Co. Diver
+
+function mod:VentureCoDiverEngaged(guid)
+	self:Nameplate(468726, 10.8, guid) -- Plant Seaforium Charge
 end
 
-function mod:LethargicVenomApplied(args)
-	if self:Dispeller("poison", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
+do
+	local prev = 0
+	function mod:PlantSeaforiumCharge(args)
+		self:Nameplate(args.spellId, 21.8, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "cyan")
+			self:PlaySound(args.spellId, "info")
+		end
 	end
 end
 
-function mod:UndercrawlerDeath(args)
+function mod:VentureCoDiverDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
 -- Disturbed Kelp
 
 function mod:DisturbedKelpEngaged(guid)
-	self:Nameplate(471736, 6.0, guid) -- Jettison Kelp
-	-- the first Restorative Kelp cast is HP based
+	self:Nameplate(471736, 5.4, guid) -- Jettison Kelp
+	-- the first Restorative Algae cast is HP based
 end
 
 do
