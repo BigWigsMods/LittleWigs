@@ -7,7 +7,7 @@ BigWigs:AddSounds("Big M.O.M.M.A.", {
 	[473220] = {"alarm","warning"},
 	[473287] = "underyou",
 	[473351] = "alert",
-	[1214780] = "alarm",
+	[1214780] = "warning",
 })
 
 BigWigs:AddSounds("Demolition Duo", {

@@ -24,7 +24,7 @@ function mod:GetOptions()
 		469981, -- Kill-o-Block Barrier
 		-- Darkfuse Mechadrone
 		1214780, -- Maximum Distortion (Mythic)
-		{472452, "NAMEPLATE"}, -- Doom Storm
+		472452, -- Doom Storm
 	}, {
 		[1214780] = -30316, -- Darkfuse Mechadrone
 	}
@@ -41,10 +41,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "KillOBlockBarrier", 469981)
 
 	-- Darkfuse Mechadrone
-	self:Log("SPELL_SUMMON", "MobilizeMechadronesSummon", 471595)
+	--self:Log("SPELL_SUMMON", "MobilizeMechadronesSummon", 471595)
 	self:Log("SPELL_CAST_START", "MaximumDistortion", 1214780) -- Mythic only
 	self:Log("SPELL_CAST_START", "DoomStorm", 472452)
-	self:Death("DarkfuseMechadroneDeath", 228424)
+	--self:Death("DarkfuseMechadroneDeath", 228424)
 end
 
 function mod:OnEngage()
@@ -59,6 +59,7 @@ end
 --
 
 function mod:Jumpstart(args)
+	-- this is cast when all 4 adds are killed
 	self:StopBar(473351) -- Electrocrush
 	self:StopBar(473220) -- Sonic Boom
 	self:StopBar(469981) -- Kill-o-Block Barrier
@@ -112,34 +113,35 @@ do
 
 	function mod:SonicBoom(args)
 		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-		self:CDBar(args.spellId, 21.9)
+		self:CDBar(args.spellId, 21.7)
 	end
 end
 
 function mod:KillOBlockBarrier(args)
-	self:StopBar(args.spellId)
+	self:StopBar(args.spellId) -- just one cast per Stage 1
 	self:Message(args.spellId, "cyan")
 	self:PlaySound(args.spellId, "info")
 end
 
 -- Darkfuse Mechadrone
 
-function mod:MobilizeMechadronesSummon(args)
-	self:Nameplate(472452, 9.3, args.destGUID) -- Doom Storm
-end
+--function mod:MobilizeMechadronesSummon(args)
+	--self:Nameplate(472452, 8.5, args.destGUID) -- Doom Storm
+	--self:Nameplate(1214780, 20.6, args.destGUID) -- Maximum Distortion
+--end
 
 function mod:MaximumDistortion(args)
-	-- TODO timer?
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	--self:Nameplate(args.spellId, 37.7, args.sourceGUID)
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:DoomStorm(args)
 	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 32.7, args.sourceGUID)
+	--self:Nameplate(args.spellId, 3.7, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:DarkfuseMechadroneDeath(args)
-	self:ClearNameplate(args.destGUID)
-end
+--function mod:DarkfuseMechadroneDeath(args)
+	--self:ClearNameplate(args.destGUID)
+--end
