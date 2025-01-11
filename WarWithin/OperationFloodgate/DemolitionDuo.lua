@@ -29,7 +29,7 @@ function mod:GetOptions()
 		-- Keeza Quickfuse
 		460867, -- Big Bada Boom
 		1217653, -- B.B.B.F.G.
-		473713, -- Kinetic Explosive Gel (Mythic)
+		{473690, "SAY"}, -- Kinetic Explosive Gel (Mythic)
 		-- Bront
 		{459779, "SAY"}, -- Barreling Charge
 		459799, -- Wallop
@@ -45,8 +45,9 @@ function mod:OnBossEnable()
 	-- Keeza Quickfuse
 	self:Log("SPELL_CAST_START", "BigBadaBoom", 460867)
 	self:Log("SPELL_CAST_START", "BBBFG", 1217653)
-	self:Log("SPELL_CAST_SUCCESS", "KineticExplosiveGel", 473713)
+	self:Log("SPELL_CAST_START", "KineticExplosiveGel", 473690)
 	self:Log("SPELL_AURA_APPLIED", "KineticExplosiveGelApplied", 473713)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "KineticExplosiveGelApplied", 473713)
 	self:Death("KeezaQuickfuseDeath", 226403)
 
 	-- Bront
@@ -62,11 +63,11 @@ function mod:OnEngage()
 	self:SetStage(1)
 	self:CDBar(459799, 6.1) -- Wallop
 	self:CDBar(1217653, 6.5) -- B.B.B.F.G.
-	self:CDBar(460867, 14.0) -- Big Bada Boom
+	self:CDBar(460867, 13.9) -- Big Bada Boom
 	if self:Mythic() then
-		self:CDBar(473713, 19.7) -- Kinetic Explosive Gel
+		self:CDBar(473690, 17.7) -- Kinetic Explosive Gel
 	end
-	self:CDBar(459779, 23.1) -- Barreling Charge
+	self:CDBar(459779, 22.8) -- Barreling Charge
 end
 
 --------------------------------------------------------------------------------
@@ -82,13 +83,21 @@ end
 
 function mod:BigBadaBoom(args)
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 34.2)
+	if self:Mythic() then
+		self:CDBar(args.spellId, 34.2)
+	else
+		self:CDBar(args.spellId, 35.4)
+	end
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:BBBFG(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 17.1)
+	if self:Mythic() then
+		self:CDBar(args.spellId, 17.7)
+	else
+		self:CDBar(args.spellId, 17.1)
+	end
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -100,15 +109,31 @@ function mod:KeezaQuickfuseDeath()
 	self:StopBar(459779) -- Barreling Charge
 	-- Wallop has no CD once Keeza Quickfuse is defeated
 	self:StopBar(459799) -- Wallop
+	if self:Mythic() then
+		self:StopBar(473690) -- Kinetic Explosive Gel
+	end
 end
 
-function mod:KineticExplosiveGel(args)
-	self:CDBar(args.spellId, 17.1)
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(473690, "orange", name, CL.casting:format(self:SpellName(473690)))
+		if self:Me(guid) then
+			self:Say(473690, nil, nil, "Kinetic Explosive Gel")
+			self:PlaySound(473690, "alarm")
+		end
+	end
+
+	function mod:KineticExplosiveGel(args)
+		self:GetNextBossTarget(printTarget, args.sourceGUID)
+		self:CDBar(args.spellId, 17.7)
+	end
 end
 
 function mod:KineticExplosiveGelApplied(args)
-	self:TargetMessage(args.spellId, "orange", args.destName)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
+	if self:Dispeller("magic") then
+		self:TargetMessage(473690, "orange", args.destName)
+		self:PlaySound(473690, "info", nil, args.destName)
+	end
 end
 
 -- Bront

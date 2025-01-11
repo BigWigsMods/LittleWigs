@@ -15,7 +15,7 @@ BigWigs:AddColors("Demolition Duo", {
 	[459799] = "purple",
 	[460867] = "yellow",
 	[470090] = "cyan",
-	[473713] = {"blue","orange"},
+	[473690] = {"blue","orange"},
 	[1217653] = "orange",
 })
 

@@ -15,7 +15,7 @@ BigWigs:AddSounds("Demolition Duo", {
 	[459799] = "alert",
 	[460867] = "long",
 	[470090] = "long",
-	[473713] = "alert",
+	[473690] = {"alarm","info"},
 	[1217653] = "alarm",
 })
 
