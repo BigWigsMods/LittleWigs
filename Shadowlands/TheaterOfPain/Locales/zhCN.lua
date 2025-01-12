@@ -6,12 +6,12 @@ end
 
 L = BigWigs:NewBossLocale("Theater Of Pain Trash", "zhCN")
 if L then
-	--L.battlefield_ritualist = "Battlefield Ritualist"
+	L.battlefield_ritualist = "战场祭师"
 	L.raging_bloodhorn = "狂怒的血角"
 	L.diseased_horror = "染病恐魔"
 	L.blighted_sludge_spewer = "凋零淤泥喷射者"
 	L.putrid_butcher = "腥臭屠夫"
-	--L.disgusting_refuse = "Disgusting Refuse"
+	L.disgusting_refuse = "恶心的残躯"
 	L.rancid_gasbag = "腐臭的气囊怪"
 	L.dokigg_the_brutalizer = "残暴者多基格"
 	L.nekthara_the_mangler = "裂伤者耐克萨拉"
