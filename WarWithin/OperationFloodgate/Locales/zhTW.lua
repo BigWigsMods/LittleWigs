@@ -4,7 +4,7 @@ if L then
 	--L.weapons_stockpiles_pilfered = "Weapons Stockpiles Pilfered"
 	--L.weapons_stockpiles_pilfered_desc = "Show an alert when a Weapons Stockpile has been pilfered."
 
-	L.shreddinator_3000 = "伐木器械300型"
+	L.shreddinator_3000 = "伐木器械3000型"
 	--L.mechadrone_sniper = "Mechadrone Sniper"
 	L.darkfuse_hyena = "暗融土狼"
 	L.darkfuse_demolitionist = "暗融爆破兵"
