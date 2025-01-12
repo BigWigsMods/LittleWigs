@@ -25,11 +25,11 @@ BigWigs:AddColors("Gorechop", {
 
 BigWigs:AddColors("Xav the Unfallen", {
 	[317231] = "red",
-	[320102] = {"blue","yellow"},
+	[320114] = {"blue","cyan"},
 	[320644] = "purple",
-	[320729] = "red",
-	[331618] = {"green","orange"},
-	[339415] = "red",
+	[320729] = "orange",
+	[331618] = {"green","red"},
+	[339415] = "yellow",
 })
 
 BigWigs:AddColors("Kul'tharok", {

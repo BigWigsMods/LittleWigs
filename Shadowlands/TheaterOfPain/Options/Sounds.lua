@@ -25,11 +25,11 @@ BigWigs:AddSounds("Gorechop", {
 
 BigWigs:AddSounds("Xav the Unfallen", {
 	[317231] = "alarm",
-	[320102] = {"info","long"},
+	[320114] = {"info","long"},
 	[320644] = "alert",
 	[320729] = "alarm",
 	[331618] = {"alert","info"},
-	[339415] = "alarm",
+	[339415] = "warning",
 })
 
 BigWigs:AddSounds("Kul'tharok", {
