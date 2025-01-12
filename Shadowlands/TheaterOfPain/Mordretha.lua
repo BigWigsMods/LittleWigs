@@ -15,7 +15,6 @@ mod:SetRespawnTime(30)
 function mod:GetOptions()
 	return {
 		"warmup",
-		-- General
 		{324079, "TANK_HEALER"}, -- Reaping Scythe
 		323608, -- Dark Devastation
 		323825, -- Grasping Rift
@@ -26,8 +25,7 @@ function mod:GetOptions()
 		{339706, "CASTBAR"}, -- Ghostly Charge
 		339550, -- Echo of Battle
 	}, {
-		[324079] = "general",
-		[339573] = "mythic",
+		[339573] = CL.mythic,
 	}
 end
 
@@ -36,6 +34,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DarkDevastation", 323608)
 	self:Log("SPELL_CAST_START", "GraspingRift", 323683)
 	self:Log("SPELL_CAST_SUCCESS", "ManifestDeath", 324449)
+
+	-- Mythic
 	self:Log("SPELL_CAST_SUCCESS", "EchoesOfCarnage", 339573)
 	self:Log("SPELL_CAST_START", "GhostlyCharge", 339706)
 	self:Log("SPELL_CAST_START", "EchoOfBattle", 339550)
@@ -43,10 +43,11 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(324079, 8.2) -- Reaping Scythe
-	self:Bar(323608, 15.5) -- Dark Devastation
-	self:Bar(324449, 21.6) -- Manifest Death
-	self:Bar(323825, 22.8) -- Grasping Rift
+	self:StopBar(CL.active)
+	self:CDBar(324079, 8.2) -- Reaping Scythe
+	self:CDBar(323608, 15.5) -- Dark Devastation
+	self:CDBar(323825, 24.2) -- Grasping Rift
+	self:CDBar(324449, 25.4) -- Manifest Death
 end
 
 --------------------------------------------------------------------------------
@@ -55,61 +56,67 @@ end
 
 -- called from trash module
 function mod:Warmup()
-	self:Bar("warmup", 30.8, CL.active, "achievement_dungeon_theatreofpain")
+	self:Bar("warmup", 30.3, CL.active, "achievement_dungeon_theatreofpain")
 end
 
 function mod:ReapingScythe(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "purple")
+	self:CDBar(args.spellId, 16.9)
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 15.8)
 end
 
 function mod:DarkDevastation(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 26.7)
 	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 23.1)
 end
 
 function mod:GraspingRift(args)
-	self:Message(323825, "orange")
+	self:Message(323825, "yellow")
+	self:CDBar(323825, 31.5)
 	self:PlaySound(323825, "alert")
-	self:Bar(323825, 25.5)
 end
 
 function mod:DeathGraspApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
+	local onMe = self:Me(args.destGUID)
+	if onMe or self:Dispeller("curse", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
+		if onMe then
+			self:PlaySound(args.spellId, "info", nil, args.destName)
+		else
+			self:PlaySound(args.spellId, "warning", nil, args.destName)
+		end
 	end
 end
 
 function mod:ManifestDeath(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 39)
+	self:Message(args.spellId, "red")
+	self:CDBar(args.spellId, 53.3)
+	self:PlaySound(args.spellId, "info")
 end
+
+-- Mythic
 
 function mod:EchoesOfCarnage(args)
 	self:Message(args.spellId, "cyan")
+	self:CDBar(339550, 3.2) -- Echo of Battle
+	self:CDBar(324079, 6.9) -- Reaping Scythe
+	self:CDBar(339706, 13.5) -- Ghostly Charge
+	self:CDBar(323608, 14.6) -- Dark Devastation
+	self:CDBar(324449, 21) -- Manifest Death
+	self:CDBar(323825, 22.5) -- Grasping Rift
 	self:PlaySound(args.spellId, "long")
-	self:Bar(339550, 3.2) -- Echo of Battle
-	self:Bar(324079, 6.9) -- Reaping Scythe
-	self:Bar(339706, 13.5) -- Ghostly Charge
-	self:Bar(323608, 14.6) -- Dark Devastation
-	self:Bar(324449, 21) -- Manifest Death
-	self:Bar(323825, 22.5) -- Grasping Rift
 end
 
 do
 	local prev = 0
 	function mod:GhostlyCharge(args)
-		local t = args.time
-		if t-prev > 1.5 then
-			prev = t
+		if args.time - prev > 1.5 then
+			prev = args.time
 			self:Message(args.spellId, "red")
-			self:PlaySound(args.spellId, "alarm")
-			self:Bar(args.spellId, 24.3)
+			self:CDBar(args.spellId, 24.3)
 			self:CastBar(args.spellId, 3.5)
+			self:PlaySound(args.spellId, "alarm")
 		end
 	end
 end
@@ -117,12 +124,11 @@ end
 do
 	local prev = 0
 	function mod:EchoOfBattle(args)
-		local t = args.time
-		if t-prev > 1.5 then
-			prev = t
+		if args.time - prev > 1.5 then
+			prev = args.time
 			self:Message(args.spellId, "orange")
+			self:CDBar(args.spellId, 24.3)
 			self:PlaySound(args.spellId, "alert")
-			self:Bar(args.spellId, 24.3)
 		end
 	end
 end
