@@ -17,8 +17,10 @@ BigWigs:AddSounds("An Affront of Challengers", {
 
 BigWigs:AddSounds("Gorechop", {
 	[318406] = "alarm",
-	[322795] = "alert",
+	[321447] = "underyou",
+	[322795] = "long",
 	[323515] = "alert",
+	[323750] = "underyou",
 })
 
 BigWigs:AddSounds("Xav the Unfallen", {

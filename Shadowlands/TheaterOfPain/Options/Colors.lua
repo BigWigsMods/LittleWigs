@@ -16,9 +16,11 @@ BigWigs:AddColors("An Affront of Challengers", {
 })
 
 BigWigs:AddColors("Gorechop", {
-	[318406] = "red",
-	[322795] = "orange",
-	[323515] = "orange",
+	[318406] = "orange",
+	[321447] = "blue",
+	[322795] = "yellow",
+	[323515] = "purple",
+	[323750] = "blue",
 })
 
 BigWigs:AddColors("Xav the Unfallen", {

@@ -9,33 +9,48 @@ mod:SetEncounterID(2365)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local meatHooksCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
-		-- General
-		{323515, "TANK_HEALER"}, -- Hateful Strike
 		322795, -- Meat Hooks
+		{323515, "TANK_HEALER"}, -- Hateful Strike
+		323750, -- Vile Gas
 		-- Mythic
 		318406, -- Tenderizing Smash
+		-- Oozing Leftovers
+		321447, -- Coagulating Ooze
 	}, {
-		[323515] = "general",
 		[318406] = "mythic",
+		[321447] = -21779, -- Oozing Leftovers
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Meat Hooks
 	self:Log("SPELL_CAST_START", "HatefulStrike", 323515)
+	self:Log("SPELL_PERIODIC_DAMAGE", "VileGasDamage", 323750)
+	self:Log("SPELL_PERIODIC_MISSED", "VileGasDamage", 323750)
 	self:Log("SPELL_CAST_START", "TenderizingSmash", 318406)
+
+	-- Oozing Leftovers
+	self:Log("SPELL_PERIODIC_DAMAGE", "CoagulatingOozeDamage", 323130)
+	self:Log("SPELL_PERIODIC_MISSED", "CoagulatingOozeDamage", 323130)
 end
 
 function mod:OnEngage()
-	self:Bar(322795, 10.8) -- Meat Hooks, 5.8 sec until the first cast
-	self:Bar(323515, 7) -- Hateful Strike
+	meatHooksCount = 1
+	self:CDBar(323515, 2.6) -- Hateful Strike
+	self:CDBar(322795, 10.2) -- Meat Hooks, 5.2 sec until the first cast
 	if self:Mythic() then
-		self:Bar(318406, 13.1) -- Tenderizing Smash
+		self:CDBar(318406, 13.1) -- Tenderizing Smash
 	end
 end
 
@@ -45,27 +60,58 @@ end
 
 do
 	local function warnMeatHooks()
-		mod:Message(322795, "orange")
-		mod:PlaySound(322795, "alert")
-		mod:Bar(322795, 20.6)
+		mod:Message(322795, "yellow")
+		meatHooksCount = meatHooksCount + 1
+		mod:CDBar(322795, 20.6)
+		mod:PlaySound(322795, "long")
 	end
 
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		-- The boss casts Meat Hooks 5 seconds before anything actually happens
 		if spellId == 322795 then -- Meat Hooks
 			self:ScheduleTimer(warnMeatHooks, 5)
+			-- correct the Meat Hooks timer
+			if meatHooksCount == 1 then
+				self:CDBar(spellId, {5, 10.2})
+			else
+				self:CDBar(spellId, {5, 20.6})
+			end
 		end
 	end
 end
 
 function mod:HatefulStrike(args)
-	self:Message(args.spellId, "orange")
+	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 14.6)
 end
 
+do
+	local prev = 0
+	function mod:VileGasDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
+end
+
 function mod:TenderizingSmash(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 19.4)
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 19.4)
+end
+
+-- Oozing Leftovers
+
+do
+	local prev = 0
+	function mod:CoagulatingOozeDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(321447, "underyou")
+			self:PlaySound(321447, "underyou")
+		end
+	end
 end
