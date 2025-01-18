@@ -18,9 +18,9 @@ BigWigs:AddColors("Stormguard Gorren", {
 BigWigs:AddColors("Voidstone Monstrosity", {
 	[423305] = "orange",
 	[423393] = "purple",
-	[423839] = "green",
+	[424371] = "green",
 	[429493] = {"blue","red"},
-	[445262] = "cyan",
+	[445262] = {"cyan","green"},
 	[445457] = "purple",
 	[458082] = {"blue","green"},
 })

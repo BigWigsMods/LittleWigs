@@ -18,10 +18,10 @@ BigWigs:AddSounds("Stormguard Gorren", {
 BigWigs:AddSounds("Voidstone Monstrosity", {
 	[423305] = "alarm",
 	[423393] = "warning",
-	[423839] = "info",
+	[424371] = "info",
 	[429493] = "alert",
 	[445262] = "long",
-	[445457] = {"alarm","alert"},
+	[445457] = "alarm",
 	[458082] = "info",
 })
 
