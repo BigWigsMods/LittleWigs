@@ -1,9 +1,10 @@
 
 BigWigs:AddSounds("Kyrioss", {
 	[419870] = "alarm",
-	[420739] = {"info","warning"},
 	[424148] = "alert",
 	[444123] = "long",
+	[474018] = "alarm",
+	[1214325] = "info",
 })
 
 BigWigs:AddSounds("Stormguard Gorren", {
