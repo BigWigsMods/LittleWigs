@@ -12,6 +12,7 @@ mod:RegisterEnableMob(
 )
 mod:SetEncounterID(2391)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -99,6 +100,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	self:SetStage(1)
 	if not isElevenDotOne then -- XXX remove this block when 11.1 is live
 		self:Bar(320063, 8.5) -- Slam
 		self:Bar(333231, 9.7) -- Searing Death
@@ -138,6 +140,7 @@ function mod:Slam(args) -- XXX not cast anymore in 11.1 but still in journal, ch
 end
 
 function mod:DessiaDeath()
+	self:SetStage(self:GetStage() + 1)
 	self:StopBar(1215741) -- Mighty Smash
 	self:StopBar(320069) -- Mortal Strike
 	self:StopBar(320063) -- Slam XXX not cast anymore in 11.1 but still in journal, check Mythic+
@@ -188,6 +191,7 @@ function mod:NoxiousSpores(args)
 end
 
 function mod:PaceranDeath()
+	self:SetStage(self:GetStage() + 1)
 	self:StopBar(1215738) -- Decaying Breath
 	self:StopBar(320182) -- Noxious Spores
 end
@@ -223,6 +227,7 @@ do
 end
 
 function mod:SathelDeath()
+	self:SetStage(self:GetStage() + 1)
 	self:StopBar(333231) -- Searing Death
 	self:StopBar(1215600) -- Withering Touch
 end
