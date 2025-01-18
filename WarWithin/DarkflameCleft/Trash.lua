@@ -1,3 +1,4 @@
+local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,6 +7,7 @@ local mod, CL = BigWigs:NewBoss("Darkflame Cleft Trash", 2651)
 if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
+	210810, -- Menial Laborer
 	211121, -- Rank Overseer
 	210818, -- Lowly Moleherd
 	210812, -- Royal Wicklighter
@@ -20,6 +22,7 @@ mod:RegisterEnableMob(
 	223775, -- Blazing Fiend (in Blazikon room)
 	223776, -- Blazing Fiend (in Blazikon room)
 	223777, -- Blazing Fiend (in Blazikon room)
+	213913, -- Kobold Flametender
 	212412, -- Sootsnout
 	212411, -- Torchsnarl
 	208457, -- Skittering Darkness
@@ -70,7 +73,7 @@ function mod:GetOptions()
 		-- Kobold Taskworker
 		{426883, "NAMEPLATE"}, -- Bonk!
 		-- Wandering Candle
-		{440652, "NAMEPLATE"}, -- Surging Wax
+		{440652, "NAMEPLATE"}, -- Surging Flame
 		{430171, "NAMEPLATE"}, -- Quenching Blast
 		{428650, "DISPEL"}, -- Burning Backlash
 		-- Blazing Fiend
@@ -84,8 +87,8 @@ function mod:GetOptions()
 		-- Skittering Darkness
 		422393, -- Suffocating Darkness
 		-- Shuffling Horror
-		{422414, "NAMEPLATE"}, -- Shadow Smash
-		422541, -- Drain Light
+		{422541, "NAMEPLATE"}, -- Drain Light
+		{422414, "NAMEPLATE"}, -- Shadow Smash XXX removed in 11.1
 		-- Creaky Mine Cart
 		{"minecart", "INFOBOX"},
 	}, {
@@ -98,7 +101,7 @@ function mod:GetOptions()
 		[426261] = L.sootsnout,
 		[426619] = L.torchsnarl,
 		[422393] = L.skittering_darkness,
-		[422414] = L.shuffling_horror,
+		[422541] = L.shuffling_horror,
 		["minecart"] = L.creaky_mine_cart,
 	}
 end
@@ -120,6 +123,7 @@ function mod:OnBossEnable()
 	-- Royal Wicklighter
 	self:RegisterEngageMob("RoyalWicklighterEngaged", 210812)
 	self:Log("SPELL_CAST_START", "Flashpoint", 428019)
+	self:Log("SPELL_INTERRUPT", "FlashpointInterrupt", 428019)
 	self:Log("SPELL_CAST_SUCCESS", "FlashpointSuccess", 428019)
 	self:Log("SPELL_AURA_APPLIED", "FlashpointApplied", 428019)
 	self:Death("RoyalWicklighterDeath", 210812)
@@ -132,9 +136,9 @@ function mod:OnBossEnable()
 
 	-- Wandering Candle
 	self:RegisterEngageMob("WanderingCandleEngaged", 208450)
-	self:Log("SPELL_CAST_START", "SurgingWax", 440652)
-	self:Log("SPELL_PERIODIC_DAMAGE", "SurgingWaxDamage", 440653)
-	self:Log("SPELL_PERIODIC_MISSED", "SurgingWaxDamage", 440653)
+	self:Log("SPELL_CAST_START", "SurgingFlame", 440652)
+	self:Log("SPELL_PERIODIC_DAMAGE", "SurgingFlameDamage", 440653)
+	self:Log("SPELL_PERIODIC_MISSED", "SurgingFlameDamage", 440653)
 	self:Log("SPELL_CAST_START", "QuenchingBlast", 430171)
 	self:Log("SPELL_AURA_APPLIED", "BurningBacklashApplied", 428650)
 	self:Death("WanderingCandleDeath", 208450)
@@ -164,9 +168,13 @@ function mod:OnBossEnable()
 
 	-- Shuffling Horror
 	self:RegisterEngageMob("ShufflingHorrorEngaged", 208456)
-	self:Log("SPELL_CAST_START", "ShadowSmash", 422414)
-	self:Log("SPELL_CAST_SUCCESS", "ShadowSmashSuccess", 422414)
+	self:Log("SPELL_CAST_START", "ShadowSmash", 422414) -- XXX removed in 11.1
+	self:Log("SPELL_CAST_SUCCESS", "ShadowSmashSuccess", 422414) -- XXX removed in 11.1
 	self:Log("SPELL_CAST_START", "DrainLight", 422541)
+	if isElevenDotOne then -- XXX remove check in 11.1
+		self:Log("SPELL_INTERRUPT", "DrainLightInterrupt", 422541)
+		self:Log("SPELL_CAST_SUCCESS", "DrainLightSuccess", 422541)
+	end
 	self:Death("ShufflingHorrorDeath", 208456)
 
 	-- Creaky Mine Cart
@@ -182,13 +190,17 @@ end
 
 function mod:RankOverseerEngaged(guid)
 	self:Nameplate(423501, 5.1, guid) -- Wild Wallop
-	self:Nameplate(428066, 14.9, guid) -- Overpowering Roar
+	self:Nameplate(428066, 10.5, guid) -- Overpowering Roar
 end
 
 do
 	local prev = 0
 	function mod:WildWallop(args)
-		self:Nameplate(args.spellId, 13.4, args.sourceGUID)
+		if isElevenDotOne then
+			self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+		else -- XXX remove in 11.1
+			self:Nameplate(args.spellId, 13.4, args.sourceGUID)
+		end
 		if args.time - prev > 1.5 then
 			prev = args.time
 			self:Message(args.spellId, "orange")
@@ -200,7 +212,11 @@ end
 do
 	local prev = 0
 	function mod:OverpoweringRoar(args)
-		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+		if isElevenDotOne then
+			self:Nameplate(args.spellId, 23.1, args.sourceGUID)
+		else -- XXX remove in 11.1
+			self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+		end
 		if args.time - prev > 1.5 then
 			prev = args.time
 			self:Message(args.spellId, "yellow")
@@ -222,6 +238,7 @@ end
 do
 	local prev = 0
 	function mod:MoleFrenzy(args)
+		-- only cast if there are nearby Pack Moles
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		local t = args.time
 		if t - prev > 1.5 then
@@ -233,11 +250,19 @@ do
 end
 
 function mod:MoleFrenzyInterrupt(args)
-	self:Nameplate(425536, 45.4, args.destGUID)
+	if isElevenDotOne then
+		self:Nameplate(425536, 24.7, args.destGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(425536, 45.4, args.destGUID)
+	end
 end
 
 function mod:MoleFrenzySuccess(args)
-	self:Nameplate(args.spellId, 45.4, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 24.7, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 45.4, args.sourceGUID)
+	end
 end
 
 function mod:LowlyMoleherdDeath(args)
@@ -250,12 +275,30 @@ function mod:RoyalWicklighterEngaged(guid)
 	self:Nameplate(428019, 5.7, guid) -- Flashpoint
 end
 
-function mod:Flashpoint(args)
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
+do
+	local prev = 0
+	function mod:Flashpoint(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if isElevenDotOne then -- XXX remove check in 11.1
+			if args.time - prev > 1.5 then
+				prev = args.time
+				self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+				self:PlaySound(args.spellId, "alert")
+			end
+		end
+	end
+end
+
+function mod:FlashpointInterrupt(args)
+	self:Nameplate(428019, 15.0, args.destGUID)
 end
 
 function mod:FlashpointSuccess(args)
-	self:Nameplate(args.spellId, 10.8, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 15.0, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 10.8, args.sourceGUID)
+	end
 end
 
 do
@@ -269,19 +312,20 @@ do
 				playerList = {}
 			end
 			playerList[#playerList + 1] = args.destName
-			self:TargetsMessage(args.spellId, "red", playerList, 5, nil, nil, .5)
+			self:TargetsMessage(args.spellId, "yellow", playerList, 5, nil, nil, .5)
 			self:PlaySound(args.spellId, "alert", nil, playerList)
 		end
 	end
 end
 
 function mod:RoyalWicklighterDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Kobold Taskworker
 
 function mod:KoboldTaskworkerEngaged(guid)
-	self:Nameplate(426883, 8.4, guid) -- Bonk!
+	self:Nameplate(426883, 6.3, guid) -- Bonk!
 end
 
 function mod:Bonk(args)
@@ -291,7 +335,7 @@ function mod:Bonk(args)
 end
 
 function mod:BonkSuccess(args)
-	self:Nameplate(args.spellId, 17.4, args.sourceGUID)
+	self:Nameplate(args.spellId, 15.0, args.sourceGUID)
 end
 
 function mod:KoboldTaskworkerDeath(args)
@@ -301,19 +345,25 @@ end
 -- Wandering Candle
 
 function mod:WanderingCandleEngaged(guid)
-	self:Nameplate(430171, 8.0, guid) -- Quenching Blast
-	self:Nameplate(440652, 16.4, guid) -- Surging Wax
-end
-
-function mod:SurgingWax(args)
-	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 21.9, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
+	self:Nameplate(430171, 5.6, guid) -- Quenching Blast
+	self:Nameplate(440652, 12.4, guid) -- Surging Flame
 end
 
 do
 	local prev = 0
-	function mod:SurgingWaxDamage(args)
+	function mod:SurgingFlame(args)
+		self:Nameplate(args.spellId, 20.7, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:SurgingFlameDamage(args)
 		if self:Me(args.destGUID) and args.time - prev > 2 then
 			prev = args.time
 			self:PersonalMessage(440652, "underyou")
@@ -323,9 +373,14 @@ do
 end
 
 function mod:QuenchingBlast(args)
+	-- you can line of sight or outrange this
 	self:Message(args.spellId, "yellow")
-	self:Nameplate(args.spellId, 13.3, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+	end
+	self:PlaySound(args.spellId, "info")
 end
 
 do
@@ -349,21 +404,27 @@ end
 -- Blazing Fiend
 
 function mod:BlazingFiendEngaged(guid)
-	self:Nameplate(424322, 6.7, guid) -- Explosive Flame
+	self:Nameplate(424322, 4.3, guid) -- Explosive Flame
 end
 
-function mod:ExplosiveFlame(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:ExplosiveFlame(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:ExplosiveFlameInterrupt(args)
-	self:Nameplate(424322, 21.3, args.destGUID)
+	self:Nameplate(424322, 18.6, args.destGUID)
 end
 
 function mod:ExplosiveFlameSuccess(args)
-	self:Nameplate(args.spellId, 21.3, args.sourceGUID)
+	self:Nameplate(args.spellId, 18.6, args.sourceGUID)
 end
 
 function mod:BlazingFiendDeath(args)
@@ -491,23 +552,40 @@ end
 -- Shuffling Horror
 
 function mod:ShufflingHorrorEngaged(guid)
-	self:Nameplate(422414, 12.0, guid) -- Shadow Smash
+	if isElevenDotOne then
+		self:Nameplate(422541, 1.1, guid) -- Drain Light
+	else -- XXX remove in 11.1
+		self:Nameplate(422414, 12.0, guid) -- Shadow Smash
+	end
 end
 
-function mod:ShadowSmash(args)
+function mod:ShadowSmash(args) -- XXX removed in 11.1
 	self:Message(args.spellId, "orange")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:ShadowSmashSuccess(args)
+function mod:ShadowSmashSuccess(args) -- XXX removed in 11.1
 	self:Nameplate(args.spellId, 12.0, args.sourceGUID)
 end
 
 function mod:DrainLight(args)
-	-- just cast once
-	self:Message(args.spellId, "cyan")
+	-- only cast if in range of the cart
+	if isElevenDotOne then
+		self:Message(args.spellId, "cyan", CL.casting:format(args.spellName))
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Message(args.spellId, "cyan")
+	end
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:DrainLightInterrupt(args)
+	self:Nameplate(422541, 16.7, args.destGUID)
+end
+
+function mod:DrainLightSuccess(args)
+	self:Nameplate(args.spellId, 16.7, args.sourceGUID)
 end
 
 function mod:ShufflingHorrorDeath(args)
