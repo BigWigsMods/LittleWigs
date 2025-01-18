@@ -20,7 +20,10 @@ function mod:GetOptions()
 		{422116, "SAY", "SAY_COUNTDOWN"}, -- Reckless Charge
 		{422245, "TANK_HEALER"}, -- Rock Buster
 		{423693, "ME_ONLY_EMPHASIZE"}, -- Luring Candleflame
-		-- TODO Underhanded Track-tics (Mythic)
+		-- Mythic
+		429093, -- Underhanded Track-tics
+	}, {
+		[429093] = CL.mythic,
 	}
 end
 
@@ -28,12 +31,18 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss1") -- Reckless Charge
 	self:Log("SPELL_CAST_START", "RockBuster", 422245)
 	self:Log("SPELL_AURA_APPLIED", "LuringCandleflameApplied", 423693)
+
+	-- Mythic
+	self:Log("SPELL_CAST_START", "UnderhandedTracktics", 429093)
 end
 
 function mod:OnEngage()
 	self:CDBar(422245, 1.3) -- Rock Buster
 	self:CDBar(423693, 11.0) -- Luring Candleflame
 	self:CDBar(422116, 28.8) -- Reckless Charge
+	if self:Mythic() then
+		self:CDBar(422116, 35.4) -- Underhanded Track-tics
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -43,11 +52,11 @@ end
 do
 	local function printTarget(self, name, guid, elapsed)
 		self:TargetMessage(422116, "orange", name)
-		self:PlaySound(422116, "alarm", nil, name)
 		if self:Me(guid) then
 			self:Say(422116, nil, nil, "Reckless Charge")
 			self:SayCountdown(422116, 5 - elapsed)
 		end
+		self:PlaySound(422116, "alarm", nil, name)
 	end
 
 	function mod:UNIT_SPELLCAST_START(_, unit, _, spellId)
@@ -61,16 +70,24 @@ end
 
 function mod:RockBuster(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 13.3)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:LuringCandleflameApplied(args)
 	self:TargetMessage(args.spellId, "red", args.destName)
+	self:CDBar(args.spellId, 38.5)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	else
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
-	self:CDBar(args.spellId, 38.5)
+end
+
+-- Mythic
+
+function mod:UnderhandedTracktics(args)
+	self:Message(args.spellId, "yellow")
+	self:CDBar(args.spellId, 50.2)
+	self:PlaySound(args.spellId, "long")
 end
