@@ -21,7 +21,11 @@ function mod:GetOptions()
 		{422648, "SAY", "SAY_COUNTDOWN", "ME_ONLY_EMPHASIZE"}, -- Darkflame Pickaxe
 		426145, -- Paranoid Mind
 		{420696, "PRIVATE"}, -- Throw Darkflame
-		-- TODO Cursed Wax (Mythic)
+		421067, -- Molten Wax
+		-- Mythic
+		421653, -- Cursed Wax
+	}, {
+		[421653] = CL.mythic,
 	}
 end
 
@@ -31,6 +35,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "DarkflamePickaxeRemoved", 422648)
 	self:Log("SPELL_CAST_START", "ParanoidMind", 426145)
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Throw Darkflame
+	self:Log("SPELL_PERIODIC_DAMAGE", "MoltenWaxDamage", 421067)
+	self:Log("SPELL_PERIODIC_MISSED", "MoltenWaxDamage", 421067)
+
+	-- Mythic
+	self:Log("SPELL_AURA_APPLIED", "CursedWaxApplied", 421653)
 end
 
 function mod:OnEngage()
@@ -79,5 +88,25 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Message(spellId, "orange")
 		self:CDBar(spellId, 17.0) -- TODO often delayed
 		--self:PlaySound(spellId, "alarm") private aura sound
+	end
+end
+
+do
+	local prev = 0
+	function mod:MoltenWaxDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
+end
+
+-- Mythic
+
+function mod:CursedWaxApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "info")
 	end
 end
