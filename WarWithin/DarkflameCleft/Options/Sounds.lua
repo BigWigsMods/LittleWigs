@@ -29,6 +29,7 @@ BigWigs:AddSounds("The Darkness", {
 	[427025] = "alarm",
 	[427157] = "alert",
 	[427176] = "alert",
+	[428266] = "long",
 })
 
 BigWigs:AddSounds("Darkflame Cleft Trash", {
