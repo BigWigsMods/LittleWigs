@@ -19,6 +19,7 @@ BigWigs:AddSounds("Prioress Murrpray", {
 	[423588] = {"info","long"},
 	[423664] = "info",
 	[425556] = "underyou",
+	[428169] = "warning",
 	[444546] = {"alarm","warning"},
 	[444608] = "info",
 	[451605] = "alert",

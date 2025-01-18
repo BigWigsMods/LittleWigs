@@ -21,6 +21,10 @@ function mod:GetOptions()
 		425556, -- Sanctified Ground
 		{444608, "HEALER"}, -- Inner Fire
 		451605, -- Holy Flame
+		-- Mythic
+		428169, -- Blinding Light
+	}, {
+		[428169] = CL.mythic,
 	}
 end
 
@@ -34,12 +38,18 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_MISSED", "SanctifiedGroundDamage", 425556)
 	self:Log("SPELL_CAST_START", "InnerFire", 444608)
 	self:Log("SPELL_CAST_START", "HolyFlame", 451605)
+
+	-- Mythic
+	self:Log("SPELL_CAST_START", "BlindingLight", 428169)
 end
 
 function mod:OnEngage()
 	self:SetStage(1)
-	self:CDBar(451605, 7.1) -- Holy Flame
+	self:CDBar(451605, 6.3) -- Holy Flame
 	self:CDBar(444546, 13.1) -- Purify
+	if self:Mythic() then
+		self:CDBar(428169, 14.5) -- Blinding Light
+	end
 	self:CDBar(444608, 15.6) -- Inner Fire
 end
 
@@ -60,6 +70,9 @@ do
 		self:StopBar(444546) -- Purify
 		self:StopBar(444608) -- Inner Fire
 		self:StopBar(451605) -- Holy Flame
+		if self:Mythic() then
+			self:StopBar(428169) -- Blinding Light
+		end
 		self:SetStage(2)
 		self:Message(args.spellId, "cyan", CL.percent:format(50, args.spellName))
 		self:PlaySound(args.spellId, "long")
@@ -76,8 +89,11 @@ function mod:EmbraceTheLightInterrupted(args)
 	if args.extraSpellId == 423664 then -- Embrace the Light
 		self:Message(423664, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 		self:SetStage(1)
+		if self:Mythic() then
+			self:CDBar(428169, 5.7) -- Blinding Light
+		end
 		self:CDBar(444546, 6.3) -- Purify
-		self:CDBar(444608, 9.9) -- Inner Fire
+		self:CDBar(444608, 6.4) -- Inner Fire
 		self:CDBar(451605, 12.3) -- Holy Flame
 		self:PlaySound(423664, "info")
 	end
@@ -119,4 +135,12 @@ function mod:HolyFlame(args)
 	self:Message(args.spellId, "yellow")
 	self:CDBar(args.spellId, 12.1)
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Mythic
+
+function mod:BlindingLight(args)
+	self:Message(args.spellId, "red")
+	self:CDBar(args.spellId, 24.2)
+	self:PlaySound(args.spellId, "warning")
 end
