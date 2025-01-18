@@ -81,7 +81,6 @@ end
 --
 
 function mod:NullUpheaval(args)
-	print("expected Null Upheaval in: "..(nextNullUpheaval - GetTime()))
 	-- cast at 100 energy, 30s energy gain
 	if isElevenDotOne then
 		nextNullUpheaval = GetTime() + 32.8
@@ -111,7 +110,6 @@ do
 	local playerList = {}
 
 	function mod:UnleashCorruption(args)
-		print("expected Unleash Corruption in: "..(nextUnleashCorruption - GetTime()))
 		if isElevenDotOne then
 			nextUnleashCorruption = GetTime() + 17.0
 			playerList = {}
@@ -134,7 +132,6 @@ do
 end
 
 function mod:OblivionWave(args)
-	print("expected Oblivion Wave in: "..(nextOblivionWave - GetTime()))
 	if isElevenDotOne then
 		nextOblivionWave = GetTime() + 13.3
 	else -- XXX remove once 11.1 is live
