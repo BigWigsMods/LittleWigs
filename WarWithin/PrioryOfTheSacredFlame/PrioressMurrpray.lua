@@ -18,6 +18,7 @@ function mod:GetOptions()
 		423588, -- Barrier of Light
 		423664, -- Embrace the Light
 		{444546, "SAY"}, -- Purify
+		425556, -- Sanctified Ground
 		{444608, "HEALER"}, -- Inner Fire
 		451605, -- Holy Flame
 	}
@@ -29,6 +30,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "EmbraceTheLightInterrupted", "*")
 	self:Log("SPELL_CAST_SUCCESS", "Purify", 444546)
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER") -- Purify
+	self:Log("SPELL_PERIODIC_DAMAGE", "SanctifiedGroundDamage", 425556)
+	self:Log("SPELL_PERIODIC_MISSED", "SanctifiedGroundDamage", 425556)
 	self:Log("SPELL_CAST_START", "InnerFire", 444608)
 	self:Log("SPELL_CAST_START", "HolyFlame", 451605)
 end
@@ -72,37 +75,48 @@ end
 function mod:EmbraceTheLightInterrupted(args)
 	if args.extraSpellId == 423664 then -- Embrace the Light
 		self:Message(423664, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
-		self:PlaySound(423664, "info")
 		self:SetStage(1)
 		self:CDBar(444546, 6.3) -- Purify
 		self:CDBar(444608, 9.9) -- Inner Fire
 		self:CDBar(451605, 12.3) -- Holy Flame
+		self:PlaySound(423664, "info")
 	end
 end
 
 function mod:Purify(args)
 	self:Message(args.spellId, "orange", CL.incoming:format(args.spellName))
-	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 28.8)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
 	if msg:find("425556", nil, true) then -- Purify
 		-- [CHAT_MSG_RAID_BOSS_WHISPER] |TInterface\\ICONS\\Ability_Paladin_TowerofLight.BLP:20|t %s targets you with |cFFFF0000|Hspell:425556|h[Purifying Light]|h|r!#Eternal Flame
 		self:PersonalMessage(444546)
-		self:PlaySound(444546, "warning")
 		self:Say(444546, nil, nil, "Purify")
+		self:PlaySound(444546, "warning")
+	end
+end
+
+do
+	local prev = 0
+	function mod:SanctifiedGroundDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
 	end
 end
 
 function mod:InnerFire(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 22.6)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:HolyFlame(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 12.1)
+	self:PlaySound(args.spellId, "alert")
 end

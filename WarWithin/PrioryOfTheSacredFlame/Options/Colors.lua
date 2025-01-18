@@ -18,6 +18,7 @@ BigWigs:AddColors("Baron Braunpyke", {
 BigWigs:AddColors("Prioress Murrpray", {
 	[423588] = {"cyan","green"},
 	[423664] = "green",
+	[425556] = "blue",
 	[444546] = {"blue","orange"},
 	[444608] = "red",
 	[451605] = "yellow",
