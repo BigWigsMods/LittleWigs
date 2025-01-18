@@ -82,7 +82,7 @@ function mod:GetOptions()
 		426261, -- Ceaseless Flame
 		{426295, "NAMEPLATE"}, -- Flaming Tether
 		-- Torchsnarl
-		{426619, "SAY", "DISPEL", "NAMEPLATE"}, -- One-Hand Headlock
+		{426619, "SAY", "NAMEPLATE"}, -- One-Hand Headlock
 		426260, -- Pyro-pummel
 		-- Skittering Darkness
 		422393, -- Suffocating Darkness
@@ -507,9 +507,9 @@ do
 	end
 
 	function mod:OneHandHeadlockApplied(args)
-		if self:Dispeller("movement", nil, 426619) then
-			self:TargetMessage(426619, "yellow", args.destName)
-			self:PlaySound(426619, "info", nil, args.destName)
+		if self:Me(args.destGUID) then
+			self:PersonalMessage(426619)
+			self:PlaySound(426619, "info")
 		end
 	end
 
