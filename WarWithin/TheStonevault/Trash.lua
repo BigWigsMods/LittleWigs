@@ -47,8 +47,6 @@ if L then
 	L.custom_on_autotalk = CL.autotalk
 	L.custom_on_autotalk_desc = "|cFFFF0000Requires Warrior, Dwarf, or 25 skill in Khaz Algar Blacksmithing.|r Automatically select the NPC dialog option that grants your group the 'Imbued Iron Energy' aura."
 	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
-
-	L["425027_icon"] = "ability_earthen_pillar" -- change the icon of Seismic Wave so it doesn't match Ground Pound
 end
 
 --------------------------------------------------------------------------------
@@ -243,13 +241,13 @@ end
 -- Earth Infused Golem
 
 function mod:EarthInfusedGolemEngaged(guid)
-	self:Nameplate(425027, 5.5, guid, 1016245) -- Seismic Wave, fileId for L["425027_icon"]
+	self:Nameplate(425027, 5.5, guid) -- Seismic Wave
 	self:Nameplate(425974, 13.4, guid) -- Ground Pound
 end
 
 function mod:SeismicWave(args)
-	self:Message(args.spellId, "purple", nil, L["425027_icon"])
-	self:Nameplate(args.spellId, 18.2, args.sourceGUID, 1016245) -- fileId for L["425027_icon"]
+	self:Message(args.spellId, "purple")
+	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
