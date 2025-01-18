@@ -1,3 +1,4 @@
+local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -72,11 +73,11 @@ function mod:GetOptions()
 		{428150, "NAMEPLATE"}, -- Reflective Shield
 		-- Sergeant Shaynemail
 		{424621, "NAMEPLATE"}, -- Brutal Smash
-		{424423, "NAMEPLATE"}, -- Lunging Strike
+		{424423, "SAY", "NAMEPLATE"}, -- Lunging Strike
 		-- Elaena Emberlanz
 		{424431, "HEALER", "NAMEPLATE"}, -- Holy Radiance
 		{448515, "TANK", "NAMEPLATE"}, -- Divine Judgment
-		{427583, "NAMEPLATE"}, -- Repentance
+		{427583, "NAMEPLATE"}, -- Repentance XXX removed in 11.1?
 		-- Taener Duelmal
 		{424420, "DISPEL", "NAMEPLATE"}, -- Cinderblast
 		{424462, "NAMEPLATE"}, -- Ember Storm
@@ -93,11 +94,14 @@ function mod:GetOptions()
 		-- Fanatical Conjuror
 		{427484, "NAMEPLATE"}, -- Flamestrike
 		-- Lightspawn
+		{448787, "NAMEPLATE"}, -- Purification
 		427601, -- Burst of Light
 		-- Ardent Paladin
 		{424429, "NAMEPLATE"}, -- Consecration
 		-- Risen Mage
 		{444743, "NAMEPLATE"}, -- Fireball Volley
+		-- Sir Braunpyke
+		{435165, "TANK", "NAMEPLATE"}, -- Blazing Strike
 	}, {
 		["custom_on_autotalk"] = L.sacred_flame,
 		[448485] = L.guard_captain_suleyman,
@@ -111,9 +115,10 @@ function mod:GetOptions()
 		[453458] = L.fervent_sharpshooter,
 		[427356] = L.devout_priest,
 		[427484] = L.fanatical_conjuror,
-		[427601] = L.lightspawn,
+		[448787] = L.lightspawn,
 		[424429] = L.ardent_paladin,
 		[444743] = L.risen_mage,
+		[435165] = L.sir_braunpyke,
 	}
 end
 
@@ -156,7 +161,7 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("ElaenaEmberlanzEngaged", 211290)
 	self:Log("SPELL_CAST_START", "HolyRadiance", 424431)
 	self:Log("SPELL_CAST_START", "DivineJudgment", 448515)
-	self:Log("SPELL_CAST_START", "Repentance", 427583)
+	self:Log("SPELL_CAST_START", "Repentance", 427583) -- XXX removed in 11.1
 	self:Death("ElaenaEmberlanzDeath", 211290)
 
 	-- Taener Duelmal
@@ -200,14 +205,24 @@ function mod:OnBossEnable()
 	-- Fanatical Conjuror
 	self:RegisterEngageMob("FanaticalConjurorEngaged", 206698)
 	self:Log("SPELL_CAST_START", "Flamestrike", 427484)
+	self:Log("SPELL_PERIODIC_DAMAGE", "FlamestrikeDamage", 427473) -- no alert on APPLIED, doesn't damage for 1.5s
+	self:Log("SPELL_PERIODIC_MISSED", "FlamestrikeDamage", 427473)
 	self:Death("FanaticalConjurorDeath", 206698)
 
 	-- Lightspawn
+	self:RegisterEngageMob("LightspawnEngaged", 206710)
 	self:Log("SPELL_CAST_START", "BurstOfLight", 427601)
+	self:Log("SPELL_CAST_SUCCESS", "Purification", 448787)
+	self:Log("SPELL_AURA_APPLIED", "PurificationApplied", 448787)
+	self:Death("LightspawnDeath", 206710)
 
 	-- Ardent Paladin
 	self:RegisterEngageMob("ArdentPaladinEngaged", 206704)
-	self:Log("SPELL_CAST_SUCCESS", "Consecration", 424429)
+	if isElevenDotOne then
+		self:Log("SPELL_CAST_START", "Consecration", 424429)
+	else
+		self:Log("SPELL_CAST_SUCCESS", "Consecration", 424429)
+	end
 	self:Log("SPELL_PERIODIC_DAMAGE", "ConsecrationDamage", 424430) -- no alert on APPLIED, doesn't damage for 1.5s
 	self:Log("SPELL_PERIODIC_MISSED", "ConsecrationDamage", 424430)
 	self:Death("ArdentPaladinDeath", 206704)
@@ -218,6 +233,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "FireballVolleyInterrupt", 444743)
 	self:Log("SPELL_CAST_SUCCESS", "FireballVolleySuccess", 444743)
 	self:Death("RisenMageDeath", 221760)
+
+	-- Sir Braunpyke
+	self:RegisterEngageMob("SirBraunpykeEngaged", 217658)
+	self:Log("SPELL_CAST_START", "BlazingStrike", 435165)
+	self:Death("SirBraunpykeDeath", 217658)
 end
 
 --------------------------------------------------------------------------------
@@ -268,8 +288,8 @@ do
 	function mod:GuardCaptainSuleymanEngaged(guid)
 		self:CDBar(448485, 2.3) -- Shield Slam
 		self:Nameplate(448485, 2.3, guid) -- Shield Slam
-		self:CDBar(448492, 15.7) -- Thunderclap
-		self:Nameplate(448492, 15.7, guid) -- Thunderclap
+		self:CDBar(448492, 15.3) -- Thunderclap
+		self:Nameplate(448492, 15.3, guid) -- Thunderclap
 		timer = self:ScheduleTimer("GuardCaptainSuleymanDeath", 30)
 	end
 
@@ -278,8 +298,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "purple")
-		self:CDBar(args.spellId, 14.6)
-		self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+		self:CDBar(args.spellId, 10.9)
+		self:Nameplate(args.spellId, 10.9, args.sourceGUID)
 		if self:Tank() then
 			self:PlaySound(args.spellId, "alarm")
 		else
@@ -405,7 +425,8 @@ do
 	end
 
 	function mod:ReflectiveShieldRemoved(args)
-		self:Message(args.spellId, "green")
+		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+		-- cast at 100 mana, mana generation is paused while Reflective Shield buff is active
 		self:CDBar(args.spellId, 20.1)
 		self:Nameplate(args.spellId, 20.1, args.sourceGUID)
 		self:PlaySound(args.spellId, "info")
@@ -430,8 +451,8 @@ do
 	local timer
 
 	function mod:SergeantShaynemailEngaged(guid)
-		self:CDBar(424423, 5.8) -- Lunging Strike
-		self:Nameplate(424423, 5.8, guid) -- Lunging Strike
+		self:CDBar(424423, 5.2) -- Lunging Strike
+		self:Nameplate(424423, 5.2, guid) -- Lunging Strike
 		self:CDBar(424621, 25.3) -- Brutal Smash
 		self:Nameplate(424621, 25.3, guid) -- Brutal Smash
 		timer = self:ScheduleTimer("SergeantShaynemailDeath", 30)
@@ -448,20 +469,33 @@ do
 		timer = self:ScheduleTimer("SergeantShaynemailDeath", 30)
 	end
 
-	function mod:LungingStrike(args)
-		if timer then
-			self:CancelTimer(timer)
+	do
+		local function printTarget(self, name, guid)
+			self:TargetMessage(424423, "red", name, CL.casting:format(self:SpellName(424423)))
+			if self:Me(guid) then
+				self:Say(424423, nil, nil, "Lunging Strike")
+			end
+			self:PlaySound(424423, "alert", nil, name)
 		end
-		-- TODO targetscan?
-		self:Message(args.spellId, "red")
-		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		self:PlaySound(args.spellId, "alert")
-		timer = self:ScheduleTimer("SergeantShaynemailDeath", 30)
+
+		function mod:LungingStrike(args)
+			if timer then
+				self:CancelTimer(timer)
+			end
+			self:Nameplate(args.spellId, 0, args.sourceGUID)
+			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+			timer = self:ScheduleTimer("SergeantShaynemailDeath", 30)
+		end
 	end
 
 	function mod:LungingStrikeSuccess(args)
-		self:CDBar(args.spellId, 13.1)
-		self:Nameplate(args.spellId, 13.1, args.sourceGUID)
+		if isElevenDotOne then
+			self:CDBar(args.spellId, 12.1)
+			self:Nameplate(args.spellId, 12.1, args.sourceGUID)
+		else
+			self:CDBar(args.spellId, 13.1)
+			self:Nameplate(args.spellId, 13.1, args.sourceGUID)
+		end
 	end
 
 	function mod:SergeantShaynemailDeath(args)
@@ -483,12 +517,14 @@ do
 	local timer
 
 	function mod:ElaenaEmberlanzEngaged(guid)
+		self:CDBar(424431, 1.1) -- Holy Radiance
+		self:Nameplate(424431, 1.1, guid) -- Holy Radiance
 		self:CDBar(448515, 4.0) -- Divine Judgment
 		self:Nameplate(448515, 4.0, guid) -- Divine Judgment
-		self:CDBar(427583, 7.6) -- Repentance
-		self:Nameplate(427583, 7.6, guid) -- Repentance
-		self:CDBar(424431, 14.3) -- Holy Radiance
-		self:Nameplate(424431, 14.3, guid) -- Holy Radiance
+		if not isElevenDotOne then -- XXX remove this block in 11.1
+			self:CDBar(427583, 7.6) -- Repentance
+			self:Nameplate(427583, 7.6, guid) -- Repentance
+		end
 		timer = self:ScheduleTimer("ElaenaEmberlanzDeath", 30)
 	end
 
@@ -514,7 +550,7 @@ do
 		timer = self:ScheduleTimer("ElaenaEmberlanzDeath", 30)
 	end
 
-	function mod:Repentance(args)
+	function mod:Repentance(args) -- XXX removed in 11.1
 		if timer then
 			self:CancelTimer(timer)
 		end
@@ -532,7 +568,7 @@ do
 		end
 		self:StopBar(424431) -- Holy Radiance
 		self:StopBar(448515) -- Divine Judgment
-		self:StopBar(427583) -- Repentance
+		self:StopBar(427583) -- Repentance XXX removed in 11.1
 		if args then
 			self:ClearNameplate(args.destGUID)
 		end
@@ -629,8 +665,11 @@ end
 -- Arathi Footman
 
 function mod:ArathiFootmanEngaged(guid)
-	-- Defend isn't cast until 50% (in Normal)
-	self:Nameplate(426964, 2.7, guid) -- Mortal Strike
+	-- Defend isn't cast until 50%
+	if self:Normal() then
+		-- Mortal Strike is only cast in Normal
+		self:Nameplate(426964, 2.7, guid) -- Mortal Strike
+	end
 end
 
 do
@@ -639,11 +678,10 @@ do
 		if self:Normal() then
 			self:Nameplate(args.spellId, 60.7, args.sourceGUID)
 		else -- Heroic, Mythic
-			self:Nameplate(args.spellId, 31.6, args.sourceGUID)
+			self:Nameplate(args.spellId, 30.4, args.sourceGUID)
 		end
-		local t = args.time
-		if t - prev > 2 then
-			prev = t
+		if args.time - prev > 2 then
+			prev = args.time
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "info")
 		end
@@ -673,7 +711,7 @@ end
 -- Fervent Sharpshooter
 
 function mod:FerventSharpshooterEngaged(guid)
-	self:Nameplate(453458, 9.1, guid) -- Caltrops
+	self:Nameplate(453458, 8.4, guid) -- Caltrops
 end
 
 do
@@ -683,7 +721,7 @@ do
 		local t = args.time
 		if t - prev > 2 then
 			prev = t
-			self:Message(args.spellId, "orange")
+			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -734,7 +772,7 @@ do
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		if args.time - prev > 2 then
 			prev = args.time
-			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -768,12 +806,28 @@ end
 do
 	local prev = 0
 	function mod:Flamestrike(args)
-		self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+		-- goes on cooldown at cast start
+		if isElevenDotOne then
+			self:Nameplate(args.spellId, 23.1, args.sourceGUID)
+		else
+			self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+		end
 		local t = args.time
 		if t - prev > 1.5 then
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:FlamestrikeDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(427484, "underyou")
+			self:PlaySound(427484, "underyou")
 		end
 	end
 end
@@ -784,26 +838,52 @@ end
 
 -- Lightspawn
 
+function mod:LightspawnEngaged(guid)
+	self:Nameplate(448787, 9.2, guid) -- Purification
+end
+
+function mod:Purification(args)
+	self:Nameplate(args.spellId, 16.2, args.sourceGUID)
+end
+
+function mod:PurificationApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "alert")
+	end
+end
+
 do
 	local prev = 0
 	function mod:BurstOfLight(args)
-		local t = args.time
-		if t - prev > 2 then
-			prev = t
+		-- cast at 20%, mob dies after this cast
+		self:ClearNameplate(args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "long")
 		end
 	end
 end
 
+function mod:LightspawnDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Ardent Paladin
 
 function mod:ArdentPaladinEngaged(guid)
-	self:Nameplate(424429, 8.0, guid) -- Consecration
+	if isElevenDotOne then
+		self:Nameplate(424429, 9.3, guid) -- Consecration
+	else
+		self:Nameplate(424429, 8.0, guid) -- Consecration
+	end
 end
 
 function mod:Consecration(args)
+	self:Message(args.spellId, "orange")
 	self:Nameplate(args.spellId, 23.0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 do
@@ -850,4 +930,38 @@ end
 
 function mod:RisenMageDeath(args)
 	self:ClearNameplate(args.destGUID)
+end
+
+-- Sir Braunpyke
+
+do
+	local timer
+
+	function mod:SirBraunpykeEngaged(guid)
+		self:CDBar(435165, 7.1) -- Blazing Strike
+		self:Nameplate(435165, 7.1, guid) -- Blazing Strike
+		timer = self:ScheduleTimer("SirBraunpykeDeath", 30)
+	end
+
+	function mod:BlazingStrike(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "purple")
+		self:CDBar(args.spellId, 13.3)
+		self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
+		timer = self:ScheduleTimer("SirBraunpykeDeath", 30)
+	end
+
+	function mod:SirBraunpykeDeath(args)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(435165) -- Blazing Strike
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
+	end
 end
