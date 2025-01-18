@@ -20,12 +20,11 @@ function mod:GetOptions()
 		421817, -- Wicklighter Barrage
 		424212, -- Incite Flames
 		423109, -- Enkindling Inferno
+		425394, -- Dousing Breath
 		443835, -- Blazing Storms
-		425394, -- Dousing Breath (Normal / Heroic)
-		{422700, "PRIVATE"}, -- Extinguishing Gust (Mythic)
+		{421910, "PRIVATE"}, -- Extinguishing Gust (Mythic)
 	}, {
-		[425394] = CL.normal.." / "..CL.heroic,
-		[422700] = CL.mythic,
+		[421910] = CL.mythic,
 	}
 end
 
@@ -33,24 +32,29 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WicklighterBarrage", 421817)
 	self:Log("SPELL_AURA_APPLIED", "WicklighterBarrageApplied", 421817)
 	self:Log("SPELL_CAST_START", "InciteFlames", 424212)
+	self:Log("SPELL_PERIODIC_DAMAGE", "InciteFlamesDamage", 424223)
+	self:Log("SPELL_PERIODIC_MISSED", "InciteFlamesDamage", 424223)
 	self:Log("SPELL_CAST_START", "EnkindlingInferno", 423109)
-	self:Log("SPELL_CAST_START", "BlazingStorms", 443835)
 	self:Log("SPELL_CAST_START", "DousingBreath", 425394)
+	self:Log("SPELL_CAST_START", "BlazingStorms", 443835)
 
 	-- Mythic
-	self:Log("SPELL_CAST_SUCCESS", "ExtinguishingGust", 422700) -- TODO what's the best event?
+	self:Log("SPELL_CAST_START", "ExtinguishingGust", 421910)
 end
 
 function mod:OnEngage()
 	if self:Mythic() then
-		-- TODO guessed
-		self:CDBar(425394, 3.4) -- Extinguishing Gust
+		self:CDBar(425394, 3.4) -- Dousing Breath
+		self:CDBar(421817, 6.9) -- Wicklighter Barrage
+		self:CDBar(423109, 20.7) -- Enkindling Inferno
+		self:CDBar(421910, 25.5) -- Extinguishing Gust
+		self:CDBar(424212, 37.7) -- Incite Flames
 	else
 		self:CDBar(425394, 3.4) -- Dousing Breath
+		self:CDBar(421817, 9.5) -- Wicklighter Barrage
+		self:CDBar(424212, 21.6) -- Incite Flames
+		self:CDBar(423109, 30.1) -- Enkindling Inferno
 	end
-	self:CDBar(421817, 9.5) -- Wicklighter Barrage
-	self:CDBar(424212, 21.6) -- Incite Flames
-	self:CDBar(423109, 30.1) -- Enkindling Inferno
 end
 
 --------------------------------------------------------------------------------
@@ -63,7 +67,11 @@ do
 	function mod:WicklighterBarrage(args)
 		playerList = {}
 		self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
-		self:CDBar(args.spellId, 31.6)
+		if self:Mythic() then
+			self:CDBar(args.spellId, 60.0)
+		else
+			self:CDBar(args.spellId, 30.0)
+		end
 	end
 
 	function mod:WicklighterBarrageApplied(args)
@@ -75,14 +83,43 @@ end
 
 function mod:InciteFlames(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 31.6)
+	if self:Mythic() then
+		self:CDBar(args.spellId, 60.7)
+	else
+		self:CDBar(args.spellId, 31.6)
+	end
 	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local prev = 0
+	function mod:InciteFlamesDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(424212, "underyou")
+			self:PlaySound(424212, "underyou")
+		end
+	end
 end
 
 function mod:EnkindlingInferno(args)
 	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 31.6)
+	if self:Mythic() then
+		self:CDBar(args.spellId, 29.1)
+	else
+		self:CDBar(args.spellId, 31.6)
+	end
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:DousingBreath(args)
+	self:Message(args.spellId, "cyan")
+	if self:Mythic() then
+		self:CDBar(args.spellId, 55.8)
+	else
+		self:CDBar(args.spellId, 31.6)
+	end
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:BlazingStorms(args)
@@ -93,18 +130,10 @@ function mod:BlazingStorms(args)
 	end
 end
 
--- Normal / Heroic
-
-function mod:DousingBreath(args)
-	self:Message(args.spellId, "cyan")
-	self:CDBar(args.spellId, 31.6)
-	self:PlaySound(args.spellId, "info")
-end
-
 -- Mythic
 
 function mod:ExtinguishingGust(args)
 	self:Message(args.spellId, "cyan")
-	self:CDBar(args.spellId, 31.6) -- TODO guessed
+	self:CDBar(args.spellId, 59.5)
 	self:PlaySound(args.spellId, "info")
 end

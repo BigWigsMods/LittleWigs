@@ -8,9 +8,9 @@ BigWigs:AddColors("Ol' Waxbeard", {
 
 BigWigs:AddColors("Blazikon", {
 	[421817] = {"blue","yellow"},
-	[422700] = "cyan",
+	[421910] = "cyan",
 	[423109] = "red",
-	[424212] = "orange",
+	[424212] = {"blue","orange"},
 	[425394] = "cyan",
 	[443835] = "purple",
 })
