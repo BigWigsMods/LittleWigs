@@ -2,8 +2,9 @@
 BigWigs:AddSounds("Kyrioss", {
 	[419870] = "alarm",
 	[424148] = "alert",
-	[444123] = "long",
+	[444123] = {"alert","long"},
 	[474018] = "alarm",
+	[1214320] = "underyou",
 	[1214325] = "info",
 })
 

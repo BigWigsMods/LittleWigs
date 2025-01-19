@@ -28,17 +28,20 @@ local lightningDashCount = 1
 if isElevenDotOne then -- XXX remove this check when 11.1 is live
 	function mod:GetOptions()
 		return {
-			{444123, "CASTBAR"}, -- Lightning Torrent
+			{444123, "DISPEL", "CASTBAR"}, -- Lightning Torrent
 			1214325, -- Crashing Thunder
 			474018, -- Wild Lightning
 			419870, -- Lightning Dash
-			-- TODO Grounding Bolt? (Mythic)
+			-- Mythic
+			1214320, -- Grounding Bolt
+		}, {
+			[1214320] = CL.mythic,
 		}
 	end
 else -- XXX remove the block below when 11.1 is live
 	function mod:GetOptions()
 		return {
-			444123, -- Lightning Torrent
+			{444123, "DISPEL"}, -- Lightning Torrent
 			419870, -- Lightning Dash
 			{424148, "SAY"}, -- Chain Lightning
 		}
@@ -50,12 +53,21 @@ function mod:OnBossEnable()
 	if isElevenDotOne then -- XXX remove this check when 11.1 is live
 		self:Log("SPELL_CAST_START", "LightningTorrentStart", 1214315)
 		self:Log("SPELL_AURA_REMOVED", "LightningTorrentRemoved", 1214315)
+	end
+	self:Log("SPELL_AURA_APPLIED", "LightningTorrentApplied", 444250)
+	if isElevenDotOne then -- XXX remove this check when 11.1 is live
 		self:Log("SPELL_CAST_START", "CrashingThunder", 1214325)
 		self:Log("SPELL_CAST_START", "WildLightning", 474018)
 	else -- XXX remove the block below when 11.1 is live
 		self:Log("SPELL_CAST_START", "ChainLightning", 424148)
 	end
 	self:Log("SPELL_CAST_START", "LightningDash", 419870)
+
+	-- Mythic
+	if isElevenDotOne then -- XXX remove this check when 11.1 is live
+		self:Log("SPELL_PERIODIC_DAMAGE", "GroundingBoltDamage", 1214320)
+		self:Log("SPELL_PERIODIC_MISSED", "GroundingBoltDamage", 1214320)
+	end
 end
 
 function mod:OnEngage()
@@ -104,6 +116,13 @@ end
 
 function mod:LightningTorrentRemoved()
 	self:SetStage(1)
+end
+
+function mod:LightningTorrentApplied(args)
+	if self:Me(args.destGUID) or self:Dispeller("magic", nil, 444123) then
+		self:TargetMessage(444123, "yellow", args.destName)
+		self:PlaySound(444123, "alert", nil, args.destName)
+	end
 end
 
 function mod:CrashingThunder(args)
@@ -201,6 +220,19 @@ do
 		else
 			self:CDBar(args.spellId, 9.0, CL.count:format(args.spellName, chainLightningCount))
 			timer = self:ScheduleTimer("ChainLightningSkipped", 10.0)
+		end
+	end
+end
+
+-- Mythic
+
+do
+	local prev = 0
+	function mod:GroundingBoltDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
 		end
 	end
 end

@@ -2,8 +2,9 @@
 BigWigs:AddColors("Kyrioss", {
 	[419870] = "yellow",
 	[424148] = {"blue","red"},
-	[444123] = "cyan",
+	[444123] = {"blue","cyan","yellow"},
 	[474018] = "orange",
+	[1214320] = "blue",
 	[1214325] = "red",
 })
 
