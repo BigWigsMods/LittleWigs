@@ -60,7 +60,7 @@ if isElevenDotOne then
 			{427616, "NAMEPLATE"}, -- Energized Barrage
 			{430013, "NAMEPLATE"}, -- Thunderstrike
 			-- Void-Cursed Crusher
-			{474031, "NAMEPLATE"}, -- Void Crush
+			{474031, "SAY", "NAMEPLATE"}, -- Void Crush
 			474044, -- Residual Void Energy
 			-- Corrupted Oracle
 			{430754, "NAMEPLATE"}, -- Void Shell
@@ -71,7 +71,7 @@ if isElevenDotOne then
 			443854, -- Instability
 			-- Void Ascendant
 			{1214546, "NAMEPLATE"}, -- Umbral Wave
-			{1214523, "DISPEL", "NAMEPLATE"}, -- Feasting Void
+			{1214523, "NAMEPLATE"}, -- Feasting Void
 			-- Consuming Voidstone
 			{472764, "NAMEPLATE"}, -- Void Extraction
 			1214628, -- Unleash Darkness
@@ -173,6 +173,7 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("VoidCursedCrusherEngaged", 214419)
 	if isElevenDotOne then
 		self:Log("SPELL_CAST_START", "VoidCrush", 474031)
+		self:Log("SPELL_CAST_SUCCESS", "VoidCrushSuccess", 474031)
 		self:Log("SPELL_PERIODIC_DAMAGE", "ResidualVoidEnergyDamage", 474044)
 		self:Log("SPELL_PERIODIC_MISSED", "ResidualVoidEnergyDamage", 474044)
 	else
@@ -201,7 +202,6 @@ function mod:OnBossEnable()
 	if isElevenDotOne then
 		self:Log("SPELL_CAST_START", "UmbralWave", 1214546)
 		self:Log("SPELL_CAST_SUCCESS", "FeastingVoid", 1214523)
-		self:Log("SPELL_AURA_APPLIED", "FeastingVoidApplied", 1214523)
 	else -- XXX remove when 11.1 is live
 		self:Log("SPELL_CAST_START", "VoidVolley", 432959) -- XXX removed in 11.1
 		self:Log("SPELL_INTERRUPT", "VoidVolleyInterrupt", 432959) -- XXX removed in 11.1
@@ -417,16 +417,28 @@ function mod:VoidCursedCrusherEngaged(guid)
 end
 
 do
-	local prev = 0
-	function mod:VoidCrush(args)
-		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
-		if args.time - prev > 1.5 then
-			prev = args.time
-			-- TODO targetscan?
-			self:Message(args.spellId, "orange")
-			self:PlaySound(args.spellId, "alarm")
+	local prev, prevOnMe = 0, 0
+	local function printTarget(self, name, guid)
+		local t = GetTime()
+		self:TargetMessage(474031, "orange", name)
+		if self:Me(guid) and t - prevOnMe > 3 then
+			prevOnMe = t
+			self:Say(474031, nil, nil, "Void Crush")
+		end
+		if t - prev > 2 then
+			prev = t
+			self:PlaySound(474031, "alarm", nil, name)
 		end
 	end
+
+	function mod:VoidCrush(args)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+	end
+end
+
+function mod:VoidCrushSuccess(args)
+	self:Nameplate(args.spellId, 16.2, args.sourceGUID)
 end
 
 do
@@ -540,14 +552,9 @@ function mod:UmbralWave(args)
 end
 
 function mod:FeastingVoid(args)
+	self:Message(args.spellId, "red")
 	self:Nameplate(args.spellId, 23.1, args.sourceGUID)
-end
-
-function mod:FeastingVoidApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "red", args.destName)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
-	end
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:VoidVolley(args) -- XXX removed in 11.1
