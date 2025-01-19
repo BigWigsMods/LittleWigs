@@ -33,12 +33,16 @@ BigWigs:AddSounds("HK-8 Aerial Oppression Unit", {
 })
 
 BigWigs:AddSounds("Tussle Tonks", {
-	[282801] = "long",
-	[283422] = "alert",
+	[282801] = {"info","long"},
+	[283422] = "alarm",
 	[285020] = "alert",
 	[285152] = "alert",
 	[285344] = "info",
 	[285388] = "alarm",
+	[1215065] = "alarm",
+	[1215102] = "info",
+	[1216431] = "long",
+	[1216443] = "long",
 })
 
 BigWigs:AddSounds("K.U.-J.0.", {

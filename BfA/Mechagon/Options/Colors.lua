@@ -33,12 +33,16 @@ BigWigs:AddColors("HK-8 Aerial Oppression Unit", {
 })
 
 BigWigs:AddColors("Tussle Tonks", {
-	[282801] = {"blue","green"},
-	[283422] = {"blue","yellow"},
+	[282801] = {"blue","cyan","green"},
+	[283422] = {"blue","orange"},
 	[285020] = "red",
 	[285152] = {"blue","yellow"},
 	[285344] = "orange",
 	[285388] = "red",
+	[1215065] = "purple",
+	[1215102] = "yellow",
+	[1216431] = "red",
+	[1216443] = "cyan",
 })
 
 BigWigs:AddColors("K.U.-J.0.", {
