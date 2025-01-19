@@ -50,6 +50,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BlazingBelch", 432198)
 	self:Log("SPELL_CAST_START", "ThrowCinderbrew", 432179)
 	self:Log("SPELL_CAST_START", "KegSmash", 432229)
+	self:Log("SPELL_PERIODIC_DAMAGE", "HotHoneyDamage", 432196)
+	self:Log("SPELL_PERIODIC_MISSED", "HotHoneyDamage", 432196)
 end
 
 function mod:OnEngage()
@@ -59,7 +61,7 @@ function mod:OnEngage()
 	kegSmashRemaining = 2
 	self:SetStage(1)
 	self:CDBar(432229, 5.1) -- Keg Smash
-	self:CDBar(432179, 10.7) -- Throw Cinderbrew
+	self:CDBar(432179, 10.0) -- Throw Cinderbrew
 	self:CDBar(432198, 14.4) -- Blazing Belch
 	-- cast at 100 energy, starts at 55 energy: .9s delay + 20.25s energy gain + runs to bar + 1.5s delay + 2s cast
 	self:CDBar(442525, 28.7, CL.count:format(self:SpellName(442525), happyHourCount)) -- Happy Hour
@@ -143,5 +145,16 @@ function mod:KegSmash(args)
 		self:CDBar(args.spellId, 14.5)
 	else
 		self:StopBar(args.spellId)
+	end
+end
+
+do
+	local prev = 0
+	function mod:HotHoneyDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
 	end
 end
