@@ -31,6 +31,7 @@ function mod:GetOptions()
 		-- Mythic
 		446368, -- Sacrificial Pyre
 		{446403, "ME_ONLY"}, -- Sacrificial Flame
+		--446525, -- Unleashed Pyre
 	}, {
 		[446368] = CL.mythic,
 	}
@@ -43,7 +44,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HammerOfPurity", 423062, 446598) -- Standard, Empowered
 
 	-- Mythic
-	self:Log("SPELL_CAST_START", "SacrificialPyre", 446368)
+	self:Log("SPELL_CAST_START", "SacrificialPyre", 446368) -- TODO how to detect empowered cast?
 	self:Log("SPELL_AURA_APPLIED", "SacrificialFlameApplied", 446403)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SacrificialFlameApplied", 446403)
 end
@@ -52,7 +53,7 @@ function mod:OnEngage()
 	self:StopBar(CL.active)
 	if self:Mythic() then
 		self:CDBar(423062, 7.2) -- Hammer of Purity
-		self:CDBar(423051, 15.7) -- Sacrificial Pyre
+		self:CDBar(446368, 15.4) -- Sacrificial Pyre
 		self:CDBar(423051, 21.0) -- Burning Light
 	else
 		self:CDBar(423062, 8.5) -- Hammer of Purity
@@ -60,7 +61,7 @@ function mod:OnEngage()
 	end
 	self:CDBar(423015, 23.0) -- Castigator's Shield
 	if self:Mythic() then
-		self:CDBar(422969, 31.5) -- Vindictive Wrath
+		self:CDBar(422969, 31.2) -- Vindictive Wrath
 	else
 		self:CDBar(422969, 45.8) -- Vindictive Wrath
 	end
@@ -84,19 +85,31 @@ end
 
 function mod:CastigatorsShield(args)
 	self:Message(423015, "orange")
-	self:CDBar(423015, 23.1)
+	if self:Mythic() then
+		self:CDBar(423015, 30.3)
+	else
+		self:CDBar(423015, 23.1)
+	end
 	self:PlaySound(423015, "alert")
 end
 
 function mod:BurningLight(args)
 	self:Message(423051, "red", CL.casting:format(args.spellName))
-	self:CDBar(423051, 32.7)
+	if self:Mythic() then
+		self:CDBar(423051, 40.1)
+	else
+		self:CDBar(423051, 32.7)
+	end
 	self:PlaySound(423051, "warning")
 end
 
 function mod:HammerOfPurity(args)
 	self:Message(423062, "yellow")
-	self:CDBar(423062, 19.8)
+	if self:Mythic() then
+		self:CDBar(423062, 30.3)
+	else
+		self:CDBar(423062, 19.8)
+	end
 	self:PlaySound(423062, "alarm")
 end
 
@@ -104,11 +117,13 @@ end
 
 function mod:SacrificialPyre(args)
 	self:Message(args.spellId, "cyan")
+	-- TODO start Unleashed Pyre bar
 	self:CDBar(args.spellId, 38.8)
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:SacrificialFlameApplied(args)
+	-- TODO clean up Unleashed Pyre bar after all charges have been soaked
 	self:StackMessage(args.spellId, "yellow", args.destName, args.amount, 1)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
 end
