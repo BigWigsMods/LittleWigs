@@ -13,6 +13,7 @@ BigWigs:AddColors("I'pa", {
 	[439202] = {"blue","yellow"},
 	[439365] = "yellow",
 	[440147] = "yellow",
+	[441179] = "blue",
 })
 
 BigWigs:AddColors("Benk Buzzbee", {

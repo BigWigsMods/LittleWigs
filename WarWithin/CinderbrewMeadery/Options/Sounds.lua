@@ -13,6 +13,7 @@ BigWigs:AddSounds("I'pa", {
 	[439202] = "long",
 	[439365] = "long",
 	[440147] = "alarm",
+	[441179] = "underyou",
 })
 
 BigWigs:AddSounds("Benk Buzzbee", {
