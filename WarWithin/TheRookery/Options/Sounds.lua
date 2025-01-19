@@ -21,6 +21,7 @@ BigWigs:AddSounds("Voidstone Monstrosity", {
 	[423393] = "warning",
 	[424371] = "info",
 	[429493] = "alert",
+	[433067] = "underyou",
 	[445262] = "long",
 	[445457] = "alarm",
 	[458082] = "info",

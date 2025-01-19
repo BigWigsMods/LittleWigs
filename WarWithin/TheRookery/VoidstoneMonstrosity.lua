@@ -28,6 +28,7 @@ function mod:GetOptions()
 		423305, -- Null Upheaval
 		445262, -- Void Shell
 		{429493, "SAY"}, -- Unleash Corruption
+		433067, -- Seeping Corruption (Mythic)
 		445457, -- Oblivion Wave
 		423393, -- Entropy
 		-- Stormrider Vokmar
@@ -44,6 +45,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "VoidShellRemoved", 445262)
 	self:Log("SPELL_CAST_SUCCESS", "UnleashCorruption", 429487)
 	self:Log("SPELL_AURA_APPLIED", "UnleashCorruptionApplied", 429493)
+	self:Log("SPELL_PERIODIC_DAMAGE", "SeepingCorruptionDamage", 433067)
+	self:Log("SPELL_PERIODIC_MISSED", "SeepingCorruptionDamage", 433067)
 	self:Log("SPELL_CAST_START", "OblivionWave", 445457)
 	self:Log("SPELL_CAST_SUCCESS", "Entropy", 423393)
 
@@ -131,6 +134,17 @@ do
 	end
 end
 
+do
+	local prev = 0
+	function mod:SeepingCorruptionDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
+end
+
 function mod:OblivionWave(args)
 	if isElevenDotOne then
 		nextOblivionWave = GetTime() + 13.3
@@ -171,7 +185,7 @@ do
 
 	function mod:StormridersChargeApplied(args)
 		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(args.spellId, "green", playerList, 2)
+		self:TargetsMessage(args.spellId, "green", playerList, 4)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId, nil, nil, "Stormrider's Charge")
 			if isElevenDotOne then

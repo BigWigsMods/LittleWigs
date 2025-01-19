@@ -21,6 +21,7 @@ BigWigs:AddColors("Voidstone Monstrosity", {
 	[423393] = "purple",
 	[424371] = "green",
 	[429493] = {"blue","red"},
+	[433067] = "blue",
 	[445262] = {"cyan","green"},
 	[445457] = "purple",
 	[458082] = {"blue","green"},
