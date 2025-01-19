@@ -49,7 +49,7 @@ BigWigs:AddSounds("K.U.-J.0.", {
 	[291930] = "info",
 	[291946] = "alarm",
 	[291973] = "alert",
-	[294929] = "alert",
+	[294929] = {"alert","warning"},
 })
 
 BigWigs:AddSounds("Machinist's Garden", {

@@ -12,7 +12,8 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
-local airDropCount = 0
+local airDropCount = 1
+local blazingChompCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -32,15 +33,17 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VentingFlames", 291946)
 	self:Log("SPELL_CAST_START", "ExplosiveLeap", 291973)
 	self:Log("SPELL_AURA_APPLIED", "ExplosiveLeapApplied", 291972)
+	self:Log("SPELL_CAST_SUCCESS", "BlazingChomp", 294929)
 	self:Log("SPELL_AURA_APPLIED", "BlazingChompApplied", 294929)
 end
 
 function mod:OnEngage()
-	airDropCount = 0
-	self:Bar(291930, 7.1) -- Air Drop
-	self:Bar(294929, 10.9) -- Blazing Chomp
-	self:Bar(291946, 15.6) -- Venting Flames
-	self:Bar(291973, 38) -- Explosive Leap
+	airDropCount = 1
+	blazingChompCount = 1
+	self:CDBar(291930, 5.1) -- Air Drop
+	self:CDBar(294929, 10.8) -- Blazing Chomp
+	self:CDBar(291946, 15.7) -- Venting Flames
+	self:CDBar(291973, 38.8) -- Explosive Leap
 end
 
 --------------------------------------------------------------------------------
@@ -48,17 +51,21 @@ end
 --
 
 function mod:AirDrop(args)
-	airDropCount = airDropCount + 1
 	self:Message(291930, "yellow")
+	airDropCount = airDropCount + 1
+	if airDropCount == 2 then
+		self:CDBar(291930, 26.7)
+	else
+		self:CDBar(291930, 34.0)
+	end
 	self:PlaySound(291930, "info")
-	self:Bar(291930, airDropCount == 1 and 26.7 or 34) -- Second air drop is a shorter timer
 end
 
 function mod:VentingFlames(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
 	self:CastBar(args.spellId, 6)
-	self:Bar(args.spellId, 32)
+	self:CDBar(args.spellId, 34.0)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 do
@@ -66,21 +73,33 @@ do
 
 	function mod:ExplosiveLeap(args)
 		playerList = {}
-		self:CDBar(args.spellId, 30)
+		self:CDBar(args.spellId, 34.0)
 	end
 
 	function mod:ExplosiveLeapApplied(args)
 		playerList[#playerList + 1] = args.destName
-		self:PlaySound(291973, "alert", nil, playerList)
 		self:TargetsMessage(291973, "orange", playerList, 4)
 		if self:Me(args.destGUID) then
 			self:Say(291973, nil, nil, "Explosive Leap")
 		end
+		self:PlaySound(291973, "alert", nil, playerList)
+	end
+end
+
+function mod:BlazingChomp(args)
+	blazingChompCount = blazingChompCount + 1
+	if blazingChompCount == 2 or blazingChompCount % 2 == 1 then
+		self:CDBar(args.spellId, 17.0)
+	else
+		self:CDBar(args.spellId, 15.8)
 	end
 end
 
 function mod:BlazingChompApplied(args)
-	self:StackMessageOld(args.spellId, args.destName, args.amount, "purple")
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
-	self:CDBar(args.spellId, 16) -- Varies, one of these numbers: 15.8, 17, 18.2, 19.4
+	self:StackMessage(args.spellId, "purple", args.destName, args.amount, 1)
+	if self:Dispeller("magic") then
+		self:PlaySound(args.spellId, "warning", nil, args.destName)
+	else
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
