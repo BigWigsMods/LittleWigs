@@ -68,12 +68,13 @@ function mod:GetOptions()
 		-- Forge Master Damian
 		{427897, "NAMEPLATE"}, -- Heat Wave
 		{427950, "NAMEPLATE"}, -- Seal of Flame
+		427900, -- Molten Pool
 		-- High Priest Aemya
 		{429091, "NAMEPLATE"}, -- Inner Fire
 		{428150, "NAMEPLATE"}, -- Reflective Shield
 		-- Sergeant Shaynemail
 		{424621, "NAMEPLATE"}, -- Brutal Smash
-		{424423, "SAY", "NAMEPLATE"}, -- Lunging Strike
+		{424423, "NAMEPLATE"}, -- Lunging Strike
 		-- Elaena Emberlanz
 		{424431, "HEALER", "NAMEPLATE"}, -- Holy Radiance
 		{448515, "TANK", "NAMEPLATE"}, -- Divine Judgment
@@ -140,6 +141,8 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("ForgeMasterDamianEngaged", 212831)
 	self:Log("SPELL_CAST_START", "HeatWave", 427897)
 	self:Log("SPELL_CAST_START", "SealOfFlame", 427950)
+	self:Log("SPELL_PERIODIC_DAMAGE", "MoltenPoolDamage", 427900)
+	self:Log("SPELL_PERIODIC_MISSED", "MoltenPoolDamage", 427900)
 	self:Death("ForgeMasterDamianDeath", 212831)
 
 	-- High Priest Aemya
@@ -367,6 +370,17 @@ do
 		timer = self:ScheduleTimer("ForgeMasterDamianDeath", 30)
 	end
 
+	do
+		local prev = 0
+		function mod:MoltenPoolDamage(args)
+			if self:Me(args.destGUID) and args.time - prev > 2 then
+				prev = args.time
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou")
+			end
+		end
+	end
+
 	function mod:ForgeMasterDamianDeath(args)
 		if timer then
 			self:CancelTimer(timer)
@@ -469,23 +483,15 @@ do
 		timer = self:ScheduleTimer("SergeantShaynemailDeath", 30)
 	end
 
-	do
-		local function printTarget(self, name, guid)
-			self:TargetMessage(424423, "red", name, CL.casting:format(self:SpellName(424423)))
-			if self:Me(guid) then
-				self:Say(424423, nil, nil, "Lunging Strike")
-			end
-			self:PlaySound(424423, "alert", nil, name)
+	function mod:LungingStrike(args)
+		if timer then
+			self:CancelTimer(timer)
 		end
-
-		function mod:LungingStrike(args)
-			if timer then
-				self:CancelTimer(timer)
-			end
-			self:Nameplate(args.spellId, 0, args.sourceGUID)
-			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-			timer = self:ScheduleTimer("SergeantShaynemailDeath", 30)
-		end
+		-- doesn't switch targets until the end of the cast, so can't target scan
+		self:Message(args.spellId, "red")
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
+		timer = self:ScheduleTimer("SergeantShaynemailDeath", 30)
 	end
 
 	function mod:LungingStrikeSuccess(args)

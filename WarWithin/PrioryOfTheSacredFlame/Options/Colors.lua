@@ -27,7 +27,7 @@ BigWigs:AddColors("Prioress Murrpray", {
 
 BigWigs:AddColors("Priory of the Sacred Flame Trash", {
 	[424420] = {"blue","orange","red"},
-	[424423] = {"blue","red"},
+	[424423] = "red",
 	[424429] = {"blue","orange"},
 	[424431] = "yellow",
 	[424462] = "yellow",
@@ -41,6 +41,7 @@ BigWigs:AddColors("Priory of the Sacred Flame Trash", {
 	[427601] = "yellow",
 	[427609] = "red",
 	[427897] = "orange",
+	[427900] = "blue",
 	[427950] = "red",
 	[428150] = {"green","red"},
 	[429091] = "yellow",
