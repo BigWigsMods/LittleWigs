@@ -62,7 +62,7 @@ function mod:SpoutingStout(args)
 end
 
 function mod:FillErUp(args)
-	self:Message(args.spellId, "yellow", CL.onboss:format(args.spellName))
+	self:Message(args.spellId, "red", CL.onboss:format(args.spellName))
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -76,15 +76,15 @@ do
 
 	function mod:BurningFermentationApplied(args)
 		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(439202, "yellow", playerList, 2, nil, nil, .85) -- debuff has travel time
-		self:PlaySound(439202, "long", nil, playerList)
+		self:TargetsMessage(439202, "orange", playerList, 2, nil, nil, .85) -- debuff has travel time
+		self:PlaySound(439202, "alert", nil, playerList)
 	end
 end
 
 function mod:BottomsUppercut(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 47.3)
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Brew Drop
