@@ -26,6 +26,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HoneyMarinade", 440134)
 	self:Log("SPELL_AURA_APPLIED", "HoneyMarinadeApplied", 440134)
 	self:Log("SPELL_AURA_REMOVED", "HoneyMarinadeRemoved", 440134)
+	self:Log("SPELL_PERIODIC_DAMAGE", "HoneyMarinadeDamage", 440141)
+	self:Log("SPELL_PERIODIC_MISSED", "HoneyMarinadeDamage", 440141)
 end
 
 function mod:OnEngage()
@@ -40,20 +42,20 @@ end
 
 function mod:SnackTime(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
 	self:CDBar(args.spellId, 33.0)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:FlutteringWing(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 23.0)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:HoneyMarinade(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 14.0)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:HoneyMarinadeApplied(args)
@@ -65,5 +67,16 @@ end
 function mod:HoneyMarinadeRemoved(args)
 	if self:Me(args.destGUID) then
 		self:CancelSayCountdown(args.spellId)
+	end
+end
+
+do
+	local prev = 0
+	function mod:HoneyMarinadeDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(440134, "underyou")
+			self:PlaySound(440134, "underyou")
+		end
 	end
 end
