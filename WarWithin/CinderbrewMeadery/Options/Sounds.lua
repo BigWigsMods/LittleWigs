@@ -31,7 +31,6 @@ BigWigs:AddSounds("Goldie Baronbottom", {
 
 BigWigs:AddSounds("Cinderbrew Meadery Trash", {
 	[434706] = "alarm",
-	[434761] = "alarm",
 	[434998] = "long",
 	[437721] = "alert",
 	[437956] = "alarm",

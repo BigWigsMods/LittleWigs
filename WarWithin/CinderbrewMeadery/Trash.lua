@@ -1,3 +1,4 @@
+local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -63,8 +64,6 @@ function mod:GetOptions()
 		-- Venture Co. Pyromaniac
 		{437721, "NAMEPLATE"}, -- Boiling Flames
 		{437956, "NAMEPLATE"}, -- Erupting Inferno
-		-- Hired Muscle
-		434761, -- Mighty Stomp
 		-- Tasting Room Attendant
 		{434706, "NAMEPLATE"}, -- Cinderbrew Toss
 		-- Chef Chewie
@@ -90,7 +89,6 @@ function mod:GetOptions()
 		{439467, "NAMEPLATE"}, -- Downward Trend
 	}, {
 		[437721] = L.venture_co_pyromaniac,
-		[434761] = L.hired_muscle,
 		[434706] = L.tasting_room_attendant,
 		[463206] = L.chef_chewie,
 		[441627] = L.flavor_scientist,
@@ -112,17 +110,14 @@ function mod:OnBossEnable()
 
 	-- Venture Co. Pyromaniac
 	self:RegisterEngageMob("VentureCoPyromaniacEngaged", 218671)
-	self:Log("SPELL_CAST_START", "BoilingFlames", 437721)
-	self:Log("SPELL_INTERRUPT", "BoilingFlamesInterrupt", 437721)
-	self:Log("SPELL_CAST_SUCCESS", "BoilingFlamesSuccess", 437721)
+	if not isElevenDotOne then -- XXX remove in 11.1
+		self:Log("SPELL_CAST_START", "BoilingFlamesStart", 437721)
+		self:Log("SPELL_INTERRUPT", "BoilingFlamesInterrupt", 437721)
+	end
+	self:Log("SPELL_CAST_SUCCESS", "BoilingFlames", 437721)
 	self:Log("SPELL_CAST_SUCCESS", "EruptingInferno", 437956)
 	self:Log("SPELL_AURA_APPLIED", "EruptingInfernoApplied", 437956)
 	self:Death("VentureCoPyromaniacDeath", 218671)
-
-	-- Hired Muscle
-	--self:RegisterEngageMob("HiredMuscleEngaged", 210269)
-	self:Log("SPELL_CAST_START", "MightyStomp", 434761) -- TODO removed or Mythic only?
-	--self:Death("HiredMuscleDeath", 210269)
 
 	-- Tasting Room Attendant
 	self:RegisterEngageMob("TastingRoomAttendantEngaged", 214920)
@@ -168,8 +163,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HoneyVolley", 440687)
 	self:Log("SPELL_INTERRUPT", "HoneyVolleyInterrupt", 440687)
 	self:Log("SPELL_CAST_SUCCESS", "HoneyVolleySuccess", 440687)
-	self:Log("SPELL_CAST_START", "RainOfHoney", 440876)
-	self:Log("SPELL_CAST_SUCCESS", "RainOfHoneySuccess", 440876)
+	if not isElevenDotOne then -- XXX remove in 11.1
+		self:Log("SPELL_CAST_START", "RainOfHoneyStart", 440876)
+	end
+	self:Log("SPELL_CAST_SUCCESS", "RainOfHoney", 440876)
 	self:Death("RoyalJellyPurveyorDeath", 220141)
 
 	-- Yes Man
@@ -207,21 +204,27 @@ end
 
 function mod:VentureCoPyromaniacEngaged(guid)
 	self:Nameplate(437956, 3.8, guid) -- Erupting Inferno
-	self:Nameplate(437721, 12.0, guid) -- Boiling Flames
+	self:Nameplate(437721, 11.9, guid) -- Boiling Flames
 end
 
-function mod:BoilingFlames(args)
+function mod:BoilingFlamesStart(args) -- XXX remove in 11.1
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:BoilingFlamesInterrupt(args)
+function mod:BoilingFlamesInterrupt(args) -- XXX remove in 11.1
 	self:Nameplate(437721, 20.1, args.destGUID)
 end
 
-function mod:BoilingFlamesSuccess(args)
-	self:Nameplate(args.spellId, 20.1, args.sourceGUID)
+function mod:BoilingFlames(args)
+	if isElevenDotOne then
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 20.1, args.sourceGUID)
+	end
 end
 
 function mod:EruptingInferno(args)
@@ -236,18 +239,6 @@ end
 function mod:VentureCoPyromaniacDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
-
--- Hired Muscle
-
-function mod:MightyStomp(args)
-	self:Message(args.spellId, "yellow")
-	--self:Nameplate(args.spellId, 100, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
-end
-
---function mod:HiredMuscleDeath(args)
-	--self:ClearNameplate(args.destGUID)
---end
 
 -- Tasting Room Attendant
 
@@ -273,8 +264,8 @@ do
 	function mod:ChefChewieEngaged(guid)
 		self:CDBar(463206, 8.0) -- Tenderize
 		self:Nameplate(463206, 8.0, guid) -- Tenderize
-		self:CDBar(434998, 12.9) -- High Steaks
-		self:Nameplate(434998, 12.9, guid) -- High Steaks
+		self:CDBar(434998, 11.9) -- High Steaks
+		self:Nameplate(434998, 11.9, guid) -- High Steaks
 		timer = self:ScheduleTimer("ChefChewieDeath", 30)
 	end
 
@@ -316,7 +307,7 @@ end
 -- Flavor Scientist
 
 function mod:FlavorScientistEngaged(guid)
-	self:Nameplate(441434, 4.8, guid) -- Failed Batch
+	self:Nameplate(441434, 4.6, guid) -- Failed Batch
 	self:Nameplate(441627, 10.7, guid) -- Rejuvenating Honey
 end
 
@@ -379,7 +370,7 @@ do
 
 	function mod:RecklessDelivery(args)
 		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-		self:Nameplate(args.spellId, 25.5, args.sourceGUID)
+		self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 	end
 end
 
@@ -392,10 +383,12 @@ end
 do
 	local prev = 0
 	function mod:OozingHoneyDamage(args)
-		if self:Me(args.destGUID) and args.time - prev > 2 then
-			prev = args.time
-			self:PersonalMessage(args.spellId, "underyou")
-			self:PlaySound(args.spellId, "underyou")
+		if self:MobId(args.sourceGUID) == 223562 then -- Brew Drop, trash version
+			if self:Me(args.destGUID) and args.time - prev > 2 then
+				prev = args.time
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou")
+			end
 		end
 	end
 end
@@ -411,7 +404,7 @@ do
 	local function printTarget(self, name, guid)
 		self:TargetMessage(441119, "orange", name)
 		local t = GetTime()
-		if t - prev > 2 then
+		if t - prev > 2.5 then
 			prev = t
 			if self:Me(guid) then
 				self:Say(441119, nil, nil, "Bee-Zooka")
@@ -440,13 +433,17 @@ end
 -- Venture Co. Honey Harvester
 
 function mod:VentureCoHoneyHarvesterEngaged(guid)
-	self:Nameplate(442589, 3.8, guid) -- Beeswax
-	self:Nameplate(442995, 7.4, guid) -- Swarming Surprise
+	self:Nameplate(442589, 4.6, guid) -- Beeswax
+	self:Nameplate(442995, 5.6, guid) -- Swarming Surprise
 end
 
 function mod:Beeswax(args)
 	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 21.8, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	end
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -463,8 +460,8 @@ end
 -- Royal Jelly Purveyor
 
 function mod:RoyalJellyPurveyorEngaged(guid)
-	self:Nameplate(440687, 3.5, guid) -- Honey Volley
-	self:Nameplate(440876, 7.1, guid) -- Rain of Honey
+	self:Nameplate(440687, 3.0, guid) -- Honey Volley
+	self:Nameplate(440876, 7.8, guid) -- Rain of Honey
 end
 
 do
@@ -484,16 +481,24 @@ do
 end
 
 function mod:HoneyVolleyInterrupt(args)
-	self:Nameplate(440687, 9.3, args.destGUID)
+	if isElevenDotOne then
+		self:Nameplate(440687, 18.9, args.destGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(440687, 9.3, args.destGUID)
+	end
 end
 
 function mod:HoneyVolleySuccess(args)
-	self:Nameplate(args.spellId, 9.3, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 18.9, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 9.3, args.sourceGUID)
+	end
 end
 
 do
 	local prev = 0
-	function mod:RainOfHoney(args)
+	function mod:RainOfHoneyStart(args) -- XXX remove when 11.1 is live
 		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
 			return
 		end
@@ -507,8 +512,23 @@ do
 	end
 end
 
-function mod:RainOfHoneySuccess(args)
-	self:Nameplate(args.spellId, 16.2, args.sourceGUID)
+do
+	local prev = 0
+	function mod:RainOfHoney(args)
+		if isElevenDotOne then
+			if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by Priests
+				return
+			end
+			self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+			if args.time - prev > 2 then
+				prev = args.time
+				self:Message(args.spellId, "yellow")
+				self:PlaySound(args.spellId, "alarm")
+			end
+		else -- XXX remove in 11.1
+			self:Nameplate(args.spellId, 16.2, args.sourceGUID)
+		end
+	end
 end
 
 function mod:RoyalJellyPurveyorDeath(args)
@@ -524,7 +544,7 @@ end
 do
 	local prev = 0
 	function mod:DownwardTrend(args)
-		self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+		self:Nameplate(args.spellId, 13.0, args.sourceGUID)
 		local t = args.time
 		if t - prev > 2 then
 			prev = t
