@@ -22,14 +22,15 @@ if L then
 	L.bomb_tonk = "炸弹坦克"
 	L.rocket_tonk = "火箭坦克"
 	L.waste_processing_unit = "废料处理单位"
+	--L.metal_gunk = "Metal Gunk"
 	L.living_waste = "活体废料"
+	L.junkyard_d0g = "D.0.G.型垃圾场巡犬"
 	L.mechagon_tinkerer = "麦卡贡工匠"
 	L.anti_personnel_squirrel = "反步兵松鼠"
 	L.defense_bot_mk_iii = "防御机器人MkIII型"
 	L.blastatron_x80 = "爆破金刚X-80型"
 	L.mechagon_mechanic = "麦卡贡机械师"
 	L.workshop_defender = "车间防御者"
-	L.junkyard_d0g = "D.0.G.型垃圾场巡犬"
 end
 
 L = BigWigs:NewBossLocale("Tussle Tonks", "zhCN")

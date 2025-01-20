@@ -88,7 +88,7 @@ BigWigs:AddSounds("Operation: Mechagon Trash", {
 	[294324] = "alarm",
 	[294349] = "alert",
 	[294884] = "alarm",
-	[295169] = "alert",
+	[295169] = "long",
 	[297128] = "alarm",
 	[297133] = "info",
 	[299438] = "info",
@@ -117,4 +117,8 @@ BigWigs:AddSounds("Operation: Mechagon Trash", {
 	[301667] = "alarm",
 	[301681] = "alarm",
 	[303941] = "info",
+	[1215409] = "alarm",
+	[1215411] = "alert",
+	[1215412] = "info",
+	[1217819] = "alert",
 })

@@ -22,14 +22,15 @@ if L then
 	L.bomb_tonk = "폭탄 통통 로봇"
 	L.rocket_tonk = "로켓 통통 로봇"
 	L.waste_processing_unit = "폐기물 처리 유닛"
+	--L.metal_gunk = "Metal Gunk"
 	L.living_waste = "살아 있는 폐기물"
+	--L.junkyard_d0g = "Junkyard D.0.G."
 	L.mechagon_tinkerer = "메카곤 땜장이"
 	L.anti_personnel_squirrel = "대인 다람쥐"
 	L.defense_bot_mk_iii = "방어 로봇 마크 III"
 	L.blastatron_x80 = "작렬로봇 X-80"
 	L.mechagon_mechanic = "메카곤 기술자"
 	L.workshop_defender = "작업실 방어병"
-	--L.junkyard_d0g = "Junkyard D.0.G."
 end
 
 L = BigWigs:NewBossLocale("Tussle Tonks", "koKR")

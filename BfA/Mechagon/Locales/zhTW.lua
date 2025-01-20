@@ -22,14 +22,15 @@ if L then
 	--L.bomb_tonk = "Bomb Tonk"
 	--L.rocket_tonk = "Rocket Tonk"
 	--L.waste_processing_unit = "Waste Processing Unit"
+	--L.metal_gunk = "Metal Gunk"
 	--L.living_waste = "Living Waste"
+	--L.junkyard_d0g = "Junkyard D.0.G."
 	--L.mechagon_tinkerer = "Mechagon Tinkerer"
 	--L.anti_personnel_squirrel = "Anti-Personnel Squirrel"
 	--L.defense_bot_mk_iii = "Defense Bot Mk III"
 	--L.blastatron_x80 = "Blastatron X-80"
 	--L.mechagon_mechanic = "Mechagon Mechanic"
 	--L.workshop_defender = "Workshop Defender"
-	--L.junkyard_d0g = "Junkyard D.0.G."
 end
 
 L = BigWigs:NewBossLocale("Tussle Tonks", "zhTW")
