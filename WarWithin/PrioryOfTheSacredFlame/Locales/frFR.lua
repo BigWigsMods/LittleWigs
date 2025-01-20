@@ -21,3 +21,8 @@ if L then
 	L.baron_braunpyke_warmup_trigger = "Leur mission est remplie. Baron, montrez votre valeur."
 	L.custom_on_autotalk_desc = "|cFFFF0000Nécessite Prêtre ou Paladin.|r Sélectionne automatiquement le dialogue avec le PNJ qui octroie à votre groupe l'amélioration 'Bénédiction de la Flamme sacrée'."
 end
+
+L = BigWigs:NewBossLocale("Baron Braunpyke", "frFR")
+if L then
+	--L.charges = "%d charges"
+end

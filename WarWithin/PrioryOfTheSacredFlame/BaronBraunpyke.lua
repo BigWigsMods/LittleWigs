@@ -12,8 +12,17 @@ mod:SetRespawnTime(30)
 -- Localization
 --
 
+local vindictiveWrathActive = false
+local unleashedPyreCharges = 0
+local nextUnleashedPyre = 0
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
 local L = mod:GetLocale()
 if L then
+	L.charges = "%d charges"
 	L.warmup_icon = "inv_achievement_dungeon_prioryofthesacredflame"
 end
 
@@ -31,7 +40,7 @@ function mod:GetOptions()
 		-- Mythic
 		446368, -- Sacrificial Pyre
 		{446403, "ME_ONLY"}, -- Sacrificial Flame
-		--446525, -- Unleashed Pyre
+		446525, -- Unleashed Pyre
 	}, {
 		[446368] = CL.mythic,
 	}
@@ -39,19 +48,25 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VindictiveWrath", 422969)
+	self:Log("SPELL_AURA_APPLIED", "VindictiveWrathApplied", 422969)
+	self:Log("SPELL_AURA_REMOVED", "VindictiveWrathRemoved", 422969)
 	self:Log("SPELL_CAST_START", "CastigatorsShield", 423015, 446649) -- Standard, Empowered
 	self:Log("SPELL_CAST_START", "BurningLight", 423051, 446657) -- Standard, Empowered
 	self:Log("SPELL_CAST_START", "HammerOfPurity", 423062, 446598) -- Standard, Empowered
 
 	-- Mythic
-	self:Log("SPELL_CAST_START", "SacrificialPyre", 446368) -- TODO how to detect empowered cast?
+	self:Log("SPELL_CAST_START", "SacrificialPyre", 446368)
 	self:Log("SPELL_AURA_APPLIED", "SacrificialFlameApplied", 446403)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SacrificialFlameApplied", 446403)
+	self:Log("SPELL_MISSED", "SacrificialFlameMissed", 446403) -- for immunities
 end
 
 function mod:OnEngage()
+	vindictiveWrathActive = false
 	self:StopBar(CL.active)
 	if self:Mythic() then
+		unleashedPyreCharges = 0
+		nextUnleashedPyre = 0
 		self:CDBar(423062, 7.2) -- Hammer of Purity
 		self:CDBar(446368, 15.4) -- Sacrificial Pyre
 		self:CDBar(423051, 21.0) -- Burning Light
@@ -81,6 +96,14 @@ function mod:VindictiveWrath(args)
 	self:Message(args.spellId, "cyan")
 	self:CDBar(args.spellId, 48.1)
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:VindictiveWrathApplied()
+	vindictiveWrathActive = true
+end
+
+function mod:VindictiveWrathRemoved()
+	vindictiveWrathActive = false
 end
 
 function mod:CastigatorsShield(args)
@@ -116,14 +139,34 @@ end
 -- Mythic
 
 function mod:SacrificialPyre(args)
-	self:Message(args.spellId, "cyan")
-	-- TODO start Unleashed Pyre bar
+	unleashedPyreCharges = vindictiveWrathActive and 5 or 3
+	nextUnleashedPyre = args.time + 30
+	self:Message(args.spellId, "cyan", CL.extra:format(args.spellName, L.charges:format(unleashedPyreCharges)))
+	self:Bar(446525, 30, CL.count:format(self:SpellName(446525), unleashedPyreCharges)) -- Unleashed Pyre
 	self:CDBar(args.spellId, 38.8)
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:SacrificialFlameApplied(args)
-	-- TODO clean up Unleashed Pyre bar after all charges have been soaked
+	self:StopBar(CL.count:format(self:SpellName(446525), unleashedPyreCharges)) -- Unleashed Pyre
 	self:StackMessage(args.spellId, "yellow", args.destName, args.amount, 1)
+	unleashedPyreCharges = unleashedPyreCharges - 1
+	if unleashedPyreCharges > 0 then
+		local unleashedPyreTimeLeft = nextUnleashedPyre - args.time
+		self:Bar(446525, {unleashedPyreTimeLeft, 30}, CL.count:format(self:SpellName(446525), unleashedPyreCharges)) -- Unleashed Pyre
+	elseif unleashedPyreCharges == 0 then
+		self:Message(446368, "green", CL.over:format(self:SpellName(446368))) -- Sacrificial Pyre
+	end
 	self:PlaySound(args.spellId, "info", nil, args.destName)
+end
+
+function mod:SacrificialFlameMissed(args)
+	self:StopBar(CL.count:format(self:SpellName(446525), unleashedPyreCharges)) -- Unleashed Pyre
+	unleashedPyreCharges = unleashedPyreCharges - 1
+	if unleashedPyreCharges > 0 then
+		local unleashedPyreTimeLeft = nextUnleashedPyre - args.time
+		self:Bar(446525, {unleashedPyreTimeLeft, 30}, CL.count:format(self:SpellName(446525), unleashedPyreCharges)) -- Unleashed Pyre
+	elseif unleashedPyreCharges == 0 then
+		self:Message(446368, "green", CL.over:format(self:SpellName(446368))) -- Sacrificial Pyre
+	end
 end

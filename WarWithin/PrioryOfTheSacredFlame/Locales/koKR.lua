@@ -21,3 +21,8 @@ if L then
 	--L.baron_braunpyke_warmup_trigger = "They've served their purpose. Baron, demonstrate your worth."
 	L.custom_on_autotalk_desc = "|cFFFF0000사제나 성기사가 필요합니다.|r '신성한 불꽃의 축복' 오라를 부여하는 NPC 대화 옵션을 자동으로 선택합니다."
 end
+
+L = BigWigs:NewBossLocale("Baron Braunpyke", "koKR")
+if L then
+	--L.charges = "%d charges"
+end

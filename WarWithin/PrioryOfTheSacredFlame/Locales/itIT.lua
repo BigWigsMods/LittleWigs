@@ -21,3 +21,8 @@ if L then
 	--L.baron_braunpyke_warmup_trigger = "They've served their purpose. Baron, demonstrate your worth."
 	--L.custom_on_autotalk_desc = "|cFFFF0000Requires Priest or Paladin.|r Automatically select the NPC dialog option that grants you the 'Blessing of the Sacred Flame' aura."
 end
+
+L = BigWigs:NewBossLocale("Baron Braunpyke", "itIT")
+if L then
+	--L.charges = "%d charges"
+end
