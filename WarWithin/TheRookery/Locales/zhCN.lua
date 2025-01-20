@@ -10,6 +10,6 @@ if L then
 	L.coalescing_void_diffuser = "凝虚散播者"
 	L.inflicted_civilian = "痛苦的平民"
 	L.void_ascendant = "虚空晋升者"
-	--L.consuming_voidstone = "Consuming Voidstone"
+	L.consuming_voidstone = "吞噬虚空石"
 	L.void_fragment = "虚空碎片"
 end
