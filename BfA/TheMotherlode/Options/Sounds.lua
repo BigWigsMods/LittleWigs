@@ -14,7 +14,7 @@ BigWigs:AddSounds("Azerokk", {
 	[257582] = "warning",
 	[257593] = "info",
 	[258622] = "long",
-	[271698] = "alert",
+	[271698] = "info",
 	[275907] = "alarm",
 })
 
