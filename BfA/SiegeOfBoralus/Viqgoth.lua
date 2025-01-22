@@ -24,7 +24,7 @@ local putridWatersMarker = mod:AddMarkerOption(false, "player", 1, 275014, 1, 2,
 function mod:GetOptions()
 	return {
 		"stages",
-		{275014, "SAY"}, -- Putrid Waters
+		{275014, "SAY", "ME_ONLY_EMPHASIZE"}, -- Putrid Waters
 		putridWatersMarker,
 		270185, -- Call of the Deep
 		269456, -- Eradication
@@ -41,7 +41,7 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Call of the Deep
-	self:Log("SPELL_CAST_SUCCESS", "DamageBoss35", 269984)
+	self:Log("SPELL_CAST_SUCCESS", "Blast", 269984)
 	self:Log("SPELL_CAST_SUCCESS", "PutridWaters", 274991)
 	self:Log("SPELL_AURA_APPLIED", "PutridWatersApplied", 275014)
 	self:Log("SPELL_AURA_REMOVED", "PutridWatersRemoved", 275014)
@@ -76,7 +76,6 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 270183 then -- Call of the Deep
 		self:Message(270185, "red")
-		self:PlaySound(270185, "alarm")
 		if self:GetStage() == 1 then
 			self:CDBar(270185, 15.8)
 		elseif self:GetStage() == 2 then
@@ -84,10 +83,11 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		else -- Stage 3
 			self:CDBar(270185, 7.3)
 		end
+		self:PlaySound(270185, "alarm")
 	end
 end
 
-function mod:DamageBoss35()
+function mod:Blast()
 	self:SetStage(self:GetStage() + 1)
 	if self:GetStage() <= 3 then -- don't alert on the very last hit
 		self:Message("stages", "green", CL.stage:format(self:GetStage()), false)
@@ -111,8 +111,8 @@ do
 		self:TargetsMessage(args.spellId, "yellow", playerList, 2, nil, nil, 0.6)
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId, nil, nil, "Putrid Waters")
-			self:PlaySound(args.spellId, "warning")
 		end
+		self:PlaySound(args.spellId, "alert", nil, playerList)
 	end
 
 	function mod:PutridWatersRemoved(args)
@@ -122,9 +122,9 @@ end
 
 function mod:Eradication(args)
 	if eradicationCount < 3 then -- ignore the 3rd cast, the fight is ending
+		eradicationCount = eradicationCount + 1
 		self:Message(args.spellId, "red")
 		self:PlaySound(args.spellId, "warning")
-		eradicationCount = eradicationCount + 1
 	end
 end
 
@@ -132,8 +132,8 @@ end
 
 function mod:RepairStart(args)
 	self:Message(args.spellId, "cyan", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "info")
 	self:CastBar(args.spellId, 3)
+	self:PlaySound(args.spellId, "info")
 end
 
 -- Demolishing Terror
@@ -154,7 +154,9 @@ end
 function mod:HullCracker(args)
 	-- only cast when the tank is out of range
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "warning")
+	if self:Tank() then
+		self:PlaySound(args.spellId, "warning")
+	end
 end
 
 function mod:DemolishingTerrorDeath(args)
