@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Mogul Razzdunk", 1594, 2116)
+local mod, CL = BigWigs:NewBoss("Mogul Razdunk", 1594, 2116)
 if not mod then return end
 mod:RegisterEnableMob(129232, 132713) -- the vehicle, the actual boss
 mod:SetEncounterID(2108)

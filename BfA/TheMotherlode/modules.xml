@@ -4,7 +4,7 @@
 <Script file="CrowdPummeler.lua"/>
 <Script file="Azerokk.lua"/>
 <Script file="Rixxa.lua"/>
-<Script file="Razzdunk.lua"/>
+<Script file="Razdunk.lua"/>
 <Script file="Trash.lua"/>
 
 <Include file="Locales\locales.xml"/>

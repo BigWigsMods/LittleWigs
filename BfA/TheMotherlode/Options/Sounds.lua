@@ -24,7 +24,7 @@ BigWigs:AddSounds("Rixxa Fluxflame", {
 	[270042] = {"long","underyou"},
 })
 
-BigWigs:AddSounds("Mogul Razzdunk", {
+BigWigs:AddSounds("Mogul Razdunk", {
 	[260280] = "alert",
 	[260829] = "warning",
 	[271456] = "alert",
