@@ -19,9 +19,9 @@ BigWigs:AddColors("Azerokk", {
 })
 
 BigWigs:AddColors("Rixxa Fluxflame", {
-	[259853] = {"blue","orange"},
-	[260669] = {"blue","yellow"},
-	[270028] = "red",
+	[259856] = {"blue","orange"},
+	[259940] = "yellow",
+	[270042] = {"blue","red"},
 })
 
 BigWigs:AddColors("Mogul Razzdunk", {

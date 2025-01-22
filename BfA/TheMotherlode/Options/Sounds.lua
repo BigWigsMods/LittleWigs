@@ -19,9 +19,9 @@ BigWigs:AddSounds("Azerokk", {
 })
 
 BigWigs:AddSounds("Rixxa Fluxflame", {
-	[259853] = "alarm",
-	[260669] = "alert",
-	[270028] = "long",
+	[259856] = "info",
+	[259940] = "alert",
+	[270042] = {"long","underyou"},
 })
 
 BigWigs:AddSounds("Mogul Razzdunk", {
