@@ -4,8 +4,10 @@ BigWigs:AddSounds("Coin-Operated Crowd Pummeler", {
 	[257337] = "alarm",
 	[262347] = "alert",
 	[269493] = "long",
-	[271784] = "alert",
+	[271784] = "info",
 	[271867] = "alarm",
+	[271903] = "info",
+	[1217294] = "alarm",
 })
 
 BigWigs:AddSounds("Azerokk", {
