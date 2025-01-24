@@ -10,19 +10,37 @@ mod:SetEncounterID(2364)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local drawSoulCount = 1
+
+--------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L["1223803_icon"] = "spell_necro_dischargenecroticcore" -- Well of Darkness cast is missing an icon
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 if isElevenDotOne then -- XXX remove this guard when 11.1 is live
 	function mod:GetOptions()
 		return {
-			{474431, "SAY"}, -- Phantasmal Parasite
-			474087, -- Poltergeist Dash
-			-- Normal / Heroic
+			--474087, -- Necrotic Eruption
+			{1223803, "SAY"}, -- Well of Darkness
+			-- Heroic
 			473513, -- Feast of the Damned
 			-- Mythic
-			{473959, "ME_ONLY"}, -- Draw Soul
-			1215787, -- March of the Damned
+			{474298, "ME_ONLY"}, -- Draw Soul
+			1215787, -- Death Spiral
+		}, {
+			[473513] = CL.heroic,
+			[474298] = CL.mythic,
 		}
 	end
 else -- XXX remove the block below when 11.1 is live
@@ -38,38 +56,39 @@ end
 
 function mod:OnBossEnable()
 	if isElevenDotOne then -- XXX remove check once 11.1 is live
-		self:Log("SPELL_CAST_START", "PhantasmalParasite", 474431)
-		self:Log("SPELL_AURA_APPLIED", "PhantasmalParasiteApplied", 473943)
-		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- for odd Poltergeist Dash casts
-		self:Log("SPELL_CAST_SUCCESS", "PoltergeistDashEven", 474085) -- TODO we're missing a SPELL_CAST_START
+		--self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Necrotic Eruption TODO doesn't log
+		self:Log("SPELL_CAST_START", "WellOfDarkness", 1223803)
+		self:Log("SPELL_AURA_APPLIED", "WellOfDarknessApplied", 1223804)
 
 		-- Normal / Heroic
 		self:Log("SPELL_CAST_START", "FeastOfTheDamned", 473513)
 
 		-- Mythic
-		self:Log("SPELL_CAST_SUCCESS", "DrawSoul", 473959) -- TODO verify spellId
-		self:Log("SPELL_CAST_START", "MarchOfTheDamned", 1215787) -- TODO verify spellId
+		self:Log("SPELL_CAST_START", "DrawSoul", 474298)
+		self:Log("SPELL_CAST_START", "DeathSpiral", 1215787)
 	else -- XXX remove this block once 11.1 is live
-		self:Log("SPELL_CAST_SUCCESS", "DrawSoul", 319521)
+		self:Log("SPELL_CAST_SUCCESS", "DrawSoulOld", 319521)
 		self:Log("SPELL_AURA_APPLIED", "DrawSoulApplied", 319521)
 		self:Log("SPELL_AURA_APPLIED", "ReclaimedSoulApplied", 319637)
 		self:Log("SPELL_AURA_APPLIED_DOSE", "ReclaimedSoulApplied", 319637)
 		self:Log("SPELL_CAST_SUCCESS", "PhantasmalParasite", 319626)
-		self:Log("SPELL_AURA_APPLIED", "PhantasmalParasiteAppliedOld", 319626)
+		self:Log("SPELL_AURA_APPLIED", "PhantasmalParasiteApplied", 319626)
 		self:Log("SPELL_CAST_START", "SpectralReach", 319669)
 	end
 end
 
 function mod:OnEngage()
+	drawSoulCount = 1
 	if isElevenDotOne then -- XXX remove check once 11.1 is live
-		self:CDBar(474431, 6.4) -- Phantasmal Parasite
-		self:ScheduleTimer("PoltergeistDash", 12.2)
-		self:CDBar(474087, 12.2) -- Poltergeist Dash
-		if self:Mythic() then -- TODO verify mythic timers
-			self:CDBar(319521, 15.8) -- Draw Soul
-			self:CDBar(1215787, 50.0) -- March of the Damned
+		if self:Mythic() then
+			self:CDBar(1215787, 7.3) -- Death Spiral
+		end
+		self:CDBar(1223803, 14.6) -- Well of Darkness
+		--self:CDBar(474087, 17.9) -- Necrotic Eruption
+		if self:Mythic() then
+			self:CDBar(474298, 48.6, CL.count:format(self:SpellName(474298), drawSoulCount)) -- Draw Soul
 		else -- Normal / Heroic
-			self:CDBar(473513, 50.0) -- Feast of the Damned
+			self:CDBar(473513, 48.6) -- Feast of the Damned
 		end
 	else -- XXX remove this block once 11.1 is live
 		self:CDBar(319626, 3.3) -- Phantasmal Parasite
@@ -81,78 +100,63 @@ end
 -- Event Handlers
 --
 
+--function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	-- TODO verify the spellId(s)
+	--if spellId == 474087 then -- Necrotic Eruption
+		--self:Message(spellId, "purple")
+		--self:CDBar(spellId, 23.1) -- TODO
+		--self:PlaySound(spellId, "alarm")
+	--end
+--end
+
 do
 	local playerList = {}
 
-	function mod:PhantasmalParasite(args)
+	function mod:WellOfDarkness(args)
 		playerList = {}
-		if isElevenDotOne then -- XXX remove this check 11.1 is live
-			self:CDBar(args.spellId, 60.6)
-		else -- XXX remove this block 11.1 is live
-			self:CDBar(args.spellId, 25.5)
-		end
+		self:CDBar(args.spellId, 25.5)
 	end
 
-	function mod:PhantasmalParasiteApplied(args)
+	function mod:WellOfDarknessApplied(args)
 		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(474431, "red", playerList, 2) -- TODO guessed 2 players
+		self:TargetsMessage(1223803, "red", playerList, 3)
 		if self:Me(args.destGUID) then
-			self:Say(474431, nil, nil, "Phantasmal Parasite")
+			self:Say(1223803, nil, nil, "Well of Darkness")
 		end
-		self:PlaySound(474431, "alert", nil, playerList)
+		self:PlaySound(1223803, "alert", nil, playerList)
 	end
-
-	function mod:PhantasmalParasiteAppliedOld(args) -- XXX remove in 11.1
-		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(args.spellId, "red", playerList, 2, nil, nil, .8)
-		if self:Me(args.destGUID) then
-			self:Say(args.spellId, nil, nil, "Phantasmal Parasite")
-		end
-		self:PlaySound(args.spellId, "alert", nil, playerList)
-	end
-end
-
-function mod:PoltergeistDash()
-	self:Message(474087, "purple")
-	self:CDBar(474087, 30.3)
-	self:PlaySound(474087, "alarm")
-end
-
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 474087 then -- Poltergeist Dash (odd casts)
-		-- the only event we have is at the end of the cast, the visual for the even
-		-- casts will appear in approximately ~27s, so schedule an alert for then.
-		self:ScheduleTimer("PoltergeistDash", 27)
-		self:CDBar(spellId, {27, 30.3})
-	end
-end
-
-function mod:PoltergeistDashEven(args)
-	-- the only event we have is at the end of the cast, the visual for the odd
-	-- casts will appear in approximately ~28s, so schedule an alert for then.
-	self:ScheduleTimer("PoltergeistDash", 28)
-	self:CDBar(474087, {28, 30.3}) -- Poltergeist Dash
 end
 
 -- Normal / Heroic
 
 function mod:FeastOfTheDamned(args)
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 60.6)
+	self:CDBar(args.spellId, 52.7) -- TODO check
 	self:PlaySound(args.spellId, "long")
 end
 
 -- Mythic
 
-function mod:MarchOfTheDamned(args)
-	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 60.6)
-	self:PlaySound(args.spellId, "long")
+function mod:DrawSoul(args)
+	self:StopBar(CL.count:format(args.spellName, drawSoulCount))
+	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, drawSoulCount))
+	drawSoulCount = drawSoulCount + 1
+	-- TODO does Draw Soul reset the CD of Well of Darkness to ~14.2?
+	self:CDBar(args.spellId, 52.7, CL.count:format(args.spellName, drawSoulCount))
+	self:PlaySound(args.spellId, "warning")
 end
 
-function mod:DrawSoul(args)
+function mod:DeathSpiral(args)
+	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 53.0)
+	self:PlaySound(args.spellId, "info")
+end
+
+-- Legacy
+
+function mod:DrawSoulOld(args) -- XXX removed in 11.1
 	self:Message(args.spellId, "cyan")
-	self:CDBar(args.spellId, 60.6) -- TODO guessed
+	self:CDBar(args.spellId, 20.6)
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -171,4 +175,22 @@ end
 function mod:SpectralReach(args) -- XXX removed in 11.1
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local playerList = {}
+
+	function mod:PhantasmalParasite(args) -- XXX removed in 11.1
+		playerList = {}
+		self:CDBar(args.spellId, 25.5)
+	end
+
+	function mod:PhantasmalParasiteApplied(args) -- XXX removed in 11.1
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(args.spellId, "red", playerList, 2, nil, nil, .8)
+		if self:Me(args.destGUID) then
+			self:Say(args.spellId, nil, nil, "Phantasmal Parasite")
+		end
+		self:PlaySound(args.spellId, "alert", nil, playerList)
+	end
 end
