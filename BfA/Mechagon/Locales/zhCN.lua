@@ -22,7 +22,7 @@ if L then
 	L.bomb_tonk = "炸弹坦克"
 	L.rocket_tonk = "火箭坦克"
 	L.waste_processing_unit = "废料处理单位"
-	--L.metal_gunk = "Metal Gunk"
+	L.metal_gunk = "金属黏泥"
 	L.living_waste = "活体废料"
 	L.junkyard_d0g = "D.0.G.型垃圾场巡犬"
 	L.mechagon_tinkerer = "麦卡贡工匠"
