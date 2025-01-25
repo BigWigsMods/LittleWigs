@@ -21,16 +21,15 @@ mod:SetStage(1)
 if isElevenDotOne then -- XXX remove this check when 11.1 is live
 	function mod:GetOptions()
 		return {
-			-- TODO Final Will?
 			-- Dessia the Decapitator
 			1215741, -- Mighty Smash
 			{320069, "TANK_HEALER"}, -- Mortal Strike
-			{320063, "TANK"}, -- Slam
+			{320063, "TANK"}, -- Slam XXX not cast anymore but still in journal
 			-- Paceran the Virulent
 			320182, -- Noxious Spores
 			1215738, -- Decaying Breath
 			-- Sathel the Accursed
-			{333231, "SAY"}, -- Searing Death
+			333231, -- Searing Death
 			1215600, -- Withering Touch
 		}, {
 			[1215741] = -21582, -- Dessia the Decapitator
@@ -66,7 +65,7 @@ end
 function mod:OnBossEnable()
 	-- Dessia the Decapitator
 	self:Log("SPELL_CAST_START", "MortalStrike", 320069)
-	self:Log("SPELL_CAST_START", "Slam", 320063) -- XXX not cast anymore in 11.1 but still in journal, check Mythic+
+	self:Log("SPELL_CAST_START", "Slam", 320063) -- XXX not cast anymore in 11.1 but still in journal
 
 	-- Sathel the Accursed
 	self:Log("SPELL_CAST_START", "SearingDeath", 333231)
@@ -123,7 +122,17 @@ end
 
 function mod:MightySmash(args)
 	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 42.5)
+	if self:Mythic() then
+		if self:GetStage() == 1 then
+			self:CDBar(args.spellId, 42.5)
+		elseif self:GetStage() == 2 then
+			self:CDBar(args.spellId, 29.2)
+		else -- Stage 3
+			self:CDBar(args.spellId, 14.5)
+		end
+	else -- Heroic
+		self:CDBar(args.spellId, 42.5)
+	end
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -133,7 +142,7 @@ function mod:MortalStrike(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:Slam(args) -- XXX not cast anymore in 11.1 but still in journal, check Mythic+
+function mod:Slam(args) -- XXX not cast anymore in 11.1 but still in journal
 	self:Message(args.spellId, "purple")
 	self:CDBar(args.spellId, 13.4)
 	self:PlaySound(args.spellId, "alert")
@@ -143,7 +152,7 @@ function mod:DessiaDeath()
 	self:SetStage(self:GetStage() + 1)
 	self:StopBar(1215741) -- Mighty Smash
 	self:StopBar(320069) -- Mortal Strike
-	self:StopBar(320063) -- Slam XXX not cast anymore in 11.1 but still in journal, check Mythic+
+	self:StopBar(320063) -- Slam XXX not cast anymore in 11.1 but still in journal
 end
 
 if not isElevenDotOne then -- XXX remove this block when 11.1 is live
@@ -186,7 +195,17 @@ end
 
 function mod:NoxiousSpores(args)
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 42.5)
+	if self:Mythic() then
+		if self:GetStage() == 1 then
+			self:CDBar(args.spellId, 42.5)
+		elseif self:GetStage() == 2 then
+			self:CDBar(args.spellId, 29.2)
+		else -- Stage 3
+			self:CDBar(args.spellId, 14.5)
+		end
+	else -- Heroic
+		self:CDBar(args.spellId, 42.5)
+	end
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -198,17 +217,40 @@ end
 
 -- Sathel the Accursed
 
-function mod:SearingDeath(args)
-	self:CDBar(args.spellId, 42.5)
-end
+do
+	local playerList = {}
 
-function mod:SearingDeathApplied(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
-	if self:Me(args.destGUID) then
-		self:Say(args.spellId, nil, nil, "Searing Death")
-		self:PlaySound(args.spellId, "alarm")
-	else
-		self:PlaySound(args.spellId, "info", nil, args.destName)
+	function mod:SearingDeath(args)
+		if isElevenDotOne then
+			playerList = {}
+			if self:Mythic() then
+				if self:GetStage() == 1 then
+					self:CDBar(args.spellId, 42.5)
+				elseif self:GetStage() == 2 then
+					self:CDBar(args.spellId, 29.2)
+				else -- Stage 3
+					self:CDBar(args.spellId, 14.5)
+				end
+			else -- Heroic
+				self:CDBar(args.spellId, 42.5)
+			end
+		else -- XXX remove in 11.1
+			self:CDBar(args.spellId, 12.8)
+		end
+	end
+
+	function mod:SearingDeathApplied(args)
+		if isElevenDotOne then
+			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(args.spellId, "yellow", playerList, 4) -- everyone except healer
+			self:PlaySound(args.spellId, "info", nil, playerList)
+		else -- XXX remove in 11.1
+			self:TargetMessage(args.spellId, "yellow", args.destName)
+			if self:Me(args.destGUID) then
+				self:Say(args.spellId, nil, nil, "Searing Death")
+			end
+			self:PlaySound(args.spellId, "info", nil, args.destName)
+		end
 	end
 end
 
@@ -222,7 +264,7 @@ do
 
 	function mod:WitheringTouch(args)
 		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-		self:CDBar(args.spellId, 18.2)
+		self:CDBar(args.spellId, 17.0)
 	end
 end
 
