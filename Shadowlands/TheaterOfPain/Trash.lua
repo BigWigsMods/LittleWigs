@@ -38,7 +38,7 @@ if L then
 	L.battlefield_ritualist = "Battlefield Ritualist"
 	L.raging_bloodhorn = "Raging Bloodhorn"
 	L.diseased_horror = "Diseased Horror"
-	L.blighted_sludge_spewer = "Blighted Sludge-Spewer" -- XXX remove when 11.1 is live
+	L.blighted_sludge_spewer = "Blighted Sludge-Spewer"
 	L.putrid_butcher = "Putrid Butcher"
 	L.disgusting_refuse = "Disgusting Refuse"
 	L.rancid_gasbag = "Rancid Gasbag"
@@ -75,11 +75,13 @@ if isElevenDotOne then
 			-- Disgusting Refuse
 			321039, -- Disgusting Burst
 			{341949, "DISPEL"}, -- Withering Blight
+			-- Blighted Sludge-Spewer
+			{341969, "NAMEPLATE"}, -- Withering Discharge
 			-- Putrid Butcher
 			{330586, "NAMEPLATE"}, -- Devour Flesh
-			{332836, "NAMEPLATE"}, -- Chop
 			-- Rancid Gasbag
-			{330614, "NAMEPLATE"}, -- Vile Eruption
+			{330614, "DISPEL", "NAMEPLATE"}, -- Vile Eruption
+			342103, -- Rancid Bile
 			-- Dokigg the Brutalizer
 			{1215850, "NAMEPLATE"}, -- Earthcrusher
 			{331316, "TANK_HEALER", "NAMEPLATE"}, -- Savage Flurry
@@ -118,6 +120,7 @@ if isElevenDotOne then
 			[333241] = L.raging_bloodhorn,
 			[341977] = L.diseased_horror,
 			[321039] = L.disgusting_refuse,
+			[341969] = L.blighted_sludge_spewer,
 			[330586] = L.putrid_butcher,
 			[330614] = L.rancid_gasbag,
 			[1215850] = L.dokigg_the_brutalizer,
@@ -147,13 +150,14 @@ else -- XXX delete this block when 11.1 is live
 			-- Disgusting Refuse
 			321039, -- Disgusting Burst
 			{341949, "DISPEL"}, -- Withering Blight
-			-- Blighted Sludge-Spewer (removed 11.1)
-			341969, -- Withering Discharge (removed 11.1)
+			-- Blighted Sludge-Spewer
+			{341969, "NAMEPLATE"}, -- Withering Discharge
 			-- Putrid Butcher
 			{330586, "NAMEPLATE"}, -- Devour Flesh
-			{332836, "NAMEPLATE"}, -- Chop
+			{332836, "NAMEPLATE"}, -- Chop (removed in 11.1)
 			-- Rancid Gasbag
-			{330614, "NAMEPLATE"}, -- Vile Eruption
+			{330614, "DISPEL", "NAMEPLATE"}, -- Vile Eruption
+			342103, -- Rancid Bile
 			-- Dokigg the Brutalizer
 			342139, -- Battle Trance (removed 11.1)
 			342125, -- Brutal Leap (removed 11.1)
@@ -233,28 +237,34 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MeatShield", 341977)
 	self:Log("SPELL_CAST_START", "DecayingStrike", 330697)
 	self:Log("SPELL_CAST_SUCCESS", "DecayingStrikeSuccess", 330697)
+	self:Log("SPELL_AURA_APPLIED", "DecayingBlightApplied", 330700)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DecayingBlightApplied", 330700)
 	self:Death("DiseasedHorrorDeath", 170690)
 
-	-- Blighted Sludge-Spewer -- XXX removed in 11.1
-	self:Log("SPELL_CAST_START", "WitheringDischarge", 341969) -- XXX removed in 11.1
+	-- Blighted Sludge-Spewer (Mythic only)
+	self:RegisterEngageMob("BlightedSludgeSpewerEngaged", 174210)
+	self:Log("SPELL_CAST_START", "WitheringDischarge", 341969)
+	self:Log("SPELL_INTERRUPT", "WitheringDischargeInterrupt", 341969)
+	self:Log("SPELL_CAST_SUCCESS", "WitheringDischargeSuccess", 341969)
+	self:Death("BlightedSludgeSpewerDeath", 174210)
 
 	-- Disgusting Refuse
 	self:Death("DisgustingRefuseDeath", 163089) -- Disgusting Burst
-	self:Log("SPELL_AURA_APPLIED", "WitheringBlightApplied", 341949)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "WitheringBlightApplied", 341949)
+	self:Log("SPELL_AURA_APPLIED", "WitheringBlightApplied", 341949) -- this stacks but just alerting on initial application
 
 	-- Putrid Butcher
-	self:RegisterEngageMob("PutridButcherEngaged", 169927)
 	self:Log("SPELL_CAST_START", "DevourFlesh", 330586)
 	self:Log("SPELL_CAST_SUCCESS", "DevourFleshSuccess", 330586)
-	self:Log("SPELL_CAST_START", "Chop", 332836)
-	self:Log("SPELL_CAST_SUCCESS", "ChopSuccess", 332836)
+	self:Log("SPELL_CAST_START", "Chop", 332836) -- XXX removed in 11.1
+	self:Log("SPELL_CAST_SUCCESS", "ChopSuccess", 332836) -- XXX removed in 11.1
 	self:Death("PutridButcherDeath", 169927)
 
 	-- Rancid Gasbag
 	self:RegisterEngageMob("RancidGasbagEngaged", 163086)
 	self:Log("SPELL_CAST_START", "VileEruption", 330614)
+	self:Log("SPELL_AURA_APPLIED", "VileEruptionApplied", 330592)
+	self:Log("SPELL_PERIODIC_DAMAGE", "RancidBileDamage", 342103)
+	self:Log("SPELL_PERIODIC_MISSED", "RancidBileDamage", 342103)
 	self:Death("RancidGasbagDeath", 163086)
 
 	-- Chamber of Conquest
@@ -432,7 +442,7 @@ function mod:DecayingStrike(args)
 end
 
 function mod:DecayingStrikeSuccess(args)
-	self:Nameplate(args.spellId, 11.2, args.sourceGUID)
+	self:Nameplate(args.spellId, 22.1, args.sourceGUID)
 end
 
 do
@@ -441,9 +451,9 @@ do
 		if not self:Player(args.destFlags) then -- don't alert if a NPC is debuffed (usually by a mind-controlled mob)
 			return
 		end
-		if self:Dispeller("disease", nil, 330697) and args.amount > 3 and args.time - prev > 3 then
+		if self:Dispeller("disease", nil, 330697) and args.time - prev > 3 then
 			prev = args.time
-			self:StackMessage(330697, "purple", args.destName, args.amount, 3)
+			self:StackMessage(330697, "purple", args.destName, args.amount, 1)
 			self:PlaySound(330697, "alert", nil, args.destName)
 		end
 	end
@@ -455,12 +465,37 @@ end
 
 -- Blighted Sludge-Spewer
 
-function mod:WitheringDischarge(args) -- XXX removed in 11.1
-	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
-		return
+function mod:BlightedSludgeSpewerEngaged(guid)
+	self:Nameplate(341969, 10.2, guid) -- Withering Discharge
+end
+
+do
+	local prev = 0
+	function mod:WitheringDischarge(args)
+		-- this NPC is only present in Mythic difficulty
+		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
+			return
+		end
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning")
+		end
 	end
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:WitheringDischargeInterrupt(args)
+	self:Nameplate(341969, 24.1, args.destGUID)
+end
+
+function mod:WitheringDischargeSuccess(args)
+	self:Nameplate(args.spellId, 24.1, args.sourceGUID)
+end
+
+function mod:BlightedSludgeSpewerDeath(args)
+	self:DisgustingRefuseDeath(args) -- Disgusting Burst
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Disgusting Refuse
@@ -494,10 +529,9 @@ end
 
 -- Putrid Butcher
 
-function mod:PutridButcherEngaged(guid)
+--function mod:PutridButcherEngaged(guid)
 	-- Devour Flesh isn't cast until a certain hp % threshold
-	self:Nameplate(332836, 2.4, guid) -- Chop
-end
+--end
 
 function mod:DevourFlesh(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
@@ -509,18 +543,18 @@ function mod:DevourFlesh(args)
 end
 
 function mod:DevourFleshSuccess(args)
-	self:Nameplate(args.spellId, 16.2, args.sourceGUID)
+	self:Nameplate(args.spellId, 24.2, args.sourceGUID)
 end
 
 do
-	local function printTarget(self, name, guid)
+	local function printTarget(self, name, guid) -- XXX removed in 11.1
 		if self:Me(guid) or self:Healer() then
 			self:TargetMessage(332836, "red", name)
 			self:PlaySound(332836, "alert", nil, name)
 		end
 	end
 
-	function mod:Chop(args)
+	function mod:Chop(args) -- XXX removed in 11.1
 		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
 			return
 		end
@@ -530,7 +564,7 @@ do
 		end
 	end
 
-	function mod:ChopSuccess(args)
+	function mod:ChopSuccess(args) -- XXX removed in 11.1
 		self:Nameplate(args.spellId, 16.7, args.sourceGUID)
 	end
 end
@@ -551,6 +585,24 @@ function mod:VileEruption(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
+function mod:VileEruptionApplied(args)
+	if self:Me(args.destGUID) or self:Dispeller("disease", nil, 330614) then
+		self:TargetMessage(330614, "yellow", args.destName)
+		self:PlaySound(330614, "info", nil, args.destName)
+	end
+end
+
+do
+	local prev = 0
+	function mod:RancidBileDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
+end
+
 function mod:RancidGasbagDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
@@ -558,9 +610,9 @@ end
 -- Chamber of Conquest
 
 function mod:DokiggTheBrutalizerEngaged(guid)
-	self:Nameplate(331316, 2.2, guid) -- Savage Flurry
+	self:Nameplate(331316, 2.0, guid) -- Savage Flurry
 	self:Nameplate(317605, 3.5, guid) -- Whirlwind
-	self:Nameplate(1215850, 11.8, guid) -- Earthcrusher
+	self:Nameplate(1215850, 11.7, guid) -- Earthcrusher
 end
 
 function mod:NektharaTheManglerEngaged(guid)
@@ -571,13 +623,12 @@ end
 
 function mod:HeavinTheBreakerEngaged(guid)
 	self:Nameplate(342135, 2.3, guid) -- Interrupting Roar
-	self:Nameplate(332708, 7.4, guid) -- Ground Smash
+	self:Nameplate(332708, 2.4, guid) -- Ground Smash
 	self:Nameplate(331288, 11.8, guid) -- Colossus Smash
 end
 
 function mod:HarugiaTheBloodthirstyEngaged(guid)
 	self:Nameplate(333861, 2.0, guid) -- Ricocheting Blade
-	self:Nameplate(336995, 5.6, guid) -- Whirling Blade
 	self:Nameplate(334023, 5.6, guid) -- Bloodthirsty Charge
 end
 
@@ -674,7 +725,7 @@ function mod:Whirlwind(args)
 	end
 end
 
--- Nekthara the Mangler / Harugia the Bloodthirsty
+-- Nekthara the Mangler
 
 do
 	local prev
@@ -761,7 +812,7 @@ function mod:AncientCaptainEngaged(guid)
 	if self:Interrupter() then
 		self:Nameplate(330562, 3.2, guid) -- Demoralizing Shout
 	end
-	self:Nameplate(330565, 7.6, guid) -- Shield Bash
+	self:Nameplate(330565, 3.3, guid) -- Shield Bash
 end
 
 function mod:DemoralizingShout(args)
@@ -893,7 +944,7 @@ end
 -- Bone Magus
 
 function mod:BoneMagusEngaged(guid)
-	self:Nameplate(342675, 2.0, guid) -- Bone Spear
+	self:Nameplate(342675, 1.2, guid) -- Bone Spear
 end
 
 function mod:BoneSpear(args)
@@ -921,7 +972,7 @@ end
 
 function mod:NefariousDarkspeakerEngaged(guid)
 	self:Nameplate(333294, 3.1, guid) -- Death Winds
-	self:Nameplate(333299, 8.8, guid) -- Curse of Desolation
+	self:Nameplate(333299, 7.8, guid) -- Curse of Desolation
 end
 
 function mod:DeathWinds(args)
