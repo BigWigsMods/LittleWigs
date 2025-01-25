@@ -86,7 +86,7 @@ function mod:OnEngage()
 			self:CDBar(1215787, 6.1) -- Death Spiral
 		end
 		self:CDBar(1223803, 10.9, nil, L["1223803_icon"]) -- Well of Darkness
-		self:CDBar(474087, 20.0) -- Necrotic Eruption
+		--self:CDBar(474087, 20.0) -- Necrotic Eruption
 		if self:Mythic() then
 			self:CDBar(474298, 48.6, CL.count:format(self:SpellName(474298), drawSoulCount)) -- Draw Soul
 		else -- Normal / Heroic
