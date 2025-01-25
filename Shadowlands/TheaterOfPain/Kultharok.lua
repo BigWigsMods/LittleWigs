@@ -66,6 +66,8 @@ function mod:OnBossEnable()
 		-- Mythic
 		self:Log("SPELL_CAST_START", "DrawSoul", 474298)
 		self:Log("SPELL_CAST_START", "DeathSpiral", 1215787)
+		self:Log("SPELL_PERIODIC_DAMAGE", "DeathSpiralDamage", 1215787)
+		self:Log("SPELL_PERIODIC_MISSED", "DeathSpiralDamage", 1215787)
 	else -- XXX remove this block once 11.1 is live
 		self:Log("SPELL_CAST_SUCCESS", "DrawSoulOld", 319521)
 		self:Log("SPELL_AURA_APPLIED", "DrawSoulApplied", 319521)
@@ -81,10 +83,10 @@ function mod:OnEngage()
 	drawSoulCount = 1
 	if isElevenDotOne then -- XXX remove check once 11.1 is live
 		if self:Mythic() then
-			self:CDBar(1215787, 7.3) -- Death Spiral
+			self:CDBar(1215787, 6.1) -- Death Spiral
 		end
-		self:CDBar(1223803, 14.6) -- Well of Darkness
-		--self:CDBar(474087, 17.9) -- Necrotic Eruption
+		self:CDBar(1223803, 10.9, nil, L["1223803_icon"]) -- Well of Darkness
+		self:CDBar(474087, 20.0) -- Necrotic Eruption
 		if self:Mythic() then
 			self:CDBar(474298, 48.6, CL.count:format(self:SpellName(474298), drawSoulCount)) -- Draw Soul
 		else -- Normal / Heroic
@@ -114,12 +116,12 @@ do
 
 	function mod:WellOfDarkness(args)
 		playerList = {}
-		self:CDBar(args.spellId, 25.5)
+		self:CDBar(args.spellId, 23.0, nil, L["1223803_icon"])
 	end
 
 	function mod:WellOfDarknessApplied(args)
 		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(1223803, "red", playerList, 3)
+		self:TargetsMessage(1223803, "red", playerList, 3, nil, L["1223803_icon"])
 		if self:Me(args.destGUID) then
 			self:Say(1223803, nil, nil, "Well of Darkness")
 		end
@@ -142,14 +144,25 @@ function mod:DrawSoul(args)
 	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, drawSoulCount))
 	drawSoulCount = drawSoulCount + 1
 	-- TODO does Draw Soul reset the CD of Well of Darkness to ~14.2?
-	self:CDBar(args.spellId, 52.7, CL.count:format(args.spellName, drawSoulCount))
+	self:CDBar(args.spellId, 50.6, CL.count:format(args.spellName, drawSoulCount))
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:DeathSpiral(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 53.0)
+	self:CDBar(args.spellId, 48.5) -- TODO can be up to 55.3
 	self:PlaySound(args.spellId, "info")
+end
+
+do
+	local prev = 0
+	function mod:DeathSpiralDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(1215787, "underyou")
+			self:PlaySound(1215787, "underyou")
+		end
+	end
 end
 
 -- Legacy

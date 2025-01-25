@@ -39,7 +39,7 @@ BigWigs:AddColors("Kul'tharok", {
 	[319669] = "purple",
 	[473513] = "yellow",
 	[474298] = "cyan",
-	[1215787] = "orange",
+	[1215787] = {"blue","orange"},
 	[1223803] = {"blue","red"},
 })
 
