@@ -65,7 +65,7 @@ function mod:OnEngage()
 	self:CDBar(432179, 10.0) -- Throw Cinderbrew
 	self:CDBar(432198, 14.4) -- Blazing Belch
 	-- cast at 100 energy, starts at 55 energy: .9s delay + 20.25s energy gain + runs to bar + 1.5s delay + 2s cast
-	self:CDBar(442525, 28.7, CL.count:format(self:SpellName(442525), happyHourCount)) -- Happy Hour
+	self:CDBar(442525, 27.8, CL.count:format(self:SpellName(442525), happyHourCount)) -- Happy Hour
 end
 
 --------------------------------------------------------------------------------
@@ -93,7 +93,7 @@ do
 		kegSmashRemaining = 3
 		self:SetStage(1)
 		self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, args.time - happyHourStart))
-		self:PlaySound(args.spellId, "info")
+		self:PlaySound(args.spellId, "long")
 		self:CDBar(432229, 9.1) -- Keg Smash
 		self:CDBar(432179, 14.0) -- Throw Cinderbrew
 		self:CDBar(432198, 17.6) -- Blazing Belch

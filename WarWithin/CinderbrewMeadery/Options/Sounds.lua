@@ -5,7 +5,7 @@ BigWigs:AddSounds("Brew Master Aldryr", {
 	[432196] = "underyou",
 	[432198] = "alarm",
 	[432229] = "alert",
-	[442525] = {"info","long"},
+	[442525] = "long",
 })
 
 BigWigs:AddSounds("I'pa", {
