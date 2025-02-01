@@ -10,6 +10,7 @@ if L then
 	L.flavor_scientist = "Gustóloga"
 	L.careless_hopgoblin = "Lupugoblin descuidado"
 	L.brew_drop = "Hidromiel derramado"
+	L.taste_tester = "Catador"
 	L.bee_wrangler = "Retador de abejas"
 	L.venture_co_honey_harvester = "Cosechadora de miel de Ventura y Cía."
 	L.royal_jelly_purveyor = "Abastecedor de jalea real"

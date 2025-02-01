@@ -10,6 +10,7 @@ if L then
 	L.flavor_scientist = "풍미 과학자"
 	L.careless_hopgoblin = "부주의한 술고래블린"
 	L.brew_drop = "맥주 방울"
+	L.taste_tester = "시식단"
 	L.bee_wrangler = "벌 조련사"
 	L.venture_co_honey_harvester = "투자개발회사 꿀 수확자"
 	L.royal_jelly_purveyor = "로열젤리 공급자"

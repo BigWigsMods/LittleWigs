@@ -10,6 +10,7 @@ if L then
 	L.flavor_scientist = "风味科学家"
 	L.careless_hopgoblin = "粗心的酒花地精"
 	L.brew_drop = "酒滴"
+	L.taste_tester = "美味测试员"
 	L.bee_wrangler = "驯蜂者"
 	L.venture_co_honey_harvester = "风险投资公司蜂蜜收割者"
 	L.royal_jelly_purveyor = "蜂王浆供应商"

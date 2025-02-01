@@ -17,6 +17,7 @@ mod:RegisterEnableMob(
 	222964, -- Flavor Scientist
 	223423, -- Careless Hopgoblin
 	223562, -- Brew Drop
+	220060, -- Taste Tester
 	210264, -- Bee Wrangler
 	220946, -- Venture Co. Honey Harvester
 	220141, -- Royal Jelly Purveyor
@@ -38,6 +39,7 @@ if L then
 	L.flavor_scientist = "Flavor Scientist"
 	L.careless_hopgoblin = "Careless Hopgoblin"
 	L.brew_drop = "Brew Drop"
+	L.taste_tester = "Taste Tester"
 	L.bee_wrangler = "Bee Wrangler"
 	L.venture_co_honey_harvester = "Venture Co. Honey Harvester"
 	L.royal_jelly_purveyor = "Royal Jelly Purveyor"
@@ -56,52 +58,112 @@ end
 --
 
 local failedBatchMarker = mod:AddMarkerOption(true, "npc", 7, 441501, 7) -- Failed Batch
-function mod:GetOptions()
-	return {
-		-- Autotalk
-		"custom_on_cooking_autotalk",
-		"custom_on_flamethrower_autotalk",
-		-- Venture Co. Pyromaniac
-		{437721, "NAMEPLATE"}, -- Boiling Flames
-		{437956, "NAMEPLATE"}, -- Erupting Inferno
-		-- Tasting Room Attendant
-		{434706, "NAMEPLATE"}, -- Cinderbrew Toss
-		-- Chef Chewie
-		{463206, "NAMEPLATE"}, -- Tenderize
-		{434998, "NAMEPLATE"}, -- High Steaks
-		-- Flavor Scientist
-		{441627, "NAMEPLATE"}, -- Rejuvenating Honey
-		{441434, "NAMEPLATE"}, -- Failed Batch
-		failedBatchMarker,
-		-- Careless Hopgoblin
-		{448619, "SAY", "NAMEPLATE"}, -- Reckless Delivery
-		-- Brew Drop
-		441179, -- Oozing Honey
-		-- Bee Wrangler
-		{441119, "SAY", "NAMEPLATE"}, -- Bee-Zooka
-		-- Venture Co. Honey Harvester
-		{442589, "NAMEPLATE"}, -- Beeswax
-		{442995, "NAMEPLATE"}, -- Swarming Surprise
-		-- Royal Jelly Purveyor
-		{440687, "NAMEPLATE"}, -- Honey Volley
-		{440876, "NAMEPLATE"}, -- Rain of Honey
-		-- Yes Man
-		{439467, "NAMEPLATE"}, -- Downward Trend
-	}, {
-		[437721] = L.venture_co_pyromaniac,
-		[434706] = L.tasting_room_attendant,
-		[463206] = L.chef_chewie,
-		[441627] = L.flavor_scientist,
-		[448619] = L.careless_hopgoblin,
-		[441179] = L.brew_drop,
-		[441119] = L.bee_wrangler,
-		[442589] = L.venture_co_honey_harvester,
-		[440687] = L.royal_jelly_purveyor,
-		[439467] = L.yes_man,
-	}, {
-		["custom_on_cooking_autotalk"] = L.cooking_pot,
-		["custom_on_flamethrower_autotalk"] = L.flamethrower,
-	}
+if isElevenDotOne then
+	function mod:GetOptions()
+		return {
+			-- Autotalk
+			"custom_on_cooking_autotalk",
+			"custom_on_flamethrower_autotalk",
+			-- Venture Co. Pyromaniac
+			{437721, "NAMEPLATE"}, -- Boiling Flames
+			{437956, "NAMEPLATE"}, -- Erupting Inferno
+			-- Hired Musle
+			{463218, "HEALER", "NAMEPLATE"}, -- Volatile Keg
+			-- Tasting Room Attendant
+			{434706, "NAMEPLATE"}, -- Cinderbrew Toss
+			-- Chef Chewie
+			{463206, "NAMEPLATE"}, -- Tenderize
+			{434998, "NAMEPLATE"}, -- High Steaks
+			-- Flavor Scientist
+			{441627, "NAMEPLATE"}, -- Rejuvenating Honey
+			{441434, "NAMEPLATE"}, -- Failed Batch
+			failedBatchMarker,
+			-- Careless Hopgoblin
+			{448619, "SAY", "NAMEPLATE"}, -- Reckless Delivery
+			-- Brew Drop
+			441179, -- Oozing Honey
+			-- Taste Tester
+			{441242, "OFF", "NAMEPLATE"}, -- Free Samples?
+			-- Bee Wrangler
+			{441119, "SAY", "NAMEPLATE"}, -- Bee-Zooka
+			{441351, "NAMEPLATE"}, -- Bee-stial Wrath
+			-- Venture Co. Honey Harvester
+			{442589, "NAMEPLATE"}, -- Beeswax
+			{442995, "NAMEPLATE"}, -- Swarming Surprise
+			-- Royal Jelly Purveyor
+			{440687, "NAMEPLATE"}, -- Honey Volley
+			{440876, "NAMEPLATE"}, -- Rain of Honey
+			-- Yes Man
+			{439467, "NAMEPLATE"}, -- Downward Trend
+		}, {
+			[437721] = L.venture_co_pyromaniac,
+			[463218] = L.hired_muscle,
+			[434706] = L.tasting_room_attendant,
+			[463206] = L.chef_chewie,
+			[441627] = L.flavor_scientist,
+			[448619] = L.careless_hopgoblin,
+			[441179] = L.brew_drop,
+			[441242] = L.taste_tester,
+			[441119] = L.bee_wrangler,
+			[442589] = L.venture_co_honey_harvester,
+			[440687] = L.royal_jelly_purveyor,
+			[439467] = L.yes_man,
+		}, {
+			["custom_on_cooking_autotalk"] = L.cooking_pot,
+			["custom_on_flamethrower_autotalk"] = L.flamethrower,
+		}
+	end
+else -- XXX remove block below in 11.1
+	function mod:GetOptions()
+		return {
+			-- Autotalk
+			"custom_on_cooking_autotalk",
+			"custom_on_flamethrower_autotalk",
+			-- Venture Co. Pyromaniac
+			{437721, "NAMEPLATE"}, -- Boiling Flames
+			{437956, "NAMEPLATE"}, -- Erupting Inferno
+			-- Hired Musle
+			{463218, "HEALER", "NAMEPLATE"}, -- Volatile Keg
+			-- Tasting Room Attendant
+			{434706, "NAMEPLATE"}, -- Cinderbrew Toss
+			-- Chef Chewie
+			{463206, "NAMEPLATE"}, -- Tenderize
+			{434998, "NAMEPLATE"}, -- High Steaks
+			-- Flavor Scientist
+			{441627, "NAMEPLATE"}, -- Rejuvenating Honey
+			{441434, "NAMEPLATE"}, -- Failed Batch
+			failedBatchMarker,
+			-- Careless Hopgoblin
+			{448619, "SAY", "NAMEPLATE"}, -- Reckless Delivery
+			-- Brew Drop
+			441179, -- Oozing Honey
+			-- Bee Wrangler
+			{441119, "SAY", "NAMEPLATE"}, -- Bee-Zooka
+			-- Venture Co. Honey Harvester
+			{442589, "NAMEPLATE"}, -- Beeswax
+			{442995, "NAMEPLATE"}, -- Swarming Surprise
+			-- Royal Jelly Purveyor
+			{440687, "NAMEPLATE"}, -- Honey Volley
+			{440876, "NAMEPLATE"}, -- Rain of Honey
+			-- Yes Man
+			{439467, "NAMEPLATE"}, -- Downward Trend
+		}, {
+			[437721] = L.venture_co_pyromaniac,
+			[463218] = L.hired_muscle,
+			[434706] = L.tasting_room_attendant,
+			[463206] = L.chef_chewie,
+			[441627] = L.flavor_scientist,
+			[448619] = L.careless_hopgoblin,
+			[441179] = L.brew_drop,
+			[441119] = L.bee_wrangler,
+			[442589] = L.venture_co_honey_harvester,
+			[440687] = L.royal_jelly_purveyor,
+			[439467] = L.yes_man,
+		}, {
+			["custom_on_cooking_autotalk"] = L.cooking_pot,
+			["custom_on_flamethrower_autotalk"] = L.flamethrower,
+		}
+	end
 end
 
 function mod:OnBossEnable()
@@ -119,6 +181,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "EruptingInfernoApplied", 437956)
 	self:Death("VentureCoPyromaniacDeath", 218671)
 
+	-- Hired Muscle
+	self:RegisterEngageMob("HiredMuscleEngaged", 210269)
+	self:Log("SPELL_CAST_START", "VolatileKeg", 463218)
+	self:Death("HiredMuscleDeath", 210269)
+
 	-- Tasting Room Attendant
 	self:RegisterEngageMob("TastingRoomAttendantEngaged", 214920)
 	self:Log("SPELL_CAST_SUCCESS", "CinderbrewToss", 434706)
@@ -133,6 +200,10 @@ function mod:OnBossEnable()
 	-- Flavor Scientist
 	self:RegisterEngageMob("FlavorScientistEngaged", 214673, 222964)
 	self:Log("SPELL_CAST_START", "RejuvenatingHoney", 441627)
+	if isElevenDotOne then -- XXX remove check in 11.1
+		self:Log("SPELL_INTERRUPT", "RejuvenatingHoneyInterrupt", 441627)
+		self:Log("SPELL_CAST_SUCCESS", "RejuvenatingHoneySuccess", 441627)
+	end
 	self:Log("SPELL_CAST_SUCCESS", "FailedBatch", 441434)
 	self:Log("SPELL_SUMMON", "FailedBatchSummon", 441501)
 	self:Death("FlavorScientistDeath", 214673, 222964)
@@ -146,10 +217,24 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "OozingHoneyDamage", 441179) -- no alert on APPLIED, doesn't damage for 1.5s
 	self:Log("SPELL_PERIODIC_MISSED", "OozingHoneyDamage", 441179)
 
+	-- Taste Tester
+	if isElevenDotOne then -- XXX remove check in 11.1
+		self:RegisterEngageMob("TasteTesterEngaged", 220060)
+		self:Log("SPELL_CAST_START", "FreeSamples", 441242)
+		self:Log("SPELL_INTERRUPT", "FreeSamplesInterrupt", 441242)
+		self:Log("SPELL_CAST_SUCCESS", "FreeSamplesSuccess", 441242)
+		self:Death("TasteTesterDeath", 220060)
+	end
+
 	-- Bee Wrangler
 	self:RegisterEngageMob("BeeWranglerEngaged", 210264)
 	self:Log("SPELL_CAST_START", "BeeZooka", 441119)
 	self:Log("SPELL_CAST_SUCCESS", "BeeZookaSuccess", 441119)
+	if isElevenDotOne then -- XXX remove check in 11.1
+		self:Log("SPELL_CAST_START", "BeestialWrath", 441351)
+		self:Log("SPELL_INTERRUPT", "BeestialWrathInterrupt", 441351)
+		self:Log("SPELL_CAST_SUCCESS", "BeestialWrathSuccess", 441351)
+	end
 	self:Death("BeeWranglerDeath", 210264)
 
 	-- Venture Co. Honey Harvester
@@ -203,8 +288,13 @@ end
 -- Venture Co. Pyromaniac
 
 function mod:VentureCoPyromaniacEngaged(guid)
-	self:Nameplate(437956, 3.8, guid) -- Erupting Inferno
-	self:Nameplate(437721, 11.9, guid) -- Boiling Flames
+	if isElevenDotOne then
+		self:Nameplate(437956, 9.8, guid) -- Erupting Inferno
+		self:Nameplate(437721, 15.6, guid) -- Boiling Flames
+	else -- XXX remove in 11.1
+		self:Nameplate(437956, 3.8, guid) -- Erupting Inferno
+		self:Nameplate(437721, 11.9, guid) -- Boiling Flames
+	end
 end
 
 function mod:BoilingFlamesStart(args) -- XXX remove in 11.1
@@ -220,7 +310,7 @@ end
 function mod:BoilingFlames(args)
 	if isElevenDotOne then
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+		self:Nameplate(args.spellId, 24.2, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 	else -- XXX remove in 11.1
 		self:Nameplate(args.spellId, 20.1, args.sourceGUID)
@@ -228,7 +318,11 @@ function mod:BoilingFlames(args)
 end
 
 function mod:EruptingInferno(args)
-	self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+	end
 end
 
 function mod:EruptingInfernoApplied(args)
@@ -237,6 +331,22 @@ function mod:EruptingInfernoApplied(args)
 end
 
 function mod:VentureCoPyromaniacDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Hired Muscle
+
+function mod:HiredMuscleEngaged(guid)
+	self:Nameplate(463218, 8.3, guid) -- Volatile Keg
+end
+
+function mod:VolatileKeg(args)
+	self:Message(args.spellId, "yellow")
+	self:Nameplate(args.spellId, 24.2, args.sourceGUID)
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:HiredMuscleDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
@@ -307,25 +417,42 @@ end
 -- Flavor Scientist
 
 function mod:FlavorScientistEngaged(guid)
-	self:Nameplate(441434, 4.6, guid) -- Failed Batch
-	self:Nameplate(441627, 10.7, guid) -- Rejuvenating Honey
+	if isElevenDotOne then
+		self:Nameplate(441434, 8.1, guid) -- Failed Batch
+		self:Nameplate(441627, 12.1, guid) -- Rejuvenating Honey
+	else -- XXX remove in 11.1
+		self:Nameplate(441434, 4.6, guid) -- Failed Batch
+		self:Nameplate(441627, 10.7, guid) -- Rejuvenating Honey
+	end
 end
 
 do
 	local prev = 0
 	function mod:RejuvenatingHoney(args)
-		self:Nameplate(args.spellId, 15.8, args.sourceGUID) -- CD triggers on cast start
+		if isElevenDotOne then
+			self:Nameplate(args.spellId, 0, args.sourceGUID)
+		else -- XXX remove in 11.1
+			self:Nameplate(args.spellId, 15.8, args.sourceGUID) -- CD triggers on cast start
+		end
 		if args.time - prev > 1.5 then
 			prev = args.time
-			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
 
+function mod:RejuvenatingHoneyInterrupt(args)
+	self:Nameplate(441627, 24.4, args.destGUID)
+end
+
+function mod:RejuvenatingHoneySuccess(args)
+	self:Nameplate(args.spellId, 24.4, args.sourceGUID)
+end
+
 function mod:FailedBatch(args)
 	self:Message(args.spellId, "cyan", CL.spawning:format(args.spellName))
-	self:Nameplate(args.spellId, 23.1, args.sourceGUID)
+	self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -356,7 +483,7 @@ end
 -- Careless Hopgoblin
 
 function mod:CarelessHopgoblinEngaged(guid)
-	self:Nameplate(448619, 6.3, guid) -- Reckless Delivery
+	self:Nameplate(448619, 8.8, guid) -- Reckless Delivery
 end
 
 do
@@ -370,7 +497,11 @@ do
 
 	function mod:RecklessDelivery(args)
 		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-		self:Nameplate(args.spellId, 23.0, args.sourceGUID)
+		if isElevenDotOne then
+			self:Nameplate(args.spellId, 30.3, args.sourceGUID)
+		else -- XXX remove in 11.1
+			self:Nameplate(args.spellId, 23.0, args.sourceGUID)
+		end
 	end
 end
 
@@ -393,10 +524,43 @@ do
 	end
 end
 
+-- Taste Tester
+
+function mod:TasteTesterEngaged(guid)
+	self:Nameplate(441242, 15.3, guid) -- Free Samples
+end
+
+do
+	local prev = 0
+	function mod:FreeSamples(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:FreeSamplesInterrupt(args)
+	self:Nameplate(441242, 16.9, args.destGUID)
+end
+
+function mod:FreeSamplesSuccess(args)
+	self:Nameplate(args.spellId, 16.9, args.sourceGUID)
+end
+
+function mod:TasteTesterDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Bee Wrangler
 
 function mod:BeeWranglerEngaged(guid)
-	self:Nameplate(441119, 4.7, guid) -- Bee-Zooka
+	self:Nameplate(441119, 4.1, guid) -- Bee-Zooka
+	if isElevenDotOne then
+		self:Nameplate(441351, 9.6, guid) -- Bee-stial Wrath
+	end
 end
 
 do
@@ -423,7 +587,31 @@ do
 end
 
 function mod:BeeZookaSuccess(args)
-	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 15.3, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	end
+end
+
+do
+	local prev = 0
+	function mod:BeestialWrath(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:BeestialWrathInterrupt(args)
+	self:Nameplate(441351, 18.8, args.destGUID)
+end
+
+function mod:BeestialWrathSuccess(args)
+	self:Nameplate(args.spellId, 18.8, args.sourceGUID)
 end
 
 function mod:BeeWranglerDeath(args)
@@ -433,14 +621,19 @@ end
 -- Venture Co. Honey Harvester
 
 function mod:VentureCoHoneyHarvesterEngaged(guid)
-	self:Nameplate(442589, 4.6, guid) -- Beeswax
-	self:Nameplate(442995, 5.6, guid) -- Swarming Surprise
+	if isElevenDotOne then
+		self:Nameplate(442995, 8.4, guid) -- Swarming Surprise
+		self:Nameplate(442589, 16.8, guid) -- Beeswax
+	else -- XXX remove in 11.1
+		self:Nameplate(442589, 4.6, guid) -- Beeswax
+		self:Nameplate(442995, 5.6, guid) -- Swarming Surprise
+	end
 end
 
 function mod:Beeswax(args)
 	self:Message(args.spellId, "orange")
 	if isElevenDotOne then
-		self:Nameplate(args.spellId, 21.8, args.sourceGUID)
+		self:Nameplate(args.spellId, 25.1, args.sourceGUID)
 	else -- XXX remove in 11.1
 		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 	end
@@ -460,8 +653,13 @@ end
 -- Royal Jelly Purveyor
 
 function mod:RoyalJellyPurveyorEngaged(guid)
-	self:Nameplate(440687, 3.0, guid) -- Honey Volley
-	self:Nameplate(440876, 7.8, guid) -- Rain of Honey
+	if isElevenDotOne then
+		self:Nameplate(440687, 8.9, guid) -- Honey Volley
+		self:Nameplate(440876, 15.0, guid) -- Rain of Honey
+	else -- XXX remove in 11.1
+		self:Nameplate(440687, 3.0, guid) -- Honey Volley
+		self:Nameplate(440876, 7.8, guid) -- Rain of Honey
+	end
 end
 
 do
@@ -482,7 +680,7 @@ end
 
 function mod:HoneyVolleyInterrupt(args)
 	if isElevenDotOne then
-		self:Nameplate(440687, 18.9, args.destGUID)
+		self:Nameplate(440687, 25.0, args.destGUID)
 	else -- XXX remove in 11.1
 		self:Nameplate(440687, 9.3, args.destGUID)
 	end
@@ -490,7 +688,7 @@ end
 
 function mod:HoneyVolleySuccess(args)
 	if isElevenDotOne then
-		self:Nameplate(args.spellId, 18.9, args.sourceGUID)
+		self:Nameplate(args.spellId, 25.0, args.sourceGUID)
 	else -- XXX remove in 11.1
 		self:Nameplate(args.spellId, 9.3, args.sourceGUID)
 	end
@@ -538,15 +736,15 @@ end
 -- Yes Man
 
 function mod:YesManEngaged(guid)
-	self:Nameplate(439467, 7.2, guid) -- Downward Trend
+	self:Nameplate(439467, 6.9, guid) -- Downward Trend
 end
 
 do
 	local prev = 0
 	function mod:DownwardTrend(args)
-		self:Nameplate(args.spellId, 13.0, args.sourceGUID)
+		self:Nameplate(args.spellId, 13.4, args.sourceGUID)
 		local t = args.time
-		if t - prev > 2 then
+		if t - prev > 2.5 then
 			prev = t
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
