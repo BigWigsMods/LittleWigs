@@ -289,7 +289,7 @@ end
 
 function mod:VentureCoPyromaniacEngaged(guid)
 	if isElevenDotOne then
-		self:Nameplate(437956, 9.8, guid) -- Erupting Inferno
+		self:Nameplate(437956, 9.1, guid) -- Erupting Inferno
 		self:Nameplate(437721, 15.6, guid) -- Boiling Flames
 	else -- XXX remove in 11.1
 		self:Nameplate(437956, 3.8, guid) -- Erupting Inferno
@@ -326,7 +326,7 @@ function mod:EruptingInferno(args)
 end
 
 function mod:EruptingInfernoApplied(args)
-	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 end
 
@@ -559,7 +559,7 @@ end
 function mod:BeeWranglerEngaged(guid)
 	self:Nameplate(441119, 4.1, guid) -- Bee-Zooka
 	if isElevenDotOne then
-		self:Nameplate(441351, 9.6, guid) -- Bee-stial Wrath
+		self:Nameplate(441351, 9.4, guid) -- Bee-stial Wrath
 	end
 end
 
@@ -623,7 +623,7 @@ end
 function mod:VentureCoHoneyHarvesterEngaged(guid)
 	if isElevenDotOne then
 		self:Nameplate(442995, 8.4, guid) -- Swarming Surprise
-		self:Nameplate(442589, 16.8, guid) -- Beeswax
+		self:Nameplate(442589, 16.7, guid) -- Beeswax
 	else -- XXX remove in 11.1
 		self:Nameplate(442589, 4.6, guid) -- Beeswax
 		self:Nameplate(442995, 5.6, guid) -- Swarming Surprise

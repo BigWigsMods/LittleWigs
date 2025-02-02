@@ -33,7 +33,7 @@ BigWigs:AddColors("Cinderbrew Meadery Trash", {
 	[434706] = "orange",
 	[434998] = "red",
 	[437721] = "red",
-	[437956] = {"blue","orange"},
+	[437956] = {"blue","yellow"},
 	[439467] = "orange",
 	[440687] = "red",
 	[440876] = "yellow",
