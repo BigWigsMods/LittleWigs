@@ -12,7 +12,7 @@ BigWigs:AddColors("I'pa", {
 	[439031] = "purple",
 	[439202] = {"blue","orange"},
 	[439365] = "yellow",
-	[440147] = "red",
+	[440147] = "cyan",
 	[441179] = "blue",
 })
 

@@ -32,7 +32,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SpoutingStout", 439365)
-	self:Log("SPELL_AURA_APPLIED", "FillErUp", 440147)
+	self:Log("SPELL_AURA_APPLIED", "FillErUp", 440147) -- no way to alert when boss eats more than one add
 	self:Log("SPELL_CAST_SUCCESS", "BurningFermentation", 439202)
 	self:Log("SPELL_AURA_APPLIED", "BurningFermentationApplied", 439325)
 	self:Log("SPELL_CAST_START", "BottomsUppercut", 439031)
@@ -62,8 +62,8 @@ function mod:SpoutingStout(args)
 end
 
 function mod:FillErUp(args)
-	self:Message(args.spellId, "red", CL.onboss:format(args.spellName))
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(args.spellId, "cyan", CL.onboss:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 end
 
 do

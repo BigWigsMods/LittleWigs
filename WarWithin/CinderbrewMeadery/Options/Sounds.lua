@@ -12,7 +12,7 @@ BigWigs:AddSounds("I'pa", {
 	[439031] = "alert",
 	[439202] = "alert",
 	[439365] = "long",
-	[440147] = "alarm",
+	[440147] = "warning",
 	[441179] = "underyou",
 })
 
