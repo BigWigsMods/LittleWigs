@@ -105,8 +105,11 @@ do
 		self:TargetMessageOld(157001, player, "red", "alert")
 	end
 	function mod:ChaosWave(args)
-		self:CDBar(args.spellId, 13.2) -- 13.2-15.7
-		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID) -- GetUnitTarget so it works for the trash add also
+		-- also cast by trash, Durag the Dominator
+		if self:MobId(args.sourceGUID) == 77734 then -- Teron'gor
+			self:CDBar(args.spellId, 13.2) -- 13.2-15.7
+		end
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
 	end
 end
 
