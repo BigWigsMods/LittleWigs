@@ -44,7 +44,6 @@ BigWigs:AddColors("Priory of the Sacred Flame Trash", {
 	[427900] = "blue",
 	[427950] = "red",
 	[428150] = {"green","red"},
-	[429091] = "yellow",
 	[435088] = "green",
 	[435165] = "purple",
 	[444743] = "red",

@@ -70,7 +70,6 @@ function mod:GetOptions()
 		{427950, "NAMEPLATE"}, -- Seal of Flame
 		427900, -- Molten Pool
 		-- High Priest Aemya
-		{429091, "NAMEPLATE"}, -- Inner Fire
 		{428150, "NAMEPLATE"}, -- Reflective Shield
 		-- Sergeant Shaynemail
 		{424621, "NAMEPLATE"}, -- Brutal Smash
@@ -107,7 +106,7 @@ function mod:GetOptions()
 		["custom_on_autotalk"] = L.sacred_flame,
 		[448485] = L.guard_captain_suleyman,
 		[427897] = L.forge_master_damian,
-		[429091] = L.high_priest_aemya,
+		[428150] = L.high_priest_aemya,
 		[424621] = L.sergeant_shaynemail,
 		[424431] = L.elaena_emberlanz,
 		[424420] = L.taener_duelmal,
@@ -147,7 +146,6 @@ function mod:OnBossEnable()
 
 	-- High Priest Aemya
 	self:RegisterEngageMob("HighPriestAemyaEngaged", 212827)
-	self:Log("SPELL_CAST_START", "InnerFireAemya", 429091)
 	self:Log("SPELL_CAST_START", "ReflectiveShield", 428150)
 	self:Log("SPELL_CAST_SUCCESS", "ReflectiveShieldSuccess", 428150)
 	self:Log("SPELL_AURA_REMOVED", "ReflectiveShieldRemoved", 428150)
@@ -223,7 +221,7 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("ArdentPaladinEngaged", 206704)
 	if isElevenDotOne then
 		self:Log("SPELL_CAST_START", "Consecration", 424429)
-	else
+	else -- XXX remove in 11.1
 		self:Log("SPELL_CAST_SUCCESS", "Consecration", 424429)
 	end
 	self:Log("SPELL_PERIODIC_DAMAGE", "ConsecrationDamage", 424430) -- no alert on APPLIED, doesn't damage for 1.5s
@@ -341,8 +339,8 @@ do
 	local timer
 
 	function mod:ForgeMasterDamianEngaged(guid)
-		self:CDBar(427950, 6.0) -- Seal of Flame
-		self:Nameplate(427950, 6.0, guid) -- Seal of Flame
+		self:CDBar(427950, 5.6) -- Seal of Flame
+		self:Nameplate(427950, 5.6, guid) -- Seal of Flame
 		self:CDBar(427897, 8.4) -- Heat Wave
 		self:Nameplate(427897, 8.4, guid) -- Heat Wave
 		timer = self:ScheduleTimer("ForgeMasterDamianDeath", 30)
@@ -400,27 +398,8 @@ do
 	local timer
 
 	function mod:HighPriestAemyaEngaged(guid)
-		--self:CDBar(429091, 100) -- Inner Fire
-		--self:Nameplate(429091, 100, guid) -- Inner Fire
 		self:CDBar(428150, 21.4) -- Reflective Shield
 		self:Nameplate(428150, 21.4, guid) -- Reflective Shield
-		timer = self:ScheduleTimer("HighPriestAemyaDeath", 60)
-	end
-
-	function mod:InnerFireAemya(args)
-		local unit = self:UnitTokenFromGUID(args.sourceGUID)
-		if not unit or not UnitAffectingCombat(unit) then
-			-- occasionally cast when not engaged
-			return
-		end
-		if timer then
-			self:CancelTimer(timer)
-		end
-		-- TODO is this still cast in combat?
-		self:Message(args.spellId, "yellow")
-		self:CDBar(args.spellId, 30.3)
-		self:Nameplate(args.spellId, 30.3, args.sourceGUID)
-		self:PlaySound(args.spellId, "info")
 		timer = self:ScheduleTimer("HighPriestAemyaDeath", 60)
 	end
 
@@ -451,7 +430,6 @@ do
 			self:CancelTimer(timer)
 			timer = nil
 		end
-		self:StopBar(429091) -- Inner Fire
 		self:StopBar(428150) -- Reflective Shield
 		if args then
 			self:ClearNameplate(args.destGUID)
@@ -655,7 +633,7 @@ end
 -- Arathi Knight
 
 function mod:ArathiKnightEngaged(guid)
-	self:Nameplate(427609, 20.2, guid) -- Disrupting Shout
+	self:Nameplate(427609, 20.1, guid) -- Disrupting Shout
 end
 
 function mod:DisruptingShout(args)
@@ -674,7 +652,7 @@ function mod:ArathiFootmanEngaged(guid)
 	-- Defend isn't cast until 50%
 	if self:Normal() then
 		-- Mortal Strike is only cast in Normal
-		self:Nameplate(426964, 2.7, guid) -- Mortal Strike
+		self:Nameplate(426964, 2.3, guid) -- Mortal Strike
 	end
 end
 
@@ -684,7 +662,7 @@ do
 		if self:Normal() then
 			self:Nameplate(args.spellId, 60.7, args.sourceGUID)
 		else -- Heroic, Mythic
-			self:Nameplate(args.spellId, 30.4, args.sourceGUID)
+			self:Nameplate(args.spellId, 30.3, args.sourceGUID)
 		end
 		if args.time - prev > 2 then
 			prev = args.time
@@ -717,7 +695,7 @@ end
 -- Fervent Sharpshooter
 
 function mod:FerventSharpshooterEngaged(guid)
-	self:Nameplate(453458, 8.4, guid) -- Caltrops
+	self:Nameplate(453458, 8.3, guid) -- Caltrops
 end
 
 do
@@ -880,8 +858,8 @@ end
 
 function mod:ArdentPaladinEngaged(guid)
 	if isElevenDotOne then
-		self:Nameplate(424429, 9.3, guid) -- Consecration
-	else
+		self:Nameplate(424429, 8.3, guid) -- Consecration
+	else -- XXX remove in 11.1
 		self:Nameplate(424429, 8.0, guid) -- Consecration
 	end
 end
@@ -910,7 +888,11 @@ end
 -- Risen Mage
 
 function mod:RisenMageEngaged(guid)
-	self:Nameplate(444743, 8.0, guid) -- Fireball Volley
+	if isElevenDotOne then
+		self:Nameplate(444743, 10.0, guid) -- Fireball Volley
+	else -- XXX remove in 11.1
+		self:Nameplate(444743, 8.0, guid) -- Fireball Volley
+	end
 end
 
 do
@@ -927,11 +909,19 @@ do
 end
 
 function mod:FireballVolleyInterrupt(args)
-	self:Nameplate(444743, 15.7, args.destGUID)
+	if isElevenDotOne then
+		self:Nameplate(444743, 22.2, args.destGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(444743, 15.7, args.destGUID)
+	end
 end
 
 function mod:FireballVolleySuccess(args)
-	self:Nameplate(args.spellId, 15.7, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 22.2, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(444743, 15.7, args.destGUID)
+	end
 end
 
 function mod:RisenMageDeath(args)
