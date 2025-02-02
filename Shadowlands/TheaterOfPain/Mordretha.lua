@@ -22,7 +22,7 @@ function mod:GetOptions()
 		324449, -- Manifest Death
 		-- Mythic
 		339573, -- Echoes of Carnage
-		{339706, "CASTBAR"}, -- Ghostly Charge
+		339706, -- Ghostly Charge
 		339550, -- Echo of Battle
 	}, {
 		[339573] = CL.mythic,
@@ -115,7 +115,6 @@ do
 			prev = args.time
 			self:Message(args.spellId, "red")
 			self:CDBar(args.spellId, 24.3)
-			self:CastBar(args.spellId, 3.5)
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
