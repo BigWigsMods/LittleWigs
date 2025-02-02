@@ -9,7 +9,7 @@ mod:SetEncounterID(2835)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
--- Localization
+-- Locals
 --
 
 local vindictiveWrathActive = false

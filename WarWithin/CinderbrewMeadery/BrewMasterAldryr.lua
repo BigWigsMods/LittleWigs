@@ -39,7 +39,6 @@ function mod:GetOptions()
 		432179, -- Throw Cinderbrew
 		432229, -- Keg Smash
 		432196, -- Hot Honey
-		-- TODO Crawling Brawl (Mythic)
 	}
 end
 

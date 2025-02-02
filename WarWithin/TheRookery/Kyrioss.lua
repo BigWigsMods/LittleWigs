@@ -14,8 +14,8 @@ mod:SetStage(1)
 -- Locals
 --
 
-local chainLightningCount = 1 -- TODO remove when 11.1 is live
-local chainLightningTimerCount = 1 -- TODO remove when 11.1 is live
+local chainLightningCount = 1 -- XXX remove when 11.1 is live
+local chainLightningTimerCount = 1 -- XXX remove when 11.1 is live
 local lightningTorrentCount = 1
 local crashingThunderCount = 1
 local wildLightningCount = 1

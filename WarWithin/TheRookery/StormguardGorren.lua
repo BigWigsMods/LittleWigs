@@ -88,5 +88,4 @@ end
 function mod:ChaoticVulnerabilityApplied(args)
 	self:StackMessage(args.spellId, "cyan", args.destName, args.amount, 1)
 	self:PlaySound(args.spellId, "info")
-	-- TODO needs removed message? confirm if it's possible to overlap
 end
