@@ -80,6 +80,7 @@ function mod:GetOptions()
 		{465408, "NAMEPLATE"}, -- Rapid Construction
 		-- Venture Co. Diver
 		{468726, "NAMEPLATE"}, -- Plant Seaforium Charge
+		{468631, "NAMEPLATE"}, -- Harpoon
 		-- Disturbed Kelp
 		{471736, "NAMEPLATE"}, -- Jettison Kelp
 		{471733, "NAMEPLATE"}, -- Restorative Algae
@@ -105,7 +106,7 @@ function mod:GetOptions()
 		[462771] = L.venture_co_surveyor,
 		[465408] = L.venture_co_architect,
 		[468726] = L.venture_co_diver,
-		[471733] = L.disturbed_kelp,
+		[471736] = L.disturbed_kelp,
 		[1214337] = L.bomb_pile,
 		[469818] = L.bubbles,
 		[469799] = L.venture_co_electrician,
@@ -132,6 +133,8 @@ function mod:OnBossEnable()
 	-- Mechadrone Sniper
 	self:RegisterEngageMob("MechadroneSniperEngaged", 229069)
 	self:Log("SPELL_CAST_START", "Trickshot", 1214468)
+	self:Log("SPELL_INTERRUPT", "TrickshotInterrupt", 1214468)
+	self:Log("SPELL_CAST_SUCCESS", "TrickshotSuccess", 1214468)
 	self:Death("MechadroneSniperDeath", 229069)
 
 	-- Loaderbot
@@ -172,6 +175,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SurveyingBeam", 462771)
 	self:Log("SPELL_INTERRUPT", "SurveyingBeamInterrupt", 462771)
 	self:Log("SPELL_CAST_SUCCESS", "SurveyingBeamSuccess", 462771)
+	self:Log("SPELL_PERIODIC_DAMAGE", "SurveyedGroundDamage", 472338)
+	self:Log("SPELL_PERIODIC_MISSED", "SurveyedGroundDamage", 472338)
 	self:Death("VentureCoSurveyorDeath", 229686)
 
 	-- Venture Co. Architect
@@ -182,6 +187,9 @@ function mod:OnBossEnable()
 	-- Venture Co. Diver
 	self:RegisterEngageMob("VentureCoDiverEngaged", 231496)
 	self:Log("SPELL_CAST_START", "PlantSeaforiumCharge", 468726)
+	self:Log("SPELL_CAST_START", "Harpoon", 468631)
+	self:Log("SPELL_INTERRUPT", "HarpoonInterrupt", 468631)
+	self:Log("SPELL_CAST_SUCCESS", "HarpoonSuccess", 468631)
 	self:Death("VentureCoDiverDeath", 231496)
 
 	-- Disturbed Kelp
@@ -229,13 +237,13 @@ end
 -- Shreddinator 3000
 
 function mod:Shreddinator3000Engaged(guid)
-	self:Nameplate(474337, 2.4, guid) -- Shreddation
+	self:Nameplate(474337, 3.4, guid) -- Shreddation
 	self:Nameplate(465754, 7.0, guid) -- Flamethrower
 end
 
 function mod:Shreddation(args)
 	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 9.8, args.sourceGUID)
+	self:Nameplate(args.spellId, 13.4, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -252,7 +260,7 @@ end
 
 function mod:Flamethrower(args)
 	self:Message(args.spellId, "yellow") -- TODO purple?
-	self:Nameplate(args.spellId, 25.4, args.sourceGUID)
+	self:Nameplate(args.spellId, 26.7, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -263,20 +271,27 @@ end
 -- Mechadrone Sniper
 
 function mod:MechadroneSniperEngaged(guid)
-	self:Nameplate(1214468, 6.0, guid) -- Trickshot
+	self:Nameplate(1214468, 5.7, guid) -- Trickshot
 end
 
 do
 	local prev = 0
 	function mod:Trickshot(args)
-		-- unlike most interruptible abilities this goes on cooldown on cast start
-		self:Nameplate(args.spellId, 11.0, args.sourceGUID)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		if args.time - prev > 1.5 then
 			prev = args.time
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
+end
+
+function mod:TrickshotInterrupt(args)
+	self:Nameplate(1214468, 12.3, args.destGUID)
+end
+
+function mod:TrickshotSuccess(args)
+	self:Nameplate(args.spellId, 12.3, args.sourceGUID)
 end
 
 function mod:MechadroneSniperDeath(args)
@@ -286,7 +301,7 @@ end
 -- Darkfuse Hyena
 
 function mod:DarkfuseHyenaEngaged(guid)
-	self:Nameplate(463058, 4.9, guid) -- Bloodthirsty Cackle
+	self:Nameplate(463058, 3.4, guid) -- Bloodthirsty Cackle
 end
 
 do
@@ -319,10 +334,16 @@ end
 	--self:Nameplate(1216039, 2.4, guid) -- R.P.G.G.
 --end
 
-function mod:RPGG(args)
-	self:Message(args.spellId, "orange")
-	-- this mob needs to cast Reload before R.P.G.G. can be cast again
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:RPGG(args)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			-- this mob needs to cast Reload before R.P.G.G. can be cast again
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 --function mod:DarkfuseDemolitionistDeath(args)
@@ -332,7 +353,7 @@ end
 -- Darkfuse Inspector
 
 function mod:DarkfuseInspectorEngaged(guid)
-	self:Nameplate(465682, 6.3, guid) -- Surprise Inspection
+	self:Nameplate(465682, 5.9, guid) -- Surprise Inspection
 end
 
 do
@@ -389,7 +410,7 @@ end
 
 function mod:LethargicVenomApplied(args)
 	if self:Dispeller("poison", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
@@ -401,7 +422,7 @@ end
 -- Venture Co. Surveyor
 
 function mod:VentureCoSurveyorEngaged(guid)
-	self:Nameplate(462771, 7.2, guid) -- Surveying Beam
+	self:Nameplate(462771, 7.1, guid) -- Surveying Beam
 end
 
 do
@@ -422,6 +443,17 @@ end
 
 function mod:SurveyingBeamSuccess(args)
 	self:Nameplate(args.spellId, 22.3, args.sourceGUID)
+end
+
+do
+	local prev = 0
+	function mod:SurveyedGroundDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(462771, "underyou", args.spellName)
+			self:PlaySound(462771, "underyou")
+		end
+	end
 end
 
 function mod:VentureCoSurveyorDeath(args)
@@ -447,19 +479,40 @@ end
 -- Venture Co. Diver
 
 function mod:VentureCoDiverEngaged(guid)
+	self:Nameplate(468631, 5.8, guid) -- Harpoon
 	self:Nameplate(468726, 10.8, guid) -- Plant Seaforium Charge
 end
 
 do
 	local prev = 0
 	function mod:PlantSeaforiumCharge(args)
-		self:Nameplate(args.spellId, 21.8, args.sourceGUID)
+		self:Nameplate(args.spellId, 20.7, args.sourceGUID)
 		if args.time - prev > 2 then
 			prev = args.time
 			self:Message(args.spellId, "cyan")
 			self:PlaySound(args.spellId, "info")
 		end
 	end
+end
+
+do
+	local prev = 0
+	function mod:Harpoon(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:HarpoonInterrupt(args)
+	self:Nameplate(468631, 15.7, args.destGUID)
+end
+
+function mod:HarpoonSuccess(args)
+	self:Nameplate(args.spellId, 15.7, args.sourceGUID)
 end
 
 function mod:VentureCoDiverDeath(args)
@@ -476,7 +529,7 @@ end
 do
 	local prev = 0
 	function mod:JettisonKelp(args)
-		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+		self:Nameplate(args.spellId, 15.8, args.sourceGUID)
 		if args.time - prev > 2 then
 			prev = args.time
 			self:Message(args.spellId, "orange")
@@ -488,21 +541,21 @@ end
 do
 	local prev = 0
 	function mod:RestorativeAlgae(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		if args.time - prev > 1.5 then
 			prev = args.time
-			self:Nameplate(args.spellId, 0, args.sourceGUID)
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
 		end
-		self:PlaySound(args.spellId, "alert")
 	end
 end
 
 function mod:RestorativeAlgaeInterrupt(args)
-	self:Nameplate(471733, 19.9, args.destGUID)
+	self:Nameplate(471733, 16.2, args.destGUID)
 end
 
 function mod:RestorativeAlgaeSuccess(args)
-	self:Nameplate(args.spellId, 19.9, args.sourceGUID)
+	self:Nameplate(args.spellId, 16.2, args.sourceGUID)
 end
 
 function mod:DisturbedKelpDeath(args)
@@ -589,7 +642,7 @@ function mod:Overcharge(args)
 end
 
 function mod:OverchargeApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
+	if self:Me(args.destGUID) or (self:Dispeller("magic", nil, args.spellId) and self:Friendly(args.destFlags)) then
 		self:TargetMessage(args.spellId, "orange", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
