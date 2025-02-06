@@ -65,6 +65,7 @@ function mod:OnBossEnable()
 
 	-- Mythic
 	if isElevenDotOne then -- XXX remove this check when 11.1 is live
+		-- TODO has this been this removed?
 		self:Log("SPELL_PERIODIC_DAMAGE", "GroundingBoltDamage", 1214320)
 		self:Log("SPELL_PERIODIC_MISSED", "GroundingBoltDamage", 1214320)
 	end
@@ -82,7 +83,7 @@ function mod:OnEngage()
 		self:CDBar(1214325, 5.1) -- Crashing Thunder
 		self:CDBar(474018, 9.5) -- Wild Lightning
 		self:CDBar(444123, 16.0, CL.count:format(self:SpellName(444123), lightningTorrentCount)) -- Lightning Torrent
-		self:CDBar(419870, 36.7, CL.count:format(self:SpellName(419870), lightningDashCount)) -- Lightning Dash
+		self:CDBar(419870, 38.5, CL.count:format(self:SpellName(419870), lightningDashCount)) -- Lightning Dash
 	else -- XXX remove the block below when 11.1 is live
 		self:CDBar(419870, 3.0, CL.count:format(self:SpellName(419870), lightningDashCount)) -- Lightning Dash
 		self:CDBar(424148, 7.0, CL.count:format(self:SpellName(424148), chainLightningCount)) -- Chain Lightning
@@ -100,8 +101,8 @@ function mod:LightningTorrent(args)
 	self:Message(444123, "cyan", CL.count:format(args.spellName, lightningTorrentCount))
 	lightningTorrentCount = lightningTorrentCount + 1
 	if isElevenDotOne then -- XXX remove this check when 11.1 is live
-		self:CDBar(419870, {20.5, 53.5}, CL.count:format(self:SpellName(419870), lightningDashCount)) -- Lightning Dash
-		self:CDBar(444123, 53.5, CL.count:format(args.spellName, lightningTorrentCount))
+		self:CDBar(419870, {22.5, 55.9}, CL.count:format(self:SpellName(419870), lightningDashCount)) -- Lightning Dash
+		self:CDBar(444123, 55.9, CL.count:format(args.spellName, lightningTorrentCount))
 	else -- XXX remove the block below when 11.1 is live
 		self:CDBar(419870, {14.4, 41.2}, CL.count:format(self:SpellName(419870), lightningDashCount)) -- Lightning Dash
 		self:CDBar(444123, 60.0, CL.count:format(args.spellName, lightningTorrentCount))
@@ -110,8 +111,13 @@ function mod:LightningTorrent(args)
 end
 
 function mod:LightningTorrentStart()
-	-- 2s cast, 15s channel
-	self:CastBar(444123, 17) -- Lightning Torrent
+	if isElevenDotOne then
+		-- 4s cast, 15s channel
+		self:CastBar(444123, 19) -- Lightning Torrent
+	else -- XXX remove in 11.1
+		-- 2s cast, 15s channel
+		self:CastBar(444123, 17) -- Lightning Torrent
+	end
 end
 
 function mod:LightningTorrentRemoved()
@@ -128,12 +134,22 @@ end
 function mod:CrashingThunder(args)
 	self:Message(args.spellId, "red")
 	crashingThunderCount = crashingThunderCount + 1
-	if crashingThunderCount == 2 then
-		self:CDBar(args.spellId, 40.1)
-	elseif crashingThunderCount % 2 == 0 then
-		self:CDBar(args.spellId, 37.7)
-	else
-		self:CDBar(args.spellId, 15.8)
+	if isElevenDotOne then
+		if crashingThunderCount == 2 then
+			self:CDBar(args.spellId, 42.5)
+		elseif crashingThunderCount % 2 == 0 then
+			self:CDBar(args.spellId, 40.1)
+		else
+			self:CDBar(args.spellId, 15.8)
+		end
+	else -- XXX remove in 11.1
+		if crashingThunderCount == 2 then
+			self:CDBar(args.spellId, 40.1)
+		elseif crashingThunderCount % 2 == 0 then
+			self:CDBar(args.spellId, 37.7)
+		else
+			self:CDBar(args.spellId, 15.8)
+		end
 	end
 	self:PlaySound(args.spellId, "info")
 end
@@ -143,10 +159,20 @@ function mod:WildLightning(args)
 	if self:MobId(args.sourceGUID) == 209230 then -- Kyrioss
 		self:Message(args.spellId, "orange")
 		wildLightningCount = wildLightningCount + 1
-		if wildLightningCount % 2 == 0 then
-			self:CDBar(args.spellId, 37.7)
-		else
-			self:CDBar(args.spellId, 15.8)
+		if isElevenDotOne then
+			if wildLightningCount == 2 then
+				self:CDBar(args.spellId, 41.3)
+			elseif wildLightningCount % 2 == 0 then
+				self:CDBar(args.spellId, 40.1)
+			else
+				self:CDBar(args.spellId, 15.8)
+			end
+		else -- XXX remove in 11.1
+			if wildLightningCount % 2 == 0 then
+				self:CDBar(args.spellId, 37.7)
+			else
+				self:CDBar(args.spellId, 15.8)
+			end
 		end
 		self:PlaySound(args.spellId, "alarm")
 	end
@@ -157,7 +183,7 @@ function mod:LightningDash(args)
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, lightningDashCount))
 	lightningDashCount = lightningDashCount + 1
 	if isElevenDotOne then -- XXX remove this check when 11.1 is live
-		self:CDBar(args.spellId, 53.5, CL.count:format(args.spellName, lightningDashCount))
+		self:CDBar(args.spellId, 55.9, CL.count:format(args.spellName, lightningDashCount))
 	else -- XXX remove the block below when 11.1 is live
 		if lightningDashCount % 2 == 0 then
 			self:CDBar(args.spellId, 41.2, CL.count:format(args.spellName, lightningDashCount))
