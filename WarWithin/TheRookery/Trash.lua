@@ -61,12 +61,12 @@ if isElevenDotOne then
 			{430013, "NAMEPLATE"}, -- Thunderstrike
 			-- Void-Cursed Crusher
 			{474031, "SAY", "NAMEPLATE"}, -- Void Crush
-			474044, -- Residual Void Energy
 			-- Corrupted Oracle
-			{430754, "NAMEPLATE"}, -- Void Shell
+			{430754, "NAMEPLATE"}, -- Void Shell XXX removed in 11.1?
 			{430179, "SAY", "NAMEPLATE"}, -- Seeping Corruption
 			-- Coalescing Void Diffuser
 			{430812, "NAMEPLATE"}, -- Attracting Shadows
+			{430805, "NAMEPLATE"}, -- Arcing Void
 			-- Inflicted Civilian
 			443854, -- Instability
 			-- Void Ascendant
@@ -174,8 +174,6 @@ function mod:OnBossEnable()
 	if isElevenDotOne then
 		self:Log("SPELL_CAST_START", "VoidCrush", 474031)
 		self:Log("SPELL_CAST_SUCCESS", "VoidCrushSuccess", 474031)
-		self:Log("SPELL_PERIODIC_DAMAGE", "ResidualVoidEnergyDamage", 474044)
-		self:Log("SPELL_PERIODIC_MISSED", "ResidualVoidEnergyDamage", 474044)
 	else
 		self:Log("SPELL_CAST_START", "Implosion", 423979)
 	end
@@ -183,16 +181,19 @@ function mod:OnBossEnable()
 
 	-- Corrupted Oracle
 	self:RegisterEngageMob("CorruptedOracleEngaged", 214439)
-	self:Log("SPELL_CAST_START", "VoidShell", 430754)
+	self:Log("SPELL_CAST_START", "VoidShell", 430754) -- XXX removed in 11.1?
 	self:Log("SPELL_CAST_SUCCESS", "SeepingCorruption", 430179)
 	self:Log("SPELL_AURA_APPLIED", "SeepingCorruptionApplied", 430179)
 	self:Death("CorruptedOracleDeath", 214439)
 
 	-- Coalescing Void Diffuser
-	self:RegisterEngageMob("CorruptedThundererEngaged", 214421)
+	self:RegisterEngageMob("CoalescingVoidDiffuserEngaged", 214421)
 	self:Log("SPELL_CAST_START", "AttractingShadows", 430812)
-	-- TODO Arcing Void?
-	self:Death("CorruptedThundererDeath", 214421)
+	if isElevenDotOne then
+		self:Log("SPELL_CAST_START", "ArcingVoid", 430805)
+		self:Log("SPELL_CAST_SUCCESS", "ArcingVoidSuccess", 430805)
+	end
+	self:Death("CoalescingVoidDiffuserDeath", 214421)
 
 	-- Inflicted Civilian
 	self:Log("SPELL_CAST_SUCCESS", "Instability", 443854)
@@ -238,8 +239,8 @@ do
 	local timer
 
 	function mod:QuartermasterKoratiteEngaged(guid)
-		self:CDBar(426893, 5.4) -- Bounding Void
-		self:Nameplate(426893, 5.4, guid) -- Bounding Void
+		self:CDBar(426893, 5.2) -- Bounding Void
+		self:Nameplate(426893, 5.2, guid) -- Bounding Void
 		self:CDBar(450628, 9.0) -- Entropy Shield
 		self:Nameplate(450628, 9.0, guid) -- Entropy Shield
 		timer = self:ScheduleTimer("QuartermasterKoratiteDeath", 30)
@@ -284,8 +285,8 @@ end
 
 function mod:VoidriderEngaged(guid)
 	if isElevenDotOne then
-		self:Nameplate(474018, 4.4, guid) -- Wild Lightning
-		self:Nameplate(427404, 10.5, guid) -- Localized Storm
+		self:Nameplate(474018, 9.2, guid) -- Wild Lightning
+		self:Nameplate(427404, 15.7, guid) -- Localized Storm
 	else -- XXX remove when 11.1 is live
 		self:Nameplate(427323, 4.0, guid) -- Charged Bombardment
 		self:Nameplate(427404, 10.0, guid) -- Localized Storm
@@ -296,7 +297,7 @@ function mod:WildLightning(args)
 	-- this is also cast by the first boss (Kyrioss)
 	if self:MobId(args.sourceGUID) ~= 209230 then -- Kyrioss
 		self:Message(args.spellId, "orange")
-		self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+		self:Nameplate(args.spellId, 20.7, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
@@ -310,7 +311,7 @@ end
 function mod:LocalizedStorm(args)
 	self:Message(args.spellId, "yellow")
 	if isElevenDotOne then
-		self:Nameplate(args.spellId, 20.7, args.sourceGUID)
+		self:Nameplate(args.spellId, 23.1, args.sourceGUID)
 	else -- XXX remove when 11.1 is live
 		self:Nameplate(args.spellId, 27.9, args.sourceGUID)
 	end
@@ -324,7 +325,11 @@ end
 -- Cursed Rooktender
 
 function mod:CursedRooktenderEngaged(guid)
-	self:Nameplate(427260, 3.5, guid) -- Lightning Surge
+	if isElevenDotOne then
+		self:Nameplate(427260, 8.4, guid) -- Lightning Surge
+	else -- XXX remove in 11.1
+		self:Nameplate(427260, 3.5, guid) -- Lightning Surge
+	end
 end
 
 function mod:LightningSurge(args)
@@ -334,11 +339,19 @@ function mod:LightningSurge(args)
 end
 
 function mod:LightningSurgeInterrupt(args)
-	self:Nameplate(427260, 15.0, args.destGUID)
+	if isElevenDotOne then
+		self:Nameplate(427260, 18.6, args.destGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(427260, 15.0, args.destGUID)
+	end
 end
 
 function mod:LightningSurgeSuccess(args)
-	self:Nameplate(args.spellId, 15.0, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 18.6, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 15.0, args.sourceGUID)
+	end
 end
 
 function mod:CursedRooktenderDeath(args)
@@ -351,7 +364,7 @@ function mod:UnrulyStormrookEngaged(guid)
 	if not isElevenDotOne then
 		self:Nameplate(430013, 5.7, guid) -- Thunderstrike
 	end
-	self:Nameplate(427616, 10.0, guid) -- Energized Barrage
+	self:Nameplate(427616, 9.4, guid) -- Energized Barrage
 end
 
 do
@@ -381,11 +394,11 @@ if isElevenDotOne then -- XXX remove this check when 11.1 is live
 	end
 
 	function mod:EnergizedBarrageInterrupt(args)
-		self:Nameplate(427616, 15.0, args.destGUID)
+		self:Nameplate(427616, 19.7, args.destGUID)
 	end
 
 	function mod:EnergizedBarrageSuccess(args)
-		self:Nameplate(args.spellId, 15.0, args.sourceGUID)
+		self:Nameplate(args.spellId, 19.7, args.sourceGUID)
 	end
 else -- XXX remove the block below when 11.1 is live
 	do
@@ -410,7 +423,7 @@ end
 
 function mod:VoidCursedCrusherEngaged(guid)
 	if isElevenDotOne then
-		self:Nameplate(474031, 5.0, guid) -- Void Crush
+		self:Nameplate(474031, 8.3, guid) -- Void Crush
 	else
 		self:Nameplate(423979, 5.2, guid) -- Implosion
 	end
@@ -438,17 +451,10 @@ do
 end
 
 function mod:VoidCrushSuccess(args)
-	self:Nameplate(args.spellId, 16.2, args.sourceGUID)
-end
-
-do
-	local prev = 0
-	function mod:ResidualVoidEnergyDamage(args)
-		if self:Me(args.destGUID) and args.time - prev > 1.5 then
-			prev = args.time
-			self:PersonalMessage(args.spellId, "underyou")
-			self:PlaySound(args.spellId, "underyou")
-		end
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 18.6, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 16.2, args.sourceGUID)
 	end
 end
 
@@ -465,13 +471,17 @@ end
 -- Corrupted Oracle
 
 function mod:CorruptedOracleEngaged(guid)
-	self:Nameplate(430179, 6.0, guid) -- Seeping Corruption
-	self:Nameplate(430754, 8.1, guid) -- Void Shell
+	if isElevenDotOne then
+		self:Nameplate(430179, 16.5, guid) -- Seeping Corruption
+	else -- XXX remove in 11.1
+		self:Nameplate(430179, 6.0, guid) -- Seeping Corruption
+		self:Nameplate(430754, 8.1, guid) -- Void Shell
+	end
 end
 
 do
 	local prev = 0
-	function mod:VoidShell(args)
+	function mod:VoidShell(args) -- XXX removed in 11.1?
 		-- unlike most other abilities, this goes on cooldown on cast start
 		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 		if args.time - prev > 1.5 then
@@ -483,7 +493,11 @@ do
 end
 
 function mod:SeepingCorruption(args)
-	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 23.1, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	end
 end
 
 function mod:SeepingCorruptionApplied(args)
@@ -500,8 +514,11 @@ end
 
 -- Coalescing Void Diffuser
 
-function mod:CorruptedThundererEngaged(guid)
-	self:Nameplate(430812, 5.0, guid) -- Attracting Shadows
+function mod:CoalescingVoidDiffuserEngaged(guid)
+	self:Nameplate(430812, 5.7, guid) -- Attracting Shadows
+	if isElevenDotOne then
+		self:Nameplate(430805, 8.3, guid) -- Arcing Void
+	end
 end
 
 do
@@ -516,7 +533,24 @@ do
 	end
 end
 
-function mod:CorruptedThundererDeath(args)
+do
+	local function printTarget(self, name, guid)
+		-- TODO verify target scanning works
+		self:TargetMessage(430805, "orange", name)
+		self:PlaySound(430805, "alarm", nil, name)
+	end
+
+	function mod:ArcingVoid(args)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+	end
+end
+
+function mod:ArcingVoidSuccess(args)
+	self:Nameplate(args.spellId, 14.0, args.sourceGUID)
+end
+
+function mod:CoalescingVoidDiffuserDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
@@ -537,23 +571,23 @@ end
 
 function mod:VoidAscendantEngaged(guid)
 	if isElevenDotOne then
-		self:Nameplate(1214523, 7.8, guid) -- Feasting Void
-		self:Nameplate(1214546, 10.6, guid) -- Umbral Wave
+		self:Nameplate(1214523, 11.9, guid) -- Feasting Void
+		self:Nameplate(1214546, 15.9, guid) -- Umbral Wave
 	else -- XXX remove in 11.1
 		self:Nameplate(432638, 6.6, guid) -- Command Void
-		self:Nameplate(432959, 9.5, guid) -- Void Volley
+		self:Nameplate(432959, 9.3, guid) -- Void Volley
 	end
 end
 
 function mod:UmbralWave(args)
 	self:Message(args.spellId, "yellow")
-	self:Nameplate(args.spellId, 23.1, args.sourceGUID)
+	self:Nameplate(args.spellId, 28.7, args.sourceGUID)
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:FeastingVoid(args)
 	self:Message(args.spellId, "red")
-	self:Nameplate(args.spellId, 23.1, args.sourceGUID)
+	self:Nameplate(args.spellId, 22.3, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -587,7 +621,7 @@ end
 
 function mod:ConsumingVoidstoneEngaged(guid)
 	if isElevenDotOne then
-		self:Nameplate(472764, 5.9, guid) -- Void Extraction
+		self:Nameplate(472764, 5.7, guid) -- Void Extraction
 	else -- XXX remove in 11.1
 		self:Nameplate(432781, 8.0, guid) -- Embrace the Void
 	end
