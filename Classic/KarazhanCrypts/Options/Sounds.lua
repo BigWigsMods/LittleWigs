@@ -55,6 +55,10 @@ BigWigs:AddSounds("Harbinger of Sin", {
 })
 
 BigWigs:AddSounds("Kharon", {
+	[1217694] = "warning",
+	[1217952] = "info",
+	[1218038] = {"alarm","info"},
+	[1218089] = "alert",
 })
 
 BigWigs:AddSounds("Unk'omon", {
