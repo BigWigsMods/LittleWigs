@@ -48,6 +48,10 @@ BigWigs:AddColors("Goblins", {
 })
 
 BigWigs:AddColors("Harbinger of Sin", {
+	[1219387] = "red",
+	[1219420] = "cyan",
+	[1220927] = "yellow",
+	[1222775] = "orange",
 })
 
 BigWigs:AddColors("Kharon", {
