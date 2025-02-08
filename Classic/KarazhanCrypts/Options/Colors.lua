@@ -35,6 +35,10 @@ BigWigs:AddColors("Trizivast", {
 })
 
 BigWigs:AddColors("Hans and Greta", {
+	[1222567] = "orange",
+	[1222570] = "purple",
+	[1222578] = {"blue","red","yellow"},
+	[1223456] = "yellow",
 })
 
 BigWigs:AddColors("Goblins", {
