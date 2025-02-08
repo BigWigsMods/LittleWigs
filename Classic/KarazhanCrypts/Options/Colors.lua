@@ -68,4 +68,5 @@ BigWigs:AddColors("Unk'omon", {
 })
 
 BigWigs:AddColors("Dark Rider", {
+	[1220939] = "orange",
 })
