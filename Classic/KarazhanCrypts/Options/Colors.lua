@@ -24,6 +24,10 @@ BigWigs:AddColors("Harbinger of Sin", {
 })
 
 BigWigs:AddColors("Kharon", {
+	[1217694] = "red",
+	[1217952] = "cyan",
+	[1218038] = {"blue","yellow"},
+	[1218089] = {"blue","orange"},
 })
 
 BigWigs:AddColors("Unk'omon", {
