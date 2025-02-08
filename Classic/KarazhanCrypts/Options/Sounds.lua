@@ -21,6 +21,10 @@ BigWigs:AddSounds("Goblins", {
 })
 
 BigWigs:AddSounds("Harbinger of Sin", {
+	[1219387] = "alert",
+	[1219420] = "long",
+	[1220927] = "warning",
+	[1222775] = "alarm",
 })
 
 BigWigs:AddSounds("Kharon", {
