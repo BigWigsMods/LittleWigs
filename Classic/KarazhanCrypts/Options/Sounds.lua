@@ -18,6 +18,9 @@ BigWigs:AddSounds("Hans and Greta", {
 })
 
 BigWigs:AddSounds("Goblins", {
+	[744] = "alert",
+	[16170] = "info",
+	[27758] = "alert",
 })
 
 BigWigs:AddSounds("Harbinger of Sin", {

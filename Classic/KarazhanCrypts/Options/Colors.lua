@@ -18,6 +18,9 @@ BigWigs:AddColors("Hans and Greta", {
 })
 
 BigWigs:AddColors("Goblins", {
+	[744] = {"blue","red"},
+	[16170] = "red",
+	[27758] = "yellow",
 })
 
 BigWigs:AddColors("Harbinger of Sin", {
