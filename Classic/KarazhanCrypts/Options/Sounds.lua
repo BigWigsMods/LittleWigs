@@ -6,6 +6,11 @@ BigWigs:AddSounds("Sairuh Maryla", {
 })
 
 BigWigs:AddSounds("Barian Maryla", {
+	[1220515] = "alert",
+	[1220517] = "info",
+	[1220519] = "info",
+	[1220920] = "alarm",
+	[1220926] = "alert",
 })
 
 BigWigs:AddSounds("Creeping Malison", {
