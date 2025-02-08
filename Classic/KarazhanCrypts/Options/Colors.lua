@@ -12,6 +12,11 @@ BigWigs:AddColors("Creeping Malison", {
 })
 
 BigWigs:AddColors("Trizivast", {
+	[1222563] = "red",
+	[1222564] = "red",
+	[1223459] = "yellow",
+	[1223460] = "purple",
+	[1223462] = "orange",
 })
 
 BigWigs:AddColors("Hans and Greta", {
