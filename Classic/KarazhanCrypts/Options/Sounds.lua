@@ -21,6 +21,9 @@ BigWigs:AddSounds("Barian Maryla", {
 })
 
 BigWigs:AddSounds("Creeping Malison", {
+	[1220836] = "alert",
+	[1220843] = "alarm",
+	[1221325] = "long",
 })
 
 BigWigs:AddSounds("Trizivast", {
