@@ -13,6 +13,11 @@ BigWigs:AddColors("Sairuh Maryla", {
 })
 
 BigWigs:AddColors("Barian Maryla", {
+	[1220515] = "red",
+	[1220517] = "green",
+	[1220519] = "cyan",
+	[1220920] = "orange",
+	[1220926] = {"blue","red"},
 })
 
 BigWigs:AddColors("Creeping Malison", {
