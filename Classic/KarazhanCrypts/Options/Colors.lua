@@ -9,6 +9,9 @@ BigWigs:AddColors("Barian Maryla", {
 })
 
 BigWigs:AddColors("Creeping Malison", {
+	[1220836] = {"blue","purple"},
+	[1220843] = "orange",
+	[1221325] = "green",
 })
 
 BigWigs:AddColors("Trizivast", {
