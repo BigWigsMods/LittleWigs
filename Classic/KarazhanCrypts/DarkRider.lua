@@ -28,15 +28,31 @@ end
 
 function mod:GetOptions()
 	return {
+		1220939, -- Ethereal Charge
 	}
 end
 
 function mod:OnBossEnable()
+	self:Log("SPELL_CAST_SUCCESS", "EtherealCharge", 1220939)
 end
 
 function mod:OnEngage()
+	self:CDBar(1220939, 40.4) -- Ethereal Charge
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+do
+	local prev = 0
+	function mod:EtherealCharge(args)
+		-- cast once by each clone
+		if args.time - prev > 5 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:CDBar(args.spellId, 53.4)
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
