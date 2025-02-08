@@ -1,5 +1,8 @@
 
 BigWigs:AddColors("Kaigy Maryla", {
+	[1220410] = {"blue","purple"},
+	[1222942] = {"blue","yellow"},
+	[1222943] = "orange",
 })
 
 BigWigs:AddColors("Sairuh Maryla", {
