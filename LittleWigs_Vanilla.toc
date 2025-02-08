@@ -28,9 +28,10 @@
 ## X-BigWigs-Minimum: 367
 #@do-not-package@
 ## X-LittleWigs-Repo: 1
-## X-BigWigs-LoadOn-InstanceId: 36, 209, 229, 329, 429, 2784
+## X-BigWigs-LoadOn-InstanceId: 36, 209, 229, 329, 429, 2784, 2875
 Classic\BlackrockSpire\modules.xml
 Classic\Deadmines\modules.xml
 Classic\DemonFallCanyon\modules.xml
+Classic\KarazhanCrypts\modules.xml
 Classic\modules.xml
 #@end-do-not-package@

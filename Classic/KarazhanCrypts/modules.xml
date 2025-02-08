@@ -1,0 +1,19 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="KaigyMaryla.lua"/>
+<Script file="SairuhMaryla.lua"/>
+<Script file="BarianMaryla.lua"/>
+<Script file="CreepingMalison.lua"/>
+<Script file="Trizivast.lua"/>
+<Script file="HansAndGreta.lua"/>
+<Script file="Goblins.lua"/>
+<Script file="HarbingerOfSin.lua"/>
+<Script file="Kharon.lua"/>
+<Script file="Unkomon.lua"/>
+<Script file="DarkRider.lua"/>
+
+<Include file="Options\options.xml"/>
+<Include file="Locales\locales.xml"/>
+
+</Ui>

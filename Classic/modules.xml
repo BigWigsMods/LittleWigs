@@ -4,6 +4,7 @@
 <!-- Vanilla through WotLK and War Within+ only: <Include file="Deadmines\modules.xml"/> -->
 <!-- Vanilla through Cata only: <Include file="BlackrockSpire\modules.xml"/> -->
 <!-- Vanilla only: <Include file="DemonFallCanyon\modules.xml"/> -->
+<!-- Vanilla only: <Include file="KarazhanCrypts\modules.xml"/> -->
 
 <!--<Include file="BlackrockDepths\modules.xml"/>-->
 <Include file="DireMaul\modules.xml"/>
