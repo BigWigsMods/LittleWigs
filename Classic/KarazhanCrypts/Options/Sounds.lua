@@ -1,5 +1,8 @@
 
 BigWigs:AddSounds("Kaigy Maryla", {
+	[1220410] = "alert",
+	[1222942] = "info",
+	[1222943] = "alarm",
 })
 
 BigWigs:AddSounds("Sairuh Maryla", {
