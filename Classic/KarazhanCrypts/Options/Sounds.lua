@@ -68,5 +68,7 @@ BigWigs:AddSounds("Unk'omon", {
 })
 
 BigWigs:AddSounds("Dark Rider", {
+	[1219814] = "info",
 	[1220939] = "alarm",
+	[1223264] = "alarm",
 })
