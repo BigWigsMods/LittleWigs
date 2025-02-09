@@ -50,14 +50,20 @@ end
 -- Event Handlers
 --
 
-function mod:Doom(args)
-	self:CDBar(args.spellId, 32.4)
-end
+do
+	local playerList = {}
 
-function mod:DoomApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	function mod:Doom(args)
+		playerList = {}
+		self:CDBar(args.spellId, 30.8)
+	end
+
+	function mod:DoomApplied(args)
+		if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
+			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(args.spellId, "yellow", playerList, 5)
+			self:PlaySound(args.spellId, "alarm", nil, playerList)
+		end
 	end
 end
 
