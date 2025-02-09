@@ -49,7 +49,7 @@ function mod:OnEngage()
 	self:CDBar(1220515, 8.1) -- Shadow Bolt Volley
 	self:CDBar(1220926, 11.3) -- Curse of Decay
 	self:CDBar(1220519, 17.8) -- Summon Skeletal Servant
-	self:CDBar(1220920, 22.7) -- Necrotic Breath
+	self:CDBar(1220920, 21.0) -- Necrotic Breath
 end
 
 --------------------------------------------------------------------------------
