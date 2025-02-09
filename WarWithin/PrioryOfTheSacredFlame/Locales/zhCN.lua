@@ -24,5 +24,5 @@ end
 
 L = BigWigs:NewBossLocale("Baron Braunpyke", "zhCN")
 if L then
-	--L.charges = "%d charges"
+	L.charges = "%d 层效果"
 end
