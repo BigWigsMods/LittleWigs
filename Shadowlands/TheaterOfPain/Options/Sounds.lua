@@ -38,6 +38,7 @@ BigWigs:AddSounds("Kul'tharok", {
 	[319637] = "info",
 	[319669] = "alarm",
 	[473513] = "long",
+	[474087] = "alarm",
 	[474298] = "warning",
 	[1215787] = {"info","underyou"},
 	[1223803] = "alert",
