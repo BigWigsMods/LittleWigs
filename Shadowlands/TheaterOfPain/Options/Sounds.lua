@@ -50,7 +50,7 @@ BigWigs:AddSounds("Mordretha, the Endless Empress", {
 	[323831] = {"info","warning"},
 	[324079] = "alert",
 	[324449] = "info",
-	[339550] = "alert",
+	[339550] = "alarm",
 	[339573] = "long",
 	[339706] = "alarm",
 })

@@ -103,7 +103,7 @@ function mod:EchoesOfCarnage(args)
 	self:CDBar(324079, 6.9) -- Reaping Scythe
 	self:CDBar(339706, 13.5) -- Ghostly Charge
 	self:CDBar(323608, 14.6) -- Dark Devastation
-	self:CDBar(324449, 21) -- Manifest Death
+	self:CDBar(324449, 21.0) -- Manifest Death
 	self:CDBar(323825, 22.5) -- Grasping Rift
 	self:PlaySound(args.spellId, "long")
 end
@@ -127,7 +127,7 @@ do
 			prev = args.time
 			self:Message(args.spellId, "orange")
 			self:CDBar(args.spellId, 24.3)
-			self:PlaySound(args.spellId, "alert")
+			self:PlaySound(args.spellId, "alarm")
 		end
 	end
 end
