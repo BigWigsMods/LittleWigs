@@ -222,6 +222,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 
 	-- Battlefield Ritualist
+	self:RegisterEngageMob("BattlefieldRitualistEngaged", 174197)
 	self:Log("SPELL_CAST_START", "UnholyFervor", 341902)
 	self:Log("SPELL_AURA_APPLIED", "UnholyFervorApplied", 341902)
 	self:Death("BattlefieldRitualistDeath", 174197)
@@ -377,11 +378,19 @@ end
 
 -- Battlefield Ritualist
 
+function mod:BattlefieldRitualistEngaged(guid)
+	self:Nameplate(341902, 1.0, guid) -- Unholy Fervor
+end
+
 function mod:UnholyFervor(args)
 	-- this isn't cast unless there is a mob nearby with low hp
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	-- cooldown is triggered by cast start
-	self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 24.3, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+	end
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -399,11 +408,15 @@ end
 -- Raging Bloodhorn
 
 function mod:RagingBloodhornEngaged(guid)
-	self:Nameplate(333241, 9.0, guid) -- Raging Tantrum
+	self:Nameplate(333241, 8.8, guid) -- Raging Tantrum
 end
 
 function mod:RagingTantrum(args)
-	self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+	end
 end
 
 function mod:RagingTantrumApplied(args)
@@ -537,7 +550,7 @@ function mod:DevourFlesh(args)
 	if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
 		return
 	end
-	self:Message(args.spellId, "yellow")
+	self:Message(args.spellId, "purple")
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
 end
@@ -576,7 +589,7 @@ end
 -- Rancid Gasbag
 
 function mod:RancidGasbagEngaged(guid)
-	self:Nameplate(330614, 7.1, guid) -- Vile Eruption
+	self:Nameplate(330614, 6.8, guid) -- Vile Eruption
 end
 
 function mod:VileEruption(args)
@@ -617,7 +630,7 @@ end
 
 function mod:NektharaTheManglerEngaged(guid)
 	self:Nameplate(317605, 1.9, guid) -- Whirlwind
-	self:Nameplate(336995, 6.7, guid) -- Whirling Blade
+	self:Nameplate(336995, 2.1, guid) -- Whirling Blade
 	self:Nameplate(342135, 9.2, guid) -- Interrupting Roar
 end
 
@@ -717,7 +730,7 @@ function mod:Whirlwind(args)
 		if mobId == 167538 then -- Dokigg the Brutalizer
 			self:Nameplate(args.spellId, 26.7, args.sourceGUID)
 		elseif mobId == 162744 then -- Nekthara the Mangler
-			self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+			self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 		else -- 167534, Rek the Hardened
 			self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 		end
@@ -802,7 +815,11 @@ end
 
 function mod:BloodthirstyCharge(args)
 	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 10.5, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 10.5, args.sourceGUID)
+	end
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -867,7 +884,7 @@ function mod:UnbalancingBlow(args)
 	local unit = self:UnitTokenFromGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) and UnitCanAttack("player", unit) then
 		self:Message(args.spellId, "purple")
-		self:Nameplate(args.spellId, 9.7, args.sourceGUID)
+		self:Nameplate(args.spellId, 8.5, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 	end
 end
@@ -876,17 +893,25 @@ end
 
 function mod:PortalGuardianEngaged(guid)
 	self:Nameplate(330725, 3.2, guid) -- Shadow Vulnerability
-	self:Nameplate(330716, 6.0, guid) -- Soulstorm
+	self:Nameplate(330716, 8.0, guid) -- Soulstorm
 end
 
 function mod:Soulstorm(args)
 	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 23.0, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 26.7, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 23.0, args.sourceGUID)
+	end
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:ShadowVulnerability(args)
-	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 18.3, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+	end
 end
 
 function mod:ShadowVulnerabilityApplied(args)
@@ -903,7 +928,11 @@ end
 -- Maniacal Soulbinder
 
 function mod:ManiacalSoulbinderEngaged(guid)
-	self:Nameplate(330868, 6.9, guid) -- Necrotic Bolt Volley
+	if isElevenDotOne then
+		self:Nameplate(330868, 9.5, guid) -- Necrotic Bolt Volley
+	else -- XXX remove in 11.1
+		self:Nameplate(330868, 6.9, guid) -- Necrotic Bolt Volley
+	end
 end
 
 function mod:NecroticBoltVolley(args)
@@ -944,7 +973,11 @@ end
 -- Bone Magus
 
 function mod:BoneMagusEngaged(guid)
-	self:Nameplate(342675, 1.2, guid) -- Bone Spear
+	if isElevenDotOne then
+		self:Nameplate(342675, 9.4, guid) -- Bone Spear
+	else -- XXX remove in 11.1
+		self:Nameplate(342675, 1.2, guid) -- Bone Spear
+	end
 end
 
 function mod:BoneSpear(args)
@@ -957,11 +990,19 @@ function mod:BoneSpear(args)
 end
 
 function mod:BoneSpearInterrupt(args)
-	self:Nameplate(342675, 17.4, args.destGUID)
+	if isElevenDotOne then
+		self:Nameplate(342675, 22.0, args.destGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(342675, 17.4, args.destGUID)
+	end
 end
 
 function mod:BoneSpearSuccess(args)
-	self:Nameplate(args.spellId, 17.4, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 22.0, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 17.4, args.sourceGUID)
+	end
 end
 
 function mod:BoneMagusDeath(args)
@@ -971,18 +1012,18 @@ end
 -- Nefarious Darkspeaker
 
 function mod:NefariousDarkspeakerEngaged(guid)
-	self:Nameplate(333294, 3.1, guid) -- Death Winds
-	self:Nameplate(333299, 7.8, guid) -- Curse of Desolation
+	self:Nameplate(333294, 5.9, guid) -- Death Winds
+	self:Nameplate(333299, 7.1, guid) -- Curse of Desolation
 end
 
 function mod:DeathWinds(args)
 	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 8.5, args.sourceGUID)
+	self:Nameplate(args.spellId, 8.1, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:CurseOfDesolation(args)
-	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+	self:Nameplate(args.spellId, 13.3, args.sourceGUID)
 end
 
 function mod:CurseOfDesolationApplied(args)
