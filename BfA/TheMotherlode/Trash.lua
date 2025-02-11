@@ -896,8 +896,8 @@ end
 -- Venture Co. War Machine
 
 function mod:VentureCoWarMachineEngaged(guid)
+	self:Nameplate(269429, 6.1, guid) -- Charged Shot
 	self:Nameplate(262383, 6.8, guid) -- Deploy Crawler Mine
-	self:Nameplate(269429, 7.0, guid) -- Charged Shot
 end
 
 function mod:ChargedShot(args)
@@ -908,7 +908,11 @@ end
 
 function mod:DeployCrawlerMine(args)
 	self:Message(args.spellId, "cyan")
-	self:Nameplate(args.spellId, 28.0, args.sourceGUID)
+	if isElevenDotOne then
+		self:Nameplate(args.spellId, 35.3, args.sourceGUID)
+	else -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 28.0, args.sourceGUID)
+	end
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -929,10 +933,16 @@ function mod:OrdnanceSpecialistEngaged(guid)
 	self:Nameplate(269090, 0.9, guid) -- Artillery Barrage
 end
 
-function mod:ArtilleryBarrage(args)
-	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 12.1, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:ArtilleryBarrage(args)
+		self:Nameplate(args.spellId, 12.1, args.sourceGUID) -- cooldown on cast start
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:OrdnanceSpecialistDeath(args)
