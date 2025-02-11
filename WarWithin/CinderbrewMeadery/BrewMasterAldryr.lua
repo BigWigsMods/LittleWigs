@@ -1,3 +1,4 @@
+local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -8,15 +9,6 @@ mod:RegisterEnableMob(210271) -- Brew Master Aldryr
 mod:SetEncounterID(2900)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-
---------------------------------------------------------------------------------
--- Locals
---
-
-local happyHourCount = 1
-local blazingBelchRemaining = 2
-local throwCinderbrewRemaining = 2
-local kegSmashRemaining = 3
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -43,6 +35,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Clear the Bar
 	self:Log("SPELL_CAST_SUCCESS", "HappyHour", 442525)
 	self:Log("SPELL_AURA_REMOVED", "HappyHourOver", 442525)
 	self:Log("SPELL_AURA_APPLIED", "CarryingCinderbrew", 431895)
@@ -55,21 +48,28 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	happyHourCount = 1
-	blazingBelchRemaining = 1
-	throwCinderbrewRemaining = 1
-	kegSmashRemaining = 2
 	self:SetStage(1)
 	self:CDBar(432229, 5.1) -- Keg Smash
 	self:CDBar(432179, 10.0) -- Throw Cinderbrew
 	self:CDBar(432198, 14.4) -- Blazing Belch
-	-- cast at 100 energy, starts at 55 energy: .9s delay + 20.25s energy gain + runs to bar + 1.5s delay + 2s cast
-	self:CDBar(442525, 27.8, CL.count:format(self:SpellName(442525), happyHourCount)) -- Happy Hour
+	if not isElevenDotOne then -- XXX remove in 11.1
+		-- cast at 100 energy, starts at 55 energy: .9s delay + 20.25s energy gain + runs to bar + 1.5s delay + 2s cast
+		self:CDBar(442525, 27.8) -- Happy Hour
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 454459 then -- [DNT] Clear the Bar
+		-- this is cast as the boss jumps over the bar before starting Happy Hour
+		self:StopBar(432198) -- Blazing Belch
+		self:StopBar(432179) -- Throw Cinderbrew
+		self:StopBar(432229) -- Keg Smash
+	end
+end
 
 do
 	local happyHourStart = 0
@@ -79,25 +79,29 @@ do
 		self:StopBar(432198) -- Blazing Belch
 		self:StopBar(432179) -- Throw Cinderbrew
 		self:StopBar(432229) -- Keg Smash
-		self:StopBar(CL.count:format(args.spellName, happyHourCount))
+		if not isElevenDotOne then -- XXX remove in 11.1
+			self:StopBar(args.spellId)
+		end
 		self:SetStage(2)
-		self:Message(args.spellId, "cyan", CL.count:format(args.spellName, happyHourCount))
+		if isElevenDotOne then
+			self:Message(args.spellId, "cyan", CL.percent:format(50, args.spellName))
+		else -- XXX remove in 11.1
+			self:Message(args.spellId, "cyan")
+		end
 		self:PlaySound(args.spellId, "long")
-		happyHourCount = happyHourCount + 1
 	end
 
 	function mod:HappyHourOver(args)
-		blazingBelchRemaining = 2
-		throwCinderbrewRemaining = 2
-		kegSmashRemaining = 3
 		self:SetStage(1)
 		self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, args.time - happyHourStart))
-		self:PlaySound(args.spellId, "long")
 		self:CDBar(432229, 9.1) -- Keg Smash
 		self:CDBar(432179, 14.0) -- Throw Cinderbrew
 		self:CDBar(432198, 17.6) -- Blazing Belch
-		-- cast at 100 energy, 2.4s delay + 45s energy gain + runs to bar + 1.5s delay + 2s cast
-		self:CDBar(args.spellId, 50.9, CL.count:format(args.spellName, happyHourCount))
+		if not isElevenDotOne then -- XXX remove in 11.1
+			-- cast at 100 energy, 2.4s delay + 45s energy gain + runs to bar + 1.5s delay + 2s cast
+			self:CDBar(args.spellId, 50.9)
+		end
+		self:PlaySound(args.spellId, "long")
 	end
 end
 
@@ -117,35 +121,20 @@ end
 
 function mod:BlazingBelch(args)
 	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 23.0)
 	self:PlaySound(args.spellId, "alarm")
-	blazingBelchRemaining = blazingBelchRemaining - 1
-	if blazingBelchRemaining > 0 then
-		self:CDBar(args.spellId, 23.1)
-	else
-		self:StopBar(args.spellId)
-	end
 end
 
 function mod:ThrowCinderbrew(args)
 	self:Message(args.spellId, "red")
+	self:CDBar(args.spellId, 18.2)
 	self:PlaySound(args.spellId, "alert")
-	throwCinderbrewRemaining = throwCinderbrewRemaining - 1
-	if throwCinderbrewRemaining > 0 then
-		self:CDBar(args.spellId, 18.2)
-	else
-		self:StopBar(args.spellId)
-	end
 end
 
 function mod:KegSmash(args)
 	self:Message(args.spellId, "purple")
+	self:CDBar(args.spellId, 14.5)
 	self:PlaySound(args.spellId, "alert")
-	kegSmashRemaining = kegSmashRemaining - 1
-	if kegSmashRemaining > 0 then
-		self:CDBar(args.spellId, 14.5)
-	else
-		self:StopBar(args.spellId)
-	end
 end
 
 do
