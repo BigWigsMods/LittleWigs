@@ -10,7 +10,7 @@ BigWigs:AddSounds("An Affront of Challengers", {
 	[326892] = "warning",
 	[333231] = "info",
 	[333540] = {"alarm","warning"},
-	[1215600] = "alert",
+	[1215600] = {"alert","info"},
 	[1215738] = "alarm",
 	[1215741] = "info",
 })

@@ -15,6 +15,12 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local decayingBreathCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -24,13 +30,12 @@ if isElevenDotOne then -- XXX remove this check when 11.1 is live
 			-- Dessia the Decapitator
 			1215741, -- Mighty Smash
 			{320069, "TANK_HEALER"}, -- Mortal Strike
-			{320063, "TANK"}, -- Slam XXX not cast anymore but still in journal
 			-- Paceran the Virulent
 			320182, -- Noxious Spores
 			1215738, -- Decaying Breath
 			-- Sathel the Accursed
 			333231, -- Searing Death
-			1215600, -- Withering Touch
+			{1215600, "DISPEL"}, -- Withering Touch
 		}, {
 			[1215741] = -21582, -- Dessia the Decapitator
 			[320182] = -21581, -- Paceran the Virulent
@@ -65,7 +70,6 @@ end
 function mod:OnBossEnable()
 	-- Dessia the Decapitator
 	self:Log("SPELL_CAST_START", "MortalStrike", 320069)
-	self:Log("SPELL_CAST_START", "Slam", 320063) -- XXX not cast anymore in 11.1 but still in journal
 
 	-- Sathel the Accursed
 	self:Log("SPELL_CAST_START", "SearingDeath", 333231)
@@ -83,11 +87,13 @@ function mod:OnBossEnable()
 
 		-- Sathel the Accursed
 		self:Log("SPELL_CAST_START", "WitheringTouch", 1215600)
+		self:Log("SPELL_AURA_APPLIED", "WitheringTouchApplied", 1215600)
 		self:Death("SathelDeath", 164461)
 	else -- XXX remove this block when 11.1 is live
 		-- Dessia the Decapitator
 		self:Log("SPELL_AURA_APPLIED", "EnrageApplied", 324085)
 		self:Log("SPELL_AURA_APPLIED", "FixateApplied", 326892)
+		self:Log("SPELL_CAST_START", "Slam", 320063) -- XXX not cast anymore in 11.1 but still in journal
 		-- Paceran the Virulent
 		self:Log("SPELL_CAST_SUCCESS", "GeneticAlteration", 320248)
 		-- Sathel the Accursed
@@ -99,18 +105,19 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	decayingBreathCount = 1
 	self:SetStage(1)
-	if not isElevenDotOne then -- XXX remove this block when 11.1 is live
-		self:Bar(320063, 8.5) -- Slam
-		self:Bar(333231, 9.7) -- Searing Death
-		self:Bar(320069, 21) -- Mortal Strike
-	else
-		self:CDBar(320069, 3.5) -- Mortal Strike
+	if isElevenDotOne then
+		self:CDBar(320069, 3.2) -- Mortal Strike
 		self:CDBar(1215600, 5.7) -- Withering Touch
-		self:CDBar(1215738, 6.9) -- Decaying Breath
+		self:CDBar(1215738, 5.7) -- Decaying Breath
 		self:CDBar(1215741, 10.5) -- Mighty Smash
 		self:CDBar(320182, 20.3) -- Noxious Spores
 		self:CDBar(333231, 30.2) -- Searing Death
+	else -- XXX remove in 11.1
+		self:Bar(320063, 8.5) -- Slam
+		self:Bar(333231, 9.7) -- Searing Death
+		self:Bar(320069, 21) -- Mortal Strike
 	end
 end
 
@@ -124,35 +131,40 @@ function mod:MightySmash(args)
 	self:Message(args.spellId, "red")
 	if self:Mythic() then
 		if self:GetStage() == 1 then
-			self:CDBar(args.spellId, 42.5)
+			self:CDBar(args.spellId, 43.7)
 		elseif self:GetStage() == 2 then
-			self:CDBar(args.spellId, 29.2)
+			self:CDBar(args.spellId, 30.3)
 		else -- Stage 3
-			self:CDBar(args.spellId, 14.5)
+			self:CDBar(args.spellId, 15.8)
 		end
-	else -- Heroic
-		self:CDBar(args.spellId, 42.5)
+	else -- Heroic, Normal
+		self:CDBar(args.spellId, 43.7)
 	end
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:MortalStrike(args)
 	self:Message(args.spellId, "purple")
-	self:CDBar(args.spellId, 21.9)
+	if isElevenDotOne then
+		self:CDBar(args.spellId, 17.0)
+	else -- XXX remove in 11.1
+		self:CDBar(args.spellId, 21.9)
+	end
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:Slam(args) -- XXX not cast anymore in 11.1 but still in journal
+function mod:Slam(args) -- XXX remove in 11.1
 	self:Message(args.spellId, "purple")
 	self:CDBar(args.spellId, 13.4)
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:DessiaDeath()
-	self:SetStage(self:GetStage() + 1)
+	if self:GetStage() < 3 then
+		self:SetStage(self:GetStage() + 1)
+	end
 	self:StopBar(1215741) -- Mighty Smash
 	self:StopBar(320069) -- Mortal Strike
-	self:StopBar(320063) -- Slam XXX not cast anymore in 11.1 but still in journal
 end
 
 if not isElevenDotOne then -- XXX remove this block when 11.1 is live
@@ -189,7 +201,18 @@ end
 
 function mod:DecayingBreath(args)
 	self:Message(args.spellId, "orange")
-	self:StopBar(args.spellId) -- TODO only cast once (at least in heroic)
+	decayingBreathCount = decayingBreathCount + 1
+	if self:Mythic() and self:GetStage() >= 1 then
+		self:CDBar(args.spellId, 29.1)
+		-- TODO 29.1 in stage 2, but what about stage 3?
+		-- should we instead adjust the timer in :NoxiousSpores? always 14.6 after
+	else -- Heroic, Normal, Mythic Stage 1
+		if decayingBreathCount % 2 == 0 then
+			self:CDBar(args.spellId, 29.1)
+		else
+			self:CDBar(args.spellId, 14.6)
+		end
+	end
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -199,18 +222,20 @@ function mod:NoxiousSpores(args)
 		if self:GetStage() == 1 then
 			self:CDBar(args.spellId, 42.5)
 		elseif self:GetStage() == 2 then
-			self:CDBar(args.spellId, 29.2)
+			self:CDBar(args.spellId, 29.1)
 		else -- Stage 3
 			self:CDBar(args.spellId, 14.5)
 		end
-	else -- Heroic
+	else -- Heroic, Normal
 		self:CDBar(args.spellId, 42.5)
 	end
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:PaceranDeath()
-	self:SetStage(self:GetStage() + 1)
+	if self:GetStage() < 3 then
+		self:SetStage(self:GetStage() + 1)
+	end
 	self:StopBar(1215738) -- Decaying Breath
 	self:StopBar(320182) -- Noxious Spores
 end
@@ -231,7 +256,7 @@ do
 				else -- Stage 3
 					self:CDBar(args.spellId, 14.5)
 				end
-			else -- Heroic
+			else -- Heroic, Normal
 				self:CDBar(args.spellId, 42.5)
 			end
 		else -- XXX remove in 11.1
@@ -242,7 +267,7 @@ do
 	function mod:SearingDeathApplied(args)
 		if isElevenDotOne then
 			playerList[#playerList + 1] = args.destName
-			self:TargetsMessage(args.spellId, "yellow", playerList, 4) -- everyone except healer
+			self:TargetsMessage(args.spellId, "yellow", playerList, 4)
 			self:PlaySound(args.spellId, "info", nil, playerList)
 		else -- XXX remove in 11.1
 			self:TargetMessage(args.spellId, "yellow", args.destName)
@@ -255,21 +280,30 @@ do
 end
 
 do
-	local function printTarget(self, name, guid)
-		if self:Me(guid) or self:Healer() then
-			self:TargetMessage(1215600, "orange", name, CL.casting:format(self:SpellName(1215600)))
-			self:PlaySound(1215600, "alert", nil, name)
+	local playerList = {}
+
+	function mod:WitheringTouch(args)
+		playerList = {}
+		self:CDBar(args.spellId, 18.2)
+		if self:Dispeller("magic", nil, args.spellId) then
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
 		end
 	end
 
-	function mod:WitheringTouch(args)
-		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-		self:CDBar(args.spellId, 17.0)
+	function mod:WitheringTouchApplied(args)
+		if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
+			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(args.spellId, "red", playerList, 2)
+			self:PlaySound(args.spellId, "info", nil, playerList)
+		end
 	end
 end
 
 function mod:SathelDeath()
-	self:SetStage(self:GetStage() + 1)
+	if self:GetStage() < 3 then
+		self:SetStage(self:GetStage() + 1)
+	end
 	self:StopBar(333231) -- Searing Death
 	self:StopBar(1215600) -- Withering Touch
 end

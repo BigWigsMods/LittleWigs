@@ -10,7 +10,7 @@ BigWigs:AddColors("An Affront of Challengers", {
 	[326892] = {"blue","red"},
 	[333231] = {"blue","yellow"},
 	[333540] = {"blue","red"},
-	[1215600] = {"blue","orange"},
+	[1215600] = {"blue","red"},
 	[1215738] = "orange",
 	[1215741] = "red",
 })
