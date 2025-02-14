@@ -22,7 +22,7 @@ function mod:GetOptions()
 		{444608, "HEALER"}, -- Inner Fire
 		451605, -- Holy Flame
 		-- Mythic
-		428169, -- Blinding Light
+		{428169, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Blinding Light
 	}, {
 		[428169] = CL.mythic,
 	}
@@ -89,12 +89,14 @@ function mod:EmbraceTheLightInterrupted(args)
 	if args.extraSpellId == 423664 then -- Embrace the Light
 		self:Message(423664, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
 		self:SetStage(1)
+		self:CDBar(444608, 6.1) -- Inner Fire
+		self:CDBar(444546, 11.5) -- Purify
 		if self:Mythic() then
-			self:CDBar(428169, 5.7) -- Blinding Light
+			self:CDBar(428169, 12.1) -- Blinding Light
+			self:CDBar(451605, 17.0) -- Holy Flame
+		else
+			self:CDBar(451605, 12.3) -- Holy Flame
 		end
-		self:CDBar(444546, 6.3) -- Purify
-		self:CDBar(444608, 6.4) -- Inner Fire
-		self:CDBar(451605, 12.3) -- Holy Flame
 		self:PlaySound(423664, "info")
 	end
 end
@@ -102,7 +104,7 @@ end
 function mod:Purify(args)
 	self:Message(args.spellId, "orange", CL.incoming:format(args.spellName))
 	self:CDBar(args.spellId, 28.8)
-	self:PlaySound(args.spellId, "alarm")
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
@@ -134,13 +136,14 @@ end
 function mod:HolyFlame(args)
 	self:Message(args.spellId, "yellow")
 	self:CDBar(args.spellId, 12.1)
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "alarm")
 end
 
 -- Mythic
 
 function mod:BlindingLight(args)
 	self:Message(args.spellId, "red")
+	self:CastBar(args.spellId, 4)
 	self:CDBar(args.spellId, 24.2)
 	self:PlaySound(args.spellId, "warning")
 end

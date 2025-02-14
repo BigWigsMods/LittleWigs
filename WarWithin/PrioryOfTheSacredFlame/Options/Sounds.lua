@@ -20,9 +20,9 @@ BigWigs:AddSounds("Prioress Murrpray", {
 	[423664] = "info",
 	[425556] = "underyou",
 	[428169] = "warning",
-	[444546] = {"alarm","warning"},
+	[444546] = {"alert","warning"},
 	[444608] = "info",
-	[451605] = "alert",
+	[451605] = "alarm",
 })
 
 BigWigs:AddSounds("Priory of the Sacred Flame Trash", {
