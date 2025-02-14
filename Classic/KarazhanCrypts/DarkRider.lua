@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Dark Rider", 2875)
 if not mod then return end
 mod:RegisterEnableMob(238055) -- Dark Rider
-mod:SetEncounterID(3143)
+mod:SetEncounterID(3145)
 --mod:SetRespawnTime(30)
 mod:SetAllowWin(true)
 
