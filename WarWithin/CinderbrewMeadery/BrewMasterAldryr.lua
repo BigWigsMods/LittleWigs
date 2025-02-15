@@ -11,6 +11,12 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local happyHourCount = 1
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -48,6 +54,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	happyHourCount = 1
 	self:SetStage(1)
 	self:CDBar(432229, 5.1) -- Keg Smash
 	self:CDBar(432179, 10.0) -- Throw Cinderbrew
@@ -84,10 +91,15 @@ do
 		end
 		self:SetStage(2)
 		if isElevenDotOne then
-			self:Message(args.spellId, "cyan", CL.percent:format(50, args.spellName))
+			if happyHourCount == 1 then
+				self:Message(args.spellId, "cyan", CL.percent:format(66, args.spellName))
+			else
+				self:Message(args.spellId, "cyan", CL.percent:format(33, args.spellName))
+			end
 		else -- XXX remove in 11.1
 			self:Message(args.spellId, "cyan")
 		end
+		happyHourCount = happyHourCount + 1
 		self:PlaySound(args.spellId, "long")
 	end
 
