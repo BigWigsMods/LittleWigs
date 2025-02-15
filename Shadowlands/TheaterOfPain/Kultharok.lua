@@ -80,7 +80,7 @@ function mod:OnEngage()
 		if self:Mythic() then
 			self:CDBar(1215787, 6.1) -- Death Spiral
 			self:CDBar(1223803, 10.9) -- Well of Darkness
-			self:CDBar(474087, 17.9) -- Necrotic Eruption
+			self:CDBar(474087, 16.7) -- Necrotic Eruption
 			self:CDBar(474298, 49.8, CL.count:format(self:SpellName(474298), drawSoulCount)) -- Draw Soul
 		else -- Normal, Heroic
 			self:CDBar(1223803, 7.0) -- Well of Darkness
@@ -103,9 +103,9 @@ function mod:NecroticEruption(args)
 	necroticEruptionCount = necroticEruptionCount + 1
 	if self:Mythic() then
 		if necroticEruptionCount % 2 == 0 then
-			self:CDBar(args.spellId, 20.9)
+			self:CDBar(args.spellId, 20.6)
 		else
-			self:CDBar(args.spellId, 25.4)
+			self:CDBar(args.spellId, 30.4)
 		end
 	else -- Normal
 		self:CDBar(args.spellId, 60.8)
@@ -121,9 +121,9 @@ do
 		wellOfDarknessCount = wellOfDarknessCount + 1
 		if self:Mythic() then
 			if wellOfDarknessCount % 2 == 0 then
-				self:CDBar(args.spellId, 23.0)
+				self:CDBar(args.spellId, 22.3)
 			else
-				self:CDBar(args.spellId, 25.5)
+				self:CDBar(args.spellId, 27.0)
 			end
 		else -- Normal
 			self:CDBar(args.spellId, 58.3)
@@ -154,18 +154,18 @@ function mod:DrawSoul(args)
 	self:StopBar(CL.count:format(args.spellName, drawSoulCount))
 	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, drawSoulCount))
 	drawSoulCount = drawSoulCount + 1
-	if self:Mythic() then -- TODO this condition shouldn't be needed but Draw Soul is currently cast in Normal
-		self:CDBar(1215787, {10.0, 47.3}) -- Death Spiral
-		self:CDBar(1223803, {14.5, 25.5}) -- Well of Darkness
-		self:CDBar(474087, {20.5, 25.4}) -- Necrotic Eruption
+	if self:Mythic() then -- TODO this condition shouldn't be needed (according to journal) but Draw Soul is currently cast in Normal
+		self:CDBar(1215787, {10.0, 52.2}) -- Death Spiral
+		self:CDBar(1223803, {14.5, 27.0}) -- Well of Darkness
+		self:CDBar(474087, {20.5, 30.4}) -- Necrotic Eruption
 	end
-	self:CDBar(args.spellId, 51.0, CL.count:format(args.spellName, drawSoulCount))
+	self:CDBar(args.spellId, 54.6, CL.count:format(args.spellName, drawSoulCount))
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:DeathSpiral(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 47.3)
+	self:CDBar(args.spellId, 52.2)
 	self:PlaySound(args.spellId, "info")
 end
 
