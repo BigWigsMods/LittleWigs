@@ -9,8 +9,12 @@
 
 local mod, CL = BigWigs:NewBoss("HK-8 Aerial Oppression Unit", 2097, 2355)
 if not mod then return end
-mod:RegisterEnableMob(150190, 150295) -- HK-8 Aerial Oppression Unit, Tank Buster MK1
-mod.engageId = 2291
+mod:RegisterEnableMob(
+	150190, -- HK-8 Aerial Oppression Unit,
+	150295, -- Tank Buster MK1
+	155760 -- Tank Buster MK2
+)
+mod:SetEncounterID(2291)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -41,7 +45,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "FulminatingBurstApplied", 303885)
 	self:Log("SPELL_AURA_REMOVED", "FulminatingBurstRemoved", 303885)
 
-	self:Death("TankBusterDeath", 150295)
+	self:Death("TankBusterDeath", 150295, 155760) -- Tank Buster MK1, Tank Buster MK2
 end
 
 function mod:OnEngage()
@@ -99,7 +103,7 @@ end
 function mod:HaywireApplied(args)
 	self:Message(args.spellId, "cyan", CL.onboss:format(args.spellName))
 	self:PlaySound(args.spellId, "long")
-	self:TargetBar(args.spellId, 30, args.destName)
+	self:Bar(args.spellId, 30, CL.onboss:format(args.spellName))
 end
 
 function mod:FulminatingBurstApplied(args)
