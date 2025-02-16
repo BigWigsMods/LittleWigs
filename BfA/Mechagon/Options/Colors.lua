@@ -120,5 +120,5 @@ BigWigs:AddColors("Operation: Mechagon Trash", {
 	[1215409] = "yellow",
 	[1215411] = "purple",
 	[1215412] = "red",
-	[1217819] = "orange",
+	[1217819] = {"blue","orange"},
 })
