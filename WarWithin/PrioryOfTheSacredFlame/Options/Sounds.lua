@@ -51,5 +51,6 @@ BigWigs:AddSounds("Priory of the Sacred Flame Trash", {
 	[448492] = "alert",
 	[448515] = "alert",
 	[448787] = "alert",
+	[448791] = "alert",
 	[453458] = {"alarm","info"},
 })

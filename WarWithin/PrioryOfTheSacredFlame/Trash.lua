@@ -111,6 +111,7 @@ if isElevenDotOne then
 			427601, -- Burst of Light
 			-- Ardent Paladin
 			{424429, "NAMEPLATE"}, -- Consecration
+			{448791, "OFF", "NAMEPLATE"}, -- Sacred Toll
 			-- Risen Mage
 			{444743, "NAMEPLATE"}, -- Fireball Volley
 			-- Sir Braunpyke
@@ -311,6 +312,7 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("ArdentPaladinEngaged", 206704)
 	if isElevenDotOne then
 		self:Log("SPELL_CAST_START", "Consecration", 424429)
+		self:Log("SPELL_CAST_START", "SacredToll", 448791)
 	else -- XXX remove in 11.1
 		self:Log("SPELL_CAST_SUCCESS", "Consecration", 424429)
 	end
@@ -1087,6 +1089,7 @@ end
 function mod:ArdentPaladinEngaged(guid)
 	if isElevenDotOne then
 		self:Nameplate(424429, 8.3, guid) -- Consecration
+		self:Nameplate(448791, 15.4, guid) -- Sacred Toll
 	else -- XXX remove in 11.1
 		self:Nameplate(424429, 8.0, guid) -- Consecration
 	end
@@ -1096,6 +1099,18 @@ function mod:Consecration(args)
 	self:Message(args.spellId, "orange")
 	self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local prev = 0
+	function mod:SacredToll(args)
+		self:Nameplate(args.spellId, 23.1, args.sourceGUID)
+		if args.time - prev > 3 then
+			prev = args.time
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 do
