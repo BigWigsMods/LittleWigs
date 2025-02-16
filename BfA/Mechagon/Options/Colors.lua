@@ -60,12 +60,13 @@ BigWigs:AddColors("Machinist's Garden", {
 })
 
 BigWigs:AddColors("King Mechagon", {
-	[283551] = "red",
+	[283551] = "yellow",
 	[291613] = "orange",
-	[291626] = "red",
+	[291626] = {"blue","red"},
 	[291865] = "orange",
 	[291928] = {"blue","red"},
-	[292290] = "yellow",
+	[292264] = {"blue","red"},
+	[292290] = "purple",
 	["button"] = {"blue","cyan"},
 	["hardmode"] = "yellow",
 	["stages"] = "cyan",

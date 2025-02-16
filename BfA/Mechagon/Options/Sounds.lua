@@ -60,11 +60,12 @@ BigWigs:AddSounds("Machinist's Garden", {
 })
 
 BigWigs:AddSounds("King Mechagon", {
-	[283551] = "alarm",
+	[283551] = "long",
 	[291613] = "info",
-	[291626] = "alarm",
-	[291865] = "alert",
-	[291928] = "alarm",
+	[291626] = {"alarm","warning"},
+	[291865] = "alarm",
+	[291928] = "alert",
+	[292264] = "alert",
 	[292290] = "warning",
 	["button"] = "warning",
 	["hardmode"] = "long",
