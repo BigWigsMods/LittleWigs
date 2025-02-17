@@ -13,7 +13,6 @@ mod:SetRespawnTime(30)
 --
 
 local airDropCount = 1
-local blazingChompCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -22,9 +21,9 @@ local blazingChompCount = 1
 function mod:GetOptions()
 	return {
 		291930, -- Air Drop
-		{291946, "CASTBAR"}, -- Venting Flames
+		{291946, "EMPHASIZE", "CASTBAR"}, -- Venting Flames
 		{291973, "SAY"}, -- Explosive Leap
-		{294929, "TANK_HEALER"}, -- Blazing Chomp
+		294929, -- Blazing Chomp
 	}
 end
 
@@ -39,7 +38,6 @@ end
 
 function mod:OnEngage()
 	airDropCount = 1
-	blazingChompCount = 1
 	self:CDBar(291930, 5.1) -- Air Drop
 	self:CDBar(294929, 10.8) -- Blazing Chomp
 	self:CDBar(291946, 15.7) -- Venting Flames
@@ -73,6 +71,7 @@ do
 
 	function mod:ExplosiveLeap(args)
 		playerList = {}
+		self:CDBar(294929, {8.3, 15.8}) -- Blazing Chomp
 		self:CDBar(args.spellId, 34.0)
 	end
 
@@ -87,12 +86,7 @@ do
 end
 
 function mod:BlazingChomp(args)
-	blazingChompCount = blazingChompCount + 1
-	if blazingChompCount == 2 or blazingChompCount % 2 == 1 then
-		self:CDBar(args.spellId, 17.0)
-	else
-		self:CDBar(args.spellId, 15.8)
-	end
+	self:CDBar(args.spellId, 15.8)
 end
 
 function mod:BlazingChompApplied(args)
