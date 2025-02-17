@@ -479,7 +479,7 @@ end
 -- Blighted Sludge-Spewer
 
 function mod:BlightedSludgeSpewerEngaged(guid)
-	self:Nameplate(341969, 10.2, guid) -- Withering Discharge
+	self:Nameplate(341969, 9.6, guid) -- Withering Discharge
 end
 
 do
@@ -499,11 +499,11 @@ do
 end
 
 function mod:WitheringDischargeInterrupt(args)
-	self:Nameplate(341969, 24.1, args.destGUID)
+	self:Nameplate(341969, 24.0, args.destGUID)
 end
 
 function mod:WitheringDischargeSuccess(args)
-	self:Nameplate(args.spellId, 24.1, args.sourceGUID)
+	self:Nameplate(args.spellId, 24.0, args.sourceGUID)
 end
 
 function mod:BlightedSludgeSpewerDeath(args)
@@ -589,7 +589,7 @@ end
 -- Rancid Gasbag
 
 function mod:RancidGasbagEngaged(guid)
-	self:Nameplate(330614, 6.8, guid) -- Vile Eruption
+	self:Nameplate(330614, 6.4, guid) -- Vile Eruption
 end
 
 function mod:VileEruption(args)
