@@ -50,6 +50,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VindictiveWrath", 422969)
 	self:Log("SPELL_AURA_APPLIED", "VindictiveWrathApplied", 422969)
 	self:Log("SPELL_AURA_REMOVED", "VindictiveWrathRemoved", 422969)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- for Castigator's Shield timer
 	self:Log("SPELL_CAST_START", "CastigatorsShield", 423015, 446649) -- Standard, Empowered
 	self:Log("SPELL_CAST_START", "BurningLight", 423051, 446657) -- Standard, Empowered
 	self:Log("SPELL_CAST_START", "HammerOfPurity", 423062, 446598) -- Standard, Empowered
@@ -106,13 +107,19 @@ function mod:VindictiveWrathRemoved()
 	vindictiveWrathActive = false
 end
 
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 446645 then -- Castigator's Shield
+		-- start the timer here because often the actual Castigator's Shield cast will be skipped
+		if self:Mythic() then
+			self:CDBar(423015, 30.3) -- Castigator's Shield
+		else
+			self:CDBar(423015, 23.1) -- Castigator's Shield
+		end
+	end
+end
+
 function mod:CastigatorsShield(args)
 	self:Message(423015, "orange")
-	if self:Mythic() then
-		self:CDBar(423015, 30.3)
-	else
-		self:CDBar(423015, 23.1)
-	end
 	self:PlaySound(423015, "alert")
 end
 
@@ -121,7 +128,7 @@ function mod:BurningLight(args)
 	if self:Mythic() then
 		self:CDBar(423051, 40.1)
 	else
-		self:CDBar(423051, 32.7)
+		self:CDBar(423051, 31.6)
 	end
 	self:PlaySound(423051, "warning")
 end
@@ -131,7 +138,7 @@ function mod:HammerOfPurity(args)
 	if self:Mythic() then
 		self:CDBar(423062, 30.3)
 	else
-		self:CDBar(423062, 19.8)
+		self:CDBar(423062, 19.5)
 	end
 	self:PlaySound(423062, "alarm")
 end
@@ -143,7 +150,7 @@ function mod:SacrificialPyre(args)
 	nextUnleashedPyre = args.time + 30
 	self:Message(args.spellId, "cyan", CL.extra:format(args.spellName, L.charges:format(unleashedPyreCharges)))
 	self:Bar(446525, 30, CL.count:format(self:SpellName(446525), unleashedPyreCharges)) -- Unleashed Pyre
-	self:CDBar(args.spellId, 38.8)
+	self:CDBar(args.spellId, 38.4)
 	self:PlaySound(args.spellId, "info")
 end
 
