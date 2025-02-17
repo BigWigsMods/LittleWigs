@@ -52,7 +52,14 @@ end
 function mod:OnWipe()
 	local trashMod = BigWigs:GetBossModule("Priory of the Sacred Flame Trash", true)
 	if trashMod then
-		trashMod:CaptainDailcryWipe()
+		trashMod:CaptainDailcryDespawn()
+	end
+end
+
+function mod:OnWin()
+	local trashMod = BigWigs:GetBossModule("Priory of the Sacred Flame Trash", true)
+	if trashMod then
+		trashMod:CaptainDailcryDespawn()
 	end
 end
 

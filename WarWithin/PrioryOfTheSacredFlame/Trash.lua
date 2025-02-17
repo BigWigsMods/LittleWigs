@@ -848,7 +848,7 @@ function mod:BattleCryApplied(args)
 	end
 end
 
-function mod:CaptainDailcryWipe() -- called from CaptainDailcry's OnWipe
+function mod:CaptainDailcryDespawn() -- called from CaptainDailcry's OnWipe and OnWin
 	-- clear timers for any mini-bosses that reset with the boss as well
 	if shaynemailGUID then
 		self:SergeantShaynemailDeath({destGUID = shaynemailGUID})
