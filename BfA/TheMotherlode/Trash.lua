@@ -246,6 +246,10 @@ function mod:OnBossEnable()
 	-- Hired Assassin
 	self:RegisterEngageMob("HiredAssassinEngaged", 134232)
 	self:Log("SPELL_CAST_START", "ToxicBlades", 269302)
+	if isElevenDotOne then
+		self:Log("SPELL_INTERRUPT", "ToxicBladesInterrupt", 269302)
+		self:Log("SPELL_CAST_SUCCESS", "ToxicBladesSuccess", 269302)
+	end
 	self:Log("SPELL_CAST_SUCCESS", "FanOfKnives", 267354)
 	self:Death("HiredAssassinDeath", 134232)
 
@@ -262,8 +266,8 @@ function mod:OnBossEnable()
 	-- Venture Co. Earthshaper
 	self:RegisterEngageMob("VentureCoEarthshaperEngaged", 130661)
 	self:Log("SPELL_CAST_START", "RockLance", 263202)
-	self:Log("SPELL_INTERRUPT", "RockLanceInterrupt", 263202)
-	self:Log("SPELL_CAST_SUCCESS", "RockLanceSuccess", 263202)
+	--self:Log("SPELL_INTERRUPT", "RockLanceInterrupt", 263202) XXX changed back to CD on cast start in late PTR
+	--self:Log("SPELL_CAST_SUCCESS", "RockLanceSuccess", 263202) XXX changed back to CD on cast start in late PTR
 	self:Log("SPELL_CAST_START", "EarthShield", 268709) -- XXX removed in 11.1
 	self:Log("SPELL_AURA_APPLIED", "EarthShieldApplied", 268709) -- XXX removed in 11.1
 	self:Death("VentureCoEarthshaperDeath", 130661)
@@ -337,7 +341,7 @@ function mod:OnBossEnable()
 
 	-- Ordnance Specialist
 	self:RegisterEngageMob("OrdnanceSpecialistEngaged", 137029)
-	self:Log("SPELL_CAST_START", "ArtilleryBarrage", 269090)
+	self:Log("SPELL_CAST_SUCCESS", "ArtilleryBarrage", 269090)
 	self:Death("OrdnanceSpecialistDeath", 137029)
 end
 
@@ -348,7 +352,7 @@ end
 -- Refreshment Vendor
 
 function mod:RefreshmentVendorEngaged(guid)
-	self:Nameplate(280604, 9.3, guid) -- Iced Spritzer
+	self:Nameplate(280604, 8.3, guid) -- Iced Spritzer
 end
 
 do
@@ -534,7 +538,11 @@ end
 do
 	local prev = 0
 	function mod:ToxicBlades(args)
-		self:Nameplate(args.spellId, 20.6, args.sourceGUID) -- cooldown on cast start
+		if isElevenDotOne then
+			self:Nameplate(args.spellId, 0, args.sourceGUID)
+		else -- XXX remove in 11.1
+			self:Nameplate(args.spellId, 24.3, args.sourceGUID)
+		end
 		if args.time - prev > 1.5 then
 			prev = args.time
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
@@ -543,10 +551,22 @@ do
 	end
 end
 
+function mod:ToxicBladesInterrupt(args)
+	self:Nameplate(269302, 24.2, args.destGUID)
+end
+
+function mod:ToxicBladesSuccess(args)
+	self:Nameplate(args.spellId, 24.2, args.sourceGUID)
+end
+
 do
 	local prev = 0
 	function mod:FanOfKnives(args)
-		self:Nameplate(args.spellId, 12.1, args.sourceGUID)
+		if isElevenDotOne then
+			self:Nameplate(args.spellId, 20.3, args.sourceGUID)
+		else -- XXX remove in 11.1
+			self:Nameplate(args.spellId, 12.1, args.sourceGUID)
+		end
 		if args.time - prev > 1.5 then
 			prev = args.time
 			self:Message(args.spellId, "yellow")
@@ -562,8 +582,8 @@ end
 -- Azerite Extractor
 
 function mod:AzeriteExtractorEngaged(guid)
-	self:Nameplate(1215411, 9.6, guid) -- Puncture
-	self:Nameplate(473168, 15.4, guid) -- Rapid Extraction
+	self:Nameplate(1215411, 9.1, guid) -- Puncture
+	self:Nameplate(473168, 15.2, guid) -- Rapid Extraction
 end
 
 function mod:RapidExtraction(args)
@@ -590,13 +610,13 @@ end
 -- Venture Co. Earthshaper
 
 function mod:VentureCoEarthshaperEngaged(guid)
-	self:Nameplate(263202, 8.8, guid) -- Rock Lance
+	self:Nameplate(263202, 8.3, guid) -- Rock Lance
 end
 
 do
 	local prev = 0
 	function mod:RockLance(args)
-		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		self:Nameplate(args.spellId, 24.3, args.sourceGUID) -- cooldown on cast start
 		if args.time - prev > 1.5 then
 			prev = args.time
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
@@ -605,13 +625,13 @@ do
 	end
 end
 
-function mod:RockLanceInterrupt(args)
-	self:Nameplate(263202, 24.3, args.destGUID)
-end
+--function mod:RockLanceInterrupt(args)
+	--self:Nameplate(263202, 24.3, args.destGUID)
+--end
 
-function mod:RockLanceSuccess(args)
-	self:Nameplate(args.spellId, 24.3, args.sourceGUID)
-end
+--function mod:RockLanceSuccess(args)
+	--self:Nameplate(args.spellId, 24.3, args.sourceGUID)
+--end
 
 do
 	local prev = 0
@@ -644,7 +664,7 @@ end
 -- Wanton Sapper
 
 function mod:WantonSapperEngaged(guid)
-	self:Nameplate(268362, 4.8, guid) -- Mining Charge
+	self:Nameplate(268362, 3.8, guid) -- Mining Charge
 end
 
 do
@@ -652,7 +672,7 @@ do
 	function mod:MiningCharge(args)
 		local unit = self:UnitTokenFromGUID(args.sourceGUID)
 		if unit and UnitAffectingCombat(unit) then
-			self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+			self:Nameplate(args.spellId, 15.4, args.sourceGUID)
 			if args.time - prev > 1.5 then
 				prev = args.time
 				self:Message(args.spellId, "orange")
@@ -695,22 +715,26 @@ function mod:StonefuryEngaged(guid)
 	self:Nameplate(268702, 5.9, guid) -- Furious Quake
 end
 
-function mod:FuriousQuake(args)
-	-- TODO might not RP fight anymore in 11.1, but still does in 11.0.7
-	local unit = self:UnitTokenFromGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then
-		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:FuriousQuake(args)
+		-- TODO might not RP fight anymore in 11.1, but still does in 11.0.7
+		local unit = self:UnitTokenFromGUID(args.sourceGUID)
+		if unit and UnitAffectingCombat(unit) and args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:Nameplate(args.spellId, 0, args.sourceGUID)
+			self:PlaySound(args.spellId, "warning")
+		end
 	end
 end
 
 function mod:FuriousQuakeInterrupt(args)
-	self:Nameplate(268702, 16.9, args.destGUID)
+	self:Nameplate(268702, 17.7, args.destGUID)
 end
 
 function mod:FuriousQuakeSuccess(args)
-	self:Nameplate(args.spellId, 16.9, args.sourceGUID)
+	self:Nameplate(args.spellId, 17.7, args.sourceGUID)
 end
 
 do
@@ -741,10 +765,10 @@ end
 -- Taskmaster Askari
 
 function mod:TaskmasterAskariEngaged(guid)
-	self:Nameplate(1214754, 3.8, guid) -- Massive Slam
 	if self:Dispeller("enrage", true, 1213139) then
-		self:Nameplate(1213139, 9.8, guid) -- Overtime!
+		self:Nameplate(1213139, 7.8, guid) -- Overtime!
 	end
+	self:Nameplate(1214754, 11.5, guid) -- Massive Slam
 end
 
 function mod:MassiveSlam(args)
@@ -811,7 +835,7 @@ end
 -- Venture Co. Mastermind
 
 function mod:VentureCoMastermindEngaged(guid)
-	self:Nameplate(473304, 12.6, guid) -- Brainstorm
+	self:Nameplate(473304, 11.2, guid) -- Brainstorm
 end
 
 function mod:Brainstorm(args)
@@ -901,8 +925,8 @@ end
 -- Venture Co. War Machine
 
 function mod:VentureCoWarMachineEngaged(guid)
-	self:Nameplate(269429, 6.1, guid) -- Charged Shot
-	self:Nameplate(262383, 6.8, guid) -- Deploy Crawler Mine
+	self:Nameplate(269429, 8.3, guid) -- Charged Shot
+	self:Nameplate(262383, 18.1, guid) -- Deploy Crawler Mine
 end
 
 function mod:ChargedShot(args)
@@ -927,21 +951,27 @@ end
 
 -- Crawler Mine
 
-function mod:SeekAndDestroyApplied(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "info", nil, args.destName)
+do
+	local prev = 0
+	function mod:SeekAndDestroyApplied(args)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:PlaySound(args.spellId, "info", nil, args.destName)
+		end
+	end
 end
 
 -- Ordnance Specialist
 
 function mod:OrdnanceSpecialistEngaged(guid)
-	self:Nameplate(269090, 0.9, guid) -- Artillery Barrage
+	self:Nameplate(269090, 0.7, guid) -- Artillery Barrage
 end
 
 do
 	local prev = 0
 	function mod:ArtilleryBarrage(args)
-		self:Nameplate(args.spellId, 12.1, args.sourceGUID) -- cooldown on cast start
+		self:Nameplate(args.spellId, 12.1, args.sourceGUID)
 		if args.time - prev > 2 then
 			prev = args.time
 			self:Message(args.spellId, "orange")
