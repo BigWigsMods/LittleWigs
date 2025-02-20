@@ -337,7 +337,7 @@ end
 -- Hired Muscle
 
 function mod:HiredMuscleEngaged(guid)
-	self:Nameplate(463218, 8.3, guid) -- Volatile Keg
+	self:Nameplate(463218, 8.2, guid) -- Volatile Keg
 end
 
 function mod:VolatileKeg(args)
@@ -622,7 +622,7 @@ end
 
 function mod:VentureCoHoneyHarvesterEngaged(guid)
 	if isElevenDotOne then
-		self:Nameplate(442995, 8.4, guid) -- Swarming Surprise
+		self:Nameplate(442995, 8.1, guid) -- Swarming Surprise
 		self:Nameplate(442589, 16.7, guid) -- Beeswax
 	else -- XXX remove in 11.1
 		self:Nameplate(442589, 4.6, guid) -- Beeswax
