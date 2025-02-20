@@ -470,12 +470,14 @@ function mod:OnBossEnable()
 
 	-- Workshop Defender
 	self:RegisterEngageMob("WorkshopDefenderEngaged", 144299)
-	if not isElevenDotOne then
+	if isElevenDotOne then
+		self:Log("SPELL_CAST_SUCCESS", "ShieldGenerator", 293683)
+	else -- XXX remove in 11.1
+		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Shield Generator
 		self:Log("SPELL_CAST_SUCCESS", "Chainblade", 293670) -- XXX removed in 11.1
 		self:Log("SPELL_AURA_APPLIED", "ChainbladeApplied", 293670) -- XXX removed in 11.1
 		self:Log("SPELL_AURA_APPLIED_DOSE", "ChainbladeApplied", 293670) -- XXX removed in 11.1
 	end
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Shield Generator
 	self:Death("WorkshopDefenderDeath", 144299)
 end
 
@@ -1073,6 +1075,18 @@ function mod:WorkshopDefenderEngaged(guid)
 	self:Nameplate(293683, 8.4, guid) -- Shield Generator
 end
 
+do
+	local prev = 0
+	function mod:ShieldGenerator(args)
+		self:Nameplate(args.spellId, 21.8, args.sourceGUID)
+		if args.time - prev > 3 then
+			prev = args.time
+			self:Message(args.spellId, "green")
+			self:PlaySound(args.spellId, "info")
+		end
+	end
+end
+
 function mod:Chainblade(args) -- XXX removed in 11.1
 	self:Nameplate(args.spellId, 16.9, args.sourceGUID)
 end
@@ -1084,7 +1098,7 @@ end
 
 do
 	local prevCast, prev = nil, 0
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId) -- XXX remove in 11.1
 		if spellId == 293683 and castGUID ~= prevCast then -- Shield Generator
 			local t = GetTime()
 			prevCast = castGUID
