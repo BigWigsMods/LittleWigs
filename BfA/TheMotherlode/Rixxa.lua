@@ -13,8 +13,9 @@ mod:SetRespawnTime(31)
 -- Locals
 --
 
-local chemicalBurnCount = 1
 local azeriteCatalystCount = 1
+local propellantBlastCount = 1
+local chemicalBurnCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -22,15 +23,17 @@ local azeriteCatalystCount = 1
 
 function mod:GetOptions()
 	return {
-		{259856, "DISPEL"}, -- Chemical Burn
 		270042, -- Azerite Catalyst
 		259940, -- Propellant Blast
+		275992, -- Gushing Catalyst
+		{259856, "DISPEL"}, -- Chemical Burn
+	}, {
+		[275992] = CL.mythic,
+		[259856] = CL.normal.." / "..CL.heroic,
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_SUCCESS", "ChemicalBurn", 259856)
-	self:Log("SPELL_AURA_APPLIED", "ChemicalBurnApplied", 259853)
 	if isElevenDotOne then
 		self:Log("SPELL_CAST_START", "AzeriteCatalyst", 270042)
 	else
@@ -44,45 +47,33 @@ function mod:OnBossEnable()
 	else
 		self:Log("SPELL_CAST_START", "PropellantBlast", 260669) -- XXX remove in 11.1
 	end
+
+	-- Mythic
+	self:Log("SPELL_CAST_SUCCESS", "GushingCatalyst", 275992)
+
+	-- Normal / Heroic
+	self:Log("SPELL_CAST_SUCCESS", "ChemicalBurn", 259856) -- XXX removed from journal in 11.1, but still cast in Normal
+	self:Log("SPELL_AURA_APPLIED", "ChemicalBurnApplied", 259853) -- XXX removed from journal in 11.1, but still cast in Normal
 end
 
 function mod:OnEngage()
-	chemicalBurnCount = 1
 	azeriteCatalystCount = 1
-	self:CDBar(270042, 6.0) -- Azerite Catalyst
-	self:CDBar(259856, 14.5) -- Chemical Burn
-	self:CDBar(259940, 31.0) -- Propellant Blast
+	propellantBlastCount = 1
+	chemicalBurnCount = 1
+	if self:Mythic() then
+		self:CDBar(275992, 3.0) -- Gushing Catalyst
+		self:CDBar(270042, 10.0) -- Azerite Catalyst
+		self:CDBar(259940, 22.0) -- Propellant Blast
+	else -- Normal, Heroic
+		self:CDBar(270042, 6.0) -- Azerite Catalyst
+		self:CDBar(259856, 14.5) -- Chemical Burn
+		self:CDBar(259940, 31.0) -- Propellant Blast
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-do
-	local playerList = {}
-	local prev = 0
-
-	function mod:ChemicalBurn(args)
-		if args.time - prev > 3 then -- occasionally cast multiple times in a row
-			prev = args.time
-			playerList = {}
-			chemicalBurnCount = chemicalBurnCount + 1
-			if chemicalBurnCount % 2 == 0 then
-				self:CDBar(args.spellId, 15.0)
-			else
-				self:CDBar(args.spellId, 27.0)
-			end
-		end
-	end
-
-	function mod:ChemicalBurnApplied(args)
-		playerList[#playerList+1] = args.destName
-		if self:Me(args.destGUID) or self:Dispeller("magic", nil, 259856) then
-			self:TargetsMessage(259856, "orange", playerList, 2, nil, nil, 1)
-			self:PlaySound(259856, "info", nil, playerList)
-		end
-	end
-end
 
 do
 	local function printTarget(self, player, guid)
@@ -140,21 +131,69 @@ end
 
 	do
 		local prev = 0
-		function mod:PropellantBlast(args)
-			-- always cast twice in a row, only start a bar for the first cast
-			if args.time - prev > 10 then
-				prev = args.time
-				self:CDBar(259940, 42.0)
-				-- takes up to .3s to target for the first cast, but the second cast seems
-				-- to take up to .9s so can't be target scanned.
-				-- also sometimes boss changes targets 22 times over 2.3 seconds so disable target scanning for now
-				--self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
-				self:Message(259940, "yellow", CL.count_amount:format(args.spellName, 1, 2))
+		function mod:PropellantBlast(args) -- XXX can use args.spellId in 11.1
+			if self:Mythic() then
+				local propellantBlastSequence = (propellantBlastCount - 1) % 3 + 1
+				propellantBlastCount = propellantBlastCount + 1
+				self:Message(259940, "yellow", CL.count_amount:format(args.spellName, propellantBlastSequence, 3))
+				if propellantBlastSequence == 3 then
+					self:CDBar(259940, 31.0)
+				else
+					self:CDBar(259940, 11.0)
+				end
 				self:PlaySound(259940, "alert")
-			else
-				self:Message(259940, "yellow", CL.count_amount:format(args.spellName, 2, 2))
-				self:PlaySound(259940, "alert")
+			else -- Normal / Heroic
+				-- always cast twice in a row, only start a bar for the first cast
+				if args.time - prev > 10 then
+					prev = args.time
+					self:CDBar(259940, 42.0)
+					-- takes up to .3s to target for the first cast, but the second cast seems
+					-- to take up to .9s so can't be target scanned.
+					-- also sometimes boss changes targets 22 times over 2.3 seconds so disable target scanning for now
+					--self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
+					self:Message(259940, "yellow", CL.count_amount:format(args.spellName, 1, 2))
+					self:PlaySound(259940, "alert")
+				else
+					self:Message(259940, "yellow", CL.count_amount:format(args.spellName, 2, 2))
+					self:PlaySound(259940, "alert")
+				end
 			end
 		end
 	end
 --end
+
+-- Mythic
+
+function mod:GushingCatalyst(args)
+	self:Message(args.spellId, "cyan")
+	self:CDBar(args.spellId, 53.0)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Normal / Heroic
+
+do
+	local playerList = {}
+	local prev = 0
+
+	function mod:ChemicalBurn(args)
+		if args.time - prev > 3 then -- occasionally cast multiple times in a row
+			prev = args.time
+			playerList = {}
+			chemicalBurnCount = chemicalBurnCount + 1
+			if chemicalBurnCount % 2 == 0 then
+				self:CDBar(args.spellId, 15.0)
+			else
+				self:CDBar(args.spellId, 27.0)
+			end
+		end
+	end
+
+	function mod:ChemicalBurnApplied(args)
+		playerList[#playerList+1] = args.destName
+		if self:Me(args.destGUID) or self:Dispeller("magic", nil, 259856) then
+			self:TargetsMessage(259856, "orange", playerList, 2, nil, nil, 1)
+			self:PlaySound(259856, "info", nil, playerList)
+		end
+	end
+end
