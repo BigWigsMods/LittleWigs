@@ -294,7 +294,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "InterruptingRoar", 342135)
 
 	-- Nekthara the Mangler / Harugia the Bloodthirsty
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- for 336995, Whirling Blade
+	if isElevenDotOne then
+		self:Log("SPELL_CAST_SUCCESS", "WhirlingBlade", 336995)
+	else -- XXX remove in 11.1
+		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- for 336995, Whirling Blade
+	end
 	self:Log("SPELL_DAMAGE", "WhirlingBladeDamage", 337037)
 	self:Log("SPELL_MISSED", "WhirlingBladeDamage", 337037)
 
@@ -631,7 +635,7 @@ end
 function mod:NektharaTheManglerEngaged(guid)
 	self:Nameplate(317605, 1.9, guid) -- Whirlwind
 	self:Nameplate(336995, 2.1, guid) -- Whirling Blade
-	self:Nameplate(342135, 9.2, guid) -- Interrupting Roar
+	self:Nameplate(342135, 6.8, guid) -- Interrupting Roar
 end
 
 function mod:HeavinTheBreakerEngaged(guid)
@@ -742,7 +746,7 @@ end
 
 do
 	local prev
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId) -- XXX remove in 11.1
 		if castGUID ~= prev and spellId == 336995 then -- Whirling Blade
 			prev = castGUID
 			local unitGUID = self:UnitGUID(unit)
@@ -755,11 +759,14 @@ do
 	end
 end
 
---function mod:WhirlingBlade(args)
-	--self:Message(args.spellId, "red")
-	--self:Nameplate(args.spellId, 13.3, args.sourceGUID)
-	--self:PlaySound(args.spellId, "alarm")
---end
+function mod:WhirlingBlade(args)
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) and UnitCanAttack("player", unit) then
+		self:Message(args.spellId, "red")
+		self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
+	end
+end
 
 do
 	local prev = 0
@@ -1044,8 +1051,8 @@ end
 -- Soulforged Bonereaver
 
 function mod:SoulforgedBonereaverEngaged(guid)
-	self:Nameplate(331237, 5.0, guid) -- Bone Spikes
-	self:Nameplate(331223, 21.7, guid) -- Bonestorm
+	self:Nameplate(331237, 4.8, guid) -- Bone Spikes
+	self:Nameplate(331223, 21.4, guid) -- Bonestorm
 end
 
 function mod:Bonestorm(args)
