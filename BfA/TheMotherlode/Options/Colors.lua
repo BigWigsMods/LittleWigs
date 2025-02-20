@@ -13,7 +13,7 @@ BigWigs:AddColors("Coin-Operated Crowd Pummeler", {
 BigWigs:AddColors("Azerokk", {
 	[257582] = {"blue","red"},
 	[257593] = "cyan",
-	[258622] = "orange",
+	[258622] = {"blue","orange"},
 	[271698] = "yellow",
 	[275907] = "red",
 })

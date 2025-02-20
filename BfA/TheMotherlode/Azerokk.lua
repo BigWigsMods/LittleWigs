@@ -40,10 +40,16 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- for Azerite Infusion timer
-	self:Log("SPELL_CAST_SUCCESS", "AzeriteInfusion", 271698)
+	if isElevenDotOne then
+		self:Log("SPELL_CAST_SUCCESS", "AzeriteInfusionCheck", 257596)
+		self:Log("SPELL_CAST_START", "AzeriteInfusion", 271698)
+	else -- XXX remove in 11.1
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- for Azerite Infusion timer
+		self:Log("SPELL_CAST_SUCCESS", "AzeriteInfusion", 271698)
+	end
 	self:Log("SPELL_CAST_START", "ResonantQuake", 258622)
-	-- TODO ResonantQuakeDamage
+	self:Log("SPELL_PERIODIC_DAMAGE", "ResonantQuakeDamage", 258628)
+	self:Log("SPELL_PERIODIC_MISSED", "ResonantQuakeDamage", 258628)
 	self:Log("SPELL_CAST_START", "CallEarthrager", 257593)
 	self:Log("SPELL_AURA_APPLIED", "RagingGazeApplied", 257582)
 	self:Log("SPELL_AURA_REMOVED", "RagingGazeRemoved", 257582)
@@ -54,11 +60,11 @@ function mod:OnEngage()
 	resonantQuakeCount = 1
 	tectonicSmashCount = 1
 	if isElevenDotOne then
-		self:CDBar(275907, 5.1) -- Tectonic Smash
 		-- XXX on 11.1 PTR the Dungeon Journal says Azerite Infusion is Heroic+ but it's still cast in Normal
-		self:CDBar(271698, 9.6) -- Azerite Infusion
-		self:CDBar(258622, 29.0, CL.count:format(self:SpellName(258622), resonantQuakeCount)) -- Resonant Quake
-		self:CDBar(257593, 40.4) -- Call Earthrager
+		self:CDBar(271698, 5.2) -- Azerite Infusion
+		self:CDBar(275907, 12.1) -- Tectonic Smash
+		self:CDBar(258622, 32.7, CL.count:format(self:SpellName(258622), resonantQuakeCount)) -- Resonant Quake
+		self:CDBar(257593, 40.2) -- Call Earthrager
 	else -- XXX remove in 11.1
 		self:Bar(258622, 9.5, CL.count:format(self:SpellName(258622), resonantQuakeCount)) -- Resonant Pulse
 		self:Bar(271698, 20) -- Azerite Infusion
@@ -73,16 +79,18 @@ end
 -- Event Handlers
 --
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId) -- XXX remove in 11.1
 	if spellId == 257596 then -- Azerite Infusion
 		-- the timer for Azerite Infusion is based off of 257596, but if there are no Earthragers alive
 		-- then 271698 won't be cast.
-		if isElevenDotOne then
-			self:CDBar(271698, 40.1) -- Azerite Infusion
-		else -- XXX remove in 11.1
-			self:CDBar(271698, 17) -- Azerite Infusion
-		end
+		self:CDBar(271698, 17) -- Azerite Infusion
 	end
+end
+
+function mod:AzeriteInfusionCheck()
+	-- the timer for Azerite Infusion is based off of 257596, but if there are no Earthragers alive
+	-- then 271698 won't be cast.
+	self:CDBar(271698, 41.3) -- Azerite Infusion
 end
 
 function mod:AzeriteInfusion(args)
@@ -95,17 +103,28 @@ function mod:ResonantQuake(args)
 	self:Message(args.spellId, "orange", CL.count:format(args.spellName, resonantQuakeCount))
 	resonantQuakeCount = resonantQuakeCount + 1
 	if isElevenDotOne then
-		self:CDBar(args.spellId, 41.3, CL.count:format(args.spellName, resonantQuakeCount))
+		self:CDBar(args.spellId, 40.1, CL.count:format(args.spellName, resonantQuakeCount))
 	else -- XXX remove in 11.1
 		self:CDBar(args.spellId, 34, CL.count:format(args.spellName, resonantQuakeCount))
 	end
 	self:PlaySound(args.spellId, "long")
 end
 
+do
+	local prev = 0
+	function mod:ResonantQuakeDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(258622, "underyou")
+			self:PlaySound(258622, "underyou")
+		end
+	end
+end
+
 function mod:CallEarthrager(args)
 	self:Message(args.spellId, "cyan")
 	if isElevenDotOne then
-		self:CDBar(args.spellId, 42.1)
+		self:CDBar(args.spellId, 41.2)
 	--else -- XXX remove in 11.1
 		-- The boss casts "Set Energy to 0" (280479) every 60 sec.
 		-- There is a chance that the boss will cast Call Earthrager afterwards,
@@ -123,7 +142,7 @@ do
 		if self:Me(args.destGUID) then
 			self:Nameplate(args.spellId, 60, args.sourceGUID, CL.fixate)
 			local t = args.time
-			if t - prev > 1 then -- you can be fixated more than once
+			if t - prev > 1.5 then -- you can be fixated more than once
 				prev = t
 				self:PlaySound(args.spellId, "warning")
 				self:Say(args.spellId, CL.fixate, nil, "Fixate")
@@ -143,11 +162,11 @@ function mod:TectonicSmash(args)
 	tectonicSmashCount = tectonicSmashCount + 1
 	if isElevenDotOne then
 		if tectonicSmashCount % 2 == 0 then
-			self:CDBar(args.spellId, 19.4)
+			self:CDBar(args.spellId, 15.4)
 		elseif tectonicSmashCount == 3 then
-			self:CDBar(args.spellId, 21.5)
+			self:CDBar(args.spellId, 24.3)
 		else
-			self:CDBar(args.spellId, 23.1)
+			self:CDBar(args.spellId, 26.7)
 		end
 	else -- XXX remove in 11.1
 		self:CDBar(args.spellId, 21)
