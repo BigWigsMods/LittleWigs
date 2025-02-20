@@ -2,10 +2,10 @@
 BigWigs:AddColors("Coin-Operated Crowd Pummeler", {
 	[256493] = {"blue","green"},
 	[257337] = "orange",
-	[262347] = "yellow",
+	[262347] = "red",
 	[269493] = "cyan",
 	[271784] = "yellow",
-	[271867] = "red",
+	[271867] = "purple",
 	[271903] = "purple",
 	[1217294] = "orange",
 })
