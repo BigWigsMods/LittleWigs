@@ -1,3 +1,4 @@
+local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -34,7 +35,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Meat Hooks
+	if isElevenDotOne then
+		self:Log("SPELL_CAST_SUCCESS", "MeatHooks", 322795)
+	else -- XXX remove when 11.1 is live
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Meat Hooks
+	end
 	self:Log("SPELL_CAST_START", "HatefulStrike", 323515)
 	self:Log("SPELL_PERIODIC_DAMAGE", "VileGasDamage", 323750)
 	self:Log("SPELL_PERIODIC_MISSED", "VileGasDamage", 323750)
@@ -66,7 +71,18 @@ do
 		mod:PlaySound(322795, "long")
 	end
 
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	function mod:MeatHooks(args)
+		-- The boss casts Meat Hooks 5 seconds before anything actually happens
+		self:ScheduleTimer(warnMeatHooks, 5)
+		-- correct the Meat Hooks timer
+		if meatHooksCount == 1 then
+			self:CDBar(args.spellId, {5, 10.2})
+		else
+			self:CDBar(args.spellId, {5, 20.6})
+		end
+	end
+
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId) -- XXX remove in 11.1
 		-- The boss casts Meat Hooks 5 seconds before anything actually happens
 		if spellId == 322795 then -- Meat Hooks
 			self:ScheduleTimer(warnMeatHooks, 5)
