@@ -249,7 +249,7 @@ end
 
 function mod:RankOverseerEngaged(guid)
 	if isElevenDotOne then
-		self:Nameplate(423501, 9.7, guid) -- Wild Wallop
+		self:Nameplate(423501, 9.5, guid) -- Wild Wallop
 		self:Nameplate(428066, 11.1, guid) -- Overpowering Roar
 	else -- XXX remove in 11.1
 		self:Nameplate(423501, 5.1, guid) -- Wild Wallop
@@ -393,7 +393,7 @@ end
 -- Kobold Taskworker
 
 function mod:KoboldTaskworkerEngaged(guid)
-	self:Nameplate(426883, 3.6, guid) -- Bonk!
+	self:Nameplate(426883, 3.2, guid) -- Bonk!
 end
 
 function mod:Bonk(args)
@@ -555,15 +555,22 @@ do
 		self:Nameplate(args.spellId, 36.4, args.sourceGUID)
 	end
 
-	function mod:BurningCandles(args)
-		if timer then
-			self:CancelTimer(timer)
+	do
+		local prev = 0
+		function mod:BurningCandles(args)
+			-- cast once per player
+			if args.time - prev > 5 then
+				prev = args.time
+				if timer then
+					self:CancelTimer(timer)
+				end
+				self:Message(args.spellId, "cyan")
+				self:CDBar(args.spellId, 12.2)
+				self:Nameplate(args.spellId, 12.2, args.sourceGUID)
+				self:PlaySound(args.spellId, "info")
+				timer = self:ScheduleTimer("SootsnoutDeath", 40)
+			end
 		end
-		self:Message(args.spellId, "cyan")
-		self:CDBar(args.spellId, 12.2)
-		self:Nameplate(args.spellId, 12.2, args.sourceGUID)
-		self:PlaySound(args.spellId, "info")
-		timer = self:ScheduleTimer("SootsnoutDeath", 40)
 	end
 
 	do
