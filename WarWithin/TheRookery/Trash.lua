@@ -57,12 +57,10 @@ if isElevenDotOne then
 			-- Cursed Rooktender
 			{427260, "NAMEPLATE"}, -- Lightning Surge
 			-- Unruly Stormrook
-			{427616, "NAMEPLATE"}, -- Energized Barrage
-			{430013, "NAMEPLATE"}, -- Thunderstrike
+			{427616, "ME_ONLY", "OFF"}, -- Energized Barrage
 			-- Void-Cursed Crusher
 			{474031, "SAY", "NAMEPLATE"}, -- Void Crush
 			-- Corrupted Oracle
-			{430754, "NAMEPLATE"}, -- Void Shell XXX removed in 11.1?
 			{430179, "SAY", "NAMEPLATE"}, -- Seeping Corruption
 			-- Coalescing Void Diffuser
 			{430812, "NAMEPLATE"}, -- Attracting Shadows
@@ -81,7 +79,7 @@ if isElevenDotOne then
 			[427260] = L.cursed_rooktender,
 			[427616] = L.unruly_stormrook,
 			[474031] = L.void_cursed_crusher,
-			[430754] = L.corrupted_oracle,
+			[430179] = L.corrupted_oracle,
 			[430812] = L.coalescing_void_diffuser,
 			[443854] = L.inflicted_civilian,
 			[1214546] = L.void_ascendant,
@@ -159,29 +157,30 @@ function mod:OnBossEnable()
 	self:Death("CursedRooktenderDeath", 207199)
 
 	-- Unruly Stormrook
-	self:RegisterEngageMob("UnrulyStormrookEngaged", 207186)
-	self:Log("SPELL_CAST_START", "EnergizedBarrage", 427616)
 	if isElevenDotOne then
-		self:Log("SPELL_INTERRUPT", "EnergizedBarrageInterrupt", 427616)
-		self:Log("SPELL_CAST_SUCCESS", "EnergizedBarrageSuccess", 427616)
+		self:Log("SPELL_AURA_APPLIED", "EnergizedBarrageApplied", 427616)
 	else -- XXX remove when 11.1 is live
+		self:RegisterEngageMob("UnrulyStormrookEngaged", 207186)
+		self:Log("SPELL_CAST_START", "EnergizedBarrage", 427616) -- XXX no CD in 11.1, not interruptible
 		self:Log("SPELL_CAST_START", "Thunderstrike", 430013) -- XXX removed in 11.1
+		self:Death("UnrulyStormrookDeath", 207186)
 	end
-	self:Death("UnrulyStormrookDeath", 207186)
 
 	-- Void-Cursed Crusher
 	self:RegisterEngageMob("VoidCursedCrusherEngaged", 214419)
 	if isElevenDotOne then
 		self:Log("SPELL_CAST_START", "VoidCrush", 474031)
 		self:Log("SPELL_CAST_SUCCESS", "VoidCrushSuccess", 474031)
-	else
+	else -- XXX remove in 11.1
 		self:Log("SPELL_CAST_START", "Implosion", 423979)
 	end
 	self:Death("VoidCursedCrusherDeath", 214419)
 
 	-- Corrupted Oracle
 	self:RegisterEngageMob("CorruptedOracleEngaged", 214439)
-	self:Log("SPELL_CAST_START", "VoidShell", 430754) -- XXX removed in 11.1?
+	if not isElevenDotOne then
+		self:Log("SPELL_CAST_START", "VoidShell", 430754) -- XXX removed in 11.1?
+	end
 	self:Log("SPELL_CAST_SUCCESS", "SeepingCorruption", 430179)
 	self:Log("SPELL_AURA_APPLIED", "SeepingCorruptionApplied", 430179)
 	self:Death("CorruptedOracleDeath", 214439)
@@ -241,8 +240,8 @@ do
 	function mod:QuartermasterKoratiteEngaged(guid)
 		self:CDBar(426893, 5.2) -- Bounding Void
 		self:Nameplate(426893, 5.2, guid) -- Bounding Void
-		self:CDBar(450628, 9.0) -- Entropy Shield
-		self:Nameplate(450628, 9.0, guid) -- Entropy Shield
+		self:CDBar(450628, 8.8) -- Entropy Shield
+		self:Nameplate(450628, 8.8, guid) -- Entropy Shield
 		timer = self:ScheduleTimer("QuartermasterKoratiteDeath", 30)
 	end
 
@@ -251,8 +250,13 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red")
-		self:CDBar(args.spellId, 12.1)
-		self:Nameplate(args.spellId, 12.1, args.sourceGUID)
+		if isElevenDotOne then
+			self:CDBar(args.spellId, 18.2)
+			self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+		else -- XXX remove in 11.1
+			self:CDBar(args.spellId, 12.1)
+			self:Nameplate(args.spellId, 12.1, args.sourceGUID)
+		end
 		self:PlaySound(args.spellId, "alarm")
 		timer = self:ScheduleTimer("QuartermasterKoratiteDeath", 30)
 	end
@@ -360,16 +364,25 @@ end
 
 -- Unruly Stormrook
 
-function mod:UnrulyStormrookEngaged(guid)
-	if not isElevenDotOne then
-		self:Nameplate(430013, 5.7, guid) -- Thunderstrike
+do
+	local prev = 0
+	function mod:EnergizedBarrageApplied(args)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:TargetMessage(args.spellId, "orange", args.destName)
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
+		end
 	end
+end
+
+function mod:UnrulyStormrookEngaged(guid) -- XXX remove in 11.1
+	self:Nameplate(430013, 5.7, guid) -- Thunderstrike
 	self:Nameplate(427616, 9.4, guid) -- Energized Barrage
 end
 
 do
 	local prev = 0
-	function mod:Thunderstrike(args) -- TODO removed in 11.1
+	function mod:Thunderstrike(args) -- XXX removed in 11.1
 		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 		local t = args.time
 		if t - prev > 2 then
@@ -380,42 +393,20 @@ do
 	end
 end
 
-if isElevenDotOne then -- XXX remove this check when 11.1 is live
-	do
-		local prev = 0
-		function mod:EnergizedBarrage(args)
-			self:Nameplate(args.spellId, 0, args.sourceGUID)
-			if args.time - prev > 1.5 then
-				prev = args.time
-				self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-				self:PlaySound(args.spellId, "alert")
-			end
-		end
-	end
-
-	function mod:EnergizedBarrageInterrupt(args)
-		self:Nameplate(427616, 19.7, args.destGUID)
-	end
-
-	function mod:EnergizedBarrageSuccess(args)
-		self:Nameplate(args.spellId, 19.7, args.sourceGUID)
-	end
-else -- XXX remove the block below when 11.1 is live
-	do
-		local prev = 0
-		function mod:EnergizedBarrage(args)
-			self:Nameplate(args.spellId, 23.0, args.sourceGUID)
-			local t = args.time
-			if t - prev > 2 then
-				prev = t
-				self:Message(args.spellId, "purple")
-				self:PlaySound(args.spellId, "alert")
-			end
+do
+	local prev = 0
+	function mod:EnergizedBarrage(args) -- XXX remove in 11.1
+		self:Nameplate(args.spellId, 23.0, args.sourceGUID)
+		local t = args.time
+		if t - prev > 2 then
+			prev = t
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
 
-function mod:UnrulyStormrookDeath(args)
+function mod:UnrulyStormrookDeath(args) -- XXX remove in 11.1
 	self:ClearNameplate(args.destGUID)
 end
 
