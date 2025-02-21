@@ -7,9 +7,12 @@ if not mod then return end
 mod:RegisterEnableMob(208743) -- Blazikon
 mod:SetEncounterID(2826)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	423080, -- Extinguishing Gust
-})
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local dousingBreathCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -22,7 +25,8 @@ function mod:GetOptions()
 		423109, -- Enkindling Inferno
 		425394, -- Dousing Breath
 		443835, -- Blazing Storms
-		{421910, "PRIVATE"}, -- Extinguishing Gust (Mythic)
+		-- Mythic
+		421910, -- Extinguishing Gust
 	}, {
 		[421910] = CL.mythic,
 	}
@@ -43,12 +47,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	dousingBreathCount = 1
 	if self:Mythic() then
 		self:CDBar(425394, 3.4) -- Dousing Breath
 		self:CDBar(421817, 6.9) -- Wicklighter Barrage
 		self:CDBar(423109, 20.7) -- Enkindling Inferno
 		self:CDBar(421910, 25.5) -- Extinguishing Gust
-		self:CDBar(424212, 37.7) -- Incite Flames
+		self:CDBar(424212, 37.6) -- Incite Flames
 	else
 		self:CDBar(425394, 3.4) -- Dousing Breath
 		self:CDBar(421817, 9.5) -- Wicklighter Barrage
@@ -68,7 +73,7 @@ do
 		playerList = {}
 		self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
 		if self:Mythic() then
-			self:CDBar(args.spellId, 60.0)
+			self:CDBar(args.spellId, 60.7)
 		else
 			self:CDBar(args.spellId, 30.0)
 		end
@@ -105,7 +110,7 @@ end
 function mod:EnkindlingInferno(args)
 	self:Message(args.spellId, "red")
 	if self:Mythic() then
-		self:CDBar(args.spellId, 29.1)
+		self:CDBar(args.spellId, 30.3)
 	else
 		self:CDBar(args.spellId, 31.6)
 	end
@@ -114,8 +119,13 @@ end
 
 function mod:DousingBreath(args)
 	self:Message(args.spellId, "cyan")
+	dousingBreathCount = dousingBreathCount + 1
 	if self:Mythic() then
-		self:CDBar(args.spellId, 55.8)
+		if dousingBreathCount == 2 then
+			self:CDBar(args.spellId, 55.8)
+		else -- 3+
+			self:CDBar(args.spellId, 60.7)
+		end
 	else
 		self:CDBar(args.spellId, 31.6)
 	end
@@ -135,5 +145,10 @@ end
 function mod:ExtinguishingGust(args)
 	self:Message(args.spellId, "cyan")
 	self:CDBar(args.spellId, 59.5)
-	self:PlaySound(args.spellId, "info")
+	-- targets 4 players (with hidden aura 1218321), preferring not to target the tank
+	if self:Tank() then
+		self:PlaySound(args.spellId, "info")
+	else
+		self:PlaySound(args.spellId, "warning")
+	end
 end
