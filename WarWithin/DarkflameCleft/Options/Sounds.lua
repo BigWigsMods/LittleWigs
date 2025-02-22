@@ -1,9 +1,9 @@
 
 BigWigs:AddSounds("Ol' Waxbeard", {
 	[422116] = "alarm",
+	[422163] = {"info","warning"},
 	[422245] = "alert",
-	[423693] = {"info","warning"},
-	[429093] = "long",
+	[429093] = {"info","long"},
 })
 
 BigWigs:AddSounds("Blazikon", {

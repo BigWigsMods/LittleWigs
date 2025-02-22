@@ -18,6 +18,11 @@ if L then
 	--L.minecart_over = "Winner: %s (%d hits)"
 end
 
+L = BigWigs:NewBossLocale("Ol' Waxbeard", "esES") or BigWigs:NewBossLocale("Ol' Waxbeard", "esMX")
+if L then
+	--L.dynamite_mine_cart = "Dynamite Mine Cart"
+end
+
 L = BigWigs:NewBossLocale("The Darkness", "esES") or BigWigs:NewBossLocale("The Darkness", "esMX")
 if L then
 	--L.wriggling_darkspawn = "Wriggling Darkspawn"
