@@ -38,6 +38,11 @@ function mod:GetOptions()
 	}
 end
 
+function mod:OnRegister()
+	-- delayed for custom locale
+	dynamiteMineCartMarker = mod:AddMarkerOption(true, "npc", 8, "dynamite_mine_cart", 8)
+end
+
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss1") -- Reckless Charge, Luring Candleflame
 	self:Log("SPELL_CAST_START", "RockBuster", 422245)
