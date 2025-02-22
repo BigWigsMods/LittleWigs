@@ -17,7 +17,7 @@ BigWigs:AddColors("Blazikon", {
 
 BigWigs:AddColors("The Candle King", {
 	[420659] = "cyan",
-	[420696] = "orange",
+	[420696] = {"blue","orange"},
 	[421067] = "blue",
 	[421653] = "blue",
 	[422648] = {"blue","orange"},
