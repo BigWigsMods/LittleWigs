@@ -5,7 +5,6 @@
 <Script file="SpeakerHalven.lua"/>
 <Script file="CultLeaders.lua"/>
 
-<Include file="Locales\locales.xml"/>
 <Include file="Options\options.xml"/>
 
 </Ui>
