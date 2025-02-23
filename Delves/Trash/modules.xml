@@ -7,7 +7,7 @@
 <Script file="Nerubian.lua"/>
 <Script file="Nightfall.lua"/>
 <Script file="Underkeep.lua"/>
-<Script file="Rares.lua"/>
+<Script file="ZekvirRares.lua"/>
 
 <Include file="Locales\locales.xml"/>
 <Include file="Options\options.xml"/>

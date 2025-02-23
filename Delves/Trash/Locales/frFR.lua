@@ -66,7 +66,7 @@ if L then
 	L.web_marauder = "Maraudeur des toiles"
 end
 
-L = BigWigs:NewBossLocale("Delve Rares", "frFR")
+L = BigWigs:NewBossLocale("Zekvir Rares", "frFR")
 if L then
 	L.rares = "Rares"
 

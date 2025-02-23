@@ -116,7 +116,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "WebLaunch", 433448)
 
 	-- also enable the Rares module
-	local raresModule = BigWigs:GetBossModule("Delve Rares", true)
+	local raresModule = BigWigs:GetBossModule("Zekvir Rares", true)
 	if raresModule then
 		raresModule:Enable()
 	end

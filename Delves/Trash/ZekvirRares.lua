@@ -2,19 +2,22 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Delve Rares", {2664, 2679, 2680, 2681, 2683, 2684, 2685, 2686, 2687, 2688, 2689, 2690}) -- All Delves
+local mod, CL = BigWigs:NewBoss("Zekvir Rares", {2664, 2679, 2680, 2681, 2683, 2684, 2685, 2686, 2687, 2688, 2689, 2690}) -- TWW Season 1 Delves
 if not mod then return end
 mod:RegisterEnableMob(
+	-- TWW Season 1, standard rares
 	223541, -- Stolen Loader
 	207482, -- Invasive Sporecap
 	228044, -- Reno Jackson
 	228030, -- Sir Finley Mrgglton
 	208728, -- Treasure Wraith
+	-- TWW Season 1, Zekvir lieutenants
 	227632, -- Venombite
 	227635, -- Kas'dru
 	227513, -- Tala
 	227514, -- Velo
 	227573, -- Anub'vir
+	-- Zekvir
 	227471, -- Zekvir (unattackable)
 	217208 -- Zekvir (random spawn)
 )
@@ -221,9 +224,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red", CL.frontal_cone)
-		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 17.0, CL.frontal_cone)
 		timer = self:ScheduleTimer("StolenLoaderDeath", 30)
+		self:PlaySound(args.spellId, "alarm")
 	end
 
 	function mod:MagmaHammer(args)
@@ -231,9 +234,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "purple")
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 9.3)
 		timer = self:ScheduleTimer("StolenLoaderDeath", 30)
+		self:PlaySound(args.spellId, "alert")
 	end
 
 	function mod:StolenLoaderDeath()
@@ -291,9 +294,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 15.8)
 		timer = self:ScheduleTimer("RenoJacksonDefeated", 30)
+		self:PlaySound(args.spellId, "alert")
 	end
 
 	function mod:SpikeTraps(args)
@@ -301,9 +304,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 20.6)
 		timer = self:ScheduleTimer("RenoJacksonDefeated", 30)
+		self:PlaySound(args.spellId, "alarm")
 	end
 
 	function mod:SupplyBag(args)
@@ -327,8 +330,8 @@ end
 
 function mod:Consecration(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
 	--self:CDBar(args.spellId, 17.0)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 do
@@ -357,9 +360,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 17.6)
 		timer = self:ScheduleTimer("TreasureWraithDeath", 30)
+		self:PlaySound(args.spellId, "alarm")
 	end
 
 	function mod:Castigate(args)
@@ -367,9 +370,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 17.5)
 		timer = self:ScheduleTimer("TreasureWraithDeath", 30)
+		self:PlaySound(args.spellId, "alert")
 	end
 
 	function mod:TreasureWraithDeath()
@@ -392,9 +395,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "cyan")
-		self:PlaySound(args.spellId, "info")
 		self:CDBar(args.spellId, 21.8)
 		timer = self:ScheduleTimer("VenombiteDeath", 30)
+		self:PlaySound(args.spellId, "info")
 	end
 
 	function mod:VenomBite(args)
@@ -402,9 +405,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "purple", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 10.3)
 		timer = self:ScheduleTimer("VenombiteDeath", 30)
+		self:PlaySound(args.spellId, "alert")
 	end
 
 	function mod:VenombiteDeath()
@@ -427,9 +430,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "alarm")
 		self:CDBar(args.spellId, 23.0)
 		timer = self:ScheduleTimer("KasdruDeath", 30)
+		self:PlaySound(args.spellId, "alarm")
 	end
 
 	function mod:VenomVolley(args)
@@ -437,9 +440,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red")
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 18.2)
 		timer = self:ScheduleTimer("KasdruDeath", 30)
+		self:PlaySound(args.spellId, "alert")
 	end
 
 	function mod:KasdruDeath()
@@ -462,9 +465,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 17.8)
 		timer = self:ScheduleTimer("TalaDeath", 30)
+		self:PlaySound(args.spellId, "alert")
 	end
 
 	function mod:TalaDeath()
@@ -486,8 +489,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "alarm")
 		timer = self:ScheduleTimer("VeloDeath", 30)
+		self:PlaySound(args.spellId, "alarm")
 	end
 
 	function mod:VoidSliceSuccess(args)
@@ -500,9 +503,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
 		self:CDBar(args.spellId, 21.8)
 		timer = self:ScheduleTimer("VeloDeath", 30)
+		self:PlaySound(args.spellId, "alert")
 	end
 
 	function mod:VeloDeath()
