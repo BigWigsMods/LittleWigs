@@ -45,6 +45,8 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ThrowWax", 450330)
 	self:Log("SPELL_CAST_START", "NoxiousGas", 450128)
+	self:Log("SPELL_PERIODIC_DAMAGE", "NoxiousGasDamage", 450133)
+	self:Log("SPELL_PERIODIC_MISSED", "NoxiousGasDamage", 450133)
 	self:Log("SPELL_CAST_START", "BurnAway", 450142)
 end
 
@@ -100,6 +102,17 @@ function mod:NoxiousGas(args)
 		self:CDBar(450142, {6.47, 24.2}) -- Burn Away
 	end
 	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local prev = 0
+	function mod:NoxiousGasDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(450128, "underyou")
+			self:PlaySound(450128, "underyou")
+		end
+	end
 end
 
 function mod:BurnAway(args)
