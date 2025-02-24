@@ -20,7 +20,7 @@ end
 
 L = BigWigs:NewBossLocale("Ol' Waxbeard", "koKR")
 if L then
-	--L.dynamite_mine_cart = "Dynamite Mine Cart"
+	L.dynamite_mine_cart = "다이너마이트 광산 수레"
 end
 
 L = BigWigs:NewBossLocale("The Darkness", "koKR")

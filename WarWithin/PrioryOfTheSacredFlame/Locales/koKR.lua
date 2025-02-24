@@ -19,11 +19,11 @@ if L then
 	L.risen_mage = "되살아난 마법사"
 	L.sir_braunpyke = "브라운파이크 경"
 
-	--L.baron_braunpyke_warmup_trigger = "They've served their purpose. Baron, demonstrate your worth."
+	L.baron_braunpyke_warmup_trigger = "저들은 사명을 다했소. 남작, 이제 당신의 가치를 증명하시오."
 	L.custom_on_autotalk_desc = "|cFFFF0000사제나 성기사가 필요합니다.|r '신성한 불꽃의 축복' 오라를 부여하는 NPC 대화 옵션을 자동으로 선택합니다."
 end
 
 L = BigWigs:NewBossLocale("Baron Braunpyke", "koKR")
 if L then
-	--L.charges = "%d charges"
+	L.charges = "%d 충전"
 end
