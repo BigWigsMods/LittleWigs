@@ -78,6 +78,7 @@ function mod:OnBossEnable()
 	-- The Puppetmaster? (Final Stage)
 	self:Log("SPELL_CAST_START", "JaggedBarbs", 450714)
 	self:Log("SPELL_CAST_START", "StingingSwarm", 448663)
+	self:Log("SPELL_CAST_SUCCESS", "StingingSwarmSuccess", 448663)
 end
 
 function mod:OnEngage()
@@ -203,6 +204,9 @@ end
 
 function mod:StingingSwarm(args)
 	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 31.6)
 	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:StingingSwarmSuccess(args)
+	self:CDBar(args.spellId, 29.1)
 end
