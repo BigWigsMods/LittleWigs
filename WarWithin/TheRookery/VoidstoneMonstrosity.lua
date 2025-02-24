@@ -189,8 +189,8 @@ do
 		if self:Me(args.destGUID) then
 			self:Say(args.spellId, nil, nil, "Stormrider's Charge")
 			if isElevenDotOne then
-				self:SayCountdown(args.spellId, 9)
-			else
+				self:SayCountdown(args.spellId, 12)
+			else -- XXX remove in 11.1
 				self:SayCountdown(args.spellId, 6)
 			end
 		end
