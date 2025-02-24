@@ -11,6 +11,7 @@ if L then
 	L.arathi_knight = "아라시 기사"
 	L.arathi_footman = "아라시 보병"
 	L.fervent_sharpshooter = "열성적인 명사수"
+	L.war_lynx = "전투용 스라소니"
 	L.devout_priest = "기원의 사제"
 	L.fanatical_conjuror = "광적인 창조술사"
 	L.lightspawn = "빛의 정령"

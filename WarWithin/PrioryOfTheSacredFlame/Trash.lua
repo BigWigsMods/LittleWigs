@@ -19,6 +19,7 @@ mod:RegisterEnableMob(
 	206696, -- Arathi Knight
 	206705, -- Arathi Footman
 	206694, -- Fervent Sharpshooter
+	206699, -- War Lynx
 	206697, -- Devout Priest
 	206698, -- Fanatical Conjuror
 	206710, -- Lightspawn
@@ -54,6 +55,7 @@ if L then
 	L.arathi_knight = "Arathi Knight"
 	L.arathi_footman = "Arathi Footman"
 	L.fervent_sharpshooter = "Fervent Sharpshooter"
+	L.war_lynx = "War Lynx"
 	L.devout_priest = "Devout Priest"
 	L.fanatical_conjuror = "Fanatical Conjuror"
 	L.lightspawn = "Lightspawn"
@@ -102,6 +104,8 @@ if isElevenDotOne then
 			{426964, "TANK", "NAMEPLATE"}, -- Mortal Strike
 			-- Fervent Sharpshooter
 			{453458, "DISPEL", "NAMEPLATE"}, -- Caltrops
+			-- War Lynx
+			{446776, "OFF", "NAMEPLATE"}, -- Pounce
 			-- Devout Priest
 			{427356, "NAMEPLATE"}, -- Greater Heal
 			-- Fanatical Conjuror
@@ -127,6 +131,7 @@ if isElevenDotOne then
 			[427609] = L.arathi_knight,
 			[427342] = L.arathi_footman,
 			[453458] = L.fervent_sharpshooter,
+			[446776] = L.war_lynx,
 			[427356] = L.devout_priest,
 			[427484] = L.fanatical_conjuror,
 			[448787] = L.lightspawn,
@@ -167,6 +172,8 @@ else -- XXX remove in 11.1
 			{426964, "TANK", "NAMEPLATE"}, -- Mortal Strike
 			-- Fervent Sharpshooter
 			{453458, "DISPEL", "NAMEPLATE"}, -- Caltrops
+			-- War Lynx
+			{446776, "OFF", "NAMEPLATE"}, -- Pounce
 			-- Devout Priest
 			{427356, "NAMEPLATE"}, -- Greater Heal
 			{427346, "DISPEL", "NAMEPLATE"}, -- Inner Fire XXX removed in 11.1
@@ -192,6 +199,7 @@ else -- XXX remove in 11.1
 			[427609] = L.arathi_knight,
 			[427342] = L.arathi_footman,
 			[453458] = L.fervent_sharpshooter,
+			[446776] = L.war_lynx,
 			[427356] = L.devout_priest,
 			[427484] = L.fanatical_conjuror,
 			[448787] = L.lightspawn,
@@ -280,6 +288,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Caltrops", 453458)
 	self:Log("SPELL_AURA_APPLIED", "CaltropsApplied", 453461)
 	self:Death("FerventSharpshooterDeath", 206694)
+
+	-- War Lynx
+	self:RegisterEngageMob("WarLynxEngaged", 206699)
+	self:Log("SPELL_CAST_SUCCESS", "Pounce", 446776)
+	self:Death("WarLynxDeath", 206699)
 
 	-- Devout Priest
 	--self:RegisterEngageMob("DevoutPriestEngaged", 206697)
@@ -950,6 +963,28 @@ function mod:CaltropsApplied(args)
 end
 
 function mod:FerventSharpshooterDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- War Lynx
+
+function mod:WarLynxEngaged(guid)
+	self:Nameplate(446776, 7.5, guid) -- Pounce
+end
+
+do
+	local prev = 0
+	function mod:Pounce(args)
+		self:Nameplate(args.spellId, 16.6, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:WarLynxDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 

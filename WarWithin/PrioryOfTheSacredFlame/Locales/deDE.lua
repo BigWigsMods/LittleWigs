@@ -11,6 +11,7 @@ if L then
 	L.arathi_knight = "Ritter der Arathi"
 	L.arathi_footman = "Fußsoldat der Arathi"
 	L.fervent_sharpshooter = "Feurige Scharfschützin"
+	L.war_lynx = "Kriegsluchs"
 	L.devout_priest = "Frommer Priester"
 	L.fanatical_conjuror = "Fanatische Herbeizauberin"
 	L.lightspawn = "Lichtbrut"

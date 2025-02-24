@@ -11,6 +11,7 @@ if L then
 	--L.arathi_knight = "Arathi Knight"
 	--L.arathi_footman = "Arathi Footman"
 	L.fervent_sharpshooter = "Tiratrice Scelta Fervente"
+	L.war_lynx = "Lince da Guerra"
 	--L.devout_priest = "Devout Priest"
 	L.fanatical_conjuror = "Evocatrice Fanatica"
 	--L.lightspawn = "Lightspawn"
