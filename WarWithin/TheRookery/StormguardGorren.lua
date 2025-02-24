@@ -68,7 +68,11 @@ end
 
 function mod:CrushReality(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 15.7)
+	if isElevenDotOne then
+		self:CDBar(args.spellId, 20.6)
+	else -- XXX remove in 11.1
+		self:CDBar(args.spellId, 15.7)
+	end
 	self:PlaySound(args.spellId, "alarm")
 end
 
