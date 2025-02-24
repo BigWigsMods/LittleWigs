@@ -25,5 +25,5 @@ end
 
 L = BigWigs:NewBossLocale("Baron Braunpyke", "koKR")
 if L then
-	L.charges = "%d 중첩"
+	L.charges = "%d 충전"
 end
