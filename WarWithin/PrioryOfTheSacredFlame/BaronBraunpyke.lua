@@ -40,7 +40,7 @@ function mod:GetOptions()
 		-- Mythic
 		446368, -- Sacrificial Pyre
 		{446403, "ME_ONLY"}, -- Sacrificial Flame
-		446525, -- Unleashed Pyre
+		{446525, "COUNTDOWN"}, -- Unleashed Pyre
 	}, {
 		[446368] = CL.mythic,
 	}
