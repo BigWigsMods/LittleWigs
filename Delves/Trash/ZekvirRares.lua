@@ -10,6 +10,7 @@ mod:RegisterEnableMob(
 	207482, -- Invasive Sporecap
 	228044, -- Reno Jackson
 	228030, -- Sir Finley Mrgglton
+	209721, -- Secret Treasure (spawns Treasure Wraith)
 	208728, -- Treasure Wraith
 	-- TWW Season 1, Zekvir lieutenants
 	227632, -- Venombite
