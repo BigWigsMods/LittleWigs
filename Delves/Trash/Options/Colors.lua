@@ -88,3 +88,25 @@ BigWigs:AddColors("Zekvir Rares", {
 	[462686] = "red",
 	["zekvir_breach"] = "cyan",
 })
+
+BigWigs:AddColors("Underpin Rares", {
+	[433045] = "yellow",
+	[1213497] = "red",
+	[1214238] = "red",
+	[1214246] = "purple",
+	[1216790] = "orange",
+	[1216794] = "red",
+	[1216805] = "red",
+	[1216806] = "orange",
+	[1217301] = "red",
+	[1217326] = "orange",
+	[1217361] = "orange",
+	[1217418] = "cyan",
+	[1217449] = "cyan",
+	[1217452] = "cyan",
+	[1217510] = "cyan",
+	[1218017] = "orange",
+	[1218039] = "yellow",
+	[1218061] = "red",
+	[1220869] = "purple",
+})
