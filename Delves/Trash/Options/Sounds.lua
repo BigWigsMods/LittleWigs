@@ -91,7 +91,7 @@ BigWigs:AddSounds("Zekvir Rares", {
 
 BigWigs:AddSounds("Underpin Rares", {
 	[433045] = "warning",
-	[1213497] = "alert",
+	[1213497] = "info",
 	[1214238] = "alert",
 	[1214246] = "alarm",
 	[1216790] = "alarm",

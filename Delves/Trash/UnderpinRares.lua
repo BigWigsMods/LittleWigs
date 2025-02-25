@@ -142,7 +142,9 @@ function mod:OnBossEnable()
 	-- Underpin's Bodyguard's Intern
 	self:RegisterEngageMob("UnderpinsBodyguardsInternEngaged", 234904)
 	self:Log("SPELL_CAST_START", "MeGoMad", 1213497)
+	self:Log("SPELL_CAST_SUCCESS", "MeGoMadSuccess", 1213497)
 	self:Log("SPELL_CAST_START", "Bonebreaker", 1220869)
+	self:Log("SPELL_CAST_SUCCESS", "BonebreakerSuccess", 1220869)
 	self:Death("UnderpinsBodyguardsInternDeath", 234904)
 
 	-- Aggressively Lost Hobgoblin
@@ -505,10 +507,10 @@ do
 	local timer
 
 	function mod:UnderpinsBodyguardsInternEngaged(guid)
-		--self:CDBar(1213497, 100) -- Me Go Mad
-		--self:Nameplate(1213497, 100, guid) -- Me Go Mad
-		--self:CDBar(1220869, 100) -- Bonebreaker
-		--self:Nameplate(1220869, 100, guid) -- Bonebreaker
+		self:CDBar(1220869, 3.4) -- Bonebreaker
+		self:Nameplate(1220869, 3.4, guid) -- Bonebreaker
+		self:CDBar(1213497, 10.7) -- Me Go Mad
+		self:Nameplate(1213497, 10.7, guid) -- Me Go Mad
 		timer = self:ScheduleTimer("UnderpinsBodyguardsInternDeath", 30)
 	end
 
@@ -517,10 +519,14 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red")
-		self:CDBar(args.spellId, 36.5) -- TODO probably move to success?
-		self:Nameplate(args.spellId, 36.5, args.sourceGUID)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		timer = self:ScheduleTimer("UnderpinsBodyguardsInternDeath", 30)
-		self:PlaySound(args.spellId, "alert")
+		self:PlaySound(args.spellId, "info")
+	end
+
+	function mod:MeGoMadSuccess(args)
+		self:CDBar(args.spellId, 31.3)
+		self:Nameplate(args.spellId, 31.3, args.sourceGUID)
 	end
 
 	function mod:Bonebreaker(args)
@@ -528,10 +534,14 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "purple")
-		self:CDBar(args.spellId, 9.7) -- TODO probably move to success?
-		self:Nameplate(args.spellId, 9.7, args.sourceGUID)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		timer = self:ScheduleTimer("UnderpinsBodyguardsInternDeath", 30)
 		self:PlaySound(args.spellId, "alert")
+	end
+
+	function mod:BonebreakerSuccess(args)
+		self:CDBar(args.spellId, 8.2)
+		self:Nameplate(args.spellId, 8.2, args.sourceGUID)
 	end
 
 	function mod:UnderpinsBodyguardsInternDeath(args)
