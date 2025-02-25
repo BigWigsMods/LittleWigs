@@ -68,16 +68,16 @@ end
 
 L = BigWigs:NewBossLocale("Underpin Rares", "zhCN")
 if L then
-	--L.rares = "Underpin Rares"
+	L.rares = "幽坑稀有"
 
-	--L.hovering_menace = "Hovering Menace"
-	--L.treasure_crab = "Treasure Crab"
-	--L.malfunctioning_pummeler = "Malfunctioning Pummeler"
-	--L.underpins_adoring_fan = "Underpin's Adoring Fan"
-	--L.underpins_well_connected_friend = "Underpin's Well-Connected Friend"
-	--L.underpins_explosive_ally = "Underpin's Explosive Ally"
-	--L.underpins_bodyguards_intern = "Underpin's Bodyguard's Intern"
-	--L.aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin"
+	L.hovering_menace = "悬浮灾厄"
+	L.treasure_crab = "宝藏螃蟹"
+	L.malfunctioning_pummeler = "出故障的打击者"
+	L.underpins_adoring_fan = "幽坑太保的铁杆粉丝"
+	L.underpins_well_connected_friend = "幽坑太保的亲密好友"
+	L.underpins_explosive_ally = "幽坑太保的劲爆盟友"
+	L.underpins_bodyguards_intern = "幽坑太保的见习保镖"
+	L.aggressively_lost_hobgoblin = "凶狠的走失大地精"
 end
 
 L = BigWigs:NewBossLocale("Zekvir Rares", "zhCN")
