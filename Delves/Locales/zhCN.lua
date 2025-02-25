@@ -3,12 +3,12 @@
 local L = BigWigs:NewBossLocale("The Underpin", "zhCN")
 if not L then return end
 if L then
-	--L.the_underpin = "The Underpin (Tier 1)"
+	L.the_underpin = "幽坑太保（难度1）"
 end
 
 L = BigWigs:NewBossLocale("The Underpin 2", "zhCN")
 if L then
-	--L.the_underpin = "The Underpin (Tier 2)"
+	L.the_underpin = "幽坑太保（难度2）"
 end
 
 -- Earthcrawl Mines
@@ -22,17 +22,17 @@ end
 
 L = BigWigs:NewBossLocale("Craggle Fritzbrains", "zhCN")
 if L then
-	--L.craggle_fritzbrains = "Craggle Fritzbrains"
+	L.craggle_fritzbrains = "克拉格·弗里茨布兰"
 end
 
 L = BigWigs:NewBossLocale("Harbinger Ul'thul", "zhCN")
 if L then
-	--L.harbinger_ulthul = "Harbinger Ul'thul"
+	L.harbinger_ulthul = "使徒乌尔苏尔"
 end
 
 L = BigWigs:NewBossLocale("Xel'anegh The Many", "zhCN")
 if L then
-	--L.xelanegh_the_many = "Xel'anegh The Many"
+	L.xelanegh_the_many = "万肢的谢尔安格"
 end
 
 -- Fungal Folly
@@ -71,27 +71,27 @@ end
 
 L = BigWigs:NewBossLocale("Cult Leaders", "zhCN")
 if L then
-	--L.cult_leaders = "Cult Leaders"
-	--L.inquisitor_speaker = "Inquisitor Speaker"
-	--L.shadeguard_speaker = "Shadeguard Speaker"
+	L.cult_leaders = "玄夜会头领"
+	L.inquisitor_speaker = "审判代言人"
+	L.shadeguard_speaker = "幽卫代言人"
 end
 
 -- Sidestreet Sluice
 
 L = BigWigs:NewBossLocale("Geargrave", "zhCN")
 if L then
-	--L.geargrave = "Geargrave"
+	L.geargrave = "葬轮"
 end
 
 L = BigWigs:NewBossLocale("Gold Elemental", "zhCN")
 if L then
-	--L.gold_elemental = "Gold Elemental"
-	--L.gold_shaman = "Gold Shaman"
+	L.gold_elemental = "黄金元素"
+	L.gold_shaman = "黄金萨满祭司"
 end
 
 L = BigWigs:NewBossLocale("Vindle Snapcrank", "zhCN")
 if L then
-	--L.vindle_snapcrank = "Vindle Snapcrank"
+	L.vindle_snapcrank = "芬戴尔·断轴"
 end
 
 -- Skittering Breach
@@ -135,8 +135,8 @@ end
 L = BigWigs:NewBossLocale("Leviathan Caller", "zhCN")
 if L then
 	L.leviathan_caller = "海兽呼唤者"
-	L.guardian_tentacle = "重击触须" --不知道为什么CN用了一个名字，下周在检查次
-	L.slamming_tentacles = "重击触须" -- plural
+	L.guardian_tentacle = "重击触须"
+	L.slamming_tentacles = "重击触须"
 end
 
 L = BigWigs:NewBossLocale("Cragpie", "zhCN")
