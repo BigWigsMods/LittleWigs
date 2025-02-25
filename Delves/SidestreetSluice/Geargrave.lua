@@ -29,15 +29,42 @@ end
 
 function mod:GetOptions()
 	return {
+		1215905, -- Carnage Cannon
+		1215975, -- Juice It Up!
+		1215957, -- Tremor Claw
 	}
 end
 
 function mod:OnBossEnable()
+	-- XXX no boss frames
+	self:Log("SPELL_CAST_START", "CarnageCannon", 1215905)
+	self:Log("SPELL_CAST_START", "JuiceItUp", 1215975)
+	self:Log("SPELL_CAST_START", "TremorClaw", 1215957)
+	-- TODO needs Black Blood under you
 end
 
 function mod:OnEngage()
+	-- XXX no encounter events
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:CarnageCannon(args)
+	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 17.0)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:JuiceItUp(args)
+	self:Message(args.spellId, "red")
+	self:CDBar(args.spellId, 37.7)
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:TremorClaw(args)
+	self:Message(args.spellId, "yellow")
+	self:CDBar(args.spellId, 9.7)
+	self:PlaySound(args.spellId, "alarm")
+end
