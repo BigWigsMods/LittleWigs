@@ -88,3 +88,25 @@ BigWigs:AddSounds("Zekvir Rares", {
 	[462686] = "alert",
 	["zekvir_breach"] = "long",
 })
+
+BigWigs:AddSounds("Underpin Rares", {
+	[433045] = "warning",
+	[1213497] = "alert",
+	[1214238] = "alert",
+	[1214246] = "alarm",
+	[1216790] = "alarm",
+	[1216794] = "alert",
+	[1216805] = "alert",
+	[1216806] = "alarm",
+	[1217301] = "alarm",
+	[1217326] = "alert",
+	[1217361] = "alarm",
+	[1217418] = "info",
+	[1217449] = "info",
+	[1217452] = "info",
+	[1217510] = "info",
+	[1218017] = "alarm",
+	[1218039] = "alarm",
+	[1218061] = "alert",
+	[1220869] = "alert",
+})
