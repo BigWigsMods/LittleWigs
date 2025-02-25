@@ -1,9 +1,38 @@
--- Earthcrawl Mines
+-- Demolition Dome
 
-local L = BigWigs:NewBossLocale("Web General Ab'enar", "zhCN")
+local L = BigWigs:NewBossLocale("The Underpin", "zhCN")
 if not L then return end
 if L then
+	--L.the_underpin = "The Underpin (Tier 1)"
+end
+
+L = BigWigs:NewBossLocale("The Underpin 2", "zhCN")
+if L then
+	--L.the_underpin = "The Underpin (Tier 2)"
+end
+
+-- Earthcrawl Mines
+
+L = BigWigs:NewBossLocale("Web General Ab'enar", "zhCN")
+if L then
 	L.web_general_abenar = "蛛网将军阿贝纳尔"
+end
+
+-- Excavation Site 9
+
+L = BigWigs:NewBossLocale("Craggle Fritzbrains", "zhCN")
+if L then
+	--L.craggle_fritzbrains = "Craggle Fritzbrains"
+end
+
+L = BigWigs:NewBossLocale("Harbinger Ul'thul", "zhCN")
+if L then
+	--L.harbinger_ulthul = "Harbinger Ul'thul"
+end
+
+L = BigWigs:NewBossLocale("Xel'anegh The Many", "zhCN")
+if L then
+	--L.xelanegh_the_many = "Xel'anegh The Many"
 end
 
 -- Fungal Folly
@@ -45,6 +74,24 @@ if L then
 	--L.cult_leaders = "Cult Leaders"
 	--L.inquisitor_speaker = "Inquisitor Speaker"
 	--L.shadeguard_speaker = "Shadeguard Speaker"
+end
+
+-- Sidestreet Sluice
+
+L = BigWigs:NewBossLocale("Geargrave", "zhCN")
+if L then
+	--L.geargrave = "Geargrave"
+end
+
+L = BigWigs:NewBossLocale("Gold Elemental", "zhCN")
+if L then
+	--L.gold_elemental = "Gold Elemental"
+	--L.gold_shaman = "Gold Shaman"
+end
+
+L = BigWigs:NewBossLocale("Vindle Snapcrank", "zhCN")
+if L then
+	--L.vindle_snapcrank = "Vindle Snapcrank"
 end
 
 -- Skittering Breach

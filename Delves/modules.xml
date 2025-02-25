@@ -4,16 +4,19 @@
 <Include file="FungalFolly\modules.xml"/>
 <Include file="MycomancerCavern\modules.xml"/>
 <Include file="EarthcrawlMines\modules.xml"/>
+<Include file="ExcavationSite9\modules.xml"/>
 <Include file="KriegvalsRest\modules.xml"/>
 <Include file="TheWaterworks\modules.xml"/>
 <Include file="TheDreadPit\modules.xml"/>
 <Include file="SkitteringBreach\modules.xml"/>
 <Include file="NightfallSanctum\modules.xml"/>
+<Include file="SidestreetSluice\modules.xml"/>
 <Include file="TheSinkhole\modules.xml"/>
 <Include file="TheSpiralWeave\modules.xml"/>
 <Include file="TekRethanAbyss\modules.xml"/>
 <Include file="TheUnderkeep\modules.xml"/>
 <Include file="ZekvirsLair\modules.xml"/>
+<Include file="DemolitionDome\modules.xml"/>
 <Include file="Trash\modules.xml"/>
 
 <Include file="Locales\locales.xml"/>
