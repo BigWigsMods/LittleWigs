@@ -39,8 +39,8 @@ end
 
 L = BigWigs:NewBossLocale("Maulspike", "zhCN")
 if L then
-	--L.maulspike = "Maulspike"
-	--L.darkfuse_cackler = "Darkfuse Cackler"
+	L.maulspike = "殴棘"
+	L.darkfuse_cackler = "狰狞蔑笑"
 end
 
 L = BigWigs:NewBossLocale("Spinshroom", "zhCN")
