@@ -99,7 +99,7 @@ BigWigs:AddColors("Underpin Rares", {
 	[1216805] = "red",
 	[1216806] = "orange",
 	[1217301] = "red",
-	[1217326] = "red",
+	[1217326] = "orange",
 	[1217361] = "orange",
 	[1217418] = "cyan",
 	[1217449] = "cyan",
