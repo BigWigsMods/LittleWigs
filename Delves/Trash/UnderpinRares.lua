@@ -92,7 +92,10 @@ function mod:OnBossEnable()
 	-- Hovering Menace
 	self:RegisterEngageMob("HoveringMenaceEngaged", 236886)
 	self:Log("SPELL_CAST_START", "ForwardCharge", 1216790)
+	self:Log("SPELL_CAST_SUCCESS", "ForwardChargeSuccess", 1216790)
 	self:Log("SPELL_CAST_START", "AlphaCannon", 1216794)
+	self:Log("SPELL_INTERRUPT", "AlphaCannonInterrupt", 1216794)
+	self:Log("SPELL_CAST_SUCCESS", "AlphaCannonSuccess", 1216794)
 	self:Death("HoveringMenaceDeath", 236886)
 
 	-- Treasure Crab
@@ -163,10 +166,10 @@ do
 	local timer
 
 	function mod:HoveringMenaceEngaged(guid)
-		--self:CDBar(1216790, 100) -- Forward Charge
-		--self:Nameplate(1216790, 100, guid) -- Forward Charge
-		--self:CDBar(1216794, 100) -- Alpha Cannon
-		--self:Nameplate(1216794, 100, guid) -- Alpha Cannon
+		self:CDBar(1216790, 2.9) -- Forward Charge
+		self:Nameplate(1216790, 2.9, guid) -- Forward Charge
+		self:CDBar(1216794, 6.4) -- Alpha Cannon
+		self:Nameplate(1216794, 6.4, guid) -- Alpha Cannon
 		timer = self:ScheduleTimer("HoveringMenaceDeath", 30)
 	end
 
@@ -175,10 +178,14 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "orange")
-		self:CDBar(args.spellId, 15.0)
-		self:Nameplate(args.spellId, 15.0, args.sourceGUID)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		timer = self:ScheduleTimer("HoveringMenaceDeath", 30)
 		self:PlaySound(args.spellId, "alarm")
+	end
+
+	function mod:ForwardChargeSuccess(args)
+		self:CDBar(args.spellId, 13.3)
+		self:Nameplate(args.spellId, 13.3, args.sourceGUID)
 	end
 
 	function mod:AlphaCannon(args)
@@ -186,10 +193,19 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:CDBar(args.spellId, 22.3)
-		self:Nameplate(args.spellId, 22.3, args.sourceGUID)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		timer = self:ScheduleTimer("HoveringMenaceDeath", 30)
 		self:PlaySound(args.spellId, "alert")
+	end
+
+	function mod:AlphaCannonInterrupt(args)
+		self:CDBar(1216794, 20.3)
+		self:Nameplate(1216794, 20.3, args.destGUID)
+	end
+
+	function mod:AlphaCannonSuccess(args)
+		self:CDBar(args.spellId, 20.3)
+		self:Nameplate(args.spellId, 20.3, args.sourceGUID)
 	end
 
 	function mod:HoveringMenaceDeath(args)
@@ -272,10 +288,10 @@ do
 	local timer
 
 	function mod:MalfunctioningPummelerEngaged(guid)
-		--self:CDBar(1216805, 100) -- Zap!
-		--self:Nameplate(1216805, 100, guid) -- Zap!
-		--self:CDBar(1216806, 100) -- There's the Door
-		--self:Nameplate(1216806, 100, guid) -- There's the Door
+		self:CDBar(1216805, 5.5) -- Zap!
+		self:Nameplate(1216805, 5.5, guid) -- Zap!
+		self:CDBar(1216806, 9.5) -- There's the Door
+		self:Nameplate(1216806, 9.5, guid) -- There's the Door
 		timer = self:ScheduleTimer("MalfunctioningPummelerDeath", 30)
 	end
 
@@ -290,13 +306,13 @@ do
 	end
 
 	function mod:ZapInterrupt(args)
-		self:CDBar(1216805, 19.0)
-		self:Nameplate(1216805, 19.0, args.destGUID)
+		self:CDBar(1216805, 18.7)
+		self:Nameplate(1216805, 18.7, args.destGUID)
 	end
 
 	function mod:ZapSuccess(args)
-		self:CDBar(args.spellId, 19.0)
-		self:Nameplate(args.spellId, 19.0, args.sourceGUID)
+		self:CDBar(args.spellId, 18.7)
+		self:Nameplate(args.spellId, 18.7, args.sourceGUID)
 	end
 
 	function mod:TheresTheDoor(args)
@@ -507,10 +523,10 @@ do
 	local timer
 
 	function mod:UnderpinsBodyguardsInternEngaged(guid)
-		self:CDBar(1220869, 3.4) -- Bonebreaker
-		self:Nameplate(1220869, 3.4, guid) -- Bonebreaker
-		self:CDBar(1213497, 10.7) -- Me Go Mad
-		self:Nameplate(1213497, 10.7, guid) -- Me Go Mad
+		self:CDBar(1220869, 2.5) -- Bonebreaker
+		self:Nameplate(1220869, 2.5, guid) -- Bonebreaker
+		self:CDBar(1213497, 9.8) -- Me Go Mad
+		self:Nameplate(1213497, 9.8, guid) -- Me Go Mad
 		timer = self:ScheduleTimer("UnderpinsBodyguardsInternDeath", 30)
 	end
 
