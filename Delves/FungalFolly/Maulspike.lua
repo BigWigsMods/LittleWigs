@@ -36,7 +36,7 @@ function mod:GetOptions()
 		-- Darkfuse Cackler
 		1214680, -- Hideous Cackle
 	}, {
-		[1214680] = CL.darkfuse_cackler,
+		[1214680] = L.darkfuse_cackler,
 	}
 end
 
