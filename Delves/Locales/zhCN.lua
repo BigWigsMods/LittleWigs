@@ -37,6 +37,12 @@ end
 
 -- Fungal Folly
 
+L = BigWigs:NewBossLocale("Maulspike", "zhCN")
+if L then
+	L.maulspike = "殴棘"
+	L.darkfuse_cackler = "狰狞蔑笑"
+end
+
 L = BigWigs:NewBossLocale("Spinshroom", "zhCN")
 if L then
 	L.spinshroom = "旋菇"
