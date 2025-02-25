@@ -13,6 +13,17 @@ if L then
 	L.particularly_bad_guy = "特别坏的家伙"
 end
 
+L = BigWigs:NewBossLocale("Goblin Delve Trash", "zhCN")
+if L then
+	L.goblin_trash = "地精小怪"
+
+	L.bopper_bot = "新潮机器人"
+	L.aerial_support_bot = "空中支援机器人"
+	L.masked_freelancer = "蒙面自由职业者"
+	L.underpaid_brute = "低薪蛮兵"
+	L.drill_sergeant = "钻头中士"
+end
+
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "zhCN")
 if L then
 	L.kobold_trash = "狗头人小怪"
