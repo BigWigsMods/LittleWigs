@@ -387,13 +387,14 @@ do
 	local timer
 
 	function mod:UnderpinsWellConnectedFriendEngaged(guid)
-		--self:CDBar(1217418, 100) -- Call My Agent
-		--self:Nameplate(1217418, 100, guid) -- Call My Agent
+		self:ClearNameplate(guid) -- wipe protection
+		self:CDBar(1217418, 4.7) -- Call My Agent
+		self:Nameplate(1217418, 4.7, guid) -- Call My Agent
 		timer = self:ScheduleTimer("UnderpinsWellConnectedFriendDeath", 30)
 	end
 
 	function mod:Backstab(args)
-		-- only cast if behind the target
+		-- has no cooldown, only cast if behind the target
 		if timer then
 			self:CancelTimer(timer)
 		end
@@ -429,8 +430,8 @@ do
 	function mod:CallMyMotherSuccess(args)
 		self:StopBar(args.spellId)
 		self:StopNameplate(args.spellId, args.sourceGUID)
-		self:CDBar(1217510, 10.3) -- Speed Dialing
-		self:Nameplate(1217510, 10.3, args.sourceGUID) -- Speed Dialing
+		self:CDBar(1217510, 9.1) -- Speed Dialing
+		self:Nameplate(1217510, 9.1, args.sourceGUID) -- Speed Dialing
 	end
 
 	function mod:SpeedDialingSuccess(args)
