@@ -58,6 +58,16 @@ if L then
 	L.shadow_elemental = "Elemental de sombra"
 end
 
+L = BigWigs:NewBossLocale("Old God Delve Trash", "esES")
+if L then
+	--L.old_god_trash = "Old God Trash"
+
+	--L.dark_walker = "Dark Walker"
+	--L.hideous_amalgamation = "Hideous Amalgamation"
+	--L.coagulated_mass = "Coagulated Mass"
+	--L.silent_slitherer = "Silent Slitherer"
+end
+
 L = BigWigs:NewBossLocale("The Underkeep Trash", "esES")
 if L then
 	L.ascended_webfriar = "Fraitelaraña ascendido"

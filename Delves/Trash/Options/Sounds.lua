@@ -52,6 +52,16 @@ BigWigs:AddSounds("Nightfall Delve Trash", {
 	[443482] = "alert",
 })
 
+BigWigs:AddSounds("Old God Delve Trash", {
+	[474155] = "underyou",
+	[474206] = "alarm",
+	[474223] = "alert",
+	[474228] = "alert",
+	[474325] = "long",
+	[474482] = "alarm",
+	[474511] = "alert",
+})
+
 BigWigs:AddSounds("The Underkeep Trash", {
 	[448155] = "alarm",
 	[448161] = "info",

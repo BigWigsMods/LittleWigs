@@ -58,6 +58,16 @@ if L then
 	L.shadow_elemental = "암흑의 정령"
 end
 
+L = BigWigs:NewBossLocale("Old God Delve Trash", "koKR")
+if L then
+	--L.old_god_trash = "Old God Trash"
+
+	--L.dark_walker = "Dark Walker"
+	--L.hideous_amalgamation = "Hideous Amalgamation"
+	--L.coagulated_mass = "Coagulated Mass"
+	--L.silent_slitherer = "Silent Slitherer"
+end
+
 L = BigWigs:NewBossLocale("The Underkeep Trash", "koKR")
 if L then
 	L.ascended_webfriar = "승천한 그물수사"
