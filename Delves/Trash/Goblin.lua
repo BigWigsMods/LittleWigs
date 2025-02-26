@@ -1,4 +1,3 @@
-if select(4, GetBuildInfo()) < 110100 then return end -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,9 @@ if select(4, GetBuildInfo()) < 110100 then return end -- XXX remove when 11.1 is
 local mod, CL = BigWigs:NewBoss("Goblin Delve Trash", {2664, 2680, 2681, 2826}) -- Fungal Folly, Earthcrawl Mines, Kriegval's Rest, Sidestreet Sluice
 if not mod then return end
 mod:RegisterEnableMob(
-	234496, -- Gila Crosswires (Fungal Folly gossip NPC)
+	234212, -- Exterminator Janx (Earthcrawl Mines gossip NPC)
 	216846, -- Maklin Drillstab (Earthcrawl Mines gossip NPC)
+	234496, -- Gila Crosswires (Fungal Folly gossip NPC)
 	234530, -- Balga Wicksfix (Kriegval's Rest gossip NPC)
 	231908, -- Bopper Bot
 	231906, -- Aerial Support Bot
@@ -103,14 +103,17 @@ function mod:GOSSIP_SHOW()
 		if self:GetGossipID(131267) then -- Fungal Folly, start delve (Gila Crosswires)
 			-- 131267:|cFF0000FF(Delve)|r I'll get the batteries back and make those drills operational again.
 			self:SelectGossipID(131267)
+		elseif self:GetGossipID(131152) then -- Earthcrawl Mines, start delve (Exterminator Janx)
+			-- 131152:|cFF0000FF(Delve)|r I'll get the gadget and will help your friends.
+			self:SelectGossipID(131152)
 		elseif self:GetGossipID(120551) then -- Earthcrawl Mines, start delve (Maklin Drillstab)
 			-- 120551:Instant treasure? I'm in, let's go into your mole machine.
 			self:SelectGossipID(120551)
 		elseif self:GetGossipID(120553) then -- Earthcrawl Mines, continue delve (Maklin Drillstab)
 			-- 120553:I'll track down where the treasure was taken.
 			self:SelectGossipID(120553)
-		elseif self:GetGossipID(131312) then
-			-- 131312:|cFF0000FF(Delve)|r Let's get those candles purified and teach those goblins a lesson. (Balga Wicksfix)
+		elseif self:GetGossipID(131312) then -- Kriegval's Rest, start delve (Balga Wicksfix)
+			-- 131312:|cFF0000FF(Delve)|r Let's get those candles purified and teach those goblins a lesson.
 			self:SelectGossipID(131312)
 		end
 	end
