@@ -10,3 +10,8 @@ BigWigs:AddSounds("Maklin Drillstab", {
 	[1217905] = "alarm",
 	[1217913] = "info",
 })
+
+BigWigs:AddSounds("The Biggest Bug", {
+	[448443] = "alert",
+	[448444] = "alert",
+})
