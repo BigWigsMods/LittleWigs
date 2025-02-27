@@ -58,6 +58,16 @@ if L then
 	L.shadow_elemental = "暗影元素"
 end
 
+L = BigWigs:NewBossLocale("Old God Delve Trash", "zhCN")
+if L then
+	L.old_god_trash = "古神小怪"
+
+	L.dark_walker = "黑暗行者"
+	L.hideous_amalgamation = "丑恶聚合体"
+	L.coagulated_mass = "凝结物质"
+	L.silent_slitherer = "死寂滑行者"
+end
+
 L = BigWigs:NewBossLocale("The Underkeep Trash", "zhCN")
 if L then
 	L.ascended_webfriar = "扬升的蛛网修士"

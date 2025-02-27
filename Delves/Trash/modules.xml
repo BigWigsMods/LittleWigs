@@ -6,6 +6,7 @@
 <Script file="Kobyss.lua"/>
 <Script file="Nerubian.lua"/>
 <Script file="Nightfall.lua"/>
+<Script file="OldGod.lua"/>
 <Script file="Underkeep.lua"/>
 <Script file="ZekvirRares.lua"/>
 <Script file="UnderpinRares.lua"/>
