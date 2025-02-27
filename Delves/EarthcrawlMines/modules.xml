@@ -2,6 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Abenar.lua"/>
+<Script file="MaklinDrillstab.lua"/>
 
 <Include file="Options\options.xml"/>
 
