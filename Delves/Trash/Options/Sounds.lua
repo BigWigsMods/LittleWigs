@@ -12,6 +12,16 @@ BigWigs:AddSounds("Fungarian Delve Trash", {
 	[427710] = "alarm",
 })
 
+BigWigs:AddSounds("Goblin Delve Trash", {
+	[473550] = "alarm",
+	[473684] = "alarm",
+	[473972] = "alarm",
+	[473995] = "alarm",
+	[474001] = "alert",
+	[474004] = "alarm",
+	[1213656] = "info",
+})
+
 BigWigs:AddSounds("Kobold Delve Trash", {
 	[445191] = {"alert","info"},
 	[445210] = "alarm",

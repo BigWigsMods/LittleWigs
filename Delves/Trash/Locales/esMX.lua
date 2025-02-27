@@ -13,6 +13,17 @@ if L then
 	L.particularly_bad_guy = "Tipa especialmente mala"
 end
 
+L = BigWigs:NewBossLocale("Goblin Delve Trash", "esMX")
+if L then
+	--L.goblin_trash = "Goblin Trash"
+
+	--L.bopper_bot = "Bopper Bot"
+	--L.aerial_support_bot = "Aerial Support Bot"
+	--L.masked_freelancer = "Masked Freelancer"
+	--L.underpaid_brute = "Underpaid Brute"
+	--L.drill_sergeant = "Drill Sergeant"
+end
+
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "esMX")
 if L then
 	L.kobold_trash = "Kobold Trash"

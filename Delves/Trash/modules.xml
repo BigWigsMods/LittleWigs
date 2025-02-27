@@ -2,6 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="Fungarian.lua"/>
+<Script file="Goblin.lua"/>
 <Script file="Kobold.lua"/>
 <Script file="Kobyss.lua"/>
 <Script file="Nerubian.lua"/>
