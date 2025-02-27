@@ -170,9 +170,9 @@ end
 
 L = BigWigs:NewBossLocale("Torque Clankfire and Sprok", "zhCN")
 if L then
-	--L.bossName = "Torque Clankfire and Sprok"
-	--L.torque_clankfire = "Torque Clankfire"
-	--L.sprok = "Sprok"
+	L.bossName = "陶克·铮火和斯普洛克"
+	L.torque_clankfire = "陶克·铮火"
+	L.sprok = "斯普洛克"
 end
 
 -- The Waterworks
