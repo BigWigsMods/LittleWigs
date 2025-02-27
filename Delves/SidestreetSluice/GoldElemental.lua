@@ -32,12 +32,32 @@ end
 
 function mod:GetOptions()
 	return {
+		-- Gold Shaman
+		473696, -- Molotov Cocktail
+	}, {
+		[473696] = L.gold_shaman,
 	}
 end
 
 function mod:OnBossEnable()
+	-- Gold Elemental doesn't actually cast anything, the only abilities are
+	-- from the Gold Shaman mobs you need to kill to activate the boss.
+
+	-- Gold Shaman
+	self:Log("SPELL_CAST_SUCCESS", "MolotovCocktail", 473696)
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+do
+	local prev = 0
+	function mod:MolotovCocktail(args)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
