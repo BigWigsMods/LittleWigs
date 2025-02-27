@@ -3,6 +3,7 @@
 
 <Script file="Abenar.lua"/>
 <Script file="MaklinDrillstab.lua"/>
+<Script file="TheBiggestBug.lua"/>
 
 <Include file="Options\options.xml"/>
 

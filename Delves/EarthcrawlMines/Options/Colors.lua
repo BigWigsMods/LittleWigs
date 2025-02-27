@@ -10,3 +10,8 @@ BigWigs:AddColors("Maklin Drillstab", {
 	[1217905] = "orange",
 	[1217913] = "yellow",
 })
+
+BigWigs:AddColors("The Biggest Bug", {
+	[448443] = "red",
+	[448444] = "orange",
+})
