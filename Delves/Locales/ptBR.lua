@@ -174,6 +174,13 @@ if L then
 	L.researcher_xikvik = "Pesquisador Xik'vik"
 end
 
+L = BigWigs:NewBossLocale("Torque Clankfire and Sprok", "ptBR")
+if L then
+	--L.bossName = "Torque Clankfire and Sprok"
+	--L.torque_clankfire = "Torque Clankfire"
+	--L.sprok = "Sprok"
+end
+
 -- The Waterworks
 
 L = BigWigs:NewBossLocale("Waxface", "ptBR")

@@ -3,6 +3,7 @@
 
 <Script file="ResearcherVenkex.lua"/>
 <Script file="ResearcherXikvik.lua"/>
+<Script file="TorqueAndSprok.lua"/>
 
 <Include file="Options\options.xml"/>
 
