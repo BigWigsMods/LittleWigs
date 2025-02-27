@@ -71,12 +71,11 @@ function mod:TerrifyingRoar(args)
 end
 
 function mod:XelaneghTheManyDeath(args)
-	local mobId = self:MobId(args.destGUID)
-	if mobId == 234435 then
+	if args.mobId == 234435 then
 		self:StopBar(1213804) -- Shadow Barrage
-	elseif mobId == 234436 then
+	elseif args.mobId == 234436 then
 		self:StopBar(1213425) -- Terrifying Roar
-	elseif mobId == 234438 then
+	elseif args.mobId == 234438 then
 		self:StopBar(1213426) -- Tentacle Slam
 	end
 end
