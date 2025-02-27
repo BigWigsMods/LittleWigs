@@ -1,4 +1,3 @@
-local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -64,11 +63,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "RecalibrateStage1", 291865) -- Stage 1 only
 	self:Log("SPELL_CAST_START", "MegaZapStage1", 291928)
 	self:Log("SPELL_CAST_START", "TakeOff", 291613)
-	if isElevenDotOne then
-		self:Log("SPELL_AURA_APPLIED", "CuttingBeamApplied", 1226680)
-	else -- XXX remove in 11.1
-		self:Log("SPELL_CAST_SUCCESS", "CuttingBeam", 291626)
-	end
+	self:Log("SPELL_AURA_APPLIED", "CuttingBeamApplied", 1226680)
 	self:Death("AerialUnitR21XDeath", 150396)
 
 	-- Stage Two: Omega Buster
@@ -97,13 +92,8 @@ do
 		megaZapCount = 1
 		recalibrateTimer = nil
 		self:CDBar(291865, 4.5) -- Recalibrate
-		if isElevenDotOne then
-			self:CDBar(291928, 9.5) -- Mega-Zap
-			self:CDBar(291613, 35.0) -- Take Off
-		else -- XXX remove in 11.1
-			self:CDBar(291928, 8.2) -- Giga-Zap
-			self:CDBar(291613, 30.0) -- Take Off
-		end
+		self:CDBar(291928, 9.5) -- Mega-Zap
+		self:CDBar(291613, 35.0) -- Take Off
 		if self:Mythic() and not self:MythicPlus() then
 			clickCount = 0
 			self:SimpleTimer(hardModeCheck, 0.1)
@@ -148,11 +138,6 @@ function mod:TakeOff(args)
 	self:PlaySound(args.spellId, "info")
 end
 
-function mod:CuttingBeam(args) -- XXX remove in 11.1
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-end
-
 function mod:CuttingBeamApplied(args)
 	self:TargetMessage(291626, "red", args.destName)
 	if self:Me(args.destGUID) then
@@ -179,17 +164,10 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 296323 then -- Activate Omega Buster
-		if isElevenDotOne then
-			self:CDBar(291865, 7.0) -- Recalibrate
-			recalibrateTimer = self:ScheduleTimer("RecalibrateStage2", 7.0)
-			self:CDBar(292264, 19.2) -- Mega-Zap (Stage 2)
-			self:CDBar(283551, 30.8) -- Magneto Arm
-		else -- XXX remove in 11.1
-			self:CDBar(291865, 7.0) -- Recalibrate
-			recalibrateTimer = self:ScheduleTimer("RecalibrateStage2", 7.0)
-			self:CDBar(292264, 14.8) -- Mega-Zap (Stage 2)
-			self:CDBar(283551, 36.9) -- Magneto Arm
-		end
+		self:CDBar(291865, 7.0) -- Recalibrate
+		recalibrateTimer = self:ScheduleTimer("RecalibrateStage2", 7.0)
+		self:CDBar(292264, 19.2) -- Mega-Zap (Stage 2)
+		self:CDBar(283551, 30.8) -- Magneto Arm
 	end
 end
 

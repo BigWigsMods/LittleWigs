@@ -23,7 +23,6 @@ if L then
 	--L.rocket_tonk = "Rocket Tonk"
 	--L.waste_processing_unit = "Waste Processing Unit"
 	--L.metal_gunk = "Metal Gunk"
-	--L.living_waste = "Living Waste"
 	--L.junkyard_d0g = "Junkyard D.0.G."
 	--L.mechagon_tinkerer = "Mechagon Tinkerer"
 	--L.anti_personnel_squirrel = "Anti-Personnel Squirrel"

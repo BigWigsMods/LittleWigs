@@ -11,5 +11,4 @@ if L then
 	--L.inflicted_civilian = "Inflicted Civilian"
 	--L.void_ascendant = "Void Ascendant"
 	--L.consuming_voidstone = "Consuming Voidstone"
-	--L.void_fragment = "Void Fragment"
 end

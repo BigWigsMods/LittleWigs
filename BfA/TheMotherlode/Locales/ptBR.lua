@@ -14,8 +14,6 @@ if L then
 	L.weapons_tester = "Testador de Armas"
 	L.venture_co_mastermind = "Mandante da Empreendimentos S.A."
 	L.venture_co_alchemist = "Alquimista da Empreendimentos S.A."
-	L.assistant = "Assistente Incompetente"
-	L.technician = "Técnico Especialista"
 	L.venture_co_war_machine = "Máquina de Guerra da Empreendimentos S.A."
 	L.crawler_mine = "Mina Rastejante"
 	L.ordnance_specialist = "Especialista em Explosivos"

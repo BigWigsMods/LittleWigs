@@ -1,15 +1,8 @@
 
 BigWigs:AddColors("An Affront of Challengers", {
-	[320063] = "purple",
 	[320069] = "purple",
 	[320182] = "yellow",
-	[320248] = "orange",
-	[320272] = "yellow",
-	[320293] = "yellow",
-	[324085] = "yellow",
-	[326892] = {"blue","red"},
 	[333231] = {"blue","yellow"},
-	[333540] = {"blue","red"},
 	[1215600] = {"blue","red"},
 	[1215738] = "orange",
 	[1215741] = "red",
@@ -33,10 +26,6 @@ BigWigs:AddColors("Xav the Unfallen", {
 })
 
 BigWigs:AddColors("Kul'tharok", {
-	[319521] = {"blue","cyan"},
-	[319626] = {"blue","red"},
-	[319637] = {"blue","green"},
-	[319669] = "purple",
 	[473513] = "yellow",
 	[474087] = "purple",
 	[474298] = "cyan",
@@ -68,15 +57,12 @@ BigWigs:AddColors("Theater Of Pain Trash", {
 	[330868] = "red",
 	[331223] = {"blue","orange"},
 	[331237] = "yellow",
-	[331275] = "yellow",
 	[331288] = "purple",
 	[331316] = "purple",
 	[332708] = "orange",
-	[332836] = {"blue","red"},
 	[333241] = "orange",
 	[333294] = "orange",
 	[333299] = {"blue","yellow"},
-	[333708] = {"blue","yellow"},
 	[333827] = "yellow",
 	[333845] = "purple",
 	[333861] = {"blue","red"},
@@ -87,9 +73,7 @@ BigWigs:AddColors("Theater Of Pain Trash", {
 	[341969] = "orange",
 	[341977] = "red",
 	[342103] = "blue",
-	[342125] = "orange",
 	[342135] = "yellow",
-	[342139] = {"orange","red"},
 	[342675] = "red",
 	[1215850] = "red",
 })

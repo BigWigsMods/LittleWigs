@@ -1,4 +1,3 @@
-local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -39,15 +38,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	if isElevenDotOne then
-		self:CDBar(424737, 5.8) -- Chaotic Corruption
-		self:CDBar(424958, 9.5) -- Crush Reality
-		self:CDBar(425048, 30.1) -- Dark Gravity
-	else -- XXX remove when 11.1 is live
-		self:CDBar(424958, 9.3) -- Crush Reality
-		self:CDBar(425048, 15.4) -- Dark Gravity
-		self:CDBar(424737, 31.2) -- Chaotic Corruption
-	end
+	self:CDBar(424737, 5.8) -- Chaotic Corruption
+	self:CDBar(424958, 9.5) -- Crush Reality
+	self:CDBar(425048, 30.1) -- Dark Gravity
 end
 
 --------------------------------------------------------------------------------
@@ -68,11 +61,7 @@ end
 
 function mod:CrushReality(args)
 	self:Message(args.spellId, "orange")
-	if isElevenDotOne then
-		self:CDBar(args.spellId, 20.6)
-	else -- XXX remove in 11.1
-		self:CDBar(args.spellId, 15.7)
-	end
+	self:CDBar(args.spellId, 20.6)
 	self:PlaySound(args.spellId, "alarm")
 end
 

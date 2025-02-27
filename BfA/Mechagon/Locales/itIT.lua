@@ -23,7 +23,6 @@ if L then
 	L.rocket_tonk = "Giocattolo a Razzo"
 	L.waste_processing_unit = "Unità di Processazione"
 	--L.metal_gunk = "Metal Gunk"
-	L.living_waste = "Spazzatura Vivente"
 	--L.junkyard_d0g = "Junkyard D.0.G."
 	L.mechagon_tinkerer = "Meccanista di Meccagon"
 	L.anti_personnel_squirrel = "Scoiattolo Anti-Uomo"

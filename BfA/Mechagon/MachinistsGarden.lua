@@ -1,4 +1,3 @@
-local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -35,11 +34,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ActivatePlant", 294853)
 	self:Log("SPELL_CAST_SUCCESS", "BlossomBlast", 294855)
 	self:Log("SPELL_CAST_START", "HiddenFlameCannon", 285440)
-	if isElevenDotOne then
-		self:Log("SPELL_CAST_START", "DiscomBOMBulator", 285454)
-	else -- XXX remove in 11.1
-		self:Log("SPELL_CAST_SUCCESS", "DiscomBOMBulator", 285454)
-	end
+	self:Log("SPELL_CAST_START", "DiscomBOMBulator", 285454)
 	self:Log("SPELL_AURA_APPLIED", "DiscomBOMBulatorApplied", 285460)
 end
 
@@ -77,11 +72,7 @@ do
 	function mod:DiscomBOMBulator(args)
 		playerList = {}
 		self:Message(args.spellId, "orange")
-		if isElevenDotOne then
-			self:CDBar(args.spellId, 20.6)
-		else -- XXX remove in 11.1
-			self:CDBar(args.spellId, 18.2)
-		end
+		self:CDBar(args.spellId, 20.6)
 		self:PlaySound(args.spellId, "info")
 	end
 

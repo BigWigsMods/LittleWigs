@@ -1,4 +1,3 @@
-if select(4, GetBuildInfo()) < 110100 then return end -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --

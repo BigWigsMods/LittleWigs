@@ -11,5 +11,4 @@ if L then
 	L.inflicted_civilian = "Civil affligé(e)"
 	L.void_ascendant = "Ascendant(e) du Vide"
 	--L.consuming_voidstone = "Consuming Voidstone"
-	L.void_fragment = "Fragment du Vide"
 end

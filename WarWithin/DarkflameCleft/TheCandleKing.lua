@@ -1,4 +1,3 @@
-local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -8,11 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(208745) -- The Candle King
 mod:SetEncounterID(2787)
 mod:SetRespawnTime(30)
-if not isElevenDotOne then
-	mod:SetPrivateAuraSounds({
-		420696, -- Throw Darkflame
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -37,12 +31,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "DarkflamePickaxe", 422648)
 	self:Log("SPELL_AURA_REMOVED", "DarkflamePickaxeRemoved", 422648)
 	self:Log("SPELL_CAST_START", "ParanoidMind", 426145)
-	if isElevenDotOne then
-		self:Log("SPELL_CAST_SUCCESS", "ThrowDarkflame", 420696)
-		self:Log("SPELL_AURA_APPLIED", "ThrowDarkflameApplied", 420696)
-	else -- XXX remove in 11.1
-		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Throw Darkflame
-	end
+	self:Log("SPELL_CAST_SUCCESS", "ThrowDarkflame", 420696)
+	self:Log("SPELL_AURA_APPLIED", "ThrowDarkflameApplied", 420696)
 	self:Log("SPELL_PERIODIC_DAMAGE", "MoltenWaxDamage", 421067)
 	self:Log("SPELL_PERIODIC_MISSED", "MoltenWaxDamage", 421067)
 
@@ -124,14 +114,6 @@ do
 		playerList[#playerList + 1] = args.destName
 		self:TargetsMessage(args.spellId, "orange", playerList, 3) -- TODO how many targets in Normal/Heroic?
 		self:PlaySound(args.spellId, "alert", nil, playerList)
-	end
-end
-
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId) -- XXX remove in 11.1
-	if spellId == 420696 then -- Throw Darkflame
-		self:Message(spellId, "orange")
-		self:CDBar(spellId, 17.0) -- TODO often delayed
-		--self:PlaySound(spellId, "alarm") private aura sound
 	end
 end
 

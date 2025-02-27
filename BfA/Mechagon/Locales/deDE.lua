@@ -23,7 +23,6 @@ if L then
 	L.rocket_tonk = "Raketenpanzer"
 	L.waste_processing_unit = "Müllverarbeitungseinheit"
 	--L.metal_gunk = "Metal Gunk"
-	L.living_waste = "Lebender Müll"
 	L.junkyard_d0g = "T.Ö.L.3. des Schrottplatzes"
 	L.mechagon_tinkerer = "Tüftlerin von Mechagon"
 	L.anti_personnel_squirrel = "Antipersoneneichhörnchen"

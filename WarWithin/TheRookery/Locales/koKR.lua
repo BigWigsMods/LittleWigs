@@ -11,5 +11,4 @@ if L then
 	L.inflicted_civilian = "고통받는 시민"
 	L.void_ascendant = "공허의 승천자"
 	L.consuming_voidstone = "공허석 소모"
-	L.void_fragment = "공허 조각"
 end

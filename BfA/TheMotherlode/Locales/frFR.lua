@@ -14,8 +14,6 @@ if L then
 	L.weapons_tester = "Expert en armement"
 	L.venture_co_mastermind = "Cerveau de la KapitalRisk"
 	L.venture_co_alchemist = "Alchimiste de la KapitalRisk"
-	L.assistant = "Assistant irresponsable"
-	L.technician = "Technicien expert"
 	L.venture_co_war_machine = "Machine de guerre de la KapitalRisk"
 	L.crawler_mine = "Mine rampante"
 	L.ordnance_specialist = "Spécialiste en munitions"

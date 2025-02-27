@@ -11,5 +11,4 @@ if L then
 	L.inflicted_civilian = "Betroffener Bürger"
 	L.void_ascendant = "Leerenaszendentin"
 	--L.consuming_voidstone = "Consuming Voidstone"
-	L.void_fragment = "Leerenfragment"
 end

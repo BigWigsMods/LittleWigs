@@ -14,8 +14,6 @@ if L then
 	L.weapons_tester = "무기 시험자"
 	L.venture_co_mastermind = "투자개발회사 배후조종자"
 	L.venture_co_alchemist = "투자개발회사 연금술사"
-	L.assistant = "경솔한 조수"
-	L.technician = "전문 기술병"
 	L.venture_co_war_machine = "투자개발회사 전쟁 기계"
 	L.crawler_mine = "거미 지뢰"
 	L.ordnance_specialist = "포격 전문가"

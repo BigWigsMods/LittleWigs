@@ -23,7 +23,6 @@ if L then
 	L.rocket_tonk = "Ракетный танк"
 	L.waste_processing_unit = "Переработчик отходов"
 	--L.metal_gunk = "Metal Gunk"
-	L.living_waste = "Живые отходы"
 	--L.junkyard_d0g = "Junkyard D.0.G."
 	L.mechagon_tinkerer = "Мехагонский боевой механик"
 	L.anti_personnel_squirrel = "Противопехотная белка"

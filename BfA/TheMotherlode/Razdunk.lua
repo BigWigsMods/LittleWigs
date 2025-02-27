@@ -1,4 +1,3 @@
-local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -9,13 +8,6 @@ mod:RegisterEnableMob(129232, 132713) -- the vehicle, the actual boss
 mod:SetEncounterID(2108)
 mod:SetRespawnTime(36.4)
 mod:SetStage(1)
-
---------------------------------------------------------------------------------
--- Locals
---
-
-local gatlingGunCount = 1 -- XXX remove in 11.1
-local homingMissileCount = 1 -- XXX remove in 11.1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -39,13 +31,8 @@ end
 function mod:OnBossEnable()
 	-- Stage One: Big Guns
 	self:Log("SPELL_CAST_START", "GatlingGun", 260280)
-	if isElevenDotOne then
-		self:Log("SPELL_CAST_START", "HomingMissile", 260813)
-		self:Log("SPELL_AURA_APPLIED", "HomingMissileApplied", 260811)
-	else -- XXX remove in 11.1
-		self:Log("SPELL_CAST_START", "HomingMissile", 260811)
-		self:Log("SPELL_AURA_APPLIED", "HomingMissileApplied", 260829)
-	end
+	self:Log("SPELL_CAST_START", "HomingMissile", 260813)
+	self:Log("SPELL_AURA_APPLIED", "HomingMissileApplied", 260811)
 	self:Log("SPELL_CAST_START", "MicroMissiles", 276229)
 	self:Log("SPELL_CAST_SUCCESS", "ConfigurationDrill", 260189)
 
@@ -56,15 +43,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	gatlingGunCount = 1
-	homingMissileCount = 1
 	self:SetStage(1)
 	self:CDBar(260813, 5.0) -- Homing Missile
-	if isElevenDotOne then
-		self:CDBar(260280, 20.0) -- Gatling Gun
-	else -- XXX remove in 11.1
-		self:CDBar(260280, 15.0) -- Gatling Gun
-	end
+	self:CDBar(260280, 20.0) -- Gatling Gun
 end
 
 --------------------------------------------------------------------------------
@@ -75,31 +56,12 @@ end
 
 function mod:GatlingGun(args)
 	self:Message(args.spellId, "yellow")
-	if isElevenDotOne then
-		self:CDBar(args.spellId, 30.0)
-	else -- XXX remove in 11.1
-		gatlingGunCount = gatlingGunCount + 1
-		if gatlingGunCount % 2 == 0 then
-			self:CDBar(args.spellId, 20.0)
-		else
-			self:CDBar(args.spellId, 25.0)
-		end
-	end
+	self:CDBar(args.spellId, 30.0)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:HomingMissile(args) -- XXX can use args.spellId in 11.1
-	if isElevenDotOne then
-		self:CDBar(260813, 30.0)
-	else -- XXX remove in 11.1
-		self:Message(260813, "red", CL.incoming:format(args.spellName))
-		homingMissileCount = homingMissileCount + 1
-		if homingMissileCount % 2 == 0 then
-			self:CDBar(260813, 21.0)
-		else
-			self:CDBar(260813, 24.0)
-		end
-	end
+function mod:HomingMissile(args)
+	self:CDBar(args.spellId, 30.0)
 end
 
 function mod:HomingMissileApplied(args)
@@ -125,8 +87,6 @@ do
 end
 
 function mod:ConfigurationDrill(args)
-	homingMissileCount = 1
-	gatlingGunCount = 1
 	self:StopBar(260813) -- Homing Missile
 	self:StopBar(260280) -- Gatling Gun
 	self:SetStage(2)

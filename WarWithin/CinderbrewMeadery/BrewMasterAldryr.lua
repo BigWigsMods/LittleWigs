@@ -1,4 +1,3 @@
-local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -59,10 +58,6 @@ function mod:OnEngage()
 	self:CDBar(432229, 5.1) -- Keg Smash
 	self:CDBar(432179, 10.0) -- Throw Cinderbrew
 	self:CDBar(432198, 14.4) -- Blazing Belch
-	if not isElevenDotOne then -- XXX remove in 11.1
-		-- cast at 100 energy, starts at 55 energy: .9s delay + 20.25s energy gain + runs to bar + 1.5s delay + 2s cast
-		self:CDBar(442525, 27.8) -- Happy Hour
-	end
 end
 
 --------------------------------------------------------------------------------
@@ -86,18 +81,11 @@ do
 		self:StopBar(432198) -- Blazing Belch
 		self:StopBar(432179) -- Throw Cinderbrew
 		self:StopBar(432229) -- Keg Smash
-		if not isElevenDotOne then -- XXX remove in 11.1
-			self:StopBar(args.spellId)
-		end
 		self:SetStage(2)
-		if isElevenDotOne then
-			if happyHourCount == 1 then
-				self:Message(args.spellId, "cyan", CL.percent:format(66, args.spellName))
-			else
-				self:Message(args.spellId, "cyan", CL.percent:format(33, args.spellName))
-			end
-		else -- XXX remove in 11.1
-			self:Message(args.spellId, "cyan")
+		if happyHourCount == 1 then
+			self:Message(args.spellId, "cyan", CL.percent:format(66, args.spellName))
+		else
+			self:Message(args.spellId, "cyan", CL.percent:format(33, args.spellName))
 		end
 		happyHourCount = happyHourCount + 1
 		self:PlaySound(args.spellId, "long")
@@ -109,10 +97,6 @@ do
 		self:CDBar(432229, 9.1) -- Keg Smash
 		self:CDBar(432179, 14.0) -- Throw Cinderbrew
 		self:CDBar(432198, 17.6) -- Blazing Belch
-		if not isElevenDotOne then -- XXX remove in 11.1
-			-- cast at 100 energy, 2.4s delay + 45s energy gain + runs to bar + 1.5s delay + 2s cast
-			self:CDBar(args.spellId, 50.9)
-		end
 		self:PlaySound(args.spellId, "long")
 	end
 end

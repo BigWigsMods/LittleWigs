@@ -14,8 +14,6 @@ if L then
 	L.weapons_tester = "Испытатель экспериментального оружия"
 	L.venture_co_mastermind = "Гений Торговой компании"
 	L.venture_co_alchemist = "Алхимик Торговой компании"
-	L.assistant = "Ленивый лаборант"
-	L.technician = "Техник-эксперт"
 	L.venture_co_war_machine = "Боевая машина Торговой компании"
 	L.crawler_mine = "Ползучая мина"
 	L.ordnance_specialist = "Артиллерист"

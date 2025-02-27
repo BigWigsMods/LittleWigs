@@ -14,8 +14,6 @@ if L then
 	L.weapons_tester = "武器測試員"
 	L.venture_co_mastermind = "風險投資公司高階主管"
 	L.venture_co_alchemist = "風險投資公司鍊金師"
-	L.assistant = "打混裝忙的助理"
-	L.technician = "專家技師"
 	L.venture_co_war_machine = "風險投資公司戰爭機器"
 	--L.crawler_mine = "Crawler Mine"
 	L.ordnance_specialist = "爆裂物專家"

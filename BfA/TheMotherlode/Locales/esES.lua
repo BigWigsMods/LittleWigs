@@ -14,8 +14,6 @@ if L then
 	L.weapons_tester = "Probador de armas"
 	L.venture_co_mastermind = "Cerebro de Ventura y Cía."
 	L.venture_co_alchemist = "Alquimista de Ventura y Cía."
-	L.assistant = "Ayudante inútil"
-	L.technician = "Técnico experto"
 	L.venture_co_war_machine = "Máquina de guerra de Ventura y Cía."
 	L.crawler_mine = "Mina reptadora"
 	L.ordnance_specialist = "Especialista de artillería"

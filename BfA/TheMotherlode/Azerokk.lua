@@ -1,4 +1,3 @@
-local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -40,13 +39,8 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	if isElevenDotOne then
-		self:Log("SPELL_CAST_SUCCESS", "AzeriteInfusionCheck", 257596)
-		self:Log("SPELL_CAST_START", "AzeriteInfusion", 271698)
-	else -- XXX remove in 11.1
-		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- for Azerite Infusion timer
-		self:Log("SPELL_CAST_SUCCESS", "AzeriteInfusion", 271698)
-	end
+	self:Log("SPELL_CAST_SUCCESS", "AzeriteInfusionCheck", 257596)
+	self:Log("SPELL_CAST_START", "AzeriteInfusion", 271698)
 	self:Log("SPELL_CAST_START", "ResonantQuake", 258622)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ResonantQuakeDamage", 258628)
 	self:Log("SPELL_PERIODIC_MISSED", "ResonantQuakeDamage", 258628)
@@ -59,33 +53,16 @@ end
 function mod:OnEngage()
 	resonantQuakeCount = 1
 	tectonicSmashCount = 1
-	if isElevenDotOne then
-		-- XXX on 11.1 PTR the Dungeon Journal says Azerite Infusion is Heroic+ but it's still cast in Normal
-		self:CDBar(271698, 5.2) -- Azerite Infusion
-		self:CDBar(275907, 12.1) -- Tectonic Smash
-		self:CDBar(258622, 32.7, CL.count:format(self:SpellName(258622), resonantQuakeCount)) -- Resonant Quake
-		self:CDBar(257593, 40.2) -- Call Earthrager
-	else -- XXX remove in 11.1
-		self:Bar(258622, 9.5, CL.count:format(self:SpellName(258622), resonantQuakeCount)) -- Resonant Pulse
-		self:Bar(271698, 20) -- Azerite Infusion
-		self:Bar(257593, 64) -- Call Earthrager
-		if not self:Normal() then
-			self:Bar(275907, 5) -- Tectonic Smash
-		end
-	end
+	-- XXX on 11.1 PTR the Dungeon Journal says Azerite Infusion is Heroic+ but it's still cast in Normal
+	self:CDBar(271698, 5.2) -- Azerite Infusion
+	self:CDBar(275907, 12.1) -- Tectonic Smash
+	self:CDBar(258622, 32.7, CL.count:format(self:SpellName(258622), resonantQuakeCount)) -- Resonant Quake
+	self:CDBar(257593, 40.2) -- Call Earthrager
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId) -- XXX remove in 11.1
-	if spellId == 257596 then -- Azerite Infusion
-		-- the timer for Azerite Infusion is based off of 257596, but if there are no Earthragers alive
-		-- then 271698 won't be cast.
-		self:CDBar(271698, 17) -- Azerite Infusion
-	end
-end
 
 function mod:AzeriteInfusionCheck()
 	-- the timer for Azerite Infusion is based off of 257596, but if there are no Earthragers alive
@@ -102,11 +79,7 @@ function mod:ResonantQuake(args)
 	self:StopBar(CL.count:format(args.spellName, resonantQuakeCount))
 	self:Message(args.spellId, "orange", CL.count:format(args.spellName, resonantQuakeCount))
 	resonantQuakeCount = resonantQuakeCount + 1
-	if isElevenDotOne then
-		self:CDBar(args.spellId, 40.1, CL.count:format(args.spellName, resonantQuakeCount))
-	else -- XXX remove in 11.1
-		self:CDBar(args.spellId, 34, CL.count:format(args.spellName, resonantQuakeCount))
-	end
+	self:CDBar(args.spellId, 40.1, CL.count:format(args.spellName, resonantQuakeCount))
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -123,13 +96,7 @@ end
 
 function mod:CallEarthrager(args)
 	self:Message(args.spellId, "cyan")
-	if isElevenDotOne then
-		self:CDBar(args.spellId, 41.2)
-	--else -- XXX remove in 11.1
-		-- The boss casts "Set Energy to 0" (280479) every 60 sec.
-		-- There is a chance that the boss will cast Call Earthrager afterwards,
-		-- but it is not guaranteed, so a timer for this can't be accurate.
-	end
+	self:CDBar(args.spellId, 41.2)
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -160,16 +127,12 @@ end
 function mod:TectonicSmash(args)
 	self:Message(args.spellId, "red")
 	tectonicSmashCount = tectonicSmashCount + 1
-	if isElevenDotOne then
-		if tectonicSmashCount % 2 == 0 then
-			self:CDBar(args.spellId, 15.4)
-		elseif tectonicSmashCount == 3 then
-			self:CDBar(args.spellId, 24.3)
-		else
-			self:CDBar(args.spellId, 26.7)
-		end
-	else -- XXX remove in 11.1
-		self:CDBar(args.spellId, 21)
+	if tectonicSmashCount % 2 == 0 then
+		self:CDBar(args.spellId, 15.4)
+	elseif tectonicSmashCount == 3 then
+		self:CDBar(args.spellId, 24.3)
+	else
+		self:CDBar(args.spellId, 26.7)
 	end
 	self:PlaySound(args.spellId, "alarm")
 end

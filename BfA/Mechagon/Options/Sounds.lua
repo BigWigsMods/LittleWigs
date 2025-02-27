@@ -33,12 +33,9 @@ BigWigs:AddSounds("HK-8 Aerial Oppression Unit", {
 })
 
 BigWigs:AddSounds("Tussle Tonks", {
-	[282801] = {"info","long"},
+	[282801] = "info",
 	[283422] = "alarm",
-	[285020] = "alert",
 	[285152] = "alert",
-	[285344] = "info",
-	[285388] = "alarm",
 	[1215065] = "alarm",
 	[1215102] = "info",
 	[1216431] = "long",
@@ -74,20 +71,14 @@ BigWigs:AddSounds("King Mechagon", {
 
 BigWigs:AddSounds("Operation: Mechagon Trash", {
 	[284219] = {"alert","info"},
-	[293670] = "alert",
 	[293683] = "info",
 	[293729] = "alert",
 	[293827] = "alert",
 	[293861] = "alarm",
 	[293930] = "info",
 	[293986] = "alarm",
-	[294015] = "info",
 	[294103] = "alarm",
-	[294180] = "alert",
 	[294195] = "alert",
-	[294290] = "info",
-	[294324] = "alarm",
-	[294349] = "alert",
 	[294884] = "alarm",
 	[295169] = "long",
 	[297128] = "alarm",

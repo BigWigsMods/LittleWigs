@@ -23,7 +23,6 @@ if L then
 	L.rocket_tonk = "Tonque cohete"
 	L.waste_processing_unit = "Unidad de procesado de desperdicios"
 	--L.metal_gunk = "Metal Gunk"
-	L.living_waste = "Residuo viviente"
 	--L.junkyard_d0g = "Junkyard D.0.G."
 	L.mechagon_tinkerer = "Manitas de Mecandria"
 	L.anti_personnel_squirrel = "Ardilla antipersona"

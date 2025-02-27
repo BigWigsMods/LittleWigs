@@ -1,4 +1,3 @@
-local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -34,19 +33,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	if isElevenDotOne then
-		self:Log("SPELL_CAST_START", "AzeriteCatalyst", 270042)
-	else
-		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- XXX remove in 11.1
-	end
+	self:Log("SPELL_CAST_START", "AzeriteCatalyst", 270042)
 	self:Log("SPELL_PERIODIC_DAMAGE", "AzeriteCatalystDamage", 259533)
 	self:Log("SPELL_PERIODIC_MISSED", "AzeriteCatalystDamage", 259533)
 	--self:Log("SPELL_AURA_APPLIED", "AzeriteCatalystApplied", 270042)
-	if isElevenDotOne then
-		self:Log("SPELL_CAST_START", "PropellantBlast", 259940)
-	else
-		self:Log("SPELL_CAST_START", "PropellantBlast", 260669) -- XXX remove in 11.1
-	end
+	self:Log("SPELL_CAST_START", "PropellantBlast", 259940)
 
 	-- Mythic
 	self:Log("SPELL_CAST_SUCCESS", "GushingCatalyst", 275992)
@@ -93,16 +84,6 @@ do
 	end
 end
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId) -- XXX remove in 11.1
-	if spellId == 270028 then -- Azerite Catalyst
-		azeriteCatalystCount = azeriteCatalystCount + 1
-		self:Message(270042, "red")
-		self:PlaySound(270042, "long")
-		-- Cooldown alternates between 15 and 27, starting with 15
-		self:CDBar(270042, azeriteCatalystCount % 2 == 1 and 15 or 27)
-	end
-end
-
 --function mod:AzeriteCatalystApplied(args)
 	-- happens too late
 	--self:TargetMessage(args.spellId, "red", args.destName)
@@ -131,31 +112,31 @@ end
 
 	do
 		local prev = 0
-		function mod:PropellantBlast(args) -- XXX can use args.spellId in 11.1
+		function mod:PropellantBlast(args)
 			if self:Mythic() then
 				local propellantBlastSequence = (propellantBlastCount - 1) % 3 + 1
 				propellantBlastCount = propellantBlastCount + 1
-				self:Message(259940, "yellow", CL.count_amount:format(args.spellName, propellantBlastSequence, 3))
+				self:Message(args.spellId, "yellow", CL.count_amount:format(args.spellName, propellantBlastSequence, 3))
 				if propellantBlastSequence == 3 then
-					self:CDBar(259940, 31.0)
+					self:CDBar(args.spellId, 31.0)
 				else
-					self:CDBar(259940, 11.0)
+					self:CDBar(args.spellId, 11.0)
 				end
-				self:PlaySound(259940, "alert")
+				self:PlaySound(args.spellId, "alert")
 			else -- Normal / Heroic
 				-- always cast twice in a row, only start a bar for the first cast
 				if args.time - prev > 10 then
 					prev = args.time
-					self:CDBar(259940, 42.0)
+					self:CDBar(args.spellId, 42.0)
 					-- takes up to .3s to target for the first cast, but the second cast seems
 					-- to take up to .9s so can't be target scanned.
 					-- also sometimes boss changes targets 22 times over 2.3 seconds so disable target scanning for now
 					--self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
-					self:Message(259940, "yellow", CL.count_amount:format(args.spellName, 1, 2))
-					self:PlaySound(259940, "alert")
+					self:Message(args.spellId, "yellow", CL.count_amount:format(args.spellName, 1, 2))
+					self:PlaySound(args.spellId, "alert")
 				else
-					self:Message(259940, "yellow", CL.count_amount:format(args.spellName, 2, 2))
-					self:PlaySound(259940, "alert")
+					self:Message(args.spellId, "yellow", CL.count_amount:format(args.spellName, 2, 2))
+					self:PlaySound(args.spellId, "alert")
 				end
 			end
 		end

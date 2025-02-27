@@ -1,4 +1,3 @@
-local isElevenDotOne = select(4, GetBuildInfo()) >= 110100 -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -62,159 +61,79 @@ end
 -- Initialization
 --
 
-if isElevenDotOne then
-	function mod:GetOptions()
-		return {
-			-- Battlefield Ritualist
-			{341902, "DISPEL", "NAMEPLATE"}, -- Unholy Fervor
-			-- Raging Bloodhorn
-			{333241, "NAMEPLATE"}, -- Raging Tantrum
-			-- Diseased Horror
-			{341977, "NAMEPLATE"}, -- Meat Shield
-			{330697, "DISPEL", "NAMEPLATE"}, -- Decaying Strike
-			-- Disgusting Refuse
-			321039, -- Disgusting Burst
-			{341949, "DISPEL"}, -- Withering Blight
-			-- Blighted Sludge-Spewer
-			{341969, "NAMEPLATE"}, -- Withering Discharge
-			-- Putrid Butcher
-			{330586, "NAMEPLATE"}, -- Devour Flesh
-			-- Rancid Gasbag
-			{330614, "DISPEL", "NAMEPLATE"}, -- Vile Eruption
-			342103, -- Rancid Bile
-			-- Dokigg the Brutalizer
-			{1215850, "NAMEPLATE"}, -- Earthcrusher
-			{331316, "TANK_HEALER", "NAMEPLATE"}, -- Savage Flurry
-			{317605, "NAMEPLATE"}, -- Whirlwind
-			-- Nekthara the Mangler
-			{342135, "NAMEPLATE"}, -- Interrupting Roar
-			{336995, "NAMEPLATE"}, -- Whirling Blade
-			-- Heavin the Breaker
-			{332708, "NAMEPLATE"}, -- Ground Smash
-			{331288, "TANK", "NAMEPLATE"}, -- Colossus Smash
-			-- Harugia the Bloodthirsty
-			{333861, "SAY", "NAMEPLATE"}, -- Ricocheting Blade
-			{334023, "NAMEPLATE"}, -- Bloodthirsty Charge
-			-- Ancient Captain
-			{330562, "NAMEPLATE"}, -- Demoralizing Shout
-			{330565, "TANK", "NAMEPLATE"}, -- Shield Bash
-			-- Advent Nevermore
-			{333827, "NAMEPLATE"}, -- Seismic Stomp
-			-- Rek the Hardened
-			{333845, "TANK_HEALER", "NAMEPLATE"}, -- Unbalancing Blow
-			-- Portal Guardian
-			{330716, "NAMEPLATE"}, -- Soulstorm
-			{330725, "DISPEL", "NAMEPLATE"}, -- Shadow Vulnerability
-			-- Maniacal Soulbinder
-			{330868, "NAMEPLATE"}, -- Necrotic Bolt Volley
-			-- Bone Magus
-			{342675, "NAMEPLATE"}, -- Bone Spear
-			-- Nefarious Darkspeaker
-			{333294, "NAMEPLATE"}, -- Death Winds
-			{333299, "DISPEL", "SAY", "NAMEPLATE"}, -- Curse of Desolation
-			-- Soulforged Bonereaver
-			{331223, "NAMEPLATE"}, -- Bonestorm
-			{331237, "NAMEPLATE"}, -- Bone Spikes
-		}, {
-			[341902] = L.battlefield_ritualist,
-			[333241] = L.raging_bloodhorn,
-			[341977] = L.diseased_horror,
-			[321039] = L.disgusting_refuse,
-			[341969] = L.blighted_sludge_spewer,
-			[330586] = L.putrid_butcher,
-			[330614] = L.rancid_gasbag,
-			[1215850] = L.dokigg_the_brutalizer,
-			[342135] = L.nekthara_the_mangler,
-			[332708] = L.heavin_the_breaker,
-			[333861] = L.harugia_the_bloodthirsty,
-			[330562] = L.ancient_captain,
-			[333827] = L.advent_nevermore,
-			[333845] = L.rek_the_hardened,
-			[330716] = L.portal_guardian,
-			[330868] = L.maniacal_soulbinder,
-			[342675] = L.bone_magus,
-			[333294] = L.nefarious_darkspeaker,
-			[331223] = L.soulforged_bonereaver
-		}
-	end
-else -- XXX delete this block when 11.1 is live
-	function mod:GetOptions()
-		return {
-			-- Battlefield Ritualist
-			{341902, "DISPEL", "NAMEPLATE"}, -- Unholy Fervor
-			-- Raging Bloodhorn
-			{333241, "NAMEPLATE"}, -- Raging Tantrum
-			-- Diseased Horror
-			{341977, "NAMEPLATE"}, -- Meat Shield
-			{330697, "DISPEL", "NAMEPLATE"}, -- Decaying Strike
-			-- Disgusting Refuse
-			321039, -- Disgusting Burst
-			{341949, "DISPEL"}, -- Withering Blight
-			-- Blighted Sludge-Spewer
-			{341969, "NAMEPLATE"}, -- Withering Discharge
-			-- Putrid Butcher
-			{330586, "NAMEPLATE"}, -- Devour Flesh
-			{332836, "NAMEPLATE"}, -- Chop (removed in 11.1)
-			-- Rancid Gasbag
-			{330614, "DISPEL", "NAMEPLATE"}, -- Vile Eruption
-			342103, -- Rancid Bile
-			-- Dokigg the Brutalizer
-			342139, -- Battle Trance (removed 11.1)
-			342125, -- Brutal Leap (removed 11.1)
-			-- Nekthara the Mangler
-			{342135, "NAMEPLATE"}, -- Interrupting Roar
-			{317605, "NAMEPLATE"}, -- Whirlwind
-			{336995, "NAMEPLATE"}, -- Whirling Blade
-			-- Heavin the Breaker
-			{332708, "NAMEPLATE"}, -- Ground Smash
-			{331288, "TANK", "NAMEPLATE"}, -- Colossus Smash
-			-- Harugia the Bloodthirsty
-			{333861, "SAY", "NAMEPLATE"}, -- Ricocheting Blade
-			{334023, "NAMEPLATE"}, -- Bloodthirsty Charge
-			-- Ancient Captain
-			{330562, "NAMEPLATE"}, -- Demoralizing Shout
-			{330565, "TANK", "NAMEPLATE"}, -- Shield Bash
-			-- Advent Nevermore
-			{333827, "NAMEPLATE"}, -- Seismic Stomp
-			331275, -- Unbreakable Guard (removed 11.1)
-			-- Rek the Hardened
-			{333845, "TANK_HEALER", "NAMEPLATE"}, -- Unbalancing Blow
-			-- Portal Guardian
-			{330716, "NAMEPLATE"}, -- Soulstorm
-			{330725, "DISPEL", "NAMEPLATE"}, -- Shadow Vulnerability
-			-- Maniacal Soulbinder
-			{330868, "NAMEPLATE"}, -- Necrotic Bolt Volley
-			{333708, "DISPEL"}, -- Soul Corruption (removed 11.1)
-			-- Bone Magus
-			{342675, "NAMEPLATE"}, -- Bone Spear
-			-- Nefarious Darkspeaker
-			{333294, "NAMEPLATE"}, -- Death Winds
-			{333299, "DISPEL", "SAY", "NAMEPLATE"}, -- Curse of Desolation
-			-- Soulforged Bonereaver
-			{331223, "NAMEPLATE"}, -- Bonestorm
-			{331237, "NAMEPLATE"}, -- Bone Spikes
-		}, {
-			[341902] = L.battlefield_ritualist,
-			[333241] = L.raging_bloodhorn,
-			[341977] = L.diseased_horror,
-			[321039] = L.disgusting_refuse,
-			[341969] = L.blighted_sludge_spewer,
-			[330586] = L.putrid_butcher,
-			[330614] = L.rancid_gasbag,
-			[342139] = L.dokigg_the_brutalizer,
-			[342135] = L.nekthara_the_mangler,
-			[332708] = L.heavin_the_breaker,
-			[333861] = L.harugia_the_bloodthirsty,
-			[330562] = L.ancient_captain,
-			[333827] = L.advent_nevermore,
-			[333845] = L.rek_the_hardened,
-			[330716] = L.portal_guardian,
-			[330868] = L.maniacal_soulbinder,
-			[342675] = L.bone_magus,
-			[333294] = L.nefarious_darkspeaker,
-			[331223] = L.soulforged_bonereaver
-		}
-	end
+function mod:GetOptions()
+	return {
+		-- Battlefield Ritualist
+		{341902, "DISPEL", "NAMEPLATE"}, -- Unholy Fervor
+		-- Raging Bloodhorn
+		{333241, "NAMEPLATE"}, -- Raging Tantrum
+		-- Diseased Horror
+		{341977, "NAMEPLATE"}, -- Meat Shield
+		{330697, "DISPEL", "NAMEPLATE"}, -- Decaying Strike
+		-- Disgusting Refuse
+		321039, -- Disgusting Burst
+		{341949, "DISPEL"}, -- Withering Blight
+		-- Blighted Sludge-Spewer
+		{341969, "NAMEPLATE"}, -- Withering Discharge
+		-- Putrid Butcher
+		{330586, "NAMEPLATE"}, -- Devour Flesh
+		-- Rancid Gasbag
+		{330614, "DISPEL", "NAMEPLATE"}, -- Vile Eruption
+		342103, -- Rancid Bile
+		-- Dokigg the Brutalizer
+		{1215850, "NAMEPLATE"}, -- Earthcrusher
+		{331316, "TANK_HEALER", "NAMEPLATE"}, -- Savage Flurry
+		{317605, "NAMEPLATE"}, -- Whirlwind
+		-- Nekthara the Mangler
+		{342135, "NAMEPLATE"}, -- Interrupting Roar
+		{336995, "NAMEPLATE"}, -- Whirling Blade
+		-- Heavin the Breaker
+		{332708, "NAMEPLATE"}, -- Ground Smash
+		{331288, "TANK", "NAMEPLATE"}, -- Colossus Smash
+		-- Harugia the Bloodthirsty
+		{333861, "SAY", "NAMEPLATE"}, -- Ricocheting Blade
+		{334023, "NAMEPLATE"}, -- Bloodthirsty Charge
+		-- Ancient Captain
+		{330562, "NAMEPLATE"}, -- Demoralizing Shout
+		{330565, "TANK", "NAMEPLATE"}, -- Shield Bash
+		-- Advent Nevermore
+		{333827, "NAMEPLATE"}, -- Seismic Stomp
+		-- Rek the Hardened
+		{333845, "TANK_HEALER", "NAMEPLATE"}, -- Unbalancing Blow
+		-- Portal Guardian
+		{330716, "NAMEPLATE"}, -- Soulstorm
+		{330725, "DISPEL", "NAMEPLATE"}, -- Shadow Vulnerability
+		-- Maniacal Soulbinder
+		{330868, "NAMEPLATE"}, -- Necrotic Bolt Volley
+		-- Bone Magus
+		{342675, "NAMEPLATE"}, -- Bone Spear
+		-- Nefarious Darkspeaker
+		{333294, "NAMEPLATE"}, -- Death Winds
+		{333299, "DISPEL", "SAY", "NAMEPLATE"}, -- Curse of Desolation
+		-- Soulforged Bonereaver
+		{331223, "NAMEPLATE"}, -- Bonestorm
+		{331237, "NAMEPLATE"}, -- Bone Spikes
+	}, {
+		[341902] = L.battlefield_ritualist,
+		[333241] = L.raging_bloodhorn,
+		[341977] = L.diseased_horror,
+		[321039] = L.disgusting_refuse,
+		[341969] = L.blighted_sludge_spewer,
+		[330586] = L.putrid_butcher,
+		[330614] = L.rancid_gasbag,
+		[1215850] = L.dokigg_the_brutalizer,
+		[342135] = L.nekthara_the_mangler,
+		[332708] = L.heavin_the_breaker,
+		[333861] = L.harugia_the_bloodthirsty,
+		[330562] = L.ancient_captain,
+		[333827] = L.advent_nevermore,
+		[333845] = L.rek_the_hardened,
+		[330716] = L.portal_guardian,
+		[330868] = L.maniacal_soulbinder,
+		[342675] = L.bone_magus,
+		[333294] = L.nefarious_darkspeaker,
+		[331223] = L.soulforged_bonereaver
+	}
 end
 
 function mod:OnBossEnable()
@@ -256,8 +175,6 @@ function mod:OnBossEnable()
 	-- Putrid Butcher
 	self:Log("SPELL_CAST_START", "DevourFlesh", 330586)
 	self:Log("SPELL_CAST_SUCCESS", "DevourFleshSuccess", 330586)
-	self:Log("SPELL_CAST_START", "Chop", 332836) -- XXX removed in 11.1
-	self:Log("SPELL_CAST_SUCCESS", "ChopSuccess", 332836) -- XXX removed in 11.1
 	self:Death("PutridButcherDeath", 169927)
 
 	-- Rancid Gasbag
@@ -269,36 +186,24 @@ function mod:OnBossEnable()
 	self:Death("RancidGasbagDeath", 163086)
 
 	-- Chamber of Conquest
-	if isElevenDotOne then -- XXX remove this check when 11.1 is live
-		self:RegisterEngageMob("DokiggTheBrutalizerEngaged", 167538)
-		self:RegisterEngageMob("NektharaTheManglerEngaged", 162744)
-		self:RegisterEngageMob("HeavinTheBreakerEngaged", 167532)
-		self:RegisterEngageMob("HarugiaTheBloodthirstyEngaged", 167536)
-		self:RegisterEngageMob("AdventNevermoreEngaged", 167533)
-		self:RegisterEngageMob("RekTheHardenedEngaged", 167534)
-	end
+	self:RegisterEngageMob("DokiggTheBrutalizerEngaged", 167538)
+	self:RegisterEngageMob("NektharaTheManglerEngaged", 162744)
+	self:RegisterEngageMob("HeavinTheBreakerEngaged", 167532)
+	self:RegisterEngageMob("HarugiaTheBloodthirstyEngaged", 167536)
+	self:RegisterEngageMob("AdventNevermoreEngaged", 167533)
+	self:RegisterEngageMob("RekTheHardenedEngaged", 167534)
 	self:Death("ChamberOfConquestDeath", 167538, 162744, 167532, 167536, 167533, 167534)
 
 	-- Dokigg the Brutalizer
-	if isElevenDotOne then -- XXX remove this check when 11.1 is live
-		self:Log("SPELL_CAST_START", "Earthcrusher", 1215850)
-		self:Log("SPELL_CAST_START", "SavageFlurry", 331316)
-	else -- XXX remove this block when 11.1 is live
-		self:Log("SPELL_CAST_START", "BattleTrance", 342139) -- XXX removed in 11.1
-		self:Log("SPELL_AURA_APPLIED", "BattleTranceApplied", 342139) -- XXX removed in 11.1
-		self:Log("SPELL_CAST_START", "BrutalLeap", 342125) -- XXX removed in 11.1
-	end
+	self:Log("SPELL_CAST_START", "Earthcrusher", 1215850)
+	self:Log("SPELL_CAST_START", "SavageFlurry", 331316)
 	self:Log("SPELL_CAST_START", "Whirlwind", 317605)
 
 	-- Nekthara the Mangler / Heavin the Breaker
 	self:Log("SPELL_CAST_START", "InterruptingRoar", 342135)
 
 	-- Nekthara the Mangler / Harugia the Bloodthirsty
-	if isElevenDotOne then
-		self:Log("SPELL_CAST_SUCCESS", "WhirlingBlade", 336995)
-	else -- XXX remove in 11.1
-		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- for 336995, Whirling Blade
-	end
+	self:Log("SPELL_CAST_SUCCESS", "WhirlingBlade", 336995)
 	self:Log("SPELL_DAMAGE", "WhirlingBladeDamage", 337037)
 	self:Log("SPELL_MISSED", "WhirlingBladeDamage", 337037)
 
@@ -320,9 +225,6 @@ function mod:OnBossEnable()
 
 	-- Advent Nevermore
 	self:Log("SPELL_CAST_START", "SeismicStomp", 333827)
-	if not isElevenDotOne then -- XXX remove when 11.1 is live
-		self:Log("SPELL_CAST_START", "UnbreakableGuard", 331275)
-	end
 
 	-- Rek the Hardened
 	self:Log("SPELL_CAST_START", "UnbalancingBlow", 333845)
@@ -339,7 +241,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NecroticBoltVolley", 330868)
 	self:Log("SPELL_INTERRUPT", "NecroticBoltVolleyInterrupt", 330868)
 	self:Log("SPELL_CAST_SUCCESS", "NecroticBoltVolleySuccess", 330868)
-	self:Log("SPELL_AURA_APPLIED", "SoulCorruptionApplied", 333708) -- XXX removed in 11.1
 	self:Death("ManiacalSoulbinderDeath", 160495)
 
 	-- Bone Magus
@@ -390,11 +291,7 @@ function mod:UnholyFervor(args)
 	-- this isn't cast unless there is a mob nearby with low hp
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	-- cooldown is triggered by cast start
-	if isElevenDotOne then
-		self:Nameplate(args.spellId, 24.3, args.sourceGUID)
-	else -- XXX remove in 11.1
-		self:Nameplate(args.spellId, 15.8, args.sourceGUID)
-	end
+	self:Nameplate(args.spellId, 24.3, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -416,11 +313,7 @@ function mod:RagingBloodhornEngaged(guid)
 end
 
 function mod:RagingTantrum(args)
-	if isElevenDotOne then
-		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
-	else -- XXX remove in 11.1
-		self:Nameplate(args.spellId, 15.8, args.sourceGUID)
-	end
+	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 end
 
 function mod:RagingTantrumApplied(args)
@@ -563,29 +456,6 @@ function mod:DevourFleshSuccess(args)
 	self:Nameplate(args.spellId, 24.2, args.sourceGUID)
 end
 
-do
-	local function printTarget(self, name, guid) -- XXX removed in 11.1
-		if self:Me(guid) or self:Healer() then
-			self:TargetMessage(332836, "red", name)
-			self:PlaySound(332836, "alert", nil, name)
-		end
-	end
-
-	function mod:Chop(args) -- XXX removed in 11.1
-		if self:Friendly(args.sourceFlags) then -- these NPCs can be mind-controlled by DKs
-			return
-		end
-		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		if not self:Tank() then
-			self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-		end
-	end
-
-	function mod:ChopSuccess(args) -- XXX removed in 11.1
-		self:Nameplate(args.spellId, 16.7, args.sourceGUID)
-	end
-end
-
 function mod:PutridButcherDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
@@ -664,36 +534,7 @@ function mod:ChamberOfConquestDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
--- Dokigg the Brutalizer / Harugia the Bloodthirsty
-
-function mod:BattleTrance(args) -- XXX removed in 11.1
-	local canInterrupt, interruptReady = self:Interrupter()
-	local enrageDispeller = self:Dispeller("enrage", true)
-	-- this can be interrupted or you can let the cast go through and dispel the enrage
-	if canInterrupt or enrageDispeller then
-		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		if interruptReady then
-			self:PlaySound(args.spellId, "warning")
-		elseif enrageDispeller then
-			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
-function mod:BattleTranceApplied(args) -- XXX removed in 11.1
-	if self:Dispeller("enrage", true) or self:Tank() then
-		self:Message(args.spellId, "orange", CL.buff_other:format(args.destName, args.spellName))
-		self:PlaySound(args.spellId, "warning")
-	end
-end
-
 -- Dokigg the Brutalizer
-
-function mod:BrutalLeap(args) -- XXX removed in 11.1
-	-- target detection not possible with this spell
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-end
 
 function mod:Earthcrusher(args)
 	local unit = self:UnitTokenFromGUID(args.sourceGUID)
@@ -743,21 +584,6 @@ function mod:Whirlwind(args)
 end
 
 -- Nekthara the Mangler
-
-do
-	local prev
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId) -- XXX remove in 11.1
-		if castGUID ~= prev and spellId == 336995 then -- Whirling Blade
-			prev = castGUID
-			local unitGUID = self:UnitGUID(unit)
-			if unitGUID then
-				self:Message(spellId, "red")
-				self:Nameplate(spellId, 13.3, unitGUID)
-				self:PlaySound(spellId, "alarm")
-			end
-		end
-	end
-end
 
 function mod:WhirlingBlade(args)
 	local unit = self:UnitTokenFromGUID(args.sourceGUID)
@@ -822,11 +648,7 @@ end
 
 function mod:BloodthirstyCharge(args)
 	self:Message(args.spellId, "orange")
-	if isElevenDotOne then
-		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
-	else -- XXX remove in 11.1
-		self:Nameplate(args.spellId, 10.5, args.sourceGUID)
-	end
+	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -877,14 +699,6 @@ function mod:SeismicStomp(args)
 	end
 end
 
-function mod:UnbreakableGuard(args) -- XXX remove when 11.1 is live
-	local unit = self:UnitTokenFromGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) and UnitCanAttack("player", unit) then
-		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "info")
-	end
-end
-
 -- Rek the Hardened
 
 function mod:UnbalancingBlow(args)
@@ -905,20 +719,12 @@ end
 
 function mod:Soulstorm(args)
 	self:Message(args.spellId, "orange")
-	if isElevenDotOne then
-		self:Nameplate(args.spellId, 26.7, args.sourceGUID)
-	else -- XXX remove in 11.1
-		self:Nameplate(args.spellId, 23.0, args.sourceGUID)
-	end
+	self:Nameplate(args.spellId, 26.7, args.sourceGUID)
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:ShadowVulnerability(args)
-	if isElevenDotOne then
-		self:Nameplate(args.spellId, 18.3, args.sourceGUID)
-	else -- XXX remove in 11.1
-		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
-	end
+	self:Nameplate(args.spellId, 18.3, args.sourceGUID)
 end
 
 function mod:ShadowVulnerabilityApplied(args)
@@ -935,11 +741,7 @@ end
 -- Maniacal Soulbinder
 
 function mod:ManiacalSoulbinderEngaged(guid)
-	if isElevenDotOne then
-		self:Nameplate(330868, 9.5, guid) -- Necrotic Bolt Volley
-	else -- XXX remove in 11.1
-		self:Nameplate(330868, 6.9, guid) -- Necrotic Bolt Volley
-	end
+	self:Nameplate(330868, 9.5, guid) -- Necrotic Bolt Volley
 end
 
 function mod:NecroticBoltVolley(args)
@@ -963,16 +765,6 @@ function mod:NecroticBoltVolleySuccess(args)
 	self:Nameplate(args.spellId, 21.7, args.sourceGUID)
 end
 
-function mod:SoulCorruptionApplied(args) -- XXX removed in 11.1
-	if not self:Player(args.destFlags) then -- don't alert if a NPC is debuffed (usually by a mind-controlled mob)
-		return
-	end
-	if self:Dispeller("magic", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
-	end
-end
-
 function mod:ManiacalSoulbinderDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
@@ -980,11 +772,7 @@ end
 -- Bone Magus
 
 function mod:BoneMagusEngaged(guid)
-	if isElevenDotOne then
-		self:Nameplate(342675, 9.4, guid) -- Bone Spear
-	else -- XXX remove in 11.1
-		self:Nameplate(342675, 1.2, guid) -- Bone Spear
-	end
+	self:Nameplate(342675, 9.4, guid) -- Bone Spear
 end
 
 function mod:BoneSpear(args)
@@ -997,19 +785,11 @@ function mod:BoneSpear(args)
 end
 
 function mod:BoneSpearInterrupt(args)
-	if isElevenDotOne then
-		self:Nameplate(342675, 22.0, args.destGUID)
-	else -- XXX remove in 11.1
-		self:Nameplate(342675, 17.4, args.destGUID)
-	end
+	self:Nameplate(342675, 22.0, args.destGUID)
 end
 
 function mod:BoneSpearSuccess(args)
-	if isElevenDotOne then
-		self:Nameplate(args.spellId, 22.0, args.sourceGUID)
-	else -- XXX remove in 11.1
-		self:Nameplate(args.spellId, 17.4, args.sourceGUID)
-	end
+	self:Nameplate(args.spellId, 22.0, args.sourceGUID)
 end
 
 function mod:BoneMagusDeath(args)
