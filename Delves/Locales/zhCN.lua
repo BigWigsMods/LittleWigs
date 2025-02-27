@@ -15,12 +15,12 @@ end
 
 L = BigWigs:NewBossLocale("Maklin Drillstab", "zhCN")
 if L then
-	--L.maklin_drillstab = "Maklin Drillstab"
+	L.maklin_drillstab = "马克林·钻刺"
 end
 
 L = BigWigs:NewBossLocale("The Biggest Bug", "zhCN")
 if L then
-	--L.the_biggest_bug = "The Biggest Bug"
+	L.the_biggest_bug = "史上第一巨虫"
 end
 
 L = BigWigs:NewBossLocale("Web General Ab'enar", "zhCN")
