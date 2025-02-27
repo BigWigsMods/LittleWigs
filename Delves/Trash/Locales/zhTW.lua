@@ -66,6 +66,20 @@ if L then
 	--L.web_marauder = "Web Marauder"
 end
 
+L = BigWigs:NewBossLocale("Underpin Rares", "zhTW")
+if L then
+	--L.rares = "Underpin Rares"
+
+	--L.hovering_menace = "Hovering Menace"
+	--L.treasure_crab = "Treasure Crab"
+	--L.malfunctioning_pummeler = "Malfunctioning Pummeler"
+	--L.underpins_adoring_fan = "Underpin's Adoring Fan"
+	--L.underpins_well_connected_friend = "Underpin's Well-Connected Friend"
+	--L.underpins_explosive_ally = "Underpin's Explosive Ally"
+	--L.underpins_bodyguards_intern = "Underpin's Bodyguard's Intern"
+	--L.aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin"
+end
+
 L = BigWigs:NewBossLocale("Zekvir Rares", "zhTW")
 if L then
 	--L.rares = "Rares"
