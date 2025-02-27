@@ -1,4 +1,3 @@
-if select(4, GetBuildInfo()) < 110100 then return end -- XXX only load in Season 2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
