@@ -1,4 +1,3 @@
-if select(4, GetBuildInfo()) < 110100 then return end -- XXX remove when 11.1 is live
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -79,7 +78,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ShadowBlast", 474228)
 
 	-- also enable the Rares module
-	local raresModule = BigWigs:GetBossModule("Underpin Rares", true)
+	local raresModule = BigWigs:GetBossModule("Zekvir Rares", true)
 	if raresModule then
 		raresModule:Enable()
 	end
