@@ -60,7 +60,7 @@ end
 
 L = BigWigs:NewBossLocale("Old God Delve Trash", "zhCN")
 if L then
-	L.old_god_trash = "上古之神小怪"
+	L.old_god_trash = "古神小怪"
 
 	L.dark_walker = "黑暗行者"
 	L.hideous_amalgamation = "丑恶聚合体"
