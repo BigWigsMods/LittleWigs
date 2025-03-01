@@ -48,7 +48,7 @@ function mod:OnEngage()
 	lightningDashCount = 1
 	self:SetStage(1)
 	self:CDBar(1214325, 5.1) -- Crashing Thunder
-	self:CDBar(474018, 9.5) -- Wild Lightning
+	self:CDBar(474018, 9.4) -- Wild Lightning
 	self:CDBar(444123, 16.0, CL.count:format(self:SpellName(444123), lightningTorrentCount)) -- Lightning Torrent
 	self:CDBar(419870, 38.5, CL.count:format(self:SpellName(419870), lightningDashCount)) -- Lightning Dash
 end
@@ -89,7 +89,7 @@ function mod:CrashingThunder(args)
 	if crashingThunderCount == 2 then
 		self:CDBar(args.spellId, 42.5)
 	elseif crashingThunderCount % 2 == 0 then
-		self:CDBar(args.spellId, 40.1)
+		self:CDBar(args.spellId, 40.0)
 	else
 		self:CDBar(args.spellId, 15.8)
 	end
@@ -104,7 +104,7 @@ function mod:WildLightning(args)
 		if wildLightningCount == 2 then
 			self:CDBar(args.spellId, 41.3)
 		elseif wildLightningCount % 2 == 0 then
-			self:CDBar(args.spellId, 40.1)
+			self:CDBar(args.spellId, 40.0)
 		else
 			self:CDBar(args.spellId, 15.8)
 		end
