@@ -91,7 +91,7 @@ function mod:GetOptions()
 		-- Venture Co. Alchemist
 		{268797, "DISPEL", "NAMEPLATE"}, -- Transmute: Enemy to Goo
 		-- Venture Co. War Machine
-		{269429, "TANK", "NAMEPLATE"}, -- Charged Shot
+		{269429, "NAMEPLATE"}, -- Charged Shot
 		{262383, "NAMEPLATE"}, -- Deploy Crawler Mine
 		-- Crawler Mine
 		{262377, "ME_ONLY"}, -- Seek and Destroy
@@ -128,8 +128,8 @@ function mod:OnBossEnable()
 
 	-- Mech Jockey
 	--self:RegisterEngageMob("MechJockeyEngaged", 130488)
-	self:Log("SPELL_CAST_START", "ActivateMech", 267433)
-	self:Log("SPELL_CAST_SUCCESS", "ActivateMechSuccess", 267433)
+	self:Log("SPELL_CAST_START", "ActivateMech", 267433) -- Mythic only
+	self:Log("SPELL_CAST_SUCCESS", "ActivateMechSuccess", 267433) -- Mythic only
 	--self:Death("MechJockeyDeath", 130488)
 
 	-- Mechanized Peacekeeper
@@ -272,7 +272,7 @@ end
 
 do
 	local prev = 0
-	function mod:ActivateMech(args)
+	function mod:ActivateMech(args) -- Mythic only
 		--self:Nameplate(args.spellId, 0, args.sourceGUID)
 		if args.time - prev > 1.5 then
 			prev = args.time
@@ -426,7 +426,7 @@ end
 
 function mod:AzeriteExtractorEngaged(guid)
 	self:Nameplate(1215411, 9.1, guid) -- Puncture
-	self:Nameplate(473168, 15.2, guid) -- Rapid Extraction
+	self:Nameplate(473168, 14.8, guid) -- Rapid Extraction
 end
 
 function mod:RapidExtraction(args)
@@ -526,7 +526,7 @@ end
 -- Stonefury
 
 function mod:StonefuryEngaged(guid)
-	self:Nameplate(268702, 5.9, guid) -- Furious Quake
+	self:Nameplate(268702, 5.2, guid) -- Furious Quake
 end
 
 do
@@ -661,12 +661,12 @@ end
 -- Venture Co. War Machine
 
 function mod:VentureCoWarMachineEngaged(guid)
-	self:Nameplate(269429, 8.3, guid) -- Charged Shot
-	self:Nameplate(262383, 18.1, guid) -- Deploy Crawler Mine
+	self:Nameplate(269429, 6.8, guid) -- Charged Shot
+	self:Nameplate(262383, 17.8, guid) -- Deploy Crawler Mine
 end
 
 function mod:ChargedShot(args)
-	self:Message(args.spellId, "purple")
+	self:Message(args.spellId, "red")
 	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
 end
