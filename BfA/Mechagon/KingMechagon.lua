@@ -16,6 +16,7 @@ mod:SetStage(1)
 local megaZapCount = 1
 local clickCount = 0
 local recalibrateTimer = nil
+local castingMagnetoArm = false
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -68,9 +69,9 @@ function mod:OnBossEnable()
 
 	-- Stage Two: Omega Buster
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3") -- Activate Omega Buster
-	self:Log("SPELL_CAST_SUCCESS", "Recalibrate", 291856) -- Stage 2 only
 	self:Log("SPELL_CAST_START", "MagnetoArm", 283551) -- Boss's cast activating the device
-	self:Log("SPELL_CAST_SUCCESS", "MagnetoArmSuccess", 283143) -- Pull in effect start
+	self:Log("SPELL_CAST_SUCCESS", "MagnetoArmSuccess", 283143) -- pull in effect start
+	self:Log("SPELL_AURA_REMOVED", "MagnetoArmRemoved", 283143) -- pull in effect end
 	self:Log("SPELL_CAST_START", "MegaZapStage2", 292264)
 	self:Log("SPELL_CAST_START", "ProtocolNinetyNine", 292290)
 	self:Death("OmegaBusterDeath", 144249)
@@ -88,12 +89,13 @@ do
 	end
 
 	function mod:OnEngage()
-		self:SetStage(1)
 		megaZapCount = 1
 		recalibrateTimer = nil
-		self:CDBar(291865, 4.5) -- Recalibrate
+		castingMagnetoArm = false
+		self:SetStage(1)
+		self:CDBar(291865, 5.8) -- Recalibrate
 		self:CDBar(291928, 9.5) -- Mega-Zap
-		self:CDBar(291613, 35.0) -- Take Off
+		self:CDBar(291613, 30.0) -- Take Off
 		if self:Mythic() and not self:MythicPlus() then
 			clickCount = 0
 			self:SimpleTimer(hardModeCheck, 0.1)
@@ -134,7 +136,7 @@ function mod:TakeOff(args)
 	self:Message(args.spellId, "orange")
 	self:CDBar(291928, {12.0, 15.7}) -- Mega-Zap (Stage 1)
 	self:CDBar(291865, 17.0) -- Recalibrate
-	self:CDBar(args.spellId, 34.0)
+	self:CDBar(args.spellId, 32.9)
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -164,15 +166,28 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 296323 then -- Activate Omega Buster
-		self:CDBar(291865, 7.0) -- Recalibrate
-		recalibrateTimer = self:ScheduleTimer("RecalibrateStage2", 7.0)
-		self:CDBar(292264, 19.2) -- Mega-Zap (Stage 2)
-		self:CDBar(283551, 30.8) -- Magneto Arm
+		self:CDBar(291865, 6.75) -- Recalibrate
+		self:CDBar(292264, 17.7) -- Mega-Zap (Stage 2)
+		self:CDBar(283551, 36.9) -- Magneto Arm
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+	end
+end
+
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
+	if self:GetBossId(144249) then -- Omega Buster
+		self:UnregisterEvent(event)
+		-- the first recalibrate accompanies IEEU for Omega Buster, after that it's a 8s repeater
+		recalibrateTimer = self:ScheduleRepeatingTimer("RecalibrateStage2", 8, self)
+		self:Message(291865, "orange") -- Recalibrate
+		self:CDBar(291865, 8.0) -- Recalibrate
+		self:CDBar(292264, {10.9, 17.7}) -- Mega-Zap (Stage 2)
+		self:CDBar(283551, {30.1, 36.9}) -- Magneto Arm
+		self:PlaySound(291865, "alarm") -- Recalibrate
 	end
 end
 
 function mod:MagnetoArm(args)
-	if self:GetStage() ~= 2 then
+	if self:GetStage() ~= 2 then -- reload protection
 		self:SetStage(2)
 	end
 	self:Message(args.spellId, "yellow")
@@ -181,42 +196,36 @@ function mod:MagnetoArm(args)
 	self:PlaySound(args.spellId, "long")
 end
 
-function mod:RecalibrateStage2() -- only called from :ScheduleTimer
-	self:Message(291865, "orange")
-	self:CDBar(291865, 8.0)
-	self:PlaySound(291865, "alarm")
-end
-
 do
 	local prev = 0
 
-	function mod:Recalibrate(args)
-		-- throttle because each of the 4 Plasma Orbs cast this simultaneously
-		if self:GetStage() == 2 and args.time - prev > 2 then
-			prev = args.time
-			mod:CDBar(291865, {5.5, 8.0})
-			recalibrateTimer = self:ScheduleTimer("RecalibrateStage2", 5.5)
+	function mod:RecalibrateStage2() -- only called from :ScheduleRepeatingTimer
+		-- casts during Magneto Arm will be skipped
+		if not castingMagnetoArm then
+			prev = GetTime()
+			self:Message(291865, "orange")
+			self:CDBar(291865, 8.0)
+			self:PlaySound(291865, "alarm")
 		end
 	end
 
 	function mod:MagnetoArmSuccess(args)
-		if recalibrateTimer then
-			self:CancelTimer(recalibrateTimer)
-		end
+		castingMagnetoArm = true
 		self:CastBar(283551, 9) -- Magneto Arm
 		-- Every 8 sec, Recalibrate is attempted.
 		-- It does not cast between the start of the magnet's channel and the magnet despawning.
 		-- The magnet despawns after 10 sec and the cast time of Recalibrate is 2.5sec
 		-- The next Recalibrate will be in more than 10 seconds.
-		-- Find the lowest multiple of 8 (Recalibrate timer) that is still greater than 10 after the following have been subtracted:
-		-- - 2.5 sec (for the cast time)
-		-- - The already elapsed time
-		local elapsed = args.time - prev
+		-- Find the lowest multiple of 8 (Recalibrate timer) that is still greater than 10 after the elapsed time has been subtracted:
+		local elapsed = GetTime() - prev
 		local multiple = math.ceil((12.5 + elapsed) / 8) * 8
-		local nextCast = multiple - 2.5 - elapsed
-		self:CDBar(291865, nextCast) -- Recalibrate
-		recalibrateTimer = self:ScheduleTimer("RecalibrateStage2", nextCast)
+		self:CDBar(291865, multiple - elapsed) -- Recalibrate
 	end
+end
+
+function mod:MagnetoArmRemoved()
+	-- the cast ends (magnet despawns) 1s after the aura is removed from the boss
+	self:SimpleTimer(function() castingMagnetoArm = false end, 1)
 end
 
 do
@@ -229,7 +238,7 @@ do
 	end
 
 	function mod:MegaZapStage2(args)
-		if self:GetStage() ~= 2 then
+		if self:GetStage() ~= 2 then -- reload protection
 			self:SetStage(2)
 		end
 		if megaZapCount % 3 == 1 then -- timer for the 1st cast in the 3-cast sequence
@@ -249,14 +258,15 @@ function mod:ProtocolNinetyNine(args)
 end
 
 function mod:OmegaBusterDeath(args)
+	if recalibrateTimer then
+		self:CancelTimer(recalibrateTimer)
+	end
 	self:StopBar(292264) -- Mega-Zap (Stage 2)
 	self:StopBar(283534) -- Magneto Arm
 	self:StopBar(291865) -- Recalibrate
 	self:SetStage(3)
 	self:Message("stages", "cyan", CL.stage:format(3), false)
-	if recalibrateTimer then
-		self:CancelTimer(recalibrateTimer)
-	end
+	self:PlaySound("stages", "long")
 end
 
 -- H.A.R.D.M.O.D.E.
