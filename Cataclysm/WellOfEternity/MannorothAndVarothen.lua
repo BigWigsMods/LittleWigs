@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Mannoroth and Varo'then", 939, 292)
 if not mod then return end
 mod:RegisterEnableMob(54969, 55419) -- Mannoroth, Varo'then
-mod.engageId = 1274
-mod.respawnTime = 31.5
+mod:SetEncounterID(1274)
+mod:SetRespawnTime(31.5)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -32,6 +32,14 @@ function mod:OnEngage()
 	spawnWarnings = 1
 end
 
+function mod:VerifyEnable(unit, mobId)
+	if mobId == 54969 then
+		-- encounter ends with Mannoroth at 25%
+		return self:GetHealth(unit) > 25
+	end
+	return true
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
@@ -46,21 +54,22 @@ do
 	}
 
 	function mod:UNIT_HEALTH(event, unit)
-		if self:MobId(self:UnitGUID(unit)) ~= 54969 then return end -- Varo'then is of no interest
+		if self:MobId(self:UnitGUID(unit)) ~= 54969 then return end -- only track Mannoroth
 		local hp = self:GetHealth(unit)
-		if hp < adds[spawnWarnings][1] then
-			self:MessageOld(-4287, "yellow", "info", CL.soon:format(self:SpellName(adds[spawnWarnings][2])), false)
+		if spawnWarnings <= #adds and hp < adds[spawnWarnings][1] then
+			self:Message(-4287, "cyan", CL.soon:format(self:SpellName(adds[spawnWarnings][2])), false)
 			spawnWarnings = spawnWarnings + 1
 
 			while spawnWarnings <= #adds and hp < adds[spawnWarnings][1] do
 				-- display multiple messages if a high-level character hits multiple thresholds with 1 damage event
-				self:MessageOld(-4287, "yellow", nil, CL.soon:format(self:SpellName(adds[spawnWarnings][2])), false)
+				self:Message(-4287, "cyan", CL.soon:format(self:SpellName(adds[spawnWarnings][2])), false)
 				spawnWarnings = spawnWarnings + 1
 			end
 
 			if spawnWarnings > #adds then
 				self:UnregisterUnitEvent(event, "boss1", "boss2")
 			end
+			self:PlaySound(-4287, "info")
 		end
 	end
 end
