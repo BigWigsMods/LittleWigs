@@ -21,9 +21,11 @@ end
 -- Initialization
 --
 
+local inconspicuousPlantMarker = mod:AddMarkerOption(true, "npc", 8, 294850, 8) -- Inconspicuous Plant
 function mod:GetOptions()
 	return {
 		294853, -- Activate Plant
+		inconspicuousPlantMarker,
 		{294855, "ME_ONLY"}, -- Blossom Blast
 		{285440, "CASTBAR"}, -- "Hidden" Flame Cannon
 		{285454, "DISPEL"}, -- Discom-BOMB-ulator
@@ -48,15 +50,36 @@ end
 -- Event Handlers
 --
 
-function mod:ActivatePlant(args)
-	self:Message(args.spellId, "cyan", nil, L["294853_icon"])
-	self:CDBar(args.spellId, 46.1, nil, L["294853_icon"])
-	self:PlaySound(args.spellId, "long")
-end
+do
+	local plantSummoned, plantGUID = false, nil
 
-function mod:BlossomBlast(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
+	function mod:ActivatePlant(args)
+		plantSummoned = true
+		self:Message(args.spellId, "cyan", nil, L["294853_icon"])
+		self:CDBar(args.spellId, 46.1, nil, L["294853_icon"])
+		if self:GetOption(inconspicuousPlantMarker) then
+			self:RegisterTargetEvents("MarkInconspicuousPlant")
+		end
+		self:PlaySound(args.spellId, "long")
+	end
+
+	function mod:BlossomBlast(args)
+		if plantSummoned then
+			-- grab the GUID from the first Blossom Blast cast after Activate Plant
+			plantSummoned = false
+			plantGUID = args.sourceGUID
+		end
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
+
+	function mod:MarkInconspicuousPlant(_, unit, guid)
+		if plantGUID == guid then
+			plantGUID = nil
+			self:CustomIcon(inconspicuousPlantMarker, unit, 8)
+			self:UnregisterTargetEvents()
+		end
+	end
 end
 
 function mod:HiddenFlameCannon(args)
