@@ -226,6 +226,7 @@ function mod:CursedRooktenderEngaged(guid)
 end
 
 function mod:LightningSurge(args)
+	-- won't be cast if there are no Stormrooks nearby
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
@@ -370,12 +371,12 @@ end
 
 function mod:VoidAscendantEngaged(guid)
 	self:Nameplate(1214523, 11.9, guid) -- Feasting Void
-	self:Nameplate(1214546, 15.9, guid) -- Umbral Wave
+	self:Nameplate(1214546, 15.2, guid) -- Umbral Wave
 end
 
 function mod:UmbralWave(args)
 	self:Message(args.spellId, "yellow")
-	self:Nameplate(args.spellId, 28.7, args.sourceGUID)
+	self:Nameplate(args.spellId, 21.8, args.sourceGUID)
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -402,9 +403,10 @@ function mod:VoidExtraction(args)
 end
 
 function mod:UnleashDarkness(args)
-	-- this is channeled until death, unless it's interrupted by Storm's Vengeance
-	self:ClearNameplate(args.sourceGUID)
+	-- 20s channel, only cast once
 	self:Message(args.spellId, "yellow", CL.percent:format(40, args.spellName))
+	-- puts Void Extraction on cooldown
+	self:Nameplate(472764, 25.5, args.sourceGUID) -- Void Extraction
 	self:PlaySound(args.spellId, "long")
 end
 
