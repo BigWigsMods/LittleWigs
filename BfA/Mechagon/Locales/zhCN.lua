@@ -39,7 +39,7 @@ end
 
 L = BigWigs:NewBossLocale("K.U.-J.0.", "zhCN")
 if L then
-	--L.safe = "Safe"
+	L.safe = "安全"
 end
 
 L = BigWigs:NewBossLocale("King Mechagon", "zhCN")
