@@ -74,7 +74,7 @@ BigWigs:AddColors("Operation: Mechagon Trash", {
 	[293683] = "green",
 	[293729] = "yellow",
 	[293827] = "red",
-	[293861] = {"green","orange"},
+	[293861] = "orange",
 	[293930] = "red",
 	[293986] = "red",
 	[294103] = "orange",

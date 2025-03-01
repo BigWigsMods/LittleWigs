@@ -149,6 +149,7 @@ function mod:GetOptions()
 		{1217819, "DISPEL", "NAMEPLATE"}, -- Fiery Jaws
 		-- Mechagon Tinkerer
 		{293827, "OFF"}, -- Giga-Wallop
+		{293854, "NAMEPLATE"}, -- Activate Anti-Personnel Squirrel
 		-- Anti-Personnel Squirrel
 		293861, -- Anti-Personnel Squirrel
 		-- Defense Bot Mk III
@@ -304,10 +305,10 @@ function mod:OnBossEnable()
 	self:Death("JunkyardD0GDeath", 151773)
 
 	-- Mechagon Tinkerer
-	--self:RegisterEngageMob("MechagonTinkererEngaged", 144294)
-	--self:Log("SPELL_CAST_SUCCESS", "ActivateAntiPersonnelSquirrel", 293854) TODO for nameplate timer
+	self:RegisterEngageMob("MechagonTinkererEngaged", 144294)
+	self:Log("SPELL_CAST_SUCCESS", "ActivateAntiPersonnelSquirrel", 293854)
 	self:Log("SPELL_CAST_START", "GigaWallop", 293827)
-	--self:Death("MechagonTinkererDeath", 144294)
+	self:Death("MechagonTinkererDeath", 144294)
 
 	-- Anti-Personnel Squirrel
 	self:Log("SPELL_CAST_START", "AntiPersonnelSquirrel", 293861)
@@ -625,7 +626,7 @@ end
 -- Bomb Tonk
 
 function mod:BombTonkEngaged(guid)
-	self:Nameplate(301088, 8.2, guid) -- Detonate
+	self:Nameplate(301088, 8.0, guid) -- Detonate
 end
 
 function mod:Detonate(args)
@@ -668,7 +669,7 @@ end
 
 function mod:WasteProcessingUnitEngaged(guid)
 	self:Nameplate(1215411, 8.5, guid) -- Puncture
-	self:Nameplate(1215409, 14.5, guid) -- Mega Drill
+	self:Nameplate(1215409, 13.6, guid) -- Mega Drill
 end
 
 function mod:MegaDrill(args)
@@ -740,6 +741,10 @@ end
 
 -- Mechagon Tinkerer
 
+function mod:MechagonTinkererEngaged(guid)
+	self:Nameplate(293854, 4.6, guid) -- Activate Anti-Personnel Squirrel
+end
+
 do
 	local prev = 0
 	function mod:GigaWallop(args)
@@ -752,28 +757,37 @@ do
 	end
 end
 
+function mod:ActivateAntiPersonnelSquirrel(args)
+	self:Nameplate(args.spellId, 14.5, args.sourceGUID)
+end
+
+function mod:MechagonTinkererDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
 
 -- Anti-Personnel Squirrel
 
-function mod:AntiPersonnelSquirrel(args)
-	if self:Friendly(args.sourceFlags) then -- can be summoned by a Priest mind-controlling a Mechagon Tinkerer
-		self:Message(args.spellId, "green")
-	else
-		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:AntiPersonnelSquirrel(args)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
 end
 
 -- Defense Bot Mk III
 
 function mod:DefenseBotMkIIIEngaged(guid)
-	-- Defensive Countermeasure cast at low HP
-	self:Nameplate(294195, 4.6, guid) -- Arcing Zap
-	self:Nameplate(297128, 10.8, guid) -- Short Out
+	-- Defensive Countermeasure cast at 30% HP
+	self:Nameplate(294195, 9.5, guid) -- Arcing Zap
+	self:Nameplate(297128, 10.7, guid) -- Short Out
 end
 
 function mod:DefenseBotMkIEngaged(guid)
-	self:Nameplate(294195, 4.6, guid) -- Arcing Zap
+	self:Nameplate(294195, 9.1, guid) -- Arcing Zap
 end
 
 function mod:ArcingZap(args)
@@ -816,42 +830,71 @@ end
 
 -- Blastatron X-80 / Spider Tank
 
-function mod:BlastatronX80Engaged(guid)
-	self:Nameplate(293986, 2.1, guid) -- Sonic Pulse
-	self:Nameplate(295169, 17.9, guid) -- Capacitor Discharge
-	-- TODO CDBars also
-end
-
 function mod:SpiderTankEngaged(guid)
-	self:Nameplate(293986, 5.5, guid) -- Sonic Pulse
+	self:Nameplate(293986, 5.1, guid) -- Sonic Pulse
 end
 
-function mod:SonicPulse(args)
-	self:Message(args.spellId, "red")
-	if self:MobId(args.sourceGUID) == 151476 then -- Blastatron X-80
-		self:Nameplate(args.spellId, 5.2, args.sourceGUID)
-	else -- 144296, Spider Tank
-		self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+do
+	local timer
+
+	function mod:BlastatronX80Engaged(guid)
+		-- Sonic Pulse is cast immediately
+		self:CDBar(295169, 12.1) -- Capacitor Discharge
+		self:Nameplate(295169, 12.1, guid) -- Capacitor Discharge
+		timer = self:ScheduleTimer("BlastatronX80Death", 30)
 	end
-	self:PlaySound(args.spellId, "alarm")
-end
 
-function mod:CapacitorDischarge(args)
-	self:Message(args.spellId, "yellow")
-	self:Bar(args.spellId, 4, CL.count:format(args.spellName, 1))
-	self:Bar(args.spellId, 8, CL.count:format(args.spellName, 2))
-	self:Bar(args.spellId, 12, CL.count:format(args.spellName, 3))
-	self:Nameplate(293986, 12.0, args.sourceGUID) -- Sonic Pulse
-	self:Nameplate(args.spellId, 27.9, args.sourceGUID)
-	self:PlaySound(args.spellId, "long")
-end
+	function mod:SonicPulse(args)
+		self:Message(args.spellId, "red")
+		if self:MobId(args.sourceGUID) == 151476 then -- Blastatron X-80
+			if timer then
+				self:CancelTimer(timer)
+			end
+			if not self:IsMobEngaged(args.sourceGUID) then
+				-- this cast can beat the engage callback, so trigger it manually
+				self:BlastatronX80Engaged(args.sourceGUID)
+			else
+				timer = self:ScheduleTimer("BlastatronX80Death", 30)
+			end
+			self:CDBar(args.spellId, 6.0)
+			self:Nameplate(args.spellId, 6.0, args.sourceGUID)
+		else -- 144296, Spider Tank
+			self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+		end
+		self:PlaySound(args.spellId, "alarm")
+	end
 
-function mod:BlastatronX80Death(args)
-	self:ClearNameplate(args.destGUID)
-	local capacitorDischarge = self:SpellName(295169)
-	self:StopBar(CL.count:format(capacitorDischarge, 1))
-	self:StopBar(CL.count:format(capacitorDischarge, 2))
-	self:StopBar(CL.count:format(capacitorDischarge, 3))
+	function mod:CapacitorDischarge(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "yellow")
+		self:Bar(args.spellId, 4, CL.count:format(args.spellName, 1))
+		self:Bar(args.spellId, 8, CL.count:format(args.spellName, 2))
+		self:Bar(args.spellId, 12, CL.count:format(args.spellName, 3))
+		self:CDBar(293986, 12.01) -- Sonic Pulse
+		self:Nameplate(293986, 12.01, args.sourceGUID) -- Sonic Pulse
+		self:CDBar(args.spellId, 27.4)
+		self:Nameplate(args.spellId, 27.4, args.sourceGUID)
+		timer = self:ScheduleTimer("BlastatronX80Death", 30)
+		self:PlaySound(args.spellId, "long")
+	end
+
+	function mod:BlastatronX80Death(args)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(293986) -- Sonic Pulse
+		self:StopBar(295169) -- Capacitor Discharge
+		local capacitorDischarge = self:SpellName(295169)
+		self:StopBar(CL.count:format(capacitorDischarge, 1))
+		self:StopBar(CL.count:format(capacitorDischarge, 2))
+		self:StopBar(CL.count:format(capacitorDischarge, 3))
+		if args then
+			self:ClearNameplate(args.destGUID)
+		end
+	end
 end
 
 function mod:SpiderTankDeath(args)
