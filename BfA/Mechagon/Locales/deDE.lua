@@ -37,6 +37,11 @@ if L then
 	L.warmup_trigger = "Also, das ist mal eine statistische Anomalie. Unsere Besucher leben noch!"
 end
 
+L = BigWigs:NewBossLocale("K.U.-J.0.", "deDE")
+if L then
+	--L.safe = "Safe"
+end
+
 L = BigWigs:NewBossLocale("King Mechagon", "deDE")
 if L then
 	L.hardmode_desc = "Warnung wenn der Annihilo-tron 5000 beginnt die Knopf-Reihenfolge anzuzeigen."

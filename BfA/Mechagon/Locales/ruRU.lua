@@ -37,6 +37,11 @@ if L then
 	L.warmup_trigger = "Что это? Ошибка в расчетах? Наши гости еще живы!"
 end
 
+L = BigWigs:NewBossLocale("K.U.-J.0.", "ruRU")
+if L then
+	--L.safe = "Safe"
+end
+
 L = BigWigs:NewBossLocale("King Mechagon", "ruRU")
 if L then
 	L.hardmode_desc = "Предупреждать, когда Аннигилятрон-5000 отображает порядок нажатия кнопок."
