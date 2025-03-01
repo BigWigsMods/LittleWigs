@@ -13,7 +13,6 @@ mod:SetRespawnTime(30)
 --
 
 local voidShellCount = 1
-local nextNullUpheaval = 0
 local nextUnleashCorruption = 0
 local nextOblivionWave = 0
 
@@ -42,7 +41,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NullUpheaval", 423305)
 	self:Log("SPELL_CAST_SUCCESS", "VoidShell", 445262)
 	self:Log("SPELL_AURA_REMOVED", "VoidShellRemoved", 445262)
-	self:Log("SPELL_CAST_SUCCESS", "UnleashCorruption", 429487)
+	self:Log("SPELL_CAST_START", "UnleashCorruption", 429487)
 	self:Log("SPELL_AURA_APPLIED", "UnleashCorruptionApplied", 429493)
 	self:Log("SPELL_PERIODIC_DAMAGE", "SeepingCorruptionDamage", 433067)
 	self:Log("SPELL_PERIODIC_MISSED", "SeepingCorruptionDamage", 433067)
@@ -61,11 +60,10 @@ function mod:OnEngage()
 	-- Void Shell is cast immediately on pull
 	nextOblivionWave = t + 5.8
 	self:CDBar(445457, 5.8) -- Oblivion Wave
-	nextUnleashCorruption = t + 12.7
-	self:CDBar(429493, 12.7) -- Unleash Corruption
-	nextNullUpheaval = t + 16.7
+	nextUnleashCorruption = t + 10.6
+	self:CDBar(429493, 10.6) -- Unleash Corruption
 	self:CDBar(423305, 16.7) -- Null Upheaval
-	self:CDBar(458082, 19.8) -- Stormrider's Charge
+	self:CDBar(458082, 19.7) -- Stormrider's Charge
 end
 
 --------------------------------------------------------------------------------
@@ -73,10 +71,10 @@ end
 --
 
 function mod:NullUpheaval(args)
-	-- cast at 100 energy, 30s energy gain
-	nextNullUpheaval = GetTime() + 32.8
 	self:Message(args.spellId, "orange")
+	-- cast at 100 energy: 30s energy gain, 3s cast - .2s because the first tick of energy can occur early
 	self:CDBar(args.spellId, 32.8)
+	self:CDBar(458082, {3.0, 32.8}) -- Stormrider's Charge
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -87,6 +85,7 @@ function mod:VoidShell(args)
 end
 
 function mod:VoidShellRemoved(args)
+	-- energy gain pauses here, ~5.2s before Storm's Vengeance
 	self:Message(args.spellId, "green", CL.removed:format(args.spellName))
 end
 
@@ -161,15 +160,21 @@ function mod:StormsVengeance(args)
 	local t = GetTime()
 	self:Message(424371, "green", CL.count:format(args.spellName, voidShellCount - 1))
 	self:Bar(424371, 20, CL.onboss:format(args.spellName))
-	-- Storm's Vengeance being applied to the boss adds 21.8s to Null Upheaval and Stormrider's Charge and
-	-- 20s to all other timers, but there's a 0.3s minimum delay after Storm's Vengeance ends.
-	local nullUpheavalTimeLeft = nextNullUpheaval - t
-	if nullUpheavalTimeLeft > 0.3 then
-		nextNullUpheaval = nextNullUpheaval + 21.8
-		self:CDBar(423305, {nullUpheavalTimeLeft + 21.8, 58.3}) -- Null Upheaval
-	else
-		nextNullUpheaval = t + 21.8
-		self:CDBar(423305, {21.8, 58.3}) -- Null Upheaval
+	-- Storm's Vengeance being applied to the boss pauses all timers for 20s. there's an additional 0.3s minimum
+	-- delay after Storm's Vengeance ends before another ability will be cast.
+	local bossUnit = self:GetBossId(207207) -- Voidstone Monstrosity
+	local bossPower = UnitPower(bossUnit)
+	local bossPowerMax = UnitPowerMax(bossUnit)
+	if bossPower < bossPowerMax then
+		local nullUpheavalTimeLeft = 30 * (1 - bossPower / bossPowerMax) + 20.0
+		-- energy gain is paused for 20s from when Storm's Vengeance is applied (~25.5s from Void Shell removed)
+		self:CDBar(423305, {nullUpheavalTimeLeft, 52.8}) -- Null Upheaval
+		self:CDBar(458082, {nullUpheavalTimeLeft + 3, 55.8}) -- Stormrider's Charge
+	else -- boss at full power
+		-- if Null Upheaval was interrupted by Storm's Vengeance, then Null Upheaval will be cast immediately
+		-- after Storm's Vengeance ends
+		self:CDBar(423305, {20.3, 52.8}) -- Null Upheaval
+		self:CDBar(458082, {23.3, 55.8}) -- Stormrider's Charge
 	end
 	local unleashCorruptionTimeLeft = nextUnleashCorruption - t
 	if unleashCorruptionTimeLeft > 0.3 then
@@ -186,13 +191,6 @@ function mod:StormsVengeance(args)
 	else
 		nextOblivionWave = t + 20.3
 		self:CDBar(445457, {20.3, 33.3}) -- Oblivion Wave
-	end
-	-- Stormrider's Charge is based on Null Upheaval's timer
-	local stormridersChargeTimeLeft = nullUpheavalTimeLeft + 3
-	if stormridersChargeTimeLeft > 0.3 then
-		self:CDBar(458082, {stormridersChargeTimeLeft + 21.8, 61.3}) -- Stormrider's Charge
-	else
-		self:CDBar(458082, {21.8, 61.3}) -- Stormrider's Charge
 	end
 	self:PlaySound(424371, "info")
 end
