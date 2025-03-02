@@ -10,6 +10,13 @@ mod:SetRespawnTime(36.4)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local gatlingGunCount = 1
+local homingMissileCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -21,7 +28,7 @@ function mod:GetOptions()
 		{260813, "SAY", "ME_ONLY_EMPHASIZE"}, -- Homing Missile
 		276229, -- Micro Missiles (Mythic)
 		-- Stage Two: Drill!
-		271456, -- Drill Smash
+		{271456, "SAY", "SAY_COUNTDOWN"}, -- Drill Smash
 	}, {
 		[260280] = -18916, -- Stage One: Big Guns
 		[271456] = -17498, -- Stage Two: Drill!
@@ -43,6 +50,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	gatlingGunCount = 1
+	homingMissileCount = 1
 	self:SetStage(1)
 	self:CDBar(260813, 5.0) -- Homing Missile
 	self:CDBar(260280, 20.0) -- Gatling Gun
@@ -56,12 +65,30 @@ end
 
 function mod:GatlingGun(args)
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 30.0)
+	if self:GetStage() == 1 then
+		self:CDBar(args.spellId, 30.0)
+	else -- Stage 3
+		gatlingGunCount = gatlingGunCount + 1
+		if gatlingGunCount % 2 == 0 then
+			self:CDBar(args.spellId, 20.0)
+		else
+			self:CDBar(args.spellId, 25.0)
+		end
+	end
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:HomingMissile(args)
-	self:CDBar(args.spellId, 30.0)
+	if self:GetStage() == 1 then
+		self:CDBar(args.spellId, 30.0)
+	else -- Stage 3
+		homingMissileCount = homingMissileCount + 1
+		if homingMissileCount % 2 == 0 then
+			self:CDBar(args.spellId, 21.0)
+		else
+			self:CDBar(args.spellId, 24.0)
+		end
+	end
 end
 
 function mod:HomingMissileApplied(args)
@@ -90,28 +117,33 @@ function mod:ConfigurationDrill(args)
 	self:StopBar(260813) -- Homing Missile
 	self:StopBar(260280) -- Gatling Gun
 	self:SetStage(2)
-	self:Message("stages", "cyan", args.spellName, args.spellId)
-	self:PlaySound("stages", "info")
+	self:Message("stages", "cyan", CL.percent:format(50, args.spellName), args.spellId)
+	self:PlaySound("stages", "long")
 end
 
 -- Stage Two: Drill!
 
 do
-	local function printTarget(self, name, guid)
+	local function printTarget(self, name, guid, elapsed)
 		self:TargetMessage(271456, "orange", name)
+		if self:Me(guid) then
+			self:Say(271456, nil, nil, "Drill Smash")
+			self:SayCountdown(271456, 5 - elapsed)
+		end
 		self:PlaySound(271456, "alert", nil, name)
 	end
 
 	function mod:DrillSmash(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
-		self:CDBar(args.spellId, 10.9)
+		-- time until next depends on the travel time of the previous Drill Smash
+		self:CDBar(args.spellId, 8.5)
 	end
 end
 
 function mod:ConfigurationCombat(args)
 	if self:IsEngaged() then -- cast on respawn
 		self:StopBar(271456) -- Drill Smash
-		self:SetStage(1)
+		self:SetStage(3)
 		self:Message("stages", "cyan", args.spellName, args.spellId)
 		self:CDBar(260813, 7.1) -- Homing Missile
 		self:CDBar(260280, 17.1) -- Gatling Gun
