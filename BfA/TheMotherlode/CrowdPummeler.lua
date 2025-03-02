@@ -9,6 +9,13 @@ mod:SetEncounterID(2105)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local footbombLauncherCount = 1
+local shockingClawCount = 1
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -37,6 +44,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	footbombLauncherCount = 1
+	shockingClawCount = 1
 	self:CDBar(262347, 6.1) -- Static Pulse
 	self:CDBar(269493, 19.1) -- Footbomb Launcher
 	self:CDBar(1217294, 30.0) -- Shocking Claw
@@ -49,7 +58,12 @@ end
 
 function mod:FootbombLauncher(args)
 	self:Message(args.spellId, "cyan")
-	self:CDBar(args.spellId, 47.4)
+	footbombLauncherCount = footbombLauncherCount + 1
+	if footbombLauncherCount == 2 then
+		self:CDBar(args.spellId, 46.3)
+	else -- 3+
+		self:CDBar(args.spellId, 42.5)
+	end
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -67,7 +81,7 @@ end
 
 function mod:CoinMagnet(args)
 	self:Message(args.spellId, "purple")
-	self:CDBar(args.spellId, 43.8)
+	self:CDBar(args.spellId, 43.7)
 	if self:Tank() then
 		self:PlaySound(args.spellId, "info")
 	end
@@ -94,13 +108,18 @@ end
 
 function mod:StaticPulse(args)
 	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 43.8)
+	self:CDBar(args.spellId, 43.7)
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:ShockingClaw(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 48.6)
+	shockingClawCount = shockingClawCount + 1
+	if shockingClawCount == 2 then
+		self:CDBar(args.spellId, 47.5)
+	else -- 3+
+		self:CDBar(args.spellId, 43.7)
+	end
 	self:PlaySound(args.spellId, "alarm")
 end
 
