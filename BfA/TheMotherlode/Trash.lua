@@ -118,6 +118,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- Warmup
+	self:Log("SPELL_CAST_START", "PonyUp", 267546)
+
 	-- Refreshment Vendor
 	self:RegisterEngageMob("RefreshmentVendorEngaged", 136470)
 	self:Log("SPELL_CAST_START", "IcedSpritzer", 280604)
@@ -225,6 +228,23 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmup
+
+do
+	local prev = 0
+	function mod:PonyUp(args)
+		-- cast twice as part of Coin-Operated Crowd Pummeler's warmup RP
+		if args.time - prev > 30 then
+			prev = args.time
+			local crowdPummelerModule = BigWigs:GetBossModule("Coin-Operated Crowd Pummeler", true)
+			if crowdPummelerModule then
+				crowdPummelerModule:Enable()
+				crowdPummelerModule:Warmup()
+			end
+		end
+	end
+end
 
 -- Refreshment Vendor
 

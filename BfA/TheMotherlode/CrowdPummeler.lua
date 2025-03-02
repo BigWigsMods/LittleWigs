@@ -9,6 +9,15 @@ mod:SetEncounterID(2105)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "achievement_dungeon_kezan"
+end
+
+--------------------------------------------------------------------------------
 -- Locals
 --
 
@@ -21,6 +30,7 @@ local shockingClawCount = 1
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		269493, -- Footbomb Launcher
 		256493, -- Blazing Azerite
 		271903, -- Coin Magnet
@@ -46,6 +56,7 @@ end
 function mod:OnEngage()
 	footbombLauncherCount = 1
 	shockingClawCount = 1
+	self:StopBar(CL.active)
 	self:CDBar(262347, 6.1) -- Static Pulse
 	self:CDBar(269493, 19.1) -- Footbomb Launcher
 	self:CDBar(1217294, 30.0) -- Shocking Claw
@@ -55,6 +66,19 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup() -- called from trash module
+	-- 17.84 [CLEU] SPELL_CAST_START#Creature-0-3024-1594-15510-144231#Rowdy Reveler##nil#267546#Pony Up
+	-- 17.98 [CHAT_MSG_MONSTER_YELL] Hurry! They're comin'!#Rowdy Reveler
+	-- 20.79 [CHAT_MSG_MONSTER_YELL] Don't rush me! I'm readin' the license agreement!#Rowdy Reveler
+	-- 26.04 [CHAT_MSG_MONSTER_YELL] They're gonna kill us!#Rowdy Reveler
+	-- 26.89 [CLEU] SPELL_CAST_START#Creature-0-3024-1594-15510-144231#Rowdy Reveler(100.0%-0.0%)##nil#267546#Pony Up
+	-- 29.62 [CHAT_MSG_MONSTER_YELL] Okay, okay! Wait... should I purchase an extended warranty?#Rowdy Reveler
+	-- 38.71 [CHAT_MSG_MONSTER_YELL] Moron! NEVER purchase the extended warranty!#Rowdy Reveler
+	-- 44.94 [CHAT_MSG_MONSTER_YELL] Venture Company thanks you for your patronage. Please enjoy your purchase of the [basic|elite] pummeling package.#Coin-Operated Crowd Pummeler
+	-- 48.38 [NAME_PLATE_UNIT_ADDED] Coin-Operated Crowd Pummeler#Creature-0-3024-1594-15510-129214
+	self:Bar("warmup", 30.2, CL.active, L.warmup_icon)
+end
 
 function mod:FootbombLauncher(args)
 	self:Message(args.spellId, "cyan")
