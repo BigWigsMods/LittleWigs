@@ -40,8 +40,8 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(1214135, 8.3) -- Make It Rain!
-	self:CDBar(1214504, 11.9) -- Goblin Ingenuity
+	self:CDBar(1214135, 7.3) -- Make It Rain!
+	self:CDBar(1214504, 11.0) -- Goblin Ingenuity
 end
 
 --------------------------------------------------------------------------------
