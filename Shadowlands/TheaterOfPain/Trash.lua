@@ -353,7 +353,7 @@ do
 		if not self:Player(args.destFlags) then -- don't alert if a NPC is debuffed (usually by a mind-controlled mob)
 			return
 		end
-		if self:Dispeller("disease", nil, 330697) and args.time - prev > 3 then
+		if (self:Me(args.destGUID) or self:Dispeller("disease", nil, 330697)) and args.time - prev > 3 then
 			prev = args.time
 			self:StackMessage(330697, "purple", args.destName, args.amount, 1)
 			self:PlaySound(330697, "alert", nil, args.destName)
