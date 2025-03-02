@@ -65,7 +65,7 @@ function mod:OnEngage()
 	self:CDBar(427011, 10.9) -- Shadowblast
 	self:CDBar(427025, 20.4) -- Umbral Slash
 	if self:Mythic() then
-		self:CDBar(427157, 26.9) -- Call Darkspawn
+		self:CDBar(427157, 26.7) -- Call Darkspawn
 		self:CDBar(428266, 31.7) -- Eternal Darkness
 	else
 		self:CDBar(427157, 30.0) -- Call Darkspawn
@@ -73,8 +73,8 @@ function mod:OnEngage()
 end
 
 function mod:VerifyEnable(unit)
-	-- encounter ends at 45%
-	return self:GetHealth(unit) > 45
+	-- encounter ends at 55%
+	return self:GetHealth(unit) > 55
 end
 
 --------------------------------------------------------------------------------
@@ -117,7 +117,7 @@ end
 
 function mod:EternalDarkness(args)
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 63.2)
+	self:CDBar(args.spellId, 63.1)
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -126,7 +126,7 @@ end
 do
 	local prev = 0
 	function mod:DrainLight(args)
-		if args.time - prev > 1 then
+		if args.time - prev > 1.5 then
 			prev = args.time
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
