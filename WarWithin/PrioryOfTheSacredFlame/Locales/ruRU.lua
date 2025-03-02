@@ -16,6 +16,7 @@ if L then
 	L.fanatical_conjuror = "Окудница-фанатичка"
 	--L.lightspawn = "Lightspawn"
 	L.ardent_paladin = "Ревностный паладин"
+	L.zealous_templar = "Рьяная храмовница"
 	--L.risen_mage = "Risen Mage"
 	--L.sir_braunpyke = "Sir Braunpyke"
 

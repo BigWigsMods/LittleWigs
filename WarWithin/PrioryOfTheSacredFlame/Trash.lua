@@ -23,6 +23,7 @@ mod:RegisterEnableMob(
 	206698, -- Fanatical Conjuror
 	206710, -- Lightspawn
 	206704, -- Ardent Paladin
+	207949, -- Zealous Templar
 	221760, -- Risen Mage
 	217658 -- Sir Braunpyke
 )
@@ -59,6 +60,7 @@ if L then
 	L.fanatical_conjuror = "Fanatical Conjuror"
 	L.lightspawn = "Lightspawn"
 	L.ardent_paladin = "Ardent Paladin"
+	L.zealous_templar = "Zealous Templar"
 	L.risen_mage = "Risen Mage"
 	L.sir_braunpyke = "Sir Braunpyke"
 
@@ -99,11 +101,11 @@ function mod:GetOptions()
 		{427609, "NAMEPLATE"}, -- Disrupting Shout
 		-- Arathi Footman
 		{427342, "NAMEPLATE"}, -- Defend
-		{426964, "TANK", "NAMEPLATE"}, -- Mortal Strike
 		-- Fervent Sharpshooter
 		{453458, "DISPEL", "NAMEPLATE"}, -- Caltrops
+		{462859, "ME_ONLY", "NAMEPLATE", "OFF"}, -- Pot Shot
 		-- War Lynx
-		{446776, "OFF", "NAMEPLATE"}, -- Pounce
+		{446776, "NAMEPLATE", "OFF"}, -- Pounce
 		-- Devout Priest
 		{427356, "NAMEPLATE"}, -- Greater Heal
 		-- Fanatical Conjuror
@@ -113,7 +115,10 @@ function mod:GetOptions()
 		427601, -- Burst of Light
 		-- Ardent Paladin
 		{424429, "NAMEPLATE"}, -- Consecration
-		{448791, "OFF", "NAMEPLATE"}, -- Sacred Toll
+		{448791, "NAMEPLATE", "OFF"}, -- Sacred Toll
+		-- Zealous Templar
+		{444728, "DISPEL", "NAMEPLATE"}, -- Templar's Wrath
+		{427596, "NAMEPLATE", "OFF"}, -- Seal of Light's Fury
 		-- Risen Mage
 		{444743, "NAMEPLATE"}, -- Fireball Volley
 		-- Sir Braunpyke
@@ -134,6 +139,7 @@ function mod:GetOptions()
 		[427484] = L.fanatical_conjuror,
 		[448787] = L.lightspawn,
 		[424429] = L.ardent_paladin,
+		[444728] = L.zealous_templar,
 		[444743] = L.risen_mage,
 		[435165] = L.sir_braunpyke,
 	}
@@ -203,16 +209,15 @@ function mod:OnBossEnable()
 	self:Death("ArathiKnightDeath", 206696)
 
 	-- Arathi Footman
-	self:RegisterEngageMob("ArathiFootmanEngaged", 206705)
 	self:Log("SPELL_CAST_SUCCESS", "Defend", 427342)
-	self:Log("SPELL_CAST_START", "MortalStrike", 426964)
-	self:Log("SPELL_CAST_SUCCESS", "MortalStrikeSuccess", 426964)
 	self:Death("ArathiFootmanDeath", 206705)
 
 	-- Fervent Sharpshooter
 	self:RegisterEngageMob("FerventSharpshooterEngaged", 206694)
 	self:Log("SPELL_CAST_SUCCESS", "Caltrops", 453458)
 	self:Log("SPELL_AURA_APPLIED", "CaltropsApplied", 453461)
+	self:Log("SPELL_CAST_START", "PotShot", 462859)
+	self:Log("SPELL_CAST_SUCCESS", "PotShotSuccess", 462859)
 	self:Death("FerventSharpshooterDeath", 206694)
 
 	-- War Lynx
@@ -248,6 +253,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "ConsecrationDamage", 424430) -- no alert on APPLIED, doesn't damage for 1.5s
 	self:Log("SPELL_PERIODIC_MISSED", "ConsecrationDamage", 424430)
 	self:Death("ArdentPaladinDeath", 206704)
+
+	-- Zealous Templar
+	self:RegisterEngageMob("ZealousTemplarEngaged", 207949)
+	self:Log("SPELL_CAST_SUCCESS", "TemplarsWrath", 444728)
+	self:Log("SPELL_CAST_SUCCESS", "SealOfLightsFury", 427596)
+	self:Death("ZealousTemplarDeath", 207949)
 
 	-- Risen Mage
 	self:RegisterEngageMob("RisenMageEngaged", 221760)
@@ -759,10 +770,16 @@ function mod:ArathiKnightEngaged(guid)
 	self:Nameplate(427609, 20.1, guid) -- Disrupting Shout
 end
 
-function mod:DisruptingShout(args)
-	self:Message(args.spellId, "red")
-	self:Nameplate(args.spellId, 21.8, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:DisruptingShout(args)
+		self:Nameplate(args.spellId, 21.8, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:ArathiKnightDeath(args)
@@ -771,13 +788,9 @@ end
 
 -- Arathi Footman
 
-function mod:ArathiFootmanEngaged(guid)
+--function mod:ArathiFootmanEngaged(guid)
 	-- Defend isn't cast until 50%
-	if self:Normal() then
-		-- Mortal Strike is only cast in Normal
-		self:Nameplate(426964, 2.3, guid) -- Mortal Strike
-	end
-end
+--end
 
 do
 	local prev = 0
@@ -795,22 +808,6 @@ do
 	end
 end
 
-do
-	local prev = 0
-	function mod:MortalStrike(args)
-		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		if args.time - prev > 2 then
-			prev = args.time
-			self:Message(args.spellId, "purple")
-			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
-function mod:MortalStrikeSuccess(args)
-	self:Nameplate(args.spellId, 15.5, args.sourceGUID)
-end
-
 function mod:ArathiFootmanDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
@@ -818,6 +815,7 @@ end
 -- Fervent Sharpshooter
 
 function mod:FerventSharpshooterEngaged(guid)
+	self:Nameplate(462859, 4.2, guid) -- Pot Shot
 	self:Nameplate(453458, 8.3, guid) -- Caltrops
 end
 
@@ -841,6 +839,28 @@ function mod:CaltropsApplied(args)
 	end
 end
 
+do
+	local prev = 0
+
+	local function printTarget(self, name, guid)
+		local t = GetTime()
+		if t - prev > 2 then
+			prev = t
+			self:TargetMessage(462859, "orange", name)
+			self:PlaySound(462859, "alert", nil, name)
+		end
+	end
+
+	function mod:PotShot(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
+	end
+
+	function mod:PotShotSuccess(args)
+		self:Nameplate(args.spellId, 4.1, args.sourceGUID)
+	end
+end
+
 function mod:FerventSharpshooterDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
@@ -848,7 +868,7 @@ end
 -- War Lynx
 
 function mod:WarLynxEngaged(guid)
-	self:Nameplate(446776, 7.5, guid) -- Pounce
+	self:Nameplate(446776, 7.0, guid) -- Pounce
 end
 
 do
@@ -1004,6 +1024,45 @@ do
 end
 
 function mod:ArdentPaladinDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Zealous Templar
+
+function mod:ZealousTemplarEngaged(guid)
+	self:Nameplate(427596, 5.1, guid) -- Seal of Light's Fury
+	if self:Dispeller("magic", true, 444728) then
+		self:Nameplate(444728, 9.4, guid) -- Templar's Wrath
+	end
+end
+
+do
+	local prev = 0
+	function mod:TemplarsWrath(args)
+		if self:Dispeller("magic", true, args.spellId) then
+			self:Nameplate(args.spellId, 23.1, args.sourceGUID)
+			if args.time - prev > 3 then
+				prev = args.time
+				self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.sourceName))
+				self:PlaySound(args.spellId, "alert")
+			end
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:SealOfLightsFury(args)
+		self:Nameplate(args.spellId, 12.1, args.sourceGUID)
+		if args.time - prev > 3 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:ZealousTemplarDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 

@@ -16,6 +16,7 @@ if L then
 	--L.fanatical_conjuror = "Fanatical Conjuror"
 	--L.lightspawn = "Lightspawn"
 	--L.ardent_paladin = "Ardent Paladin"
+	--L.zealous_templar = "Zealous Templar"
 	--L.risen_mage = "Risen Mage"
 	--L.sir_braunpyke = "Sir Braunpyke"
 

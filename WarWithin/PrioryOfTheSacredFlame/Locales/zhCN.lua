@@ -16,6 +16,7 @@ if L then
 	L.fanatical_conjuror = "狂热的咒术师"
 	L.lightspawn = "光耀之子"
 	L.ardent_paladin = "热切的圣骑士"
+	L.zealous_templar = "热心的圣殿骑士"
 	L.risen_mage = "亡灵法师"
 	L.sir_braunpyke = "布朗派克爵士"
 

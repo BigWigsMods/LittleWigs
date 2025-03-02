@@ -16,6 +16,7 @@ if L then
 	L.fanatical_conjuror = "광적인 창조술사"
 	L.lightspawn = "빛의 정령"
 	L.ardent_paladin = "열정적인 성기사"
+	L.zealous_templar = "광신적인 성전사"
 	L.risen_mage = "되살아난 마법사"
 	L.sir_braunpyke = "브라운파이크 경"
 
