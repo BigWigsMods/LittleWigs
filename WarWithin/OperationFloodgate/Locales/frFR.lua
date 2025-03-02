@@ -6,6 +6,7 @@ if L then
 
 	--L.shreddinator_3000 = "Shreddinator 3000"
 	--L.mechadrone_sniper = "Mechadrone Sniper"
+	L.loaderbot = "Robot chargeur"
 	--L.darkfuse_hyena = "Darkfuse Hyena"
 	--L.darkfuse_demolitionist = "Darkfuse Demolitionist"
 	--L.darkfuse_inspector = "Darkfuse Inspector"

@@ -6,6 +6,7 @@ if L then
 
 	L.shreddinator_3000 = "撕碎王3000型"
 	L.mechadrone_sniper = "无人机狙击手"
+	--L.loaderbot = "Loaderbot"
 	L.darkfuse_hyena = "暗索土狼"
 	L.darkfuse_demolitionist = "暗索爆破手"
 	L.darkfuse_inspector = "暗索调查员"

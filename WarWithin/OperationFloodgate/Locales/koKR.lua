@@ -6,6 +6,7 @@ if L then
 
 	L.shreddinator_3000 = "벌목기계 3000"
 	L.mechadrone_sniper = "기계무인기 스나이퍼"
+	L.loaderbot = "운반로봇"
 	L.darkfuse_hyena = "다크퓨즈 하이에나"
 	L.darkfuse_demolitionist = "다크퓨즈 철거자"
 	L.darkfuse_inspector = "다크퓨즈 조사관"

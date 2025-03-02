@@ -37,6 +37,7 @@ BigWigs:AddSounds("Geezle Gigazap", {
 BigWigs:AddSounds("Operation: Floodgate Trash", {
 	[462771] = {"alert","underyou"},
 	[463058] = "alert",
+	[465120] = "alarm",
 	[465408] = "info",
 	[465666] = "alert",
 	[465682] = "alarm",
