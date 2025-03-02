@@ -9,6 +9,7 @@ BigWigs:AddSounds("Maulspike", {
 BigWigs:AddSounds("Spinshroom", {
 	[415406] = "long",
 	[415492] = "alarm",
+	[415495] = "underyou",
 	[415499] = "info",
 	[425315] = "alarm",
 })

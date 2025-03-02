@@ -33,6 +33,7 @@ function mod:GetOptions()
 		415406, -- Fungalstorm
 		415499, -- Dizzy
 		415492, -- Fungal Charge
+		415495, -- Gloopy Fungus
 		425315, -- Fungsplosion
 	},nil,{
 		[415499] = CL.weakened, -- Dizzy (Weakened)
@@ -44,6 +45,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Fungalstorm", 415406)
 	self:Log("SPELL_AURA_APPLIED", "Dizzy", 415499)
 	self:Log("SPELL_CAST_START", "FungalCharge", 415492)
+	self:Log("SPELL_PERIODIC_DAMAGE", "GloopyFungusDamage", 415495)
+	self:Log("SPELL_PERIODIC_MISSED", "GloopyFungusDamage", 415495)
 	self:Log("SPELL_CAST_START", "Fungsplosion", 425315)
 end
 
@@ -73,6 +76,17 @@ function mod:FungalCharge(args)
 	self:Message(args.spellId, "red", CL.charge)
 	self:CDBar(args.spellId, 30.2, CL.charge)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local prev = 0
+	function mod:GloopyFungusDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
 end
 
 function mod:Fungsplosion(args)
