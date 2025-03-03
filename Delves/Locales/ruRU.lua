@@ -193,6 +193,11 @@ end
 
 -- The Waterworks
 
+L = BigWigs:NewBossLocale("Shroomspew", "ruRU")
+if L then
+	--L.shroomspew = "Shroomspew"
+end
+
 L = BigWigs:NewBossLocale("Waxface", "ruRU")
 if L then
 	L.waxface = "Воскоморд"
