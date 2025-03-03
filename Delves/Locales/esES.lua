@@ -195,7 +195,7 @@ end
 
 L = BigWigs:NewBossLocale("Shroomsprew", "esES")
 if L then
-	--L.shroomsprew = "Shroomsprew"
+	L.shroomsprew = "Esparcehongos"
 end
 
 L = BigWigs:NewBossLocale("Waxface", "esES")
