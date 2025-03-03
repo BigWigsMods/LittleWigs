@@ -2,13 +2,14 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Goblin Delve Trash", {2664, 2680, 2681, 2690, 2826}) -- Fungal Folly, Earthcrawl Mines, Kriegval's Rest, The Underkeep, Sidestreet Sluice
+local mod, CL = BigWigs:NewBoss("Goblin Delve Trash", {2664, 2680, 2681, 2684, 2690, 2826}) -- Fungal Folly, Earthcrawl Mines, Kriegval's Rest, The Dread Pit, The Underkeep, Sidestreet Sluice
 if not mod then return end
 mod:RegisterEnableMob(
 	234212, -- Exterminator Janx (Earthcrawl Mines gossip NPC)
 	216846, -- Maklin Drillstab (Earthcrawl Mines gossip NPC)
 	234496, -- Gila Crosswires (Fungal Folly gossip NPC)
 	234530, -- Balga Wicksfix (Kriegval's Rest gossip NPC)
+	235090, -- Prospera Cogwail (The Dread Pit gossip NPC)
 	234680, -- Madam Goya (The Underkeep gossip NPC)
 	231908, -- Bopper Bot
 	231906, -- Aerial Support Bot
@@ -116,6 +117,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(131312) then -- Kriegval's Rest, start delve (Balga Wicksfix)
 			-- 131312:|cFF0000FF(Delve)|r Let's get those candles purified and teach those goblins a lesson.
 			self:SelectGossipID(131312)
+		elseif self:GetGossipID(131401) then -- The Dread Pit, start delve (Prospera Cogwail)
+			-- 131401:|cFF0000FF(Delve)|r I'll see what I can do to disrupt their camp!
+			self:SelectGossipID(131401)
 		elseif self:GetGossipID(131318) then -- The Underkeep, start delve (Madam Goya)
 			-- 131318:|cFF0000FF(Delve)|r I'll stop the Darkfuse and gather the Black Blood you need.
 			self:SelectGossipID(131318)
