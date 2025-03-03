@@ -1,5 +1,5 @@
 
-BigWigs:AddSounds("Shroomspew", {
+BigWigs:AddSounds("Shroomsprew", {
 	[363194] = "underyou",
 	[415406] = "long",
 	[415492] = "alarm",

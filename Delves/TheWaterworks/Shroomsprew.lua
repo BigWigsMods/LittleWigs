@@ -2,9 +2,9 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Shroomspew", 2683)
+local mod, CL = BigWigs:NewBoss("Shroomsprew", 2683)
 if not mod then return end
-mod:RegisterEnableMob(237481) -- Shroomspew
+mod:RegisterEnableMob(237481) -- Shroomsprew
 mod:SetEncounterID(3139)
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
@@ -15,7 +15,7 @@ mod:SetAllowWin(true)
 
 local L = mod:GetLocale()
 if L then
-	L.shroomspew = "Shroomspew"
+	L.shroomsprew = "Shroomsprew"
 end
 
 --------------------------------------------------------------------------------
@@ -23,7 +23,7 @@ end
 --
 
 function mod:OnRegister()
-	self.displayName = L.shroomspew
+	self.displayName = L.shroomsprew
 	self:SetSpellRename(415499, CL.weakened) -- Dizzy (Weakened)
 	self:SetSpellRename(415492, CL.charge) -- Fungal Charge (Charge)
 end

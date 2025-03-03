@@ -1,5 +1,5 @@
 
-BigWigs:AddColors("Shroomspew", {
+BigWigs:AddColors("Shroomsprew", {
 	[363194] = "blue",
 	[415406] = "yellow",
 	[415492] = "red",
