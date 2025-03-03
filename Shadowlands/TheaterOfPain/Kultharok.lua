@@ -24,14 +24,14 @@ function mod:GetOptions()
 	return {
 		474087, -- Necrotic Eruption
 		{1223803, "SAY"}, -- Well of Darkness
-		-- Heroic
+		474298, -- Draw Soul
+		-- Normal / Heroic
 		473513, -- Feast of the Damned
 		-- Mythic
-		{474298, "ME_ONLY"}, -- Draw Soul
 		1215787, -- Death Spiral
 	}, {
-		[473513] = CL.heroic,
-		[474298] = CL.mythic,
+		[473513] = CL.normal.." / "..CL.heroic,
+		[1215787] = CL.mythic,
 	}
 end
 
@@ -39,12 +39,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NecroticEruption", 474087)
 	self:Log("SPELL_CAST_START", "WellOfDarkness", 1223803)
 	self:Log("SPELL_AURA_APPLIED", "WellOfDarknessApplied", 1223804)
+	self:Log("SPELL_CAST_START", "DrawSoul", 474298)
 
 	-- Normal / Heroic
 	self:Log("SPELL_CAST_START", "FeastOfTheDamned", 473513)
 
 	-- Mythic
-	self:Log("SPELL_CAST_START", "DrawSoul", 474298)
 	self:Log("SPELL_CAST_START", "DeathSpiral", 1215787)
 	self:Log("SPELL_PERIODIC_DAMAGE", "DeathSpiralDamage", 1223240)
 	self:Log("SPELL_PERIODIC_MISSED", "DeathSpiralDamage", 1223240)
@@ -56,15 +56,21 @@ function mod:OnEngage()
 	drawSoulCount = 1
 	if self:Mythic() then
 		self:CDBar(1215787, 6.1) -- Death Spiral
-		self:CDBar(1223803, 10.9) -- Well of Darkness
+		self:CDBar(1223803, 10.8) -- Well of Darkness
 		self:CDBar(474087, 16.7) -- Necrotic Eruption
-		self:CDBar(474298, 49.8, CL.count:format(self:SpellName(474298), drawSoulCount)) -- Draw Soul
+		-- cast at 100 energy: starts at 50 energy, 25s energy gain + delay
+		self:CDBar(474298, 25.1, CL.count:format(self:SpellName(474298), drawSoulCount)) -- Draw Soul
 	else -- Normal, Heroic
 		self:CDBar(1223803, 7.0) -- Well of Darkness
 		self:CDBar(474087, 12.5) -- Necrotic Eruption
 		self:CDBar(474298, 21.0, CL.count:format(self:SpellName(474298), drawSoulCount)) -- Draw Soul
 		self:CDBar(473513, 48.6) -- Feast of the Damned
 	end
+end
+
+function mod:VerifyEnable(unit)
+	-- boss is targetable at the beginning of the wing, and casts some spells on the walkway below
+	return UnitCanAttack("player", unit)
 end
 
 --------------------------------------------------------------------------------
@@ -80,8 +86,9 @@ function mod:NecroticEruption(args)
 		else
 			self:CDBar(args.spellId, 30.4)
 		end
-	else -- Normal
-		self:CDBar(args.spellId, 60.8)
+	else -- Normal, Heroic
+		-- TODO should be less but only every other Necrotic Eruption logs
+		self:CDBar(args.spellId, 59.5)
 	end
 	self:PlaySound(args.spellId, "alarm")
 end
@@ -98,7 +105,7 @@ do
 			else
 				self:CDBar(args.spellId, 27.0)
 			end
-		else -- Normal
+		else -- Normal, Heroic
 			self:CDBar(args.spellId, 58.3)
 		end
 	end
@@ -113,6 +120,22 @@ do
 	end
 end
 
+function mod:DrawSoul(args)
+	self:StopBar(CL.count:format(args.spellName, drawSoulCount))
+	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, drawSoulCount))
+	drawSoulCount = drawSoulCount + 1
+	if self:Mythic() then
+		self:CDBar(1215787, {10.0, 52.2}) -- Death Spiral
+		self:CDBar(1223803, {14.5, 27.0}) -- Well of Darkness
+		self:CDBar(474087, {20.5, 30.4}) -- Necrotic Eruption
+		-- cast at 100 energy: 4s cast time + 50s energy gain + delay
+		self:CDBar(args.spellId, 54.5, CL.count:format(args.spellName, drawSoulCount))
+	else -- Normal, Heroic
+		self:CDBar(args.spellId, 59.5, CL.count:format(args.spellName, drawSoulCount))
+	end
+	self:PlaySound(args.spellId, "warning")
+end
+
 -- Normal / Heroic
 
 function mod:FeastOfTheDamned(args)
@@ -122,19 +145,6 @@ function mod:FeastOfTheDamned(args)
 end
 
 -- Mythic
-
-function mod:DrawSoul(args)
-	self:StopBar(CL.count:format(args.spellName, drawSoulCount))
-	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, drawSoulCount))
-	drawSoulCount = drawSoulCount + 1
-	if self:Mythic() then -- TODO this condition shouldn't be needed (according to journal) but Draw Soul is currently cast in Normal
-		self:CDBar(1215787, {10.0, 52.2}) -- Death Spiral
-		self:CDBar(1223803, {14.5, 27.0}) -- Well of Darkness
-		self:CDBar(474087, {20.5, 30.4}) -- Necrotic Eruption
-	end
-	self:CDBar(args.spellId, 54.6, CL.count:format(args.spellName, drawSoulCount))
-	self:PlaySound(args.spellId, "warning")
-end
 
 function mod:DeathSpiral(args)
 	self:Message(args.spellId, "orange")
