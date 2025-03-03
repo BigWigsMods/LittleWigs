@@ -31,7 +31,7 @@ function mod:GetOptions()
 		{473690, "SAY"}, -- Kinetic Explosive Gel (Mythic)
 		-- Bront
 		{459779, "SAY"}, -- Barreling Charge
-		459799, -- Wallop
+		{459799, "TANK"}, -- Wallop
 	}, {
 		[460867] = -30321, -- Keeza Quickfuse
 		[459779] = -30322, -- Bront
@@ -60,13 +60,13 @@ end
 function mod:OnEngage()
 	barrelingChargeCount = 1
 	self:SetStage(1)
-	self:CDBar(459799, 6.1) -- Wallop
+	self:CDBar(459799, 5.7) -- Wallop
 	self:CDBar(1217653, 6.5) -- B.B.B.F.G.
-	self:CDBar(460867, 13.9) -- Big Bada Boom
+	self:CDBar(460867, 13.8) -- Big Bada Boom
 	if self:Mythic() then
 		self:CDBar(473690, 17.7) -- Kinetic Explosive Gel
 	end
-	self:CDBar(459779, 22.8) -- Barreling Charge
+	self:CDBar(459779, 22.7) -- Barreling Charge
 end
 
 --------------------------------------------------------------------------------
