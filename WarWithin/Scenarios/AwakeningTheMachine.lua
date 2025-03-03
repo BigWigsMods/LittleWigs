@@ -171,12 +171,12 @@ do
 	function mod:Waves(_, text)
 		waveStart = GetTime()
 		mobsKilled = 0
-		-- [UPDATE_UI_WIDGET] widgetID:5573, widgetType:8, text:Wave 20
-		local wave = tonumber(text:match("%d+"))
-		if wave == 1 and waveStart - eventStart < 2 then
-			-- if the first wave happens in under 2s (expected 5s) then we are in hard mode
+		if not hardMode and waveStart - eventStart < 2 then
+			-- if the wave immediately following gossip happens in under 2s (expected 5s) then we are in hard mode
 			hardMode = true
 		end
+		-- [UPDATE_UI_WIDGET] widgetID:5573, widgetType:8, text:Wave 20
+		local wave = tonumber(text:match("%d+"))
 		if wave and wave ~= 0 then -- widget is reset to 0 once you kill the Awakened Phalanx
 			self:StopBar(CL.wave:format(wave))
 			self:SetStage(wave)
@@ -191,7 +191,7 @@ do
 	end
 
 	function mod:MobDeath()
-		-- disable wave timers in hardmode, as the wave interval is very short and the intermissions are skipped
+		-- disable wave timers in hard mode, as the wave interval is very short and the intermissions are skipped
 		if not hardMode then
 			mobsKilled = mobsKilled + 1
 			local stage = self:GetStage()
