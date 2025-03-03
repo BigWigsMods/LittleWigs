@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Fungarian Delve Trash", {2664, 2679}) -- Fungal Folly, Mycomancer Cavern
+local mod, CL = BigWigs:NewBoss("Fungarian Delve Trash", {2664, 2679, 2683}) -- Fungal Folly, Mycomancer Cavern, The Waterworks
 if not mod then return end
 mod:RegisterEnableMob(
 	210677, -- Stoneguard Benston (Fungal Folly gossip NPC)
@@ -14,8 +14,11 @@ mod:RegisterEnableMob(
 	220293, -- Aliya Hillhelm (Mycomancer Cavern gossip NPC)
 	219779, -- Alekk (Mycomancer Cavern gossip NPC)
 	220354, -- Chief Dinaire (Mycomancer Cavern gossip NPC)
+	233985, -- Prospera Cogwail (The Waterworks gossip NPC)
 	213434, -- Sporbit
 	225708, -- Sporbit (Bogpiper summon)
+	207450, -- Fungal Stabber
+	207453, -- Fungal Rotspreader
 	207456, -- Fungal Speartender
 	207468, -- Gnarled Reviver
 	210478, -- Infected Beast
@@ -60,7 +63,7 @@ function mod:GetOptions()
 	return {
 		autotalk,
 		-- Sporbit
-		427710, -- Sporesplosion
+		1217589, -- Sporesplosion
 		-- Fungal Speartender
 		414944, -- Battle Roar
 		424891, -- Vine Spear
@@ -78,7 +81,7 @@ function mod:GetOptions()
 		-- Particularly Bad Guy
 		372529, -- Hideous Laughter
 	},{
-		[427710] = L.sporbit,
+		[1217589] = L.sporbit,
 		[414944] = L.fungal_speartender,
 		[424773] = L.gnarled_reviver,
 		[424798] = L.infected_beast,
@@ -98,7 +101,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
 	-- Sporbit
-	self:Log("SPELL_CAST_START", "Sporespolosion", 427710)
+	self:Log("SPELL_CAST_START", "Sporespolosion", 1217589)
 
 	-- Fungal Speartender
 	self:Log("SPELL_CAST_START", "BattleRoar", 414944)
@@ -175,6 +178,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(121541) then -- Mycomancer Cavern, continue Delve (Chief Dinaire)
 			-- 121541:|cFF0000FF(Delve)|r Go get the treasure while I handle whatever is about to attack us.
 			self:SelectGossipID(121541)
+		elseif self:GetGossipID(125513) then -- The Waterworks, start delve (Prospera Cogwail)
+			-- 125513:|cFF0000FF(Delve)|r Give me the wrench, I'll make sure this job is finished.
+			self:SelectGossipID(125513)
 		end
 	end
 end
@@ -184,10 +190,8 @@ end
 do
 	local prev = 0
 	function mod:Sporespolosion(args)
-		local unit = self:UnitTokenFromGUID(args.sourceGUID)
-		local t = args.time
-		if t - prev > 2.5 and unit and self:UnitWithinRange(unit, 40) then -- cast while RP fighting, only alert if within range
-			prev = t
+		if args.time - prev > 2.5 then
+			prev = args.time
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
