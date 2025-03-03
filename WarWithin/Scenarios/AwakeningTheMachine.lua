@@ -21,6 +21,7 @@ mod:SetStage(0.5)
 -- Locals
 --
 
+local hardMode = false
 local mobsKilled = 0
 local mobsNeeded = {
 	3, -- Wave 1: 3x Swarmbot
@@ -75,12 +76,10 @@ function mod:OnRegister()
 	self:SetSpellRename(463081, CL.charge) -- Earthshaking Charge (Charge)
 end
 
-local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()
 	return {
 		-- Waves
 		"stages",
-		autotalk,
 		-- Corrupted Machinist
 		462802, -- Purging Flames
 		-- Explosive Bomberbot
@@ -119,9 +118,6 @@ function mod:OnBossEnable()
 	self:Death("MobDeath", 229691, 229695, 229769, 229729) -- 229778 is covered in :AutomaticIronstriderDeath
 	self:Log("SPELL_CAST_SUCCESS", "MobDeath", 288774, 462826) -- Shutdown, Self Destruct
 
-	-- Autotalk
-	self:RegisterEvent("GOSSIP_SHOW")
-
 	-- Corrupted Machinist
 	self:Log("SPELL_CAST_START", "PurgingFlames", 462802)
 
@@ -156,27 +152,31 @@ end
 -- Waves
 
 do
+	local eventStart, waveStart = 0, 0
+
 	local prev
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
-		if castGUID ~= prev and spellId == 433923 then -- [DNT] Kuldas Machine Speaker Ritual - Cosmetic Channel
+		if spellId == 433923 and castGUID ~= prev then -- [DNT] Kuldas Machine Speaker Ritual - Cosmetic Channel
 			prev = castGUID
+			eventStart = GetTime()
+			hardMode = false
 			local stage = self:GetStage()
 			if stage < 1 then
 				stage = 0
 			end
-			self:Bar("stages", 10, CL.wave:format(stage + 1), L.stages_icon)
+			self:Bar("stages", 5, CL.wave:format(stage + 1), L.stages_icon)
 		end
 	end
-end
-
-do
-	local waveStart = 0
 
 	function mod:Waves(_, text)
 		waveStart = GetTime()
 		mobsKilled = 0
 		-- [UPDATE_UI_WIDGET] widgetID:5573, widgetType:8, text:Wave 20
 		local wave = tonumber(text:match("%d+"))
+		if wave == 1 and waveStart - eventStart < 2 then
+			-- if the first wave happens in under 2s (expected 5s) then we are in hard mode
+			hardMode = true
+		end
 		if wave and wave ~= 0 then -- widget is reset to 0 once you kill the Awakened Phalanx
 			self:StopBar(CL.wave:format(wave))
 			self:SetStage(wave)
@@ -191,28 +191,22 @@ do
 	end
 
 	function mod:MobDeath()
-		mobsKilled = mobsKilled + 1
-		local stage = self:GetStage()
-		if mobsKilled == mobsNeeded[stage] then
-			-- the next wave check is a repeating 10s timer based on the wave start. there is a 2s minimum duration
-			-- between killing the last mob and starting the next wave, so the bar will range from 2-12s.
-			local nextWave = 12 - (GetTime() - waveStart + 2) % 10
-			if stage % 5 == 0 then
-				self:Bar("stages", nextWave, CL.intermission, L.stages_icon)
-				self:ScheduleTimer("Intermission", nextWave)
-			else
-				self:Bar("stages", nextWave, CL.wave:format(stage + 1), L.stages_icon)
+		-- disable wave timers in hardmode, as the wave interval is very short and the intermissions are skipped
+		if not hardMode then
+			mobsKilled = mobsKilled + 1
+			local stage = self:GetStage()
+			if mobsKilled == mobsNeeded[stage] then
+				-- the next wave check is a repeating 5s timer based on the wave start. there is a 2s minimum duration
+				-- between killing the last mob and starting the next wave, so the bar will range from 2-7s.
+				local nextWave = 7 - (GetTime() - waveStart + 2) % 5
+				if stage % 5 == 0 then
+					self:Bar("stages", nextWave, CL.intermission, L.stages_icon)
+					self:ScheduleTimer("Intermission", nextWave)
+				else
+					self:Bar("stages", nextWave, CL.wave:format(stage + 1), L.stages_icon)
+				end
 			end
 		end
-	end
-end
-
--- Autotalk
-
-function mod:GOSSIP_SHOW()
-	if self:GetOption(autotalk) and self:GetGossipID(120555) then
-		-- 120555:I'm ready to continue.
-		self:SelectGossipID(120555)
 	end
 end
 
