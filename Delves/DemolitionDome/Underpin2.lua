@@ -4,8 +4,8 @@
 
 local mod, CL = BigWigs:NewBoss("The Underpin 2", 2831)
 if not mod then return end
-mod:RegisterEnableMob(236626, 234168) -- The Underpin (Tier 11)
-mod:SetEncounterID(3126)
+--mod:RegisterEnableMob(236626, 234168) -- The Underpin (Tier 11)
+--mod:SetEncounterID(3126) TODO both versions are temporarily handled by Underpin.lua
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
 
