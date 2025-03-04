@@ -82,9 +82,9 @@ function mod:ENCOUNTER_START(_, id)
 		local easyWidget = self:GetWidgetInfo("delve", 6184)
 		local hardWidget = self:GetWidgetInfo("delve", 6185)
 		local tierText = ""
-		if easyWidget and easyWidget.shownState == 1 then
+		if type(easyWidget) == "table" and easyWidget.shownState == 1 then
 			tierText = easyWidget.tierText or "nil"
-		elseif hardWidget and hardWidget.shownState == 1 then
+		elseif type(hardWidget) == "table" and hardWidget.shownState == 1 then
 			tierText = hardWidget.tierText or "nil"
 		end
 		local mobId = ""
@@ -94,7 +94,7 @@ function mod:ENCOUNTER_START(_, id)
 				break
 			end
 		end
-		print("|cFF33FF99BigWigs|r: Please report to the devs: "..id.." - "..mobId.." (Tier "..tierText..")")
+		self:Error("Please report to the devs: "..id.." - "..mobId.." (Tier "..tierText..")")
 	end
 end
 
