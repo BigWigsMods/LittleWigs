@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Zekvir", 2682)
 if not mod then return end
-mod:RegisterEnableMob(225204) -- Zekvir (Tier ?)
+mod:RegisterEnableMob(225204) -- Zekvir (Tier 8)
 mod:SetEncounterID(2987)
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
@@ -21,7 +21,7 @@ local callWebTerrorCount = 1
 
 local L = mod:GetLocale()
 if L then
-	L.zekvir = "Zekvir (Tier 1)"
+	L.zekvir = "Zekvir (Tier 8)"
 	L.web_terror = "Web Terror"
 end
 
@@ -75,11 +75,6 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	if self:MobId(self:UnitGUID("boss1")) == 221427 then -- Zekvir Tier ??
-		-- XXX there is a bug where the Zekvir Tier ? ENCOUNTER_START fires halfway through Zekvir Tier ??
-		self:Disable()
-		return
-	end
 	callWebTerrorCount = 1
 	self:CDBar(450451, 4.6) -- Claw Smash
 	self:CDBar(450505, 8.3) -- Enfeebling Spittle
@@ -93,7 +88,7 @@ end
 --
 
 function mod:ClawSmash(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
+	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier 8
 		self:Message(args.spellId, "orange")
 		self:CDBar(args.spellId, 18.2)
 		self:PlaySound(args.spellId, "alarm")
@@ -101,26 +96,26 @@ function mod:ClawSmash(args)
 end
 
 function mod:EnfeeblingSpittle(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
+	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier 8
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:PlaySound(args.spellId, "alert")
 	end
 end
 
 function mod:EnfeeblingSpittleInterrupt(args)
-	if self:MobId(args.destGUID) == 225204 then -- Zekvir Tier ?
+	if self:MobId(args.destGUID) == 225204 then -- Zekvir Tier 8
 		self:CDBar(450505, 15.3)
 	end
 end
 
 function mod:EnfeeblingSpittleSuccess(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
+	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier 8
 		self:CDBar(args.spellId, 15.3)
 	end
 end
 
 function mod:EnfeeblingSpittleApplied(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
+	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier 8
 		if self:Me(args.destGUID) then
 			self:PersonalMessage(args.spellId)
 			self:PlaySound(args.spellId, "info", nil, args.destName)
@@ -129,7 +124,7 @@ function mod:EnfeeblingSpittleApplied(args)
 end
 
 function mod:HorrendousRoar(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
+	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier 8
 		self:Message(args.spellId, "yellow", CL.fear)
 		self:CDBar(args.spellId, 20.6, CL.fear)
 		self:PlaySound(args.spellId, "alarm")
@@ -137,7 +132,7 @@ function mod:HorrendousRoar(args)
 end
 
 function mod:AnglersWeb(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
+	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier 8
 		self:Message(args.spellId, "orange")
 		self:CDBar(args.spellId, 25.5)
 		self:PlaySound(args.spellId, "alarm")
@@ -145,7 +140,7 @@ function mod:AnglersWeb(args)
 end
 
 function mod:CallWebTerror(args)
-	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier ?
+	if self:MobId(args.sourceGUID) == 225204 then -- Zekvir Tier 8
 		self:StopBar(CL.count:format(args.spellName, callWebTerrorCount))
 		self:Message(450568, "cyan", CL.count:format(args.spellName, callWebTerrorCount))
 		callWebTerrorCount = callWebTerrorCount + 1

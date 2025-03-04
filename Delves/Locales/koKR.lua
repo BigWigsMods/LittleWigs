@@ -207,7 +207,7 @@ end
 
 L = BigWigs:NewBossLocale("Zekvir", "koKR")
 if L then
-	L.zekvir = "제크비르 (1단계)"
+	L.zekvir = "제크비르 (8단계)"
 	L.web_terror = "거미줄 괴물"
 end
 
