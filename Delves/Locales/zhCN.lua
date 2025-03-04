@@ -8,7 +8,7 @@ end
 
 L = BigWigs:NewBossLocale("The Underpin 2", "zhCN")
 if L then
-	L.the_underpin = "幽坑太保（难度2）"
+	L.the_underpin = "幽坑太保（难度11）"
 end
 
 -- Earthcrawl Mines
