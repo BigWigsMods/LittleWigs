@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Zekvir 2", 2682)
 if not mod then return end
-mod:RegisterEnableMob(221427) -- Zekvir (Tier ??)
+mod:RegisterEnableMob(221427) -- Zekvir (Tier 11)
 mod:SetEncounterID(2985)
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
@@ -22,7 +22,7 @@ local callWebTerrorCount = 1
 
 local L = mod:GetLocale()
 if L then
-	L.zekvir = "Zekvir (Tier 2)"
+	L.zekvir = "Zekvir (Tier 11)"
 	L.web_terror = "Web Terror"
 end
 
@@ -110,7 +110,7 @@ end
 --
 
 function mod:ClawSmash(args)
-	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier 11
 		self:Message(args.spellId, "orange")
 		self:CDBar(args.spellId, 15.7)
 		self:PlaySound(args.spellId, "alarm")
@@ -118,26 +118,26 @@ function mod:ClawSmash(args)
 end
 
 function mod:EnfeeblingSpittle(args)
-	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier 11
 		self:Message(450505, "red", CL.casting:format(args.spellName))
 		self:PlaySound(450505, "alert")
 	end
 end
 
 function mod:EnfeeblingSpittleInterrupt(args)
-	if self:MobId(args.destGUID) == 221427 then -- Zekvir Tier ??
+	if self:MobId(args.destGUID) == 221427 then -- Zekvir Tier 11
 		self:CDBar(450505, 25.2)
 	end
 end
 
 function mod:EnfeeblingSpittleSuccess(args)
-	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier 11
 		self:CDBar(450505, 25.2)
 	end
 end
 
 function mod:EnfeeblingSpittleApplied(args)
-	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier 11
 		if self:Me(args.destGUID) then
 			self:PersonalMessage(450505)
 			self:PlaySound(450505, "info", nil, args.destName)
@@ -146,7 +146,7 @@ function mod:EnfeeblingSpittleApplied(args)
 end
 
 function mod:HorrendousRoar(args)
-	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier 11
 		self:Message(args.spellId, "yellow", CL.fear)
 		self:CDBar(args.spellId, 18.2, CL.fear)
 		self:PlaySound(args.spellId, "alarm")
@@ -154,7 +154,7 @@ function mod:HorrendousRoar(args)
 end
 
 function mod:AnglersWeb(args)
-	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier 11
 		self:Message(450519, "orange")
 		self:CDBar(450519, 21.8)
 		self:PlaySound(450519, "alarm")
@@ -175,7 +175,7 @@ function mod:RegeneratingCarapaceSuccess(args)
 end
 
 function mod:CallWebTerror(args)
-	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier ??
+	if self:MobId(args.sourceGUID) == 221427 then -- Zekvir Tier 11
 		self:StopBar(CL.count:format(args.spellName, callWebTerrorCount))
 		self:Message(450568, "cyan", CL.count:format(args.spellName, callWebTerrorCount))
 		callWebTerrorCount = callWebTerrorCount + 1

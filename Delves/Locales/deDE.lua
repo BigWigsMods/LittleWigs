@@ -213,6 +213,6 @@ end
 
 L = BigWigs:NewBossLocale("Zekvir 2", "deDE")
 if L then
-	L.zekvir = "Zekvir (Stufe 2)"
+	L.zekvir = "Zekvir (Stufe 11)"
 	L.web_terror = "Netzschrecken"
 end
