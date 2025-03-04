@@ -3,7 +3,8 @@
 local L = BigWigs:NewBossLocale("The Underpin", "esMX")
 if not L then return end
 if L then
-	--L.the_underpin = "The Underpin (Tier 1)"
+	--L.the_underpin = "The Underpin (Tier 8)"
+	--L.crony = "Crony"
 end
 
 L = BigWigs:NewBossLocale("The Underpin 2", "esMX")
