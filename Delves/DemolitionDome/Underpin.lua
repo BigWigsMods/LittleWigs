@@ -79,6 +79,22 @@ end
 function mod:ENCOUNTER_START(_, id)
 	if id == 3138 or id == 3126 then -- XXX don't know which is which, use this module for both for now
 		self:Engage()
+		local easyWidget = self:GetWidgetInfo("delve", 6184)
+		local hardWidget = self:GetWidgetInfo("delve", 6185)
+		local tierText = ""
+		if easyWidget and easyWidget.shownState == 1 then
+			tierText = easyWidget.tierText or "nil"
+		elseif hardWidget and hardWidget.shownState == 1 then
+			tierText = hardWidget.tierText or "nil"
+		end
+		local mobId = ""
+		for enableMob in next, self.enableMobs do
+			if self:GetUnitIdByGUID(enableMob) then
+				mobId = enableMob
+				break
+			end
+		end
+		print("|cFF33FF99BigWigs|r: Please report to the devs: "..id.." - "..mobId.." (Tier "..tierText..")")
 	end
 end
 
