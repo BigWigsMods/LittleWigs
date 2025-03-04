@@ -4,7 +4,7 @@ local L = BigWigs:NewBossLocale("The Underpin", "zhCN")
 if not L then return end
 if L then
 	L.the_underpin = "幽坑太保（难度8）"
-	--L.crony = "Crony"
+	L.crony = "亲信"
 end
 
 L = BigWigs:NewBossLocale("The Underpin 2", "zhCN")
