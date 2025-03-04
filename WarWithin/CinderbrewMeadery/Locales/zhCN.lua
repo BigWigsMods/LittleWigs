@@ -8,7 +8,7 @@ if L then
 	L.cooking_pot = "烹饪锅"
 	L.flamethrower = "火焰喷射器"
 	L.flavor_scientist = "风味科学家"
-	L.careless_hopgoblin = "粗心的酒花地精"
+	L.careless_hopgoblin = "粗心的酒花大地精"
 	L.brew_drop = "酒滴"
 	L.taste_tester = "美味测试员"
 	L.bee_wrangler = "驯蜂者"
