@@ -10,6 +10,7 @@ end
 L = BigWigs:NewBossLocale("The Underpin 2", "deDE")
 if L then
 	--L.the_underpin = "The Underpin (Tier 11)"
+	--L.crony = "Crony"
 end
 
 -- Earthcrawl Mines
