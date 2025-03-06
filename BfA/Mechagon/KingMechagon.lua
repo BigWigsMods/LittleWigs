@@ -68,7 +68,8 @@ function mod:OnBossEnable()
 	self:Death("AerialUnitR21XDeath", 150396)
 
 	-- Stage Two: Omega Buster
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3") -- Activate Omega Buster
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3") -- Activate Omega Buster (and Recalibrate)
+	self:Log("SPELL_CAST_SUCCESS", "RecalibrateSuccess", 291856)
 	self:Log("SPELL_CAST_START", "MagnetoArm", 283551) -- Boss's cast activating the device
 	self:Log("SPELL_CAST_SUCCESS", "MagnetoArmSuccess", 283143) -- pull in effect start
 	self:Log("SPELL_AURA_REMOVED", "MagnetoArmRemoved", 283143) -- pull in effect end
@@ -164,25 +165,26 @@ end
 
 -- Stage Two: Omega Buster
 
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 296323 then -- Activate Omega Buster
-		self:CDBar(291865, 6.75) -- Recalibrate
-		self:CDBar(292264, 17.7) -- Mega-Zap (Stage 2)
-		self:CDBar(283551, 36.9) -- Magneto Arm
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-	end
-end
-
-function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
-	if self:GetBossId(144249) then -- Omega Buster
-		self:UnregisterEvent(event)
-		-- the first recalibrate accompanies IEEU for Omega Buster, after that it's a 8s repeater
-		recalibrateTimer = self:ScheduleRepeatingTimer("RecalibrateStage2", 8, self)
-		self:Message(291865, "orange") -- Recalibrate
-		self:CDBar(291865, 8.0) -- Recalibrate
-		self:CDBar(292264, {10.9, 17.7}) -- Mega-Zap (Stage 2)
-		self:CDBar(283551, {30.1, 36.9}) -- Magneto Arm
-		self:PlaySound(291865, "alarm") -- Recalibrate
+do
+	local prev = nil
+	function mod:UNIT_SPELLCAST_SUCCEEDED(event, _, castGUID, spellId)
+		if spellId == 296323 then -- Activate Omega Buster
+			self:UnregisterUnitEvent(event, "boss1", "boss2", "boss3")
+			self:CDBar(291865, 6.75) -- Recalibrate
+			self:CDBar(292264, 17.7) -- Mega-Zap (Stage 2)
+			self:CDBar(283551, 36.9) -- Magneto Arm
+			self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- boss frames not guaranteed in time for 302377 which will be cast next
+		elseif spellId == 302377 and castGUID ~= prev then -- Recalibrate (first cast only)
+			prev = castGUID
+			self:UnregisterEvent(event)
+			-- the first Recalibrate occurs alongside 302377, after that it's a 8s repeater
+			recalibrateTimer = self:ScheduleRepeatingTimer("RecalibrateStage2", 8, self)
+			self:Message(291865, "orange") -- Recalibrate
+			self:CDBar(291865, 8.0) -- Recalibrate
+			self:CDBar(292264, {10.9, 17.7}) -- Mega-Zap (Stage 2)
+			self:CDBar(283551, {30.1, 36.9}) -- Magneto Arm
+			self:PlaySound(291865, "alarm") -- Recalibrate
+		end
 	end
 end
 
@@ -198,8 +200,23 @@ end
 
 do
 	local prev = 0
+	function mod:RecalibrateSuccess(args)
+		-- if recalibrateTimer is nil then either we reloaded or the USCS for 302377 was missed.
+		-- we can guess when the next Recalibrate will be (though it won't be exact because of variable travel time).
+		if not recalibrateTimer and self:GetStage() == 2 and args.time - prev > 4 then
+			prev = args.time
+			-- 8s timer - 3s cast - ~.2s travel time = approximately 4.8s
+			self:ScheduleTimer("RecalibrateStage2", 4.8, self)
+		end
+	end
+end
 
-	function mod:RecalibrateStage2() -- only called from :ScheduleRepeatingTimer
+do
+	local prev = 0
+	function mod:RecalibrateStage2() -- only called from :ScheduleTimer or :ScheduleRepeatingTimer
+		if not recalibrateTimer then
+			recalibrateTimer = self:ScheduleRepeatingTimer("RecalibrateStage2", 8, self)
+		end
 		-- casts during Magneto Arm will be skipped
 		if not castingMagnetoArm then
 			prev = GetTime()
@@ -214,11 +231,11 @@ do
 		self:CastBar(283551, 9) -- Magneto Arm
 		-- Every 8 sec, Recalibrate is attempted.
 		-- It does not cast between the start of the magnet's channel and the magnet despawning.
-		-- The magnet despawns after 10 sec and the cast time of Recalibrate is 2.5sec
+		-- The magnet despawns after 10 sec and the cast time of Recalibrate is 3s
 		-- The next Recalibrate will be in more than 10 seconds.
 		-- Find the lowest multiple of 8 (Recalibrate timer) that is still greater than 10 after the elapsed time has been subtracted:
 		local elapsed = GetTime() - prev
-		local multiple = math.ceil((12.5 + elapsed) / 8) * 8
+		local multiple = math.ceil((13 + elapsed) / 8) * 8
 		self:CDBar(291865, multiple - elapsed) -- Recalibrate
 	end
 end
@@ -260,6 +277,7 @@ end
 function mod:OmegaBusterDeath(args)
 	if recalibrateTimer then
 		self:CancelTimer(recalibrateTimer)
+		recalibrateTimer = nil
 	end
 	self:StopBar(292264) -- Mega-Zap (Stage 2)
 	self:StopBar(283534) -- Magneto Arm
