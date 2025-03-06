@@ -20,7 +20,7 @@ BigWigs:AddColors("The Candle King", {
 	[420696] = {"blue","orange"},
 	[421067] = "blue",
 	[421653] = "blue",
-	[422648] = {"blue","orange"},
+	[422648] = {"blue","yellow"},
 	[426145] = "red",
 })
 
