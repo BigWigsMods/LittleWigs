@@ -37,6 +37,7 @@ BigWigs:AddColors("The MOTHERLODE!! Trash", {
 	[262377] = {"blue","yellow"},
 	[262383] = "cyan",
 	[263202] = "red",
+	[263215] = "orange",
 	[263628] = "purple",
 	[267354] = "yellow",
 	[267433] = "yellow",
@@ -56,5 +57,5 @@ BigWigs:AddColors("The MOTHERLODE!! Trash", {
 	[1213139] = "yellow",
 	[1214754] = "orange",
 	[1215411] = "purple",
-	[1217279] = "purple",
+	[1217279] = "yellow",
 })
