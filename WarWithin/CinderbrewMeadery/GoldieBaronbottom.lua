@@ -9,6 +9,15 @@ mod:SetEncounterID(2930)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "inv_achievement_dungeon_cinderbrewmeadery"
+end
+
+--------------------------------------------------------------------------------
 -- Locals
 --
 
@@ -21,6 +30,7 @@ local cashCannonCount = 1
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		435560, -- Spread the Love!
 		435622, -- Let It Hail!
 		436644, -- Burning Richochet
@@ -39,6 +49,7 @@ end
 function mod:OnEngage()
 	burningRichochetCount = 1
 	cashCannonCount = 1
+	self:StopBar(CL.active)
 	-- Spread the Love! is cast immediately on pull
 	self:CDBar(436592, 8.1) -- Cash Cannon
 	self:CDBar(436644, 16.6) -- Burning Richochet
@@ -48,6 +59,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup() -- called from trash module
+	-- 82.62 [CLEU] UNIT_DIED##nil#Creature-0-2085-2661-23348-219588#Yes Man
+	-- 92.13 [NAME_PLATE_UNIT_ADDED] Goldie Baronbottom#Creature-0-2085-2661-23348-214661
+	self:Bar("warmup", 9.5, CL.active, L.warmup_icon)
+end
 
 function mod:SpreadTheLove(args)
 	self:Message(args.spellId, "cyan")
