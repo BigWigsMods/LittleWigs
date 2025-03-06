@@ -81,7 +81,7 @@ function mod:GetOptions()
 		-- Brew Drop
 		441179, -- Oozing Honey
 		-- Taste Tester
-		{441242, "OFF", "NAMEPLATE"}, -- Free Samples?
+		{441242, "NAMEPLATE", "OFF"}, -- Free Samples?
 		-- Bee Wrangler
 		{441119, "SAY", "NAMEPLATE"}, -- Bee-Zooka
 		{441351, "NAMEPLATE"}, -- Bee-stial Wrath
@@ -351,10 +351,16 @@ function mod:RejuvenatingHoneySuccess(args)
 	self:Nameplate(args.spellId, 24.4, args.sourceGUID)
 end
 
-function mod:FailedBatch(args)
-	self:Message(args.spellId, "cyan", CL.spawning:format(args.spellName))
-	self:Nameplate(args.spellId, 23.0, args.sourceGUID)
-	self:PlaySound(args.spellId, "info")
+do
+	local prev = 0
+	function mod:FailedBatch(args)
+		self:Message(args.spellId, "cyan", CL.spawning:format(args.spellName))
+		self:Nameplate(args.spellId, 23.0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:PlaySound(args.spellId, "info")
+		end
+	end
 end
 
 do
