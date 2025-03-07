@@ -6,12 +6,12 @@ end
 
 L = BigWigs:NewBossLocale("Theater Of Pain Trash", "koKR")
 if L then
-	--L.battlefield_ritualist = "Battlefield Ritualist"
+	L.battlefield_ritualist = "전장의 의식술사"
 	L.raging_bloodhorn = "분노의 핏빛뿔"
 	L.diseased_horror = "병든 공포"
 	L.blighted_sludge_spewer = "파멸의 오물분출자"
 	L.putrid_butcher = "부패의 도살자"
-	--L.disgusting_refuse = "Disgusting Refuse"
+	L.disgusting_refuse = "역겨운 폐물"
 	L.rancid_gasbag = "썩은 가스주머니"
 	L.dokigg_the_brutalizer = "야만전사 도키그"
 	L.nekthara_the_mangler = "분쇄자 네크타라"
