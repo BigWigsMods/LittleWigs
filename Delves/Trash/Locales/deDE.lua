@@ -100,4 +100,7 @@ if L then
 	--L.underpins_explosive_ally = "Underpin's Explosive Ally"
 	--L.underpins_bodyguards_intern = "Underpin's Bodyguard's Intern"
 	--L.aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin"
+	--L.the_underpin = "The Underpin (Random Spawn)"
+
+	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
 end

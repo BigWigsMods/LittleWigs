@@ -16,7 +16,8 @@ mod:RegisterEnableMob(
 	234901, -- Underpin's Well-Connected Friend
 	234902, -- Underpin's Explosive Ally
 	234904, -- Underpin's Bodyguard's Intern
-	234905 -- Aggressively Lost Hobgoblin
+	234905, -- Aggressively Lost Hobgoblin
+	236942 -- The Underpin (random spawn)
 )
 
 --------------------------------------------------------------------------------
@@ -36,6 +37,11 @@ if L then
 	L.underpins_explosive_ally = "Underpin's Explosive Ally"
 	L.underpins_bodyguards_intern = "Underpin's Bodyguard's Intern"
 	L.aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin"
+	L.the_underpin = "The Underpin (Random Spawn)"
+
+	L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
+
+	L["1216937_icon"] = "inv_goblinshreddermech_black" -- Underpin's Grand Entrance
 end
 
 --------------------------------------------------------------------------------
@@ -78,6 +84,12 @@ function mod:GetOptions()
 		{1220869, "NAMEPLATE"}, -- Bonebreaker
 		-- Aggressively Lost Hobgoblin
 		{1217301, "NAMEPLATE"}, -- Heedless Charge
+		-- The Underpin
+		{1216937, "EMPHASIZE"}, -- Underpin's Grand Entrance
+		1213852, -- Crush
+		1217371, -- Flamethrower
+		1214147, -- Time Bomb Launcher
+		--1215521, -- Signal Cronies
 	}, {
 		[418295] = L.treasure_wraith,
 		[1214246] = L.treasure_crab,
@@ -88,6 +100,7 @@ function mod:GetOptions()
 		[1218061] = L.underpins_explosive_ally,
 		[1213497] = L.underpins_bodyguards_intern,
 		[1217301] = L.aggressively_lost_hobgoblin,
+		[1216937] = L.the_underpin,
 	}
 end
 
@@ -163,6 +176,14 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("AggressivelyLostHobgoblinEngaged", 234905)
 	self:Log("SPELL_CAST_START", "HeedlessCharge", 1217301)
 	self:Death("AggressivelyLostHobgoblinDeath", 234905)
+
+	-- The Underpin
+	self:Log("SPELL_CAST_START", "UnderpinsGrandEntrance", 1216937)
+	self:Log("SPELL_CAST_START", "Crush", 1213852)
+	self:Log("SPELL_CAST_START", "Flamethrower", 1217371)
+	self:Log("SPELL_CAST_START", "TimeBombLauncher", 1214147)
+	--self:Log("SPELL_CAST_START", "SignalCronies", 1215521) -- this is cast by The Underpin but it doesn't do anything
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY") -- Underpin Retreating
 end
 
 --------------------------------------------------------------------------------
@@ -650,4 +671,79 @@ end
 
 function mod:AggressivelyLostHobgoblinDeath(args)
 	self:ClearNameplate(args.destGUID)
+end
+
+-- The Underpin
+
+do
+	local timer
+
+	function mod:UnderpinsGrandEntrance(args)
+		timer = self:ScheduleTimer("UnderpinRetreat", 30)
+		self:Message(args.spellId, "cyan", nil, L["1216937_icon"])
+		self:CDBar(1213852, 11.5) -- Crush
+		self:CDBar(1217371, 16.3) -- Flamethrower
+		self:CDBar(1214147, 20.0) -- Time Bomb Launcher
+		--self:CDBar(1215521, 24.0) -- Signal Cronies
+		self:PlaySound(args.spellId, "warning")
+	end
+
+	function mod:Crush(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:CDBar(args.spellId, 20.2)
+		timer = self:ScheduleTimer("UnderpinRetreat", 30)
+		self:PlaySound(args.spellId, "alarm")
+	end
+
+	function mod:Flamethrower(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "red")
+		self:CDBar(args.spellId, 20.3)
+		timer = self:ScheduleTimer("UnderpinRetreat", 30)
+		self:PlaySound(args.spellId, "alarm")
+	end
+
+	function mod:TimeBombLauncher(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "yellow")
+		self:CDBar(args.spellId, 25.1)
+		timer = self:ScheduleTimer("UnderpinRetreat", 30)
+		self:PlaySound(args.spellId, "info")
+	end
+
+	-- this is cast by The Underpin but it doesn't do anything
+	--[[function mod:SignalCronies(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "cyan")
+		self:CDBar(args.spellId, 62.7)
+		timer = self:ScheduleTimer("UnderpinRetreat", 30)
+		self:PlaySound(args.spellId, "long")
+	end]]
+
+	function mod:CHAT_MSG_MONSTER_SAY(_, msg)
+		-- [CHAT_MSG_MONSTER_SAY] People always messin' around on my perfectly legal, deeded land!#The Underpin
+		if msg == L.underpin_retreat_trigger then
+			self:UnderpinRetreat()
+		end
+	end
+
+	function mod:UnderpinRetreat()
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(1213852) -- Crush
+		self:StopBar(1217371) -- Flamethrower
+		self:StopBar(1214147) -- Time Bomb Launcher
+		--self:StopBar(1215521) -- Signal Cronies
+	end
 end

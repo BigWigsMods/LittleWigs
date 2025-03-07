@@ -100,4 +100,7 @@ if L then
 	L.underpins_explosive_ally = "幽坑太保的劲爆盟友"
 	L.underpins_bodyguards_intern = "幽坑太保的见习保镖"
 	L.aggressively_lost_hobgoblin = "凶狠的走失大地精"
+	--L.the_underpin = "The Underpin (Random Spawn)"
+
+	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
 end
