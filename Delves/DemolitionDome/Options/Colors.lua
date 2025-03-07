@@ -11,7 +11,6 @@ BigWigs:AddColors("The Underpin", {
 
 BigWigs:AddColors("The Underpin 2", {
 	[1213852] = "orange",
-	[1213950] = "yellow",
 	[1214043] = "orange",
 	[1214147] = "yellow",
 	[1217371] = "red",

@@ -37,7 +37,6 @@ function mod:GetOptions()
 		{1217666, "CASTBAR"}, -- Recharge
 		-- Crony
 		{1214043, "OFF"}, -- Molten Cannon
-		1213950, -- Disperse Crowd
 		1218153, -- Flaming Wreckage
 	}, {
 		[1214043] = L.crony,
@@ -55,7 +54,6 @@ function mod:OnBossEnable()
 
 	-- Crony (npc 237432)
 	self:Log("SPELL_CAST_START", "MoltenCannon", 1214043)
-	self:Log("SPELL_CAST_START", "DisperseCrowd", 1213950) -- TODO not cast? Stage 2?
 	self:Log("SPELL_PERIODIC_DAMAGE", "FlamingWreckageDamage", 1218153)
 	self:Log("SPELL_PERIODIC_MISSED", "FlamingWreckageDamage", 1218153)
 end
@@ -121,17 +119,6 @@ do
 		if args.time - prev > 4 then
 			prev = args.time
 			self:Message(args.spellId, "orange")
-			self:PlaySound(args.spellId, "alarm")
-		end
-	end
-end
-
-do
-	local prev = 0
-	function mod:DisperseCrowd(args) -- TODO not cast?
-		if args.time - prev > 4 then -- temporary throttle
-			prev = args.time
-			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
