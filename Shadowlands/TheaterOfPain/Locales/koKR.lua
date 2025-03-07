@@ -1,7 +1,7 @@
 local L = BigWigs:NewBossLocale("Xav the Unfallen", "koKR")
 if not L then return end
 if L then
-	--L.defeated = "%s has defeated %s"
+	L.defeated = "%s가 %s를 물리쳤습니다"
 end
 
 L = BigWigs:NewBossLocale("Theater Of Pain Trash", "koKR")
@@ -26,5 +26,5 @@ if L then
 	L.nefarious_darkspeaker = "사악한 암흑예언자"
 	L.soulforged_bonereaver = "영혼벼림 뼈약탈자"
 
-	--L.mordretha_warmup_trigger = "Soldiers of Maldraxxus! Are you ready for some carnage?!"
+	L.mordretha_warmup_trigger = "말드락서스의 병사 여러분! 학살극을 만끽할 준비는 되셨습니까?!"
 end
