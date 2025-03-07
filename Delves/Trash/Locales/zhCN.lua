@@ -91,8 +91,9 @@ L = BigWigs:NewBossLocale("Underpin Rares", "zhCN")
 if L then
 	L.rares = "幽坑稀有"
 
-	L.hovering_menace = "悬浮灾厄"
+	L.treasure_wraith = "宝藏怨灵"
 	L.treasure_crab = "宝藏螃蟹"
+	L.hovering_menace = "悬浮灾厄"
 	L.malfunctioning_pummeler = "出故障的打击者"
 	L.underpins_adoring_fan = "幽坑太保的铁杆粉丝"
 	L.underpins_well_connected_friend = "幽坑太保的亲密好友"

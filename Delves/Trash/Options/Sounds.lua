@@ -83,6 +83,8 @@ BigWigs:AddSounds("The Underkeep Trash", {
 })
 
 BigWigs:AddSounds("Underpin Rares", {
+	[418295] = "alarm",
+	[418297] = "alert",
 	[433045] = "warning",
 	[1213497] = "info",
 	[1214238] = "alert",

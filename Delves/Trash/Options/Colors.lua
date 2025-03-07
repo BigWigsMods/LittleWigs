@@ -83,6 +83,8 @@ BigWigs:AddColors("The Underkeep Trash", {
 })
 
 BigWigs:AddColors("Underpin Rares", {
+	[418295] = "yellow",
+	[418297] = "red",
 	[433045] = "yellow",
 	[1213497] = "red",
 	[1214238] = "red",

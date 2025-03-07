@@ -91,8 +91,9 @@ L = BigWigs:NewBossLocale("Underpin Rares", "frFR")
 if L then
 	--L.rares = "Underpin Rares"
 
-	--L.hovering_menace = "Hovering Menace"
+	L.treasure_wraith = "Âme en peine de trésor"
 	--L.treasure_crab = "Treasure Crab"
+	--L.hovering_menace = "Hovering Menace"
 	--L.malfunctioning_pummeler = "Malfunctioning Pummeler"
 	--L.underpins_adoring_fan = "Underpin's Adoring Fan"
 	--L.underpins_well_connected_friend = "Underpin's Well-Connected Friend"
