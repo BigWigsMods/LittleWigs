@@ -3,26 +3,26 @@
 local L = BigWigs:NewBossLocale("The Underpin", "koKR")
 if not L then return end
 if L then
-	--L.the_underpin = "The Underpin (Tier 8)"
-	--L.crony = "Crony"
+	L.the_underpin = "대지주 (8단계)"
+	L.crony = "친구"
 end
 
 L = BigWigs:NewBossLocale("The Underpin 2", "koKR")
 if L then
-	--L.the_underpin = "The Underpin (Tier 11)"
-	--L.crony = "Crony"
+	L.the_underpin = "대지주 (11단계)"
+	L.crony = "친구"
 end
 
 -- Earthcrawl Mines
 
 L = BigWigs:NewBossLocale("Maklin Drillstab", "koKR")
 if L then
-	--L.maklin_drillstab = "Maklin Drillstab"
+	L.maklin_drillstab = "마클린 드릴스탭"
 end
 
 L = BigWigs:NewBossLocale("The Biggest Bug", "koKR")
 if L then
-	--L.the_biggest_bug = "The Biggest Bug"
+	L.the_biggest_bug = "세상에서 제일 큰 벌레"
 end
 
 L = BigWigs:NewBossLocale("Web General Ab'enar", "koKR")
@@ -34,17 +34,17 @@ end
 
 L = BigWigs:NewBossLocale("Craggle Fritzbrains", "koKR")
 if L then
-	--L.craggle_fritzbrains = "Craggle Fritzbrains"
+	L.craggle_fritzbrains = "크래글 프리츠브레인즈"
 end
 
 L = BigWigs:NewBossLocale("Harbinger Ul'thul", "koKR")
 if L then
-	--L.harbinger_ulthul = "Harbinger Ul'thul"
+	L.harbinger_ulthul = "전령 울술"
 end
 
 L = BigWigs:NewBossLocale("Xel'anegh The Many", "koKR")
 if L then
-	--L.xelanegh_the_many = "Xel'anegh The Many"
+	L.xelanegh_the_many = "Xel'anegh The Many"
 end
 
 -- Fungal Folly
@@ -197,7 +197,7 @@ end
 
 L = BigWigs:NewBossLocale("Shroomsprew", "koKR")
 if L then
-	--L.shroomsprew = "Shroomsprew"
+	L.shroomsprew = "쉬룸스프루"
 end
 
 L = BigWigs:NewBossLocale("Waxface", "koKR")
