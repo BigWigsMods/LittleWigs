@@ -44,15 +44,15 @@ end
 
 L = BigWigs:NewBossLocale("Xel'anegh The Many", "koKR")
 if L then
-	L.xelanegh_the_many = "Xel'anegh The Many"
+	L.xelanegh_the_many = "무수한 젤라네그"
 end
 
 -- Fungal Folly
 
 L = BigWigs:NewBossLocale("Maulspike", "koKR")
 if L then
-	--L.maulspike = "Maulspike"
-	--L.darkfuse_cackler = "Darkfuse Cackler"
+	L.maulspike = "상해가시"
+	L.darkfuse_cackler = "포자의 호정"
 end
 
 L = BigWigs:NewBossLocale("Spinshroom", "koKR")
@@ -98,18 +98,18 @@ end
 
 L = BigWigs:NewBossLocale("Geargrave", "koKR")
 if L then
-	--L.geargrave = "Geargrave"
+	L.geargrave = "기어그레이브"
 end
 
 L = BigWigs:NewBossLocale("Gold Elemental", "koKR")
 if L then
-	--L.gold_elemental = "Gold Elemental"
-	--L.gold_shaman = "Gold Shaman"
+	L.gold_elemental = "황금 정령"
+	L.gold_shaman = "황금 주술사"
 end
 
 L = BigWigs:NewBossLocale("Vindle Snapcrank", "koKR")
 if L then
-	--L.vindle_snapcrank = "Vindle Snapcrank"
+	L.vindle_snapcrank = "빈들 스냅크랭크"
 end
 
 -- Skittering Breach
@@ -188,9 +188,9 @@ end
 
 L = BigWigs:NewBossLocale("Torque Clankfire and Sprok", "koKR")
 if L then
-	--L.bossName = "Torque Clankfire and Sprok"
-	--L.torque_clankfire = "Torque Clankfire"
-	--L.sprok = "Sprok"
+	L.bossName = "토크 클랭크파이어와 스프록"
+	L.torque_clankfire = "토크 클랭크파이어"
+	L.sprok = "스프록"
 end
 
 -- The Waterworks
