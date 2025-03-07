@@ -82,33 +82,6 @@ BigWigs:AddColors("The Underkeep Trash", {
 	[453149] = "yellow",
 })
 
-BigWigs:AddColors("Zekvir Rares", {
-	[400335] = "yellow",
-	[415250] = "red",
-	[415253] = "orange",
-	[418295] = "yellow",
-	[418297] = "red",
-	[445718] = "purple",
-	[445781] = "red",
-	[449038] = "yellow",
-	[450492] = "yellow",
-	[450505] = {"blue","red"},
-	[450519] = "orange",
-	[457448] = "orange",
-	[457880] = "yellow",
-	[458090] = "yellow",
-	[458099] = "red",
-	[458104] = {"red","yellow"},
-	[458311] = "purple",
-	[458325] = "cyan",
-	[458369] = {"red","yellow"},
-	[458397] = "yellow",
-	[459421] = "yellow",
-	[461741] = {"blue","orange"},
-	[462686] = "red",
-	["zekvir_breach"] = "cyan",
-})
-
 BigWigs:AddColors("Underpin Rares", {
 	[433045] = "yellow",
 	[1213497] = "red",

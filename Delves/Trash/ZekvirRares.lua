@@ -604,7 +604,6 @@ do
 		if self:MobId(args.destGUID) == 217208 then -- Zekvir rare spawn
 			if timer then
 				self:CancelTimer(timer)
-				timer = nil
 			end
 			self:CDBar(450505, 15.3)
 			timer = self:ScheduleTimer("ZekvirRetreat", 30)
@@ -615,7 +614,6 @@ do
 		if self:MobId(args.sourceGUID) == 217208 then -- Zekvir rare spawn
 			if timer then
 				self:CancelTimer(timer)
-				timer = nil
 			end
 			self:CDBar(args.spellId, 15.3)
 			timer = self:ScheduleTimer("ZekvirRetreat", 30)
@@ -635,7 +633,6 @@ do
 		if self:MobId(args.sourceGUID) == 217208 then -- Zekvir rare spawn
 			if timer then
 				self:CancelTimer(timer)
-				timer = nil
 			end
 			self:Message(args.spellId, "yellow", CL.fear)
 			self:CDBar(args.spellId, 18.2, CL.fear)
@@ -648,7 +645,6 @@ do
 		if self:MobId(args.sourceGUID) == 217208 then -- Zekvir rare spawn
 			if timer then
 				self:CancelTimer(timer)
-				timer = nil
 			end
 			self:Message(args.spellId, "orange")
 			self:CDBar(args.spellId, 23.1)

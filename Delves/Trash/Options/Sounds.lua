@@ -82,33 +82,6 @@ BigWigs:AddSounds("The Underkeep Trash", {
 	[453149] = "alert",
 })
 
-BigWigs:AddSounds("Zekvir Rares", {
-	[400335] = "alarm",
-	[415250] = "warning",
-	[415253] = "alarm",
-	[418295] = "alarm",
-	[418297] = "alert",
-	[445718] = "alert",
-	[445781] = "alarm",
-	[449038] = "warning",
-	[450492] = "alarm",
-	[450505] = {"alert","info"},
-	[450519] = "alarm",
-	[457448] = "alarm",
-	[457880] = "long",
-	[458090] = "alarm",
-	[458099] = "alert",
-	[458104] = "alert",
-	[458311] = "alert",
-	[458325] = "info",
-	[458369] = "alert",
-	[458397] = "alarm",
-	[459421] = "alert",
-	[461741] = {"alarm","underyou"},
-	[462686] = "alert",
-	["zekvir_breach"] = "long",
-})
-
 BigWigs:AddSounds("Underpin Rares", {
 	[433045] = "warning",
 	[1213497] = "info",

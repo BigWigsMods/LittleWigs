@@ -9,7 +9,7 @@
 <Script file="Nightfall.lua"/>
 <Script file="OldGod.lua"/>
 <Script file="Underkeep.lua"/>
-<Script file="ZekvirRares.lua"/>
+<!--<Script file="ZekvirRares.lua"/>-->
 <Script file="UnderpinRares.lua"/>
 
 <Include file="Locales\locales.xml"/>
