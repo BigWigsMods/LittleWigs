@@ -49,8 +49,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "TimeBombLauncher", 1214147)
 	self:Log("SPELL_CAST_START", "SignalCronies", 1217661)
 	self:Log("SPELL_CAST_START", "DivertEnergyToShields", 1217667)
-	self:Log("SPELL_AURA_APPLIED", "RechargeApplied", 1217666)
-	self:Log("SPELL_AURA_REMOVED", "RechargeRemoved", 1217666)
+	self:Log("SPELL_AURA_APPLIED", "DivertEnergyToShieldsApplied", 1217667)
+	self:Log("SPELL_AURA_REMOVED", "DivertEnergyToShieldsRemoved", 1217667)
 
 	-- Crony (npc 237432)
 	self:Log("SPELL_CAST_START", "MoltenCannon", 1214043)
@@ -61,9 +61,10 @@ end
 function mod:OnEngage()
 	self:CDBar(1213852, 4.6) -- Crush
 	self:CDBar(1217371, 9.4) -- Flamethrower
-	self:CDBar(1214147, 17.9) -- Time Bomb Launcher
-	self:CDBar(1217661, 22.0) -- Signal Cronies
-	self:CDBar(1217667, 73.8) -- Divert Energy to Shields
+	self:CDBar(1214147, 17.0) -- Time Bomb Launcher
+	self:CDBar(1217661, 21.1) -- Signal Cronies
+	-- cast at 100 energy, 45s energy gain + delay
+	self:CDBar(1217667, 45.8) -- Divert Energy to Shields
 end
 
 --------------------------------------------------------------------------------
@@ -72,7 +73,7 @@ end
 
 function mod:Crush(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 15.8)
+	self:CDBar(args.spellId, 15.4)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -95,19 +96,32 @@ function mod:SignalCronies(args)
 end
 
 function mod:DivertEnergyToShields(args)
+	-- will not be cast if above 80% HP
+	self:StopBar(args.spellId)
 	self:Message(args.spellId, "cyan")
-	-- TODO timer based off something else?
-	self:CDBar(args.spellId, 64.6)
 	self:PlaySound(args.spellId, "warning")
 end
 
-function mod:RechargeApplied(args)
-	self:CastBar(args.spellId, 15)
-end
+do
+	local rechargeStart = 0
 
-function mod:RechargeRemoved(args)
-	-- TODO recharge over message? alert fail/success on shield break?
-	self:StopBar(CL.cast:format(args.spellName))
+	function mod:DivertEnergyToShieldsApplied(args)
+		rechargeStart = args.time
+		self:CastBar(1217666, 15) -- Recharge
+	end
+
+	function mod:DivertEnergyToShieldsRemoved(args)
+		self:StopCastBar(self:SpellName(1217666)) -- Recharge
+		-- 45s enery gain + delay
+		self:CDBar(args.spellId, 45.8) -- Divert Energy to Shields
+		if args.amount > 0 then
+			self:Message(args.spellId, "cyan", CL.percent:format(25, self:SpellName(1217666))) -- Recharge
+			self:PlaySound(args.spellId, "warning")
+		else
+			self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, args.time - rechargeStart))
+			self:PlaySound(args.spellId, "info")
+		end
+	end
 end
 
 -- Crony

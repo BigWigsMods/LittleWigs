@@ -15,6 +15,6 @@ BigWigs:AddColors("The Underpin 2", {
 	[1214147] = "yellow",
 	[1217371] = "red",
 	[1217661] = "cyan",
-	[1217667] = "cyan",
+	[1217667] = {"cyan","green"},
 	[1218153] = "blue",
 })

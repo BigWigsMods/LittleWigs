@@ -15,6 +15,6 @@ BigWigs:AddSounds("The Underpin 2", {
 	[1214147] = "info",
 	[1217371] = "alarm",
 	[1217661] = "long",
-	[1217667] = "warning",
+	[1217667] = {"info","warning"},
 	[1218153] = "underyou",
 })
