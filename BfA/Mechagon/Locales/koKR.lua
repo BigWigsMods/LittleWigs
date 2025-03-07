@@ -22,8 +22,8 @@ if L then
 	L.bomb_tonk = "폭탄 통통 로봇"
 	L.rocket_tonk = "로켓 통통 로봇"
 	L.waste_processing_unit = "폐기물 처리 유닛"
-	--L.metal_gunk = "Metal Gunk"
-	--L.junkyard_d0g = "Junkyard D.0.G."
+	L.metal_gunk = "금속 오물"
+	L.junkyard_d0g = "고철장 개"
 	L.mechagon_tinkerer = "메카곤 땜장이"
 	L.anti_personnel_squirrel = "대인 다람쥐"
 	L.defense_bot_mk_iii = "방어 로봇 마크 III"
@@ -34,18 +34,18 @@ end
 
 L = BigWigs:NewBossLocale("Tussle Tonks", "koKR")
 if L then
-	-- L.warmup_trigger = "Now this is a statistical anomaly! Our visitors are still alive!"
+	 L.warmup_trigger = "통계상으로 아주 이례적인 일이군요! 방문객들이 아직 살아 있었습니다!"
 end
 
 L = BigWigs:NewBossLocale("K.U.-J.0.", "koKR")
 if L then
-	--L.safe = "Safe"
+	L.safe = "안전"
 end
 
 L = BigWigs:NewBossLocale("King Mechagon", "koKR")
 if L then
-	--L.hardmode_desc = "Warning for when the Annihilo-tron 5000 starts displaying the button order."
+	L.hardmode_desc = "파멸로봇 5000이 버튼 순서를 표시하기 시작할 때의 경고입니다."
 
-	--L.button = "Button"
-	--L.button_desc = "Show a warning when someone clicks a button."
+	L.button = "버튼"
+	L.button_desc = "누군가 버튼을 클릭하면 경고를 표시합니다."
 end
