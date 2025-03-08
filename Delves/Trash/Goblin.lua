@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Goblin Delve Trash", {2664, 2680, 2681, 2684, 2690, 2826}) -- Fungal Folly, Earthcrawl Mines, Kriegval's Rest, The Dread Pit, The Underkeep, Sidestreet Sluice
+local mod, CL = BigWigs:NewBoss("Goblin Delve Trash", {2664, 2680, 2681, 2684, 2689, 2690, 2826}) -- Fungal Folly, Earthcrawl Mines, Kriegval's Rest, The Dread Pit, Tek-Rethan Abyss, The Underkeep, Sidestreet Sluice
 if not mod then return end
 mod:RegisterEnableMob(
 	234212, -- Exterminator Janx (Earthcrawl Mines gossip NPC)
@@ -10,12 +10,19 @@ mod:RegisterEnableMob(
 	234496, -- Gila Crosswires (Fungal Folly gossip NPC)
 	234530, -- Balga Wicksfix (Kriegval's Rest gossip NPC)
 	235090, -- Prospera Cogwail (The Dread Pit gossip NPC)
+	235439, -- Pamsy (Tek-Rethan Abyss gossip NPC)
 	234680, -- Madam Goya (The Underkeep gossip NPC)
 	231908, -- Bopper Bot
 	231906, -- Aerial Support Bot
 	231910, -- Masked Freelancer
 	231909, -- Underpaid Brute
-	231925 -- Drill Sergeant
+	231925, -- Drill Sergeant
+	231904, -- Punchy Thug
+	231905, -- Flinging Flicker
+	235292, -- Flinging Flicker
+	235295, -- Flinging Flicker
+	235298, -- Flinging Flicker
+	231928 -- Bomb Bot
 )
 
 --------------------------------------------------------------------------------
@@ -31,6 +38,9 @@ if L then
 	L.masked_freelancer = "Masked Freelancer"
 	L.underpaid_brute = "Underpaid Brute"
 	L.drill_sergeant = "Drill Sergeant"
+	L.punchy_thug = "Punchy Thug"
+	L.flinging_flicker = "Flinging Flicker"
+	L.bomb_bot = "Bomb Bot"
 end
 
 --------------------------------------------------------------------------------
@@ -57,12 +67,21 @@ function mod:GetOptions()
 		-- Drill Sergeant
 		474004, -- Drill Quake
 		1213656, -- Overtime
+		-- Punchy Thug
+		473541, -- Flurry of Punches
+		-- Flinging Flicker
+		473696, -- Molotov Cocktail
+		-- Bomb Bot
+		{472842, "ME_ONLY"}, -- Destroy
 	}, {
 		[473684] = L.bopper_bot,
 		[473550] = L.aerial_support_bot,
 		[474001] = L.masked_freelancer,
 		[473972] = L.underpaid_brute,
 		[474004] = L.drill_sergeant,
+		[473541] = L.punchy_thug,
+		[473696] = L.flinging_flicker,
+		[472842] = L.bomb_bot,
 	}
 end
 
@@ -86,6 +105,15 @@ function mod:OnBossEnable()
 	-- Drill Sergeant
 	self:Log("SPELL_CAST_START", "DrillQuake", 474004)
 	self:Log("SPELL_CAST_START", "Overtime", 1213656)
+
+	-- Punchy Thug
+	self:Log("SPELL_CAST_START", "FlurryOfPunches", 473541)
+
+	-- Flinging Flicker
+	self:Log("SPELL_CAST_START", "MolotovCocktail", 473696)
+
+	-- Bomb Bot
+	self:Log("SPELL_CAST_SUCCESS", "Destroy", 472842)
 
 	-- also enable the Rares module
 	local raresModule = BigWigs:GetBossModule("Underpin Rares", true)
@@ -120,6 +148,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(131401) then -- The Dread Pit, start delve (Prospera Cogwail)
 			-- 131401:|cFF0000FF(Delve)|r I'll see what I can do to disrupt their camp!
 			self:SelectGossipID(131401)
+		elseif self:GetGossipID(131474) then -- Tek-Rethan Abyss, start delve (Pamsy)
+			-- 131474:|cFF0000FF(Delve)|r I'll rescue your crew and put a stop to Gallywix's operation here.
+			self:SelectGossipID(131474)
 		elseif self:GetGossipID(131318) then -- The Underkeep, start delve (Madam Goya)
 			-- 131318:|cFF0000FF(Delve)|r I'll stop the Darkfuse and gather the Black Blood you need.
 			self:SelectGossipID(131318)
@@ -170,4 +201,40 @@ end
 function mod:Overtime(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
+end
+
+-- Punchy Thug
+
+do
+	local prev = 0
+	function mod:FlurryOfPunches(args)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+-- Flinging Flicker
+
+function mod:MolotovCocktail(args)
+	-- also cast by a Gold Elemental mob, Gold Shaman
+	if self:MobId(args.sourceGUID) ~= 234932 then -- Gold Shaman
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+	end
+end
+
+-- Bomb Bot
+
+do
+	local prev = 0
+	function mod:Destroy(args)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:PlaySound(args.spellId, "info", nil, args.destName)
+		end
+	end
 end

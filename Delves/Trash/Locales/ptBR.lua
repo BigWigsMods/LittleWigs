@@ -22,6 +22,9 @@ if L then
 	--L.masked_freelancer = "Masked Freelancer"
 	--L.underpaid_brute = "Underpaid Brute"
 	--L.drill_sergeant = "Drill Sergeant"
+	L.punchy_thug = "Capanga Murrão"
+	L.flinging_flicker = "Pisca-pisca Lançador"
+	L.bomb_bot = "Bombômato"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "ptBR")

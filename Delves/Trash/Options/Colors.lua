@@ -13,8 +13,11 @@ BigWigs:AddColors("Fungarian Delve Trash", {
 })
 
 BigWigs:AddColors("Goblin Delve Trash", {
+	[472842] = {"blue","yellow"},
+	[473541] = "red",
 	[473550] = "orange",
 	[473684] = "yellow",
+	[473696] = "orange",
 	[473972] = "yellow",
 	[473995] = "yellow",
 	[474001] = "red",
