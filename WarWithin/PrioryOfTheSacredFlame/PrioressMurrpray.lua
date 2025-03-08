@@ -31,7 +31,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "BarrierOfLight", 423588)
 	self:Log("SPELL_AURA_REMOVED", "BarrierOfLightRemoved", 423588)
-	self:Log("SPELL_INTERRUPT", "EmbraceTheLightInterrupted", "*")
+	self:Log("SPELL_INTERRUPT", "EmbraceTheLightInterrupted", 423664)
 	self:Log("SPELL_CAST_SUCCESS", "Purify", 444546)
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER") -- Purify
 	self:Log("SPELL_PERIODIC_DAMAGE", "SanctifiedGroundDamage", 425556)
@@ -48,9 +48,10 @@ function mod:OnEngage()
 	self:CDBar(451605, 6.3) -- Holy Flame
 	self:CDBar(444546, 13.1) -- Purify
 	if self:Mythic() then
-		self:CDBar(428169, 14.5) -- Blinding Light
+		self:CDBar(428169, 13.8) -- Blinding Light
 	end
-	self:CDBar(444608, 15.6) -- Inner Fire
+	-- cast at 100 energy: starts at 25 energy. 15s energy gain + delay
+	self:CDBar(444608, 15.4) -- Inner Fire
 end
 
 function mod:VerifyEnable(unit)
@@ -86,19 +87,21 @@ do
 end
 
 function mod:EmbraceTheLightInterrupted(args)
-	if args.extraSpellId == 423664 then -- Embrace the Light
-		self:Message(423664, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
-		self:SetStage(1)
-		self:CDBar(444608, 6.1) -- Inner Fire
-		self:CDBar(444546, 11.5) -- Purify
-		if self:Mythic() then
-			self:CDBar(428169, 12.1) -- Blinding Light
-			self:CDBar(451605, 17.0) -- Holy Flame
-		else
-			self:CDBar(451605, 12.3) -- Holy Flame
-		end
-		self:PlaySound(423664, "info")
+	self:Message(423664, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+	self:SetStage(1)
+	if self:Mythic() then
+		self:CDBar(451605, 13.4) -- Holy Flame
+		-- cast at 100 energy: 20s energy gain
+		self:CDBar(444608, 20.0) -- Inner Fire
+		self:CDBar(444546, 20.1) -- Purify
+		self:CDBar(428169, 23.1) -- Blinding Light
+	else -- Normal, Heroic
+		self:CDBar(444546, 9.1) -- Purify
+		self:CDBar(451605, 9.8) -- Holy Flame
+		-- cast at 100 energy: 20s energy gain
+		self:CDBar(444608, 20.0) -- Inner Fire
 	end
+	self:PlaySound(423664, "info")
 end
 
 function mod:Purify(args)
@@ -129,6 +132,7 @@ end
 
 function mod:InnerFire(args)
 	self:Message(args.spellId, "red")
+	-- cast at 100 energy: 2s cast time + 20s energy gain + delay
 	self:CDBar(args.spellId, 22.6)
 	self:PlaySound(args.spellId, "info")
 end
