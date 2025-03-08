@@ -196,10 +196,10 @@ do
 	local timer
 
 	function mod:TreasureWraithEngaged(guid)
-		--self:CDBar(418295, 100) -- Umbral Slash
-		--self:Nameplate(418295, 100, guid) -- Umbral Slash
-		--self:CDBar(418297, 100) -- Castigate
-		--self:Nameplate(418297, 100, guid) -- Castigate
+		self:CDBar(418295, 5.2) -- Umbral Slash
+		self:Nameplate(418295, 5.2, guid) -- Umbral Slash
+		self:CDBar(418297, 6.7) -- Castigate
+		self:Nameplate(418297, 6.7, guid) -- Castigate
 		timer = self:ScheduleTimer("TreasureWraithDeath", 30)
 	end
 
