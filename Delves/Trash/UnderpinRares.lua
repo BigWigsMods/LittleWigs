@@ -181,7 +181,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "UnderpinsGrandEntrance", 1216937)
 	self:Log("SPELL_CAST_START", "Crush", 1213852)
 	self:Log("SPELL_CAST_START", "Flamethrower", 1217371)
-	self:Log("SPELL_CAST_START", "TimeBombLauncher", 1214147)
+	self:Log("SPELL_CAST_SUCCESS", "TimeBombLauncher", 1214147)
 	--self:Log("SPELL_CAST_START", "SignalCronies", 1215521) -- this is cast by The Underpin but it doesn't do anything
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY") -- Underpin Retreating
 end
@@ -681,10 +681,10 @@ do
 	function mod:UnderpinsGrandEntrance(args)
 		timer = self:ScheduleTimer("UnderpinRetreat", 30)
 		self:Message(args.spellId, "cyan", nil, L["1216937_icon"])
-		self:CDBar(1213852, 11.5) -- Crush
-		self:CDBar(1217371, 16.3) -- Flamethrower
-		self:CDBar(1214147, 20.0) -- Time Bomb Launcher
-		--self:CDBar(1215521, 24.0) -- Signal Cronies
+		self:CDBar(1213852, 11.3) -- Crush
+		self:CDBar(1217371, 15.5) -- Flamethrower
+		self:CDBar(1214147, 18.6) -- Time Bomb Launcher
+		--self:CDBar(1215521, 22.7) -- Signal Cronies
 		self:PlaySound(args.spellId, "warning")
 	end
 
@@ -693,7 +693,7 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "orange")
-		self:CDBar(args.spellId, 20.2)
+		self:CDBar(args.spellId, 20.1)
 		timer = self:ScheduleTimer("UnderpinRetreat", 30)
 		self:PlaySound(args.spellId, "alarm")
 	end
@@ -703,7 +703,7 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red")
-		self:CDBar(args.spellId, 20.3)
+		self:CDBar(args.spellId, 20.1)
 		timer = self:ScheduleTimer("UnderpinRetreat", 30)
 		self:PlaySound(args.spellId, "alarm")
 	end
