@@ -7,6 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(165946) -- Mordretha, the Endless Empress
 mod:SetEncounterID(2404)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -44,10 +45,11 @@ end
 
 function mod:OnEngage()
 	self:StopBar(CL.active)
+	self:SetStage(1)
 	self:CDBar(324079, 8.2) -- Reaping Scythe
 	self:CDBar(323608, 15.5) -- Dark Devastation
-	self:CDBar(323825, 24.2) -- Grasping Rift
-	self:CDBar(324449, 25.4) -- Manifest Death
+	self:CDBar(323825, 24.0) -- Grasping Rift
+	self:CDBar(324449, 27.6) -- Manifest Death
 end
 
 --------------------------------------------------------------------------------
@@ -61,7 +63,7 @@ end
 
 function mod:ReapingScythe(args)
 	self:Message(args.spellId, "purple")
-	self:CDBar(args.spellId, 16.9)
+	self:CDBar(args.spellId, 17.0)
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -73,7 +75,7 @@ end
 
 function mod:GraspingRift(args)
 	self:Message(323825, "yellow")
-	self:CDBar(323825, 31.5)
+	self:CDBar(323825, 31.6)
 	self:PlaySound(323825, "alert")
 end
 
@@ -91,20 +93,21 @@ end
 
 function mod:ManifestDeath(args)
 	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 53.3)
+	self:CDBar(args.spellId, 48.6)
 	self:PlaySound(args.spellId, "info")
 end
 
 -- Mythic
 
 function mod:EchoesOfCarnage(args)
-	self:Message(args.spellId, "cyan")
+	self:SetStage(2)
+	self:Message(args.spellId, "cyan", CL.percent:format(50, args.spellName))
 	self:CDBar(339550, 3.2) -- Echo of Battle
 	self:CDBar(324079, 6.9) -- Reaping Scythe
-	self:CDBar(339706, 13.5) -- Ghostly Charge
-	self:CDBar(323608, 14.6) -- Dark Devastation
-	self:CDBar(324449, 21.0) -- Manifest Death
-	self:CDBar(323825, 22.5) -- Grasping Rift
+	self:CDBar(339706, 14.2) -- Ghostly Charge
+	self:CDBar(323608, 16.6) -- Dark Devastation
+	self:CDBar(323825, 28.7) -- Grasping Rift
+	self:CDBar(324449, 31.6) -- Manifest Death
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -126,7 +129,7 @@ do
 		if args.time - prev > 1.5 then
 			prev = args.time
 			self:Message(args.spellId, "orange")
-			self:CDBar(args.spellId, 24.3)
+			self:CDBar(args.spellId, 23.9)
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
