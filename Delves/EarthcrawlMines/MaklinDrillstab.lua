@@ -37,13 +37,14 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CallMoleMachine", 1217905)
 	self:Log("SPELL_CAST_START", "Firebolt", 1217903)
+	self:Log("SPELL_CAST_SUCCESS", "FireboltSuccess", 1217903)
 	self:Log("SPELL_CAST_START", "DarkBurn", 1217913)
 end
 
 function mod:OnEngage()
-	self:CDBar(1217905, 3.6) -- Call Mole Machine
+	self:CDBar(1217905, 3.0) -- Call Mole Machine
 	self:CDBar(1217903, 6.1) -- Firebolt
-	self:CDBar(1217913, 18.2) -- Dark Burn
+	self:CDBar(1217913, 18.1) -- Dark Burn
 end
 
 --------------------------------------------------------------------------------
@@ -52,14 +53,23 @@ end
 
 function mod:CallMoleMachine(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 16.2)
+	self:CDBar(args.spellId, 17.0)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:Firebolt(args)
-	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 21.8)
-	self:PlaySound(args.spellId, "alert")
+do
+	local function printTarget(self, name)
+		self:TargetMessage(1217903, "red", name)
+		self:PlaySound(1217903, "alert", nil, name)
+	end
+
+	function mod:Firebolt(args)
+		self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
+	end
+end
+
+function mod:FireboltSuccess(args)
+	self:CDBar(args.spellId, 14.5)
 end
 
 function mod:DarkBurn(args)

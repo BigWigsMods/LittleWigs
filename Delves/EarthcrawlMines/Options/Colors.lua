@@ -6,7 +6,7 @@ BigWigs:AddColors("Web General Ab'enar", {
 })
 
 BigWigs:AddColors("Maklin Drillstab", {
-	[1217903] = "red",
+	[1217903] = {"blue","red"},
 	[1217905] = "orange",
 	[1217913] = "yellow",
 })
