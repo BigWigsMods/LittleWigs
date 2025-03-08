@@ -264,7 +264,7 @@ do
 end
 
 function mod:Flamethrower(args)
-	self:Message(args.spellId, "yellow") -- TODO purple?
+	self:Message(args.spellId, "yellow")
 	self:Nameplate(args.spellId, 26.7, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
@@ -386,7 +386,7 @@ end
 do
 	local prev = 0
 	function mod:SurpriseInspection(args)
-		self:Nameplate(args.spellId, 8.5, args.sourceGUID)
+		self:Nameplate(args.spellId, 10.9, args.sourceGUID) -- cd on cast start
 		if args.time - prev > 2 then
 			prev = args.time
 			self:Message(args.spellId, "orange")
