@@ -54,7 +54,8 @@ end
 do
 	local prev = 0
 	function mod:MolotovCocktail(args)
-		if args.time - prev > 2 then
+		-- also cast by Flinging Flicker
+		if args.time - prev > 2 and self:MobId(args.sourceGUID) == 234932 then -- Gold Shaman
 			prev = args.time
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
