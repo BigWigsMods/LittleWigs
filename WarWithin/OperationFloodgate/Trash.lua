@@ -207,6 +207,7 @@ function mod:OnBossEnable()
 
 	-- Bomb Pile
 	self:Log("SPELL_CAST_START", "PlantBombs", 1214337)
+	self:Log("SPELL_CAST_SUCCESS", "PlantBombsSuccess", 1214337)
 
 	-- Bubbles
 	self:RegisterEngageMob("BubblesEngaged", 231197)
@@ -591,9 +592,29 @@ end
 
 -- Bomb Pile
 
-function mod:PlantBombs(args)
-	self:Message(args.spellId, "green", CL.other:format(self:ColorName(args.sourceName), args.spellName))
-	self:PlaySound(args.spellId, "info")
+do
+	local prev = 0
+	function mod:PlantBombs(args)
+		self:Message(args.spellId, "green", CL.other:format(self:ColorName(args.sourceName), args.spellName))
+		if args.time - prev > 5 then
+			prev = args.time
+			self:PlaySound(args.spellId, "info")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:PlantBombsSuccess(args)
+		if args.time - prev > 10 then
+			prev = args.time
+			local swampfaceModule = BigWigs:GetBossModule("Swampface", true)
+			if swampfaceModule then
+				swampfaceModule:Enable()
+				swampfaceModule:Warmup()
+			end
+		end
+	end
 end
 
 -- Bubbles

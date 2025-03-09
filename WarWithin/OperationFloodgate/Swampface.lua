@@ -9,6 +9,15 @@ mod:SetEncounterID(3053)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "inv_achievement_dungeon_waterworks"
+end
+
+--------------------------------------------------------------------------------
 -- Locals
 --
 
@@ -21,6 +30,7 @@ local sludgeClawsCount = 1
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		473070, -- Awaken the Swamp
 		473114, -- Mudslide
 		{469478, "TANK_HEALER"}, -- Sludge Claws
@@ -32,7 +42,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	-- TODO warmup?
 	self:Log("SPELL_CAST_START", "AwakenTheSwamp", 473070)
 	self:Log("SPELL_CAST_START", "Mudslide", 473114)
 	self:Log("SPELL_CAST_START", "SludgeClaws", 469478)
@@ -57,6 +66,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup() -- called from trash module
+	-- 20.14 [CLEU] SPELL_CAST_SUCCESS#Player-5764#Creature-0-5770-2773-5861-234373#Bomb Pile#1214337#Plant Bombs
+	-- 37.72 [NAME_PLATE_UNIT_ADDED] Swampface#Creature-0-5770-2773-5861-226396
+	self:Bar("warmup", 17.6, CL.active, L.warmup_icon)
+end
 
 function mod:AwakenTheSwamp(args)
 	self:StopBar(CL.count:format(args.spellName, awakenTheSwampCount))
