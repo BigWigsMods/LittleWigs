@@ -719,16 +719,28 @@ function mod:VentureCoWarMachineEngaged(guid)
 	self:Nameplate(262383, 17.8, guid) -- Deploy Crawler Mine
 end
 
-function mod:ChargedShot(args)
-	self:Message(args.spellId, "red")
-	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:ChargedShot(args)
+		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
-function mod:DeployCrawlerMine(args)
-	self:Message(args.spellId, "cyan")
-	self:Nameplate(args.spellId, 35.3, args.sourceGUID)
-	self:PlaySound(args.spellId, "info")
+do
+	local prev = 0
+	function mod:DeployCrawlerMine(args)
+		self:Nameplate(args.spellId, 35.3, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "cyan")
+			self:PlaySound(args.spellId, "info")
+		end
+	end
 end
 
 function mod:VentureCoWarMachineDeath(args)
