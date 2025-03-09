@@ -80,6 +80,7 @@ if L then
 	--L.hideous_amalgamation = "Hideous Amalgamation"
 	--L.coagulated_mass = "Coagulated Mass"
 	--L.silent_slitherer = "Silent Slitherer"
+	--L.amalgamized_mass = "Amalgamized Mass"
 end
 
 L = BigWigs:NewBossLocale("The Underkeep Trash", "itIT")

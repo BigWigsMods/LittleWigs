@@ -2,14 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Old God Delve Trash", {2815}) -- Excavation Site 9
+local mod, CL = BigWigs:NewBoss("Old God Delve Trash", {2685, 2815}) -- Skittering Breach, Excavation Site 9
 if not mod then return end
 mod:RegisterEnableMob(
 	234269, -- Craggle Fritzbrains (Excavation Site 9 gossip NPC)
 	234553, -- Dark Walker
 	234208, -- Hideous Amalgamation
 	234209, -- Coagulated Mass
-	234210 -- Silent Slitherer
+	234210, -- Silent Slitherer
+	235368 -- Amalgamized Mass
 )
 
 --------------------------------------------------------------------------------
@@ -24,6 +25,7 @@ if L then
 	L.hideous_amalgamation = "Hideous Amalgamation"
 	L.coagulated_mass = "Coagulated Mass"
 	L.silent_slitherer = "Silent Slitherer"
+	L.amalgamized_mass = "Amalgamized Mass"
 end
 
 --------------------------------------------------------------------------------
@@ -49,11 +51,14 @@ function mod:GetOptions()
 		474155, -- Slime Trail
 		-- Silent Slitherer
 		474228, -- Shadow Blast
+		-- Amalgamized Mass
+		455662, -- Grasping Shadows
 	}, {
 		[474325] = L.dark_walker,
 		[474206] = L.hideous_amalgamation,
 		[474155] = L.coagulated_mass,
 		[474228] = L.silent_slitherer,
+		[455662] = L.amalgamized_mass,
 	}
 end
 
@@ -76,6 +81,10 @@ function mod:OnBossEnable()
 
 	-- Silent Slitherer
 	self:Log("SPELL_CAST_START", "ShadowBlast", 474228)
+
+	-- Amalgamized Mass
+	self:Log("SPELL_PERIODIC_DAMAGE", "GraspingShadowsDamage", 455662)
+	self:Log("SPELL_PERIODIC_MISSED", "GraspingShadowsDamage", 455662)
 
 	-- also enable the Rares module
 	local raresModule = BigWigs:GetBossModule("Underpin Rares", true)
@@ -127,8 +136,11 @@ function mod:ShadowStomp(args)
 end
 
 function mod:ConcussiveSmash(args)
-	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then -- RP fights in Skittering Breach
+		self:Message(args.spellId, "purple")
+		self:PlaySound(args.spellId, "alert")
+	end
 end
 
 -- Coagulated Mass
@@ -149,4 +161,17 @@ end
 function mod:ShadowBlast(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:PlaySound(args.spellId, "alert")
+end
+
+-- Amalgamized Mass
+
+do
+	local prev = 0
+	function mod:GraspingShadowsDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
 end

@@ -66,6 +66,7 @@ BigWigs:AddColors("Nightfall Delve Trash", {
 })
 
 BigWigs:AddColors("Old God Delve Trash", {
+	[455662] = "blue",
 	[474155] = "blue",
 	[474206] = "orange",
 	[474223] = "purple",
