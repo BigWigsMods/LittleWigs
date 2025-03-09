@@ -26,5 +26,5 @@ end
 
 L = BigWigs:NewBossLocale("Baron Braunpyke", "deDE")
 if L then
-	--L.charges = "%d charges"
+	L.charges = "%d Aufladungen"
 end
