@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Goblin Delve Trash", {2664, 2680, 2681, 2684, 2689, 2690, 2826}) -- Fungal Folly, Earthcrawl Mines, Kriegval's Rest, The Dread Pit, Tek-Rethan Abyss, The Underkeep, Sidestreet Sluice
+local mod, CL = BigWigs:NewBoss("Goblin Delve Trash", {2664, 2680, 2681, 2684, 2685, 2689, 2690, 2826}) -- Fungal Folly, Earthcrawl Mines, Kriegval's Rest, The Dread Pit, Skittering Breach, Tek-Rethan Abyss, The Underkeep, Sidestreet Sluice
 if not mod then return end
 mod:RegisterEnableMob(
 	234212, -- Exterminator Janx (Earthcrawl Mines gossip NPC)
@@ -10,6 +10,7 @@ mod:RegisterEnableMob(
 	234496, -- Gila Crosswires (Fungal Folly gossip NPC)
 	234530, -- Balga Wicksfix (Kriegval's Rest gossip NPC)
 	235090, -- Prospera Cogwail (The Dread Pit gossip NPC)
+	235269, -- Lamplighter Kaerter (Skittering Breach gossip NPC)
 	235439, -- Pamsy (Tek-Rethan Abyss gossip NPC)
 	234680, -- Madam Goya (The Underkeep gossip NPC)
 	231908, -- Bopper Bot
@@ -148,6 +149,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(131401) then -- The Dread Pit, start delve (Prospera Cogwail)
 			-- 131401:|cFF0000FF(Delve)|r I'll see what I can do to disrupt their camp!
 			self:SelectGossipID(131401)
+		elseif self:GetGossipID(131427) then -- Skittering Breach, start delve (Lamplighter Kaerter)
+			-- 131427:|cFF0000FF(Delve)|r I'll eliminate any dangers here. Then re-seal the relics for everyone's safety.
+			self:SelectGossipID(131427)
 		elseif self:GetGossipID(131474) then -- Tek-Rethan Abyss, start delve (Pamsy)
 			-- 131474:|cFF0000FF(Delve)|r I'll rescue your crew and put a stop to Gallywix's operation here.
 			self:SelectGossipID(131474)
@@ -161,8 +165,11 @@ end
 -- Bopper Bot
 
 function mod:Cogstorm(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "alarm")
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then -- RP fights in Skittering Breach
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 -- Aerial Support Bot
@@ -194,13 +201,19 @@ end
 -- Drill Sergeant
 
 function mod:DrillQuake(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then -- RP fights in Skittering Breach
+		self:Message(args.spellId, "orange")
+		self:PlaySound(args.spellId, "alarm")
+	end
 end
 
 function mod:Overtime(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then -- RP fights in Skittering Breach
+		self:Message(args.spellId, "yellow")
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 -- Punchy Thug
