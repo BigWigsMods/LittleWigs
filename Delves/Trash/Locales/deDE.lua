@@ -15,13 +15,13 @@ end
 
 L = BigWigs:NewBossLocale("Goblin Delve Trash", "deDE")
 if L then
-	--L.goblin_trash = "Goblin Trash"
+	L.goblin_trash = "Goblin Trash"
 
-	--L.bopper_bot = "Bopper Bot"
-	--L.aerial_support_bot = "Aerial Support Bot"
-	--L.masked_freelancer = "Masked Freelancer"
-	--L.underpaid_brute = "Underpaid Brute"
-	--L.drill_sergeant = "Drill Sergeant"
+	L.bopper_bot = "Bopperbot"
+	L.aerial_support_bot = "Luftunterstützungsbot"
+	L.masked_freelancer = "Maskierter Freiberufler"
+	L.underpaid_brute = "Unterbezahlter Schläger"
+	L.drill_sergeant = "Ausbildungsoffizier"
 	L.punchy_thug = "Schlagfertiger Schläger"
 	L.flinging_flicker = "Schleuderflacker"
 	L.bomb_bot = "Bombenbot"
@@ -74,12 +74,12 @@ end
 
 L = BigWigs:NewBossLocale("Old God Delve Trash", "deDE")
 if L then
-	--L.old_god_trash = "Old God Trash"
+	L.old_god_trash = "Alter Gott Trash"
 
-	--L.dark_walker = "Dark Walker"
-	--L.hideous_amalgamation = "Hideous Amalgamation"
-	--L.coagulated_mass = "Coagulated Mass"
-	--L.silent_slitherer = "Silent Slitherer"
+	L.dark_walker = "Dunkelwandler"
+	L.hideous_amalgamation = "Schreckliches Gemisch"
+	L.coagulated_mass = "Geronnene Masse"
+	L.silent_slitherer = "Stiller Kriecher"
 end
 
 L = BigWigs:NewBossLocale("The Underkeep Trash", "deDE")
@@ -92,18 +92,18 @@ end
 
 L = BigWigs:NewBossLocale("Underpin Rares", "deDE")
 if L then
-	--L.rares = "Underpin Rares"
+	L.rares = "Lorenboss Rares"
 
 	L.treasure_wraith = "Schatzgespenst"
-	--L.treasure_crab = "Treasure Crab"
-	--L.hovering_menace = "Hovering Menace"
-	--L.malfunctioning_pummeler = "Malfunctioning Pummeler"
-	--L.underpins_adoring_fan = "Underpin's Adoring Fan"
-	--L.underpins_well_connected_friend = "Underpin's Well-Connected Friend"
-	--L.underpins_explosive_ally = "Underpin's Explosive Ally"
-	--L.underpins_bodyguards_intern = "Underpin's Bodyguard's Intern"
-	--L.aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin"
-	--L.the_underpin = "The Underpin (Random Spawn)"
+	L.treasure_crab = "Schatzkrabbe"
+	L.hovering_menace = "Schwebende Bedrohung"
+	L.malfunctioning_pummeler = "Defekter Verprügler"
+	L.underpins_adoring_fan = "Schwärmender Fan des Lorenbosses"
+	L.underpins_well_connected_friend = "Gut vernetzter Freund des Lorenbosses"
+	L.underpins_explosive_ally = "Explosiver Verbündeter des Lorenbosses"
+	L.underpins_bodyguards_intern = "Praktikant des Leibwächters des Lorenbosses"
+	L.aggressively_lost_hobgoblin = "Wirklich verirrter Hobgoblin"
+	L.the_underpin = "Der Lorenboss (Zufälliges Erscheinen)"
 
 	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
 end
