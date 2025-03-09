@@ -19,10 +19,12 @@ mod:RegisterEnableMob(
 	231909, -- Underpaid Brute
 	231925, -- Drill Sergeant
 	231904, -- Punchy Thug
+	235489, -- Snorkel Goon
 	231905, -- Flinging Flicker
 	235292, -- Flinging Flicker
 	235295, -- Flinging Flicker
 	235298, -- Flinging Flicker
+	235635, -- Aquatic Wrench
 	231928 -- Bomb Bot
 )
 
@@ -231,11 +233,15 @@ end
 
 -- Flinging Flicker
 
-function mod:MolotovCocktail(args)
-	-- also cast by a Gold Elemental mob, Gold Shaman
-	if self:MobId(args.sourceGUID) ~= 234932 then -- Gold Shaman
-		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:MolotovCocktail(args)
+		-- also cast by a Gold Elemental mob, Gold Shaman
+		if args.time - prev > 2 and self:MobId(args.sourceGUID) ~= 234932 then -- Gold Shaman
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
 end
 
