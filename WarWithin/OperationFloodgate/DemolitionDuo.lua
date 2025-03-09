@@ -26,7 +26,7 @@ function mod:GetOptions()
 	return {
 		470090, -- Divided Duo
 		-- Keeza Quickfuse
-		460867, -- Big Bada Boom
+		460867, -- Big Bada BOOM!
 		1217653, -- B.B.B.F.G.
 		{473690, "SAY"}, -- Kinetic Explosive Gel (Mythic)
 		-- Bront
@@ -42,7 +42,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DividedDuoApplied", 470090)
 
 	-- Keeza Quickfuse
-	self:Log("SPELL_CAST_START", "BigBadaBoom", 460867)
+	self:Log("SPELL_CAST_START", "BigBadaBOOM", 460867)
 	self:Log("SPELL_CAST_START", "BBBFG", 1217653)
 	self:Log("SPELL_CAST_START", "KineticExplosiveGel", 473690)
 	self:Log("SPELL_AURA_APPLIED", "KineticExplosiveGelApplied", 473713)
@@ -53,6 +53,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BarrelingCharge", 459779)
 	self:Log("SPELL_AURA_APPLIED", "BarrelingChargeApplied", 470022)
 	self:Log("SPELL_AURA_REFRESH", "BarrelingChargeApplied", 470022)
+	self:Log("SPELL_AURA_REMOVED", "BarrelingChargeRemoved", 470022)
 	self:Log("SPELL_CAST_START", "Wallop", 459799)
 	self:Death("BrontDeath", 226402)
 end
@@ -60,13 +61,18 @@ end
 function mod:OnEngage()
 	barrelingChargeCount = 1
 	self:SetStage(1)
-	self:CDBar(459799, 5.7) -- Wallop
-	self:CDBar(1217653, 6.5) -- B.B.B.F.G.
-	self:CDBar(460867, 13.8) -- Big Bada Boom
 	if self:Mythic() then
-		self:CDBar(473690, 17.7) -- Kinetic Explosive Gel
+		self:CDBar(459799, 5.2) -- Wallop
+		self:CDBar(1217653, 7.7) -- B.B.B.F.G.
+		self:CDBar(460867, 15.0) -- Big Bada BOOM!
+		self:CDBar(473690, 18.9) -- Kinetic Explosive Gel
+		self:CDBar(459779, 23.1) -- Barreling Charge
+	else -- Normal, Heroic
+		self:CDBar(459799, 5.0) -- Wallop
+		self:CDBar(1217653, 6.5) -- B.B.B.F.G.
+		self:CDBar(460867, 13.8) -- Big Bada BOOM!
+		self:CDBar(459779, 22.7) -- Barreling Charge
 	end
-	self:CDBar(459779, 22.7) -- Barreling Charge
 end
 
 --------------------------------------------------------------------------------
@@ -80,37 +86,29 @@ end
 
 -- Keeza Quickfuse
 
-function mod:BigBadaBoom(args)
+function mod:BigBadaBOOM(args)
 	self:Message(args.spellId, "yellow")
-	if self:Mythic() then
-		self:CDBar(args.spellId, 34.2)
-	else
-		self:CDBar(args.spellId, 35.4)
-	end
+	self:CDBar(args.spellId, 40.1)
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:BBBFG(args)
 	self:Message(args.spellId, "orange")
-	if self:Mythic() then
-		self:CDBar(args.spellId, 17.7)
-	else
-		self:CDBar(args.spellId, 17.1)
-	end
+	self:CDBar(args.spellId, 19.4)
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:KeezaQuickfuseDeath()
 	self:SetStage(2)
-	self:StopBar(460867) -- Big Bada Boom
+	self:StopBar(460867) -- Big Bada BOOM!
 	self:StopBar(1217653) -- B.B.B.F.G.
+	if self:Mythic() then
+		self:StopBar(473690) -- Kinetic Explosive Gel
+	end
 	-- Bront does not cast Barreling Charge once Keeza Quickfuse is defeated
 	self:StopBar(459779) -- Barreling Charge
 	-- Wallop has no CD once Keeza Quickfuse is defeated
 	self:StopBar(459799) -- Wallop
-	if self:Mythic() then
-		self:StopBar(473690) -- Kinetic Explosive Gel
-	end
 end
 
 do
@@ -124,7 +122,7 @@ do
 
 	function mod:KineticExplosiveGel(args)
 		self:GetNextBossTarget(printTarget, args.sourceGUID)
-		self:CDBar(args.spellId, 17.7)
+		self:CDBar(args.spellId, 19.4)
 	end
 end
 
@@ -139,17 +137,13 @@ end
 
 function mod:BarrelingCharge(args)
 	barrelingChargeCount = barrelingChargeCount % 3 + 1
+	-- the CDBar tracks the 1st cast of the 3-cast sequence
 	if barrelingChargeCount == 2 then
-		self:CDBar(args.spellId, 4.1)
 		if self:GetStage() == 1 then
-			self:CDBar(459799, 19.4) -- Wallop
+			self:CDBar(args.spellId, 38.8)
+		else -- Stage 2
+			self:StopBar(args.spellId)
 		end
-	elseif barrelingChargeCount == 3 then
-		self:CDBar(args.spellId, 4.1)
-	elseif self:GetStage() == 1 then
-		self:CDBar(args.spellId, 22.7)
-	else -- Stage 2
-		self:StopBar(args.spellId)
 	end
 end
 
@@ -161,11 +155,18 @@ function mod:BarrelingChargeApplied(args)
 	self:PlaySound(459779, "alarm", nil, args.destName)
 end
 
+function mod:BarrelingChargeRemoved(args)
+	if self:Me(args.destGUID) and self:GetStage() == 1 then
+		self:Message(459779, "green", CL.removed:format(args.spellName))
+		self:PlaySound(459779, "info")
+	end
+end
+
 function mod:Wallop(args)
 	self:Message(args.spellId, "purple")
 	if self:GetStage() == 1 then
-		self:CDBar(args.spellId, 17.0)
-	else
+		self:CDBar(args.spellId, 16.6)
+	else -- Stage 2
 		self:StopBar(args.spellId)
 	end
 	self:PlaySound(args.spellId, "alert")
@@ -175,6 +176,6 @@ function mod:BrontDeath()
 	self:SetStage(2)
 	self:StopBar(459779) -- Barreling Charge
 	self:StopBar(459799) -- Wallop
-	-- Keeza Quickfuse does not cast Big Bada Boom once Bront is defeated
-	self:StopBar(460867) -- Big Bada Boom
+	-- Keeza Quickfuse does not cast Big Bada BOOM! once Bront is defeated
+	self:StopBar(460867) -- Big Bada BOOM!
 end

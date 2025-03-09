@@ -11,7 +11,7 @@ BigWigs:AddColors("Big M.O.M.M.A.", {
 })
 
 BigWigs:AddColors("Demolition Duo", {
-	[459779] = {"blue","red"},
+	[459779] = {"blue","green","red"},
 	[459799] = "purple",
 	[460867] = "yellow",
 	[470090] = "cyan",
