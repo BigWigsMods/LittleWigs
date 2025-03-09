@@ -2,6 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="TombRaiderDrywhisker.lua"/>
+<Script file="TorqueAndSprok.lua"/>
 
 <Include file="Options\options.xml"/>
 

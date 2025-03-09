@@ -67,6 +67,13 @@ if L then
 	L.tomb_raider_drywhisker = "Asaltatumbas Mostacho Seco"
 end
 
+L = BigWigs:NewBossLocale("Torque Clankfire and Sprok 2", "esES")
+if L then
+	L.bossName = "Torque Vielafuego y Sprok"
+	L.torque_clankfire = "Torque Vielafuego"
+	L.sprok = "Sprok"
+end
+
 -- Mycomancer's Cavern
 
 L = BigWigs:NewBossLocale("Bogpiper", "esES")
@@ -188,9 +195,9 @@ end
 
 L = BigWigs:NewBossLocale("Torque Clankfire and Sprok", "esES")
 if L then
-	--L.bossName = "Torque Clankfire and Sprok"
-	--L.torque_clankfire = "Torque Clankfire"
-	--L.sprok = "Sprok"
+	L.bossName = "Torque Vielafuego y Sprok"
+	L.torque_clankfire = "Torque Vielafuego"
+	L.sprok = "Sprok"
 end
 
 -- The Waterworks

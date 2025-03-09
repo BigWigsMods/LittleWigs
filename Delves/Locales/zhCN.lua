@@ -67,6 +67,13 @@ if L then
 	L.tomb_raider_drywhisker = "古墓掠影者干须"
 end
 
+L = BigWigs:NewBossLocale("Torque Clankfire and Sprok 2", "zhCN")
+if L then
+	L.bossName = "陶克·铮火和斯普洛克"
+	L.torque_clankfire = "陶克·铮火"
+	L.sprok = "斯普洛克"
+end
+
 -- Mycomancer's Cavern
 
 L = BigWigs:NewBossLocale("Bogpiper", "zhCN")
