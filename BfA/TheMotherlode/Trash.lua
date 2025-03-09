@@ -210,6 +210,8 @@ function mod:OnBossEnable()
 	-- Venture Co. Alchemist
 	self:RegisterEngageMob("VentureCoAlchemistEngaged", 133432)
 	self:Log("SPELL_CAST_START", "TransmuteEnemyToGoo", 268797)
+	self:Log("SPELL_INTERRUPT", "TransmuteEnemyToGooInterrupt", 268797)
+	self:Log("SPELL_CAST_SUCCESS", "TransmuteEnemyToGooSuccess", 268797)
 	self:Log("SPELL_AURA_APPLIED", "TransmuteEnemyToGooApplied", 268797)
 	self:Death("VentureCoAlchemistDeath", 133432)
 
@@ -692,13 +694,21 @@ do
 	local prev = 0
 	function mod:TransmuteEnemyToGoo(args)
 		-- not cast if solo, and not cast if only tanks and healers are in range
-		self:Nameplate(args.spellId, 20.6, args.sourceGUID) -- cooldown on cast start
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		if args.time - prev > 1.5 then
 			prev = args.time
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "warning")
 		end
 	end
+end
+
+function mod:TransmuteEnemyToGooInterrupt(args)
+	self:Nameplate(268797, 24.2, args.destGUID)
+end
+
+function mod:TransmuteEnemyToGooSuccess(args)
+	self:Nameplate(args.spellId, 24.2, args.sourceGUID)
 end
 
 function mod:TransmuteEnemyToGooApplied(args)
