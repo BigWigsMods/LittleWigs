@@ -22,7 +22,7 @@ if L then
 	L.bomb_tonk = "Bombenpanzer"
 	L.rocket_tonk = "Raketenpanzer"
 	L.waste_processing_unit = "Müllverarbeitungseinheit"
-	--L.metal_gunk = "Metal Gunk"
+	L.metal_gunk = "Metallschleim"
 	L.junkyard_d0g = "T.Ö.L.3. des Schrottplatzes"
 	L.mechagon_tinkerer = "Tüftlerin von Mechagon"
 	L.anti_personnel_squirrel = "Antipersoneneichhörnchen"
@@ -39,7 +39,7 @@ end
 
 L = BigWigs:NewBossLocale("K.U.-J.0.", "deDE")
 if L then
-	--L.safe = "Safe"
+	L.safe = "Schrott"
 end
 
 L = BigWigs:NewBossLocale("King Mechagon", "deDE")
