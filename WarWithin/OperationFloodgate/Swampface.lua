@@ -55,6 +55,7 @@ end
 function mod:OnEngage()
 	awakenTheSwampCount = 1
 	sludgeClawsCount = 1
+	self:StopBar(CL.active)
 	if self:Mythic() then
 		self:CDBar(470039, 1.0) -- Razorchoke Vines
 	end
