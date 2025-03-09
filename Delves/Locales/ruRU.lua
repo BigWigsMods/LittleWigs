@@ -67,7 +67,7 @@ if L then
 	L.tomb_raider_drywhisker = "Расхититель гробниц из племени Сухоусов"
 end
 
-L = BigWigs:NewBossLocale("Torque Clankfire and Sprok 2", "ruRU")
+L = BigWigs:NewBossLocale("Torque Clankfire and Sprok (Kriegval's Rest)", "ruRU")
 if L then
 	L.bossName = "Крутс Огнеклац и Спок"
 	L.torque_clankfire = "Крутс Огнеклац"

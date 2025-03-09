@@ -5,7 +5,7 @@ BigWigs:AddSounds("Tomb-Raider Drywhisker", {
 	[449339] = {"alert","info"},
 })
 
-BigWigs:AddSounds("Torque Clankfire and Sprok 2", {
+BigWigs:AddSounds("Torque Clankfire and Sprok (Kriegval's Rest)", {
 	[1215015] = "alarm",
 	[1215033] = "long",
 	[1215084] = "alert",

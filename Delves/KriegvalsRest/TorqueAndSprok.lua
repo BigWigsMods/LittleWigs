@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Torque Clankfire and Sprok 2", 2681) -- Kriegval's Rest
+local mod, CL = BigWigs:NewBoss("Torque Clankfire and Sprok (Kriegval's Rest)", 2681) -- Kriegval's Rest
 if not mod then return end
 mod:RegisterEnableMob(
 	237554, -- Torque Clankfire (Kriegval's Rest)

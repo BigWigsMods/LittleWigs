@@ -67,7 +67,7 @@ if L then
 	L.tomb_raider_drywhisker = "Pilleur de tombes Sèche-Moustaches"
 end
 
-L = BigWigs:NewBossLocale("Torque Clankfire and Sprok 2", "frFR")
+L = BigWigs:NewBossLocale("Torque Clankfire and Sprok (Kriegval's Rest)", "frFR")
 if L then
 	L.bossName = "Dyna Cliquefeu et Sproque"
 	L.torque_clankfire = "Dyna Cliquefeu"
