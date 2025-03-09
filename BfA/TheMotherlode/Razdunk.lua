@@ -26,7 +26,7 @@ function mod:GetOptions()
 		-- Stage One: Big Guns
 		260280, -- Gatling Gun
 		{260813, "SAY", "ME_ONLY_EMPHASIZE"}, -- Homing Missile
-		276229, -- Micro Missiles (Mythic)
+		{276229, "CASTBAR"}, -- Micro Missiles (Mythic)
 		-- Stage Two: Drill!
 		{271456, "SAY", "SAY_COUNTDOWN"}, -- Drill Smash
 	}, {
@@ -54,6 +54,9 @@ function mod:OnEngage()
 	homingMissileCount = 1
 	self:SetStage(1)
 	self:CDBar(260813, 5.0) -- Homing Missile
+	if self:Mythic() then
+		self:CDBar(276229, 9.9) -- Micro Missiles
+	end
 	self:CDBar(260280, 20.0) -- Gatling Gun
 end
 
@@ -104,11 +107,13 @@ end
 do
 	local prev = 0
 	function mod:MicroMissiles(args)
-		local t = args.time
-		if t - prev > 2 then
-			prev = t
+		-- cast simultaneously by two B.O.O.M.B.A.s
+		if args.time - prev > 2 then
+			prev = args.time
 			self:Message(args.spellId, "red")
-			self:PlaySound(args.spellId, "alarm")
+			self:CastBar(args.spellId, 5)
+			self:CDBar(args.spellId, 29.1)
+			self:PlaySound(args.spellId, "long")
 		end
 	end
 end
@@ -116,6 +121,9 @@ end
 function mod:ConfigurationDrill(args)
 	self:StopBar(260813) -- Homing Missile
 	self:StopBar(260280) -- Gatling Gun
+	if self:Mythic() then
+		self:StopBar(276229) -- Micro Missiles
+	end
 	self:SetStage(2)
 	self:Message("stages", "cyan", CL.percent:format(50, args.spellName), args.spellId)
 	self:PlaySound("stages", "long")
@@ -146,6 +154,9 @@ function mod:ConfigurationCombat(args)
 		self:SetStage(3)
 		self:Message("stages", "cyan", args.spellName, args.spellId)
 		self:CDBar(260813, 7.1) -- Homing Missile
+		if self:Mythic() then
+			self:CDBar(276229, 14.6) -- Micro Missiles
+		end
 		self:CDBar(260280, 17.1) -- Gatling Gun
 		self:PlaySound("stages", "info")
 	end
@@ -154,4 +165,7 @@ end
 function mod:MogulRazdunkVehicleDeath()
 	self:StopBar(260813) -- Homing Missile
 	self:StopBar(260280) -- Gatling Gun
+	if self:Mythic() then
+		self:StopBar(276229) -- Micro Missiles
+	end
 end
