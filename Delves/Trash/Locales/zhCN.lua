@@ -46,6 +46,7 @@ if L then
 	L.wandering_gutter = "游荡的开膛者"
 	L.crazed_predator = "狂乱掠食者"
 	L.deepwater_makura = "深水龙虾人"
+	L.kobyss_trickster = "蜃鱼人欺诈者"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "zhCN")

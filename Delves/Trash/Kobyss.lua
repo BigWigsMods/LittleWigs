@@ -8,6 +8,7 @@ mod:RegisterEnableMob(
 	210759, -- Brann Bronzebeard
 	228903, -- Brann Bronzebeard
 	220565, -- Raen Dawncavalyr (The Sinkhole gossip NPC)
+	234824, -- Alyza Bowblaze (The Sinkhole gossip NPC)
 	214628, -- Partially-Chewed Goblin (Tek-Rethan Abyss gossip NPC)
 	215178, -- Vetiverian (Tek-Rethan Abyss gossip NPC)
 	214625, -- Kobyss Necromancer
@@ -16,7 +17,8 @@ mod:RegisterEnableMob(
 	214251, -- Kobyss Witherer
 	214551, -- Wandering Gutter
 	216325, -- Crazed Predator
-	220643 -- Deepwater Makura
+	220643, -- Deepwater Makura
+	214343 -- Kobyss Trickster
 )
 
 --------------------------------------------------------------------------------
@@ -33,6 +35,7 @@ if L then
 	L.wandering_gutter = "Wandering Gutter"
 	L.crazed_predator = "Crazed Predator"
 	L.deepwater_makura = "Deepwater Makura"
+	L.kobyss_trickster = "Kobyss Trickster"
 end
 
 --------------------------------------------------------------------------------
@@ -67,6 +70,8 @@ function mod:GetOptions()
 		374898, -- Enrage
 		-- Deepwater Makura
 		445771, -- Bubble Surge
+		-- Kobyss Trickster
+		433040, -- Illusive Step
 	},{
 		[455932] = L.kobyss_necromancer,
 		[430037] = L.kobyss_spearfisher,
@@ -74,6 +79,7 @@ function mod:GetOptions()
 		[445492] = L.wandering_gutter,
 		[445774] = L.crazed_predator,
 		[445771] = L.deepwater_makura,
+		[433040] = L.kobyss_trickster,
 	},{
 		[455932] = CL.frontal_cone, -- Defiling Breath (Frontal Cone)
 		[445252] = CL.explosion, -- Necrotic End (Explosion)
@@ -107,6 +113,9 @@ function mod:OnBossEnable()
 	-- Deepwater Makura
 	self:Log("SPELL_CAST_START", "BubbleSurge", 445771)
 
+	-- Kobyss Trickster
+	self:Log("SPELL_CAST_START", "IllusiveStep", 433040)
+
 	-- also enable the Rares module
 	local raresModule = BigWigs:GetBossModule("Underpin Rares", true)
 	if raresModule then
@@ -131,6 +140,9 @@ function mod:GOSSIP_SHOW()
 		if self:GetGossipID(121578) then -- The Sinkhole, start Delve (Raen Dawncavalyr)
 			-- 121578:|cFF0000FF(Delve)|r I'll take your special boots and recover missing relics from the kobyss.
 			self:SelectGossipID(121578)
+		elseif self:GetGossipID(131349) then -- The Sinkhole, start Delve (Alyza Bowblaze)
+			-- 131349:|cFF0000FF(Delve)|r Let's find that Stewpot for you.
+			self:SelectGossipID(131349)
 		elseif self:GetGossipID(120132) then -- Tek-Rethan Abyss, start Delve (Partially-Chewed Goblin)
 			-- 120132:|cFF0000FF(Delve)|r <Take the instruction manual and find the repair kits.>
 			self:SelectGossipID(120132)
@@ -220,4 +232,11 @@ end
 function mod:BubbleSurge(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+-- Kobyss Trickster
+
+function mod:IllusiveStep(args)
+	self:Message(args.spellId, "yellow")
+	self:PlaySound(args.spellId, "info")
 end

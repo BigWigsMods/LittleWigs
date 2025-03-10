@@ -36,6 +36,7 @@ BigWigs:AddSounds("Kobold Delve Trash", {
 BigWigs:AddSounds("Kobyss Delve Trash", {
 	[374898] = "info",
 	[430037] = "alert",
+	[433040] = "info",
 	[440622] = "alert",
 	[445252] = "alarm",
 	[445407] = {"info","warning"},

@@ -46,6 +46,7 @@ if L then
 	L.wandering_gutter = "Destripador errante"
 	L.crazed_predator = "Depredador enloquecido"
 	L.deepwater_makura = "Makrura aguahonda"
+	L.kobyss_trickster = "Tramposo kobismal"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "esMX")
