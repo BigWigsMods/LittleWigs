@@ -80,7 +80,7 @@ if L then
 	L.hideous_amalgamation = "丑恶聚合体"
 	L.coagulated_mass = "凝结物质"
 	L.silent_slitherer = "死寂滑行者"
-	--L.amalgamized_mass = "Amalgamized Mass"
+	L.amalgamized_mass = "混合物质"
 end
 
 L = BigWigs:NewBossLocale("The Underkeep Trash", "zhCN")
