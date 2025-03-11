@@ -12,6 +12,12 @@ mod:SetEncounterID(2829)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local dynamiteMineCartCount = 1
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -56,12 +62,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	dynamiteMineCartCount = 1
 	self:CDBar(422245, 1.0) -- Rock Buster
+	if self:Mythic() then
+		self:CDBar(429093, 8.2, CL.count:format(L.dynamite_mine_cart, dynamiteMineCartCount)) -- Underhanded Track-tics
+	end
 	self:CDBar(422163, 11.0) -- Luring Candleflame
 	self:CDBar(422116, 28.3) -- Reckless Charge
-	if self:Mythic() then
-		self:CDBar(429093, 48.9) -- Underhanded Track-tics
-	end
 end
 
 --------------------------------------------------------------------------------
@@ -116,8 +123,14 @@ end
 function mod:CHAT_MSG_RAID_WARNING(_, msg)
 	-- |TInterface\\ICONS\\Ability_Foundryraid_TrainDeath.BLP:20|t Waxbeard snickers as he resorts to |cFFFF0000|Hspell:428268|h[Underhanded Track-tics]|h|r!#Ol' Waxbeard
 	if msg:find("spell:428268", nil, true) then -- Underhanded Track-tics
-		self:Message(429093, "yellow", CL.incoming:format(L.dynamite_mine_cart))
-		self:CDBar(429093, 80.0)
+		self:StopBar(CL.count:format(L.dynamite_mine_cart, dynamiteMineCartCount))
+		self:Message(429093, "cyan", CL.count:format(CL.incoming:format(L.dynamite_mine_cart), dynamiteMineCartCount))
+		dynamiteMineCartCount = dynamiteMineCartCount + 1
+		if dynamiteMineCartCount % 2 == 0 then
+			self:CDBar(429093, 31.8, CL.count:format(L.dynamite_mine_cart, dynamiteMineCartCount))
+		else
+			self:CDBar(429093, 48.0, CL.count:format(L.dynamite_mine_cart, dynamiteMineCartCount))
+		end
 		if self:GetOption(dynamiteMineCartMarker) then
 			self:RegisterTargetEvents("MarkDynamiteMineCart")
 		end
@@ -140,5 +153,5 @@ function mod:UnderhandedTracktics(args)
 end
 
 function mod:DynamiteMineCartDeath()
-	self:StopBar(CL.cast:format(self:SpellName(429093))) -- Underhanded Track-tics
+	self:StopCastBar(429093) -- Underhanded Track-tics
 end
