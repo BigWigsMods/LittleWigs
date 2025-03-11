@@ -123,7 +123,6 @@ function mod:OnBossEnable()
 	-- Hovering Menace
 	self:RegisterEngageMob("HoveringMenaceEngaged", 236886)
 	self:Log("SPELL_CAST_START", "ForwardCharge", 1216790)
-	self:Log("SPELL_CAST_SUCCESS", "ForwardChargeSuccess", 1216790)
 	self:Log("SPELL_CAST_START", "AlphaCannon", 1216794)
 	self:Log("SPELL_INTERRUPT", "AlphaCannonInterrupt", 1216794)
 	self:Log("SPELL_CAST_SUCCESS", "AlphaCannonSuccess", 1216794)
@@ -317,14 +316,10 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "orange")
-		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		self:CDBar(args.spellId, 15.0)
+		self:Nameplate(args.spellId, 15.0, args.sourceGUID)
 		timer = self:ScheduleTimer("HoveringMenaceDeath", 30)
 		self:PlaySound(args.spellId, "alarm")
-	end
-
-	function mod:ForwardChargeSuccess(args)
-		self:CDBar(args.spellId, 13.3)
-		self:Nameplate(args.spellId, 13.3, args.sourceGUID)
 	end
 
 	function mod:AlphaCannon(args)
