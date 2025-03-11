@@ -7,8 +7,8 @@ BigWigs:AddColors("Kyrioss", {
 })
 
 BigWigs:AddColors("Stormguard Gorren", {
-	[424737] = "red",
-	[424797] = {"blue","cyan"},
+	[424737] = {"blue","red"},
+	[424797] = "blue",
 	[424958] = "orange",
 	[424966] = "blue",
 	[425048] = "yellow",
