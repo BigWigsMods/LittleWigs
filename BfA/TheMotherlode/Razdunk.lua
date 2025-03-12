@@ -55,7 +55,7 @@ function mod:OnEngage()
 	self:SetStage(1)
 	self:CDBar(260813, 5.0) -- Homing Missile
 	if self:Mythic() then
-		self:CDBar(276229, 9.9) -- Micro Missiles
+		self:CDBar(276229, 8.4) -- Micro Missiles
 	end
 	self:CDBar(260280, 20.0) -- Gatling Gun
 end
@@ -112,7 +112,11 @@ do
 			prev = args.time
 			self:Message(args.spellId, "red")
 			self:CastBar(args.spellId, 5)
-			self:CDBar(args.spellId, 29.1)
+			if self:GetStage() == 1 then
+				self:CDBar(args.spellId, 21.8)
+			else -- Stage 3
+				self:CDBar(args.spellId, 19.0)
+			end
 			self:PlaySound(args.spellId, "long")
 		end
 	end
@@ -155,7 +159,7 @@ function mod:ConfigurationCombat(args)
 		self:Message("stages", "cyan", args.spellName, args.spellId)
 		self:CDBar(260813, 7.1) -- Homing Missile
 		if self:Mythic() then
-			self:CDBar(276229, 14.6) -- Micro Missiles
+			self:CDBar(276229, 11.8) -- Micro Missiles
 		end
 		self:CDBar(260280, 17.1) -- Gatling Gun
 		self:PlaySound("stages", "info")
