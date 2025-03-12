@@ -23,7 +23,7 @@ local chemicalBurnCount = 1
 function mod:GetOptions()
 	return {
 		270042, -- Azerite Catalyst
-		259940, -- Propellant Blast
+		{259940, "SAY"}, -- Propellant Blast
 		275992, -- Gushing Catalyst
 		{259856, "DISPEL"}, -- Chemical Burn
 	}, {
