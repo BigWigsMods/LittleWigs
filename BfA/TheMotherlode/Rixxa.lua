@@ -101,14 +101,14 @@ do
 	end
 end
 
---do
-	--local function printTarget(self, player, guid)
-		--self:TargetMessage(259940, "yellow", player, CL.count_amount:format(self:SpellName(259940), 1, 2))
-		--if self:Me(guid) then
-			--self:Say(259940, nil, nil, "Propellant Blast")
-		--end
-		--self:PlaySound(259940, "alert", nil, player)
-	--end
+do
+	local function printTarget(self, player, guid)
+		self:TargetMessage(259940, "yellow", player, CL.count_amount:format(self:SpellName(259940), (propellantBlastCount - 2) % 3 + 1, 3))
+		if self:Me(guid) then
+			self:Say(259940, nil, nil, "Propellant Blast")
+		end
+		self:PlaySound(259940, "alert", nil, player)
+	end
 
 	do
 		local prev = 0
@@ -116,13 +116,12 @@ end
 			if self:Mythic() then
 				local propellantBlastSequence = (propellantBlastCount - 1) % 3 + 1
 				propellantBlastCount = propellantBlastCount + 1
-				self:Message(args.spellId, "yellow", CL.count_amount:format(args.spellName, propellantBlastSequence, 3))
+				self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
 				if propellantBlastSequence == 3 then
 					self:CDBar(args.spellId, 31.0)
 				else
 					self:CDBar(args.spellId, 11.0)
 				end
-				self:PlaySound(args.spellId, "alert")
 			else -- Normal / Heroic
 				-- always cast twice in a row, only start a bar for the first cast
 				if args.time - prev > 10 then
@@ -141,7 +140,7 @@ end
 			end
 		end
 	end
---end
+end
 
 -- Mythic
 
