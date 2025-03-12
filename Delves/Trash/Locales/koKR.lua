@@ -15,15 +15,15 @@ end
 
 L = BigWigs:NewBossLocale("Goblin Delve Trash", "koKR")
 if L then
-	--L.goblin_trash = "Goblin Trash"
+	L.goblin_trash = "고블린"
 
-	--L.bopper_bot = "Bopper Bot"
-	--L.aerial_support_bot = "Aerial Support Bot"
-	--L.masked_freelancer = "Masked Freelancer"
-	--L.underpaid_brute = "Underpaid Brute"
-	--L.drill_sergeant = "Drill Sergeant"
+	L.bopper_bot = "퍽퍽이 봇"
+	L.aerial_support_bot = "공중 지원 로봇"
+	L.masked_freelancer = "얼굴을 가린 청부업자"
+	L.underpaid_brute = "박봉에 시달리는 투사"
+	L.drill_sergeant = "훈련교관"
 	L.punchy_thug = "주먹패 폭력배"
-	--L.flinging_flicker = "Flinging Flicker"
+	L.flinging_flicker = "반짝임"
 	L.bomb_bot = "폭발로봇"
 end
 
@@ -75,13 +75,13 @@ end
 
 L = BigWigs:NewBossLocale("Old God Delve Trash", "koKR")
 if L then
-	--L.old_god_trash = "Old God Trash"
+	L.old_god_trash = "고대 신"
 
-	--L.dark_walker = "Dark Walker"
-	--L.hideous_amalgamation = "Hideous Amalgamation"
-	--L.coagulated_mass = "Coagulated Mass"
-	--L.silent_slitherer = "Silent Slitherer"
-	--L.amalgamized_mass = "Amalgamized Mass"
+	L.dark_walker = "검은 방랑자"
+	L.hideous_amalgamation = "흉측한 융합체"
+	L.coagulated_mass = "응고된 덩어리"
+	L.silent_slitherer = "조용한 비단뱀"
+	L.amalgamized_mass = "융합된 덩어리"
 end
 
 L = BigWigs:NewBossLocale("The Underkeep Trash", "koKR")
