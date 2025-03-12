@@ -94,18 +94,18 @@ end
 
 L = BigWigs:NewBossLocale("Underpin Rares", "koKR")
 if L then
-	--L.rares = "Underpin Rares"
+	L.rares = "대지주"
 
 	L.treasure_wraith = "보물의 망령"
-	--L.treasure_crab = "Treasure Crab"
-	--L.hovering_menace = "Hovering Menace"
-	--L.malfunctioning_pummeler = "Malfunctioning Pummeler"
-	--L.underpins_adoring_fan = "Underpin's Adoring Fan"
-	--L.underpins_well_connected_friend = "Underpin's Well-Connected Friend"
-	--L.underpins_explosive_ally = "Underpin's Explosive Ally"
-	--L.underpins_bodyguards_intern = "Underpin's Bodyguard's Intern"
-	--L.aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin"
-	--L.the_underpin = "The Underpin (Random Spawn)"
+	L.treasure_crab = "보물 게"
+	L.hovering_menace = "부유하는 위협"
+	L.malfunctioning_pummeler = "오작동하는 난타기"
+	L.underpins_adoring_fan = "대지주를 흠모하는 추종자"
+	L.underpins_well_connected_friend = "대지주의 마당발 친구"
+	L.underpins_explosive_ally = "대지주의 폭발적인 아군"
+	L.underpins_bodyguards_intern = "대지주의 경호원 수습생"
+	L.aggressively_lost_hobgoblin = "난폭한 길 잃은 밥통고블린"
+	L.the_underpin = "대지주 (무작위 생성)"
 
 	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
 end
