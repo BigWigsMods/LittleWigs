@@ -513,7 +513,7 @@ function mod:HarugiaTheBloodthirstyEngaged(guid)
 end
 
 function mod:AdventNevermoreEngaged(guid)
-	self:Nameplate(333861, 2.1, guid) -- Ricocheting Blade
+	self:Nameplate(336995, 2.3, guid) -- Whirling Blade
 	self:Nameplate(331288, 5.8, guid) -- Colossus Smash
 	self:Nameplate(333827, 9.4, guid) -- Seismic Stomp
 end
