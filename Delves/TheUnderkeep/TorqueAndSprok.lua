@@ -2,13 +2,15 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Torque Clankfire and Sprok", 2690)
+local mod, CL = BigWigs:NewBoss("Torque Clankfire and Sprok", {2681, 2690}) -- Kriegval's Rest, The Underkeep
 if not mod then return end
 mod:RegisterEnableMob(
-	234939, -- Torque Clankfire
-	234938 -- Sprok
+	237554, -- Torque Clankfire (Kriegval's Rest)
+	234939, -- Torque Clankfire (The Underkeep)
+	237552, -- Sprok (Kriegval's Rest)
+	234938 -- Sprok (The Underkeep)
 )
-mod:SetEncounterID(3106)
+mod:SetEncounterID({3140, 3106}) -- Kriegval's Rest, The Underkeep
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
 
@@ -49,7 +51,7 @@ function mod:OnBossEnable()
 	-- Torque Clankfire
 	self:Log("SPELL_CAST_START", "LongFuseMissiles", 1215033)
 	self:Log("SPELL_CAST_SUCCESS", "EvasiveTactics", 1215090)
-	self:Death("TorqueClankfireDeath", 234939)
+	self:Death("TorqueClankfireDeath", 237554, 234939)
 
 	-- Sprok
 	self:Log("SPELL_CAST_START", "DarkfuseCocktail", 1215084)
@@ -57,7 +59,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "DarkfuseCocktailSuccess", 1215084)
 	self:Log("SPELL_CAST_START", "ThisOneBoss", 1215015)
 	self:Log("SPELL_CAST_SUCCESS", "ThisOneBossSuccess", 1215015)
-	self:Death("SprokDeath", 234938)
+	self:Death("SprokDeath", 237552, 234938)
 end
 
 function mod:OnEngage()
