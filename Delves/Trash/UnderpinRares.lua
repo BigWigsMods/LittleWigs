@@ -50,6 +50,13 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.rares
+	self:SetSpellRename(1216790, CL.charge) -- Forward Charge (Charge)
+	self:SetSpellRename(1216806, CL.frontal_cone) -- There's the Door (Frontal Cone)
+	self:SetSpellRename(1213497, CL.enrage) -- Me Go Mad (Enrage)
+	self:SetSpellRename(1217301, CL.charge) -- Heedless Charge (Charge)
+	self:SetSpellRename(1213852, CL.leap) -- Crush (Leap)
+	self:SetSpellRename(1217371, CL.frontal_cone) -- Flamethrower (Frontal Cone)
+	self:SetSpellRename(1214147, CL.bombs) -- Time Bomb Launcher (Bombs)
 end
 
 function mod:GetOptions()
@@ -86,11 +93,11 @@ function mod:GetOptions()
 		{1217301, "NAMEPLATE"}, -- Heedless Charge
 		-- The Underpin
 		{1216937, "EMPHASIZE"}, -- Underpin's Grand Entrance
-		1213852, -- Crush
-		1217371, -- Flamethrower
-		1214147, -- Time Bomb Launcher
+		{1213852, "NAMEPLATE"}, -- Crush
+		{1217371, "NAMEPLATE"}, -- Flamethrower
+		{1214147, "NAMEPLATE"}, -- Time Bomb Launcher
 		--1215521, -- Signal Cronies
-	}, {
+	},{
 		[418295] = L.treasure_wraith,
 		[1214246] = L.treasure_crab,
 		[1216790] = L.hovering_menace,
@@ -101,6 +108,14 @@ function mod:GetOptions()
 		[1213497] = L.underpins_bodyguards_intern,
 		[1217301] = L.aggressively_lost_hobgoblin,
 		[1216937] = L.the_underpin,
+	},{
+		[1216790] = CL.charge, -- Forward Charge (Charge)
+		[1216806] = CL.frontal_cone, -- There's the Door (Frontal Cone)
+		[1213497] = CL.enrage, -- Me Go Mad (Enrage)
+		[1217301] = CL.charge, -- Heedless Charge (Charge)
+		[1213852] = CL.leap, -- Crush (Leap)
+		[1217371] = CL.frontal_cone, -- Flamethrower (Frontal Cone)
+		[1214147] = CL.bombs, -- Time Bomb Launcher (Bombs)
 	}
 end
 
@@ -195,11 +210,14 @@ do
 	local timer
 
 	function mod:TreasureWraithEngaged(guid)
+		if timer then
+			self:CancelTimer(timer)
+		end
 		self:CDBar(418295, 5.2) -- Umbral Slash
 		self:Nameplate(418295, 5.2, guid) -- Umbral Slash
 		self:CDBar(418297, 6.7) -- Castigate
 		self:Nameplate(418297, 6.7, guid) -- Castigate
-		timer = self:ScheduleTimer("TreasureWraithDeath", 30)
+		timer = self:ScheduleTimer("TreasureWraithDeath", 30, nil, guid)
 	end
 
 	function mod:UmbralSlash(args)
@@ -209,7 +227,7 @@ do
 		self:Message(args.spellId, "yellow")
 		self:CDBar(args.spellId, 17.6)
 		self:Nameplate(args.spellId, 17.6, args.sourceGUID)
-		timer = self:ScheduleTimer("TreasureWraithDeath", 30)
+		timer = self:ScheduleTimer("TreasureWraithDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
 	end
 
@@ -220,20 +238,18 @@ do
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:CDBar(args.spellId, 17.5)
 		self:Nameplate(args.spellId, 17.5, args.sourceGUID)
-		timer = self:ScheduleTimer("TreasureWraithDeath", 30)
+		timer = self:ScheduleTimer("TreasureWraithDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 	end
 
-	function mod:TreasureWraithDeath(args)
+	function mod:TreasureWraithDeath(args, guidFromTimer)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(418295) -- Umbral Slash
 		self:StopBar(418297) -- Castigate
-		if args then
-			self:ClearNameplate(args.destGUID)
-		end
+		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
 end
 
@@ -243,11 +259,14 @@ do
 	local timer
 
 	function mod:TreasureCrabEngaged(guid)
+		if timer then
+			self:CancelTimer(timer)
+		end
 		self:CDBar(1214246, 3.2) -- Crushing Pinch
 		self:Nameplate(1214246, 3.2, guid) -- Crushing Pinch
 		self:CDBar(1214238, 8.1) -- Harden Shell
 		self:Nameplate(1214238, 8.1, guid) -- Harden Shell
-		timer = self:ScheduleTimer("TreasureCrabDeath", 30)
+		timer = self:ScheduleTimer("TreasureCrabDeath", 30, nil, guid)
 	end
 
 	function mod:CrushingPinch(args)
@@ -256,7 +275,7 @@ do
 		end
 		self:Message(args.spellId, "purple")
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		timer = self:ScheduleTimer("TreasureCrabDeath", 30)
+		timer = self:ScheduleTimer("TreasureCrabDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
 	end
 
@@ -271,7 +290,7 @@ do
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		timer = self:ScheduleTimer("TreasureCrabDeath", 30)
+		timer = self:ScheduleTimer("TreasureCrabDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 	end
 
@@ -285,16 +304,14 @@ do
 		self:Nameplate(args.spellId, 30.9, args.sourceGUID)
 	end
 
-	function mod:TreasureCrabDeath(args)
+	function mod:TreasureCrabDeath(args, guidFromTimer)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(1214246) -- Crushing Pinch
 		self:StopBar(1214238) -- Harden Shell
-		if args then
-			self:ClearNameplate(args.destGUID)
-		end
+		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
 end
 
@@ -304,21 +321,24 @@ do
 	local timer
 
 	function mod:HoveringMenaceEngaged(guid)
-		self:CDBar(1216790, 2.9) -- Forward Charge
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(1216790, 2.9, CL.charge) -- Forward Charge
 		self:Nameplate(1216790, 2.9, guid) -- Forward Charge
 		self:CDBar(1216794, 6.4) -- Alpha Cannon
 		self:Nameplate(1216794, 6.4, guid) -- Alpha Cannon
-		timer = self:ScheduleTimer("HoveringMenaceDeath", 30)
+		timer = self:ScheduleTimer("HoveringMenaceDeath", 30, nil, guid)
 	end
 
 	function mod:ForwardCharge(args)
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "orange")
-		self:CDBar(args.spellId, 15.0)
+		self:Message(args.spellId, "orange", CL.charge)
+		self:CDBar(args.spellId, 15.0, CL.charge)
 		self:Nameplate(args.spellId, 15.0, args.sourceGUID)
-		timer = self:ScheduleTimer("HoveringMenaceDeath", 30)
+		timer = self:ScheduleTimer("HoveringMenaceDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
 	end
 
@@ -328,7 +348,7 @@ do
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		timer = self:ScheduleTimer("HoveringMenaceDeath", 30)
+		timer = self:ScheduleTimer("HoveringMenaceDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 	end
 
@@ -342,16 +362,14 @@ do
 		self:Nameplate(args.spellId, 20.3, args.sourceGUID)
 	end
 
-	function mod:HoveringMenaceDeath(args)
+	function mod:HoveringMenaceDeath(args, guidFromTimer)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
-		self:StopBar(1216790) -- Forward Charge
+		self:StopBar(CL.charge) -- Forward Charge
 		self:StopBar(1216794) -- Alpha Cannon
-		if args then
-			self:ClearNameplate(args.destGUID)
-		end
+		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
 end
 
@@ -361,11 +379,14 @@ do
 	local timer
 
 	function mod:MalfunctioningPummelerEngaged(guid)
+		if timer then
+			self:CancelTimer(timer)
+		end
 		self:CDBar(1216805, 5.5) -- Zap!
 		self:Nameplate(1216805, 5.5, guid) -- Zap!
-		self:CDBar(1216806, 9.5) -- There's the Door
+		self:CDBar(1216806, 9.5, CL.frontal_cone) -- There's the Door
 		self:Nameplate(1216806, 9.5, guid) -- There's the Door
-		timer = self:ScheduleTimer("MalfunctioningPummelerDeath", 30)
+		timer = self:ScheduleTimer("MalfunctioningPummelerDeath", 30, nil, guid)
 	end
 
 	function mod:Zap(args)
@@ -374,7 +395,7 @@ do
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		timer = self:ScheduleTimer("MalfunctioningPummelerDeath", 30)
+		timer = self:ScheduleTimer("MalfunctioningPummelerDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 	end
 
@@ -392,27 +413,25 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "orange")
+		self:Message(args.spellId, "orange", CL.frontal_cone)
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		timer = self:ScheduleTimer("MalfunctioningPummelerDeath", 30)
+		timer = self:ScheduleTimer("MalfunctioningPummelerDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
 	end
 
 	function mod:TheresTheDoorSuccess(args)
-		self:CDBar(args.spellId, 8.1)
+		self:CDBar(args.spellId, 8.1, CL.frontal_cone)
 		self:Nameplate(args.spellId, 8.1, args.sourceGUID)
 	end
 
-	function mod:MalfunctioningPummelerDeath(args)
+	function mod:MalfunctioningPummelerDeath(args, guidFromTimer)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(1216805) -- Zap!
-		self:StopBar(1216806) -- There's the Door
-		if args then
-			self:ClearNameplate(args.destGUID)
-		end
+		self:StopBar(CL.frontal_cone) -- There's the Door
+		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
 end
 
@@ -422,11 +441,14 @@ do
 	local timer
 
 	function mod:UnderpinsAdoringFanEngaged(guid)
+		if timer then
+			self:CancelTimer(timer)
+		end
 		self:CDBar(1217361, 3.0) -- Worthless Adorations
 		self:Nameplate(1217361, 3.0, guid) -- Worthless Adorations
 		self:CDBar(1217326, 9.3) -- Take a Selfie!
 		self:Nameplate(1217326, 9.3, guid) -- Take a Selfie!
-		timer = self:ScheduleTimer("UnderpinsAdoringFanDeath", 30)
+		timer = self:ScheduleTimer("UnderpinsAdoringFanDeath", 30, nil, guid)
 	end
 
 	function mod:WorthlessAdorations(args)
@@ -435,7 +457,7 @@ do
 		end
 		self:Message(args.spellId, "orange")
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		timer = self:ScheduleTimer("UnderpinsAdoringFanDeath", 30)
+		timer = self:ScheduleTimer("UnderpinsAdoringFanDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 	end
 
@@ -450,7 +472,7 @@ do
 		end
 		self:Message(args.spellId, "orange")
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		timer = self:ScheduleTimer("UnderpinsAdoringFanDeath", 30)
+		timer = self:ScheduleTimer("UnderpinsAdoringFanDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
 	end
 
@@ -459,16 +481,14 @@ do
 		self:Nameplate(args.spellId, 13.4, args.sourceGUID)
 	end
 
-	function mod:UnderpinsAdoringFanDeath(args)
+	function mod:UnderpinsAdoringFanDeath(args, guidFromTimer)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
 		self:StopBar(1217361) -- Worthless Adorations
 		self:StopBar(1217326) -- Take a Selfie!
-		if args then
-			self:ClearNameplate(args.destGUID)
-		end
+		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
 end
 
@@ -478,10 +498,12 @@ do
 	local timer
 
 	function mod:UnderpinsWellConnectedFriendEngaged(guid)
-		self:ClearNameplate(guid) -- wipe protection
+		if timer then
+			self:CancelTimer(timer)
+		end
 		self:CDBar(1217418, 4.7) -- Call My Agent
 		self:Nameplate(1217418, 4.7, guid) -- Call My Agent
-		timer = self:ScheduleTimer("UnderpinsWellConnectedFriendDeath", 30)
+		timer = self:ScheduleTimer("UnderpinsWellConnectedFriendDeath", 30, nil, guid)
 	end
 
 	function mod:Backstab(args)
@@ -490,7 +512,7 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "yellow")
-		timer = self:ScheduleTimer("UnderpinsWellConnectedFriendDeath", 30)
+		timer = self:ScheduleTimer("UnderpinsWellConnectedFriendDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "warning")
 	end
 
@@ -500,7 +522,7 @@ do
 		end
 		self:Message(args.spellId, "cyan")
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		timer = self:ScheduleTimer("UnderpinsWellConnectedFriendDeath", 30)
+		timer = self:ScheduleTimer("UnderpinsWellConnectedFriendDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "info")
 	end
 
@@ -530,7 +552,7 @@ do
 		self:Nameplate(args.spellId, 10.6, args.sourceGUID)
 	end
 
-	function mod:UnderpinsWellConnectedFriendDeath(args)
+	function mod:UnderpinsWellConnectedFriendDeath(args, guidFromTimer)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
@@ -539,9 +561,7 @@ do
 		self:StopBar(1217449) -- Call My Broker
 		self:StopBar(1217452) -- Call My Mother
 		self:StopBar(1217510) -- Speed Dialing
-		if args then
-			self:ClearNameplate(args.destGUID)
-		end
+		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
 end
 
@@ -596,25 +616,28 @@ do
 	local timer
 
 	function mod:UnderpinsBodyguardsInternEngaged(guid)
+		if timer then
+			self:CancelTimer(timer)
+		end
 		self:CDBar(1220869, 2.5) -- Bonebreaker
 		self:Nameplate(1220869, 2.5, guid) -- Bonebreaker
-		self:CDBar(1213497, 9.8) -- Me Go Mad
+		self:CDBar(1213497, 9.8, CL.enrage) -- Me Go Mad
 		self:Nameplate(1213497, 9.8, guid) -- Me Go Mad
-		timer = self:ScheduleTimer("UnderpinsBodyguardsInternDeath", 30)
+		timer = self:ScheduleTimer("UnderpinsBodyguardsInternDeath", 30, nil, guid)
 	end
 
 	function mod:MeGoMad(args)
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "red")
+		self:Message(args.spellId, "red", CL.enrage)
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		timer = self:ScheduleTimer("UnderpinsBodyguardsInternDeath", 30)
+		timer = self:ScheduleTimer("UnderpinsBodyguardsInternDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "info")
 	end
 
 	function mod:MeGoMadSuccess(args)
-		self:CDBar(args.spellId, 31.3)
+		self:CDBar(args.spellId, 31.3, CL.enrage)
 		self:Nameplate(args.spellId, 31.3, args.sourceGUID)
 	end
 
@@ -624,7 +647,7 @@ do
 		end
 		self:Message(args.spellId, "purple")
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		timer = self:ScheduleTimer("UnderpinsBodyguardsInternDeath", 30)
+		timer = self:ScheduleTimer("UnderpinsBodyguardsInternDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 	end
 
@@ -633,16 +656,14 @@ do
 		self:Nameplate(args.spellId, 8.2, args.sourceGUID)
 	end
 
-	function mod:UnderpinsBodyguardsInternDeath(args)
+	function mod:UnderpinsBodyguardsInternDeath(args, guidFromTimer)
 		if timer then
 			self:CancelTimer(timer)
 			timer = nil
 		end
-		self:StopBar(1213497) -- Me Go Mad
+		self:StopBar(CL.enrage) -- Me Go Mad
 		self:StopBar(1220869) -- Bonebreaker
-		if args then
-			self:ClearNameplate(args.destGUID)
-		end
+		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
 end
 
@@ -658,7 +679,7 @@ do
 		self:Nameplate(args.spellId, 16.9, args.sourceGUID)
 		if args.time - prev > 1.5 then
 			prev = args.time
-			self:Message(args.spellId, "red")
+			self:Message(args.spellId, "red", CL.charge)
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
@@ -671,44 +692,54 @@ end
 -- The Underpin
 
 do
-	local timer
+	local timer, guid
 
 	function mod:UnderpinsGrandEntrance(args)
 		timer = self:ScheduleTimer("UnderpinRetreat", 30)
+		guid = args.sourceGUID
 		self:Message(args.spellId, "cyan", nil, L["1216937_icon"])
-		self:CDBar(1213852, 11.3) -- Crush
-		self:CDBar(1217371, 15.5) -- Flamethrower
-		self:CDBar(1214147, 18.6) -- Time Bomb Launcher
+		self:CDBar(1213852, 11.3, CL.leap) -- Crush
+		self:Nameplate(1213852, 11.3, args.sourceGUID) -- Crush
+		self:CDBar(1217371, 15.5, CL.frontal_cone) -- Flamethrower
+		self:Nameplate(1217371, 15.5, args.sourceGUID) -- Flamethrower
+		self:CDBar(1214147, 18.6, CL.bombs) -- Time Bomb Launcher
+		self:Nameplate(1214147, 18.6, args.sourceGUID) -- Time Bomb Launcher
 		--self:CDBar(1215521, 22.7) -- Signal Cronies
 		self:PlaySound(args.spellId, "warning")
 	end
 
 	function mod:Crush(args)
+		guid = args.sourceGUID
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "orange")
-		self:CDBar(args.spellId, 20.1)
+		self:Message(args.spellId, "orange", CL.leap)
+		self:CDBar(args.spellId, 20.1, CL.leap)
+		self:Nameplate(args.spellId, 20.1, args.sourceGUID)
 		timer = self:ScheduleTimer("UnderpinRetreat", 30)
 		self:PlaySound(args.spellId, "alarm")
 	end
 
 	function mod:Flamethrower(args)
+		guid = args.sourceGUID
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "red")
-		self:CDBar(args.spellId, 20.1)
+		self:Message(args.spellId, "red", CL.frontal_cone)
+		self:CDBar(args.spellId, 20.1, CL.frontal_cone)
+		self:Nameplate(args.spellId, 20.1, args.sourceGUID)
 		timer = self:ScheduleTimer("UnderpinRetreat", 30)
 		self:PlaySound(args.spellId, "alarm")
 	end
 
 	function mod:TimeBombLauncher(args)
+		guid = args.sourceGUID
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "yellow")
-		self:CDBar(args.spellId, 25.1)
+		self:Message(args.spellId, "yellow", CL.bombs)
+		self:CDBar(args.spellId, 25.1, CL.bombs)
+		self:Nameplate(args.spellId, 20.1, args.sourceGUID)
 		timer = self:ScheduleTimer("UnderpinRetreat", 30)
 		self:PlaySound(args.spellId, "info")
 	end
@@ -728,6 +759,7 @@ do
 		-- [CHAT_MSG_MONSTER_SAY] People always messin' around on my perfectly legal, deeded land!#The Underpin
 		if msg == L.underpin_retreat_trigger then
 			self:UnderpinRetreat()
+			self:PlayVictorySound()
 		end
 	end
 
@@ -736,9 +768,13 @@ do
 			self:CancelTimer(timer)
 			timer = nil
 		end
-		self:StopBar(1213852) -- Crush
-		self:StopBar(1217371) -- Flamethrower
-		self:StopBar(1214147) -- Time Bomb Launcher
+		if guid then
+			self:ClearNameplate(guid)
+			guid = nil
+		end
+		self:StopBar(CL.leap) -- Crush
+		self:StopBar(CL.frontal_cone) -- Flamethrower
+		self:StopBar(CL.bombs) -- Time Bomb Launcher
 		--self:StopBar(1215521) -- Signal Cronies
 	end
 end
