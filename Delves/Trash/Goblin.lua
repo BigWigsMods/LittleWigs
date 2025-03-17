@@ -52,6 +52,7 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.goblin_trash
+	self:SetSpellRename(472842, CL.fixate) -- Destroy (Fixate)
 end
 
 local autotalk = mod:AddAutoTalkOption(false)
@@ -76,7 +77,7 @@ function mod:GetOptions()
 		473696, -- Molotov Cocktail
 		-- Bomb Bot
 		{472842, "ME_ONLY"}, -- Destroy
-	}, {
+	},{
 		[473684] = L.bopper_bot,
 		[473550] = L.aerial_support_bot,
 		[474001] = L.masked_freelancer,
@@ -85,6 +86,8 @@ function mod:GetOptions()
 		[473541] = L.punchy_thug,
 		[473696] = L.flinging_flicker,
 		[472842] = L.bomb_bot,
+	},{
+		[472842] = CL.fixate, -- Destroy (Fixate)
 	}
 end
 
@@ -250,7 +253,7 @@ end
 do
 	local prev = 0
 	function mod:Destroy(args)
-		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:TargetMessage(args.spellId, "yellow", args.destName, CL.fixate)
 		if args.time - prev > 2 then
 			prev = args.time
 			self:PlaySound(args.spellId, "info", nil, args.destName)
