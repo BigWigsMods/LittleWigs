@@ -2,10 +2,11 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Geargrave", 2826)
+local mod, CL = BigWigs:NewBoss("Geargrave", {2684, 2688, 2826}) -- The Dread Pit, The Spiral Weave, Sidestreet Sluice
 if not mod then return end
 mod:RegisterEnableMob(234949) -- Geargrave
---mod:SetEncounterID(3174) -- encounter events don't fire
+--mod:SetEncounterID(3174) -- encounter event doesn't fire in Sidestreet Sluice
+-- 3020 in The Dread Pit (does fire), 3123 in The Spiral Weave (does fire)
 --mod:SetRespawnTime(15) resets, doesn't respawn
 mod:SetAllowWin(true)
 
@@ -51,7 +52,7 @@ end
 function mod:OnEngage()
 	self:CDBar(1215957, 6.0) -- Tremor Claw
 	self:CDBar(1215905, 12.1) -- Carnage Cannon
-	self:CDBar(1215975, 18.2) -- Juice It Up!
+	self:CDBar(1215975, 18.2, CL.enrage) -- Juice It Up!
 end
 
 --------------------------------------------------------------------------------
