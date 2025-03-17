@@ -300,26 +300,42 @@ end
 
 -- Raging Bloodhorn
 
-function mod:RagingBloodhornEngaged(guid)
-	self:Nameplate(333241, 8.8, guid) -- Raging Tantrum
-end
+do
+	local timer
 
-function mod:RagingTantrum(args)
-	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
-end
-
-function mod:RagingTantrumApplied(args)
-	if self:Dispeller("enrage", true) then
-		self:Message(args.spellId, "orange", CL.on:format(args.destName, args.spellName))
-		self:PlaySound(args.spellId, "warning")
-	else
-		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
+	function mod:RagingBloodhornEngaged(guid)
+		self:CDBar(333241, 8.8) -- Raging Tantrum
+		self:Nameplate(333241, 8.8, guid) -- Raging Tantrum
+		timer = self:ScheduleTimer("RagingBloodhornDeath", 20, nil, guid)
 	end
-end
 
-function mod:RagingBloodhornDeath(args)
-	self:ClearNameplate(args.destGUID)
+	function mod:RagingTantrum(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(args.spellId, 18.2)
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+		timer = self:ScheduleTimer("RagingBloodhornDeath", 30, nil, args.sourceGUID)
+	end
+
+	function mod:RagingTantrumApplied(args)
+		if self:Dispeller("enrage", true) then
+			self:Message(args.spellId, "orange", CL.on:format(args.destName, args.spellName))
+			self:PlaySound(args.spellId, "warning")
+		else
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+
+	function mod:RagingBloodhornDeath(args, guidFromTimer)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(333241) -- Raging Tantrum
+		self:ClearNameplate(guidFromTimer or args.destGUID)
+	end
 end
 
 -- Diseased Horror
