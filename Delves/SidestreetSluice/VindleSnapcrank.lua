@@ -2,10 +2,11 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Vindle Snapcrank", 2826)
+local mod, CL = BigWigs:NewBoss("Vindle Snapcrank", {2689, 2826}) -- Tak-Rethan Abyss, Sidestreet Sluice
 if not mod then return end
 mod:RegisterEnableMob(234931) -- Vindle Snapcrank
---mod:SetEncounterID(3173) -- encounter events don't fire
+--mod:SetEncounterID(3173) -- encounter event doesn't fire in Sidestreet Sluice
+-- 3124 in Tek-Rethan Abyss (does fire)
 --mod:SetRespawnTime(15) resets, doesn't respawn
 mod:SetAllowWin(true)
 
