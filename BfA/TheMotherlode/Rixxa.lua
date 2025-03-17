@@ -73,11 +73,15 @@ do
 	end
 
 	function mod:AzeriteCatalyst(args)
-		azeriteCatalystCount = azeriteCatalystCount + 1
-		if azeriteCatalystCount % 2 == 0 then
-			self:CDBar(args.spellId, 15.0)
+		if self:Mythic() then
+			self:CDBar(args.spellId, 53.0)
 		else
-			self:CDBar(args.spellId, 27.0)
+			azeriteCatalystCount = azeriteCatalystCount + 1
+			if azeriteCatalystCount % 2 == 0 then
+				self:CDBar(args.spellId, 15.0)
+			else
+				self:CDBar(args.spellId, 27.0)
+			end
 		end
 		-- takes up to .4s to target sometimes
 		self:GetUnitTarget(printTarget, 0.5, args.sourceGUID)
