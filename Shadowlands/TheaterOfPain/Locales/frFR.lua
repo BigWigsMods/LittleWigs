@@ -1,17 +1,17 @@
 local L = BigWigs:NewBossLocale("Xav the Unfallen", "frFR")
 if not L then return end
 if L then
-	--L.defeated = "%s has defeated %s"
+	L.defeated = "%s a vaincu %s"
 end
 
 L = BigWigs:NewBossLocale("Theater Of Pain Trash", "frFR")
 if L then
-	--L.battlefield_ritualist = "Battlefield Ritualist"
+	L.battlefield_ritualist = "Ritualiste du champ de bataille"
 	L.raging_bloodhorn = "Cornesang déchaîné"
 	L.diseased_horror = "Horreur infectieuse"
 	L.blighted_sludge_spewer = "Crache-vase chancreux"
 	L.putrid_butcher = "Boucher putride"
-	--L.disgusting_refuse = "Disgusting Refuse"
+	L.disgusting_refuse = "Rebut répugnant"
 	L.rancid_gasbag = "Sac à gaz rance"
 	L.dokigg_the_brutalizer = "Dokigg le Brutalisateur"
 	L.nekthara_the_mangler = "Nekthara le Mutilateur"
@@ -26,5 +26,5 @@ if L then
 	L.nefarious_darkspeaker = "Sombre orateur néfaste"
 	L.soulforged_bonereaver = "Saccage-os forgé d'âmes"
 
-	--L.mordretha_warmup_trigger = "Soldiers of Maldraxxus! Are you ready for some carnage?!"
+	L.mordretha_warmup_trigger = "Soldats de Maldraxxus ! Êtes-vous prêts pour le carnage ?"
 end
