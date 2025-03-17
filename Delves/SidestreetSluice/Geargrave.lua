@@ -24,6 +24,7 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.geargrave
+	self:SetSpellRename(1215975, CL.enrage) -- Juice It Up! (Enrage)
 end
 
 function mod:GetOptions()
@@ -32,6 +33,8 @@ function mod:GetOptions()
 		1215905, -- Carnage Cannon
 		1215912, -- Black Blood
 		1215975, -- Juice It Up!
+	},nil,{
+		[1215975] = CL.enrage, -- Juice It Up! (Enrage)
 	}
 end
 
@@ -79,7 +82,7 @@ do
 end
 
 function mod:JuiceItUp(args)
-	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 41.3)
+	self:Message(args.spellId, "red", CL.enrage)
+	self:CDBar(args.spellId, 41.3, CL.enrage)
 	self:PlaySound(args.spellId, "info")
 end

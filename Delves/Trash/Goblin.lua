@@ -52,6 +52,8 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.goblin_trash
+	self:SetSpellRename(474001, CL.enrage) -- Bathe in Blood (Enrage)
+	self:SetSpellRename(473541, CL.frontal_cone) -- Flurry of Punches (Frontal Cone)
 	self:SetSpellRename(472842, CL.fixate) -- Destroy (Fixate)
 end
 
@@ -87,6 +89,8 @@ function mod:GetOptions()
 		[473696] = L.flinging_flicker,
 		[472842] = L.bomb_bot,
 	},{
+		[474001] = CL.enrage, -- Bathe in Blood (Enrage)
+		[473541] = CL.frontal_cone, -- Flurry of Punches (Frontal Cone)
 		[472842] = CL.fixate, -- Destroy (Fixate)
 	}
 end
@@ -187,7 +191,7 @@ end
 -- Masked Freelancer
 
 function mod:BatheInBlood(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(CL.enrage))
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -228,7 +232,7 @@ do
 	function mod:FlurryOfPunches(args)
 		if args.time - prev > 2 then
 			prev = args.time
-			self:Message(args.spellId, "red")
+			self:Message(args.spellId, "red", CL.frontal_cone)
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end

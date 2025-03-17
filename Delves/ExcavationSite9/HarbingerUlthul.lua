@@ -24,6 +24,7 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.harbinger_ulthul
+	self:SetSpellRename(1213776, CL.curse) -- Hopeless Curse (Curse)
 end
 
 function mod:GetOptions()
@@ -31,6 +32,8 @@ function mod:GetOptions()
 		{1213776, "DISPEL"}, -- Hopeless Curse
 		1213785, -- Tear It Down
 		1213700, -- Unanswered Call
+	},nil,{
+		[1213776] = CL.curse, -- Hopeless Curse (Curse)
 	}
 end
 
@@ -43,7 +46,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(1213776, 4.7) -- Hopeless Curse
+	self:CDBar(1213776, 4.7, CL.curse) -- Hopeless Curse
 	self:CDBar(1213785, 9.5) -- Tear It Down
 	self:CDBar(1213700, 30.4) -- Unanswered Call
 end
@@ -53,14 +56,14 @@ end
 --
 
 function mod:HopelessCurse(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:CDBar(args.spellId, 21.1)
+	self:Message(args.spellId, "orange", CL.casting:format(CL.curse))
+	self:CDBar(args.spellId, 21.1, CL.curse)
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:HopelessCurseApplied(args)
 	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "orange", args.destName)
+		self:TargetMessage(args.spellId, "orange", args.destName, CL.curse)
 		if self:Dispeller("curse") then
 			self:PlaySound(args.spellId, "warning", nil, args.destName)
 		else
