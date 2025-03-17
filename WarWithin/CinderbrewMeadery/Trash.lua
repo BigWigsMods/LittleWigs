@@ -67,6 +67,7 @@ function mod:GetOptions()
 		{437956, "NAMEPLATE"}, -- Erupting Inferno
 		-- Hired Musle
 		{463218, "HEALER", "NAMEPLATE"}, -- Volatile Keg
+		{434756, "ME_ONLY", "NAMEPLATE"}, -- Throw Chair
 		-- Tasting Room Attendant
 		{434706, "NAMEPLATE"}, -- Cinderbrew Toss
 		-- Chef Chewie
@@ -81,6 +82,7 @@ function mod:GetOptions()
 		-- Brew Drop
 		441179, -- Oozing Honey
 		-- Taste Tester
+		{441214, "DISPEL", "NAMEPLATE"}, -- Spill Drink
 		{441242, "NAMEPLATE", "OFF"}, -- Free Samples?
 		-- Bee Wrangler
 		{441119, "SAY", "NAMEPLATE"}, -- Bee-Zooka
@@ -101,7 +103,7 @@ function mod:GetOptions()
 		[441627] = L.flavor_scientist,
 		[448619] = L.careless_hopgoblin,
 		[441179] = L.brew_drop,
-		[441242] = L.taste_tester,
+		[441214] = L.taste_tester,
 		[441119] = L.bee_wrangler,
 		[442589] = L.venture_co_honey_harvester,
 		[440687] = L.royal_jelly_purveyor,
@@ -126,6 +128,7 @@ function mod:OnBossEnable()
 	-- Hired Muscle
 	self:RegisterEngageMob("HiredMuscleEngaged", 210269)
 	self:Log("SPELL_CAST_START", "VolatileKeg", 463218)
+	self:Log("SPELL_CAST_START", "ThrowChair", 434756)
 	self:Death("HiredMuscleDeath", 210269)
 
 	-- Tasting Room Attendant
@@ -159,6 +162,8 @@ function mod:OnBossEnable()
 
 	-- Taste Tester
 	self:RegisterEngageMob("TasteTesterEngaged", 220060)
+	self:Log("SPELL_CAST_SUCCESS", "SpillDrink", 441214)
+	self:Log("SPELL_AURA_APPLIED", "SpillDrinkApplied", 441214)
 	self:Log("SPELL_CAST_START", "FreeSamples", 441242)
 	self:Log("SPELL_INTERRUPT", "FreeSamplesInterrupt", 441242)
 	self:Log("SPELL_CAST_SUCCESS", "FreeSamplesSuccess", 441242)
@@ -247,13 +252,26 @@ end
 -- Hired Muscle
 
 function mod:HiredMuscleEngaged(guid)
-	self:Nameplate(463218, 8.2, guid) -- Volatile Keg
+	self:Nameplate(463218, 8.0, guid) -- Volatile Keg
+	self:Nameplate(434756, 12.0, guid) -- Throw Chair
 end
 
 function mod:VolatileKeg(args)
 	self:Message(args.spellId, "yellow")
 	self:Nameplate(args.spellId, 24.2, args.sourceGUID)
 	self:PlaySound(args.spellId, "info")
+end
+
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(434756, "red", name)
+		self:PlaySound(434756, "alert", nil, name)
+	end
+
+	function mod:ThrowChair(args)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		self:Nameplate(args.spellId, 15.7, args.sourceGUID)
+	end
 end
 
 function mod:HiredMuscleDeath(args)
@@ -337,7 +355,7 @@ do
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		if args.time - prev > 1.5 then
 			prev = args.time
-			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -430,7 +448,27 @@ end
 -- Taste Tester
 
 function mod:TasteTesterEngaged(guid)
-	self:Nameplate(441242, 15.3, guid) -- Free Samples
+	self:Nameplate(441242, 9.2, guid) -- Free Samples
+	if self:Dispeller("enrage", true, 441214) then
+		self:Nameplate(441214, 11.4, guid) -- Spill Drink
+	end
+end
+
+function mod:SpillDrink(args)
+	if self:Dispeller("enrage", true, args.spellId) then
+		self:Nameplate(args.spellId, 23.1, args.sourceGUID)
+	end
+end
+
+do
+	local prev = 0
+	function mod:SpillDrinkApplied(args)
+		if self:Dispeller("enrage", true, args.spellId) and args.time - prev > 3 then
+			prev = args.time
+			self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
+			self:PlaySound(args.spellId, "info")
+		end
+	end
 end
 
 do

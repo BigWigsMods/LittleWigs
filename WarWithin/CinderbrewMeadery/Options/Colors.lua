@@ -31,6 +31,7 @@ BigWigs:AddColors("Goldie Baronbottom", {
 
 BigWigs:AddColors("Cinderbrew Meadery Trash", {
 	[434706] = "orange",
+	[434756] = {"blue","red"},
 	[434998] = "red",
 	[437721] = "red",
 	[437956] = {"blue","yellow"},
@@ -39,10 +40,11 @@ BigWigs:AddColors("Cinderbrew Meadery Trash", {
 	[440876] = "yellow",
 	[441119] = {"blue","orange"},
 	[441179] = "blue",
+	[441214] = "yellow",
 	[441242] = "red",
 	[441351] = "red",
 	[441434] = "cyan",
-	[441627] = "yellow",
+	[441627] = "red",
 	[442589] = "orange",
 	[442995] = "yellow",
 	[448619] = {"blue","orange"},
