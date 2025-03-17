@@ -25,6 +25,8 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.maulspike
+	self:SetSpellRename(1214620, CL.adds) -- Whooping Rally (Adds)
+	self:SetSpellRename(1214680, CL.fear) -- Hideous Cackle (Fear)
 end
 
 function mod:GetOptions()
@@ -34,8 +36,11 @@ function mod:GetOptions()
 		1214656, -- Aggravating Growl
 		-- Darkfuse Cackler
 		1214680, -- Hideous Cackle
-	}, {
+	},{
 		[1214680] = L.darkfuse_cackler,
+	},{
+		[1214620] = CL.adds, -- Whooping Rally (Adds)
+		[1214680] = CL.fear, -- Hideous Cackle (Fear)
 	}
 end
 
@@ -51,7 +56,7 @@ end
 
 function mod:OnEngage()
 	self:CDBar(1214614, 5.7) -- Rip and Tear
-	self:CDBar(1214620, 8.1) -- Whooping Rally
+	self:CDBar(1214620, 8.1, CL.adds) -- Whooping Rally
 	self:CDBar(1214656, 16.6) -- Aggravating Growl
 end
 
@@ -72,8 +77,8 @@ function mod:RipAndTear(args)
 end
 
 function mod:WhoopingRally(args)
-	self:Message(args.spellId, "cyan")
-	self:CDBar(args.spellId, 38.9)
+	self:Message(args.spellId, "cyan", CL.adds)
+	self:CDBar(args.spellId, 38.9, CL.adds)
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -90,7 +95,7 @@ do
 	function mod:HideousCackle(args)
 		if args.time - prev > 2 then
 			prev = args.time
-			self:Message(args.spellId, "orange")
+			self:Message(args.spellId, "orange", CL.fear)
 			-- 11s CD
 			self:PlaySound(args.spellId, "alarm")
 		end
