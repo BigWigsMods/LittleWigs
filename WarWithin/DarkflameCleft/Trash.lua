@@ -325,7 +325,7 @@ end
 -- Wandering Candle
 
 function mod:WanderingCandleEngaged(guid)
-	self:Nameplate(430171, 6.8, guid) -- Quenching Blast
+	self:Nameplate(430171, 5.3, guid) -- Quenching Blast
 	self:Nameplate(440652, 11.9, guid) -- Surging Flame
 end
 
