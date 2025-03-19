@@ -91,7 +91,7 @@ end
 
 function mod:SignalCronies(args)
 	self:Message(args.spellId, "cyan")
-	self:CDBar(args.spellId, 72.4)
+	self:CDBar(args.spellId, 71.6)
 	self:PlaySound(args.spellId, "long")
 end
 
