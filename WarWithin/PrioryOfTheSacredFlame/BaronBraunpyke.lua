@@ -68,17 +68,15 @@ function mod:OnEngage()
 	if self:Mythic() then
 		unleashedPyreCharges = 0
 		nextUnleashedPyre = 0
-		self:CDBar(423062, 7.2) -- Hammer of Purity
-		self:CDBar(446368, 15.4) -- Sacrificial Pyre
-		self:CDBar(423051, 21.0) -- Burning Light
-	else
+		self:CDBar(423062, 7.0) -- Hammer of Purity
+		self:CDBar(446368, 15.0) -- Sacrificial Pyre
+		self:CDBar(423015, 22.8) -- Castigator's Shield
+		self:CDBar(423051, 29.6) -- Burning Light
+		self:CDBar(422969, 35.6) -- Vindictive Wrath
+	else -- Normal, Heroic
 		self:CDBar(423062, 8.5) -- Hammer of Purity
 		self:CDBar(423051, 17.0) -- Burning Light
-	end
-	self:CDBar(423015, 23.0) -- Castigator's Shield
-	if self:Mythic() then
-		self:CDBar(422969, 31.2) -- Vindictive Wrath
-	else
+		self:CDBar(423015, 23.0) -- Castigator's Shield
 		self:CDBar(422969, 45.8) -- Vindictive Wrath
 	end
 end
@@ -95,7 +93,7 @@ end
 
 function mod:VindictiveWrath(args)
 	self:Message(args.spellId, "cyan")
-	self:CDBar(args.spellId, 48.1)
+	self:CDBar(args.spellId, 68.8)
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -111,7 +109,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 446645 then -- Castigator's Shield
 		-- start the timer here because often the actual Castigator's Shield cast will be skipped
 		if self:Mythic() then
-			self:CDBar(423015, 30.3) -- Castigator's Shield
+			self:CDBar(423015, 33.6) -- Castigator's Shield
 		else
 			self:CDBar(423015, 23.1) -- Castigator's Shield
 		end
@@ -126,7 +124,7 @@ end
 function mod:BurningLight(args)
 	self:Message(423051, "red", CL.casting:format(args.spellName))
 	if self:Mythic() then
-		self:CDBar(423051, 40.1)
+		self:CDBar(423051, 33.2)
 	else
 		self:CDBar(423051, 31.6)
 	end
@@ -136,7 +134,7 @@ end
 function mod:HammerOfPurity(args)
 	self:Message(423062, "yellow")
 	if self:Mythic() then
-		self:CDBar(423062, 30.3)
+		self:CDBar(423062, 35.2)
 	else
 		self:CDBar(423062, 19.5)
 	end
@@ -150,7 +148,7 @@ function mod:SacrificialPyre(args)
 	nextUnleashedPyre = args.time + 30
 	self:Message(args.spellId, "cyan", CL.extra:format(args.spellName, L.charges:format(unleashedPyreCharges)))
 	self:Bar(446525, 30, CL.count:format(self:SpellName(446525), unleashedPyreCharges)) -- Unleashed Pyre
-	self:CDBar(args.spellId, 38.4)
+	self:CDBar(args.spellId, 33.6)
 	self:PlaySound(args.spellId, "info")
 end
 
