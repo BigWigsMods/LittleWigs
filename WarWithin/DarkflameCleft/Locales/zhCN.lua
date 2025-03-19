@@ -11,6 +11,7 @@ if L then
 	L.torchsnarl = "炬龇"
 	L.skittering_darkness = "掠行之暗"
 	L.shuffling_horror = "残步恐魔"
+	L.corridor_creeper = "通道爬行者"
 	L.creaky_mine_cart = "吱嘎作响的采矿车"
 
 	L.minecart = "迷你矿车游戏"

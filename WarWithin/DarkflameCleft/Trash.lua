@@ -26,6 +26,8 @@ mod:RegisterEnableMob(
 	212411, -- Torchsnarl
 	208457, -- Skittering Darkness
 	208456, -- Shuffling Horror
+	210539, -- Corridor Creeper
+	220616, -- Corridor Sleeper
 	218475, -- Skitter
 	209439, -- Creaky Mine Cart
 	212129 -- Creaky Mine Cart
@@ -47,6 +49,7 @@ if L then
 	L.torchsnarl = "Torchsnarl"
 	L.skittering_darkness = "Skittering Darkness"
 	L.shuffling_horror = "Shuffling Horror"
+	L.corridor_creeper = "Corridor Creeper"
 	L.creaky_mine_cart = "Creaky Mine Cart"
 
 	L.minecart = "Mine Cart Minigame"
@@ -89,6 +92,8 @@ function mod:GetOptions()
 		422393, -- Suffocating Darkness
 		-- Shuffling Horror
 		{422541, "NAMEPLATE"}, -- Drain Light
+		-- Corridor Creeper
+		{469620, "DISPEL"}, -- Creeping Shadow
 		-- Creaky Mine Cart
 		{"minecart", "INFOBOX"},
 	}, {
@@ -102,6 +107,7 @@ function mod:GetOptions()
 		[426619] = L.torchsnarl,
 		[422393] = L.skittering_darkness,
 		[422541] = L.shuffling_horror,
+		[469620] = L.corridor_creeper,
 		["minecart"] = L.creaky_mine_cart,
 	}
 end
@@ -178,6 +184,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "DrainLightInterrupt", 422541)
 	self:Log("SPELL_CAST_SUCCESS", "DrainLightSuccess", 422541)
 	self:Death("ShufflingHorrorDeath", 208456)
+
+	-- Corridor Creeper
+	self:Log("SPELL_AURA_APPLIED_DOSE", "CreepingShadowApplied", 469620)
 
 	-- Creaky Mine Cart
 	self:Log("SPELL_CAST_SUCCESS", "ShadowyCloak", 423566) -- start event
@@ -603,6 +612,20 @@ end
 
 function mod:ShufflingHorrorDeath(args)
 	self:ClearNameplate(args.destGUID)
+end
+
+-- Corridor Creeper
+
+function mod:CreepingShadowApplied(args)
+	local amount = args.amount or 1
+	if amount >= 6 and amount % 3 == 0 and (self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId)) then
+		self:StackMessage(args.spellId, "purple", args.destName, amount, 1)
+		if amount >= 12 and self:Dispeller("magic", nil, args.spellId) then
+			self:PlaySound(args.spellId, "warning", nil, args.destName)
+		else
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
+		end
+	end
 end
 
 -- Creaky Mine Cart

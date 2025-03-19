@@ -11,6 +11,7 @@ if L then
 	L.torchsnarl = "Ringhiostorto"
 	L.skittering_darkness = "Oscurità Brulicante"
 	L.shuffling_horror = "Orrore Barcollante"
+	L.corridor_creeper = "Orrore dei Cunicoli"
 	L.creaky_mine_cart = "Carrello Minerario Cigolante"
 
 	--L.minecart = "Mine Cart Minigame"
