@@ -4,24 +4,41 @@
 
 local mod, CL = BigWigs:NewBoss("Watchkeeper Gargolmar", 543, 527)
 if not mod then return end
-mod:RegisterEnableMob(17306)
--- mod.engageId = 1893 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+mod:RegisterEnableMob(
+	17306, -- Watchkeeper Gargolmar
+	17309 -- Hellfire Watcher
+)
+--mod:SetEncounterID(1893) -- no boss frames
+--mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
 --  Initialization
 --
 
-function mod:GetOptions()
-	return {
-		{36814, "TANK_HEALER"}, -- Mortal Wound
-		12039, -- Heal
-		8362, -- Renew
-		14032, -- Shadow Word: Pain
-	}, {
-		[36814] = "general",
-		[12039] = -5053, -- Hellfire Watcher
-	}
+if mod:Classic() then
+	function mod:GetOptions()
+		return {
+			{36814, "TANK_HEALER"}, -- Mortal Wound
+			12039, -- Heal
+			8362, -- Renew
+			14032, -- Shadow Word: Pain
+		}, {
+			[36814] = "general",
+			[12039] = -5053, -- Hellfire Watcher
+		}
+	end
+else -- Retail, 11.0.5 or later
+	function mod:GetOptions()
+		return {
+			{36814, "TANK_HEALER"}, -- Mortal Wound
+			12039, -- Heal
+			8362, -- Renew
+			11639, -- Shadow Word: Pain
+		}, {
+			[36814] = "general",
+			[12039] = -5053, -- Hellfire Watcher
+		}
+	end
 end
 
 function mod:OnBossEnable()
@@ -31,8 +48,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Heal", 12039)
 	self:Log("SPELL_CAST_START", "Renew", 8362)
 	self:Log("SPELL_AURA_APPLIED", "RenewApplied", 8362)
-	self:Log("SPELL_AURA_APPLIED", "ShadowWordPain", 14032)
-	self:Log("SPELL_AURA_REMOVED", "ShadowWordPainRemoved", 14032)
+	if self:Classic() then
+		-- 14032 was removed in 11.0.5
+		self:Log("SPELL_AURA_APPLIED", "ShadowWordPain", 14032)
+	else -- Retail
+		self:Log("SPELL_AURA_APPLIED", "ShadowWordPain", 11639)
+	end
 
 	self:Death("Win", 17306)
 end
@@ -89,10 +110,5 @@ end
 function mod:ShadowWordPain(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then
 		self:TargetMessageOld(args.spellId, args.destName, "orange")
-		self:TargetBar(args.spellId, 15, args.destName)
 	end
-end
-
-function mod:ShadowWordPainRemoved(args)
-	self:StopBar(args.spellName, args.destName)
 end

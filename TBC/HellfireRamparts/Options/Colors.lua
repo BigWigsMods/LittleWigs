@@ -1,6 +1,7 @@
 
 BigWigs:AddColors("Watchkeeper Gargolmar", {
 	[8362] = {"blue","yellow"},
+	[11639] = {"blue","orange"},
 	[12039] = "red",
 	[14032] = {"blue","orange"},
 	[36814] = {"blue","cyan"},
