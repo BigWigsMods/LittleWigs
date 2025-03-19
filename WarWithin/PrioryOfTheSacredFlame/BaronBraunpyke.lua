@@ -74,9 +74,9 @@ function mod:OnEngage()
 		self:CDBar(423051, 29.6) -- Burning Light
 		self:CDBar(422969, 35.6) -- Vindictive Wrath
 	else -- Normal, Heroic
-		self:CDBar(423062, 8.5) -- Hammer of Purity
+		self:CDBar(423062, 8.2) -- Hammer of Purity
 		self:CDBar(423051, 17.0) -- Burning Light
-		self:CDBar(423015, 23.0) -- Castigator's Shield
+		self:CDBar(423015, 22.8) -- Castigator's Shield
 		self:CDBar(422969, 45.8) -- Vindictive Wrath
 	end
 end
@@ -93,7 +93,11 @@ end
 
 function mod:VindictiveWrath(args)
 	self:Message(args.spellId, "cyan")
-	self:CDBar(args.spellId, 68.8)
+	if self:Mythic() then
+		self:CDBar(args.spellId, 68.8)
+	else -- Normal, Heroic
+		self:CDBar(args.spellId, 48.1)
+	end
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -110,7 +114,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		-- start the timer here because often the actual Castigator's Shield cast will be skipped
 		if self:Mythic() then
 			self:CDBar(423015, 33.6) -- Castigator's Shield
-		else
+		else -- Normal, Heroic
 			self:CDBar(423015, 23.1) -- Castigator's Shield
 		end
 	end
@@ -125,7 +129,7 @@ function mod:BurningLight(args)
 	self:Message(423051, "red", CL.casting:format(args.spellName))
 	if self:Mythic() then
 		self:CDBar(423051, 33.2)
-	else
+	else -- Normal, Heroic
 		self:CDBar(423051, 31.6)
 	end
 	self:PlaySound(423051, "warning")
@@ -135,8 +139,8 @@ function mod:HammerOfPurity(args)
 	self:Message(423062, "yellow")
 	if self:Mythic() then
 		self:CDBar(423062, 35.2)
-	else
-		self:CDBar(423062, 19.5)
+	else -- Normal, Heroic
+		self:CDBar(423062, 20.7)
 	end
 	self:PlaySound(423062, "alarm")
 end
