@@ -107,5 +107,5 @@ if L then
 	L.aggressively_lost_hobgoblin = "Wirklich verirrter Hobgoblin"
 	L.the_underpin = "Der Lorenboss (Zufälliges Erscheinen)"
 
-	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
+	L.underpin_retreat_trigger = "Die Leute bringen immer mein legal und urkundlich übertragenes Land durcheinander!"
 end
