@@ -1,4 +1,4 @@
-## Interface: 30403
+## Interface: 30404
 
 ## Title: LittleWigs [|cffeda55fWrath of the Lich King|r]
 ## Title-deDE: LittleWigs [|cffeda55fWrath of the Lich King|r]
