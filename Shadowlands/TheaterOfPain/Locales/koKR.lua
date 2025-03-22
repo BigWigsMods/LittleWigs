@@ -13,6 +13,7 @@ if L then
 	L.putrid_butcher = "부패의 도살자"
 	L.disgusting_refuse = "역겨운 폐물"
 	L.rancid_gasbag = "썩은 가스주머니"
+	L.shambling_arbalest = "휘청이는 석궁병"
 	L.dokigg_the_brutalizer = "야만전사 도키그"
 	L.nekthara_the_mangler = "분쇄자 네크타라"
 	L.heavin_the_breaker = "파괴자 헤빈"

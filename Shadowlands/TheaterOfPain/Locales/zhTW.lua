@@ -13,6 +13,7 @@ if L then
 	L.putrid_butcher = "腐臭屠夫"
 	L.disgusting_refuse = "噁心廢棄物"
 	L.rancid_gasbag = "腐臭肉囊"
+	--L.shambling_arbalest = "Shambling Arbalest"
 	L.dokigg_the_brutalizer = "『殘暴者』多奇格"
 	L.nekthara_the_mangler = "『割碎者』奈克薩拉"
 	L.heavin_the_breaker = "『毀壞者』黑文"

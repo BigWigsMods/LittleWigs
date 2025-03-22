@@ -13,6 +13,7 @@ if L then
 	L.putrid_butcher = "Boucher putride"
 	L.disgusting_refuse = "Rebut répugnant"
 	L.rancid_gasbag = "Sac à gaz rance"
+	L.shambling_arbalest = "Arbalestrier titubant"
 	L.dokigg_the_brutalizer = "Dokigg le Brutalisateur"
 	L.nekthara_the_mangler = "Nekthara le Mutilateur"
 	L.heavin_the_breaker = "Relent le Briseur"

@@ -13,6 +13,7 @@ if L then
 	L.putrid_butcher = "腥臭屠夫"
 	L.disgusting_refuse = "恶心的残躯"
 	L.rancid_gasbag = "腐臭的气囊怪"
+	L.shambling_arbalest = "蹒跚的弩手"
 	L.dokigg_the_brutalizer = "残暴者多基格"
 	L.nekthara_the_mangler = "裂伤者耐克萨拉"
 	L.heavin_the_breaker = "粉碎者赫文"

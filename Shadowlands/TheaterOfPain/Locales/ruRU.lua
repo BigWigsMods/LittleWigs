@@ -6,13 +6,14 @@ end
 
 L = BigWigs:NewBossLocale("Theater Of Pain Trash", "ruRU")
 if L then
-	--L.battlefield_ritualist = "Battlefield Ritualist"
+	L.battlefield_ritualist = "Боевой ритуалист"
 	L.raging_bloodhorn = "Яростный кроворог"
 	L.diseased_horror = "Зараженный ужас"
 	L.blighted_sludge_spewer = "Чумной изрыгатель слизи"
 	L.putrid_butcher = "Гнилостный мясник"
-	--L.disgusting_refuse = "Disgusting Refuse"
+	L.disgusting_refuse = "Отвратительные отходы"
 	L.rancid_gasbag = "Тошнотворный газовый мешок"
+	L.shambling_arbalest = "Шаркающий арбалетчик"
 	L.dokigg_the_brutalizer = "Докигг Изверг"
 	L.nekthara_the_mangler = "Нектара Изувер"
 	L.heavin_the_breaker = "Хивин Ломатель"

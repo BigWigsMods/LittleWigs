@@ -14,6 +14,7 @@ mod:RegisterEnableMob(
 	163089, -- Disgusting Refuse
 	169927, -- Putrid Butcher
 	163086, -- Rancid Gasbag
+	164510, -- Shambling Arbalest
 	167538, -- Dokigg the Brutalizer
 	162744, -- Nekthara the Mangler
 	167532, -- Heavin the Breaker
@@ -41,6 +42,7 @@ if L then
 	L.putrid_butcher = "Putrid Butcher"
 	L.disgusting_refuse = "Disgusting Refuse"
 	L.rancid_gasbag = "Rancid Gasbag"
+	L.shambling_arbalest = "Shambling Arbalest"
 	L.dokigg_the_brutalizer = "Dokigg the Brutalizer"
 	L.nekthara_the_mangler = "Nekthara the Mangler"
 	L.heavin_the_breaker = "Heavin the Breaker"
@@ -80,6 +82,8 @@ function mod:GetOptions()
 		-- Rancid Gasbag
 		{330614, "DISPEL", "NAMEPLATE"}, -- Vile Eruption
 		342103, -- Rancid Bile
+		-- Shambling Arbalest
+		{330532, "ME_ONLY", "NAMEPLATE"}, -- Jagged Quarrel
 		-- Dokigg the Brutalizer
 		{1215850, "NAMEPLATE"}, -- Earthcrusher
 		{331316, "TANK_HEALER", "NAMEPLATE"}, -- Savage Flurry
@@ -118,6 +122,7 @@ function mod:GetOptions()
 		[341969] = L.blighted_sludge_spewer,
 		[330586] = L.putrid_butcher,
 		[330614] = L.rancid_gasbag,
+		[330532] = L.shambling_arbalest,
 		[1215850] = L.dokigg_the_brutalizer,
 		[342135] = L.nekthara_the_mangler,
 		[333861] = L.harugia_the_bloodthirsty,
@@ -181,6 +186,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "RancidBileDamage", 342103)
 	self:Log("SPELL_PERIODIC_MISSED", "RancidBileDamage", 342103)
 	self:Death("RancidGasbagDeath", 163086)
+
+	-- Shambling Arbalest
+	self:RegisterEngageMob("ShamblingArbalestEngaged", 164510)
+	self:Log("SPELL_CAST_START", "JaggedQuarrel", 330532)
+	self:Log("SPELL_CAST_SUCCESS", "JaggedQuarrelSuccess", 330532)
+	self:Death("ShamblingArbalestDeath", 164510)
 
 	-- Chamber of Conquest
 	self:RegisterEngageMob("DokiggTheBrutalizerEngaged", 167538)
@@ -502,6 +513,32 @@ function mod:RancidGasbagDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
+-- Shambling Arbalest
+
+function mod:ShamblingArbalestEngaged(guid)
+	self:Nameplate(330532, 9.3, guid) -- Jagged Quarrel
+end
+
+do
+	local function printTarget(self, name)
+		self:TargetMessage(330532, "yellow", name)
+		self:PlaySound(330532, "alert", nil, name)
+	end
+
+	function mod:JaggedQuarrel(args)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+	end
+end
+
+function mod:JaggedQuarrelSuccess(args)
+	self:Nameplate(args.spellId, 22.0, args.sourceGUID)
+end
+
+function mod:ShamblingArbalestDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Chamber of Conquest
 
 function mod:DokiggTheBrutalizerEngaged(guid)
@@ -535,8 +572,8 @@ function mod:AdventNevermoreEngaged(guid)
 end
 
 function mod:RekTheHardenedEngaged(guid)
+	self:Nameplate(317605, 5.6, guid) -- Whirlwind
 	self:Nameplate(333845, 5.7, guid) -- Unbalancing Blow
-	self:Nameplate(317605, 6.0, guid) -- Whirlwind
 	-- and Swift Strikes, which doesn't matter
 end
 
