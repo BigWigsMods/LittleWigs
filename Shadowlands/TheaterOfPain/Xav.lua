@@ -74,6 +74,11 @@ function mod:OnEngage()
 	end
 end
 
+function mod:VerifyEnable(unit)
+	-- boss is targetable at the beginning of the wing
+	return UnitCanAttack("player", unit)
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
