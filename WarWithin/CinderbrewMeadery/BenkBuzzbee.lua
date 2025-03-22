@@ -17,6 +17,10 @@ function mod:GetOptions()
 		438025, -- Snack Time
 		439524, -- Fluttering Wing
 		{440134, "SAY_COUNTDOWN"}, -- Honey Marinade
+		-- Ravenous Cinderbee
+		{438971, "NAMEPLATE"}, -- Shredding Sting
+	}, {
+		[438971] = -28853, -- Ravenous Cinderbee
 	}
 end
 
@@ -28,6 +32,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "HoneyMarinadeRemoved", 440134)
 	self:Log("SPELL_PERIODIC_DAMAGE", "HoneyMarinadeDamage", 440141)
 	self:Log("SPELL_PERIODIC_MISSED", "HoneyMarinadeDamage", 440141)
+
+	-- Ravenous Cinderbee
+	self:RegisterEngageMob("RavenousCinderbeeEngaged", 218016)
+	self:Log("SPELL_CAST_START", "ShreddingSting", 438971)
+	self:Death("RavenousCinderbeeDeath", 218016)
 end
 
 function mod:OnEngage()
@@ -79,4 +88,26 @@ do
 			self:PlaySound(440134, "underyou")
 		end
 	end
+end
+
+-- Ravenous Cinderbee
+
+function mod:RavenousCinderbeeEngaged(guid)
+	self:Nameplate(438971, 8.1, guid) -- Shredding Sting
+end
+
+do
+	local prev = 0
+	function mod:ShreddingSting(args)
+		self:Nameplate(args.spellId, 6.1, args.sourceGUID)
+		if args.time - prev > 2.5 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "info")
+		end
+	end
+end
+
+function mod:RavenousCinderbeeDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
