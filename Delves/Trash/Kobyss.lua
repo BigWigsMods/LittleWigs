@@ -48,7 +48,7 @@ function mod:OnRegister()
 	self:SetSpellRename(445252, CL.explosion) -- Necrotic End (Explosion)
 	self:SetSpellRename(440622, CL.curse) -- Curse of the Depths (Curse)
 	self:SetSpellRename(470588, CL.curse) -- Curse of the Depths (Curse)
-	self:SetSpellRename(445407, CL.fixate) -- Bloodthirsty (Fixate)
+	self:SetSpellRename(445407, CL.extra:format(CL.fixate, CL.enrage)) -- Bloodthirsty (Fixate (Enrage))
 end
 
 local autotalk = mod:AddAutoTalkOption(false)
@@ -84,7 +84,7 @@ function mod:GetOptions()
 		[455932] = CL.frontal_cone, -- Defiling Breath (Frontal Cone)
 		[445252] = CL.explosion, -- Necrotic End (Explosion)
 		[440622] = CL.curse, -- Curse of the Depths (Curse)
-		[445407] = CL.fixate, -- Bloodthirsty (Fixate)
+		[445407] = CL.extra:format(CL.fixate, CL.enrage), -- Bloodthirsty (Fixate (Enrage))
 	}
 end
 
@@ -207,7 +207,7 @@ function mod:SerratedCleave(args)
 end
 
 function mod:Bloodthirsty(args)
-	self:TargetMessage(args.spellId, "red", args.destName, CL.fixate)
+	self:TargetMessage(args.spellId, "red", args.destName, CL.extra:format(CL.fixate, CL.enrage))
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
 	else
