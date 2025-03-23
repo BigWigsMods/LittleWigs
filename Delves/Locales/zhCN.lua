@@ -89,7 +89,7 @@ end
 
 L = BigWigs:NewBossLocale("Cult Leaders", "zhCN")
 if L then
-	L.cult_leaders = "教派首领"
+	L.cult_leaders = "教徒首领"
 	L.inquisitor_speaker = "审判代言人"
 	L.shadeguard_speaker = "幽卫代言人"
 end
