@@ -17,6 +17,7 @@ mod:RegisterEnableMob(
 	231906, -- Aerial Support Bot
 	231910, -- Masked Freelancer
 	231909, -- Underpaid Brute
+	234903, -- Pea-brained Hauler
 	231925, -- Drill Sergeant
 	231904, -- Punchy Thug
 	235489, -- Snorkel Goon
@@ -53,8 +54,13 @@ end
 function mod:OnRegister()
 	self.displayName = L.goblin_trash
 	self:SetSpellRename(474001, CL.enrage) -- Bathe in Blood (Enrage)
+	self:SetSpellRename(473972, CL.charge) -- Reckless Charge (Charge)
 	self:SetSpellRename(473541, CL.frontal_cone) -- Flurry of Punches (Frontal Cone)
+	self:SetSpellRename(473537, CL.knockback) -- Uppercut (Knockback)
 	self:SetSpellRename(472842, CL.fixate) -- Destroy (Fixate)
+
+	-- Obedient-ish Predator (231930)
+	self:SetSpellRename(473533, CL.enrage) -- Ferocious Howl (Enrage)
 end
 
 local autotalk = mod:AddAutoTalkOption(false)
@@ -62,19 +68,20 @@ function mod:GetOptions()
 	return {
 		autotalk,
 		-- Bopper Bot
-		473684, -- Cogstorm
+		{473684, "NAMEPLATE"}, -- Cogstorm
 		-- Aerial Support Bot
-		473550, -- Rocket Barrage
+		{473550, "NAMEPLATE"}, -- Rocket Barrage
 		-- Masked Freelancer
 		474001, -- Bathe in Blood
 		473995, -- Bloodbath
 		-- Underpaid Brute
-		473972, -- Reckless Charge
+		{473972, "NAMEPLATE"}, -- Reckless Charge
 		-- Drill Sergeant
 		474004, -- Drill Quake
 		1213656, -- Overtime
 		-- Punchy Thug
-		473541, -- Flurry of Punches
+		{473541, "NAMEPLATE"}, -- Flurry of Punches
+		{473537, "NAMEPLATE"}, -- Uppercut
 		-- Flinging Flicker
 		473696, -- Molotov Cocktail
 		-- Bomb Bot
@@ -90,7 +97,9 @@ function mod:GetOptions()
 		[472842] = L.bomb_bot,
 	},{
 		[474001] = CL.enrage, -- Bathe in Blood (Enrage)
+		[473972] = CL.charge, -- Reckless Charge (Charge)
 		[473541] = CL.frontal_cone, -- Flurry of Punches (Frontal Cone)
+		[473537] = CL.knockback, -- Uppercut (Knockback)
 		[472842] = CL.fixate, -- Destroy (Fixate)
 	}
 end
@@ -100,24 +109,37 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
 	-- Bopper Bot
+	self:RegisterEngageMob("BopperBotEngaged", 231908)
 	self:Log("SPELL_CAST_START", "Cogstorm", 473684)
+	self:Log("SPELL_CAST_SUCCESS", "CogstormSuccess", 473684)
+	self:Death("BopperBotDeath", 231908)
 
 	-- Aerial Support Bot
+	self:RegisterEngageMob("AerialSupportBotEngaged", 231906)
 	self:Log("SPELL_CAST_START", "RocketBarrage", 473550)
+	self:Log("SPELL_CAST_SUCCESS", "RocketBarrageSuccess", 473550)
+	self:Death("AerialSupportBotDeath", 231906)
 
 	-- Masked Freelancer
 	self:Log("SPELL_CAST_START", "BatheInBlood", 474001)
 	self:Log("SPELL_CAST_START", "Bloodbath", 473995)
 
 	-- Underpaid Brute
+	self:RegisterEngageMob("UnderpaidBruteEngaged", 231909, 234903) -- Underpaid Brute, Pea-brained Hauler
 	self:Log("SPELL_CAST_START", "RecklessCharge", 473972)
+	self:Death("UnderpaidBruteDeath", 231909)
 
 	-- Drill Sergeant
 	self:Log("SPELL_CAST_START", "DrillQuake", 474004)
 	self:Log("SPELL_CAST_START", "Overtime", 1213656)
 
 	-- Punchy Thug
+	self:RegisterEngageMob("PunchyThugEngaged", 231904)
 	self:Log("SPELL_CAST_START", "FlurryOfPunches", 473541)
+	self:Log("SPELL_CAST_SUCCESS", "FlurryOfPunchesSuccess", 473541)
+	self:Log("SPELL_CAST_START", "Uppercut", 473537)
+	self:Log("SPELL_CAST_SUCCESS", "UppercutSuccess", 473537)
+	self:Death("PunchyThugDeath", 231904)
 
 	-- Flinging Flicker
 	self:Log("SPELL_CAST_START", "MolotovCocktail", 473696)
@@ -173,6 +195,10 @@ end
 
 -- Bopper Bot
 
+function mod:BopperBotEngaged(guid)
+	self:Nameplate(473684, 12, guid) -- Cogstorm
+end
+
 function mod:Cogstorm(args)
 	local unit = self:UnitTokenFromGUID(args.sourceGUID)
 	if unit and UnitAffectingCombat(unit) then -- RP fights in Skittering Breach
@@ -181,11 +207,34 @@ function mod:Cogstorm(args)
 	end
 end
 
+function mod:CogstormSuccess(args)
+	local unit = self:UnitTokenFromGUID(args.sourceGUID)
+	if unit and UnitAffectingCombat(unit) then -- RP fights in Skittering Breach
+		self:Nameplate(args.spellId, 21.1, args.sourceGUID)
+	end
+end
+
+function mod:BopperBotDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Aerial Support Bot
+
+function mod:AerialSupportBotEngaged(guid)
+	self:Nameplate(473550, 7.3, guid) -- Rocket Barrage
+end
 
 function mod:RocketBarrage(args)
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:RocketBarrageSuccess(args)
+	self:Nameplate(args.spellId, 18.7, args.sourceGUID)
+end
+
+function mod:AerialSupportBotDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Masked Freelancer
@@ -202,9 +251,18 @@ end
 
 -- Underpaid Brute
 
+function mod:UnderpaidBruteEngaged(guid)
+	self:Nameplate(473972, 31.2, guid) -- Reckless Charge
+end
+
 function mod:RecklessCharge(args)
-	self:Message(args.spellId, "yellow")
+	self:Nameplate(args.spellId, 36.5, args.sourceGUID)
+	self:Message(args.spellId, "yellow", CL.charge)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:UnderpaidBruteDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Drill Sergeant
@@ -227,6 +285,11 @@ end
 
 -- Punchy Thug
 
+function mod:PunchyThugEngaged(guid)
+	self:Nameplate(473541, 3.6, guid) -- Flurry of Punches
+	self:Nameplate(473537, 14.5, guid) -- Uppercut
+end
+
 do
 	local prev = 0
 	function mod:FlurryOfPunches(args)
@@ -236,6 +299,24 @@ do
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
+end
+
+function mod:FlurryOfPunchesSuccess(args)
+	self:Nameplate(args.spellId, 10.8, args.sourceGUID)
+end
+
+function mod:Uppercut(args)
+	self:Message(args.spellId, "orange", CL.knockback)
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:UppercutSuccess(args)
+	--self:Nameplate(args.spellId, ?, args.sourceGUID)
+	self:StopNameplate(args.spellId, args.sourceGUID)
+end
+
+function mod:PunchyThugDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Flinging Flicker
