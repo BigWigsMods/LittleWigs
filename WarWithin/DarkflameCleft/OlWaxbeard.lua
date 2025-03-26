@@ -56,7 +56,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "LuringCandleflameApplied", 423693)
 
 	-- Mythic
-	self:RegisterEvent("CHAT_MSG_RAID_WARNING") -- Underhanded Track-tics
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Underhanded Track-tics
+	self:RegisterEvent("CHAT_MSG_RAID_WARNING", "CHAT_MSG_RAID_BOSS_EMOTE") -- XXX remove compat in 11.1.5
 	self:Log("SPELL_CAST_START", "UnderhandedTracktics", 429093)
 	self:Death("DynamiteMineCartDeath", 213751)
 end
@@ -120,7 +121,7 @@ end
 
 -- Mythic
 
-function mod:CHAT_MSG_RAID_WARNING(_, msg)
+function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	-- |TInterface\\ICONS\\Ability_Foundryraid_TrainDeath.BLP:20|t Waxbeard snickers as he resorts to |cFFFF0000|Hspell:428268|h[Underhanded Track-tics]|h|r!#Ol' Waxbeard
 	if msg:find("spell:428268", nil, true) then -- Underhanded Track-tics
 		self:StopBar(CL.count:format(L.dynamite_mine_cart, dynamiteMineCartCount))
