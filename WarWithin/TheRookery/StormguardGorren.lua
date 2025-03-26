@@ -53,11 +53,11 @@ function mod:OnEngage()
 	chaoticCorruptionCount = 1
 	darkGravityCount = 1
 	crushRealityCount = 1
-	nextChaoticCorruption = t + 5.8
-	self:CDBar(424737, 5.8, CL.count:format(self:SpellName(424737), chaoticCorruptionCount)) -- Chaotic Corruption
-	nextCrushReality = t + 9.5
-	self:CDBar(424958, 9.5, CL.count:format(self:SpellName(424958), crushRealityCount)) -- Crush Reality
-	self:CDBar(425048, 30.1, CL.count:format(self:SpellName(425048), darkGravityCount)) -- Dark Gravity
+	nextChaoticCorruption = t + 5.1
+	self:CDBar(424737, 5.1, CL.count:format(self:SpellName(424737), chaoticCorruptionCount)) -- Chaotic Corruption
+	nextCrushReality = t + 10.0
+	self:CDBar(424958, 10.0, CL.count:format(self:SpellName(424958), crushRealityCount)) -- Crush Reality
+	self:CDBar(425048, 17.1, CL.count:format(self:SpellName(425048), darkGravityCount)) -- Dark Gravity
 end
 
 --------------------------------------------------------------------------------
@@ -95,15 +95,15 @@ function mod:DarkGravity(args)
 	self:StopBar(CL.count:format(args.spellName, darkGravityCount))
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, darkGravityCount))
 	darkGravityCount = darkGravityCount + 1
-	self:CDBar(args.spellId, 32.4, CL.count:format(args.spellName, darkGravityCount))
-	-- minimum 8.5s until Chaotic Corruption or Crush Reality
-	if nextChaoticCorruption - t < 8.5 then
-		nextChaoticCorruption = t + 8.5
-		self:CDBar(424737, {8.5, 32.7}, CL.count:format(self:SpellName(424737), chaoticCorruptionCount)) -- Chaotic Corruption
+	self:CDBar(args.spellId, 42.4, CL.count:format(args.spellName, darkGravityCount))
+	-- minimum 6.07s until Chaotic Corruption or Crush Reality
+	if nextChaoticCorruption - t < 6.07 then
+		nextChaoticCorruption = t + 6.07
+		self:CDBar(424737, {6.07, 32.7}, CL.count:format(self:SpellName(424737), chaoticCorruptionCount)) -- Chaotic Corruption
 	end
-	if nextCrushReality - t < 8.5 then
-		nextCrushReality = t + 8.5
-		self:CDBar(424958, {8.5, 20.6}, CL.count:format(self:SpellName(424958), crushRealityCount)) -- Crush Reality
+	if nextCrushReality - t < 6.07 then
+		nextCrushReality = t + 6.07
+		self:CDBar(424958, {6.07, 20.6}, CL.count:format(self:SpellName(424958), crushRealityCount)) -- Crush Reality
 	end
 	self:PlaySound(args.spellId, "long")
 end
