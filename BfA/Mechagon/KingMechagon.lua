@@ -158,7 +158,8 @@ function mod:AerialUnitR21XDeath(args)
 	self:StopBar(291865) -- Recalibrate
 	self:StopBar(291928) -- Mega-Zap (Stage 1)
 	self:StopBar(291613) -- Take Off
-	self:SetStage(2)
+	-- don't :SetStage(2) here because a Recalibrate which started in Stage 1 can finish after this happens
+	-- and we don't want to schedule a Stage 2 Recalibrate timer when that happens.
 	self:Message("stages", "cyan", CL.stage:format(2), false)
 	self:PlaySound("stages", "long")
 end
@@ -170,6 +171,7 @@ do
 	function mod:UNIT_SPELLCAST_SUCCEEDED(event, _, castGUID, spellId)
 		if spellId == 296323 then -- Activate Omega Buster
 			self:UnregisterUnitEvent(event, "boss1", "boss2", "boss3")
+			self:SetStage(2)
 			self:CDBar(291865, 6.75) -- Recalibrate
 			self:CDBar(292264, 17.7) -- Mega-Zap (Stage 2)
 			self:CDBar(283551, 36.9) -- Magneto Arm
