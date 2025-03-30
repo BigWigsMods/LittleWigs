@@ -32,6 +32,7 @@ function mod:GetOptions()
 		454213, -- Muck Charge
 		470582, -- Swamp Bolt
 		453897, -- Sporesong
+		427710, -- Sporesplosion
 	},nil,{
 		[454213] = CL.charge, -- Muck Charge (Charge)
 	}
@@ -41,6 +42,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MuckCharge", 454213)
 	self:Log("SPELL_CAST_START", "SwampBolt", 470582)
 	self:Log("SPELL_CAST_START", "Sporesong", 453897)
+
+	-- Sporbit
+	self:Log("SPELL_CAST_START", "Sporesplosion", 427710)
 end
 
 function mod:OnEngage()
@@ -69,4 +73,17 @@ function mod:Sporesong(args)
 	self:Message(args.spellId, "yellow")
 	self:CDBar(args.spellId, 27.9)
 	self:PlaySound(args.spellId, "long")
+end
+
+-- Sporbit
+
+do
+	local prev = 0
+	function mod:Sporesplosion(args)
+		if args.time - prev > 2.5 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
