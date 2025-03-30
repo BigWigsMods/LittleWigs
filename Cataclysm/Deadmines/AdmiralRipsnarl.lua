@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Admiral Ripsnarl", 36, 92)
 if not mod then return end
 mod:RegisterEnableMob(47626) -- Admiral Ripsnarl
-mod:SetEncounterID(mod:Retail() and 2979 or 1062)
+mod:SetEncounterID(mod:Classic() and 1062 or {2974, 2979}) -- Classic, Retail Normal, Retail Heroic
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
@@ -33,14 +33,8 @@ end
 
 function mod:OnBossEnable()
 	if self:Retail() then
-		if self:Normal() then
-			self:SetEncounterID(2974)
-		else -- Heroic
-			self:SetEncounterID(2979)
-		end
-		-- no ENCOUNTER_END in Retail since 11.0.5
+		-- no ENCOUNTER_END on boss reset in Retail since 11.0.5
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-		self:Death("Win", 47626) -- Admiral Ripsnarl
 	end
 
 	-- Admiral Ripsnarl
