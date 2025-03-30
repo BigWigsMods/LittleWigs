@@ -38,8 +38,12 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	if self:Difficulty() == 232 then -- Dastardly Duos
+		-- no encounter events in Dastardly Duos
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 17796) -- Mekgineer Steamrigger
+	end
 	self:Log("SPELL_AURA_APPLIED", "SuperShrinkRay", 31485)
-
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL") -- no locale-independent events
 	if self:Classic() then
 		self:RegisterEvent("UNIT_HEALTH")
