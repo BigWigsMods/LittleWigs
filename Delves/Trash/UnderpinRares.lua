@@ -470,7 +470,7 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "orange")
+		self:Message(args.spellId, "yellow")
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		timer = self:ScheduleTimer("UnderpinsAdoringFanDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
