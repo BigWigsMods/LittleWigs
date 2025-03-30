@@ -90,7 +90,7 @@ function mod:ParanoidMind(args)
 	else -- Normal, Heroic
 		self:CDBar(args.spellId, 20.6)
 	end
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "warning")
 end
 
 do

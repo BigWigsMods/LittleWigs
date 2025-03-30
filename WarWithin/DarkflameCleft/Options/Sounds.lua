@@ -21,7 +21,7 @@ BigWigs:AddSounds("The Candle King", {
 	[421067] = "underyou",
 	[421653] = "info",
 	[422648] = {"alarm","warning"},
-	[426145] = "alert",
+	[426145] = "warning",
 })
 
 BigWigs:AddSounds("The Darkness", {
