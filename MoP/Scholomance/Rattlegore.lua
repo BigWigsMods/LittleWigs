@@ -24,6 +24,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	if self:Difficulty() == 232 then -- Dastardly Duos
+		-- no encounter events in Dastardly Duos
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 59153) -- Rattlegore
+	end
 	self:Log("SPELL_AURA_APPLIED_DOSE", "RustingApplied", 113765)
 	self:Log("SPELL_CAST_START", "BoneSpike", 113999)
 	self:Log("SPELL_AURA_APPLIED", "BoneArmorApplied", 113996)
