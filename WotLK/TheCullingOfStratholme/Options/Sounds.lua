@@ -6,6 +6,7 @@ BigWigs:AddSounds("Salramm the Fleshcrafter", {
 })
 
 BigWigs:AddSounds("Chrono-Lord Epoch", {
+	[52772] = "alert",
 })
 
 BigWigs:AddSounds("Mal'Ganis", {

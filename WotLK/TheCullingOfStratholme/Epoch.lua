@@ -25,14 +25,20 @@ end
 function mod:GetOptions()
 	return {
 		"warmup",
-		52772, -- Curse of Exertion
+		{52772, "DISPEL"}, -- Curse of Exertion
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
-	self:Log("SPELL_AURA_APPLIED", "CurseOfExertion", 52772)
-	self:Log("SPELL_AURA_REMOVED", "CurseOfExertionRemoved", 52772)
+	if self:Difficulty() == 232 then -- Dastardly Duos
+		-- no encounter events in Dastardly Duos
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 26532) -- Chrono-Lord Epoch
+	else
+		self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
+	end
+	self:Log("SPELL_CAST_SUCCESS", "CurseOfExertion", 52772)
+	self:Log("SPELL_AURA_APPLIED", "CurseOfExertionApplied", 52772)
 end
 
 -------------------------------------------------------------------------------
@@ -47,10 +53,12 @@ function mod:Warmup(event, msg)
 end
 
 function mod:CurseOfExertion(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
-	self:Bar(args.spellId, 10, args.destName)
+	self:CDBar(args.spellId, 12.1)
 end
 
-function mod:CurseOfExertionRemoved(args)
-	self:StopBar(args.spellName, args.destName)
+function mod:CurseOfExertionApplied(args)
+	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
+	end
 end
