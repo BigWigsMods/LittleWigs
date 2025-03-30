@@ -28,8 +28,14 @@ end
 
 function mod:OnBossEnable()
 	if self:Retail() then
-		-- no ENCOUNTER_END on a win in Retail since 11.0.5
-		self:Death("Win", 47162) -- Glubtok
+		if self:Difficulty() == 232 then -- Dastardly Duos
+			-- no encounter events in Dastardly Duos
+			self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+			self:Death("Win", 47162) -- Glubtok
+		else
+			-- no ENCOUNTER_END on a win in Retail since 11.0.5
+			self:Death("Win", 47162) -- Glubtok
+		end
 	end
 
 	-- Stage One: Fists of Flame and Frost
