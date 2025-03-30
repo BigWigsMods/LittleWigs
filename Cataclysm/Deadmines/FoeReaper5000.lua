@@ -23,8 +23,14 @@ end
 
 function mod:OnBossEnable()
 	if self:Retail() then
-		-- no ENCOUNTER_END on boss reset in Retail since 11.0.5
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		if self:Difficulty() == 232 then -- Dastardly Duos
+			-- no encounter events in Dastardly Duos
+			self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+			self:Death("Win", 43778) -- Foe Reaper 5000
+		else
+			-- no ENCOUNTER_END on boss reset in Retail since 11.0.5
+			self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		end
 	end
 	self:Log("SPELL_CAST_START", "Overdrive", 88481)
 	self:Log("SPELL_CAST_START", "Harvest", 88495)
