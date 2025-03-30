@@ -339,9 +339,9 @@ do
 	local prev = 0
 	function mod:Destroy(args)
 		self:TargetMessage(args.spellId, "yellow", args.destName, CL.fixate)
-		if args.time - prev > 2 then
+		if self:Me(args.destGUID) and args.time - prev > 2 then
 			prev = args.time
-			self:PlaySound(args.spellId, "info", nil, args.destName)
+			self:PlaySound(args.spellId, "info")
 		end
 	end
 end
