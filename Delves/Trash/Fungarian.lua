@@ -101,7 +101,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
 	-- Sporbit
-	self:Log("SPELL_CAST_START", "Sporespolosion", 1217589)
+	self:Log("SPELL_CAST_START", "Sporesplosion", 1217589)
 
 	-- Fungal Speartender
 	self:Log("SPELL_CAST_START", "BattleRoar", 414944)
@@ -189,7 +189,7 @@ end
 
 do
 	local prev = 0
-	function mod:Sporespolosion(args)
+	function mod:Sporesplosion(args)
 		if args.time - prev > 2.5 then
 			prev = args.time
 			self:Message(args.spellId, "orange")
