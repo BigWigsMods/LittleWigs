@@ -317,10 +317,16 @@ function mod:KoboldTaskworkerEngaged(guid)
 	self:Nameplate(426883, 3.2, guid) -- Bonk!
 end
 
-function mod:Bonk(args)
-	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:Bonk(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:BonkSuccess(args)
