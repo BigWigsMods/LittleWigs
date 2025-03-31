@@ -51,6 +51,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "ExplosiveLeapApplied", 291972)
 	self:Log("SPELL_CAST_SUCCESS", "BlazingChomp", 294929)
 	self:Log("SPELL_AURA_APPLIED", "BlazingChompApplied", 294929)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "BlazingChompApplied", 294929)
 end
 
 function mod:OnEngage()
