@@ -87,6 +87,12 @@ if L then
 	L.reformed_fury = "재형성된 격노"
 end
 
+L = BigWigs:NewBossLocale("Speaker Wicke", "koKR")
+if L then
+	--L.speaker_wicke = "Speaker Wicke"
+	L.reformed_fury = "재형성된 격노"
+end
+
 L = BigWigs:NewBossLocale("Cult Leaders", "koKR")
 if L then
 	L.cult_leaders = "이교 우두머리"

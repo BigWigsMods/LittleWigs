@@ -2,6 +2,7 @@
 ..\FrameXML\UI.xsd">
 
 <Script file="SpeakerDavenruth.lua"/>
+<Script file="SpeakerWicke.lua"/>
 <Script file="SpeakerHalven.lua"/>
 <Script file="CultLeaders.lua"/>
 
