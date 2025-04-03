@@ -89,7 +89,7 @@ end
 
 L = BigWigs:NewBossLocale("Speaker Wicke", "zhCN")
 if L then
-	--L.speaker_wicke = "Speaker Wicke"
+	L.speaker_wicke = "代言人威克"
 	L.reformed_fury = "重塑之怒"
 end
 
