@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Goblin Delve Trash", {2664, 2680, 2681, 2684, 2685, 2689, 2690, 2826}) -- Fungal Folly, Earthcrawl Mines, Kriegval's Rest, The Dread Pit, Skittering Breach, Tek-Rethan Abyss, The Underkeep, Sidestreet Sluice
+local mod, CL = BigWigs:NewBoss("Goblin Delve Trash", {2664, 2680, 2681, 2684, 2685, 2686, 2689, 2690, 2826}) -- Fungal Folly, Earthcrawl Mines, Kriegval's Rest, The Dread Pit, Skittering Breach, Nightfall Sanctum, Tek-Rethan Abyss, The Underkeep, Sidestreet Sluice
 if not mod then return end
 mod:RegisterEnableMob(
 	234212, -- Exterminator Janx (Earthcrawl Mines gossip NPC)
@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 	234530, -- Balga Wicksfix (Kriegval's Rest gossip NPC)
 	235090, -- Prospera Cogwail (The Dread Pit gossip NPC)
 	235269, -- Lamplighter Kaerter (Skittering Breach gossip NPC)
+	234012, -- Nimsi Loosefire (Nightfall Sanctum gossip NPC)
 	235439, -- Pamsy (Tek-Rethan Abyss gossip NPC)
 	234680, -- Madam Goya (The Underkeep gossip NPC)
 	231908, -- Bopper Bot
@@ -183,6 +184,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(131427) then -- Skittering Breach, start delve (Lamplighter Kaerter)
 			-- 131427:|cFF0000FF(Delve)|r I'll eliminate any dangers here. Then re-seal the relics for everyone's safety.
 			self:SelectGossipID(131427)
+		elseif self:GetGossipID(125516) then -- Nightfall Sanctum, start delve (Nimsi Loosefire)
+			-- 125516:|cFF0000FF(Delve)|r I'll recover your weapons.
+			self:SelectGossipID(125516)
 		elseif self:GetGossipID(131474) then -- Tek-Rethan Abyss, start delve (Pamsy)
 			-- 131474:|cFF0000FF(Delve)|r I'll rescue your crew and put a stop to Gallywix's operation here.
 			self:SelectGossipID(131474)
