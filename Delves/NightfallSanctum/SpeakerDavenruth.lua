@@ -2,13 +2,13 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Reformed Fury", 2686)
+local mod, CL = BigWigs:NewBoss("Speaker Davenruth", 2686)
 if not mod then return end
 mod:RegisterEnableMob(
 	218022, -- Speaker Davenruth
 	218034 -- Reformed Fury
 )
-mod:SetEncounterID(2998)
+mod:SetEncounterID(2998) -- Reformed Fury
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
 mod:SetStage(1)
@@ -29,7 +29,7 @@ end
 --
 
 function mod:OnRegister()
-	self.displayName = L.reformed_fury
+	self.displayName = L.speaker_davenruth
 	self:SetSpellRename(443837, CL.frontal_cone) -- Shadow Sweep (Frontal Cone)
 	self:SetSpellRename(444408, CL.dodge) -- Speaker's Wrath (Dodge)
 	self:SetSpellRename(434281, CL.explosion) -- Echo of Renilash (Explosion)

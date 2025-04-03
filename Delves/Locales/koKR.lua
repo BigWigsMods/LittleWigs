@@ -81,7 +81,7 @@ if L then
 	L.speaker_halven = "대변자 할벤"
 end
 
-L = BigWigs:NewBossLocale("Reformed Fury", "koKR")
+L = BigWigs:NewBossLocale("Speaker Davenruth", "koKR")
 if L then
 	L.speaker_davenruth = "대변자 데이븐루스"
 	L.reformed_fury = "재형성된 격노"

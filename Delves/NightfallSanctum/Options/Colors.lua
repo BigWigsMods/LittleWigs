@@ -1,5 +1,5 @@
 
-BigWigs:AddColors("Reformed Fury", {
+BigWigs:AddColors("Speaker Davenruth", {
 	[434281] = "orange",
 	[440205] = "yellow",
 	[443482] = "red",

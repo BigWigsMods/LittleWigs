@@ -1,5 +1,5 @@
 
-BigWigs:AddSounds("Reformed Fury", {
+BigWigs:AddSounds("Speaker Davenruth", {
 	[434281] = "alarm",
 	[440205] = "alert",
 	[443482] = "alert",
