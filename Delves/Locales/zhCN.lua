@@ -87,6 +87,12 @@ if L then
 	L.reformed_fury = "重塑之怒"
 end
 
+L = BigWigs:NewBossLocale("Speaker Wicke", "zhCN")
+if L then
+	--L.speaker_wicke = "Speaker Wicke"
+	L.reformed_fury = "重塑之怒"
+end
+
 L = BigWigs:NewBossLocale("Cult Leaders", "zhCN")
 if L then
 	L.cult_leaders = "教徒首领"
