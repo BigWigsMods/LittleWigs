@@ -893,7 +893,7 @@ end
 
 function mod:BoneSpikes(args)
 	self:Message(args.spellId, "yellow")
-	self:Nameplate(args.spellId, 33.9, args.sourceGUID)
+	self:Nameplate(args.spellId, 32.7, args.sourceGUID)
 	self:PlaySound(args.spellId, "long")
 end
 
