@@ -739,7 +739,7 @@ do
 		end
 		self:Message(args.spellId, "yellow", CL.bombs)
 		self:CDBar(args.spellId, 25.1, CL.bombs)
-		self:Nameplate(args.spellId, 20.1, args.sourceGUID)
+		self:Nameplate(args.spellId, 25.1, args.sourceGUID)
 		timer = self:ScheduleTimer("UnderpinRetreat", 30)
 		self:PlaySound(args.spellId, "info")
 	end
