@@ -44,7 +44,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TearItDown", 1213785)
 	self:Log("SPELL_CAST_START", "UnansweredCall", 1213700)
 	self:Log("SPELL_AURA_APPLIED", "UnansweredCallApplied", 1213838)
-	self:Log("SPELL_AURA_APPLIED", "UnansweredCallRemoved", 1213838)
+	self:Log("SPELL_AURA_REMOVED", "UnansweredCallRemoved", 1213838)
 end
 
 function mod:OnEngage()
@@ -102,7 +102,7 @@ do
 
 	function mod:UnansweredCallApplied(args)
 		if self:Me(args.destGUID) then
-			self:SayCountdown(args.spellId, 8)
+			self:SayCountdown(1213700, 8)
 			if not prev or prev ~= args.destGUID then
 				self:PersonalMessage(1213700, nil, CL.fixate)
 				self:Say(1213700, CL.fixate, nil, "Fixate")
