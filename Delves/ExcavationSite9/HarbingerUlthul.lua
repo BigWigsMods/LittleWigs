@@ -25,6 +25,8 @@ end
 function mod:OnRegister()
 	self.displayName = L.harbinger_ulthul
 	self:SetSpellRename(1213776, CL.curse) -- Hopeless Curse (Curse)
+	self:SetSpellRename(1213700, CL.fixate) -- Unanswered Call (Fixate)
+	self:SetSpellRename(1213838, CL.fixate) -- Unanswered Call (Fixate)
 end
 
 function mod:GetOptions()
@@ -80,43 +82,28 @@ function mod:TearItDown(args)
 	self:PlaySound(args.spellId, "info")
 end
 
-do
-	local prev = nil
-	local function printTarget(self, name, guid, elapsed)
-		prev = guid
-		self:TargetMessage(1213700, "red", name, CL.fixate)
-		if self:Me(guid) then
-			self:Say(1213700, CL.fixate, nil, "Fixate")
-			self:CastBar(1213700, 5-elapsed, CL.fixate)
-			self:PlaySound(1213700, "warning", nil, name)
-		else
-			self:PlaySound(1213700, "alarm", nil, name)
-		end
-	end
+function mod:UnansweredCall(args)
+	self:Message(1213700, "red", CL.custom_sec:format(CL.fixate, 5))
+	self:CDBar(args.spellId, 33.9, CL.fixate)
+	self:CastBar(1213700, 5, CL.fixate)
+	self:PlaySound(1213700, "warning")
+end
 
-	function mod:UnansweredCall(args)
-		prev = nil
-		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
-		self:CDBar(args.spellId, 33.9, CL.fixate)
+function mod:UnansweredCallApplied(args)
+	self:TargetMessage(1213700, "red", args.destName, CL.fixate)
+	self:CastBar(1213700, 8, CL.fixate)
+	if self:Me(args.destGUID) then
+		self:Say(1213700, CL.fixate, nil, "Fixate")
+		self:SayCountdown(1213700, 8)
+		self:PlaySound(1213700, "warning", nil, args.destName)
+	else
+		self:PlaySound(1213700, "alarm", nil, args.destName)
 	end
+end
 
-	function mod:UnansweredCallApplied(args)
-		if self:Me(args.destGUID) then
-			self:SayCountdown(1213700, 8)
-			if not prev or prev ~= args.destGUID then
-				self:PersonalMessage(1213700, nil, CL.fixate)
-				self:Say(1213700, CL.fixate, nil, "Fixate")
-				self:PlaySound(1213700, "warning", nil, args.destGUID)
-			end
-		end
-		self:CastBar(1213700, 8, CL.fixate)
-	end
-
-	function mod:UnansweredCallRemoved(args)
-		prev = nil
-		self:StopCastBar(CL.fixate)
-		if self:Me(args.destGUID) then
-			self:CancelSayCountdown(1213700)
-		end
+function mod:UnansweredCallRemoved(args)
+	self:StopCastBar(CL.fixate)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(1213700)
 	end
 end
