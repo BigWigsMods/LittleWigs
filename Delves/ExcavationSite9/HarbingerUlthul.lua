@@ -31,9 +31,10 @@ function mod:GetOptions()
 	return {
 		{1213776, "DISPEL"}, -- Hopeless Curse
 		1213785, -- Tear It Down
-		1213700, -- Unanswered Call
+		{1213700, "SAY", "SAY_COUNTDOWN", "ME_ONLY_EMPHASIZE", "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Unanswered Call
 	},nil,{
 		[1213776] = CL.curse, -- Hopeless Curse (Curse)
+		[1213700] = CL.fixate, -- Unanswered Call (Fixate)
 	}
 end
 
@@ -43,12 +44,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TearItDown", 1213785)
 	self:Log("SPELL_CAST_START", "UnansweredCall", 1213700)
 	self:Log("SPELL_AURA_APPLIED", "UnansweredCallApplied", 1213838)
+	self:Log("SPELL_AURA_APPLIED", "UnansweredCallRemoved", 1213838)
 end
 
 function mod:OnEngage()
 	self:CDBar(1213776, 4.7, CL.curse) -- Hopeless Curse
 	self:CDBar(1213785, 9.5) -- Tear It Down
-	self:CDBar(1213700, 30.4) -- Unanswered Call
+	self:CDBar(1213700, 30.4, CL.fixate) -- Unanswered Call
 end
 
 --------------------------------------------------------------------------------
@@ -78,15 +80,43 @@ function mod:TearItDown(args)
 	self:PlaySound(args.spellId, "info")
 end
 
-function mod:UnansweredCall(args)
-	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 33.9)
-	self:PlaySound(args.spellId, "alarm")
-end
+do
+	local prev = nil
+	local function printTarget(self, name, guid, elapsed)
+		prev = guid
+		self:TargetMessage(1213700, "red", name, CL.fixate)
+		if self:Me(guid) then
+			self:Say(1213700, CL.fixate, nil, "Fixate")
+			self:CastBar(1213700, 5-elapsed, CL.fixate)
+			self:PlaySound(1213700, "warning", nil, name)
+		else
+			self:PlaySound(1213700, "alarm", nil, name)
+		end
+	end
 
-function mod:UnansweredCallApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(1213700)
-		self:PlaySound(1213700, "warning")
+	function mod:UnansweredCall(args)
+		prev = nil
+		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
+		self:CDBar(args.spellId, 33.9, CL.fixate)
+	end
+
+	function mod:UnansweredCallApplied(args)
+		if self:Me(args.destGUID) then
+			self:SayCountdown(args.spellId, 8)
+			if not prev or prev ~= args.destGUID then
+				self:PersonalMessage(1213700, nil, CL.fixate)
+				self:Say(1213700, CL.fixate, nil, "Fixate")
+				self:PlaySound(1213700, "warning", nil, args.destGUID)
+			end
+		end
+		self:CastBar(1213700, 8, CL.fixate)
+	end
+
+	function mod:UnansweredCallRemoved(args)
+		prev = nil
+		self:StopCastBar(CL.fixate)
+		if self:Me(args.destGUID) then
+			self:CancelSayCountdown(1213700)
+		end
 	end
 end
