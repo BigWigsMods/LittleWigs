@@ -20,8 +20,8 @@ if L then
 	L.risen_mage = "復活的法師"
 	L.sir_braunpyke = "布朗派克爵士"
 
-	--L.baron_braunpyke_warmup_trigger = "They've served their purpose. Baron, demonstrate your worth."
-	--L.custom_on_autotalk_desc = "|cFFFF0000Requires Priest or Paladin.|r Automatically select the NPC dialog option that grants you the 'Blessing of the Sacred Flame' aura."
+	L.baron_braunpyke_warmup_trigger = "他們盡了自己的職責。男爵，證明你的價值吧。"
+	L.custom_on_autotalk_desc = "|cFFFF0000需要牧師和聖騎士。|r 自動和NPC對話，該選項你會獲得 '聖焰的祝福'。"
 end
 
 L = BigWigs:NewBossLocale("Baron Braunpyke", "zhTW")
