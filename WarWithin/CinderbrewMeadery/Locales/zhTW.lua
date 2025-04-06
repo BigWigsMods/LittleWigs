@@ -16,8 +16,8 @@ if L then
 	L.royal_jelly_purveyor = "絕佳的蜂王乳供應商"
 	L.yes_man = "應聲蟲"
 
-	--L.custom_on_cooking_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Alchemy or Cooking.|r Automatically select the NPC dialog option that grants you 'Sticky Honey' which you can use by clicking your extra action button.\n\n|T451169:16|tSticky Honey\n{438997}"
-	--L.custom_on_flamethrower_autotalk_desc = "|cFFFF0000Requires Gnome, Goblin, Mechagnome, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you 'Flame On' which you can use by clicking your extra action button.\n\n|T135789:16|tFlame On\n{439616}"
+	L.custom_on_cooking_autotalk_desc = "|cFFFF0000需要至少25點卡茲阿爾加鍊金術或烹飪技能。|r 自動和NPC對話，該選項你會獲得 '黏稠蜂蜜' 使用時需要點擊額外快捷鍵。\n\n|T451169:16|t黏稠蜂蜜\n{438997}"
+	L.custom_on_flamethrower_autotalk_desc = "|cFFFF0000需要地精、哥布林、機械地精或至少25點卡茲阿爾加工程學技能。|r 自動和NPC對話，該選項你會獲得 '燃燒吧！' 使用時需要點擊額外快捷鍵。\n\n|T135789:16|t燃燒吧！\n{439616}"
 end
 
 L = BigWigs:NewBossLocale("Brew Master Aldryr", "zhTW")
