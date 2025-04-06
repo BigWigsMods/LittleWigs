@@ -51,4 +51,7 @@ end
 L = BigWigs:NewBossLocale("Rexxar", "koKR")
 if L then
 	L.rexxar = "렉사르"
+	--L.pet_trigger_1 = "Come, my pets! Serve your master!"
+	--L.pet_trigger_2 = "My beasts will devour you!"
+	--L.pet_trigger_3 = "Hunt them down!"
 end
