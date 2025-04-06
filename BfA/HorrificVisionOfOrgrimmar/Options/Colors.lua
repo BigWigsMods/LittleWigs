@@ -7,7 +7,7 @@ BigWigs:AddColors("Thrall", {
 })
 
 BigWigs:AddColors("Oblivion Elemental", {
-	[297574] = "yellow",
+	[297574] = {"blue","green","yellow"},
 })
 
 BigWigs:AddColors("Inquisitor Gnshal", {

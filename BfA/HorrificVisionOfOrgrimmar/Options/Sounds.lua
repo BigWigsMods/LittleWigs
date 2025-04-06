@@ -7,7 +7,7 @@ BigWigs:AddSounds("Thrall", {
 })
 
 BigWigs:AddSounds("Oblivion Elemental", {
-	[297574] = "info",
+	[297574] = {"alarm","info"},
 })
 
 BigWigs:AddSounds("Inquisitor Gnshal", {
