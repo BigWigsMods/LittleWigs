@@ -12,7 +12,7 @@ BigWigs:AddSounds("Oblivion Elemental", {
 
 BigWigs:AddSounds("Inquisitor Gnshal", {
 	[304976] = "warning",
-	[307863] = "alarm",
+	[307863] = "long",
 })
 
 BigWigs:AddSounds("Vez'okk the Lightless", {

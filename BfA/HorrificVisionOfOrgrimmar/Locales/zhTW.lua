@@ -40,7 +40,7 @@ end
 
 L = BigWigs:NewBossLocale("Inquisitor Gnshal", "zhTW")
 if L then
-	-- L.inquisitor_gnshal = "Inquisitor Gnshal"
+	L.inquisitor_gnshal = "審判官恩夏爾"
 end
 
 L = BigWigs:NewBossLocale("Vez'okk the Lightless", "zhTW")

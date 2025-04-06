@@ -12,7 +12,7 @@ BigWigs:AddColors("Oblivion Elemental", {
 
 BigWigs:AddColors("Inquisitor Gnshal", {
 	[304976] = "red",
-	[307863] = {"blue","orange"},
+	[307863] = {"blue","yellow"},
 })
 
 BigWigs:AddColors("Vez'okk the Lightless", {
