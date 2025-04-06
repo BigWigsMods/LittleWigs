@@ -2,21 +2,31 @@ local L = BigWigs:NewBossLocale("Horrific Vision of Stormwind Trash", "itIT")
 if not L then return end
 if L then
 	L.crawling_corruption = "Corruzione Strisciante"
-	L.fallen_heartpiercer = "Perforacuori Caduto"
 	L.enthralled_footman = "Coscritto Ammaliato"
+	L.fallen_voidspeaker = "Oratore del Vuoto Caduto"
+	L.void_globule = "Globulo del Vuoto"
+	L.fallen_heartpiercer = "Perforacuori Caduto"
 	L.fallen_riftwalker = "Calcavarchi Caduto"
 	L.cultist_slavedriver = "Cultista Aguzzino"
+	L.cultist_tormenter = "Cultista Tormentatore"
 	L.inquisitor_darkspeak = "Inquisitore Verboscuro"
 	L.fallen_taskmaster = "Coordinatore Caduto"
+	L.faceless_willbreaker = "Spezzavolontà Senzavolto"
+	L.enthralled_weaponsmith = "Fabbro d'Armi Ammaliato"
 	L.forge_guard_hurrul = "Guardia della Forgia Hurrul"
-	L.fallen_voidspeaker = "Oratore del Vuoto Caduto"
 	L.si7_informant = "Informatore dell'IR:7"
-	L.alxkov_the_infested = "Alx'kov l'Infestato"
 	L.armsmaster_terenson = "Maestra d'Armi Terenson"
+	L.burrowing_appendage = "Appendice Scavaterra"
+	L.dod = "Dod"
+	L.alxkov_the_infested = "Alx'kov l'Infestato"
 	L.greater_void_elemental = "Elementale Superiore del Vuoto"
 	L.boundless_corruption = "Corruzione Illimitata"
 	L.portal_keeper = "Guardiano del Portale"
 	L.zardeth_of_the_black_claw = "Zardeth Graffionero"
+	L.unstable_servant = "Servo Instabile"
+
+	--L.therum_deepforge_warmup_trigger = "So ye like tae play with explosives, do ye? Then let's play."
+	--L.alleria_windrunner_warmup_trigger = "Mother... do not listen to the whispers!"
 end
 
 L = BigWigs:NewBossLocale("Alleria Windrunner", "itIT")
