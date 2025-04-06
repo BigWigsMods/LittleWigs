@@ -16,6 +16,8 @@ BigWigs:AddColors("Therum Deepforge", {
 
 BigWigs:AddColors("Overlord Mathias Shaw", {
 	[308669] = "red",
+	[308681] = "cyan",
+	[311530] = "yellow",
 })
 
 BigWigs:AddColors("Magister Umbric", {
