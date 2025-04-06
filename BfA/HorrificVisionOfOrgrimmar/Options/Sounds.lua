@@ -16,7 +16,7 @@ BigWigs:AddSounds("Inquisitor Gnshal", {
 })
 
 BigWigs:AddSounds("Vez'okk the Lightless", {
-	[306617] = "alarm",
+	[306617] = "long",
 	[306656] = "alert",
 	[306726] = "alarm",
 })

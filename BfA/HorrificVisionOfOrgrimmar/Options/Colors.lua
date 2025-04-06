@@ -16,9 +16,9 @@ BigWigs:AddColors("Inquisitor Gnshal", {
 })
 
 BigWigs:AddColors("Vez'okk the Lightless", {
-	[306617] = "red",
-	[306656] = "orange",
-	[306726] = "orange",
+	[306617] = "yellow",
+	[306656] = "cyan",
+	[306726] = "red",
 })
 
 BigWigs:AddColors("Rexxar", {
