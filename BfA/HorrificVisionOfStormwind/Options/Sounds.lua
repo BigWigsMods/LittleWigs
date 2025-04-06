@@ -17,6 +17,8 @@ BigWigs:AddSounds("Therum Deepforge", {
 
 BigWigs:AddSounds("Overlord Mathias Shaw", {
 	[308669] = "alarm",
+	[308681] = "info",
+	[311530] = "long",
 })
 
 BigWigs:AddSounds("Magister Umbric", {
