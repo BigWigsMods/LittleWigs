@@ -45,7 +45,7 @@ end
 
 L = BigWigs:NewBossLocale("Vez'okk the Lightless", "zhTW")
 if L then
-	-- L.vezokk = "Vez'okk the Lightless"
+	L.vezokk = "『無光』偉佐克"
 end
 
 L = BigWigs:NewBossLocale("Rexxar", "zhTW")
