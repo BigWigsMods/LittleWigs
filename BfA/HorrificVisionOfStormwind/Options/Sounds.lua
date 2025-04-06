@@ -11,6 +11,7 @@ BigWigs:AddSounds("Slavemaster Ul'rok", {
 })
 
 BigWigs:AddSounds("Therum Deepforge", {
+	[305708] = "info",
 	[309671] = "alarm",
 })
 
