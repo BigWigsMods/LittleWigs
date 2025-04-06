@@ -23,6 +23,8 @@ BigWigs:AddSounds("Vez'okk the Lightless", {
 
 BigWigs:AddSounds("Rexxar", {
 	[304251] = "alert",
+	[304282] = "long",
+	["adds"] = "info",
 })
 
 BigWigs:AddSounds("Horrific Vision of Orgrimmar Trash", {

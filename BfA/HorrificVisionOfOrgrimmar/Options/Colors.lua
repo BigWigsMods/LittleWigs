@@ -22,7 +22,9 @@ BigWigs:AddColors("Vez'okk the Lightless", {
 })
 
 BigWigs:AddColors("Rexxar", {
-	[304251] = "orange",
+	[304251] = "red",
+	[304282] = "cyan",
+	["adds"] = "yellow",
 })
 
 BigWigs:AddColors("Horrific Vision of Orgrimmar Trash", {
