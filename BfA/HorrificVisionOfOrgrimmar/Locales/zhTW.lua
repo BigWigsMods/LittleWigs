@@ -25,7 +25,7 @@ end
 
 L = BigWigs:NewBossLocale("Oblivion Elemental", "zhTW")
 if L then
-	-- L.oblivion_elemental = "Oblivion Elemental"
+	L.oblivion_elemental = "滅絕元素"
 end
 
 L = BigWigs:NewBossLocale("Inquisitor Gnshal", "zhTW")
