@@ -11,6 +11,7 @@ BigWigs:AddColors("Slavemaster Ul'rok", {
 })
 
 BigWigs:AddColors("Therum Deepforge", {
+	[305708] = "orange",
 	[309671] = "red",
 })
 
