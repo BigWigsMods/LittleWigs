@@ -19,7 +19,8 @@ BigWigs:AddSounds("Overlord Mathias Shaw", {
 })
 
 BigWigs:AddSounds("Magister Umbric", {
-	[309373] = "alert",
+	[309373] = "warning",
+	[309451] = {"info","long"},
 	[309648] = "alert",
 })
 
