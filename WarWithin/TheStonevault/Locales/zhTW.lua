@@ -15,6 +15,6 @@ if L then
 	L.cursedforge_stoneshaper = "咒爐塑石者"
 	L.rock_smasher = "岩石粉碎者"
 
-	L.edna_warmup_trigger = "这是什么？那个魔像与什么洞悉熔接在一起了吗？"
+	L.edna_warmup_trigger = "這是什麼？那個魔像和其他的東西融合了嗎？"
 	L.custom_on_autotalk_desc = "|cFFFF0000需要战士、矮人或至少25点卡兹阿加锻造技能。|r 自動和NPC對話，該選項會為你的隊伍獲得'灌魔鐵的能量'。"
 end
