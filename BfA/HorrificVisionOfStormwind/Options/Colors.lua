@@ -23,7 +23,8 @@ BigWigs:AddColors("Overlord Mathias Shaw", {
 
 BigWigs:AddColors("Magister Umbric", {
 	[309373] = "orange",
-	[309648] = "orange",
+	[309451] = {"cyan","green"},
+	[309648] = "red",
 })
 
 BigWigs:AddColors("Horrific Vision of Stormwind Trash", {
