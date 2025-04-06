@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout addon
@@ -28,8 +28,8 @@ jobs:
       - name: Download common locale
         if: always()
         run: |
-          mkdir -p Core/Locales
-          curl -sS https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/Core/Locales/common.enUS.lua > Core/Locales/common.enUS.lua
+          mkdir -p Locales
+          curl -sSf https://raw.githubusercontent.com/BigWigsMods/BigWigs/master/Locales/enUS_common.lua > Locales/enUS_common.lua
 
       - name: Update option files (Retail)
         if: always()
