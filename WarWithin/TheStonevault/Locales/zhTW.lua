@@ -16,5 +16,5 @@ if L then
 	L.rock_smasher = "岩石粉碎者"
 
 	L.edna_warmup_trigger = "這是什麼？那個魔像和其他的東西融合了嗎？"
-	L.custom_on_autotalk_desc = "|cFFFF0000需要战士、矮人或至少25点卡兹阿加锻造技能。|r 自動和NPC對話，該選項會為你的隊伍獲得'灌魔鐵的能量'。"
+	L.custom_on_autotalk_desc = "|cFFFF0000需要戰士、矮人或至少25點卡茲阿爾加鍛造技能。|r 自動和NPC對話，該選項會為你的隊伍獲得'灌魔鐵的能量'。"
 end
