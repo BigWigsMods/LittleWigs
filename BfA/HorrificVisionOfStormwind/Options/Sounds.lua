@@ -1,9 +1,11 @@
 
 BigWigs:AddSounds("Alleria Windrunner", {
-	[298691] = "alarm",
-	[308278] = "alert",
+	[298691] = "long",
+	[308278] = "alarm",
+	[308669] = "alarm",
 	[309648] = "alert",
-	[309819] = "alarm",
+	[309819] = "warning",
+	[312260] = "info",
 })
 
 BigWigs:AddSounds("Slavemaster Ul'rok", {
