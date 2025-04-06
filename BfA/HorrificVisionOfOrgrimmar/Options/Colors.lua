@@ -1,9 +1,11 @@
 
 BigWigs:AddColors("Thrall", {
-	[297746] = "orange",
+	[297574] = {"blue","green","yellow"},
+	[297746] = "red",
 	[297822] = "orange",
+	[304251] = "red",
 	[304976] = "red",
-	[306828] = "orange",
+	[306828] = "red",
 })
 
 BigWigs:AddColors("Oblivion Elemental", {
