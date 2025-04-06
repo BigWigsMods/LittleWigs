@@ -20,7 +20,7 @@ end
 
 L = BigWigs:NewBossLocale("Thrall", "zhTW")
 if L then
-	-- L.thrall = "Thrall"
+	L.thrall = "索爾"
 end
 
 L = BigWigs:NewBossLocale("Oblivion Elemental", "zhTW")
