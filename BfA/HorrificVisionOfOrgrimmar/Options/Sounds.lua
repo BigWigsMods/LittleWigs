@@ -1,9 +1,11 @@
 
 BigWigs:AddSounds("Thrall", {
-	[297746] = "alert",
-	[297822] = "alarm",
+	[297574] = {"alarm","info"},
+	[297746] = "alarm",
+	[297822] = "long",
+	[304251] = "alert",
 	[304976] = "warning",
-	[306828] = "alert",
+	[306828] = "alarm",
 })
 
 BigWigs:AddSounds("Oblivion Elemental", {
