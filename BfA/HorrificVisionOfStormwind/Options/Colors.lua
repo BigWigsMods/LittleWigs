@@ -1,9 +1,11 @@
 
 BigWigs:AddColors("Alleria Windrunner", {
-	[298691] = "red",
+	[298691] = "cyan",
 	[308278] = "orange",
-	[309648] = "yellow",
-	[309819] = "red",
+	[308669] = "red",
+	[309648] = "red",
+	[309819] = "yellow",
+	[312260] = "orange",
 })
 
 BigWigs:AddColors("Slavemaster Ul'rok", {
