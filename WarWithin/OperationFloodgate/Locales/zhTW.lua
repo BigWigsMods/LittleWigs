@@ -1,8 +1,8 @@
 local L = BigWigs:NewBossLocale("Operation: Floodgate Trash", "zhTW")
 if not L then return end
 if L then
-	--L.weapons_stockpiles_pilfered = "Weapons Stockpiles Pilfered"
-	--L.weapons_stockpiles_pilfered_desc = "Show an alert when a Weapons Stockpile has been pilfered."
+	L.weapons_stockpiles_pilfered = "偷取的武器儲物箱"
+	L.weapons_stockpiles_pilfered_desc = "當偷取的武器儲物箱時顯示警告"
 
 	L.shreddinator_3000 = "伐木器械3000型"
 	L.mechadrone_sniper = "機甲飛機狙擊手"
