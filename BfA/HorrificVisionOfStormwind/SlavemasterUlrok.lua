@@ -1,13 +1,21 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Slavemaster Ul'rok", 2213)
 if not mod then return end
-mod:RegisterEnableMob(153541)
+mod:RegisterEnableMob(
+	153541, -- Slavemaster Ul'rok
+	233685 -- Slavemaster Ul'rok (Revisited)
+)
+mod:SetEncounterID({2375, 3083}) -- BFA, Revisited
 mod:SetAllowWin(true)
-mod.engageId = 2375
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local chainsOfServitudeCount = 1
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -25,6 +33,7 @@ end
 function mod:GetOptions()
 	return {
 		298691, -- Chains of Servitude
+		298866, -- Lashing Tendrils
 	}
 end
 
@@ -34,6 +43,12 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ChainsOfServitude", 298691)
+	self:Log("SPELL_CAST_START", "LashingTendrils", 298866)
+end
+
+function mod:OnEngage()
+	chainsOfServitudeCount = 1
+	self:CDBar(298866, 2.4) -- Lashing Tendrils
 end
 
 --------------------------------------------------------------------------------
@@ -41,6 +56,17 @@ end
 --
 
 function mod:ChainsOfServitude(args)
-	self:Message(args.spellId, "red")
+	if chainsOfServitudeCount == 1 then
+		self:Message(args.spellId, "cyan", CL.percent:format(75, args.spellName))
+	else
+		self:Message(args.spellId, "cyan", CL.percent:format(40, args.spellName))
+	end
+	chainsOfServitudeCount = chainsOfServitudeCount + 1
+	self:PlaySound(args.spellId, "long")
+end
+
+function mod:LashingTendrils(args)
+	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 5.0)
 	self:PlaySound(args.spellId, "alarm")
 end

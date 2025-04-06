@@ -7,7 +7,8 @@ BigWigs:AddSounds("Alleria Windrunner", {
 })
 
 BigWigs:AddSounds("Slavemaster Ul'rok", {
-	[298691] = "alarm",
+	[298691] = "long",
+	[298866] = "alarm",
 })
 
 BigWigs:AddSounds("Therum Deepforge", {
