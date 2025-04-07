@@ -20,4 +20,6 @@ if L then
 	L.bubbles = "泡泡"
 	L.venture_co_electrician = "风险投资公司电工"
 	L.darkfuse_jumpstarter = "暗索接线者"
+
+	--L.geezle_gigazap_warmup = "This project can't continue without the scientist behind it all. Put that big brain on ice!"
 end

@@ -50,6 +50,8 @@ if L then
 	L.bubbles = "Bubbles"
 	L.venture_co_electrician = "Venture Co. Electrician"
 	L.darkfuse_jumpstarter = "Darkfuse Jumpstarter"
+
+	L.geezle_gigazap_warmup = "This project can't continue without the scientist behind it all. Put that big brain on ice!"
 end
 
 --------------------------------------------------------------------------------
@@ -120,6 +122,9 @@ end
 function mod:OnBossEnable()
 	-- Weapons Stockpile
 	self:RegisterWidgetEvent(6270, "WeaponsStockpilePilfered", true)
+
+	-- Warmup
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 
 	-- Zeppelin
 	-- 1213704 Zeppelin Barrage, hidden
@@ -238,6 +243,19 @@ function mod:WeaponsStockpilePilfered(_, text)
 	-- [UPDATE_UI_WIDGET] widgetID:6270, widgetType:8, text:Weapons Stockpiles Pilfered: 1/5
 	self:Message("weapons_stockpiles_pilfered", "green", text, L.weapons_stockpiles_pilfered_icon)
 	self:PlaySound("weapons_stockpiles_pilfered", "info")
+end
+
+-- Warmups
+
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if msg == L.geezle_gigazap_warmup then
+		self:UnregisterEvent(event)
+		local geezleGigazapModule = BigWigs:GetBossModule("Geezle Gigazap", true)
+		if geezleGigazapModule then
+			geezleGigazapModule:Enable()
+			geezleGigazapModule:Warmup()
+		end
+	end
 end
 
 -- Shreddinator 3000

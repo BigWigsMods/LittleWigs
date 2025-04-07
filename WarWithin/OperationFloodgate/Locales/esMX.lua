@@ -20,4 +20,6 @@ if L then
 	--L.bubbles = "Bubbles"
 	--L.venture_co_electrician = "Venture Co. Electrician"
 	--L.darkfuse_jumpstarter = "Darkfuse Jumpstarter"
+
+	--L.geezle_gigazap_warmup = "This project can't continue without the scientist behind it all. Put that big brain on ice!"
 end

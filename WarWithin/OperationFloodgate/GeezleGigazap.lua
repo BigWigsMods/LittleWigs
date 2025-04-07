@@ -20,11 +20,21 @@ local gigazapCount = 1
 local thunderPunchCount = 1
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "inv_achievement_dungeon_waterworks"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		465463, -- Turbo Charge
 		468841, -- Leaping Sparks
 		{468813, "PRIVATE"}, -- Gigazap
@@ -47,6 +57,7 @@ function mod:OnEngage()
 	turboChargeCount = 1
 	gigazapCount = 1
 	thunderPunchCount = 1
+	self:StopBar(CL.active)
 	self:CDBar(465463, 1.6, CL.count:format(self:SpellName(465463), turboChargeCount)) -- Turbo Charge
 	self:CDBar(466190, 24.0) -- Thunder Punch
 	self:CDBar(468813, 28.0, CL.count:format(self:SpellName(468813), gigazapCount)) -- Gigazap
@@ -56,6 +67,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup() -- called from trash module
+	-- 2.96 [CHAT_MSG_MONSTER_SAY] This project can't continue without the scientist behind it all. Put that big brain on ice!#Renzik \"The Shiv\"
+	-- 9.72 [CHAT_MSG_MONSTER_YELL] Soon I shall have the POWER I require!#Geezle Gigazap
+	-- 13.54 [NAME_PLATE_UNIT_ADDED] Geezle Gigazap#Creature-0-3779-2773-12950-226404
+	self:Bar("warmup", 10.6, CL.active, L.warmup_icon)
+end
 
 function mod:TurboCharge(args)
 	self:StopBar(CL.count:format(args.spellName, turboChargeCount))

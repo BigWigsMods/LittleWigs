@@ -20,4 +20,6 @@ if L then
 	L.bubbles = "Bulles"
 	L.venture_co_electrician = "Electricien de la KapitalRisk"
 	L.darkfuse_jumpstarter = "Démarreur imprégné de ténèbres"
+
+	--L.geezle_gigazap_warmup = "This project can't continue without the scientist behind it all. Put that big brain on ice!"
 end
