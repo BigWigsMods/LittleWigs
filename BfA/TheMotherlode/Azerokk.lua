@@ -26,9 +26,11 @@ function mod:OnRegister()
 	self:SetSpellRename(257582, CL.fixate) -- Raging Gaze (Fixate)
 end
 
+local azeriteInfusionMarker = mod:AddMarkerOption(true, "npc", 8, 271698, 8) -- Azerite Infusion
 function mod:GetOptions()
 	return {
 		271698, -- Azerite Infusion
+		azeriteInfusionMarker,
 		258622, -- Resonant Quake
 		257593, -- Call Earthrager
 		{257582, "SAY", "NAMEPLATE"}, -- Raging Gaze
@@ -41,6 +43,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "AzeriteInfusionCheck", 257596)
 	self:Log("SPELL_CAST_START", "AzeriteInfusion", 271698)
+	self:Log("SPELL_CAST_SUCCESS", "AzeriteInfusionSuccess", 271698)
 	self:Log("SPELL_CAST_START", "ResonantQuake", 258622)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ResonantQuakeDamage", 258628)
 	self:Log("SPELL_PERIODIC_MISSED", "ResonantQuakeDamage", 258628)
@@ -53,7 +56,6 @@ end
 function mod:OnEngage()
 	resonantQuakeCount = 1
 	tectonicSmashCount = 1
-	-- XXX on 11.1 PTR the Dungeon Journal says Azerite Infusion is Heroic+ but it's still cast in Normal
 	self:CDBar(271698, 5.2) -- Azerite Infusion
 	self:CDBar(275907, 12.1) -- Tectonic Smash
 	self:CDBar(258622, 32.7, CL.count:format(self:SpellName(258622), resonantQuakeCount)) -- Resonant Quake
@@ -73,6 +75,25 @@ end
 function mod:AzeriteInfusion(args)
 	self:Message(args.spellId, "yellow")
 	self:PlaySound(args.spellId, "info")
+end
+
+do
+	local azeriteInfusionGUID = nil
+
+	function mod:AzeriteInfusionSuccess(args)
+		if self:GetOption(azeriteInfusionMarker) then
+			azeriteInfusionGUID = args.destGUID
+			self:RegisterTargetEvents("MarkAzeriteInfusion")
+		end
+	end
+
+	function mod:MarkAzeriteInfusion(_, unit, guid)
+		if azeriteInfusionGUID == guid then
+			azeriteInfusionGUID = nil
+			self:CustomIcon(azeriteInfusionMarker, unit, 8)
+			self:UnregisterTargetEvents()
+		end
+	end
 end
 
 function mod:ResonantQuake(args)
