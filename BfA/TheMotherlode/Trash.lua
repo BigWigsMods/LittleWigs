@@ -374,14 +374,14 @@ function mod:InhaleVaporsApplied(args)
 end
 
 do
-	local prev = 0
+	local function printTarget(self, name)
+		self:TargetMessage(1217279, "yellow", name)
+		self:PlaySound(1217279, "alarm", nil, name)
+	end
+
 	function mod:Uppercut(args)
 		self:Nameplate(args.spellId, 21.9, args.sourceGUID)
-		if args.time - prev > 2 then
-			prev = args.time
-			self:Message(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "alarm")
-		end
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 	end
 end
 
