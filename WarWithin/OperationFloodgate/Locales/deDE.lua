@@ -21,5 +21,5 @@ if L then
 	L.venture_co_electrician = "Elektriker der Venture Co."
 	L.darkfuse_jumpstarter = "Überbrücker der Düsternisverschmolzenen"
 
-	--L.geezle_gigazap_warmup = "This project can't continue without the scientist behind it all. Put that big brain on ice!"
+	L.geezle_gigazap_warmup = "Dieses Projekt funktioniert nicht ohne den Wissenschaftler dahinter. Macht dem Hirni den Garaus!"
 end
