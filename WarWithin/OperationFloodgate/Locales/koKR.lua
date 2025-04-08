@@ -21,5 +21,5 @@ if L then
 	L.venture_co_electrician = "투자개발회사 전기기술자"
 	L.darkfuse_jumpstarter = "다크퓨즈 시동자"
 
-	--L.geezle_gigazap_warmup = "This project can't continue without the scientist behind it all. Put that big brain on ice!"
+	L.geezle_gigazap_warmup = "모든 것의 중심이 되는 과학자만 없애면 이 계획도 무너질 거야. 저 잘난 책상물림을 해치워 버려!"
 end
