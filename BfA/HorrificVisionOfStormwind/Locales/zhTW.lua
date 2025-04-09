@@ -25,8 +25,8 @@ if L then
 	L.zardeth_of_the_black_claw = "『黑爪』加爾德斯"
 	L.unstable_servant = "不穩定的僕從"
 
-	--L.therum_deepforge_warmup_trigger = "So ye like tae play with explosives, do ye? Then let's play."
-	--L.alleria_windrunner_warmup_trigger = "Mother... do not listen to the whispers!"
+	L.therum_deepforge_warmup_trigger = "你們喜歡炸彈，是吧？那就來點爆破場面吧！"
+	L.alleria_windrunner_warmup_trigger = "母親…不要敗給那些低語！"
 end
 
 L = BigWigs:NewBossLocale("Alleria Windrunner", "zhTW")
