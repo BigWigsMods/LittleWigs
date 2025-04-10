@@ -34,6 +34,7 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.kobold_trash
+	self:SetSpellRename(448399, CL.enrage) -- Battle Cry (Enrage)
 	self:SetSpellRename(449071, CL.frontal_cone) -- Blazing Wick (Frontal Cone)
 	self:SetSpellRename(445210, CL.charge) -- Fire Charge (Charge)
 end
@@ -55,6 +56,7 @@ function mod:GetOptions()
 		[445210] = L.spitfire_charger,
 		[448528] = L.spitfire_fusetender,
 	},{
+		[448399] = CL.enrage, -- Battle Cry (Enrage)
 		[449071] = CL.frontal_cone, -- Blazing Wick (Frontal Cone)
 		[445210] = CL.charge, -- Fire Charge (Charge)
 	}
@@ -122,13 +124,13 @@ function mod:BlazingWick(args)
 end
 
 function mod:BattleCry(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(CL.enrage))
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:BattleCryApplied(args)
 	if self:Dispeller("enrage", true) and args.sourceGUID == args.destGUID then -- Throttle to the caster
-		self:Message(args.spellId, "yellow", CL.other:format(args.spellName, args.destName))
+		self:Message(args.spellId, "yellow", CL.other:format(CL.enrage, args.destName))
 		self:PlaySound(args.spellId, "info")
 	end
 end
