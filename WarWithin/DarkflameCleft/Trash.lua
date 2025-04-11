@@ -425,24 +425,33 @@ end
 -- Sootsnout
 
 do
-	local timer
+	local duration, timer, prevGUID = 40, nil, nil
+	local function ClearNPC()
+		timer = nil
+		mod:ClearNameplate(prevGUID)
+		prevGUID = nil
+		mod:StopBar(426295) -- Flaming Tether
+		mod:StopBar(1218131) -- Burning Candles
+	end
 
 	function mod:SootsnoutEngaged(guid)
+		prevGUID = guid
 		self:CDBar(426295, 18.9) -- Flaming Tether
 		self:Nameplate(426295, 18.9, guid) -- Flaming Tether
 		self:CDBar(1218131, 9.2) -- Burning Candles
 		self:Nameplate(1218131, 9.2, guid) -- Burning Candles
-		timer = self:ScheduleTimer("SootsnoutDeath", 40)
+		timer = self:ScheduleTimer(ClearNPC, duration)
 	end
 
 	function mod:FlamingTether(args)
+		prevGUID = args.sourceGUID
 		if timer then
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
-		timer = self:ScheduleTimer("SootsnoutDeath", 40)
+		timer = self:ScheduleTimer(ClearNPC, duration)
 	end
 
 	function mod:FlamingTetherInterrupt(args)
@@ -461,6 +470,7 @@ do
 			-- cast once per player
 			if args.time - prev > 5 then
 				prev = args.time
+				prevGUID = args.sourceGUID
 				if timer then
 					self:CancelTimer(timer)
 				end
@@ -468,7 +478,7 @@ do
 				self:CDBar(args.spellId, 12.2)
 				self:Nameplate(args.spellId, 12.2, args.sourceGUID)
 				self:PlaySound(args.spellId, "info")
-				timer = self:ScheduleTimer("SootsnoutDeath", 40)
+				timer = self:ScheduleTimer(ClearNPC, duration)
 			end
 		end
 	end
@@ -485,39 +495,44 @@ do
 	end
 
 	function mod:CeaselessFlame(args)
+		prevGUID = args.sourceGUID
 		if timer then
 			self:CancelTimer(timer)
 		end
 		-- this is only cast if the tank is grabbed by One-Hand Headlock or if Torchsnarl is dead
 		self:Message(args.spellId, "yellow")
 		self:PlaySound(args.spellId, "alarm")
-		timer = self:ScheduleTimer("SootsnoutDeath", 40)
+		timer = self:ScheduleTimer(ClearNPC, duration)
 	end
 
 	function mod:SootsnoutDeath(args)
+		prevGUID = args.destGUID
 		if timer then
 			self:CancelTimer(timer)
-			timer = nil
 		end
-		self:StopBar(426295) -- Flaming Tether
-		self:StopBar(1218131) -- Burning Candles
-		if args then
-			self:ClearNameplate(args.destGUID)
-		end
+		ClearNPC()
 	end
 end
 
 -- Torchsnarl
 
 do
-	local timer
+	local duration, timer, prevGUID = 45, nil, nil
+	local function ClearNPC()
+		timer = nil
+		mod:ClearNameplate(prevGUID)
+		prevGUID = nil
+		mod:StopBar(426619) -- One-Hand Headlock
+		mod:StopBar(1218117) -- Massive Stomp
+	end
 
 	function mod:TorchsnarlEngaged(guid)
+		prevGUID = guid
 		self:CDBar(426619, 0.9) -- One-Hand Headlock
 		self:Nameplate(426619, 0.9, guid) -- One-Hand Headlock
 		self:CDBar(1218117, 6.9) -- Massive Stomp
 		self:Nameplate(1218117, 6.9, guid) -- Massive Stomp
-		timer = self:ScheduleTimer("TorchsnarlDeath", 45)
+		timer = self:ScheduleTimer(ClearNPC, duration)
 	end
 
 	do
@@ -530,13 +545,14 @@ do
 		end
 
 		function mod:OneHandHeadlock(args)
+			prevGUID = args.sourceGUID
 			if timer then
 				self:CancelTimer(timer)
 			end
 			self:GetUnitTarget(printTarget, 0.1, args.sourceGUID)
 			self:CDBar(args.spellId, 36.4)
 			self:Nameplate(args.spellId, 36.4, args.sourceGUID)
-			timer = self:ScheduleTimer("TorchsnarlDeath", 45)
+			timer = self:ScheduleTimer(ClearNPC, duration)
 		end
 	end
 
@@ -548,6 +564,7 @@ do
 	end
 
 	function mod:MassiveStomp(args)
+		prevGUID = args.sourceGUID
 		if timer then
 			self:CancelTimer(timer)
 		end
@@ -555,29 +572,26 @@ do
 		self:CDBar(args.spellId, 18.2)
 		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
-		timer = self:ScheduleTimer("SootsnoutDeath", 40)
+		timer = self:ScheduleTimer(ClearNPC, duration)
 	end
 
 	function mod:Pyropummel(args)
+		prevGUID = args.sourceGUID
 		if timer then
 			self:CancelTimer(timer)
 		end
 		-- this is only cast if someone is rooted by Flaming Tether or if Sootsnout is dead
 		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alarm")
-		timer = self:ScheduleTimer("TorchsnarlDeath", 45)
+		timer = self:ScheduleTimer(ClearNPC, duration)
 	end
 
 	function mod:TorchsnarlDeath(args)
+		prevGUID = args.destGUID
 		if timer then
 			self:CancelTimer(timer)
-			timer = nil
 		end
-		self:StopBar(426619) -- One-Hand Headlock
-		self:StopBar(1218117) -- Massive Stomp
-		if args then
-			self:ClearNameplate(args.destGUID)
-		end
+		ClearNPC()
 	end
 end
 
