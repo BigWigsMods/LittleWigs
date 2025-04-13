@@ -15,4 +15,6 @@
 <Include file="HorrificVisionOfOrgrimmar\modules.xml"/>
 <Include file="HorrificVisionOfStormwind\modules.xml"/>
 
+<Include file="Locales\locales.xml"/>
+
 </Ui>
