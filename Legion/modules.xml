@@ -1,7 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-
 <Include file="ArtifactScenarios\modules.xml"/>
 <Include file="AssaultOnVioletHold\modules.xml"/>
 <Include file="BlackRookHold\modules.xml"/>
@@ -16,5 +15,7 @@
 <Include file="VaultOfTheWardens\modules.xml"/>
 <Include file="CathedralOfEternalNight\modules.xml"/>
 <Include file="SeatOfTheTriumvirate\modules.xml"/>
+
+<Include file="Locales\locales.xml"/>
 
 </Ui>

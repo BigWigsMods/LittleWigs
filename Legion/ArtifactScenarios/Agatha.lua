@@ -30,8 +30,8 @@ if L then
 	L.warmup_trigger2 = "Even now, my sayaad tempt your weak-willed mages. Your allies will surrender willingly to the Legion!" -- 16
 	L.warmup_trigger3 = "But first, you must be punished for taking away my little pet." -- 3
 
-	-- L.servant_trigger = "Kill the Imp Servants before they energize Agatha!"
-	-- L.umbral_trigger = "Protect me, my children! I will give you the power!"
+	--L.servant_trigger = "Kill the Imp Servants before they energize Agatha!"
+	--L.umbral_trigger = "Protect me, my children! I will give you the power!"
 
 	L.imp_servant = "Imp Servant"
 	L.imp_servant_desc = 229928 -- Funnel Energy
