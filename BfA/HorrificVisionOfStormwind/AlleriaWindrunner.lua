@@ -53,10 +53,6 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
-	-- XXX ENCOUNTER_END doesn't work for 3081 on either win or wipe
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 233675) -- Alleria Windrunner (Revisisted)
-
 	self:Log("SPELL_CAST_SUCCESS", "DarkenedSky", 308278)
 	self:Log("SPELL_CAST_START", "VoidEruption", 309819)
 
@@ -94,8 +90,8 @@ end
 
 function mod:Warmup() -- called from trash module
 	-- 0.00 [CHAT_MSG_MONSTER_YELL] Mother... do not listen to the whispers!#Arator the Redeemer
-	-- 14.93 [NAME_PLATE_UNIT_ADDED] Alleria Windrunner#Creature-0-2083-2827-1183-233675
-	self:Bar("warmup", 14.9, CL.active, L.warmup_icon)
+	-- 14.62 [NAME_PLATE_UNIT_ADDED] Alleria Windrunner#Creature-0-2083-2827-1183-233675
+	self:Bar("warmup", 14.6, CL.active, L.warmup_icon)
 end
 
 function mod:DarkenedSky(args)
