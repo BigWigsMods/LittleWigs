@@ -4,20 +4,17 @@ if L then
 	L.engage_yell = "La mia eterna agonia sarà anche la vostra!"
 end
 
-local L = BigWigs:NewBossLocale("Brother Korloff", "itIT")
-if not L then return end
+L = BigWigs:NewBossLocale("Brother Korloff", "itIT")
 if L then
 	L.engage_yell = "Vi spezzo in due."
 end
 
-local L = BigWigs:NewBossLocale("High Inquisitor Whitemane", "itIT")
-if not L then return end
+L = BigWigs:NewBossLocale("High Inquisitor Whitemane", "itIT")
 if L then
 	L.engage_yell = "La mia leggenda comincia ORA!"
 end
 
-local L = BigWigs:NewBossLocale("The Headless Horseman", "itIT")
-if not L then return end
+L = BigWigs:NewBossLocale("The Headless Horseman", "itIT")
 if L then
 	L.the_headless_horseman = "Cavaliere Senza Testa"
 	--L.custom_on_autotalk = "Autotalk"

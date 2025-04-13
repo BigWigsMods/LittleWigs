@@ -14,8 +14,7 @@ if L then
 	L.engage_yell = "내 끝없는 고통을 너희들에게도 나눠주마!"
 end
 
-local L = BigWigs:NewBossLocale("The Headless Horseman", "koKR")
-if not L then return end
+L = BigWigs:NewBossLocale("The Headless Horseman", "koKR")
 if L then
 	L.the_headless_horseman = "저주받은 기사"
 	L.custom_on_autotalk = "자동 대화"
