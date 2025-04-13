@@ -11,4 +11,6 @@
 <Include file="TheaterOfPain\modules.xml"/>
 <Include file="TazaveshTheVeiledMarket\modules.xml"/>
 
+<Include file="Locales\locales.xml"/>
+
 </Ui>
