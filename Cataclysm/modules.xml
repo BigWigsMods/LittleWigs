@@ -16,4 +16,6 @@
 <Include file="ZulAman\modules.xml"/>
 <Include file="ZulGurub\modules.xml"/>
 
+<Include file="Locales\locales.xml"/>
+
 </Ui>
