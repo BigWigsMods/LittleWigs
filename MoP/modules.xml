@@ -12,4 +12,6 @@
 <Include file="StormstoutBrewery\modules.xml"/>
 <Include file="TempleOfTheJadeSerpent\modules.xml"/>
 
+<Include file="Locales\locales.xml"/>
+
 </Ui>

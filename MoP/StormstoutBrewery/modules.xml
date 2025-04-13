@@ -5,7 +5,6 @@
 <Script file="Hoptallus.lua"/>
 <Script file="YanZhu.lua"/>
 
-<Include file="Locales\locales.xml"/>
 <Include file="Options\options.xml"/>
 
 </Ui>
