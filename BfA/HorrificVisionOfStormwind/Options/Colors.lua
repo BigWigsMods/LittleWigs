@@ -31,6 +31,7 @@ BigWigs:AddColors("Magister Umbric", {
 })
 
 BigWigs:AddColors("Horrific Vision of Stormwind Trash", {
+	[86736] = "orange",
 	[264398] = "yellow",
 	[296492] = "orange",
 	[296510] = "cyan",
@@ -66,4 +67,6 @@ BigWigs:AddColors("Horrific Vision of Stormwind Trash", {
 	[311399] = "orange",
 	[311456] = "yellow",
 	[311996] = "cyan",
+	[1223111] = {"blue","yellow"},
+	[1223112] = "red",
 })

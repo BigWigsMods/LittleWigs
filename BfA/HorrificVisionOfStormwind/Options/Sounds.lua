@@ -31,6 +31,7 @@ BigWigs:AddSounds("Magister Umbric", {
 })
 
 BigWigs:AddSounds("Horrific Vision of Stormwind Trash", {
+	[86736] = "info",
 	[264398] = "alarm",
 	[296492] = "alarm",
 	[296510] = "info",
@@ -66,4 +67,6 @@ BigWigs:AddSounds("Horrific Vision of Stormwind Trash", {
 	[311399] = "alarm",
 	[311456] = "warning",
 	[311996] = "long",
+	[1223111] = "alarm",
+	[1223112] = "alert",
 })

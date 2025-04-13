@@ -24,6 +24,7 @@ if L then
 	L.portal_keeper = "传送门看护者"
 	L.zardeth_of_the_black_claw = "黑爪加尔德斯"
 	L.unstable_servant = "不稳定的仆从"
+	L.hogger = "霍格"
 
 	L.therum_deepforge_warmup_trigger = "你们喜欢放烟花是吧？那我们就好好玩玩。"
 	L.alleria_windrunner_warmup_trigger = "母亲……别再听那些低语了！"

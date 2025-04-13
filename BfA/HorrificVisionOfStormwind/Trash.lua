@@ -37,7 +37,9 @@ mod:RegisterEnableMob(
 	152939, -- Boundless Corruption
 	159275, -- Portal Keeper
 	158371, -- Zardeth of the Black Claw
-	158411 -- Unstable Servant
+	158411, -- Unstable Servant
+	241698, -- Hogger (WANTED: Hogger!!) (Revisited only)
+	239437 -- Hogger (Mask of the Nemesis) (Revisited only)
 )
 
 --------------------------------------------------------------------------------
@@ -69,6 +71,7 @@ if L then
 	L.portal_keeper = "Portal Keeper"
 	L.zardeth_of_the_black_claw = "Zardeth of the Black Claw"
 	L.unstable_servant = "Unstable Servant"
+	L.hogger = "Hogger"
 
 	L.therum_deepforge_warmup_trigger = "So ye like tae play with explosives, do ye? Then let's play."
 	L.alleria_windrunner_warmup_trigger = "Mother... do not listen to the whispers!"
@@ -81,92 +84,187 @@ end
 -- Initialization
 --
 
-function mod:GetOptions()
-	return {
-		-- General
-		"altpower",
-		{311996, "CASTBAR"}, -- Open Vision
-		307870, -- Sanity Restoration Orb
-		311390, -- Madness: Entomophobia
-		306583, -- Leaden Foot
-		-- Crawling Corruption
-		296510, -- Creepy Crawler
-		-- Enthralled Footman
-		{298584, "NAMEPLATE"}, -- Repel
-		-- Fallen Voidspeaker
-		{308375, "NAMEPLATE"}, -- Psychic Scream
-		-- Void Globule
-		296492, -- Void Eruption
-		-- Fallen Heartpiercer
-		{308308, "NAMEPLATE"}, -- Piercing Shot
-		-- Fallen Riftwalker
-		{308481, "NAMEPLATE"}, -- Rift Strike
-		308575, -- Shadow Shift
-		-- Cultist Slavedriver
-		{309882, "NAMEPLATE"}, -- Brutal Smash
-		-- Cultist Tormenter
-		{296537, "NAMEPLATE"}, -- Mental Assault
-		-- Inquisitor Darkspeak
-		308366, -- Agonizing Torment
-		{308380, "NAMEPLATE"}, -- Convert
-		-- Fallen Taskmaster
-		{308998, "NAMEPLATE"}, -- Improve Morale
-		{308967, "NAMEPLATE"}, -- Continuous Beatings
-		-- Faceless Willbreaker
-		{296718, "NAMEPLATE"}, -- Dark Smash
-		-- Enthralled Weaponsmith
-		{306770, "NAMEPLATE"}, -- Forge Breath
-		-- Forge-Guard Hurrul
-		{308406, "NAMEPLATE"}, -- Entropic Leap
-		{308432, "DISPEL", "NAMEPLATE"}, -- Void-Tainted Blades
-		-- SI:7 Informant
-		{298033, "NAMEPLATE"}, -- Touch of the Abyss
-		-- Armsmaster Terenson
-		{311399, "NAMEPLATE"}, -- Blade Flourish
-		{311456, "NAMEPLATE"}, -- Roaring Blast
-		-- Burrowing Appendage
-		298074, -- Rupture
-		-- Dod
-		{264398, "NAMEPLATE"}, -- Hoppy Finish
-		{308346, "NAMEPLATE"}, -- Barrel Aged
-		-- Alx'kov the Infested
-		{308265, "DISPEL", "NAMEPLATE"}, -- Corrupted Blight
-		{296669, "NAMEPLATE"}, -- Lurking Appendage
-		{308305, "SAY"}, -- Blight Eruption
-		-- Greater Void Elemental
-		{297315, "NAMEPLATE"}, -- Void Buffet
-		-- Boundless Corruption
-		{296911, "NAMEPLATE"}, -- Chaos Breath
-		-- Zardeth of the Black Claw
-		{308801, "NAMEPLATE"}, -- Rain of Fire
-		{308878, "NAMEPLATE"}, -- Twisted Summons
-		-- Unstable Servant
-		308862, -- Unstable Eruption
-	}, {
-		["altpower"] = "general",
-		[296510] = L.crawling_corruption,
-		[298584] = L.enthralled_footman,
-		[308375] = L.fallen_voidspeaker,
-		[296492] = L.void_globule,
-		[308308] = L.fallen_heartpiercer,
-		[308481] = L.fallen_riftwalker,
-		[309882] = L.cultist_slavedriver,
-		[296537] = L.cultist_tormenter,
-		[308366] = L.inquisitor_darkspeak,
-		[308998] = L.fallen_taskmaster,
-		[296718] = L.faceless_willbreaker,
-		[306770] = L.enthralled_weaponsmith,
-		[308406] = L.forge_guard_hurrul,
-		[298033] = L.si7_informant,
-		[311399] = L.armsmaster_terenson,
-		[298074] = L.burrowing_appendage,
-		[264398] = L.dod,
-		[308265] = L.alxkov_the_infested,
-		[297315] = L.greater_void_elemental,
-		[296911] = L.boundless_corruption,
-		[308801] = L.zardeth_of_the_black_claw,
-		[308862] = L.unstable_servant,
-	}
+if BigWigsLoader.isNext then
+	function mod:GetOptions()
+		return {
+			-- General
+			"altpower",
+			{311996, "CASTBAR"}, -- Open Vision
+			307870, -- Sanity Restoration Orb
+			311390, -- Madness: Entomophobia
+			306583, -- Leaden Foot
+			-- Crawling Corruption
+			296510, -- Creepy Crawler
+			-- Enthralled Footman
+			{298584, "NAMEPLATE"}, -- Repel
+			-- Fallen Voidspeaker
+			{308375, "NAMEPLATE"}, -- Psychic Scream
+			-- Void Globule
+			296492, -- Void Eruption
+			-- Fallen Heartpiercer
+			{308308, "NAMEPLATE"}, -- Piercing Shot
+			-- Fallen Riftwalker
+			{308481, "NAMEPLATE"}, -- Rift Strike
+			308575, -- Shadow Shift
+			-- Cultist Slavedriver
+			{309882, "NAMEPLATE"}, -- Brutal Smash
+			-- Cultist Tormenter
+			{296537, "NAMEPLATE"}, -- Mental Assault
+			-- Inquisitor Darkspeak
+			308366, -- Agonizing Torment
+			{308380, "NAMEPLATE"}, -- Convert
+			-- Fallen Taskmaster
+			{308998, "NAMEPLATE"}, -- Improve Morale
+			{308967, "NAMEPLATE"}, -- Continuous Beatings
+			-- Faceless Willbreaker
+			{296718, "NAMEPLATE"}, -- Dark Smash
+			-- Enthralled Weaponsmith
+			{306770, "NAMEPLATE"}, -- Forge Breath
+			-- Forge-Guard Hurrul
+			{308406, "NAMEPLATE"}, -- Entropic Leap
+			{308432, "DISPEL", "NAMEPLATE"}, -- Void-Tainted Blades
+			-- SI:7 Informant
+			{298033, "NAMEPLATE"}, -- Touch of the Abyss
+			-- Armsmaster Terenson
+			{311399, "NAMEPLATE"}, -- Blade Flourish
+			{311456, "NAMEPLATE"}, -- Roaring Blast
+			-- Burrowing Appendage
+			298074, -- Rupture
+			-- Dod
+			{264398, "NAMEPLATE"}, -- Hoppy Finish
+			{308346, "NAMEPLATE"}, -- Barrel Aged
+			-- Alx'kov the Infested
+			{308265, "DISPEL", "NAMEPLATE"}, -- Corrupted Blight
+			{296669, "NAMEPLATE"}, -- Lurking Appendage
+			{308305, "SAY"}, -- Blight Eruption
+			-- Greater Void Elemental
+			{297315, "NAMEPLATE"}, -- Void Buffet
+			-- Boundless Corruption
+			{296911, "NAMEPLATE"}, -- Chaos Breath
+			-- Zardeth of the Black Claw
+			{308801, "NAMEPLATE"}, -- Rain of Fire
+			{308878, "NAMEPLATE"}, -- Twisted Summons
+			-- Unstable Servant
+			308862, -- Unstable Eruption
+			-- Hogger
+			{1223111, "ME_ONLY", "NAMEPLATE"}, -- Vicious Slice
+			{1223112, "NAMEPLATE"}, -- Maddening Call
+			86736, -- Enrage
+		}, {
+			["altpower"] = "general",
+			[296510] = L.crawling_corruption,
+			[298584] = L.enthralled_footman,
+			[308375] = L.fallen_voidspeaker,
+			[296492] = L.void_globule,
+			[308308] = L.fallen_heartpiercer,
+			[308481] = L.fallen_riftwalker,
+			[309882] = L.cultist_slavedriver,
+			[296537] = L.cultist_tormenter,
+			[308366] = L.inquisitor_darkspeak,
+			[308998] = L.fallen_taskmaster,
+			[296718] = L.faceless_willbreaker,
+			[306770] = L.enthralled_weaponsmith,
+			[308406] = L.forge_guard_hurrul,
+			[298033] = L.si7_informant,
+			[311399] = L.armsmaster_terenson,
+			[298074] = L.burrowing_appendage,
+			[264398] = L.dod,
+			[308265] = L.alxkov_the_infested,
+			[297315] = L.greater_void_elemental,
+			[296911] = L.boundless_corruption,
+			[308801] = L.zardeth_of_the_black_claw,
+			[308862] = L.unstable_servant,
+			[1223111] = L.hogger,
+		}
+	end
+else -- XXX remove block below after 11.1.5 is live
+	function mod:GetOptions()
+		return {
+			-- General
+			"altpower",
+			{311996, "CASTBAR"}, -- Open Vision
+			307870, -- Sanity Restoration Orb
+			311390, -- Madness: Entomophobia
+			306583, -- Leaden Foot
+			-- Crawling Corruption
+			296510, -- Creepy Crawler
+			-- Enthralled Footman
+			{298584, "NAMEPLATE"}, -- Repel
+			-- Fallen Voidspeaker
+			{308375, "NAMEPLATE"}, -- Psychic Scream
+			-- Void Globule
+			296492, -- Void Eruption
+			-- Fallen Heartpiercer
+			{308308, "NAMEPLATE"}, -- Piercing Shot
+			-- Fallen Riftwalker
+			{308481, "NAMEPLATE"}, -- Rift Strike
+			308575, -- Shadow Shift
+			-- Cultist Slavedriver
+			{309882, "NAMEPLATE"}, -- Brutal Smash
+			-- Cultist Tormenter
+			{296537, "NAMEPLATE"}, -- Mental Assault
+			-- Inquisitor Darkspeak
+			308366, -- Agonizing Torment
+			{308380, "NAMEPLATE"}, -- Convert
+			-- Fallen Taskmaster
+			{308998, "NAMEPLATE"}, -- Improve Morale
+			{308967, "NAMEPLATE"}, -- Continuous Beatings
+			-- Faceless Willbreaker
+			{296718, "NAMEPLATE"}, -- Dark Smash
+			-- Enthralled Weaponsmith
+			{306770, "NAMEPLATE"}, -- Forge Breath
+			-- Forge-Guard Hurrul
+			{308406, "NAMEPLATE"}, -- Entropic Leap
+			{308432, "DISPEL", "NAMEPLATE"}, -- Void-Tainted Blades
+			-- SI:7 Informant
+			{298033, "NAMEPLATE"}, -- Touch of the Abyss
+			-- Armsmaster Terenson
+			{311399, "NAMEPLATE"}, -- Blade Flourish
+			{311456, "NAMEPLATE"}, -- Roaring Blast
+			-- Burrowing Appendage
+			298074, -- Rupture
+			-- Dod
+			{264398, "NAMEPLATE"}, -- Hoppy Finish
+			{308346, "NAMEPLATE"}, -- Barrel Aged
+			-- Alx'kov the Infested
+			{308265, "DISPEL", "NAMEPLATE"}, -- Corrupted Blight
+			{296669, "NAMEPLATE"}, -- Lurking Appendage
+			{308305, "SAY"}, -- Blight Eruption
+			-- Greater Void Elemental
+			{297315, "NAMEPLATE"}, -- Void Buffet
+			-- Boundless Corruption
+			{296911, "NAMEPLATE"}, -- Chaos Breath
+			-- Zardeth of the Black Claw
+			{308801, "NAMEPLATE"}, -- Rain of Fire
+			{308878, "NAMEPLATE"}, -- Twisted Summons
+			-- Unstable Servant
+			308862, -- Unstable Eruption
+		}, {
+			["altpower"] = "general",
+			[296510] = L.crawling_corruption,
+			[298584] = L.enthralled_footman,
+			[308375] = L.fallen_voidspeaker,
+			[296492] = L.void_globule,
+			[308308] = L.fallen_heartpiercer,
+			[308481] = L.fallen_riftwalker,
+			[309882] = L.cultist_slavedriver,
+			[296537] = L.cultist_tormenter,
+			[308366] = L.inquisitor_darkspeak,
+			[308998] = L.fallen_taskmaster,
+			[296718] = L.faceless_willbreaker,
+			[306770] = L.enthralled_weaponsmith,
+			[308406] = L.forge_guard_hurrul,
+			[298033] = L.si7_informant,
+			[311399] = L.armsmaster_terenson,
+			[298074] = L.burrowing_appendage,
+			[264398] = L.dod,
+			[308265] = L.alxkov_the_infested,
+			[297315] = L.greater_void_elemental,
+			[296911] = L.boundless_corruption,
+			[308801] = L.zardeth_of_the_black_claw,
+			[308862] = L.unstable_servant,
+		}
+	end
 end
 
 function mod:OnBossEnable()
@@ -309,6 +407,18 @@ function mod:OnBossEnable()
 
 	-- Unstable Servant
 	self:Log("SPELL_CAST_START", "UnstableEruption", 308862)
+
+	-- Hogger
+	if BigWigsLoader.isNext then -- XXX remove check after 11.1.5 is live
+		self:RegisterEngageMob("HoggerEngaged", 241698, 239437) -- WANTED: Hogger!!, Mask of the Nemesis
+		self:Log("SPELL_CAST_SUCCESS", "ViciousSlice", 1223111)
+		self:Log("SPELL_AURA_APPLIED", "ViciousSliceApplied", 1223111)
+		self:Log("SPELL_CAST_START", "MaddeningCall", 1223112)
+		self:Log("SPELL_INTERRUPT", "MaddeningCallInterrupt", 1223112)
+		self:Log("SPELL_CAST_SUCCESS", "MaddeningCallSuccess", 1223112)
+		self:Log("SPELL_CAST_SUCCESS", "Enrage", 86736)
+		self:Death("HoggerDeath", 241698, 239437) -- WANTED: Hogger!!, Mask of the Nemesis
+	end
 end
 
 function mod:VerifyEnable()
@@ -1059,5 +1169,72 @@ do
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
+	end
+end
+
+-- Hogger
+
+do
+	local timer
+
+	function mod:HoggerEngaged(guid)
+		self:CDBar(1223111, 5.0) -- Vicious Slice
+		self:Nameplate(1223111, 5.0, guid) -- Vicious Slice
+		self:CDBar(1223112, 9.8) -- Maddening Call
+		self:Nameplate(1223112, 9.8, guid) -- Maddening Call
+		timer = self:ScheduleTimer("HoggerDeath", 20, nil, guid)
+	end
+
+	function mod:ViciousSlice(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(args.spellId, 10.1)
+		self:Nameplate(args.spellId, 10.1, args.sourceGUID)
+		timer = self:ScheduleTimer("HoggerDeath", 30, nil, args.sourceGUID)
+	end
+
+	function mod:ViciousSliceApplied(args)
+		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:PlaySound(args.spellId, "alarm", nil, args.destName)
+	end
+
+	function mod:MaddeningCall(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		timer = self:ScheduleTimer("HoggerDeath", 30, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
+	end
+
+	function mod:MaddeningCallInterrupt(args)
+		self:CDBar(1223112, 15.2)
+		self:Nameplate(1223112, 15.2, args.destGUID)
+	end
+
+	function mod:MaddeningCallSuccess(args)
+		self:CDBar(args.spellId, 15.2)
+		self:Nameplate(args.spellId, 15.2, args.sourceGUID)
+	end
+
+	function mod:Enrage(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange", CL.on:format(args.spellName, args.sourceName))
+		timer = self:ScheduleTimer("HoggerDeath", 30, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "info")
+	end
+
+	function mod:HoggerDeath(args, guidFromTimer)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(1223111) -- Vicious Slice
+		self:StopBar(1223112) -- Maddening Call
+		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
 end
