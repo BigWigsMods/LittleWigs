@@ -12,4 +12,6 @@
 <Include file="OperationFloodgate\modules.xml"/>
 <Include file="Scenarios\modules.xml"/>
 
+<Include file="Locales\locales.xml"/>
+
 </Ui>
