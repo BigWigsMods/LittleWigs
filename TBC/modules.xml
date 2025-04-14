@@ -18,6 +18,4 @@
 <Include file="TheSteamvault\modules.xml"/>
 <Include file="TheUnderbog\modules.xml"/>
 
-<Include file="Locales\locales.xml"/>
-
 </Ui>

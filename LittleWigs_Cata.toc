@@ -31,7 +31,11 @@
 ## X-BigWigs-LoadOn-InstanceId: 209,229,329,429, 269,540,542,543,545,546,547,552,553,554,555,556,557,558,560,585, 536,574,575,576,578,595,599,600,601,602,604,608,619,632,650,658,668, 33,36,568,643,644,645,657,670,725,755,859,938,939,940
 Classic\BlackrockSpire\modules.xml
 Classic\modules.xml
+Classic\Locales\locales.xml
 TBC\modules.xml
+TBC\Locales\locales.xml
 WotLK\modules.xml
+WotLK\Locales\locales.xml
 Cataclysm\modules.xml
+Cataclysm\Locales\locales.xml
 #@end-do-not-package@

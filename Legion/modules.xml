@@ -16,6 +16,4 @@
 <Include file="CathedralOfEternalNight\modules.xml"/>
 <Include file="SeatOfTheTriumvirate\modules.xml"/>
 
-<Include file="Locales\locales.xml"/>
-
 </Ui>

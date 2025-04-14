@@ -11,6 +11,4 @@
 <Include file="UldamanLegacyOfTyr\modules.xml"/>
 <Include file="DawnOfTheInfinite\modules.xml"/>
 
-<Include file="Locales\locales.xml"/>
-
 </Ui>

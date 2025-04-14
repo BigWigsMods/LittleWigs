@@ -34,4 +34,5 @@ Classic\Deadmines\modules.xml
 Classic\DemonFallCanyon\modules.xml
 Classic\KarazhanCrypts\modules.xml
 Classic\modules.xml
+Classic\Locales\locales.xml
 #@end-do-not-package@

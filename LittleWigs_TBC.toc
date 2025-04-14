@@ -32,5 +32,7 @@
 Classic\BlackrockSpire\modules.xml
 Classic\Deadmines\modules.xml
 Classic\modules.xml
+Classic\Locales\locales.xml
 TBC\modules.xml
+TBC\Locales\locales.xml
 #@end-do-not-package@

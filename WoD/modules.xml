@@ -10,6 +10,4 @@
 <Include file="TheEverbloom\modules.xml"/>
 <Include file="UpperBlackrockSpire\modules.xml"/>
 
-<Include file="Locales\locales.xml"/>
-
 </Ui>
