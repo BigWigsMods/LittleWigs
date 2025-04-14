@@ -167,7 +167,7 @@ end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "frFR")
 if L then
-	 L.add_wave_killed = "Vague d'adds tuée (%d/%d)"
+	L.add_wave_killed = "Vague d'adds tuée (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "frFR")

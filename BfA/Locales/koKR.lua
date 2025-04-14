@@ -262,7 +262,7 @@ end
 
 L = BigWigs:NewBossLocale("Tussle Tonks", "koKR")
 if L then
-	 L.warmup_trigger = "통계상으로 아주 이례적인 일이군요! 방문객들이 아직 살아 있었습니다!"
+	L.warmup_trigger = "통계상으로 아주 이례적인 일이군요! 방문객들이 아직 살아 있었습니다!"
 end
 
 L = BigWigs:NewBossLocale("K.U.-J.0.", "koKR")

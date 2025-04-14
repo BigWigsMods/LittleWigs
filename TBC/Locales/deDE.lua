@@ -9,7 +9,7 @@ end
 L = BigWigs:NewBossLocale("Kael'thas Sunstrider Magisters' Terrace", "deDE")
 if L then
 	-- Don't look so smug! I know what you're thinking, but Tempest Keep was merely a setback. Did you honestly believe I would trust the future to some blind, half-night elf mongrel?
-	 L.warmup_trigger = "Bildet Euch nichts ein!"
+	L.warmup_trigger = "Bildet Euch nichts ein!"
 end
 
 L = BigWigs:NewBossLocale("Magisters' Terrace Trash", "deDE")
