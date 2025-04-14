@@ -5,6 +5,6 @@
 <Script file="Steamrigger.lua"/>
 <Script file="Kalithresh.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

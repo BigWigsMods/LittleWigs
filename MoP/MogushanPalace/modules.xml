@@ -5,6 +5,6 @@
 <Script file="Gekkan.lua"/>
 <Script file="XinTheWeaponmaster.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

@@ -6,6 +6,6 @@
 <Script file="Rimok.lua"/>
 <Script file="Raigonn.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

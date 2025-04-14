@@ -6,6 +6,6 @@
 <Script file="VoidstoneMonstrosity.lua"/>
 <Script file="Trash.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

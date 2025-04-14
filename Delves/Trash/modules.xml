@@ -12,6 +12,6 @@
 <!--<Script file="ZekvirRares.lua"/>-->
 <Script file="UnderpinRares.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

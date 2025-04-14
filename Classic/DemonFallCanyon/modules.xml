@@ -8,7 +8,7 @@
 <Script file="DiathorusTheSeeker.lua"/>
 <Script file="HellscreamsPhantom.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 <Script file="!Locales\deDE.lua"/>
 <Script file="!Locales\esES.lua"/>
 <Script file="!Locales\esMX.lua"/>

@@ -5,6 +5,6 @@
 <Script file="ArmsmasterHarlan.lua"/>
 <Script file="FlameweaverKoegler.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

@@ -16,6 +16,6 @@
 <Script file="PostmasterMalown.lua"/>
 <Script file="LordAuriusRivendare.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

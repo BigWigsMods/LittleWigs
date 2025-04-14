@@ -9,6 +9,6 @@
 <Script file="NekrumAndSezzziz.lua"/>
 <Script file="ChiefUkorzSandscalp.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

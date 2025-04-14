@@ -5,6 +5,6 @@
 <Script file="HarbingerUlthul.lua"/>
 <Script file="XelaneghTheMany.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

@@ -6,6 +6,6 @@
 <Script file="Pavalak.lua"/>
 <Script file="Neronok.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

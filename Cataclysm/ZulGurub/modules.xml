@@ -7,6 +7,6 @@
 <Script file="Zanzil.lua"/>
 <Script file="Jindo.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

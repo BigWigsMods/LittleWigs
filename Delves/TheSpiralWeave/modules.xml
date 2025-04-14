@@ -4,6 +4,6 @@
 <Script file="OverseerKaskel.lua"/>
 <Script file="ThePuppetmaster.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

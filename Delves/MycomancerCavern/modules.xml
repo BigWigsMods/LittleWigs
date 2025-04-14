@@ -3,6 +3,6 @@
 
 <Script file="Bogpiper.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

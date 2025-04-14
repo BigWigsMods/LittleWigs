@@ -9,6 +9,6 @@
 <Script file="Sigryn.lua"/>
 <Script file="TugarBloodtotem.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>
