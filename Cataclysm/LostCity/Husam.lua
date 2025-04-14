@@ -49,4 +49,3 @@ function mod:BadIntentions(args)
 	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alert")
 	self:CDBar(args.spellId, 25)
 end
-

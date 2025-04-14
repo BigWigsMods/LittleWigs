@@ -46,4 +46,3 @@ function mod:BerserkerAuraRemoved(args)
 		self:MessageOld(args.spellId, "green", nil, CL.over:format(args.spellName))
 	end
 end
-

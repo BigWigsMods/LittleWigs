@@ -71,7 +71,6 @@ if L then
 	L.right = "%s (Derecha)"
 end
 
-
 -- Horrific Vision of Orgrimmar
 
 L = BigWigs:NewBossLocale("Horrific Vision of Orgrimmar Trash", "esMX")

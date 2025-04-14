@@ -64,4 +64,3 @@ function mod:UNIT_HEALTH(event, unit)
 		self:MessageOld(88814, "yellow", nil, CL.soon:format(CL.phase:format(2)))
 	end
 end
-

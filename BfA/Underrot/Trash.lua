@@ -351,7 +351,6 @@ do
 	end
 end
 
-
 function mod:WickedEmbraceApplied(args)
 	if self:Me(args.destGUID) or self:Healer() or self:Dispeller("magic") then
 		self:TargetMessage(args.spellId, "yellow", args.destName)

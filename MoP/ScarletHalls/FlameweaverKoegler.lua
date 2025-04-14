@@ -62,4 +62,3 @@ function mod:BookBurner(args)
 	self:Bar(args.spellId, 3, CL["cast"]:format(args.spellName))
 	self:MessageOld(args.spellId, "red", "info", CL["casting"]:format(args.spellName))
 end
-

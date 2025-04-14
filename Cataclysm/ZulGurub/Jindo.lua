@@ -60,7 +60,6 @@ end
 --  Event Handlers
 --
 
-
 function mod:ShadowsOfHakkar(args)
 	self:MessageOld(args.spellId, "yellow", "info", CL.casting:format(args.spellName))
 	self:CDBar(args.spellId, 19)

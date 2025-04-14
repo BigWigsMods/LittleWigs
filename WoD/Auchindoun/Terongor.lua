@@ -20,7 +20,6 @@ if L then
 	_, L.destruction = GetSpecializationInfoByID(267)
 end
 
-
 --------------------------------------------------------------------------------
 -- Initialization
 --

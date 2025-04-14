@@ -408,7 +408,6 @@ end
 
 -- Irontorch Commander
 
-
 do
 	local timer
 

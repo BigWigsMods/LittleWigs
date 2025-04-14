@@ -31,4 +31,3 @@ function mod:LightningNova(args)
 	self:MessageOld(59835, "orange", "alert")
 	self:Bar(59835, args.spellId == 59835 and 4 or 5)
 end
-

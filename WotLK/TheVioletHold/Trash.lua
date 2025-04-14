@@ -100,4 +100,3 @@ function mod:BossDeaths()
 		self:Bar("portals", count == 7 and 35 or 30, CL.count:format(L.portal_bar, count), "spell_arcane_portaldalaran") -- (20s or 15s) + 15s
 	end
 end
-

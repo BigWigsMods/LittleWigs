@@ -194,7 +194,6 @@ if L then
 	L.winds = "Vientos"
 end
 
-
 -- The Azure Vault
 
 L = BigWigs:NewBossLocale("The Azure Vault Trash", "esMX")

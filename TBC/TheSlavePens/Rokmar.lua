@@ -68,4 +68,3 @@ function mod:UNIT_HEALTH(event, unit)
 		end
 	end
 end
-
