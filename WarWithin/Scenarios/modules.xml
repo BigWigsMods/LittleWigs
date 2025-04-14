@@ -3,6 +3,6 @@
 
 <Script file="AwakeningTheMachine.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

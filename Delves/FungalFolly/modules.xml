@@ -4,6 +4,6 @@
 <Script file="Maulspike.lua"/>
 <Script file="Spinshroom.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

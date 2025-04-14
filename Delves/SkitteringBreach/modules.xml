@@ -5,6 +5,6 @@
 <Script file="Nerlathekk.lua"/>
 <Script file="SpeakerXanventh.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

@@ -7,6 +7,6 @@
 <Script file="Beauty.lua"/>
 <Script file="Obsidius.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

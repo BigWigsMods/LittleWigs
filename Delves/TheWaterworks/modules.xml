@@ -4,6 +4,6 @@
 <Script file="Shroomsprew.lua"/>
 <Script file="Waxface.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

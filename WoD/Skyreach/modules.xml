@@ -6,6 +6,6 @@
 <Script file="Rukhran.lua"/>
 <Script file="Viryx.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

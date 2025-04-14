@@ -9,6 +9,6 @@
 <!--<Script file="Setesh.lua"/>-->
 <Script file="Rajh.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

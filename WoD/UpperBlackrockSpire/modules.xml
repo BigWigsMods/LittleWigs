@@ -7,6 +7,6 @@
 <Script file="Ragewing.lua"/>
 <Script file="Zaela.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

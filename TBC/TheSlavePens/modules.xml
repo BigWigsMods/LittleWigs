@@ -7,6 +7,6 @@
 <Script file="Trash.lua"/>
 <Script file="Ahune.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

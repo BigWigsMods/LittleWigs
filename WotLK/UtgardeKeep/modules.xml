@@ -5,6 +5,6 @@
 <Script file="SkarvaldAndDalronn.lua"/>
 <Script file="Ingvar.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

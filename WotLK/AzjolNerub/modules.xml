@@ -5,6 +5,6 @@
 <Script file="Hadronox.lua"/>
 <Script file="Anubarak.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

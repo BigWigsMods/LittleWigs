@@ -4,6 +4,6 @@
 <Script file="Bronjahm.lua"/>
 <Script file="DevourerOfSouls.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

@@ -7,6 +7,6 @@
 <Script file="Eck.lua"/>
 <Script file="Galdarah.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

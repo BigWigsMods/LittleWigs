@@ -7,6 +7,6 @@
 <Script file="LilianVoss.lua"/>
 <Script file="DarkmasterGandling.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

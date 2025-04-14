@@ -6,6 +6,6 @@
 <Script file="SpeakerHalven.lua"/>
 <Script file="CultLeaders.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

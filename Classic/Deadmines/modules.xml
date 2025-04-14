@@ -9,6 +9,6 @@
 <Script file="EdwinVanCleef.lua"/>
 <Script file="Cookie.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

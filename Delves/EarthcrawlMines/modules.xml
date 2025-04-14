@@ -5,6 +5,6 @@
 <Script file="MaklinDrillstab.lua"/>
 <Script file="TheBiggestBug.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

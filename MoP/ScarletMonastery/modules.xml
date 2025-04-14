@@ -6,6 +6,6 @@
 <Script file="HighInquisitorWhitemane.lua"/>
 <Script file="TheHeadlessHorseman.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>

@@ -4,6 +4,6 @@
 <Script file="EssenceOfOrder.lua"/>
 <Script file="Kanrethad.lua"/>
 
-<Include file="Options\options.xml"/>
+<Script file="!Options.lua"/>
 
 </Ui>
