@@ -75,4 +75,3 @@ end
 function mod:EvictSoulRemoved(args)
 	self:StopBar(args.spellName, args.destName)
 end
-

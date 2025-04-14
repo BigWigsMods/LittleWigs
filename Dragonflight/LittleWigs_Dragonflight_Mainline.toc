@@ -20,3 +20,14 @@
 ## X-BigWigs-LoadOn-InstanceId: 2520, 2527, 2519, 2521, 2526, 2515, 2516, 2451, 2579
 
 modules.xml
+
+!Locales\deDE.lua
+!Locales\esES.lua
+!Locales\esMX.lua
+!Locales\frFR.lua
+!Locales\itIT.lua
+!Locales\koKR.lua
+!Locales\ptBR.lua
+!Locales\ruRU.lua
+!Locales\zhCN.lua
+!Locales\zhTW.lua

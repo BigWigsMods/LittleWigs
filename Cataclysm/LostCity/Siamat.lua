@@ -66,4 +66,3 @@ function mod:ServantDied()
 		self:MessageOld("stages", "green", "info", CL.stage:format(2), false)
 	end
 end
-

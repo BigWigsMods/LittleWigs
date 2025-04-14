@@ -70,7 +70,6 @@ function mod:OverpoweringCroak(args)
 	self:Bar(385187, 38.8)
 end
 
-
 do
 	local function printTarget(self, player, guid)
 		self:TargetMessage(385531, "red", player)

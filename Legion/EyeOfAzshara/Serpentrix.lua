@@ -59,4 +59,3 @@ end
 function mod:ToxicWoundOver(args)
 	self:PrimaryIcon(args.spellId)
 end
-

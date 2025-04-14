@@ -68,4 +68,3 @@ function mod:Barrage(args)
 		self:Flash(86881)
 	end
 end
-

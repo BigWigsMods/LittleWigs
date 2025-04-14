@@ -36,4 +36,3 @@ end
 --function mod:EnrageRemoved(args)
 --	self:StopBar(args.spellName)
 --end
-

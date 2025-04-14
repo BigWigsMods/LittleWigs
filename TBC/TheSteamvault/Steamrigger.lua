@@ -59,7 +59,6 @@ end
 -------------------------------------------------------------------------------
 --  Event Handlers
 
-
 do
 	local playerList = mod:NewTargetList()
 	function mod:SuperShrinkRay(args)

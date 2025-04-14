@@ -19,6 +19,4 @@
 <Include file="DemolitionDome\modules.xml"/>
 <Include file="Trash\modules.xml"/>
 
-<Include file="Locales\locales.xml"/>
-
 </Ui>

@@ -84,4 +84,3 @@ function mod:ShrapnelNova(args)
 	self:Bar(args.spellId, 2.5, CL.cast:format(args.spellName))
 	self:CDBar(args.spellId, 30) -- 29-33
 end
-

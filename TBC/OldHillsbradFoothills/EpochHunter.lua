@@ -58,7 +58,6 @@ function mod:CHAT_MSG_MONSTER_YELL(event, msg)
 	end
 end
 
-
 function mod:MagicDisruptionAura(args)
 	if self:Dispeller("magic", true, args.spellId) then
 		self:MessageOld(args.spellId, "orange", "alert")

@@ -24,3 +24,14 @@ Deadmines\modules.xml
 DemonFallCanyon\modules.xml
 KarazhanCrypts\modules.xml
 modules.xml
+
+!Locales\deDE.lua
+!Locales\esES.lua
+!Locales\esMX.lua
+!Locales\frFR.lua
+!Locales\itIT.lua
+!Locales\koKR.lua
+!Locales\ptBR.lua
+!Locales\ruRU.lua
+!Locales\zhCN.lua
+!Locales\zhTW.lua

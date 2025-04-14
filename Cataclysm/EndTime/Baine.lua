@@ -64,4 +64,3 @@ function mod:TotemUp(args)
 	self:MessageOld(-4141, "green", "info", L.totemThrow:format(args.destName))
 	self:StopBar(L.totemDrop)
 end
-

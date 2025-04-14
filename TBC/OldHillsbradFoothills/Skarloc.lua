@@ -22,7 +22,6 @@ if L then
 	L.warmup_trigger = "answer to Blackmoore"
 end
 
-
 -------------------------------------------------------------------------------
 --  Initialization
 

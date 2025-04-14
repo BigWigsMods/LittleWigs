@@ -31,4 +31,3 @@ function mod:ShatteringStomp(args)
 	self:MessageOld(59529, "orange", nil, CL.casting:format(args.spellName))
 	self:Bar(59529, 3)
 end
-

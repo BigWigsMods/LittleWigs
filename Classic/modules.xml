@@ -21,6 +21,4 @@
 <!--<Include file="WailingCaverns\modules.xml"/>-->
 <Include file="ZulFarrak\modules.xml"/>
 
-<Include file="Locales\locales.xml"/>
-
 </Ui>

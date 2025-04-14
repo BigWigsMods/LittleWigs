@@ -20,3 +20,14 @@
 ## X-BigWigs-LoadOn-InstanceId: 33, 36, 568, 643, 644, 645, 657, 670, 725, 755, 859, 938, 939, 940
 
 modules.xml
+
+!Locales\deDE.lua
+!Locales\esES.lua
+!Locales\esMX.lua
+!Locales\frFR.lua
+!Locales\itIT.lua
+!Locales\koKR.lua
+!Locales\ptBR.lua
+!Locales\ruRU.lua
+!Locales\zhCN.lua
+!Locales\zhTW.lua

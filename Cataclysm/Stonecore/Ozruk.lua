@@ -78,4 +78,3 @@ function mod:GroundSlam(args)
 	self:MessageOld(args.spellId, "orange", "alarm", CL.casting:format(args.spellName))
 	self:Bar(args.spellId, 3, CL.cast:format(args.spellName))
 end
-

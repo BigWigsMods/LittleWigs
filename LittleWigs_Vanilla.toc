@@ -34,4 +34,14 @@ Classic\Deadmines\modules.xml
 Classic\DemonFallCanyon\modules.xml
 Classic\KarazhanCrypts\modules.xml
 Classic\modules.xml
+Classic\!Locales\deDE.lua
+Classic\!Locales\esES.lua
+Classic\!Locales\esMX.lua
+Classic\!Locales\frFR.lua
+Classic\!Locales\itIT.lua
+Classic\!Locales\koKR.lua
+Classic\!Locales\ptBR.lua
+Classic\!Locales\ruRU.lua
+Classic\!Locales\zhCN.lua
+Classic\!Locales\zhTW.lua
 #@end-do-not-package@
