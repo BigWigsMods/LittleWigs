@@ -48,7 +48,7 @@ WoD\Locales\locales.xml
 Legion\modules.xml
 Legion\Locales\locales.xml
 BfA\modules.xml
-BFA\Locales\locales.xml
+BfA\Locales\locales.xml
 Shadowlands\modules.xml
 Shadowlands\Locales\locales.xml
 Dragonflight\modules.xml
