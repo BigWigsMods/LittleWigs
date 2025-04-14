@@ -18,4 +18,6 @@
 <Include file="UtgardeKeep\modules.xml"/>
 <Include file="UtgardePinnacle\modules.xml"/>
 
+<Include file="Locales\locales.xml"/>
+
 </Ui>
