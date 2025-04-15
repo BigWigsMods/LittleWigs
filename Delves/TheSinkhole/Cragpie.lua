@@ -31,6 +31,8 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.cragpie
+	self:SetSpellRename(470612, CL.poison) -- Corrosive Bile (Poison)
+	self:SetSpellRename(390943, CL.dodge) -- Electric Cataclysm (Dodge)
 end
 
 function mod:GetOptions()
@@ -38,6 +40,9 @@ function mod:GetOptions()
 		{470612, "DISPEL"}, -- Corrosive Bile
 		{359016, "DISPEL"}, -- Swiftness
 		390943, -- Electric Cataclysm
+	},nil,{
+		[470612] = CL.poison, -- Corrosive Bile (Poison)
+		[390943] = CL.dodge, -- Electric Cataclysm (Dodge)
 	}
 end
 
@@ -52,10 +57,10 @@ end
 function mod:OnEngage()
 	local t = GetTime()
 	nextCorrosiveBile = t + 6.0
-	self:CDBar(470612, 6.0) -- Corrosive Bile
+	self:CDBar(470612, 6.0, CL.poison) -- Corrosive Bile
 	nextSwiftness = t + 12.1
 	self:CDBar(359016, 12.1) -- Swiftness
-	self:CDBar(390943, 20.2) -- Electric Cataclysm
+	self:CDBar(390943, 20.2, CL.dodge) -- Electric Cataclysm
 end
 
 --------------------------------------------------------------------------------
@@ -64,15 +69,15 @@ end
 
 function mod:CorrosiveBile(args)
 	local t = GetTime()
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(CL.poison))
 	nextCorrosiveBile = t + 23.0
-	self:CDBar(args.spellId, 23.0)
+	self:CDBar(args.spellId, 23.0, CL.poison)
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:CorrosiveBileApplied(args)
 	if self:Dispeller("poison", nil, args.spellId) and self:Player(args.destFlags) then
-		self:TargetMessage(args.spellId, "orange", args.destName)
+		self:TargetMessage(args.spellId, "orange", args.destName, CL.poison)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
@@ -87,19 +92,19 @@ end
 
 function mod:SwiftnessApplied(args)
 	if self:Dispeller("magic", true, args.spellId) and not self:Player(args.destFlags) then
-		self:Message(args.spellId, "red", CL.on:format(args.spellName, args.destName))
+		self:Message(args.spellId, "red", CL.magic_buff_boss:format(args.spellName))
 		self:PlaySound(args.spellId, "info")
 	end
 end
 
 function mod:ElectricCataclysm(args)
 	local t = GetTime()
-	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 30.3)
+	self:Message(args.spellId, "yellow", CL.extra:format(args.spellName, CL.dodge))
+	self:CDBar(args.spellId, 30.3, CL.dodge)
 	-- 8.5s before another spell can be cast
 	if nextCorrosiveBile - t < 8.5 then
 		nextCorrosiveBile = t + 8.5
-		self:CDBar(470612, {8.5, 23.0}) -- Corrosive Bile
+		self:CDBar(470612, {8.5, 23.0}, CL.poison) -- Corrosive Bile
 	end
 	if nextSwiftness - t < 8.5 then
 		nextSwiftness = t + 8.5
