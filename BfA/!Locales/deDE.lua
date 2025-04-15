@@ -125,9 +125,9 @@ end
 L = BigWigs:NewBossLocale("Rexxar", "deDE")
 if L then
 	L.rexxar = "Rexxar"
-	--L.pet_trigger_1 = "Come, my pets! Serve your master!"
-	--L.pet_trigger_2 = "My beasts will devour you!"
-	--L.pet_trigger_3 = "Hunt them down!"
+	L.pet_trigger_1 = "Kommt, meine Tiere! Dient Eurem Meister!"
+	L.pet_trigger_2 = "Meine Tiere werden Euch verschlingen!"
+	L.pet_trigger_3 = "Schnappt sie euch!"
 end
 
 -- Horrific Vision of Stormwind
@@ -159,8 +159,8 @@ if L then
 	L.unstable_servant = "Instabiler Diener"
 	L.hogger = "Hogger"
 
-	--L.therum_deepforge_warmup_trigger = "So ye like tae play with explosives, do ye? Then let's play."
-	--L.alleria_windrunner_warmup_trigger = "Mother... do not listen to the whispers!"
+	L.therum_deepforge_warmup_trigger = "Ihr spielt wohl gern mit Sprengstoff, was? Dann lasst uns spielen!"
+	L.alleria_windrunner_warmup_trigger = "Mutter... hör nicht auf das Geflüster!"
 end
 
 L = BigWigs:NewBossLocale("Alleria Windrunner", "deDE")
