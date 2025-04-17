@@ -8,6 +8,7 @@ mod:RegisterEnableMob(
 	215685, -- Foreman Pivk (Earthcrawl Mines gossip NPC)
 	216632, -- Lamplighter Rathling (Earthcrawl Mines gossip NPC)
 	219680, -- Vant (The Dread Pit gossip NPC)
+	220181, -- Vanathia (The Dread Pit gossip NPC)
 	220585, -- Lamplighter Havrik Chayvn (Skittering Breach gossip NPC)
 	220461, -- Weaver's Agent (The Spiral Weave gossip NPC)
 	220462, -- Weaver's Instructions (The Spiral Weave gossip NPC)
@@ -139,6 +140,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(123392) then -- The Dread Pit, continue Delve (Vant)
 			-- 123392:|cFF0000FF(Delve)|r I'll use the modified device to get through the webs up ahead.
 			self:SelectGossipID(123392)
+		elseif self:GetGossipID(121526) then -- The Dread Pit, start Delve (Vanathia)
+			-- 121526:|cFF0000FF(Delve)|r I'll rescue your friends while this device lures away the skardyn.
+			self:SelectGossipID(121526)
 		elseif self:GetGossipID(120330) then -- Earthcrawl Mines, start Delve (Foreman Pivk)
 			-- 120330:|cFF0000FF(Delve)|r I'll guard the cart and help you rescue your friends.
 			self:SelectGossipID(120330)
