@@ -55,10 +55,6 @@ function mod:OnRegister()
 end
 
 function mod:OnBossEnable()
-	-- XXX ENCOUNTER_END doesn't work for 3086 on either win or wipe
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
-	self:Death("Win", 234034) -- Thrall (Revisited)
-
 	self:Log("SPELL_CAST_START", "SeismicSlam", 297746)
 	self:Log("SPELL_CAST_START", "SurgingDarkness", 297822)
 
