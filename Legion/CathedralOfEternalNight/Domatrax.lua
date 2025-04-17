@@ -21,9 +21,9 @@ mod.engageId = 2053
 
 local L = mod:GetLocale()
 if L then
-	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk = CL.autotalk
 	L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramar's gossip option to start the Domatrax encounter."
-	L.custom_on_autotalk_icon = "ui_chat"
+	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
 
 	L.missing_aegis = "You're not standing in Aegis" -- Aegis is a short name for Aegis of Aggramar
 	L.aegis_healing = "Aegis: Reduced Healing Done"

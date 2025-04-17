@@ -45,7 +45,6 @@ end
 
 L = BigWigs:NewBossLocale("The Culling of Stratholme Trash", "esES")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
 	--L.custom_on_autotalk_desc = "Instantly select Chromie's and Arthas's gossip options."
 
 	--L.gossip_available = "Gossip available"
@@ -100,7 +99,6 @@ end
 
 L = BigWigs:NewBossLocale("Trial of the Champion Trash", "esES")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
 	--L.custom_on_autotalk_desc = "Instantly select gossip option to start encounters."
 end
 

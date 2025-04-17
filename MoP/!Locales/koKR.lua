@@ -37,7 +37,6 @@ end
 L = BigWigs:NewBossLocale("The Headless Horseman", "koKR")
 if L then
 	L.the_headless_horseman = "저주받은 기사"
-	L.custom_on_autotalk = "자동 대화"
 	--L.custom_on_autotalk_desc = "Automatically accept the curses from the Wicker Men, and automatically start the encounter."
 	--L.curses_desc = "Notifies you when you recieve a curse from a Wicker Man."
 end

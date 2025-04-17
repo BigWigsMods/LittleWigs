@@ -3,7 +3,6 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "koKR")
 if not L then return end
 if L then
-	L.custom_on_recruiter_autotalk = "자동 대화"
 	--L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
 	L.critical_strike = "+5% 치명타 및 극대화"
 	L.haste = "+5% 가속"
@@ -32,7 +31,6 @@ end
 
 L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "koKR")
 if L then
-	L.custom_on_cauldron_autotalk = "자동 대화"
 	--L.custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
 	--L.captive_tuskarr_freed = "Captive Tuskarr Freed"
 	--L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
@@ -98,7 +96,6 @@ if L then
 	L.horde_raider_alliance_knight = "호드 약탈병 / 얼라이언스 기사"
 	L.infinite_timebender = "무한의 시간왜곡사"
 
-	L.custom_on_rift_autotalk = "자동 대화"
 	--L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
 	--L.rift_opened = "Temporal Rift Opened"
 	L.rift_stability = "균열 안정성"
@@ -111,7 +108,6 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Infusion Trash", "koKR")
 if L then
-	L.custom_on_autotalk = "자동 대화"
 	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
 
 	L.primalist_ravager = "원시술사 약탈자"
@@ -137,7 +133,6 @@ end
 
 L = BigWigs:NewBossLocale("Neltharus Trash", "koKR")
 if L then
-	L.custom_on_autotalk = "자동 대화"
 	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
 
 	L.burning_chain = "불타는 사슬"
@@ -199,7 +194,6 @@ end
 L = BigWigs:NewBossLocale("The Azure Vault Trash", "koKR")
 if L then
 	L.book_of_translocation = "순간이동의 서"
-	L.custom_on_book_autotalk = "자동 대화"
 	--L.custom_on_book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
 
 	L.shrieking_whelp = "절규하는 새끼용"

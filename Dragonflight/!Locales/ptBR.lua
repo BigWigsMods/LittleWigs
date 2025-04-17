@@ -3,7 +3,6 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "ptBR")
 if not L then return end
 if L then
-	L.custom_on_recruiter_autotalk = "Conversa automática"
 	--L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
 	L.critical_strike = "+5% Acerto Crítico"
 	L.haste = "+5% Aceleração"
@@ -32,7 +31,6 @@ end
 
 L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "ptBR")
 if L then
-	L.custom_on_cauldron_autotalk = "Conversa Automática"
 	--L.custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
 	--L.captive_tuskarr_freed = "Captive Tuskarr Freed"
 	--L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
@@ -98,7 +96,6 @@ if L then
 	L.horde_raider_alliance_knight = "Saqueador da Horda / Cavaleiro da Aliança"
 	L.infinite_timebender = "Dobratempo Infinita"
 
-	L.custom_on_rift_autotalk = "Conversa Automática"
 	--L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
 	--L.rift_opened = "Temporal Rift Opened"
 	L.rift_stability = "Estabilidade da Fenda"
@@ -111,7 +108,6 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Infusion Trash", "ptBR")
 if L then
-	L.custom_on_autotalk = "Conversa Automática"
 	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
 
 	L.primalist_ravager = "Assoladora Primevista"
@@ -137,7 +133,6 @@ end
 
 L = BigWigs:NewBossLocale("Neltharus Trash", "ptBR")
 if L then
-	L.custom_on_autotalk = "Conversa Automática"
 	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
 
 	L.burning_chain = "Corrente Ardente"
@@ -199,7 +194,6 @@ end
 L = BigWigs:NewBossLocale("The Azure Vault Trash", "ptBR")
 if L then
 	L.book_of_translocation = "Livro de Translocação"
-	L.custom_on_book_autotalk = "Conversa automática"
 	--L.custom_on_book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
 
 	L.shrieking_whelp = "Dragonete Guinchador"

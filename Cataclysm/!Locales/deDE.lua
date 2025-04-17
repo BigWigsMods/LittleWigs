@@ -35,7 +35,6 @@ end
 
 L = BigWigs:NewBossLocale("The Hour of Twilight Trash", "deDE")
 if L then
-	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Direkt Thralls Dialogoptionen auswählen."
 end
 
@@ -91,12 +90,6 @@ if L then
 	L.high_tide_trigger2 = "Vernichtet die Eindringlinge! Überlasst sie den Großen Dunklen Weiten!"
 end
 
-L = BigWigs:NewBossLocale("Ozumat", "deDE")
-if L then
-	L.custom_on_autotalk = "Automatisch ansprechen"
-	L.custom_on_autotalk_desc = "Wählt direkt die Dialogoption zum Beginn des Kampfes."
-end
-
 -- The Vortex Pinnacle
 
 L = BigWigs:NewBossLocale("The Vortex Pinnacle Trash", "deDE")
@@ -125,7 +118,6 @@ end
 
 L = BigWigs:NewBossLocale("Well Of Eternity Trash", "deDE")
 if L then
-	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Wählt direkt Illidans Sprachoption zum Beginn des Kampfes."
 end
 

@@ -19,9 +19,9 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
-	L.custom_on_autotalk = "Autotalk"
-	L.custom_on_autotalk_desc = "Instantly selects Alleria Winrunners gossip option."
-	L.custom_on_autotalk_icon = "ui_chat"
+	L.custom_on_autotalk = CL.autotalk
+	L.custom_on_autotalk_desc = "Instantly selects Alleria Winrunner's gossip option."
+	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
 	L.gossip_available = "Gossip available"
 	L.alleria_gossip_trigger = "Follow me!" -- Allerias yell after the first boss is defeated
 

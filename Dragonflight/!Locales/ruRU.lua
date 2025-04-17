@@ -3,7 +3,6 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "ruRU")
 if not L then return end
 if L then
-	L.custom_on_recruiter_autotalk = "Авторазговор"
 	L.custom_on_recruiter_autotalk_desc = "Автоматически говорить с драконами-вербовщиками для получения бафа."
 	L.critical_strike = "+5% Критический удар"
 	L.haste = "+5% Скорость"
@@ -32,7 +31,6 @@ end
 
 L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "ruRU")
 if L then
-	L.custom_on_cauldron_autotalk = "Авторазговор"
 	L.custom_on_cauldron_autotalk_desc = "[Алхимия] Автоматически использовать котлы."
 	--L.captive_tuskarr_freed = "Captive Tuskarr Freed"
 	--L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
@@ -98,7 +96,6 @@ if L then
 	L.horde_raider_alliance_knight = "Налетчик Орды / Рыцарь Альянса"
 	L.infinite_timebender = "Исказительница времени из рода Бесконечности"
 
-	L.custom_on_rift_autotalk = "Авторазговор"
 	--L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
 	--L.rift_opened = "Temporal Rift Opened"
 	L.rift_stability = "Стабильность разлома"
@@ -111,7 +108,6 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Infusion Trash", "ruRU")
 if L then
-	L.custom_on_autotalk = "Авторазговор"
 	L.custom_on_autotalk_desc = "Автоматически выбирать диалоги для баффов профессии."
 
 	L.primalist_ravager = "Опустошитель воинов стихий"
@@ -137,7 +133,6 @@ end
 
 L = BigWigs:NewBossLocale("Neltharus Trash", "ruRU")
 if L then
-	L.custom_on_autotalk = "Авторазговор"
 	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
 
 	L.burning_chain = "Горящая цепь"
@@ -199,7 +194,6 @@ end
 L = BigWigs:NewBossLocale("The Azure Vault Trash", "ruRU")
 if L then
 	L.book_of_translocation = "Книга транслокации"
-	L.custom_on_book_autotalk = "Авторазговор"
 	L.custom_on_book_autotalk_desc = "Автоматически перемещаться в следующую область при разговоре с Книгой транслокации."
 
 	L.shrieking_whelp = "Кричащий дракончик"

@@ -33,7 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Old Hillsbrad Foothills Trash", "koKR")
 if L then
-	L.custom_on_autotalk = "자동 대화"
 	--L.custom_on_autotalk_desc = "Instantly select Erozion's, Thrall's and Taretha's gossip options."
 
 	--L.incendiary_bombs = "Incendiary Bombs"

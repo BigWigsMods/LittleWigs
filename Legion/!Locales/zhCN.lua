@@ -100,7 +100,6 @@ end
 
 L = BigWigs:NewBossLocale("Assault on Violet Hold Trash", "zhCN")
 if L then
-	L.custom_on_autotalk = "自动对话"
 	L.custom_on_autotalk_desc = "立即选择辛克莱尔中尉对话选项开始突袭紫罗兰监狱。"
 	L.keeper = "传送门看护者"
 	L.guardian = "传送门守卫者"
@@ -151,7 +150,6 @@ end
 
 L = BigWigs:NewBossLocale("Domatrax", "zhCN")
 if L then
-	L.custom_on_autotalk = "自动对话"
 	L.custom_on_autotalk_desc = "立即选择阿格拉玛之盾对话开始与多玛塔克斯战斗。"
 
 	L.missing_aegis = "你没站在盾内" -- Aegis is a short name for Aegis of Aggramar
@@ -347,7 +345,6 @@ end
 L = BigWigs:NewBossLocale("Karazhan Trash", "zhCN")
 if L then
 	-- Opera Event
-	L.custom_on_autotalk = "自动对话"
 	L.custom_on_autotalk_desc = "立即选择巴内斯对话选项开始歌剧院战斗。"
 	L.opera_hall_wikket_story_text = "歌剧院：魔法坏女巫"
 	L.opera_hall_wikket_story_trigger = "唱戏的家伙少废话" -- 唱戏的家伙少废话，美猴王有了个新想法！
@@ -443,7 +440,6 @@ end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "zhCN")
 if L then
-	L.custom_on_autotalk = "自动对话"
 	L.custom_on_autotalk_desc = "立即选择奥蕾莉亚·风行者对话选项。"
 	L.gossip_available = "可对话"
 	L.alleria_gossip_trigger = "跟我走！" -- Allerias yell after the first boss is defeated

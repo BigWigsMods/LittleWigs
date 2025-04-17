@@ -100,7 +100,6 @@ end
 
 L = BigWigs:NewBossLocale("Assault on Violet Hold Trash", "koKR")
 if L then
-	L.custom_on_autotalk = "자동 대화"
 	L.custom_on_autotalk_desc = "보랏빛 요새 침공을 시작하는 부관 신클래리의 대화 선택지를 즉시 선택합니다."
 	L.keeper = "차원문 수호병"
 	L.guardian = "차원문 수호자"
@@ -151,7 +150,6 @@ end
 
 L = BigWigs:NewBossLocale("Domatrax", "koKR")
 if L then
-	L.custom_on_autotalk = "자동 대화"
 	L.custom_on_autotalk_desc = "도마트락스 전투를 시작하는 아그라마르의 아이기스 대화 선택지를 즉시 선택합니다."
 
 	L.missing_aegis = "아이기스 효과 없음!" -- Aegis is a short name for Aegis of Aggramar
@@ -347,7 +345,6 @@ end
 L = BigWigs:NewBossLocale("Karazhan Trash", "koKR")
 if L then
 	-- Opera Event
-	L.custom_on_autotalk = "자동 대화"
 	L.custom_on_autotalk_desc = "오페라 극장 우두머리 전투를 시작하는 반즈의 대화 선택지를 즉시 고릅니다."
 	L.opera_hall_wikket_story_text = "오페라 극장: 우끼드"
 	--L.opera_hall_wikket_story_trigger = "Shut your jabber" -- Shut your jabber, drama man! The Monkey King got another plan!
@@ -443,7 +440,6 @@ end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "koKR")
 if L then
-	L.custom_on_autotalk = "자동 대화"
 	L.custom_on_autotalk_desc = "알레리아 윈드러너의 대화 선택지를 즉시 고릅니다."
 	L.gossip_available = "대화 가능"
 	L.alleria_gossip_trigger = "따라오세요!" -- Allerias yell after the first boss is defeated

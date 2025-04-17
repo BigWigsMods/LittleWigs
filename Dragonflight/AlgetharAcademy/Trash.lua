@@ -30,9 +30,9 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
-	L.custom_on_recruiter_autotalk = "Autotalk"
+	L.custom_on_recruiter_autotalk = CL.autotalk
 	L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
-	L.custom_on_recruiter_autotalk_icon = "ui_chat"
+	L.custom_on_recruiter_autotalk_icon = mod:GetMenuIcon("SAY")
 	L.critical_strike = "+5% Critical Strike"
 	L.haste = "+5% Haste"
 	L.mastery = "+Mastery"

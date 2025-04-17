@@ -33,7 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Old Hillsbrad Foothills Trash", "deDE")
 if L then
-	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Wählt direkt die Dialogoptionen von Erozion, Thrall und Taretha."
 
 	L.incendiary_bombs = "Brandbomben"

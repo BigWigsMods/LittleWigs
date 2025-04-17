@@ -35,7 +35,6 @@ end
 
 L = BigWigs:NewBossLocale("The Hour of Twilight Trash", "koKR")
 if L then
-	L.custom_on_autotalk = "자동 대화"
 	--L.custom_on_autotalk_desc = "Instantly select Thrall's gossip options."
 end
 
@@ -91,12 +90,6 @@ if L then
 	--L.high_tide_trigger2 = "Destroy these intruders! Leave them for the great dark beyond!"
 end
 
-L = BigWigs:NewBossLocale("Ozumat", "koKR")
-if L then
-	L.custom_on_autotalk = "자동 대화"
-	L.custom_on_autotalk_desc = "전투를 시작하는 대화 선택지를 즉시 선택합니다."
-end
-
 -- The Vortex Pinnacle
 
 L = BigWigs:NewBossLocale("The Vortex Pinnacle Trash", "koKR")
@@ -125,7 +118,6 @@ end
 
 L = BigWigs:NewBossLocale("Well Of Eternity Trash", "koKR")
 if L then
-	L.custom_on_autotalk = "자동 대화"
 	--L.custom_on_autotalk_desc = "Instantly select Illidan's gossip option."
 end
 

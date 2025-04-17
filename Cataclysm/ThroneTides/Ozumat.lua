@@ -25,9 +25,6 @@ local putridRoarCount = 1
 
 local L = mod:GetLocale()
 if L then
-	L.custom_on_autotalk = "Autotalk"
-	L.custom_on_autotalk_desc = "Instantly selects the gossip option to start the fight."
-	L.custom_on_autotalk_icon = "ui_chat"
 	L.warmup_icon = "achievement_dungeon_throne of the tides"
 end
 
@@ -94,10 +91,11 @@ end
 -- Classic Initialization
 --
 
+local autotalk = mod:AddAutoTalkOption(true, "boss")
 if mod:Classic() then
 	function mod:GetOptions()
 		return {
-			"custom_on_autotalk",
+			autotalk,
 			"stages",
 		}
 	end
@@ -235,7 +233,7 @@ end
 --
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 40792 then
+	if self:GetOption(autotalk) and self:MobId(self:UnitGUID("npc")) == 40792 then
 		if self:GetGossipOptions() then
 			self:SelectGossipOption(1, true) -- auto confirm it
 		end

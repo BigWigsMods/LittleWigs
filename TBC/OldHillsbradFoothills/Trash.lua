@@ -23,9 +23,9 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
-	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk = CL.autotalk
 	L.custom_on_autotalk_desc = "Instantly select Erozion's, Thrall's and Taretha's gossip options."
-	L.custom_on_autotalk_icon = "ui_chat"
+	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
 
 	L.incendiary_bombs = "Incendiary Bombs"
 	L.incendiary_bombs_desc = "Display a message when an Incendiary Bomb is planted."

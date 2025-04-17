@@ -18,9 +18,9 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
-	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk = CL.autotalk
 	L.custom_on_autotalk_desc = "Instantly select Chromie's and Arthas's gossip options."
-	L.custom_on_autotalk_icon = "ui_chat"
+	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
 
 	L.gossip_available = "Gossip available"
 	L.gossip_timer_trigger = "Glad you could make it, Uther."

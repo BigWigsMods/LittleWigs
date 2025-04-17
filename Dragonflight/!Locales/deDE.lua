@@ -3,7 +3,6 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "deDE")
 if not L then return end
 if L then
-	L.custom_on_recruiter_autotalk = "Automatisch ansprechen"
 	L.custom_on_recruiter_autotalk_desc = "Umgehend den Stärkungszauber der Dragonflight Rekrutierer bestätigen."
 	L.critical_strike = "+5% Kritische Trefferchance"
 	L.haste = "+5% Tempo"
@@ -32,7 +31,6 @@ end
 
 L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "deDE")
 if L then
-	L.custom_on_cauldron_autotalk = "Automatisch ansprechen"
 	L.custom_on_cauldron_autotalk_desc = "[Alchemie] Verfallende Kessel sofort entgiften für einen Krankheit Dispel Buff."
 	L.captive_tuskarr_freed = "Gefangener Tuskarr befreit"
 	L.captive_tuskarr_freed_desc = "Eine Benachrichtigung anzeigen wenn ein Gefangener Tuskarr befreit wurde."
@@ -98,7 +96,6 @@ if L then
 	L.horde_raider_alliance_knight = "Räuber der Horde / Ritter der Allianz"
 	L.infinite_timebender = "Ewige Zeitkrümmerin"
 
-	L.custom_on_rift_autotalk = "Automatisch ansprechen"
 	L.custom_on_rift_autotalk_desc = "Sofort den Temporalriss öffnen lassen."
 	L.rift_opened = "Temporalriss geöffnet"
 	L.rift_stability = "Rissstabilität"
@@ -111,7 +108,6 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Infusion Trash", "deDE")
 if L then
-	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Wählt direkt die Dialogoptionen um Berufs-Stärkungszauber zu erhalten."
 
 	L.primalist_ravager = "Verheererin der Primalisten"
@@ -137,7 +133,6 @@ end
 
 L = BigWigs:NewBossLocale("Neltharus Trash", "deDE")
 if L then
-	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Wählt direkt die Dialogoptionen um Berufs-Stärkungszauber zu erhalten."
 
 	L.burning_chain = "Brennende Kette"
@@ -199,7 +194,6 @@ end
 L = BigWigs:NewBossLocale("The Azure Vault Trash", "deDE")
 if L then
 	L.book_of_translocation = "Buch der Translokation"
-	L.custom_on_book_autotalk = "Automatisch ansprechen"
 	L.custom_on_book_autotalk_desc = "Beim Interagieren mit Büchern der Translokation umgehend mit dem nächsten Bereich fortfahren."
 
 	L.shrieking_whelp = "Kreischender Welpe"

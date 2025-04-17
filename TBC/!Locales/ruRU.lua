@@ -33,7 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Old Hillsbrad Foothills Trash", "ruRU")
 if L then
-	L.custom_on_autotalk = "Авторазговор"
 	L.custom_on_autotalk_desc = "Мгновенный выбор опций в диалогах с Эрозионом, Траллом и Таретой."
 
 	L.incendiary_bombs = "Зажигательные бомбы"

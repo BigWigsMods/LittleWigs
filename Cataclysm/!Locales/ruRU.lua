@@ -35,7 +35,6 @@ end
 
 L = BigWigs:NewBossLocale("The Hour of Twilight Trash", "ruRU")
 if L then
-	L.custom_on_autotalk = "Авторазговор"
 	--L.custom_on_autotalk_desc = "Instantly select Thrall's gossip options."
 end
 
@@ -91,12 +90,6 @@ if L then
 	--L.high_tide_trigger2 = "Destroy these intruders! Leave them for the great dark beyond!"
 end
 
-L = BigWigs:NewBossLocale("Ozumat", "ruRU")
-if L then
-	L.custom_on_autotalk = "Авторазговор"
-	L.custom_on_autotalk_desc = "Мгновенный выбор опции запуска боя в диалоге."
-end
-
 -- The Vortex Pinnacle
 
 L = BigWigs:NewBossLocale("The Vortex Pinnacle Trash", "ruRU")
@@ -125,7 +118,6 @@ end
 
 L = BigWigs:NewBossLocale("Well Of Eternity Trash", "ruRU")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
 	--L.custom_on_autotalk_desc = "Instantly select Illidan's gossip option."
 end
 

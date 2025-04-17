@@ -100,7 +100,6 @@ end
 
 L = BigWigs:NewBossLocale("Assault on Violet Hold Trash", "deDE")
 if L then
-	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Wählt direkt Leutnant Sinclaris Dialogoption zum Starten des Sturms auf die Violette Festung."
 	L.keeper = "Portalhüter"
 	L.guardian = "Portalwächter"
@@ -151,7 +150,6 @@ end
 
 L = BigWigs:NewBossLocale("Domatrax", "deDE")
 if L then
-	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Wählt direkt Aegis von Aggramars Dialogoption um den Kampf gegen Domatrax zu starten."
 
 	L.missing_aegis = "Du stehst nicht im Aegis" -- Aegis is a short name for Aegis of Aggramar
@@ -347,7 +345,6 @@ end
 L = BigWigs:NewBossLocale("Karazhan Trash", "deDE")
 if L then
 	-- Opera Event
-	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Wählt direkt Barnes' Dialogoption zum Starten des Bosskampfes im Opernsaal."
 	L.opera_hall_wikket_story_text = "Opernsaal: Wikket"
 	L.opera_hall_wikket_story_trigger = "Halt die Gotsche" -- Shut your jabber, drama man! The Monkey King got another plan!
@@ -443,7 +440,6 @@ end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "deDE")
 if L then
-	L.custom_on_autotalk = "Automatisch ansprechen"
 	L.custom_on_autotalk_desc = "Wählt direkt Alleria Windläufers Dialogoption."
 	L.gossip_available = "Dialog verfügbar"
 	L.alleria_gossip_trigger = "Folgt mir!" -- Allerias yell after the first boss is defeated

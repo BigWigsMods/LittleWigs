@@ -3,7 +3,6 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "frFR")
 if not L then return end
 if L then
-	L.custom_on_recruiter_autotalk = "Parler automatiquement"
 	--L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
 	L.critical_strike = "+5% Coup critique"
 	L.haste = "+5% Hâte"
@@ -32,7 +31,6 @@ end
 
 L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "frFR")
 if L then
-	L.custom_on_cauldron_autotalk = "Parler automatiquement"
 	--L.custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
 	--L.captive_tuskarr_freed = "Captive Tuskarr Freed"
 	--L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
@@ -98,7 +96,6 @@ if L then
 	L.horde_raider_alliance_knight = "Chevaucheur de la Horde / Chevalier de l'Alliance"
 	L.infinite_timebender = "Courbe-temps de l'Infini"
 
-	L.custom_on_rift_autotalk = "Parler automatiquement"
 	--L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
 	--L.rift_opened = "Temporal Rift Opened"
 	L.rift_stability = "Stabilité de la faille"
@@ -111,7 +108,6 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Infusion Trash", "frFR")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
 	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
 
 	L.primalist_ravager = "Ravageuse primaliste"
@@ -137,7 +133,6 @@ end
 
 L = BigWigs:NewBossLocale("Neltharus Trash", "frFR")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
 	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
 
 	L.burning_chain = "Chaîne ardente"
@@ -199,7 +194,6 @@ end
 L = BigWigs:NewBossLocale("The Azure Vault Trash", "frFR")
 if L then
 	L.book_of_translocation = "Livre de transposition"
-	L.custom_on_book_autotalk = "Parler automatiquement"
 	--L.custom_on_book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
 
 	L.shrieking_whelp = "Dragonnet hurlant"

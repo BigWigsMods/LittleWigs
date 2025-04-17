@@ -3,7 +3,6 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "itIT")
 if not L then return end
 if L then
-	--L.custom_on_recruiter_autotalk = "Autotalk"
 	--L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
 	L.critical_strike = "+5% Critico"
 	L.haste = "+5% Celerità"
@@ -32,7 +31,6 @@ end
 
 L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "itIT")
 if L then
-	--L.custom_on_cauldron_autotalk = "Autotalk"
 	--L.custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
 	--L.captive_tuskarr_freed = "Captive Tuskarr Freed"
 	--L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
@@ -98,7 +96,6 @@ if L then
 	--L.horde_raider_alliance_knight = "Cavalcalupi dell'Orda / Alliance Knight"
 	L.infinite_timebender = "Piegatempo dell'Infinito"
 
-	--L.custom_on_rift_autotalk = "Autotalk"
 	--L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
 	--L.rift_opened = "Temporal Rift Opened"
 	L.rift_stability = "Stabilità della Fenditura"
@@ -111,7 +108,6 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Infusion Trash", "itIT")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
 	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
 
 	L.primalist_ravager = "Devastatrice Primalista"
@@ -137,7 +133,6 @@ end
 
 L = BigWigs:NewBossLocale("Neltharus Trash", "itIT")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
 	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
 
 	L.burning_chain = "Catena Ardente"
@@ -199,7 +194,6 @@ end
 L = BigWigs:NewBossLocale("The Azure Vault Trash", "itIT")
 if L then
 	L.book_of_translocation = "Tomo della Traslocazione"
-	--L.custom_on_book_autotalk = "Autotalk"
 	--L.custom_on_book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
 
 	L.shrieking_whelp = "Draghetto Stridente"

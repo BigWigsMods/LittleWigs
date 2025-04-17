@@ -100,7 +100,6 @@ end
 
 L = BigWigs:NewBossLocale("Assault on Violet Hold Trash", "ptBR")
 if L then
-	L.custom_on_autotalk = "Conversa automática"
 	L.custom_on_autotalk_desc = "Seleciona instantaneamente a opção de fofoca do Tenente Sinclaris para iniciar o Ataque ao Castelo Violeta."
 	L.keeper = "Defensor do Portal"
 	L.guardian = "Guardião do Portal"
@@ -151,7 +150,6 @@ end
 
 L = BigWigs:NewBossLocale("Domatrax", "ptBR")
 if L then
-	L.custom_on_autotalk = "Conversa automática"
 	L.custom_on_autotalk_desc = "Seleciona instantaneamente a opção de fofoca da Égide de Aggramar para começar o confronto com Domatrax."
 
 	L.missing_aegis = "Você não está com a Égide " -- Aegis is a short name for Aegis of Aggramar
@@ -347,7 +345,6 @@ end
 L = BigWigs:NewBossLocale("Karazhan Trash", "ptBR")
 if L then
 	-- Opera Event
-	L.custom_on_autotalk = "Conversa Automática"
 	L.custom_on_autotalk_desc = "Seleciona instantaneamente a opção de conversa com Barnes para iniciar o encontro no Salão de Ópera."
 	L.opera_hall_wikket_story_text = "Salão de Ópera: Wikket"
 	L.opera_hall_wikket_story_trigger = "Pare de falatório" -- Shut your jabber, drama man! The Monkey King got another plan!
@@ -443,7 +440,6 @@ end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "ptBR")
 if L then
-	L.custom_on_autotalk = "Conversa Automática"
 	L.custom_on_autotalk_desc = "Seleciona instantaneamente a opção de conversa com Alleria Correventos."
 	L.gossip_available = "Conversa disponível"
 	L.alleria_gossip_trigger = "Siga-me!" -- Allerias yell after the first boss is defeated

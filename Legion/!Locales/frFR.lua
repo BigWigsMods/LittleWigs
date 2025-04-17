@@ -100,7 +100,6 @@ end
 
 L = BigWigs:NewBossLocale("Assault on Violet Hold Trash", "frFR")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
 	--L.custom_on_autotalk_desc = "Instantly selects Lieutenant Sinclaris gossip option to start the Assault on Violet Hold."
 	--L.keeper = "Portal Keeper"
 	--L.guardian = "Portal Guardian"
@@ -151,7 +150,6 @@ end
 
 L = BigWigs:NewBossLocale("Domatrax", "frFR")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
 	--L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramar's gossip option to start the Domatrax encounter."
 
 	--L.missing_aegis = "You're not standing in Aegis" -- Aegis is a short name for Aegis of Aggramar
@@ -347,7 +345,6 @@ end
 L = BigWigs:NewBossLocale("Karazhan Trash", "frFR")
 if L then
 	-- Opera Event
-	L.custom_on_autotalk = "Parler automatiquement"
 	--L.custom_on_autotalk_desc = "Instantly selects Barnes' gossip option to start the Opera Hall encounter."
 	L.opera_hall_wikket_story_text = "Opéra : Lokdu"
 	--L.opera_hall_wikket_story_trigger = "Shut your jabber" -- Shut your jabber, drama man! The Monkey King got another plan!
@@ -443,7 +440,6 @@ end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "frFR")
 if L then
-	--L.custom_on_autotalk = "Autotalk"
 	--L.custom_on_autotalk_desc = "Instantly selects Alleria Winrunners gossip option."
 	--L.gossip_available = "Gossip available"
 	--L.alleria_gossip_trigger = "Follow me!" -- Allerias yell after the first boss is defeated

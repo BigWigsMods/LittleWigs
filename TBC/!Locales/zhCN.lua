@@ -33,7 +33,6 @@ end
 
 L = BigWigs:NewBossLocale("Old Hillsbrad Foothills Trash", "zhCN")
 if L then
-	L.custom_on_autotalk = "自动对话"
 	L.custom_on_autotalk_desc = "立即选择伊洛希恩，萨尔和塔蕾莎闲聊选项。"
 
 	L.incendiary_bombs = "燃烧弹"

@@ -3,7 +3,6 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "zhTW")
 if not L then return end
 if L then
-	L.custom_on_recruiter_autotalk = "自動對話"
 	L.custom_on_recruiter_autotalk_desc = "與招募員對話時自動確認選項，獲取增益。"
 	L.critical_strike = "+5% 致命一擊"
 	L.haste = "+5% 加速"
@@ -32,7 +31,6 @@ end
 
 L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "zhTW")
 if L then
-	L.custom_on_cauldron_autotalk = "自動對話"
 	L.custom_on_cauldron_autotalk_desc = "[鍊金術] 使用腐朽大鍋移除疾病。"
 	L.captive_tuskarr_freed = "解救巨牙海民俘虜"
 	L.captive_tuskarr_freed_desc = "當俘虜的巨牙海民被釋放時顯示提醒。"
@@ -98,7 +96,6 @@ if L then
 	L.horde_raider_alliance_knight = "部落狼騎士 / 聯盟騎士"
 	L.infinite_timebender = "恆龍時間彎曲者"
 
-	L.custom_on_rift_autotalk = "自動對話"
 	L.custom_on_rift_autotalk_desc = "立即開始引導裂隙穩定度來打開時光裂隙。"
 	L.rift_opened = "時間裂隙已開啟"
 	L.rift_stability = "裂隙穩定度"
@@ -111,7 +108,6 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Infusion Trash", "zhTW")
 if L then
-	L.custom_on_autotalk = "自動對話"
 	L.custom_on_autotalk_desc = "自動對話獲得專業增益。"
 
 	--L.primalist_ravager = "Primalist Ravager"
@@ -137,7 +133,6 @@ end
 
 L = BigWigs:NewBossLocale("Neltharus Trash", "zhTW")
 if L then
-	L.custom_on_autotalk = "自動對話"
 	L.custom_on_autotalk_desc = "自動對話獲得專業增益。"
 
 	--L.burning_chain = "Burning Chain"
@@ -199,7 +194,6 @@ end
 L = BigWigs:NewBossLocale("The Azure Vault Trash", "zhTW")
 if L then
 	L.book_of_translocation = "移位之書"
-	L.custom_on_book_autotalk = "自動對話"
 	L.custom_on_book_autotalk_desc = "與移位之書對話時自動確認傳送選項。"
 
 	--L.shrieking_whelp = "Shrieking Whelp"

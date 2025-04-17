@@ -15,9 +15,9 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
-	L.custom_on_autotalk = "Autotalk"
+	L.custom_on_autotalk = CL.autotalk
 	L.custom_on_autotalk_desc = "Instantly select Illidan's gossip option."
-	L.custom_on_autotalk_icon = "ui_chat"
+	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
 end
 
 --------------------------------------------------------------------------------
