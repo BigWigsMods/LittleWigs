@@ -100,6 +100,7 @@ function mod:GetOptions()
 		{424462, "NAMEPLATE"}, -- Ember Storm
 		-- Arathi Knight
 		{427609, "NAMEPLATE"}, -- Disrupting Shout
+		{444296, "NAMEPLATE", "OFF"}, -- Impale
 		-- Arathi Footman
 		{427342, "NAMEPLATE"}, -- Defend
 		-- Fervent Sharpshooter
@@ -208,6 +209,7 @@ function mod:OnBossEnable()
 	-- Arathi Knight
 	self:RegisterEngageMob("ArathiKnightEngaged", 206696)
 	self:Log("SPELL_CAST_START", "DisruptingShout", 427609)
+	self:Log("SPELL_CAST_START", "Impale", 444296)
 	self:Death("ArathiKnightDeath", 206696)
 
 	-- Arathi Footman
@@ -780,6 +782,7 @@ end
 -- Arathi Knight
 
 function mod:ArathiKnightEngaged(guid)
+	self:Nameplate(444296, 4.4, guid) -- Impale
 	self:Nameplate(427609, 20.1, guid) -- Disrupting Shout
 end
 
@@ -791,6 +794,19 @@ do
 			prev = args.time
 			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:Impale(args)
+		-- can't be target scanned
+		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
