@@ -265,11 +265,6 @@ if L then
 	L.warmup_trigger = "통계상으로 아주 이례적인 일이군요! 방문객들이 아직 살아 있었습니다!"
 end
 
-L = BigWigs:NewBossLocale("K.U.-J.0.", "koKR")
-if L then
-	L.safe = "안전"
-end
-
 L = BigWigs:NewBossLocale("King Mechagon", "koKR")
 if L then
 	L.hardmode_desc = "파멸로봇 5000이 버튼 순서를 표시하기 시작할 때의 경고입니다."

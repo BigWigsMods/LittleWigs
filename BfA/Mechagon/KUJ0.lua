@@ -13,17 +13,6 @@ mod:SetRespawnTime(30)
 --
 
 local airDropCount = 1
-local castingVentingFlames = false
-local hidingBehindJunk = false
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.safe = "Safe"
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -33,20 +22,14 @@ function mod:GetOptions()
 	return {
 		291930, -- Air Drop
 		{291946, "EMPHASIZE", "CASTBAR"}, -- Venting Flames
-		{291937, "NAMEPLATE"}, -- Hiding Behind Junk
 		{291973, "SAY"}, -- Explosive Leap
 		294929, -- Blazing Chomp
-	}, nil, {
-		[291937] = L.safe, -- Hiding Behind Junk (Safe)
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "AirDrop", 291918)
 	self:Log("SPELL_CAST_START", "VentingFlames", 291946)
-	self:Log("SPELL_AURA_REMOVED", "VentingFlamesRemoved", 291946)
-	self:Log("SPELL_AURA_APPLIED", "HidingBehindJunkApplied", 291937)
-	self:Log("SPELL_AURA_REMOVED", "HidingBehindJunkRemoved", 291937)
 	self:Log("SPELL_CAST_START", "ExplosiveLeap", 291973)
 	self:Log("SPELL_AURA_APPLIED", "ExplosiveLeapApplied", 291972)
 	self:Log("SPELL_CAST_SUCCESS", "BlazingChomp", 294929)
@@ -56,8 +39,6 @@ end
 
 function mod:OnEngage()
 	airDropCount = 1
-	castingVentingFlames = false
-	hidingBehindJunk = false
 	self:CDBar(291930, 5.1) -- Air Drop
 	self:CDBar(294929, 10.8) -- Blazing Chomp
 	self:CDBar(291946, 15.7) -- Venting Flames
@@ -80,41 +61,10 @@ function mod:AirDrop(args)
 end
 
 function mod:VentingFlames(args)
-	castingVentingFlames = true
-	if hidingBehindJunk then
-		self:Nameplate(291937, 60, args.sourceGUID, L.safe) -- Hiding Behind Junk
-	end
 	self:Message(args.spellId, "red")
 	self:CastBar(args.spellId, 6)
 	self:CDBar(args.spellId, 32.8)
 	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:VentingFlamesRemoved(args)
-	castingVentingFlames = false
-	if hidingBehindJunk then
-		self:StopNameplate(291937, args.sourceGUID, L.safe) -- Hiding Behind Junk
-	end
-end
-
-function mod:HidingBehindJunkApplied(args)
-	if self:Me(args.destGUID) then
-		hidingBehindJunk = true
-		if castingVentingFlames then
-			local _, bossGUID = self:GetBossId(144246) -- K.U.-J.0.
-			self:Nameplate(args.spellId, 60, bossGUID, L.safe)
-		end
-	end
-end
-
-function mod:HidingBehindJunkRemoved(args)
-	if self:Me(args.destGUID) then
-		hidingBehindJunk = false
-		if castingVentingFlames then
-			local _, bossGUID = self:GetBossId(144246) -- K.U.-J.0.
-			self:StopNameplate(args.spellId, bossGUID, L.safe)
-		end
-	end
 end
 
 do

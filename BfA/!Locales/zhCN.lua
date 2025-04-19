@@ -265,11 +265,6 @@ if L then
 	L.warmup_trigger = "这完全不符合统计学！我们的访客还活着！"
 end
 
-L = BigWigs:NewBossLocale("K.U.-J.0.", "zhCN")
-if L then
-	L.safe = "安全"
-end
-
 L = BigWigs:NewBossLocale("King Mechagon", "zhCN")
 if L then
 	L.hardmode_desc = "当歼敌机器人5000型开始显示按钮顺序时发出警报。"
