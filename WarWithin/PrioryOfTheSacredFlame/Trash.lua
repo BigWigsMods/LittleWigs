@@ -886,7 +886,7 @@ do
 	end
 
 	function mod:PotShotSuccess(args)
-		self:Nameplate(args.spellId, 4.1, args.sourceGUID)
+		self:Nameplate(args.spellId, 10.2, args.sourceGUID)
 	end
 end
 
