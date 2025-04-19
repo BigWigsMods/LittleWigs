@@ -49,6 +49,9 @@ if L then
 	L.venture_co_war_machine = "Venture Co. War Machine"
 	L.crawler_mine = "Crawler Mine"
 	L.ordnance_specialist = "Ordnance Specialist"
+
+	L["1217279_desc"] = 1217280 -- Uppercut, 1217279 has no description
+	L["1214751_desc"] = 1214752 -- Brutal Charge, 1214752 has a better description
 end
 
 --------------------------------------------------------------------------------
@@ -85,6 +88,7 @@ function mod:GetOptions()
 		-- Taskmaster Askari
 		{1214754, "NAMEPLATE"}, -- Massive Slam
 		{1213139, "DISPEL", "NAMEPLATE"}, -- Overtime!
+		{1214751, "ME_ONLY", "NAMEPLATE"}, -- Brutal Charge
 		-- Weapons Tester
 		{268846, "NAMEPLATE"}, -- Echo Blade
 		-- Venture Co. Mastermind
@@ -194,6 +198,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Overtime", 1213139)
 	self:Log("SPELL_AURA_APPLIED", "OvertimeApplied", 1213139)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "OvertimeApplied", 1213139)
+	self:Log("SPELL_CAST_SUCCESS", "BrutalCharge", 1214751)
 	self:Death("TaskmasterAskariDeath", 134012)
 
 	-- Weapons Tester
@@ -611,6 +616,7 @@ function mod:TaskmasterAskariEngaged(guid)
 	if self:Dispeller("enrage", true, 1213139) then
 		self:Nameplate(1213139, 7.8, guid) -- Overtime!
 	end
+	self:Nameplate(1214751, 10.8, guid) -- Brutal Charge
 	self:Nameplate(1214754, 11.5, guid) -- Massive Slam
 end
 
@@ -634,6 +640,12 @@ function mod:OvertimeApplied(args)
 			self:PlaySound(args.spellId, "info")
 		end
 	end
+end
+
+function mod:BrutalCharge(args)
+	self:TargetMessage(args.spellId, "red", args.destName)
+	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	self:PlaySound(args.spellId, "info", nil, args.destName)
 end
 
 function mod:TaskmasterAskariDeath(args)
