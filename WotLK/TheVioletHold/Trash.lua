@@ -60,7 +60,7 @@ function mod:OnBossEnable()
 	self:Death("Disable", 31134)
 end
 
-function mod:OnDisable()
+function mod:OnBossDisable()
 	prevWave = 0
 end
 
