@@ -33,7 +33,7 @@ function mod:GetOptions()
 	return {
 		{1213776, "DISPEL"}, -- Hopeless Curse
 		1213785, -- Tear It Down
-		{1213700, "SAY", "SAY_COUNTDOWN", "ME_ONLY_EMPHASIZE", "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Unanswered Call
+		{1213700, "ME_ONLY_EMPHASIZE", "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Unanswered Call
 	},nil,{
 		[1213776] = CL.curse, -- Hopeless Curse (Curse)
 		[1213700] = CL.fixate, -- Unanswered Call (Fixate)
@@ -83,18 +83,19 @@ function mod:TearItDown(args)
 end
 
 function mod:UnansweredCall(args)
-	self:Message(1213700, "red", CL.custom_sec:format(CL.fixate, 5))
+	self:Message(args.spellId, "red", CL.custom_sec:format(CL.fixate, 5))
 	self:CDBar(args.spellId, 33.9, CL.fixate)
-	self:CastBar(1213700, 5, CL.fixate)
-	self:PlaySound(1213700, "warning")
+	self:CastBar(args.spellId, 5, CL.fixate)
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:UnansweredCallApplied(args)
 	self:TargetMessage(1213700, "red", args.destName, CL.fixate)
 	self:CastBar(1213700, 8, CL.fixate)
 	if self:Me(args.destGUID) then
-		self:Say(1213700, CL.fixate, nil, "Fixate")
-		self:SayCountdown(1213700, 8)
+		-- Excavation Site 9 is not flagged as an instance so :Say cannot be used
+		--self:Say(1213700, CL.fixate, nil, "Fixate")
+		--self:SayCountdown(1213700, 8)
 		self:PlaySound(1213700, "warning", nil, args.destName)
 	else
 		self:PlaySound(1213700, "alarm", nil, args.destName)
@@ -103,7 +104,7 @@ end
 
 function mod:UnansweredCallRemoved(args)
 	self:StopCastBar(CL.fixate)
-	if self:Me(args.destGUID) then
-		self:CancelSayCountdown(1213700)
-	end
+	--if self:Me(args.destGUID) then
+		--self:CancelSayCountdown(1213700)
+	--end
 end
