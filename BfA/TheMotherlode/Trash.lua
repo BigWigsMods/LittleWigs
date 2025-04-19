@@ -612,44 +612,73 @@ end
 
 -- Taskmaster Askari
 
-function mod:TaskmasterAskariEngaged(guid)
-	if self:Dispeller("enrage", true, 1213139) then
-		self:Nameplate(1213139, 7.8, guid) -- Overtime!
+do
+	local timer
+
+	function mod:TaskmasterAskariEngaged(guid)
+		if self:Dispeller("enrage", true, 1213139) then
+			self:CDBar(1213139, 7.8) -- Overtime!
+			self:Nameplate(1213139, 7.8, guid) -- Overtime!
+		end
+		self:CDBar(1214751, 10.7) -- Brutal Charge
+		self:Nameplate(1214751, 10.7, guid) -- Brutal Charge
+		self:CDBar(1214754, 11.5) -- Massive Slam
+		self:Nameplate(1214754, 11.5, guid) -- Massive Slam
+		timer = self:ScheduleTimer("TaskmasterAskariDeath", 20, nil, guid)
 	end
-	self:Nameplate(1214751, 10.8, guid) -- Brutal Charge
-	self:Nameplate(1214754, 11.5, guid) -- Massive Slam
-end
 
-function mod:MassiveSlam(args)
-	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:Overtime(args)
-	if self:Dispeller("enrage", true, args.spellId) then
-		self:Nameplate(args.spellId, 17.8, args.sourceGUID)
+	function mod:MassiveSlam(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:CDBar(args.spellId, 18.2)
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+		timer = self:ScheduleTimer("TaskmasterAskariDeath", 30, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
 	end
-end
 
-function mod:OvertimeApplied(args)
-	if self:Dispeller("enrage", true, args.spellId) and self:MobId(args.destGUID) == 134012 then -- Taskmaster Askari
+	function mod:Overtime(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		if self:Dispeller("enrage", true, args.spellId) then
+			self:CDBar(args.spellId, 14.6)
+			self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+		end
+		timer = self:ScheduleTimer("TaskmasterAskariDeath", 30, nil, args.sourceGUID)
+	end
+
+	function mod:OvertimeApplied(args)
+		-- caps at 10 stacks
 		local amount = args.amount or 1
-		if amount % 2 == 1 or amount == 10 then -- caps at 10
+		if (amount % 2 == 1 or amount == 10) and self:Dispeller("enrage", true, args.spellId) and self:MobId(args.destGUID) == 134012 then -- Taskmaster Askari
 			self:Message(args.spellId, "yellow", CL.stack:format(amount, args.spellName, args.destName))
 			self:PlaySound(args.spellId, "info")
 		end
 	end
-end
 
-function mod:BrutalCharge(args)
-	self:TargetMessage(args.spellId, "red", args.destName)
-	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
-	self:PlaySound(args.spellId, "info", nil, args.destName)
-end
+	function mod:BrutalCharge(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:CDBar(args.spellId, 18.2)
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+		timer = self:ScheduleTimer("TaskmasterAskariDeath", 30, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "info", nil, args.destName)
+	end
 
-function mod:TaskmasterAskariDeath(args)
-	self:ClearNameplate(args.destGUID)
+	function mod:TaskmasterAskariDeath(args, guidFromTimer)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(1213139) -- Overtime!
+		self:StopBar(1214751) -- Brutal Charge
+		self:StopBar(1214754) -- Massive Slam
+		self:ClearNameplate(guidFromTimer or args.destGUID)
+	end
 end
 
 -- Weapons Tester
