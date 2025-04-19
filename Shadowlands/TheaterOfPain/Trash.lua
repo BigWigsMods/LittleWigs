@@ -57,6 +57,8 @@ if L then
 	L.soulforged_bonereaver = "Soulforged Bonereaver"
 
 	L.mordretha_warmup_trigger = "Soldiers of Maldraxxus! Are you ready for some carnage?!"
+
+	L["334023_desc"] = 334025 -- Bloodthirsty Charge, 334023 has a broken description
 end
 
 --------------------------------------------------------------------------------
