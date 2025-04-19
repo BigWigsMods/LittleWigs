@@ -100,6 +100,7 @@ if L then
 	L.aqir_bonecrusher = "아퀴르 뼈분쇄자"
 	L.aqir_mindhunter = "아퀴르 정신사냥꾼"
 	L.aqir_venomweaver = "아퀴르 맹독술사"
+	L.gamon = "가몬"
 end
 
 L = BigWigs:NewBossLocale("Thrall", "koKR")

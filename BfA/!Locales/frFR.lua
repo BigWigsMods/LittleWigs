@@ -100,6 +100,7 @@ if L then
 	L.aqir_bonecrusher = "Broie-les-os aqir"
 	L.aqir_mindhunter = "Traque-esprit aqir"
 	L.aqir_venomweaver = "Tisse-venin aqir"
+	L.gamon = "Gamon"
 end
 
 L = BigWigs:NewBossLocale("Thrall", "frFR")

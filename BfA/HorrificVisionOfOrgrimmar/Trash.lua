@@ -42,7 +42,9 @@ mod:RegisterEnableMob(
 	153532, -- Aqir Mindhunter
 	156089, -- Aqir Venomweaver
 	153526, -- Aqir Swarmer
-	153527 -- Aqir Swarmer
+	153527, -- Aqir Swarmer
+	241702, -- Gamon (Gamon's Axe) (Revisited only)
+	240672 -- Gamon (Mask of the Nemesis) (Revisited only)
 )
 
 --------------------------------------------------------------------------------
@@ -76,6 +78,7 @@ if L then
 	L.aqir_bonecrusher = "Aqir Bonecrusher"
 	L.aqir_mindhunter = "Aqir Mindhunter"
 	L.aqir_venomweaver = "Aqir Venomweaver"
+	L.gamon = "Gamon"
 
 	L["298074_icon"] = 305155 -- Rupture
 	L["298074_desc"] = 305155 -- Rupture
@@ -154,6 +157,9 @@ function mod:GetOptions()
 		-- Aqir Venomweaver
 		{312584, "NAMEPLATE"}, -- Concentrated Venom
 		{305236, "OFF"}, -- Venom Bolt
+		-- Gamon
+		{314720, "NAMEPLATE"}, -- Whirlwind
+		{314723, "NAMEPLATE"}, -- War Stomp
 	}, {
 		["altpower"] = "general",
 		[297237] = L.voidbound_shaman,
@@ -179,6 +185,7 @@ function mod:GetOptions()
 		[298502] = L.aqir_bonecrusher,
 		[304169] = L.aqir_mindhunter,
 		[312584] = L.aqir_venomweaver,
+		[314720] = L.gamon,
 	}
 end
 
@@ -324,7 +331,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "VenomBolt", 305236)
 	self:Death("AqirVenomweaverDeath", 156089)
 
-	-- Dark Smash from Horrific Figment should be in both (already in SW?)
+	-- Gamon
+	self:RegisterEngageMob("GamonEngaged", 241702, 240672) -- Gamon's Axe, Mask of the Nemesis
+	self:Log("SPELL_CAST_START", "Whirlwind", 314720)
+	--self:Log("SPELL_CAST_SUCCESS", "WarStomp", 314723) no CLEU
+	self:Death("GamonDeath", 241702, 240672) -- Gamon's Axe, Mask of the Nemesis
 end
 
 function mod:VerifyEnable()
@@ -360,15 +371,19 @@ function mod:UNIT_SPELLCAST_START(event, _, _, spellId)
 end
 
 do
-	local prev = 0
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-		if spellId == 298074 then -- Rupture (Burrowing Appendage)
+	local prevCast, prev = nil, 0
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
+		if spellId == 298074 and castGUID ~= prevCast then -- Rupture (Burrowing Appendage)
+			prevCast = castGUID
 			local t = GetTime()
 			if t - prev > 2 then
 				prev = t
 				self:Message(spellId, "orange", nil, L["298074_icon"])
 				self:PlaySound(spellId, "alarm")
 			end
+		elseif spellId == 314723 and castGUID ~= prevCast then -- War Stomp (Gamon)
+			prevCast = castGUID
+			self:WarStomp({sourceGUID = self:UnitGUID(unit)})
 		end
 	end
 end
@@ -1075,4 +1090,52 @@ end
 
 function mod:AqirVenomweaverDeath(args)
 	self:ClearNameplate(args.destGUID)
+end
+
+-- Gamon
+
+do
+	local timer
+
+	function mod:GamonEngaged(guid)
+		self:CDBar(314720, 2.0) -- Whirlwind
+		self:Nameplate(314720, 2.0, guid) -- Whirlwind
+		self:CDBar(314723, 5.5) -- War Stomp
+		self:Nameplate(314723, 5.5, guid) -- War Stomp
+		timer = self:ScheduleTimer("GamonDeath", 20, nil, guid)
+	end
+
+	function mod:Whirlwind(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:CDBar(args.spellId, 7.2)
+		self:Nameplate(args.spellId, 7.2, args.sourceGUID)
+		timer = self:ScheduleTimer("GamonDeath", 30, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
+	end
+
+	function mod:WarStomp(args) -- not in CLEU, so can't use args.spellId
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(314723, "yellow")
+		self:CDBar(314723, 15.7)
+		if args.sourceGUID then -- remove check if this is added to CLEU
+			self:Nameplate(314723, 15.7, args.sourceGUID)
+			timer = self:ScheduleTimer("GamonDeath", 30, nil, args.sourceGUID)
+		end
+		self:PlaySound(314723, "info")
+	end
+
+	function mod:GamonDeath(args, guidFromTimer)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(314720) -- Whirlwind
+		self:StopBar(314723) -- War Stomp
+		self:ClearNameplate(guidFromTimer or args.destGUID)
+	end
 end

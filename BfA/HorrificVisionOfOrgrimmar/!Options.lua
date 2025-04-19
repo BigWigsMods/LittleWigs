@@ -98,6 +98,8 @@ BigWigs:AddColors("Horrific Vision of Orgrimmar Trash", {
 	[311390] = "blue",
 	[311996] = "cyan",
 	[312584] = "yellow",
+	[314720] = "orange",
+	[314723] = "yellow",
 	[319304] = {"blue","yellow"},
 })
 
@@ -139,5 +141,7 @@ BigWigs:AddSounds("Horrific Vision of Orgrimmar Trash", {
 	[311390] = "info",
 	[311996] = "long",
 	[312584] = "info",
+	[314720] = "alarm",
+	[314723] = "info",
 	[319304] = "alert",
 })
