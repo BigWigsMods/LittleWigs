@@ -26,6 +26,9 @@ mod:RegisterEnableMob(
 	211341, -- Manifested Shadow
 	213885 -- Nightfall Dark Architect
 )
+mod:SetPrivateAuraSounds({
+	450855, -- Dark Orb
+})
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -74,7 +77,7 @@ function mod:GetOptions()
 		{451102, "NAMEPLATE"}, -- Shadowy Decay
 		{451119, "ME_ONLY", "NAMEPLATE"}, -- Abyssal Blast
 		-- Deathscreamer Iken'tak
-		{450854, "NAMEPLATE"}, -- Dark Orb
+		{450854, "PRIVATE", "NAMEPLATE"}, -- Dark Orb
 		-- Ixkreten the Unbreakable
 		{451117, "NAMEPLATE"}, -- Terrifying Slam
 		-- Sureki Militant
