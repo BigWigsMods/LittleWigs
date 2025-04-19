@@ -42,8 +42,8 @@ else -- Retail, 11.0.5 or later
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "MortalWound", 36814)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "MortalWound", 36814)
+	self:Log("SPELL_AURA_APPLIED", "MortalWound", 36814, 30641) -- Heroic, Normal
+	self:Log("SPELL_AURA_APPLIED_DOSE", "MortalWound", 36814, 30641) -- Heroic, Normal
 
 	self:Log("SPELL_CAST_START", "Heal", 12039)
 	self:Log("SPELL_CAST_START", "Renew", 8362)
@@ -63,7 +63,7 @@ end
 --
 
 function mod:MortalWound(args)
-	self:StackMessageOld(args.spellId, args.destName, args.amount, "cyan")
+	self:StackMessage(36814, "purple", args.destName, args.amount, 1)
 end
 
 -- There are 2 Hellfire Watchers on pull, so throttling everything
