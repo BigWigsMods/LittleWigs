@@ -24,6 +24,12 @@ mod:RegisterEnableMob(
 )
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local thirstyMobs = {}
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -68,6 +74,7 @@ function mod:GetOptions()
 		-- Hired Musle
 		{463218, "HEALER", "NAMEPLATE"}, -- Volatile Keg
 		{434756, "ME_ONLY", "NAMEPLATE"}, -- Throw Chair
+		{441408, "DISPEL"}, -- Thirsty
 		-- Tasting Room Attendant
 		{434706, "NAMEPLATE"}, -- Cinderbrew Toss
 		-- Chef Chewie
@@ -129,6 +136,8 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("HiredMuscleEngaged", 210269)
 	self:Log("SPELL_CAST_START", "VolatileKeg", 463218)
 	self:Log("SPELL_CAST_START", "ThrowChair", 434756)
+	self:Log("SPELL_AURA_APPLIED", "ThirstyApplied", 441408)
+	self:Log("SPELL_AURA_REMOVED", "ThirstyRemoved", 441408)
 	self:Death("HiredMuscleDeath", 210269)
 
 	-- Tasting Room Attendant
@@ -198,6 +207,10 @@ function mod:OnBossEnable()
 	self:Death("YesManDeath", 219588)
 end
 
+function mod:OnBossDisable()
+	thirstyMobs = {}
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
@@ -254,6 +267,11 @@ end
 function mod:HiredMuscleEngaged(guid)
 	self:Nameplate(463218, 8.0, guid) -- Volatile Keg
 	self:Nameplate(434756, 12.0, guid) -- Throw Chair
+	-- Thirsty is only applied out of combat, alert on engage if it's still present
+	if thirstyMobs[guid] and self:Dispeller("enrage", true, 441408) then
+		self:Message(441408, "cyan", CL.on:format(self:SpellName(441408), thirstyMobs[guid]))
+		self:PlaySound(441408, "info")
+	end
 end
 
 function mod:VolatileKeg(args)
@@ -272,6 +290,16 @@ do
 		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 		self:Nameplate(args.spellId, 15.7, args.sourceGUID)
 	end
+end
+
+function mod:ThirstyApplied(args)
+	-- this applies to Hired Muscle, Venture Co. Patron, and Venture Co. Pyromaniac when out of combat.
+	-- the alert for this is in :HiredMuscleEnaged only, the other mobs are less important to dispel.
+	thirstyMobs[args.destGUID] = args.destName
+end
+
+function mod:ThirstyRemoved(args)
+	thirstyMobs[args.destGUID] = nil
 end
 
 function mod:HiredMuscleDeath(args)
