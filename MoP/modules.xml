@@ -1,15 +1,54 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Include file="BlackTempleSolo\modules.xml"/>
-<Include file="GateOfTheSettingSun\modules.xml"/>
-<Include file="MogushanPalace\modules.xml"/>
-<Include file="ScarletHalls\modules.xml"/>
-<Include file="ScarletMonastery\modules.xml"/>
-<Include file="Scholomance\modules.xml"/>
-<Include file="ShadoPanMonastery\modules.xml"/>
-<Include file="SiegeOfNiuzaoTemple\modules.xml"/>
-<Include file="StormstoutBrewery\modules.xml"/>
-<Include file="TempleOfTheJadeSerpent\modules.xml"/>
+<Script file="BlackTempleSolo\EssenceOfOrder.lua"/>
+<Script file="BlackTempleSolo\Kanrethad.lua"/>
+
+<Script file="GateOfTheSettingSun\Kiptilak.lua"/>
+<Script file="GateOfTheSettingSun\Gadok.lua"/>
+<Script file="GateOfTheSettingSun\Rimok.lua"/>
+<Script file="GateOfTheSettingSun\Raigonn.lua"/>
+
+<Script file="MogushanPalace\TrialOfTheKing.lua"/>
+<Script file="MogushanPalace\Gekkan.lua"/>
+<Script file="MogushanPalace\XinTheWeaponmaster.lua"/>
+
+<Script file="ScarletHalls\HoundmasterBraun.lua"/>
+<Script file="ScarletHalls\ArmsmasterHarlan.lua"/>
+<Script file="ScarletHalls\FlameweaverKoegler.lua"/>
+
+<Script file="ScarletMonastery\ThalnosTheSoulrender.lua"/>
+<Script file="ScarletMonastery\BrotherKorloff.lua"/>
+<Script file="ScarletMonastery\HighInquisitorWhitemane.lua"/>
+<Script file="ScarletMonastery\TheHeadlessHorseman.lua"/>
+
+<Script file="Scholomance\InstructorChillheart.lua"/>
+<Script file="Scholomance\JandiceBarov.lua"/>
+<Script file="Scholomance\Rattlegore.lua"/>
+<Script file="Scholomance\LilianVoss.lua"/>
+<Script file="Scholomance\DarkmasterGandling.lua"/>
+
+<Script file="ShadoPanMonastery\GuCloudstrike.lua"/>
+<Script file="ShadoPanMonastery\MasterSnowdrift.lua"/>
+<Script file="ShadoPanMonastery\ShaOfViolence.lua"/>
+<Script file="ShadoPanMonastery\TaranZhu.lua"/>
+<Script file="ShadoPanMonastery\Trash.lua"/>
+
+<Script file="SiegeOfNiuzaoTemple\Jinbak.lua"/>
+<Script file="SiegeOfNiuzaoTemple\Vojak.lua"/>
+<Script file="SiegeOfNiuzaoTemple\Pavalak.lua"/>
+<Script file="SiegeOfNiuzaoTemple\Neronok.lua"/>
+
+<Script file="StormstoutBrewery\OokOok.lua"/>
+<Script file="StormstoutBrewery\Hoptallus.lua"/>
+<Script file="StormstoutBrewery\YanZhu.lua"/>
+
+<Script file="TempleOfTheJadeSerpent\WiseMari.lua"/>
+<Script file="TempleOfTheJadeSerpent\LorewalkerStonestep.lua"/>
+<Script file="TempleOfTheJadeSerpent\LiuFlameheart.lua"/>
+<Script file="TempleOfTheJadeSerpent\ShaOfDoubt.lua"/>
+<Script file="TempleOfTheJadeSerpent\Trash.lua"/>
+
+<Script file="!Options.lua"/>
 
 </Ui>

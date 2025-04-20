@@ -1,15 +1,58 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Include file="AraKara\modules.xml"/>
-<Include file="CinderbrewMeadery\modules.xml"/>
-<Include file="CityOfThreads\modules.xml"/>
-<Include file="DarkflameCleft\modules.xml"/>
-<Include file="PrioryOfTheSacredFlame\modules.xml"/>
-<Include file="TheDawnbreaker\modules.xml"/>
-<Include file="TheRookery\modules.xml"/>
-<Include file="TheStonevault\modules.xml"/>
-<Include file="OperationFloodgate\modules.xml"/>
-<Include file="Scenarios\modules.xml"/>
+<Script file="AraKara\Avanoxx.lua"/>
+<Script file="AraKara\Anubzekt.lua"/>
+<Script file="AraKara\KikatalTheHarvester.lua"/>
+<Script file="AraKara\Trash.lua"/>
+
+<Script file="CinderbrewMeadery\BrewMasterAldryr.lua"/>
+<Script file="CinderbrewMeadery\Ipa.lua"/>
+<Script file="CinderbrewMeadery\BenkBuzzbee.lua"/>
+<Script file="CinderbrewMeadery\GoldieBaronbottom.lua"/>
+<Script file="CinderbrewMeadery\Trash.lua"/>
+
+<Script file="CityOfThreads\OratorKrixvizk.lua"/>
+<Script file="CityOfThreads\FangsOfTheQueen.lua"/>
+<Script file="CityOfThreads\TheCoaglamation.lua"/>
+<Script file="CityOfThreads\Izo.lua"/>
+<Script file="CityOfThreads\Trash.lua"/>
+
+<Script file="DarkflameCleft\OlWaxbeard.lua"/>
+<Script file="DarkflameCleft\Blazikon.lua"/>
+<Script file="DarkflameCleft\TheCandleKing.lua"/>
+<Script file="DarkflameCleft\TheDarkness.lua"/>
+<Script file="DarkflameCleft\Trash.lua"/>
+
+<Script file="OperationFloodgate\BigMOMMA.lua"/>
+<Script file="OperationFloodgate\DemolitionDuo.lua"/>
+<Script file="OperationFloodgate\Swampface.lua"/>
+<Script file="OperationFloodgate\GeezleGigazap.lua"/>
+<Script file="OperationFloodgate\Trash.lua"/>
+
+<Script file="PrioryOfTheSacredFlame\CaptainDailcry.lua"/>
+<Script file="PrioryOfTheSacredFlame\BaronBraunpyke.lua"/>
+<Script file="PrioryOfTheSacredFlame\PrioressMurrpray.lua"/>
+<Script file="PrioryOfTheSacredFlame\Trash.lua"/>
+
+<Script file="Scenarios\AwakeningTheMachine.lua"/>
+
+<Script file="TheDawnbreaker\Shadowcrown.lua"/>
+<Script file="TheDawnbreaker\Anubikkaj.lua"/>
+<Script file="TheDawnbreaker\Rashanan.lua"/>
+<Script file="TheDawnbreaker\Trash.lua"/>
+
+<Script file="TheRookery\Kyrioss.lua"/>
+<Script file="TheRookery\StormguardGorren.lua"/>
+<Script file="TheRookery\VoidstoneMonstrosity.lua"/>
+<Script file="TheRookery\Trash.lua"/>
+
+<Script file="TheStonevault\EDNA.lua"/>
+<Script file="TheStonevault\Skarmorak.lua"/>
+<Script file="TheStonevault\MasterMachinists.lua"/>
+<Script file="TheStonevault\VoidSpeakerEirich.lua"/>
+<Script file="TheStonevault\Trash.lua"/>
+
+<Script file="!Options.lua"/>
 
 </Ui>

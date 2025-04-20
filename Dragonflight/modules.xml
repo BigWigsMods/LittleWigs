@@ -1,14 +1,64 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Include file="AlgetharAcademy\modules.xml"/>
-<Include file="BrackenhideHollow\modules.xml"/>
-<Include file="HallsOfInfusion\modules.xml"/>
-<Include file="Neltharus\modules.xml"/>
-<Include file="RubyLifePools\modules.xml"/>
-<Include file="TheAzureVault\modules.xml"/>
-<Include file="TheNokhudOffensive\modules.xml"/>
-<Include file="UldamanLegacyOfTyr\modules.xml"/>
-<Include file="DawnOfTheInfinite\modules.xml"/>
+<Script file="AlgetharAcademy\Vexamus.lua"/>
+<Script file="AlgetharAcademy\OvergrownAncient.lua"/>
+<Script file="AlgetharAcademy\Crawth.lua"/>
+<Script file="AlgetharAcademy\EchoOfDoragosa.lua"/>
+<Script file="AlgetharAcademy\Trash.lua"/>
+
+<Script file="BrackenhideHollow\HackclawsWarBand.lua"/>
+<Script file="BrackenhideHollow\Treemouth.lua"/>
+<Script file="BrackenhideHollow\Gutshot.lua"/>
+<Script file="BrackenhideHollow\DecatriarchWratheye.lua"/>
+<Script file="BrackenhideHollow\Trash.lua"/>
+
+<Script file="DawnOfTheInfinite\Chronikar.lua"/>
+<Script file="DawnOfTheInfinite\ManifestedTimeways.lua"/>
+<Script file="DawnOfTheInfinite\BlightOfGalakrond.lua"/>
+<Script file="DawnOfTheInfinite\Iridikron.lua"/>
+<Script file="DawnOfTheInfinite\Tyr.lua"/>
+<Script file="DawnOfTheInfinite\Morchie.lua"/>
+<Script file="DawnOfTheInfinite\TimeLostBattlefield.lua"/>
+<Script file="DawnOfTheInfinite\ChronoLordDeios.lua"/>
+<Script file="DawnOfTheInfinite\Trash.lua"/>
+
+<Script file="HallsOfInfusion\WatcherIrideus.lua"/>
+<Script file="HallsOfInfusion\GulpingGoliath.lua"/>
+<Script file="HallsOfInfusion\KhajinTheUnyielding.lua"/>
+<Script file="HallsOfInfusion\PrimalTsunami.lua"/>
+<Script file="HallsOfInfusion\Trash.lua"/>
+
+<Script file="Neltharus\ChargathBaneOfScales.lua"/>
+<Script file="Neltharus\ForgemasterGorek.lua"/>
+<Script file="Neltharus\Magmatusk.lua"/>
+<Script file="Neltharus\WarlordSargha.lua"/>
+<Script file="Neltharus\Trash.lua"/>
+
+<Script file="RubyLifePools\MelidrussaChillworn.lua"/>
+<Script file="RubyLifePools\KokiaBlazehoof.lua"/>
+<Script file="RubyLifePools\KyrakkaAndErkhartStormvein.lua"/>
+<Script file="RubyLifePools\Trash.lua"/>
+
+<Script file="TheAzureVault\Leymor.lua"/>
+<Script file="TheAzureVault\Azureblade.lua"/>
+<Script file="TheAzureVault\TelashGreywing.lua"/>
+<Script file="TheAzureVault\Umbrelskul.lua"/>
+<Script file="TheAzureVault\Trash.lua"/>
+
+<Script file="TheNokhudOffensive\Granyth.lua"/>
+<Script file="TheNokhudOffensive\TheRagingTempest.lua"/>
+<Script file="TheNokhudOffensive\TeeraAndMaruuk.lua"/>
+<Script file="TheNokhudOffensive\BalakarKhan.lua"/>
+<Script file="TheNokhudOffensive\Trash.lua"/>
+
+<Script file="UldamanLegacyOfTyr\TheLostDwarves.lua"/>
+<Script file="UldamanLegacyOfTyr\Bromach.lua"/>
+<Script file="UldamanLegacyOfTyr\SentinelTalondras.lua"/>
+<Script file="UldamanLegacyOfTyr\Emberon.lua"/>
+<Script file="UldamanLegacyOfTyr\ChronoLordDeios.lua"/>
+<Script file="UldamanLegacyOfTyr\Trash.lua"/>
+
+<Script file="!Options.lua"/>
 
 </Ui>

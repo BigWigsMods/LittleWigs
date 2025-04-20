@@ -1,21 +1,87 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Include file="AuchenaiCrypts\modules.xml"/>
-<Include file="HellfireRamparts\modules.xml"/>
-<Include file="MagistersTerrace\modules.xml"/>
-<Include file="ManaTombs\modules.xml"/>
-<Include file="OldHillsbradFoothills\modules.xml"/>
-<Include file="SethekkHalls\modules.xml"/>
-<Include file="ShadowLabyrinth\modules.xml"/>
-<Include file="TheArcatraz\modules.xml"/>
-<Include file="TheBlackMorass\modules.xml"/>
-<Include file="TheBloodFurnace\modules.xml"/>
-<Include file="TheBotanica\modules.xml"/>
-<Include file="TheMechanar\modules.xml"/>
-<Include file="TheShatteredHalls\modules.xml"/>
-<Include file="TheSlavePens\modules.xml"/>
-<Include file="TheSteamvault\modules.xml"/>
-<Include file="TheUnderbog\modules.xml"/>
+<Script file="AuchenaiCrypts\Shirrak.lua"/>
+<Script file="AuchenaiCrypts\Maladaar.lua"/>
+
+<Script file="HellfireRamparts\Gargolmar.lua"/>
+<Script file="HellfireRamparts\Omor.lua"/>
+<Script file="HellfireRamparts\Vazruden.lua"/>
+
+<Script file="MagistersTerrace\SelinFireheart.lua"/>
+<Script file="MagistersTerrace\Vexallus.lua"/>
+<Script file="MagistersTerrace\PriestessDelrissa.lua"/>
+<Script file="MagistersTerrace\KaelthasSunstrider.lua"/>
+<Script file="MagistersTerrace\Trash.lua"/>
+
+<Script file="ManaTombs\Pandemonius.lua"/>
+<Script file="ManaTombs\Tavarok.lua"/>
+<Script file="ManaTombs\Yor.lua"/>
+<Script file="ManaTombs\Shaffar.lua"/>
+<Script file="ManaTombs\Trash.lua"/>
+
+<Script file="OldHillsbradFoothills\Drake.lua"/>
+<Script file="OldHillsbradFoothills\Skarloc.lua"/>
+<Script file="OldHillsbradFoothills\EpochHunter.lua"/>
+<Script file="OldHillsbradFoothills\Trash.lua"/>
+
+<Script file="SethekkHalls\Syth.lua"/>
+<Script file="SethekkHalls\Anzu.lua"/>
+<Script file="SethekkHalls\Ikiss.lua"/>
+
+<Script file="ShadowLabyrinth\Hellmaw.lua"/>
+<Script file="ShadowLabyrinth\Blackheart.lua"/>
+<Script file="ShadowLabyrinth\Vorpil.lua"/>
+<Script file="ShadowLabyrinth\Murmur.lua"/>
+
+<Script file="TheArcatraz\Zereketh.lua"/>
+<Script file="TheArcatraz\Dalliah.lua"/>
+<Script file="TheArcatraz\Soccothrates.lua"/>
+<Script file="TheArcatraz\Skyriss.lua"/>
+<Script file="TheArcatraz\Trash.lua"/>
+
+<Script file="TheBlackMorass\ChronoLordDeja.lua"/>
+<Script file="TheBlackMorass\Temporus.lua"/>
+<Script file="TheBlackMorass\Aeonus.lua"/>
+<Script file="TheBlackMorass\Trash.lua"/>
+
+<Script file="TheBloodFurnace\TheMaker.lua"/>
+<Script file="TheBloodFurnace\Broggok.lua"/>
+<Script file="TheBloodFurnace\Kelidan.lua"/>
+
+<Script file="TheBotanica\Sarannis.lua"/>
+<Script file="TheBotanica\Freywinn.lua"/>
+<Script file="TheBotanica\Thorngrin.lua"/>
+<Script file="TheBotanica\Laj.lua"/>
+<Script file="TheBotanica\WarpSplinter.lua"/>
+
+<Script file="TheMechanar\Capacitus.lua"/>
+<Script file="TheMechanar\Ironhand.lua"/>
+<Script file="TheMechanar\Gyrokill.lua"/>
+<Script file="TheMechanar\Sepethrea.lua"/>
+<Script file="TheMechanar\Pathaleon.lua"/>
+
+<Script file="TheShatteredHalls\Nethekurse.lua"/>
+<Script file="TheShatteredHalls\Porung.lua"/>
+<Script file="TheShatteredHalls\Omrogg.lua"/>
+<Script file="TheShatteredHalls\KargathBladefist.lua"/>
+<Script file="TheShatteredHalls\Trash.lua"/>
+
+<Script file="TheSlavePens\Mennu.lua"/>
+<Script file="TheSlavePens\Rokmar.lua"/>
+<Script file="TheSlavePens\Quagmirran.lua"/>
+<Script file="TheSlavePens\Trash.lua"/>
+<Script file="TheSlavePens\Ahune.lua"/>
+
+<Script file="TheSteamvault\Thespia.lua"/>
+<Script file="TheSteamvault\Steamrigger.lua"/>
+<Script file="TheSteamvault\Kalithresh.lua"/>
+
+<Script file="TheUnderbog\Hungarfen.lua"/>
+<Script file="TheUnderbog\Ghazan.lua"/>
+<Script file="TheUnderbog\Muselek.lua"/>
+<Script file="TheUnderbog\TheBlackStalker.lua"/>
+
+<Script file="!Options.lua"/>
 
 </Ui>

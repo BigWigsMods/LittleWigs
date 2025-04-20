@@ -1,18 +1,92 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Include file="AtalDazar\modules.xml"/>
-<Include file="Freehold\modules.xml"/>
-<Include file="KingsRest\modules.xml"/>
-<Include file="ShrineOfTheStorm\modules.xml"/>
-<Include file="SiegeOfBoralus\modules.xml"/>
-<Include file="TempleOfSethraliss\modules.xml"/>
-<Include file="TheMotherlode\modules.xml"/>
-<Include file="TolDagor\modules.xml"/>
-<Include file="Underrot\modules.xml"/>
-<Include file="WaycrestManor\modules.xml"/>
-<Include file="Mechagon\modules.xml"/>
-<Include file="HorrificVisionOfOrgrimmar\modules.xml"/>
-<Include file="HorrificVisionOfStormwind\modules.xml"/>
+<Script file="AtalDazar\Alunza.lua"/>
+<Script file="AtalDazar\Volkaal.lua"/>
+<Script file="AtalDazar\Rezan.lua"/>
+<Script file="AtalDazar\Yazma.lua"/>
+<Script file="AtalDazar\Trash.lua"/>
+
+<Script file="Freehold\Kragg.lua"/>
+<Script file="Freehold\Captains.lua"/>
+<Script file="Freehold\Booty.lua"/>
+<Script file="Freehold\Sweete.lua"/>
+<Script file="Freehold\Trash.lua"/>
+
+<Script file="HorrificVisionOfOrgrimmar\Thrall.lua"/>
+<Script file="HorrificVisionOfOrgrimmar\OblivionElemental.lua"/>
+<Script file="HorrificVisionOfOrgrimmar\InquisitorGnshal.lua"/>
+<Script file="HorrificVisionOfOrgrimmar\Vezokk.lua"/>
+<Script file="HorrificVisionOfOrgrimmar\Rexxar.lua"/>
+<Script file="HorrificVisionOfOrgrimmar\Trash.lua"/>
+
+<Script file="HorrificVisionOfStormwind\AlleriaWindrunner.lua"/>
+<Script file="HorrificVisionOfStormwind\SlavemasterUlrok.lua"/>
+<Script file="HorrificVisionOfStormwind\TherumDeepforge.lua"/>
+<Script file="HorrificVisionOfStormwind\MathiasShaw.lua"/>
+<Script file="HorrificVisionOfStormwind\MagisterUmbric.lua"/>
+<Script file="HorrificVisionOfStormwind\Trash.lua"/>
+
+<Script file="KingsRest\GoldenSerpent.lua"/>
+<Script file="KingsRest\Mchimba.lua"/>
+<Script file="KingsRest\Council.lua"/>
+<Script file="KingsRest\Dazar.lua"/>
+<Script file="KingsRest\Trash.lua"/>
+
+<Script file="Mechagon\Gobbamak.lua"/>
+<Script file="Mechagon\Gunker.lua"/>
+<Script file="Mechagon\TrixieNaeno.lua"/>
+<Script file="Mechagon\OppressionUnit.lua"/>
+<Script file="Mechagon\TussleTonks.lua"/>
+<Script file="Mechagon\KUJ0.lua"/>
+<Script file="Mechagon\MachinistsGarden.lua"/>
+<Script file="Mechagon\KingMechagon.lua"/>
+<Script file="Mechagon\Trash.lua"/>
+
+<Script file="ShrineOfTheStorm\Aqusirr.lua"/>
+<Script file="ShrineOfTheStorm\Council.lua"/>
+<Script file="ShrineOfTheStorm\Stormsong.lua"/>
+<Script file="ShrineOfTheStorm\Volzith.lua"/>
+<Script file="ShrineOfTheStorm\Trash.lua"/>
+
+<Script file="SiegeOfBoralus\Redhook.lua"/>
+<Script file="SiegeOfBoralus\Bainbridge.lua"/>
+<Script file="SiegeOfBoralus\Lockwood.lua"/>
+<Script file="SiegeOfBoralus\Darkfathom.lua"/>
+<Script file="SiegeOfBoralus\Viqgoth.lua"/>
+<Script file="SiegeOfBoralus\Trash.lua"/>
+
+<Script file="TempleOfSethraliss\AdderisAspix.lua"/>
+<Script file="TempleOfSethraliss\Merektha.lua"/>
+<Script file="TempleOfSethraliss\Galvazzt.lua"/>
+<Script file="TempleOfSethraliss\Avatar.lua"/>
+<Script file="TempleOfSethraliss\Trash.lua"/>
+
+<Script file="TheMotherlode\CrowdPummeler.lua"/>
+<Script file="TheMotherlode\Azerokk.lua"/>
+<Script file="TheMotherlode\Rixxa.lua"/>
+<Script file="TheMotherlode\Razdunk.lua"/>
+<Script file="TheMotherlode\Trash.lua"/>
+
+<Script file="TolDagor\SandQueen.lua"/>
+<Script file="TolDagor\Howlis.lua"/>
+<Script file="TolDagor\Valyri.lua"/>
+<Script file="TolDagor\Korgus.lua"/>
+<Script file="TolDagor\Trash.lua"/>
+
+<Script file="Underrot\Leaxa.lua"/>
+<Script file="Underrot\Cragmaw.lua"/>
+<Script file="Underrot\Zancha.lua"/>
+<Script file="Underrot\Abomination.lua"/>
+<Script file="Underrot\Trash.lua"/>
+
+<Script file="WaycrestManor\Heartsbane.lua"/>
+<Script file="WaycrestManor\Goliath.lua"/>
+<Script file="WaycrestManor\Raal.lua"/>
+<Script file="WaycrestManor\Waycrest.lua"/>
+<Script file="WaycrestManor\GorakTul.lua"/>
+<Script file="WaycrestManor\Trash.lua"/>
+
+<Script file="!Options.lua"/>
 
 </Ui>
