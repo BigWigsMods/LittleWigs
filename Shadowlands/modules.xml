@@ -1,14 +1,64 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Include file="SanguineDepths\modules.xml"/>
-<Include file="SpiresOfAscension\modules.xml"/>
-<Include file="TheNecroticWake\modules.xml"/>
-<Include file="HallsOfAtonement\modules.xml"/>
-<Include file="Plaguefall\modules.xml"/>
-<Include file="MistsOfTirnaScithe\modules.xml"/>
-<Include file="DeOtherSide\modules.xml"/>
-<Include file="TheaterOfPain\modules.xml"/>
-<Include file="TazaveshTheVeiledMarket\modules.xml"/>
+<Script file="DeOtherSide\Hakkar.lua"/>
+<Script file="DeOtherSide\TheManastorms.lua"/>
+<Script file="DeOtherSide\Xyexa.lua"/>
+<Script file="DeOtherSide\Muehzala.lua"/>
+<Script file="DeOtherSide\Trash.lua"/>
+
+<Script file="HallsOfAtonement\Halkias.lua"/>
+<Script file="HallsOfAtonement\Echelon.lua"/>
+<Script file="HallsOfAtonement\Aleez.lua"/>
+<Script file="HallsOfAtonement\Chamberlain.lua"/>
+<Script file="HallsOfAtonement\Trash.lua"/>
+
+<Script file="MistsOfTirnaScithe\IngraMaloch.lua"/>
+<Script file="MistsOfTirnaScithe\Mistcaller.lua"/>
+<Script file="MistsOfTirnaScithe\Tredova.lua"/>
+<Script file="MistsOfTirnaScithe\Trash.lua"/>
+
+<Script file="Plaguefall\Globgrog.lua"/>
+<Script file="Plaguefall\DoctorIckus.lua"/>
+<Script file="Plaguefall\DominaVenomblade.lua"/>
+<Script file="Plaguefall\MargraveStradama.lua"/>
+<Script file="Plaguefall\Trash.lua"/>
+
+<Script file="SanguineDepths\Kryxis.lua"/>
+<Script file="SanguineDepths\Tarvold.lua"/>
+<Script file="SanguineDepths\Beryllia.lua"/>
+<Script file="SanguineDepths\Kaal.lua"/>
+<Script file="SanguineDepths\Trash.lua"/>
+
+<Script file="SpiresOfAscension\KinTara.lua"/>
+<Script file="SpiresOfAscension\Ventunax.lua"/>
+<Script file="SpiresOfAscension\Oryphrion.lua"/>
+<Script file="SpiresOfAscension\Devos.lua"/>
+<Script file="SpiresOfAscension\Trash.lua"/>
+
+<Script file="TazaveshTheVeiledMarket\Zophex.lua"/>
+<Script file="TazaveshTheVeiledMarket\TheGrandMenagerie.lua"/>
+<Script file="TazaveshTheVeiledMarket\MailroomMayhem.lua"/>
+<Script file="TazaveshTheVeiledMarket\MyzasOasis.lua"/>
+<Script file="TazaveshTheVeiledMarket\Soazmi.lua"/>
+<Script file="TazaveshTheVeiledMarket\Hylbrande.lua"/>
+<Script file="TazaveshTheVeiledMarket\TimecapnHooktail.lua"/>
+<Script file="TazaveshTheVeiledMarket\Soleah.lua"/>
+<Script file="TazaveshTheVeiledMarket\Trash.lua"/>
+
+<Script file="TheaterOfPain\AffrontOfChallengers.lua"/>
+<Script file="TheaterOfPain\Gorechop.lua"/>
+<Script file="TheaterOfPain\Xav.lua"/>
+<Script file="TheaterOfPain\Kultharok.lua"/>
+<Script file="TheaterOfPain\Mordretha.lua"/>
+<Script file="TheaterOfPain\Trash.lua"/>
+
+<Script file="TheNecroticWake\Blightbone.lua"/>
+<Script file="TheNecroticWake\Amarth.lua"/>
+<Script file="TheNecroticWake\Stitchflesh.lua"/>
+<Script file="TheNecroticWake\Nalthor.lua"/>
+<Script file="TheNecroticWake\Trash.lua"/>
+
+<Script file="!Options.lua"/>
 
 </Ui>

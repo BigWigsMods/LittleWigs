@@ -1,19 +1,89 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Include file="BlackrockCaverns\modules.xml"/>
-<Include file="Deadmines\modules.xml"/>
-<Include file="EndTime\modules.xml"/>
-<Include file="GrimBatol\modules.xml"/>
-<Include file="HallsOfOrigination\modules.xml"/>
-<Include file="HourOfTwilight\modules.xml"/>
-<Include file="LostCity\modules.xml"/>
-<Include file="ShadowfangKeep\modules.xml"/>
-<Include file="Stonecore\modules.xml"/>
-<Include file="ThroneTides\modules.xml"/>
-<Include file="VortexPinnacle\modules.xml"/>
-<Include file="WellOfEternity\modules.xml"/>
-<Include file="ZulAman\modules.xml"/>
-<Include file="ZulGurub\modules.xml"/>
+<Script file="BlackrockCaverns\Romogg.lua"/>
+<Script file="BlackrockCaverns\Corla.lua"/>
+<Script file="BlackrockCaverns\Karsh.lua"/>
+<Script file="BlackrockCaverns\Beauty.lua"/>
+<Script file="BlackrockCaverns\Obsidius.lua"/>
+
+<Script file="Deadmines\Glubtok.lua"/>
+<Script file="Deadmines\HelixGearbreaker.lua"/>
+<Script file="Deadmines\FoeReaper5000.lua"/>
+<Script file="Deadmines\AdmiralRipsnarl.lua"/>
+<Script file="Deadmines\Cookie.lua"/>
+<Script file="Deadmines\VanessaVanCleef.lua"/>
+
+<Script file="EndTime\Baine.lua"/>
+<!--<Script file="EndTime\Jaina.lua"/>-->
+<!--<Script file="EndTime\Sylvanas.lua"/>-->
+<!--<Script file="EndTime\Tyrande.lua"/>-->
+<!--<Script file="EndTime\Murozond.lua"/>-->
+
+<Script file="GrimBatol\Umbriss.lua"/>
+<Script file="GrimBatol\Forgemaster.lua"/>
+<Script file="GrimBatol\Drahga.lua"/>
+<Script file="GrimBatol\Erudax.lua"/>
+<Script file="GrimBatol\Trash.lua"/>
+
+<Script file="HallsOfOrigination\Anhuur.lua"/>
+<!--<Script file="HallsOfOrigination\Ptah.lua"/>-->
+<Script file="HallsOfOrigination\Anraphet.lua"/>
+<Script file="HallsOfOrigination\Isiset.lua"/>
+<Script file="HallsOfOrigination\Ammunae.lua"/>
+<!--<Script file="HallsOfOrigination\Setesh.lua"/>-->
+<Script file="HallsOfOrigination\Rajh.lua"/>
+
+<Script file="HourOfTwilight\Arcurion.lua"/>
+<Script file="HourOfTwilight\Asira.lua"/>
+<Script file="HourOfTwilight\Benedictus.lua"/>
+<Script file="HourOfTwilight\Trash.lua"/>
+
+<Script file="LostCity\Husam.lua"/>
+<Script file="LostCity\Lockmaw.lua"/>
+<Script file="LostCity\Barim.lua"/>
+<Script file="LostCity\Siamat.lua"/>
+
+<Script file="ShadowfangKeep\Ashbury.lua"/>
+<Script file="ShadowfangKeep\Silverlaine.lua"/>
+<Script file="ShadowfangKeep\Springvale.lua"/>
+<Script file="ShadowfangKeep\Walden.lua"/>
+<Script file="ShadowfangKeep\Godfrey.lua"/>
+
+<Script file="Stonecore\Corborus.lua"/>
+<Script file="Stonecore\Slabhide.lua"/>
+<Script file="Stonecore\Ozruk.lua"/>
+<Script file="Stonecore\Azil.lua"/>
+
+<Script file="ThroneTides\Nazjar.lua"/>
+<Script file="ThroneTides\Ulthok.lua"/>
+<Script file="ThroneTides\Mindbender.lua"/>
+<Script file="ThroneTides\Ozumat.lua"/>
+<Script file="ThroneTides\Trash.lua"/>
+
+<Script file="VortexPinnacle\Ertan.lua"/>
+<Script file="VortexPinnacle\Altairus.lua"/>
+<Script file="VortexPinnacle\Asaad.lua"/>
+<Script file="VortexPinnacle\Trash.lua"/>
+
+<Script file="WellOfEternity\Perotharn.lua"/>
+<Script file="WellOfEternity\Azshara.lua"/>
+<Script file="WellOfEternity\MannorothAndVarothen.lua"/>
+<Script file="WellOfEternity\Trash.lua"/>
+
+<Script file="ZulAman\Akilzon.lua"/>
+<Script file="ZulAman\Nalorakk.lua"/>
+<Script file="ZulAman\Janalai.lua"/>
+<Script file="ZulAman\Halazzi.lua"/>
+<Script file="ZulAman\Malacrass.lua"/>
+<Script file="ZulAman\Daakara.lua"/>
+
+<Script file="ZulGurub\Venoxis.lua"/>
+<Script file="ZulGurub\Mandokir.lua"/>
+<Script file="ZulGurub\Kilnara.lua"/>
+<Script file="ZulGurub\Zanzil.lua"/>
+<Script file="ZulGurub\Jindo.lua"/>
+
+<Script file="!Options.lua"/>
 
 </Ui>

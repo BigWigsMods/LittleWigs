@@ -1,21 +1,93 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Include file="Ahnkahet\modules.xml"/>
-<Include file="AzjolNerub\modules.xml"/>
-<Include file="DrakTharonKeep\modules.xml"/>
-<Include file="Gundrak\modules.xml"/>
-<Include file="HallsOfLightning\modules.xml"/>
-<Include file="HallsOfReflection\modules.xml"/>
-<Include file="HallsOfStone\modules.xml"/>
-<Include file="PitOfSaron\modules.xml"/>
-<Include file="TheCullingOfStratholme\modules.xml"/>
-<Include file="TheForgeOfSouls\modules.xml"/>
-<Include file="TheNexus\modules.xml"/>
-<Include file="TheOculus\modules.xml"/>
-<Include file="TheVioletHold\modules.xml"/>
-<Include file="TrialOfTheChampion\modules.xml"/>
-<Include file="UtgardeKeep\modules.xml"/>
-<Include file="UtgardePinnacle\modules.xml"/>
+<Script file="Ahnkahet\ElderNadox.lua"/>
+<Script file="Ahnkahet\PrinceTaldaram.lua"/>
+<Script file="Ahnkahet\JedogaShadowseeker.lua"/>
+<Script file="Ahnkahet\Amanitar.lua"/>
+<Script file="Ahnkahet\HeraldVolazj.lua"/>
+<Script file="Ahnkahet\Trash.lua"/>
+
+<Script file="AzjolNerub\Krikthir.lua"/>
+<Script file="AzjolNerub\Hadronox.lua"/>
+<Script file="AzjolNerub\Anubarak.lua"/>
+
+<Script file="DrakTharonKeep\Trollgore.lua"/>
+<Script file="DrakTharonKeep\Novos.lua"/>
+<Script file="DrakTharonKeep\KingDred.lua"/>
+<Script file="DrakTharonKeep\TheProphetTharonja.lua"/>
+
+<Script file="Gundrak\Sladran.lua"/>
+<Script file="Gundrak\DrakkariColossus.lua"/>
+<Script file="Gundrak\Moorabi.lua"/>
+<Script file="Gundrak\Eck.lua"/>
+<Script file="Gundrak\Galdarah.lua"/>
+
+<Script file="HallsOfLightning\Bjarngrim.lua"/>
+<Script file="HallsOfLightning\Volkhan.lua"/>
+<Script file="HallsOfLightning\Ionar.lua"/>
+<Script file="HallsOfLightning\Loken.lua"/>
+<Script file="HallsOfLightning\Trash.lua"/>
+
+<Script file="HallsOfReflection\Falric.lua"/>
+<Script file="HallsOfReflection\Marwyn.lua"/>
+
+<Script file="HallsOfStone\Krystallus.lua"/>
+<Script file="HallsOfStone\MaidenOfGrief.lua"/>
+<Script file="HallsOfStone\TribunalOfAges.lua"/>
+<Script file="HallsOfStone\SjonnirTheIronshaper.lua"/>
+
+<Script file="PitOfSaron\ForgemasterGarfrost.lua"/>
+<Script file="PitOfSaron\IckAndKrick.lua"/>
+<Script file="PitOfSaron\Tyrannus.lua"/>
+
+<Script file="TheCullingOfStratholme\Meathook.lua"/>
+<Script file="TheCullingOfStratholme\Salramm.lua"/>
+<Script file="TheCullingOfStratholme\Epoch.lua"/>
+<Script file="TheCullingOfStratholme\MalGanis.lua"/>
+<Script file="TheCullingOfStratholme\InfiniteCorruptor.lua"/>
+<Script file="TheCullingOfStratholme\Trash.lua"/>
+
+<Script file="TheForgeOfSouls\Bronjahm.lua"/>
+<Script file="TheForgeOfSouls\DevourerOfSouls.lua"/>
+
+<Script file="TheNexus\Commanders.lua"/>
+<Script file="TheNexus\Telestra.lua"/>
+<Script file="TheNexus\Anomalus.lua"/>
+<Script file="TheNexus\Ormorok.lua"/>
+<Script file="TheNexus\Keristrasza.lua"/>
+<Script file="TheNexus\Trash.lua"/>
+
+<Script file="TheOculus\Drakos.lua"/>
+<Script file="TheOculus\VarosCloudstrider.lua"/>
+<Script file="TheOculus\Urom.lua"/>
+<Script file="TheOculus\Eregos.lua"/>
+
+<Script file="TheVioletHold\Erekem.lua"/>
+<Script file="TheVioletHold\Moragg.lua"/>
+<Script file="TheVioletHold\Ichoron.lua"/>
+<Script file="TheVioletHold\Xevozz.lua"/>
+<Script file="TheVioletHold\Lavanthor.lua"/>
+<Script file="TheVioletHold\Zuramat.lua"/>
+<Script file="TheVioletHold\Cyanigosa.lua"/>
+<Script file="TheVioletHold\Trash.lua"/>
+
+<Script file="TrialOfTheChampion\GrandChampions.lua"/>
+<Script file="TrialOfTheChampion\Eadric.lua"/>
+<Script file="TrialOfTheChampion\Paletress.lua"/>
+<Script file="TrialOfTheChampion\TheBlackKnight.lua"/>
+<Script file="TrialOfTheChampion\Trash.lua"/>
+
+<Script file="UtgardeKeep\Keleseth.lua"/>
+<Script file="UtgardeKeep\SkarvaldAndDalronn.lua"/>
+<Script file="UtgardeKeep\Ingvar.lua"/>
+
+<Script file="UtgardePinnacle\SvalaSorrowgrave.lua"/>
+<Script file="UtgardePinnacle\GortokPalehoof.lua"/>
+<Script file="UtgardePinnacle\Skadi.lua"/>
+<Script file="UtgardePinnacle\KingYmiron.lua"/>
+<Script file="UtgardePinnacle\Trash.lua"/>
+
+<Script file="!Options.lua"/>
 
 </Ui>

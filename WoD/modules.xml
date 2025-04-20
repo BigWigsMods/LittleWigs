@@ -1,13 +1,53 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Include file="Auchindoun\modules.xml"/>
-<Include file="BloodmaulSlagMines\modules.xml"/>
-<Include file="GrimrailDepot\modules.xml"/>
-<Include file="IronDocks\modules.xml"/>
-<Include file="ShadowmoonBurialGrounds\modules.xml"/>
-<Include file="Skyreach\modules.xml"/>
-<Include file="TheEverbloom\modules.xml"/>
-<Include file="UpperBlackrockSpire\modules.xml"/>
+<Script file="Auchindoun\Kaathar.lua"/>
+<Script file="Auchindoun\Nyami.lua"/>
+<Script file="Auchindoun\Azzakel.lua"/>
+<Script file="Auchindoun\Terongor.lua"/>
+<Script file="Auchindoun\Trash.lua"/>
+
+<Script file="BloodmaulSlagMines\Magmolatus.lua"/>
+<Script file="BloodmaulSlagMines\Crushto.lua"/>
+<Script file="BloodmaulSlagMines\Roltall.lua"/>
+<Script file="BloodmaulSlagMines\Gugrokk.lua"/>
+<Script file="BloodmaulSlagMines\Trash.lua"/>
+
+<Script file="GrimrailDepot\Rocketspark.lua"/>
+<Script file="GrimrailDepot\NitroggThundertower.lua"/>
+<Script file="GrimrailDepot\SkylordTovra.lua"/>
+<Script file="GrimrailDepot\Trash.lua"/>
+
+<Script file="IronDocks\Nokgar.lua"/>
+<Script file="IronDocks\Enforcers.lua"/>
+<Script file="IronDocks\Oshir.lua"/>
+<Script file="IronDocks\Skulloc.lua"/>
+<Script file="IronDocks\Trash.lua"/>
+
+<Script file="ShadowmoonBurialGrounds\Sadana.lua"/>
+<Script file="ShadowmoonBurialGrounds\Nhallish.lua"/>
+<Script file="ShadowmoonBurialGrounds\Bonemaw.lua"/>
+<Script file="ShadowmoonBurialGrounds\Nerzhul.lua"/>
+<Script file="ShadowmoonBurialGrounds\Trash.lua"/>
+
+<Script file="Skyreach\Ranjit.lua"/>
+<Script file="Skyreach\Araknath.lua"/>
+<Script file="Skyreach\Rukhran.lua"/>
+<Script file="Skyreach\Viryx.lua"/>
+
+<Script file="TheEverbloom\Witherbark.lua"/>
+<Script file="TheEverbloom\AncientProtectors.lua"/>
+<Script file="TheEverbloom\Xeritac.lua"/>
+<Script file="TheEverbloom\ArchmageSol.lua"/>
+<Script file="TheEverbloom\Yalnu.lua"/>
+<Script file="TheEverbloom\Trash.lua"/>
+
+<Script file="UpperBlackrockSpire\Gorashan.lua"/>
+<Script file="UpperBlackrockSpire\Kyrak.lua"/>
+<Script file="UpperBlackrockSpire\Tharbek.lua"/>
+<Script file="UpperBlackrockSpire\Ragewing.lua"/>
+<Script file="UpperBlackrockSpire\Zaela.lua"/>
+
+<Script file="!Options.lua"/>
 
 </Ui>
