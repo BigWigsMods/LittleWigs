@@ -37,15 +37,15 @@ end
 L = BigWigs:NewBossLocale("The Headless Horseman", "koKR")
 if L then
 	L.the_headless_horseman = "저주받은 기사"
-	--L.custom_on_autotalk_desc = "Automatically accept the curses from the Wicker Men, and automatically start the encounter."
-	--L.curses_desc = "Notifies you when you recieve a curse from a Wicker Man."
+	L.custom_on_autotalk_desc = "자동으로 버들 인간의 저주를 받아들이고, 자동으로 전투가 시작됩니다."
+	L.curses_desc = "버들 인간으로부터 저주를 받으면 알려줍니다."
 end
 
 -- Scholomance
 
 L = BigWigs:NewBossLocale("Lilian Voss", "koKR")
 if L then
-	--L.stage_2_trigger = "Now, Lilian, it is time for your transformation."
+	L.stage_2_trigger = "자, 릴리안, 이제 변실할 시간이다."
 end
 
 -- Shado-Pan Monastery
@@ -66,7 +66,7 @@ end
 
 L = BigWigs:NewBossLocale("Yan-Zhu the Uncasked", "koKR")
 if L then
-	--L.summon_desc = "Warn when Yan-Zhu summons a Yeasty Brew Alemental. They can cast |cff71d5ffFerment|r to heal the boss."
+	L.summon_desc = "옌주가 효모 맥주 주령을 소환할 때 경고합니다. 이들은 |cff71d5ff효모|r을 시전하여 보스를 치유할 수 있습니다."
 end
 
 -- Temple of the Jade Serpent
@@ -74,24 +74,24 @@ end
 L = BigWigs:NewBossLocale("Lorewalker Stonestep", "koKR")
 if L then
 	-- Ah, it is not yet over. From what I see, we face the trial of the yaungol. Let me shed some light...
-	--L.yaungol_warmup_trigger = "Ah, it is not yet over."
+	L.yaungol_warmup_trigger = "아, 아직 끝나지 않았네."
 
 	-- Oh, my. If I am not mistaken, it appears that the tale of Zao Sunseeker has come to life before us.
-	--L.five_suns_warmup_trigger = "If I am not mistaken"
+	L.five_suns_warmup_trigger = "내 기억이 맞다면"
 end
 
 L = BigWigs:NewBossLocale("Temple of the Jade Serpent Trash", "koKR")
 if L then
 	L.corrupt_living_water = "살아있는 타락의 물"
-	--L.fallen_waterspeaker = "Fallen Waterspeaker"
+	L.fallen_waterspeaker = "몰락한 물예언자"
 	L.haunting_sha = "음산한 샤"
 	L.the_talking_fish = "말하는 물고기"
 	L.the_songbird_queen = "명금 여왕"
 	L.the_crybaby_hozen = "울보 호젠"
 	L.the_nodding_tiger = "울보 호젠"
 	L.the_golden_beetle = "황금 딱정벌레"
-	--L.sha_touched_guardian = "Sha-Touched Guardian"
-	--L.depraved_mistweaver = "Depraved Mistweaver"
+	L.sha_touched_guardian = "샤에 물든 관리자"
+	L.depraved_mistweaver = "타락한 안개마술사"
 	L.shambling_infester = "휘청거리는 감염자"
 	L.minion_of_doubt = "의심의 하수인"
 end

@@ -3,16 +3,16 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "koKR")
 if not L then return end
 if L then
-	--L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
+	L.custom_on_recruiter_autotalk_desc = "즉시 용군단 징집관에게 서약하여 강화 효과를 받습니다."
 	L.critical_strike = "+5% 치명타 및 극대화"
 	L.haste = "+5% 가속"
 	L.mastery = "+특화"
 	L.versatility = "+5% 유연성"
 	L.healing_taken = "+10% 받는 치유 효과"
 
-	--L.vexamus_warmup_trigger = "created a powerful construct named Vexamus"
-	--L.overgrown_ancient_warmup_trigger = "Ichistrasz! There is too much life magic"
-	--L.crawth_warmup_trigger = "At least we know that works. Watch yourselves."
+	L.vexamus_warmup_trigger = "백사무스라는 강력한 피조물이 탄생해"
+	L.overgrown_ancient_warmup_trigger = "이치스트라즈 님! 생명 마법이 너무 과하잖아요!"
+	L.crawth_warmup_trigger = "뭐가 통하는지는 알겠네요. 조심들 하세요."
 
 	L.corrupted_manafiend = "타락한 마나마귀"
 	L.spellbound_battleaxe = "주문결속 전투도끼"
@@ -31,9 +31,9 @@ end
 
 L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "koKR")
 if L then
-	--L.custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
-	--L.captive_tuskarr_freed = "Captive Tuskarr Freed"
-	--L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
+	L.custom_on_cauldron_autotalk_desc = "[연금술] 썩어가는 가마솥을 즉시 해독하여 질병 해제 버프를 받습니다."
+	L.captive_tuskarr_freed = "투스카르 포로 해방"
+	L.captive_tuskarr_freed_desc = "투스카르 포로가 풀려나면 알림을 표시합니다."
 
 	L.decaying_cauldron = "썩어가는 가마솥"
 	L.captive_tuskarr = "투스카르 포로"
@@ -76,7 +76,7 @@ if L then
 	L.risen_dragon = "되살아난 용"
 	L.iridikrons_creation = "이리디크론의 창조물"
 
-	--L.iridikron_warmup_trigger = "So the titans' puppets have come to face me."
+	L.iridikron_warmup_trigger = "자, 보아하니 티탐의 꼭두각시가 왔군."
 
 	------ Murozond's Rise ------
 	L.infinite_twilight_magus = "무한의 황혼의 학자"
@@ -96,19 +96,19 @@ if L then
 	L.horde_raider_alliance_knight = "호드 약탈병 / 얼라이언스 기사"
 	L.infinite_timebender = "무한의 시간왜곡사"
 
-	--L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
-	--L.rift_opened = "Temporal Rift Opened"
+	L.custom_on_rift_autotalk_desc = "즉시 채널링을 시작하여 시간의 균열을 엽니다."
+	L.rift_opened = "시간 균열이 열렸습니다"
 	L.rift_stability = "균열 안정성"
-	--L.rift_stability_desc = "Show an alert when the Temporal Rift has been opened."
+	L.rift_stability_desc = "시간 균열이 열리면 알림을 표시합니다."
 
-	--L.manifested_timeways_warmup_trigger = "Even the Aspect of Time cannot be allowed to disrupt the timeways!"
+	L.manifested_timeways_warmup_trigger = "아무리 시간의 위상이라도 시간의 길을 어지럽히게 둘 순 없다!"
 end
 
 -- Halls of Infusion
 
 L = BigWigs:NewBossLocale("Halls of Infusion Trash", "koKR")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
+	L.custom_on_autotalk_desc = "대화 옵션을 즉시 선택해 버프를 받습니다."
 
 	L.primalist_ravager = "원시술사 약탈자"
 	L.primalist_geomancer = "원시술사 흙점쟁이"
@@ -133,7 +133,7 @@ end
 
 L = BigWigs:NewBossLocale("Neltharus Trash", "koKR")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
+	L.custom_on_autotalk_desc = "대화 옵션을 즉시 선택해 버프를 받습니다."
 
 	L.burning_chain = "불타는 사슬"
 	L.qalashi_warden = "칼라시 감시관"
@@ -160,8 +160,8 @@ end
 
 L = BigWigs:NewBossLocale("Warlord Sargha", "koKR")
 if L then
-	--L.magical_implements_desc = "The surrounding treasure piles contain magic items that can help to deplete Magma Shield."
-	--L.magma_shield = "Magma Shield - Get items from gold piles"
+	L.magical_implements_desc = "주위의 보물 더미에는 용암 보호막을 소진시키는 데 도움이 되는 마법 물품이 들어 있습니다."
+	L.magma_shield = "용암 보호막 - 보물 더미에서 아이템 획득"
 end
 
 -- Ruby Life Pools
@@ -181,7 +181,7 @@ if L then
 	L.flame_channeler = "불꽃의 역술사"
 	L.high_channeler_ryvati = "고위 역술사 라이바티"
 
-	--L.kyrakka_and_erkhart_warmup_trigger = "Your false queen cannot stop us. We are the truth."
+	L.kyrakka_and_erkhart_warmup_trigger = "너희 거짓된 여왕은 우릴 막지 못한다. 진실은 우리 편이다."
 end
 
 L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "koKR")
@@ -194,7 +194,7 @@ end
 L = BigWigs:NewBossLocale("The Azure Vault Trash", "koKR")
 if L then
 	L.book_of_translocation = "순간이동의 서"
-	--L.custom_on_book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
+	L.custom_on_book_autotalk_desc = "순간이동의 서와 대화할 때 즉시 다음 영역으로 이동합니다."
 
 	L.shrieking_whelp = "절규하는 새끼용"
 	L.conjured_lasher = "창조된 덩굴손"
@@ -213,7 +213,7 @@ end
 
 L = BigWigs:NewBossLocale("The Nokhud Offensive Trash", "koKR")
 if L then
-	--L.teera_and_maruuk_warmup_trigger = "Why has our rest been disturbed?"
+	L.teera_and_maruuk_warmup_trigger = "왜 우리의 영면을 방해한 것이냐?"
 
 	L.nokhud_plainstomper = "노쿠드 평야활보자"
 	L.nokhud_hornsounder = "노두크 뿔피리꾼"
@@ -236,13 +236,13 @@ end
 
 L = BigWigs:NewBossLocale("Granyth", "koKR")
 if L then
-	--L.lance_ready = "Lance Ready"
+	L.lance_ready = "창 준비"
 end
 
 L = BigWigs:NewBossLocale("The Raging Tempest", "koKR")
 if L then
-	--L.on_you = "On you"
-	--L.on_boss = "On the boss"
+	L.on_you = "당신에게"
+	L.on_boss = "보스에게"
 end
 
 -- Uldaman: Legacy of Tyr
@@ -262,5 +262,5 @@ if L then
 	L.earthen_guardian = "토석인 수호자"
 	L.infinite_agent = "무한의 대리인"
 
-	--L.door_open_desc = "Show a bar indicating when The Lost Dwarves will open the door after Bromach."
+	L.door_open_desc = "브로마크를 처치한 후 길 잃은 드워프가 문을 열 시점을 나타내는 바를 표시합니다."
 end

@@ -16,9 +16,9 @@ if L then
 	L.augur = "다자르아이 점술가"
 	L.reanimated_honor_guard = "되살아난 근위병"
 
-	--L.stairs_open = "Stairs Open"
-	--L.stairs_open_desc = "Show a bar indicating when the stairs open to Yazma."
-	--L.stairs_open_trigger = "Impressive. You made it farther than I thought... but I will still be drinking your blood."
+	L.stairs_open = "계단 열림"
+	L.stairs_open_desc = "야즈마로 가는 계단이 열리면 이를 나타내는 바를 표시합니다."
+	L.stairs_open_trigger = "제법이군. 여기까지 올 줄이야... 하지만 내가 오늘 너희 피를 마신다는 사실엔 변함없다."
 end
 
 -- Freehold
@@ -50,25 +50,25 @@ end
 
 L = BigWigs:NewBossLocale("Council o' Captains", "koKR")
 if L then
-	--L.crit_brew = "Crit Brew"
-	--L.haste_brew = "Haste Brew"
-	--L.bad_brew = "Bad Brew"
+	L.crit_brew = "치명타"
+	L.haste_brew = "가속"
+	L.bad_brew = "디버프"
 end
 
 L = BigWigs:NewBossLocale("Ring of Booty", "koKR")
 if L then
 	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
-	--L.lightning_warmup = "new set of vict--"
+	L.lightning_warmup = "새로운 호구"
 	-- It's a greased up pig? I'm beginning to think this is not a professional setup. Oh well... grab the pig and you win
-	--L.lightning_warmup_2 = "not a professional setup"
+	L.lightning_warmup_2 = "살짝 김이 빠지기는 하지만"
 
 	L.lightning = "번개돼지"
-	--L.lightning_caught = "Lightning caught after %.1f seconds!"
+	L.lightning_caught = "%.1f초 후에 번개돼지가 잡혔습니다!"
 	L.ludwig = "루드비히 폰 토르톨란"
 	L.trothak = "트로삭"
 
-	--L.left = "%s (Left)"
-	--L.right = "%s (Right)"
+	L.left = "%s (왼쪽)"
+	L.right = "%s (오른쪽)"
 end
 
 -- Horrific Vision of Orgrimmar
@@ -126,9 +126,9 @@ end
 L = BigWigs:NewBossLocale("Rexxar", "koKR")
 if L then
 	L.rexxar = "렉사르"
-	--L.pet_trigger_1 = "Come, my pets! Serve your master!"
-	--L.pet_trigger_2 = "My beasts will devour you!"
-	--L.pet_trigger_3 = "Hunt them down!"
+	L.pet_trigger_1 = "이리 와라, 야수들아! 주인을 섬겨라!"
+	L.pet_trigger_2 = "내 야수들이 널 먹어 치울 거다!"
+	L.pet_trigger_3 = "놈들을 추적해라!"
 end
 
 -- Horrific Vision of Stormwind
@@ -160,8 +160,8 @@ if L then
 	L.unstable_servant = "불안정한 하수인"
 	L.hogger = "들창코"
 
-	--L.therum_deepforge_warmup_trigger = "So ye like tae play with explosives, do ye? Then let's play."
-	--L.alleria_windrunner_warmup_trigger = "Mother... do not listen to the whispers!"
+	L.therum_deepforge_warmup_trigger = "폭발물로 장난치는 거 좋아하나 봐, 엉? 그럼 어디 놀아 보자고."
+	L.alleria_windrunner_warmup_trigger = "어머니... 속삭임에 굴복하시면 안 됩니다!"
 end
 
 L = BigWigs:NewBossLocale("Alleria Windrunner", "koKR")
@@ -193,7 +193,7 @@ end
 
 L = BigWigs:NewBossLocale("Dazar, The First King", "koKR")
 if L then
-	--L.spears_active = "Spear Launchers Active"
+	L.spears_active = "창 발사기 활성화"
 end
 
 L = BigWigs:NewBossLocale("King's Rest Trash", "koKR")
@@ -222,8 +222,8 @@ if L then
 	L.brute = "투사 유령"
 	L.zul = "줄의 그림자"
 
-	--L.casting_on_you = "Casting %s on YOU"
-	--L.casting_on_other = "Casting %s: %s"
+	L.casting_on_you = "%s 나에게 시전"
+	L.casting_on_other = "시전 %s: %s"
 end
 
 -- Operation: Mechagon
@@ -278,13 +278,13 @@ end
 
 L = BigWigs:NewBossLocale("Aqu'sirr", "koKR")
 if L then
-	--L.warmup_trigger = "How dare you sully this holy place with your presence!"
+	L.warmup_trigger = "감히 어떤 놈들이 이 성스러운 장소를 더럽히느냐!"
 end
 
 L = BigWigs:NewBossLocale("Lord Stormsong", "koKR")
 if L then
-	--L.warmup_trigger_horde = "Intruders?! I shall cast your bodies to the blackened depths, to be crushed for eternity!"
-	--L.warmup_trigger_alliance = "Master! Stop this madness at once! The Kul Tiran fleet must not fall to darkness!"
+	L.warmup_trigger_horde = "침입자?! 네 몸뚱이를 어두운 심연으로 내던져 영원히 고통받게 하리라."
+	L.warmup_trigger_alliance = "주군이여! 이 광기를 멈추십시오! 쿨 티란 함대가 어둠에 빠져선 안 됩니다!"
 end
 
 L = BigWigs:NewBossLocale("Shrine of the Storm Trash", "koKR")
@@ -351,7 +351,7 @@ end
 
 L = BigWigs:NewBossLocale("Galvazzt", "koKR")
 if L then
-	--L.percent = "%s (%d%%)"
+	L.percent = "%s (%d%%)"
 end
 
 -- The MOTHERLODE!!
@@ -380,13 +380,13 @@ end
 
 L = BigWigs:NewBossLocale("Tol Dagor Trash", "koKR")
 if L then
-	--L.vicejaw = "Sewer Vicejaw"
-	--L.thug = "Irontide Thug"
-	--L.seaspeaker = "Bilge Rat Seaspeaker"
-	--L.flamecaster = "Ashvane Flamecaster"
-	--L.officer = "Ashvane Officer"
-	--L.marine = "Ashvane Marine"
-	--L.priest = "Ashvane Priest"
+	L.vicejaw = "하수도 톱니이빨"
+	L.thug = "무쇠파도 폭력단원"
+	L.seaspeaker = "항만의 시궁쥐단 바다예언자"
+	L.flamecaster = "애쉬베인 화염술사"
+	L.officer = "애쉬베인 장교"
+	L.marine = "애쉬베인 해병"
+	L.priest = "애쉬베인 사제"
 end
 
 -- The Underrot
@@ -434,5 +434,5 @@ end
 
 L = BigWigs:NewBossLocale("Gorak Tul", "koKR")
 if L then
-	--L.add_killed = "Add killed - Ready to burn"
+	L.add_killed = "추가 시체 - 불태울 준비 완료"
 end

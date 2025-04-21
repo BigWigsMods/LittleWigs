@@ -9,7 +9,7 @@ end
 L = BigWigs:NewBossLocale("Kael'thas Sunstrider Magisters' Terrace", "koKR")
 if L then
 	-- Don't look so smug! I know what you're thinking, but Tempest Keep was merely a setback. Did you honestly believe I would trust the future to some blind, half-night elf mongrel?
-	--L.warmup_trigger = "Don't look so smug!"
+	L.warmup_trigger = "너무 으스대지 마라"
 end
 
 L = BigWigs:NewBossLocale("Magisters' Terrace Trash", "koKR")
@@ -33,30 +33,30 @@ end
 
 L = BigWigs:NewBossLocale("Old Hillsbrad Foothills Trash", "koKR")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly select Erozion's, Thrall's and Taretha's gossip options."
+	L.custom_on_autotalk_desc = "에로지온, 스랄, 타레사의 대화 옵션을 즉시 선택합니다."
 
-	--L.incendiary_bombs = "Incendiary Bombs"
-	--L.incendiary_bombs_desc = "Display a message when an Incendiary Bomb is planted."
+	L.incendiary_bombs = "화염 폭탄"
+	L.incendiary_bombs_desc = "화염 폭탄이 설치되면 메시지를 표시합니다."
 end
 
 L = BigWigs:NewBossLocale("Lieutenant Drake", "koKR")
 if L then
 	-- You there, fetch water quickly! Get these flames out before they spread to the rest of the keep! Hurry, damn you!
-	--L.warmup_trigger = "fetch water"
+	L.warmup_trigger = "어서 물을 가져와라"
 end
 
 L = BigWigs:NewBossLocale("Captain Skarloc", "koKR")
 if L then
 	-- Thrall! You didn't really think you would escape, did you?  You and your allies shall answer to Blackmoore... after I've had my fun.
-	--L.warmup_trigger = "answer to Blackmoore"
+	L.warmup_trigger = "블랙무어와 대면해야"
 end
 
 L = BigWigs:NewBossLocale("Epoch Hunter", "koKR")
 if L then
 	-- Ah, there you are. I had hoped to accomplish this with a bit of subtlety, but I suppose direct confrontation was inevitable. Your future, Thrall, must not come to pass and so... you and your troublesome friends must die!
-	--L.trash_warmup_trigger = "troublesome friends"
+	L.trash_warmup_trigger = "성가신 친구"
 	-- Enough, I will erase your very existence!
-	--L.boss_warmup_trigger = "very existence!"
+	L.boss_warmup_trigger = "존제 자체를"
 end
 
 -- The Arcatraz
@@ -64,15 +64,15 @@ end
 L = BigWigs:NewBossLocale("Harbinger Skyriss", "koKR")
 if L then
 	-- I knew the prince would be angry, but I... I have not been myself. I had to let them out! The great one speaks to me, you see. Wait--outsiders. Kael'thas did not send you! Good... I'll just tell the prince you released the prisoners!
-	--L.first_cell_trigger = "I have not been myself"
+	L.first_cell_trigger = "제정신이 아니었어"
 	-- Behold, yet another terrifying creature of incomprehensible power!
-	--L.second_and_third_cells_trigger = "of incomprehensible power"
+	L.second_and_third_cells_trigger = "무한한 힘을"
 	-- Anarchy! Bedlam! Oh, you are so wise! Yes, I see it now, of course!
-	--L.fourth_cell_trigger = "Anarchy! Bedlam!"
+	L.fourth_cell_trigger = "이 혼란! 이 공포!"
 	-- It is a small matter to control the mind of the weak... for I bear allegiance to powers untouched by time, unmoved by fate. No force on this world or beyond harbors the strength to bend our knee... not even the mighty Legion!
-	--L.warmup_trigger = "the mighty Legion"
+	L.warmup_trigger = "불타는 군단조차도"
 
-	--L.prison_cell = "Prison Cell"
+	L.prison_cell = "석실 감옥"
 end
 
 L = BigWigs:NewBossLocale("The Arcatraz Trash", "koKR")
@@ -88,8 +88,8 @@ end
 
 L = BigWigs:NewBossLocale("The Black Morass Trash", "koKR")
 if L then
-	--L.wave = "Wave Warnings"
-	--L.wave_desc = "Announce approximate warning messages for the waves."
+	L.wave = "웨이브 경고"
+	L.wave_desc = "웨이브에 대한 대략적인 경고 메시지를 알립니다."
 
 	L.medivh = "메디브"
 	L.rift = "시간의 균열"
@@ -142,12 +142,12 @@ end
 L = BigWigs:NewBossLocale("Ahune", "koKR")
 if L then
 	L.ahune = "아훈"
-	--L.warmup_trigger = "The Ice Stone has melted!"
+	L.warmup_trigger = "얼음 기둥이 녹아내렸다!"
 end
 
 -- The Steamvault
 
 L = BigWigs:NewBossLocale("Mekgineer Steamrigger", "koKR")
 if L then
-	--L.mech_trigger = "Tune 'em up good, boys!"
+	L.mech_trigger = "얘들아, 쟤네들을 부드럽게 만져줘라!"
 end

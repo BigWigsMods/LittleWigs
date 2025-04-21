@@ -24,7 +24,7 @@ if L then
 	L.shimmermoth = "숲 아른나방"
 	L.mythresh = "하늘의 발톱 미스레쉬"
 
-	--L.soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks."
+	L.soporific_shimmerdust_desc = "10중첩이 쌓이면 캐릭터가 잠들게 되는 저주입니다. 점프하면 중첩이 초기화됩니다."
 end
 
 -- Halls of Atonement
@@ -98,19 +98,19 @@ if L then
 	L.pestilent_harvester = "전염성 수확자"
 	L.fungi_stormer = "버섯 번개술사"
 
-	--L.summon_stealthlings_desc = "Show a warning when the Stealthlings spawn."
+	L.summon_stealthlings_desc = "은신벌레가 생성되면 경고를 표시합니다."
 end
 
 -- Sanguine Depths
 
 L = BigWigs:NewBossLocale("Sanguine Depths Trash", "koKR")
 if L then
-	--L.kaal_engage_trigger1 = "Guards! Slay them all!"
-	--L.kaal_engage_trigger2 = "That prisoner belongs to the Master. You will not take it!"
-	--L.kaal_engage_trigger3 = "These halls will be your tomb!"
-	--L.kaal_retreat_trigger1 = "Wretched mortals!"
-	--L.kaal_retreat_trigger2 = "You are nothing but Draven's dogs!"
-	--L.kaal_retreat_trigger3 = "Stubborn rebels. You will meet your end!"
+	L.kaal_engage_trigger1 = "경비대! 모조리 쓸어버려라!"
+	L.kaal_engage_trigger2 = "그 죄수는 주인님의 것이다! 절대로 뺏기지 않아!"
+	L.kaal_engage_trigger3 = "이 전당이 너희 무덤이 될 것이다!"
+	L.kaal_retreat_trigger1 = "불경한 필멸자 놈들!"
+	L.kaal_retreat_trigger2 = "너희는 드레이븐의 개일 뿐이다!"
+	L.kaal_retreat_trigger3 = "반란군 주제에 오기만 넘치는군. 최후를 맞이해라!"
 	L.anima_collector = "령 수집기"
 	L.chamber_sentinel = "묘실의 파수병"
 	L.depths_warden = "심연의 감시관"
@@ -155,30 +155,30 @@ end
 
 L = BigWigs:NewBossLocale("The Grand Menagerie", "koKR")
 if L then
-	--L.achillite_warmup_trigger = "Are rampaging beasts ruining your day? We have the solution!"
-	--L.venza_goldfuse_warmup_trigger = "Now's my chance! That axe is mine!"
+	L.achillite_warmup_trigger = "날뛰는 야수 때문에 두려우신가요? 여기 해결책이 있습니다!"
+	L.venza_goldfuse_warmup_trigger = "지금이 기회다! 저 도끼는 내 거야!"
 end
 
 L = BigWigs:NewBossLocale("Mailroom Mayhem", "koKR")
 if L then
 	L.delivery_portal = "배달 차원문"
-	--L.delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations."
+	L.delivery_portal_desc = "배달 차원문의 위치가 변경될 때의 타이머를 보여줍니다."
 end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "koKR")
 if L then
-	--L.add_wave_killed = "Add wave killed (%d/%d)"
+	L.add_wave_killed = "웨이브 (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "koKR")
 if L then
-	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
-	--L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
+	L.menagerie_warmup_trigger = "여러분 모두가 고대하던 상품 차례입니다! 이른바 악마의 저주를 받은 망각의 서슬도끼입니다!"
+	L.soazmi_warmup_trigger = "방해해서 참 미안하게 됐습니다, 소레아. 불편할 때 찾아온 거면 좋겠는데 말이죠."
 	L.portal_authority = "타자베쉬 차원문 관리국"
-	--L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
-	--L.trading_game = "Trading Game"
-	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	--L.custom_on_trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.custom_on_portal_autotalk_desc = "중개자 NPC와 대화하면 입구로 돌아가는 포털이 즉시 열립니다."
+	L.trading_game = "거래 게임"
+	L.trading_game_desc = "거래 게임 중에 올바른 암호가 입력되면 알림을 받습니다."
+	L.custom_on_trading_game_autotalk_desc = "거래 게임이 완료된 후 즉시 올바른 암호를 선택하세요."
 	L.password_triggers = {
 		["상아색 껍질"] = 53259,
 		["사파이어 오아시스"] = 53260,
