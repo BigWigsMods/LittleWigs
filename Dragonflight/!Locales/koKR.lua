@@ -108,7 +108,7 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Infusion Trash", "koKR")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
+	L.custom_on_autotalk_desc = "대화 옵션을 즉시 선택해 버프를 받습니다."
 
 	L.primalist_ravager = "원시술사 약탈자"
 	L.primalist_geomancer = "원시술사 흙점쟁이"
@@ -133,7 +133,7 @@ end
 
 L = BigWigs:NewBossLocale("Neltharus Trash", "koKR")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
+	L.custom_on_autotalk_desc = "대화 옵션을 즉시 선택해 버프를 받습니다."
 
 	L.burning_chain = "불타는 사슬"
 	L.qalashi_warden = "칼라시 감시관"
@@ -160,8 +160,8 @@ end
 
 L = BigWigs:NewBossLocale("Warlord Sargha", "koKR")
 if L then
-	--L.magical_implements_desc = "The surrounding treasure piles contain magic items that can help to deplete Magma Shield."
-	--L.magma_shield = "Magma Shield - Get items from gold piles"
+	L.magical_implements_desc = "주위의 보물 더미에는 용암 보호막을 소진시키는 데 도움이 되는 마법 물품이 들어 있습니다."
+	L.magma_shield = "용암 보호막 - 보물 더미에서 아이템 획득"
 end
 
 -- Ruby Life Pools
@@ -181,7 +181,7 @@ if L then
 	L.flame_channeler = "불꽃의 역술사"
 	L.high_channeler_ryvati = "고위 역술사 라이바티"
 
-	--L.kyrakka_and_erkhart_warmup_trigger = "Your false queen cannot stop us. We are the truth."
+	L.kyrakka_and_erkhart_warmup_trigger = "너희 거짓된 여왕은 우릴 막지 못한다. 진실은 우리 편이다."
 end
 
 L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "koKR")
@@ -194,7 +194,7 @@ end
 L = BigWigs:NewBossLocale("The Azure Vault Trash", "koKR")
 if L then
 	L.book_of_translocation = "순간이동의 서"
-	--L.custom_on_book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
+	L.custom_on_book_autotalk_desc = "순간이동의 서와 대화할 때 즉시 다음 영역으로 이동합니다."
 
 	L.shrieking_whelp = "절규하는 새끼용"
 	L.conjured_lasher = "창조된 덩굴손"
@@ -213,7 +213,7 @@ end
 
 L = BigWigs:NewBossLocale("The Nokhud Offensive Trash", "koKR")
 if L then
-	--L.teera_and_maruuk_warmup_trigger = "Why has our rest been disturbed?"
+	L.teera_and_maruuk_warmup_trigger = "왜 우리의 영면을 방해한 것이냐?"
 
 	L.nokhud_plainstomper = "노쿠드 평야활보자"
 	L.nokhud_hornsounder = "노두크 뿔피리꾼"
