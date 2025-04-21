@@ -41,7 +41,7 @@ if L then
 	L.velen = "예언자 벨렌"
 
 	L.warmup_trigger = "오만하고 멍청한 것들! 나에게는 수천 개의 세계에서 얻은 영혼의 힘이 흘러넘친다!"
-	--L.win_trigger = "So be it. You will not stand in our way any longer."
+	L.win_trigger = "그래, 좋아. 더 이상 우릴 가로막지 못하게 해 주지."
 
 	L.nether_aberration_desc = "방 안에 황천 흉물을 생성하는 차원문을 소환합니다."
 
@@ -53,8 +53,8 @@ L = BigWigs:NewBossLocale("Lord Erdris Thorn", "koKR")
 if L then
 	L.erdris = "군주 에르드리스 쏜"
 
-	--L.warmup_trigger = "Your arrival is well-timed."
-	--L.warmup_trigger2 = "What's... happening?" --Stage 5 Warm up
+	L.warmup_trigger = "적절한 시간에 왔습니다."
+	L.warmup_trigger2 = "무슨... 일이 일어나는 거지?" --Stage 5 Warm up
 
 	L.mage = "타락한 되살아난 마법사"
 	L.soldier = "타락한 되살아난 병사"
@@ -66,8 +66,8 @@ if L then
 	L.name = "대마법사 실렘"
 	L.corruptingShadows = "타락의 그림자"
 
-	--L.warmup_trigger1 = "With the Focusing Iris under my control" -- You are too late, demon hunter! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!
-	--L.warmup_trigger2 = "Drained of magic, your world will be ripe" -- Drained of magic, your world will be ripe for destruction by my demon masters... and my power will be limitless!
+	L.warmup_trigger1 = "너무 늦었다! 집중의 눈동자를 내가 통재하는 한" -- You are too late, demon hunter! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!
+	L.warmup_trigger2 = "마법을 빼앗긴 너의 세계를 나의 악마 주인님께서 손쉽게 파괴하실 거다" -- Drained of magic, your world will be ripe for destruction by my demon masters... and my power will be limitless!
 end
 
 L = BigWigs:NewBossLocale("Agatha", "koKR")
@@ -77,9 +77,9 @@ if L then
 	L.fuming_imp = "독기 뿜는 임프"
 	L.levia = "레비아" -- Shortcut for warmup_trigger1, since the name "Levia" should be unique
 
-	--L.warmup_trigger1 = "You are too late! Levia's power is mine! Using her knowledge, my minions will infiltrate the Kirin Tor and dismantle it from the inside!" -- 35
-	--L.warmup_trigger2 = "Even now, my sayaad tempt your weak-willed mages. Your allies will surrender willingly to the Legion!" -- 16
-	--L.warmup_trigger3 = "But first, you must be punished for taking away my little pet." -- 3
+	L.warmup_trigger1 = "너무 늦었다! 레비아의 힘은 내 것이다! 내 하수인들이 그 힘을 이용하여 키린 토에 침투하고, 내부로부터 붕괴시킬 것이다!" -- 35
+	L.warmup_trigger2 = "지금도 내 세이야드는 의지가 약한 마법사들을 유혹하고 있다. 네 동맹은 제 발로 군단에 굴복할 것이다!" -- 16
+	L.warmup_trigger3 = "하지만 먼저 내 장난감을 건드린 네 녀석을 벌해야겠지." -- 3
 
 	L.absorb = "흡수"
 	L.stacks = "중첩"
@@ -91,7 +91,7 @@ if L then
 	L.jarl = "야를 벨브란드"
 	L.faljar = "룬의 현자 팔리아르"
 
-	--L.warmup_trigger = "What's this? The outsider has come to stop me?"
+	L.warmup_trigger = "뭐지? 이방인이 날 막으러 오다니?"
 
 	L.absorb = "흡수"
 end
@@ -131,12 +131,12 @@ if L then
 	L.risen_swordsman = "되살아난 검사"
 	L.risen_lancer = "되살아난 창기병"
 
-	--L.door_open_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
+	L.door_open_desc = "숨겨진 통로의 문이 열렸을 때를 나타내는 막대를 표시합니다."
 end
 
 L = BigWigs:NewBossLocale("Kurtalos Ravencrest", "koKR")
 if L then
-	--L.phase_2_trigger = "Enough! I tire of this."
+	L.phase_2_trigger = "됐다! 슬슬 싫증이 나는군."
 end
 
 -- Cathedral of Eternal Night
@@ -145,7 +145,7 @@ L = BigWigs:NewBossLocale("Mephistroth", "koKR")
 if L then
 	L.custom_on_time_lost = "그림자 소실 단계 동안 잃어버린 시간"
 	L.custom_on_time_lost_desc = "그림자 소실 단계 동안 잃어버린 시간을 바에 |cffff0000붉은색|r으로 표시합니다."
-	--L.time_lost = "%s |cffff0000(+%ds)|r"
+	L.time_lost = "%s |cffff0000(+%ds)|r"
 end
 
 L = BigWigs:NewBossLocale("Domatrax", "koKR")
