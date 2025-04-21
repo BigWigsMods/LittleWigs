@@ -19,7 +19,7 @@ end
 
 L = BigWigs:NewBossLocale("Nitrogg Thundertower", "koKR")
 if L then
-	--L.dropped = "%s dropped!"
+	L.dropped = "%s가 떨어졌습니다!"
 	L.add_trigger1 = "가라, 얘들아!"
 	L.add_trigger2 = "모조리 없애라."
 
@@ -51,12 +51,12 @@ end
 
 L = BigWigs:NewBossLocale("Grimrail Enforcers", "koKR")
 if L then
-	--L.sphere_fail_message = "Shield was broken - They're all healing :("
+	L.sphere_fail_message = "보호막이 깨졌어요 - 다들 회복 중이에요 :("
 end
 
 L = BigWigs:NewBossLocale("Oshir", "koKR")
 if L then
-	--L.freed = "Freed after %.1f sec!"
+	L.freed = "%.1f초 후에 해제되었습니다!"
 	L.wolves = "늑대"
 	L.rylak = "라일라크"
 end
@@ -79,19 +79,19 @@ end
 
 L = BigWigs:NewBossLocale("Sadana Bloodfury", "koKR")
 if L then
-	--L.custom_on_markadd = "Mark the Dark Communion Add"
-	--L.custom_on_markadd_desc = "Mark the add spawned by Dark Communion with {rt8}, requires promoted or leader."
+	L.custom_on_markadd = "어둠의 교감 징표 표시"
+	L.custom_on_markadd_desc = "어둠의 교감에서 생성된 추가 정보를 {rt8}로 표시하려면 권한이 필요합니다."
 end
 
 L = BigWigs:NewBossLocale("Bonemaw", "koKR")
 if L then
-	--L.summon_worms = "Summon Carrion Worms"
-	--L.summon_worms_desc = "Bonemaw summons two Carrion Worms."
-	--L.summon_worms_trigger = "piercing screech attracts nearby Carrion Worms!"
+	L.summon_worms = "청소부 벌레 소환"
+	L.summon_worms_desc = "해골아귀가 두 마리의 청소부 벌레를 소환합니다."
+	L.summon_worms_trigger = "날카로운 비명이 근처의 청소부 벌레를 유인합니다!"
 
 	L.submerge = "땅속 숨기"
-	--L.submerge_desc = "Bonemaw submerges and repositions."
-	--L.submerge_trigger = "hisses, slinking back into the shadowy depths!"
+	L.submerge_desc = "해골아귀가 잠수 및 재배치합니다."
+	L.submerge_trigger = "쉿쉿거리는 소리를 내며 어두운 심연으로 돌아갑니다!"
 end
 
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "koKR")
@@ -112,8 +112,8 @@ end
 
 L = BigWigs:NewBossLocale("High Sage Viryx", "koKR")
 if L then
-	--L.custom_on_markadd = "Mark the Solar Zealot"
-	--L.custom_on_markadd_desc = "Mark the Solar Zealot with {rt8}, requires promoted or leader."
+	L.custom_on_markadd = "태양광신도 징표 표시"
+	L.custom_on_markadd_desc = "태양광신도를 {rt8}로 표시하려면 권한이 필요합니다."
 
 	L.construct = "하늘탑 보호 피조물" -- NPC ID 76292
 end
@@ -122,7 +122,7 @@ end
 
 L = BigWigs:NewBossLocale("Witherbark", "koKR")
 if L then
-	--L.energyStatus = "A Globule reached Witherbark: %d%% energy"
+	L.energyStatus = "부서지기 쉬운 껍질: %d%%"
 end
 
 L = BigWigs:NewBossLocale("The Everbloom Trash", "koKR")
@@ -139,8 +139,8 @@ if L then
 	L.putrid_pyromancer = "타락의 화염술사"
 	L.addled_arcanomancer = "정신이상의 비전역술사"
 
-	--L.gate_open_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
-	--L.yalnu_warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
+	L.gate_open_desc = "소마법사 케살론이 얄누로 통하는 문을 여는 시점을 나타내는 바를 표시합니다."
+	L.yalnu_warmup_trigger = "차원문이! 괴물이 탈출하기 전에 막아야 합니다!"
 end
 
 -- Upper Blackrock Spire
