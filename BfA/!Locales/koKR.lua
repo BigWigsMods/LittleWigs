@@ -278,13 +278,13 @@ end
 
 L = BigWigs:NewBossLocale("Aqu'sirr", "koKR")
 if L then
-	--L.warmup_trigger = "How dare you sully this holy place with your presence!"
+	L.warmup_trigger = "감히 어떤 놈들이 이 성스러운 장소를 더럽히느냐!"
 end
 
 L = BigWigs:NewBossLocale("Lord Stormsong", "koKR")
 if L then
-	--L.warmup_trigger_horde = "Intruders?! I shall cast your bodies to the blackened depths, to be crushed for eternity!"
-	--L.warmup_trigger_alliance = "Master! Stop this madness at once! The Kul Tiran fleet must not fall to darkness!"
+	L.warmup_trigger_horde = "침입자?! 네 몸뚱이를 어두운 심연으로 내던져 영원히 고통받게 하리라."
+	L.warmup_trigger_alliance = "주군이여! 이 광기를 멈추십시오! 쿨 티란 함대가 어둠에 빠져선 안 됩니다!"
 end
 
 L = BigWigs:NewBossLocale("Shrine of the Storm Trash", "koKR")
@@ -351,7 +351,7 @@ end
 
 L = BigWigs:NewBossLocale("Galvazzt", "koKR")
 if L then
-	--L.percent = "%s (%d%%)"
+	L.percent = "%s (%d%%)"
 end
 
 -- The MOTHERLODE!!
@@ -380,13 +380,13 @@ end
 
 L = BigWigs:NewBossLocale("Tol Dagor Trash", "koKR")
 if L then
-	--L.vicejaw = "Sewer Vicejaw"
-	--L.thug = "Irontide Thug"
-	--L.seaspeaker = "Bilge Rat Seaspeaker"
-	--L.flamecaster = "Ashvane Flamecaster"
-	--L.officer = "Ashvane Officer"
-	--L.marine = "Ashvane Marine"
-	--L.priest = "Ashvane Priest"
+	L.vicejaw = "하수도 톱니이빨"
+	L.thug = "무쇠파도 폭력단원"
+	L.seaspeaker = "항만의 시궁쥐단 바다예언자"
+	L.flamecaster = "애쉬베인 화염술사"
+	L.officer = "애쉬베인 장교"
+	L.marine = "애쉬베인 해병"
+	L.priest = "애쉬베인 사제"
 end
 
 -- The Underrot
@@ -434,5 +434,5 @@ end
 
 L = BigWigs:NewBossLocale("Gorak Tul", "koKR")
 if L then
-	--L.add_killed = "Add killed - Ready to burn"
+	L.add_killed = "추가 시체 - 불태울 준비 완료"
 end
