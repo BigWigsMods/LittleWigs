@@ -3,8 +3,8 @@
 local L = BigWigs:NewBossLocale("Echo of Baine", "koKR")
 if not L then return end
 if L then
-	--L.totemDrop = "Totem dropped"
-	--L.totemThrow = "Totem thrown by %s"
+	L.totemDrop = "토템 떨어짐"
+	L.totemThrow = "%s 토템 던지기"
 end
 
 -- Grim Batol
@@ -35,7 +35,7 @@ end
 
 L = BigWigs:NewBossLocale("The Hour of Twilight Trash", "koKR")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly select Thrall's gossip options."
+	L.custom_on_autotalk_desc = "스랄의 대화 옵션을 즉시 선택합니다."
 end
 
 -- Lost City of the Tol'vir
@@ -51,9 +51,9 @@ end
 L = BigWigs:NewBossLocale("Lord Walden", "koKR")
 if L then
 	-- %s will be either "Toxic Coagulant" or "Toxic Catalyst"
-	--L.coagulant = "%s: Move to dispel"
-	--L.catalyst = "%s: Crit Buff"
-	--L.toxin_healer_message = "%s: DoT on everyone"
+	L.coagulant = "%s: 이동하여 해제"
+	L.catalyst = "%s: 치명타 버프"
+	L.toxin_healer_message = "%s: 전원 도트"
 end
 
 -- The Stonecore
@@ -81,13 +81,13 @@ if L then
 	L.faceless_watcher = "얼굴 없는 감시자"
 	L.tainted_sentry = "타락한 파수병"
 
-	--L.ozumat_warmup_trigger = "The beast has returned! It must not pollute my waters!"
+	L.ozumat_warmup_trigger = "야수가 돌아왔다! 놈이 물을 오염시키게 두면 안 된다!"
 end
 
 L = BigWigs:NewBossLocale("Lady Naz'jar", "koKR")
 if L then
-	--L.high_tide_trigger1 = "Take arms, minions! Rise from the icy depths!"
-	--L.high_tide_trigger2 = "Destroy these intruders! Leave them for the great dark beyond!"
+	L.high_tide_trigger1 = "무기를 들어라, 부하들아! 얼어붙은 나락에서 일어나라!"
+	L.high_tide_trigger2 = "침입자를 처단하라! 놈들을 끝없는 어둠 너머로 보내버려라!"
 end
 
 -- The Vortex Pinnacle
@@ -110,42 +110,42 @@ end
 
 L = BigWigs:NewBossLocale("Altairus", "koKR")
 if L then
-	--L.upwind = "Upwind on you (safe)"
-	--L.downwind = "Downwind on you (unsafe)"
+	L.upwind = "맞바람 (안전)"
+	L.downwind = "역풍 (위험)"
 end
 
 -- Well of Eternity
 
 L = BigWigs:NewBossLocale("Well Of Eternity Trash", "koKR")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly select Illidan's gossip option."
+	L.custom_on_autotalk_desc = "즉시 일리단의 대화 옵션을 선택합니다."
 end
 
 -- Zul'Aman
 
 L = BigWigs:NewBossLocale("Daakara", "koKR")
 if L then
-	--L[42594] = "Bear Form" -- short form for "Essence of the Bear"
-	--L[42607] = "Lynx Form"
-	--L[42606] = "Eagle Form"
-	--L[42608] = "Dragonhawk Form"
+	L[42594] = "곰 변신" -- short form for "Essence of the Bear"
+	L[42607] = "스라소니 변신"
+	L[42606] = "독수리 변신"
+	L[42608] = "용매 변신"
 end
 
 L = BigWigs:NewBossLocale("Halazzi", "koKR")
 if L then
-	--L.spirit_message = "Spirit Phase"
-	--L.normal_message = "Normal Phase"
+	L.spirit_message = "영혼 단계"
+	L.normal_message = "일반 단계"
 end
 
 L = BigWigs:NewBossLocale("Nalorakk", "koKR")
 if L then
-	--L.troll_message = "Troll Form"
-	--L.troll_trigger = "Make way for da Nalorakk!"
+	L.troll_message = "트롤 모습"
+	L.troll_trigger = "날로라크 나가신다!"
 end
 
 -- Zul'Gurub
 
 L = BigWigs:NewBossLocale("Jin'do the Godbreaker", "koKR")
 if L then
-	--L.barrier_down_message = "Barrier down, %d remaining" -- short name for "Brittle Barrier" (97417)
+	L.barrier_down_message = "방벽 깨짐, %d개 남음" -- short name for "Brittle Barrier" (97417)
 end
