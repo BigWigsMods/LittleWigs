@@ -3,16 +3,16 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "koKR")
 if not L then return end
 if L then
-	--L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
+	L.custom_on_recruiter_autotalk_desc = "즉시 용군단 징집관에게 서약하여 강화 효과를 받습니다."
 	L.critical_strike = "+5% 치명타 및 극대화"
 	L.haste = "+5% 가속"
 	L.mastery = "+특화"
 	L.versatility = "+5% 유연성"
 	L.healing_taken = "+10% 받는 치유 효과"
 
-	--L.vexamus_warmup_trigger = "created a powerful construct named Vexamus"
-	--L.overgrown_ancient_warmup_trigger = "Ichistrasz! There is too much life magic"
-	--L.crawth_warmup_trigger = "At least we know that works. Watch yourselves."
+	L.vexamus_warmup_trigger = "백사무스라는 강력한 피조물이 탄생해"
+	L.overgrown_ancient_warmup_trigger = "이치스트라즈 님! 생명 마법이 너무 과하잖아요!"
+	L.crawth_warmup_trigger = "뭐가 통하는지는 알겠네요. 조심들 하세요."
 
 	L.corrupted_manafiend = "타락한 마나마귀"
 	L.spellbound_battleaxe = "주문결속 전투도끼"
