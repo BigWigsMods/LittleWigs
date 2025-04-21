@@ -64,15 +64,15 @@ end
 L = BigWigs:NewBossLocale("Harbinger Skyriss", "koKR")
 if L then
 	-- I knew the prince would be angry, but I... I have not been myself. I had to let them out! The great one speaks to me, you see. Wait--outsiders. Kael'thas did not send you! Good... I'll just tell the prince you released the prisoners!
-	--L.first_cell_trigger = "I have not been myself"
+	L.first_cell_trigger = "제정신이 아니었어"
 	-- Behold, yet another terrifying creature of incomprehensible power!
-	--L.second_and_third_cells_trigger = "of incomprehensible power"
+	L.second_and_third_cells_trigger = "무한한 힘을"
 	-- Anarchy! Bedlam! Oh, you are so wise! Yes, I see it now, of course!
-	--L.fourth_cell_trigger = "Anarchy! Bedlam!"
+	L.fourth_cell_trigger = "이 혼란! 이 공포!"
 	-- It is a small matter to control the mind of the weak... for I bear allegiance to powers untouched by time, unmoved by fate. No force on this world or beyond harbors the strength to bend our knee... not even the mighty Legion!
-	--L.warmup_trigger = "the mighty Legion"
+	L.warmup_trigger = "불타는 군단조차도"
 
-	--L.prison_cell = "Prison Cell"
+	L.prison_cell = "석실 감옥"
 end
 
 L = BigWigs:NewBossLocale("The Arcatraz Trash", "koKR")
@@ -88,8 +88,8 @@ end
 
 L = BigWigs:NewBossLocale("The Black Morass Trash", "koKR")
 if L then
-	--L.wave = "Wave Warnings"
-	--L.wave_desc = "Announce approximate warning messages for the waves."
+	L.wave = "웨이브 경고"
+	L.wave_desc = "웨이브에 대한 대략적인 경고 메시지를 알립니다."
 
 	L.medivh = "메디브"
 	L.rift = "시간의 균열"
@@ -142,12 +142,12 @@ end
 L = BigWigs:NewBossLocale("Ahune", "koKR")
 if L then
 	L.ahune = "아훈"
-	--L.warmup_trigger = "The Ice Stone has melted!"
+	L.warmup_trigger = "얼음 기둥이 녹아내렸다!"
 end
 
 -- The Steamvault
 
 L = BigWigs:NewBossLocale("Mekgineer Steamrigger", "koKR")
 if L then
-	--L.mech_trigger = "Tune 'em up good, boys!"
+	L.mech_trigger = "얘들아, 쟤네들을 부드럽게 만져줘라!"
 end
