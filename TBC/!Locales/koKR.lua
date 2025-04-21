@@ -9,7 +9,7 @@ end
 L = BigWigs:NewBossLocale("Kael'thas Sunstrider Magisters' Terrace", "koKR")
 if L then
 	-- Don't look so smug! I know what you're thinking, but Tempest Keep was merely a setback. Did you honestly believe I would trust the future to some blind, half-night elf mongrel?
-	--L.warmup_trigger = "Don't look so smug!"
+	L.warmup_trigger = "너무 으스대지 마라"
 end
 
 L = BigWigs:NewBossLocale("Magisters' Terrace Trash", "koKR")
@@ -33,30 +33,30 @@ end
 
 L = BigWigs:NewBossLocale("Old Hillsbrad Foothills Trash", "koKR")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly select Erozion's, Thrall's and Taretha's gossip options."
+	L.custom_on_autotalk_desc = "에로지온, 스랄, 타레사의 대화 옵션을 즉시 선택합니다."
 
-	--L.incendiary_bombs = "Incendiary Bombs"
-	--L.incendiary_bombs_desc = "Display a message when an Incendiary Bomb is planted."
+	L.incendiary_bombs = "화염 폭탄"
+	L.incendiary_bombs_desc = "화염 폭탄이 설치되면 메시지를 표시합니다."
 end
 
 L = BigWigs:NewBossLocale("Lieutenant Drake", "koKR")
 if L then
 	-- You there, fetch water quickly! Get these flames out before they spread to the rest of the keep! Hurry, damn you!
-	--L.warmup_trigger = "fetch water"
+	L.warmup_trigger = "어서 물을 가져와라"
 end
 
 L = BigWigs:NewBossLocale("Captain Skarloc", "koKR")
 if L then
 	-- Thrall! You didn't really think you would escape, did you?  You and your allies shall answer to Blackmoore... after I've had my fun.
-	--L.warmup_trigger = "answer to Blackmoore"
+	L.warmup_trigger = "블랙무어와 대면해야"
 end
 
 L = BigWigs:NewBossLocale("Epoch Hunter", "koKR")
 if L then
 	-- Ah, there you are. I had hoped to accomplish this with a bit of subtlety, but I suppose direct confrontation was inevitable. Your future, Thrall, must not come to pass and so... you and your troublesome friends must die!
-	--L.trash_warmup_trigger = "troublesome friends"
+	L.trash_warmup_trigger = "성가신 친구"
 	-- Enough, I will erase your very existence!
-	--L.boss_warmup_trigger = "very existence!"
+	L.boss_warmup_trigger = "존제 자체를"
 end
 
 -- The Arcatraz
