@@ -236,13 +236,13 @@ end
 
 L = BigWigs:NewBossLocale("Granyth", "koKR")
 if L then
-	--L.lance_ready = "Lance Ready"
+	L.lance_ready = "창 준비"
 end
 
 L = BigWigs:NewBossLocale("The Raging Tempest", "koKR")
 if L then
-	--L.on_you = "On you"
-	--L.on_boss = "On the boss"
+	L.on_you = "당신에게"
+	L.on_boss = "보스에게"
 end
 
 -- Uldaman: Legacy of Tyr
@@ -262,5 +262,5 @@ if L then
 	L.earthen_guardian = "토석인 수호자"
 	L.infinite_agent = "무한의 대리인"
 
-	--L.door_open_desc = "Show a bar indicating when The Lost Dwarves will open the door after Bromach."
+	L.door_open_desc = "브로마크를 처치한 후 길 잃은 드워프가 문을 열 시점을 나타내는 바를 표시합니다."
 end
