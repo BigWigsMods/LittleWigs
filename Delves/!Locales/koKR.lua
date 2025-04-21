@@ -335,5 +335,5 @@ if L then
 	L.aggressively_lost_hobgoblin = "난폭한 길 잃은 밥통고블린"
 	L.the_underpin = "대지주 (무작위 생성)"
 
-	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
+	L.underpin_retreat_trigger = "왜 인간들은 늘 완벽하게 합법적으로 내 소유인 땅에서 노는 거냐고!"
 end
