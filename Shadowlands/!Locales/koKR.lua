@@ -24,7 +24,7 @@ if L then
 	L.shimmermoth = "숲 아른나방"
 	L.mythresh = "하늘의 발톱 미스레쉬"
 
-	--L.soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks."
+	L.soporific_shimmerdust_desc = "10중첩이 쌓이면 캐릭터가 잠들게 되는 저주입니다. 점프하면 중첩이 초기화됩니다."
 end
 
 -- Halls of Atonement
@@ -98,19 +98,19 @@ if L then
 	L.pestilent_harvester = "전염성 수확자"
 	L.fungi_stormer = "버섯 번개술사"
 
-	--L.summon_stealthlings_desc = "Show a warning when the Stealthlings spawn."
+	L.summon_stealthlings_desc = "은신벌레가 생성되면 경고를 표시합니다."
 end
 
 -- Sanguine Depths
 
 L = BigWigs:NewBossLocale("Sanguine Depths Trash", "koKR")
 if L then
-	--L.kaal_engage_trigger1 = "Guards! Slay them all!"
+	L.kaal_engage_trigger1 = "Guards! Slay them all!"
 	--L.kaal_engage_trigger2 = "That prisoner belongs to the Master. You will not take it!"
 	--L.kaal_engage_trigger3 = "These halls will be your tomb!"
-	--L.kaal_retreat_trigger1 = "Wretched mortals!"
-	--L.kaal_retreat_trigger2 = "You are nothing but Draven's dogs!"
-	--L.kaal_retreat_trigger3 = "Stubborn rebels. You will meet your end!"
+	L.kaal_retreat_trigger1 = "불경한 필멸자 놈들!"
+	L.kaal_retreat_trigger2 = "너희는 드레이븐의 개일 뿐이다!"
+	L.kaal_retreat_trigger3 = "반란군 주제에 오기만 넘치는군. 최후를 맞이해라!"
 	L.anima_collector = "령 수집기"
 	L.chamber_sentinel = "묘실의 파수병"
 	L.depths_warden = "심연의 감시관"
