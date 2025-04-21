@@ -31,9 +31,9 @@ end
 
 L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "koKR")
 if L then
-	--L.custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
-	--L.captive_tuskarr_freed = "Captive Tuskarr Freed"
-	--L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
+	L.custom_on_cauldron_autotalk_desc = "[연금술] 썩어가는 가마솥을 즉시 해독하여 질병 해제 버프를 받습니다."
+	L.captive_tuskarr_freed = "투스카르 포로 해방"
+	L.captive_tuskarr_freed_desc = "투스카르 포로가 풀려나면 알림을 표시합니다."
 
 	L.decaying_cauldron = "썩어가는 가마솥"
 	L.captive_tuskarr = "투스카르 포로"
@@ -76,7 +76,7 @@ if L then
 	L.risen_dragon = "되살아난 용"
 	L.iridikrons_creation = "이리디크론의 창조물"
 
-	--L.iridikron_warmup_trigger = "So the titans' puppets have come to face me."
+	L.iridikron_warmup_trigger = "자, 보아하니 티탐의 꼭두각시가 왔군."
 
 	------ Murozond's Rise ------
 	L.infinite_twilight_magus = "무한의 황혼의 학자"
@@ -96,12 +96,12 @@ if L then
 	L.horde_raider_alliance_knight = "호드 약탈병 / 얼라이언스 기사"
 	L.infinite_timebender = "무한의 시간왜곡사"
 
-	--L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
-	--L.rift_opened = "Temporal Rift Opened"
+	L.custom_on_rift_autotalk_desc = "즉시 채널링을 시작하여 시간의 균열을 엽니다."
+	L.rift_opened = "시간 균열이 열렸습니다"
 	L.rift_stability = "균열 안정성"
-	--L.rift_stability_desc = "Show an alert when the Temporal Rift has been opened."
+	L.rift_stability_desc = "시간 균열이 열리면 알림을 표시합니다."
 
-	--L.manifested_timeways_warmup_trigger = "Even the Aspect of Time cannot be allowed to disrupt the timeways!"
+	L.manifested_timeways_warmup_trigger = "아무리 시간의 위상이라도 시간의 길을 어지럽히게 둘 순 없다!"
 end
 
 -- Halls of Infusion
