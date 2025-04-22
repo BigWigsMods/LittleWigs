@@ -26,7 +26,7 @@ function mod:OnRegister()
 	self:SetSpellRename(257582, CL.fixate) -- Raging Gaze (Fixate)
 end
 
-local azeriteInfusionMarker = mod:AddMarkerOption(true, "npc", 8, 271698, 8) -- Azerite Infusion
+local azeriteInfusionMarker = mod:AddMarkerOption(true, "npc_aura", 8, 271698, 8) -- Azerite Infusion
 function mod:GetOptions()
 	return {
 		271698, -- Azerite Infusion

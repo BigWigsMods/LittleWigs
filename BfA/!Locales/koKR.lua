@@ -66,9 +66,6 @@ if L then
 	L.lightning_caught = "%.1f초 후에 번개돼지가 잡혔습니다!"
 	L.ludwig = "루드비히 폰 토르톨란"
 	L.trothak = "트로삭"
-
-	L.left = "%s (왼쪽)"
-	L.right = "%s (오른쪽)"
 end
 
 -- Horrific Vision of Orgrimmar
@@ -221,9 +218,6 @@ if L then
 	L.beastmaster = "야수조련사 유령"
 	L.brute = "투사 유령"
 	L.zul = "줄의 그림자"
-
-	L.casting_on_you = "%s 나에게 시전"
-	L.casting_on_other = "시전 %s: %s"
 end
 
 -- Operation: Mechagon
@@ -347,11 +341,6 @@ if L then
 	L.incubator = "광포한 부화자"
 	L.nimbus = "흥분한 빛구름"
 	L.doctor = "역병 의사"
-end
-
-L = BigWigs:NewBossLocale("Galvazzt", "koKR")
-if L then
-	L.percent = "%s (%d%%)"
 end
 
 -- The MOTHERLODE!!

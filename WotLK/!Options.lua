@@ -531,7 +531,7 @@ BigWigs:AddSounds("Cyanigosa", {
 })
 
 BigWigs:AddColors("The Violet Hold Trash", {
-	["portals"] = "yellow",
+	["portals"] = "cyan",
 })
 
 BigWigs:AddSounds("The Violet Hold Trash", {

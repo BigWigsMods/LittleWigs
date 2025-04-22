@@ -12,7 +12,7 @@ end
 L = BigWigs:NewBossLocale("Erudax", "esES")
 if L then
 	--L.summon = "Summon Faceless Corruptor"
-	--L.summon_desc = "Warn when Erudax summons a Faceless Corruptor"
+	--L.summon_desc = "Warn when Erudax summons a Faceless Corruptor."
 	--L.summon_message = "Faceless Corruptor Summoned"
 	--L.summon_trigger = "summons a"
 end
@@ -106,12 +106,6 @@ if L then
 	L.temple_adept = "Adepto del templo"
 	L.servant_of_asaad = "Sirviente de Asaad"
 	L.minister_of_air = "Ministro del Aire"
-end
-
-L = BigWigs:NewBossLocale("Altairus", "esES")
-if L then
-	--L.upwind = "Upwind on you (safe)"
-	--L.downwind = "Downwind on you (unsafe)"
 end
 
 -- Well of Eternity

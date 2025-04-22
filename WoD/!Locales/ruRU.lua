@@ -77,12 +77,6 @@ end
 
 -- Shadowmoon Burial Grounds
 
-L = BigWigs:NewBossLocale("Sadana Bloodfury", "ruRU")
-if L then
-	L.custom_on_markadd = "Ставить метку на адда от Темного контакта"
-	L.custom_on_markadd_desc = "Ставит {rt8} на адда, призванного Темным контактом, нужно быть лидером группы или помощником."
-end
-
 L = BigWigs:NewBossLocale("Bonemaw", "ruRU")
 if L then
 	L.summon_worms = "Призыв помощников"
@@ -112,10 +106,8 @@ end
 
 L = BigWigs:NewBossLocale("High Sage Viryx", "ruRU")
 if L then
-	--L.custom_on_markadd = "Mark the Solar Zealot"
-	--L.custom_on_markadd_desc = "Mark the Solar Zealot with {rt8}, requires promoted or leader."
-
-	L.construct = "Голем-защитник Небесного Пути" -- NPC ID 76292
+	L.solar_zealot = "Солнечный ревнитель"
+	L.construct = "Голем-защитник Небесного Пути"
 end
 
 -- The Everbloom

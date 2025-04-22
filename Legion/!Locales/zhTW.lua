@@ -27,8 +27,6 @@ if L then
 
 	--L.rune_desc = "Places a Rune of Summoning on the ground. If left unsoaked a Thing of Nightmare will spawn."
 
-	--L.killed = "%s killed"
-
 	--L.warmup_text = "Karam Magespear Active"
 	--L.warmup_trigger = "You were a fool to follow me, brother. The Twisting Nether feeds my strength. I have become more powerful than you could ever imagine!"
 	--L.warmup_trigger2 = "Kill this interloper, brother!"
@@ -80,8 +78,7 @@ if L then
 	--L.warmup_trigger1 = "You are too late! Levia's power is mine! Using her knowledge, my minions will infiltrate the Kirin Tor and dismantle it from the inside!" -- 35
 	--L.warmup_trigger2 = "Even now, my sayaad tempt your weak-willed mages. Your allies will surrender willingly to the Legion!" -- 16
 	--L.warmup_trigger3 = "But first, you must be punished for taking away my little pet." -- 3
-	--
-	--L.absorb = "Absorb"
+
 	--L.stacks = "Stacks"
 end
 
@@ -92,8 +89,6 @@ if L then
 	--L.faljar = "Runenseher Faljar"
 
 	--L.warmup_trigger = "What's this? The outsider has come to stop me?"
-	--
-	--L.absorb = "Absorb"
 end
 
 -- Assault on Violet Hold
@@ -426,7 +421,6 @@ end
 
 L = BigWigs:NewBossLocale("Viceroy Nezhar", "zhTW")
 if L then
-	--L.tentacles = "Tentacles"
 	--L.guards = "Guards"
 	--L.interrupted = "%s interrupted %s (%.1fs left)!"
 end
@@ -471,14 +465,8 @@ if L then
 	L.light_dropped = "%s丟掉了光。"
 	L.light_picked = "%s撿起了光。"
 
-	L.warmup_text = "寇達娜．魔歌啟動"
 	L.warmup_trigger = "我已經拿到我要找的東西了。但為了你們，我最好還是留下來…斬草除根！"
 	--L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
-end
-
-L = BigWigs:NewBossLocale("Glazer", "zhTW")
-if L then
-	--L.radiation_level = "%s: %d%%"
 end
 
 L = BigWigs:NewBossLocale("Tirathon Saltheril", "zhTW")

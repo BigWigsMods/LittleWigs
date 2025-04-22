@@ -108,12 +108,6 @@ if L then
 	L.minister_of_air = "空气司祭"
 end
 
-L = BigWigs:NewBossLocale("Altairus", "zhCN")
-if L then
-	L.upwind = "你在顺风（安全）"
-	L.downwind = "你在逆风（不安全）"
-end
-
 -- Well of Eternity
 
 L = BigWigs:NewBossLocale("Well Of Eternity Trash", "zhCN")

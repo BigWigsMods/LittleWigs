@@ -28,9 +28,9 @@ if L then
 	L.light_dropped = "%s dropped the Light."
 	L.light_picked = "%s picked up the Light."
 
-	L.warmup_text = "Cordana Felsong Active"
 	L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
 	L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
+	L.warmup_icon = "achievement_dungeon_vaultofthewardens"
 end
 
 --------------------------------------------------------------------------------
@@ -76,10 +76,10 @@ end
 function mod:Warmup(event, msg)
 	if msg == L.warmup_trigger then
 		self:UnregisterEvent(event)
-		self:Bar("warmup", 17.8, L.warmup_text, "achievement_dungeon_vaultofthewardens")
+		self:Bar("warmup", 17.8, CL.active, L.warmup_icon)
 	elseif msg == L.warmup_trigger_2 then
 		self:UnregisterEvent(event)
-		self:Bar("warmup", 5.5, L.warmup_text, "achievement_dungeon_vaultofthewardens")
+		self:Bar("warmup", 5.5, CL.active, L.warmup_icon)
 	end
 end
 

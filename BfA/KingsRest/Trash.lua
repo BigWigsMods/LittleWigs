@@ -79,9 +79,6 @@ if L then
 	L.healing_tide_totem = 270497
 	L.healing_tide_totem_desc = 270497
 	L.healing_tide_totem_icon = "ability_shaman_healingtide"
-
-	L.casting_on_you = "Casting %s on YOU"
-	L.casting_on_other = "Casting %s: %s"
 end
 
 --------------------------------------------------------------------------------
@@ -519,12 +516,10 @@ end
 do
 	local function printTarget(self, name, guid)
 		if isThrottled(("%d-%s"):format(270507, guid)) then return end
+		self:TargetMessage(270507, "red", name, CL.casting:format(self:SpellName(270507)))
 		if self:Me(guid) then
-			self:Message(270507, "red", L.casting_on_you:format(self:SpellName(270507)))
 			self:Flash(270507)
 			self:Say(270507, nil, nil, "Poison Barrage")
-		else
-			self:Message(270507, "red", L.casting_on_other:format(self:SpellName(270507), self:ColorName(name)))
 		end
 		self:PlaySound(270507, "warning", nil, name)
 	end

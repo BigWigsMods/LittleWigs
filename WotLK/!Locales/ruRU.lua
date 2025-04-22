@@ -89,10 +89,7 @@ end
 
 L = BigWigs:NewBossLocale("The Violet Hold Trash", "ruRU")
 if L then
-	--L.portals = "Portals"
 	--L.portals_desc = "Information about portals."
-	L.boss_message = "босс"
-	L.portal_bar = "Портал"
 end
 
 -- Trial of the Champion

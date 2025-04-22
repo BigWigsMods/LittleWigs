@@ -38,7 +38,6 @@ if L then
 	L.fuming_imp = "Fuming Imp"
 	L.fuming_imp_desc = 236163 -- Plague Zone
 
-	L.absorb = "Absorb"
 	L.stacks = "Stacks"
 end
 
@@ -214,7 +213,7 @@ do
 			maxAbsorb = UnitGetTotalAbsorbs("boss1")
 			self:OpenInfo(243111, args.spellName)
 			self:SetInfoBar(243111, 1, 1)
-			self:SetInfo(243111, 1, L.absorb)
+			self:SetInfo(243111, 1, CL.absorb)
 			self:SetInfo(243111, 2, ("%s (%d%%)"):format(self:AbbreviateNumber(maxAbsorb), 100))
 			self:SetInfo(243111, 3, L.stacks)
 			self:SetInfo(243111, 4, 1)

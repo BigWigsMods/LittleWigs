@@ -66,9 +66,6 @@ if L then
 	L.lightning_caught = "%.1f秒后抓住闪电！"
 	L.ludwig = "路德维希·冯·托尔托伦"
 	L.trothak = "托萨克"
-
-	L.left = "%s (左)"
-	L.right = "%s (右)"
 end
 
 -- Horrific Vision of Orgrimmar
@@ -221,9 +218,6 @@ if L then
 	L.beastmaster = "幽魂兽王"
 	L.brute = "幽魂蛮兵"
 	L.zul = "祖尔之影"
-
-	L.casting_on_you = "对你施放%s"
-	L.casting_on_other = "施放%s：%s"
 end
 
 -- Operation: Mechagon
@@ -347,11 +341,6 @@ if L then
 	L.incubator = "疯狂的孵化者"
 	L.nimbus = "暴怒云气"
 	L.doctor = "瘟疫博士"
-end
-
-L = BigWigs:NewBossLocale("Galvazzt", "zhCN")
-if L then
-	L.percent = "%s（%d%%）"
 end
 
 -- The MOTHERLODE!!

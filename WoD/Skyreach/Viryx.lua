@@ -15,11 +15,8 @@ mod.respawnTime = 15
 
 local L = mod:GetLocale()
 if L then
-	L.custom_on_markadd = "Mark the Solar Zealot"
-	L.custom_on_markadd_desc = "Mark the Solar Zealot with {rt8}, requires promoted or leader."
-	L.custom_on_markadd_icon = 8
-
 	L.adds_icon = "icon_petfamily_mechanical"
+	L.solar_zealot = "Solar Zealot"
 	L.construct = "Skyreach Shield Construct" -- NPC ID 76292
 end
 
@@ -27,15 +24,21 @@ end
 -- Initialization
 --
 
+local solarZealotMarker = mod:AddMarkerOption(true, "npc", 8, "solar_zealot", 8)
 function mod:GetOptions()
 	return {
 		153954, -- Cast Down
-		"custom_on_markadd",
+		solarZealotMarker,
 		"adds",
 		154055, -- Shielding
 	},nil,{
 		["adds"] = L.construct, -- Adds (Skyreach Shield Construct)
 	}
+end
+
+function mod:OnRegister()
+	-- delayed for custom locale
+	solarZealotMarker = mod:AddMarkerOption(true, "npc", 8, "solar_zealot", 8)
 end
 
 function mod:OnBossEnable()
@@ -55,7 +58,7 @@ end
 --
 
 function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	if self:GetOption("custom_on_markadd") then
+	if self:GetOption(solarZealotMarker) then
 		for i = 1, 5 do
 			local unit = ("boss%d"):format(i)
 			local guid = self:UnitGUID(unit)

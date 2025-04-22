@@ -27,8 +27,6 @@ if L then
 
 	L.rune_desc = "지면에 소환의 룬이 생성됩니다. 사라질 때까지 악몽의 피조물이 생성됩니다."
 
-	L.killed = "%s 처치"
-
 	L.warmup_text = "카람 메이지스피어 활성화"
 	L.warmup_trigger = "날 따라오다니 어리석군. 뒤틀린 황천이 내게 힘을 준다. 난 이미 너희의 상상 이상으로 강해졌다!"
 	L.warmup_trigger2 = "침입자를 처단하라, 형제여!"
@@ -81,7 +79,6 @@ if L then
 	L.warmup_trigger2 = "지금도 내 세이야드는 의지가 약한 마법사들을 유혹하고 있다. 네 동맹은 제 발로 군단에 굴복할 것이다!" -- 16
 	L.warmup_trigger3 = "하지만 먼저 내 장난감을 건드린 네 녀석을 벌해야겠지." -- 3
 
-	L.absorb = "흡수"
 	L.stacks = "중첩"
 end
 
@@ -92,8 +89,6 @@ if L then
 	L.faljar = "룬의 현자 팔리아르"
 
 	L.warmup_trigger = "뭐지? 이방인이 날 막으러 오다니?"
-
-	L.absorb = "흡수"
 end
 
 -- Assault on Violet Hold
@@ -426,7 +421,6 @@ end
 
 L = BigWigs:NewBossLocale("Viceroy Nezhar", "koKR")
 if L then
-	L.tentacles = "암영 촉수"
 	L.guards = "어둠수호병 공허지기"
 	L.interrupted = "%s|1이;가; %s|1을;를; 시전 방해했습니다 (%.1f초 남음)!"
 end
@@ -471,14 +465,8 @@ if L then
 	L.light_dropped = "%s님이 빛을 떨어뜨렸습니다."
 	L.light_picked = "%s님이 빛을 주웠습니다."
 
-	L.warmup_text = "콜다나 펠송 활성화"
 	L.warmup_trigger = "난 이미 원하는 걸 손에 넣었다. 그저 기다렸을 뿐... 너희를 확실히 끝장낼 순간을 말이다!"
 	L.warmup_trigger_2 = "바보 녀석들이 내 덫에 걸려들었구나. 어둠 속에서 얼마나 잘 싸우는지 보자."
-end
-
-L = BigWigs:NewBossLocale("Glazer", "koKR")
-if L then
-	L.radiation_level = "%s: %d%%"
 end
 
 L = BigWigs:NewBossLocale("Tirathon Saltheril", "koKR")

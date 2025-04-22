@@ -108,12 +108,6 @@ if L then
 	L.minister_of_air = "Priester der Lüfte"
 end
 
-L = BigWigs:NewBossLocale("Altairus", "deDE")
-if L then
-	L.upwind = "Mit dem Wind auf Dir (sicher)"
-	L.downwind = "Gegen den Wind auf Dir (unsicher)"
-end
-
 -- Well of Eternity
 
 L = BigWigs:NewBossLocale("Well Of Eternity Trash", "deDE")

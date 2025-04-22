@@ -77,12 +77,6 @@ end
 
 -- Shadowmoon Burial Grounds
 
-L = BigWigs:NewBossLocale("Sadana Bloodfury", "deDE")
-if L then
-	L.custom_on_markadd = "Add der Dunklen Kommunion markieren"
-	L.custom_on_markadd_desc = "Markiert das durch die Dunkle Kommunion beschworene Add mit {rt8}, benötigt Assistent oder Leiter."
-end
-
 L = BigWigs:NewBossLocale("Bonemaw", "deDE")
 if L then
 	L.summon_worms = "Aaswürmer beschwören"
@@ -112,10 +106,8 @@ end
 
 L = BigWigs:NewBossLocale("High Sage Viryx", "deDE")
 if L then
-	L.custom_on_markadd = "Sonnenzeloten markieren"
-	L.custom_on_markadd_desc = "Markiert den Sonnenzeloten mit {rt8}, benötigt Assistent oder Leiter."
-
-	L.construct = "Schildkonstrukt der Himmelsnadel" -- NPC ID 76292
+	L.solar_zealot = "Sonnenzelot"
+	L.construct = "Schildkonstrukt der Himmelsnadel"
 end
 
 -- The Everbloom

@@ -77,12 +77,6 @@ end
 
 -- Shadowmoon Burial Grounds
 
-L = BigWigs:NewBossLocale("Sadana Bloodfury", "frFR")
-if L then
-	--L.custom_on_markadd = "Mark the Dark Communion Add"
-	--L.custom_on_markadd_desc = "Mark the add spawned by Dark Communion with {rt8}, requires promoted or leader."
-end
-
 L = BigWigs:NewBossLocale("Bonemaw", "frFR")
 if L then
 	--L.summon_worms = "Summon Carrion Worms"
@@ -112,10 +106,8 @@ end
 
 L = BigWigs:NewBossLocale("High Sage Viryx", "frFR")
 if L then
-	--L.custom_on_markadd = "Mark the Solar Zealot"
-	--L.custom_on_markadd_desc = "Mark the Solar Zealot with {rt8}, requires promoted or leader."
-
-	L.construct = "Assemblage-bouclier d’Orée-du-Ciel" -- NPC ID 76292
+	L.solar_zealot = "Zélote solaire"
+	L.construct = "Assemblage-bouclier d’Orée-du-Ciel"
 end
 
 -- The Everbloom

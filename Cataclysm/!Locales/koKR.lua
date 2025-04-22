@@ -12,7 +12,7 @@ end
 L = BigWigs:NewBossLocale("Erudax", "koKR")
 if L then
 	L.summon = "얼굴 없는 타락자 소환"
-	L.summon_desc = "에루닥스가 얼굴 없는 타락자를 소환하면 경보"
+	L.summon_desc = "에루닥스가 얼굴 없는 타락자를 소환하면 경보."
 	L.summon_message = "얼굴 없는 타락자 소환됨"
 	L.summon_trigger = "가 얼굴 없는 수호자를 소환합니다!"
 end
@@ -106,12 +106,6 @@ if L then
 	L.temple_adept = "사원 숙련사제"
 	L.servant_of_asaad = "아사드의 하수인"
 	L.minister_of_air = "바람의 대신"
-end
-
-L = BigWigs:NewBossLocale("Altairus", "koKR")
-if L then
-	L.upwind = "맞바람 (안전)"
-	L.downwind = "역풍 (위험)"
 end
 
 -- Well of Eternity

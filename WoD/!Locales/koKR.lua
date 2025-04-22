@@ -77,12 +77,6 @@ end
 
 -- Shadowmoon Burial Grounds
 
-L = BigWigs:NewBossLocale("Sadana Bloodfury", "koKR")
-if L then
-	L.custom_on_markadd = "어둠의 교감 징표 표시"
-	L.custom_on_markadd_desc = "어둠의 교감에서 생성된 추가 정보를 {rt8}로 표시하려면 권한이 필요합니다."
-end
-
 L = BigWigs:NewBossLocale("Bonemaw", "koKR")
 if L then
 	L.summon_worms = "청소부 벌레 소환"
@@ -112,10 +106,8 @@ end
 
 L = BigWigs:NewBossLocale("High Sage Viryx", "koKR")
 if L then
-	L.custom_on_markadd = "태양광신도 징표 표시"
-	L.custom_on_markadd_desc = "태양광신도를 {rt8}로 표시하려면 권한이 필요합니다."
-
-	L.construct = "하늘탑 보호 피조물" -- NPC ID 76292
+	L.solar_zealot = "태양광신도"
+	L.construct = "하늘탑 보호 피조물"
 end
 
 -- The Everbloom

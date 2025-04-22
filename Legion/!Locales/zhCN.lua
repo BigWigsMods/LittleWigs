@@ -27,8 +27,6 @@ if L then
 
 	L.rune_desc = "在地面上放置一个召唤符文。如果没有站在上面会出现梦魇之物。"
 
-	L.killed = "%s已击杀"
-
 	L.warmup_text = "卡兰姆·法师之矛激活"
 	L.warmup_trigger = "你真蠢，居然跟着我来到这里，兄弟。扭曲虚空滋养了我的力量。我的强大已经超出了你的想象！"
 	L.warmup_trigger2 = "杀了入侵者，兄弟！"
@@ -81,7 +79,6 @@ if L then
 	L.warmup_trigger2 = "此刻，我的萨亚德正在诱惑软弱的法师，你的盟友会自愿倒向军团！" -- 16
 	L.warmup_trigger3 = "但，你得先为抢走我的宠物付出代价！" -- 3
 
-	L.absorb = "吸收"
 	L.stacks = "层数"
 end
 
@@ -92,8 +89,6 @@ if L then
 	L.faljar = "符文先知法尔加"
 
 	L.warmup_trigger = "什么？外来者来阻止我了？"
-
-	L.absorb = "吸收"
 end
 
 -- Assault on Violet Hold
@@ -426,7 +421,6 @@ end
 
 L = BigWigs:NewBossLocale("Viceroy Nezhar", "zhCN")
 if L then
-	L.tentacles = "触须"
 	L.guards = "影卫"
 	L.interrupted = "%s已打断%s（%.1f秒剩余）！"
 end
@@ -471,14 +465,8 @@ if L then
 	L.light_dropped = "%s 丢掉了艾露恩之光。"
 	L.light_picked = "%s 拾取了艾露恩之光。"
 
-	L.warmup_text = "科达娜·邪歌激活"
 	L.warmup_trigger = "我拿到想要的东西了。但我要留下来了结你们……永除后患！"
 	L.warmup_trigger_2 = "你们掉进了我的陷阱。让我看看你们在黑暗中的本事吧。"
-end
-
-L = BigWigs:NewBossLocale("Glazer", "zhCN")
-if L then
-	L.radiation_level = "%s：%d%%"
 end
 
 L = BigWigs:NewBossLocale("Tirathon Saltheril", "zhCN")

@@ -29,12 +29,7 @@ end
 -- Initialization
 --
 
-function mod:OnRegister()
-	self.displayName = L.zekvir
-	self:SetSpellRename(450492, CL.fear) -- Horrendous Roar (Fear)
-end
-
-local webTerrorMarker = mod:AddMarkerOption(true, "npc", 8, "web_terror", 8) -- Web Terror
+local webTerrorMarker = mod:AddMarkerOption(true, "npc", 8, "web_terror", 8)
 function mod:GetOptions()
 	return {
 		450451, -- Claw Smash
@@ -52,6 +47,13 @@ function mod:GetOptions()
 		[450492] = CL.fear, -- Horrendous Roar (Fear)
 		[453937] = CL.spawned:format(L.web_terror), -- Hatching... (Web Terror spawned)
 	}
+end
+
+function mod:OnRegister()
+	self.displayName = L.zekvir
+	-- delayed for custom locale
+	webTerrorMarker = mod:AddMarkerOption(true, "npc", 8, "web_terror", 8)
+	self:SetSpellRename(450492, CL.fear) -- Horrendous Roar (Fear)
 end
 
 function mod:OnBossEnable()

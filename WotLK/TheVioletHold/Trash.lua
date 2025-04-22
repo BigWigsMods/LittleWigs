@@ -38,10 +38,9 @@ local prevWave = 0
 
 local L = mod:GetLocale()
 if L then
-	L.portals = "Portals"
+	L.portals = CL.portals
 	L.portals_desc = "Information about portals."
-	L.boss_message = "Boss"
-	L.portal_bar = "Portal"
+	L.portals_icon = "spell_arcane_portaldalaran"
 end
 
 --------------------------------------------------------------------------------
@@ -75,18 +74,21 @@ function mod:UpdateWaveTimers(id, text)
 		if currentWave and currentWave ~= prevWave then
 			prevWave = currentWave
 			if currentWave == 6 or currentWave == 12 then
-				self:MessageOld("portals", "yellow", "info", CL.incoming:format(L.boss_message), false)
-				self:StopBar(CL.count:format(L.portal_bar, currentWave))
+				self:Message("portals", "cyan", CL.incoming:format(CL.boss), L.portals_icon)
+				self:StopBar(CL.count:format(CL.portal, currentWave))
+				self:PlaySound("portals", "info")
 			elseif currentWave == 18 then
 				self:UnregisterWidgetEvent(id)
 				local cyanigosa = self:BossName(632) -- Cyanigosa
-				self:MessageOld("portals", "yellow", "info", CL.custom_sec:format(cyanigosa, 17), false)
-				self:Bar("portals", 17, CL.count:format(L.portal_bar, currentWave), "spell_arcane_portaldalaran")
+				self:Message("portals", "cyan", CL.custom_sec:format(cyanigosa, 17), L.portals_icon)
+				self:Bar("portals", 17, CL.count:format(CL.portal, currentWave), L.portals_icon)
+				self:PlaySound("portals", "info")
 			else
 				-- The single mobs (Guardian/Keeper) are 15s, the groups are about 12s. The spawn in random so stick to 15s.
-				self:Bar("portals", 15, CL.count:format(L.portal_bar, currentWave), "spell_arcane_portaldalaran")
-				self:MessageOld("portals", "yellow", "info", CL.custom_sec:format(CL.count:format(L.portal_bar, currentWave), 15), false)
-				self:Bar("portals", 134, CL.count:format(L.portal_bar, currentWave+1), "spell_arcane_portaldalaran") -- 119s + 15s depending on spawn, sometimes it's 101s + 15s if the spawn is a group. Stick with 134s.
+				self:Bar("portals", 15, CL.count:format(CL.portal, currentWave), L.portals_icon)
+				self:Message("portals", "cyan", CL.custom_sec:format(CL.count:format(CL.portal, currentWave), 15), L.portals_icon)
+				self:Bar("portals", 134, CL.count:format(CL.portal, currentWave+1), L.portals_icon) -- 119s + 15s depending on spawn, sometimes it's 101s + 15s if the spawn is a group. Stick with 134s.
+				self:PlaySound("portals", "info")
 			end
 		end
 	end
@@ -95,8 +97,8 @@ end
 function mod:BossDeaths()
 	local count = prevWave+1
 	if self:Classic() then
-		self:Bar("portals", 48, CL.count:format(L.portal_bar, count), "spell_arcane_portaldalaran") -- 33s + 15s
+		self:Bar("portals", 48, CL.count:format(CL.portal, count), L.portals_icon) -- 33s + 15s
 	else
-		self:Bar("portals", count == 7 and 35 or 30, CL.count:format(L.portal_bar, count), "spell_arcane_portaldalaran") -- (20s or 15s) + 15s
+		self:Bar("portals", count == 7 and 35 or 30, CL.count:format(CL.portal, count), L.portals_icon) -- (20s or 15s) + 15s
 	end
 end

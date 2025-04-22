@@ -77,12 +77,6 @@ end
 
 -- Shadowmoon Burial Grounds
 
-L = BigWigs:NewBossLocale("Sadana Bloodfury", "zhCN")
-if L then
-	L.custom_on_markadd = "标记黑暗契约增援"
-	L.custom_on_markadd_desc = "使用骷髅标记黑暗契约出现的增援，需要权限。"
-end
-
 L = BigWigs:NewBossLocale("Bonemaw", "zhCN")
 if L then
 	L.summon_worms = "召唤食腐蛆虫"
@@ -112,10 +106,8 @@ end
 
 L = BigWigs:NewBossLocale("High Sage Viryx", "zhCN")
 if L then
-	L.custom_on_markadd = "标记拜日狂信徒"
-	L.custom_on_markadd_desc = "使用骷髅标记拜日狂信徒，需要权限。"
-
-	L.construct = "通天峰防护构装体" -- NPC ID 76292
+	L.solar_zealot = "拜日狂信徒"
+	L.construct = "通天峰防护构装体"
 end
 
 -- The Everbloom

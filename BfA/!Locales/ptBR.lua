@@ -66,9 +66,6 @@ if L then
 	L.lightning_caught = "Raio pego em %.1f segundos!"
 	L.ludwig = "Ludovico Von Tortollano"
 	L.trothak = "Trothak"
-
-	--L.left = "%s (Left)"
-	--L.right = "%s (Right)"
 end
 
 -- Horrific Vision of Orgrimmar
@@ -221,9 +218,6 @@ if L then
 	L.beastmaster = "Senhora das Feras Espectral"
 	L.brute = "Brutamontes Espectral"
 	L.zul = "Sombra de Zul"
-
-	L.casting_on_you = "Conjurando %s em VOCÊ"
-	L.casting_on_other = "Conjurando %s: %s"
 end
 
 -- Operation: Mechagon
@@ -347,11 +341,6 @@ if L then
 	L.incubator = "Incubador Enlouquecido"
 	L.nimbus = "Nímbus Agitado"
 	L.doctor = "Médica da Peste"
-end
-
-L = BigWigs:NewBossLocale("Galvazzt", "ptBR")
-if L then
-	L.percent = "%s (%d%%)"
 end
 
 -- The MOTHERLODE!!

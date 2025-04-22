@@ -17,16 +17,6 @@ local chillingBreathCount = 1
 local downburstCount = 1
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.upwind = "Upwind on you (safe)"
-	L.downwind = "Downwind on you (unsafe)"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -114,14 +104,14 @@ do
 
 	function mod:UpwindOfAltairus(args)
 		if self:Me(args.destGUID) and (self:Retail() or showClassicUpwindAlert) then
-			self:Message(args.spellId, "green", L.upwind)
+			self:Message(args.spellId, "green", CL.extra:format(args.spellName, CL.safe))
 			self:PlaySound(args.spellId, "info")
 		end
 	end
 
 	function mod:DownwindOfAltairus(args)
 		if self:Me(args.destGUID) then
-			self:Message(args.spellId, "red", L.downwind)
+			self:Message(args.spellId, "red", CL.extra:format(args.spellName, CL.unsafe))
 			self:PlaySound(args.spellId, "alarm")
 			if self:Classic() then
 				-- player will be spammed by Upwind alerts despite standing Downwind, suppress those

@@ -27,8 +27,6 @@ if L then
 
 	L.rune_desc = "Coloca uma runa de invocação no chão. Se não for absorvida, uma Coisa de Pesadelo irá aparecer."
 
-	L.killed = "%s morto"
-
 	L.warmup_text = "Karam Magilança Ativo"
 	L.warmup_trigger = "Foi tolice sua vir atrás de mim, irmão. A Espiral Etérea alimenta minhas forças. Eu me tornei mais poderoso do que você pode imaginar!"
 	L.warmup_trigger2 = "Mate este intruso, irmão!"
@@ -81,7 +79,6 @@ if L then
 	--L.warmup_trigger2 = "Even now, my sayaad tempt your weak-willed mages. Your allies will surrender willingly to the Legion!" -- 16
 	--L.warmup_trigger3 = "But first, you must be punished for taking away my little pet." -- 3
 
-	L.absorb = "Absorve"
 	L.stacks = "Acumula"
 end
 
@@ -92,8 +89,6 @@ if L then
 	L.faljar = "Vidente das Runas Faljar"
 
 	--L.warmup_trigger = "What's this? The outsider has come to stop me?"
-
-	L.absorb = "Absorve"
 end
 
 -- Assault on Violet Hold
@@ -426,7 +421,6 @@ end
 
 L = BigWigs:NewBossLocale("Viceroy Nezhar", "ptBR")
 if L then
-	L.tentacles = "Tentáculos"
 	L.guards = "Guardas"
 	L.interrupted = "%s interrompido %s (%.1fs restando)!"
 end
@@ -471,14 +465,8 @@ if L then
 	L.light_dropped = "%s derrubou a Luz."
 	L.light_picked = "%s pegou a Luz."
 
-	L.warmup_text = "Cordana Vilcanto Ativa"
 	L.warmup_trigger = "Eu já estou com o que queria. Mas continuei aqui para que pudesse acabar com você... De uma vez por todas!"
 	L.warmup_trigger_2 = "E agora, vocês caem na minha armadilha. Tolos. Vamos ver como vocês ficam no escuro."
-end
-
-L = BigWigs:NewBossLocale("Glazer", "ptBR")
-if L then
-	L.radiation_level = "%s: %d%%"
 end
 
 L = BigWigs:NewBossLocale("Tirathon Saltheril", "ptBR")

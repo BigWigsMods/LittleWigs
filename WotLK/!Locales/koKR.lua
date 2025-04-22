@@ -89,10 +89,7 @@ end
 
 L = BigWigs:NewBossLocale("The Violet Hold Trash", "koKR")
 if L then
-	L.portals = "소환문"
 	L.portals_desc = "소환문에 대한 정보."
-	L.boss_message = "우두머리"
-	L.portal_bar = "소환문"
 end
 
 -- Trial of the Champion

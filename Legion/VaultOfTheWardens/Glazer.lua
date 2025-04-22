@@ -1,3 +1,4 @@
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -11,15 +12,6 @@ mod.engageId = 1817
 --
 
 local nextFocusing = 0
-
---------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.radiation_level = "%s: %d%%" -- Radiation Level: 10%
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -74,7 +66,7 @@ end
 
 function mod:RadiationLevel(args)
 	if args.amount >= 10 and args.amount % 5 == 0 then -- 10, 15, 20
-		self:MessageOld(194323, "orange", "info", L.radiation_level:format(args.spellName, args.amount), args.spellId)
+		self:MessageOld(194323, "orange", "info", CL.other:format(args.spellName, ("%d%%"):format(args.amount)), args.spellId)
 	end
 end
 

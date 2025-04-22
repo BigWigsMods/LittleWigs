@@ -27,8 +27,6 @@ if L then
 
 	--L.rune_desc = "Places a Rune of Summoning on the ground. If left unsoaked a Thing of Nightmare will spawn."
 
-	--L.killed = "%s killed"
-
 	--L.warmup_text = "Karam Magespear Active"
 	--L.warmup_trigger = "You were a fool to follow me, brother. The Twisting Nether feeds my strength. I have become more powerful than you could ever imagine!"
 	--L.warmup_trigger2 = "Kill this interloper, brother!"
@@ -81,7 +79,6 @@ if L then
 	--L.warmup_trigger2 = "Even now, my sayaad tempt your weak-willed mages. Your allies will surrender willingly to the Legion!" -- 16
 	--L.warmup_trigger3 = "But first, you must be punished for taking away my little pet." -- 3
 
-	L.absorb = "Absorption"
 	L.stacks = "Stapel"
 end
 
@@ -92,8 +89,6 @@ if L then
 	L.faljar = "Runenseher Faljar"
 
 	--L.warmup_trigger = "What's this? The outsider has come to stop me?"
-
-	L.absorb = "Absorption"
 end
 
 -- Assault on Violet Hold
@@ -426,7 +421,6 @@ end
 
 L = BigWigs:NewBossLocale("Viceroy Nezhar", "deDE")
 if L then
-	L.tentacles = "Tentakel"
 	L.guards = "Hüter"
 	L.interrupted = "%s unterbrach %s (%.1fs übrig)!"
 end
@@ -471,14 +465,8 @@ if L then
 	L.light_dropped = "%s hat das Licht fallen gelassen."
 	L.light_picked = "%s hat das Licht aufgenommen."
 
-	L.warmup_text = "Cordana Teufelsang aktiv"
 	L.warmup_trigger = "Ich habe, wofür ich gekommen bin. Doch ich wollte Euch noch persönlich ein Ende setzen... ein für alle Mal."
 	L.warmup_trigger_2 = "Und jetzt sitzt Ihr Narren in meiner Falle. Sehen wir mal, wie Ihr im Dunkeln zurechtkommt."
-end
-
-L = BigWigs:NewBossLocale("Glazer", "deDE")
-if L then
-	L.radiation_level = "%s: %d%%"
 end
 
 L = BigWigs:NewBossLocale("Tirathon Saltheril", "deDE")

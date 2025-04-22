@@ -34,8 +34,6 @@ if L then
 	L.thing_desc = "{236461}"
 	L.thing_icon = 236470
 
-	L.killed = "%s killed"
-
 	L.warmup_text = "Karam Magespear Active"
 	L.warmup_trigger = "You were a fool to follow me, brother. The Twisting Nether feeds my strength. I have become more powerful than you could ever imagine!"
 	L.warmup_trigger2 = "Kill this interloper, brother!"
@@ -149,7 +147,7 @@ function mod:Interrupts(args)
 end
 
 function mod:HandFromBeyondDeath(args)
-	self:MessageOld("handFromBeyond", "cyan", nil, L.killed:format(L.handFromBeyond), false)
+	self:MessageOld("handFromBeyond", "cyan", nil, CL.killed:format(L.handFromBeyond), false)
 	self:StopBar(CL.cast:format(self:SpellName(235578))) -- Grasp from Beyond
 	self:StopBar(235578) -- Grasp from Beyond
 end

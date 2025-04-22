@@ -23,7 +23,6 @@ local nextDarkBulwark = 0
 
 local L = mod:GetLocale()
 if L then
-	L.tentacles = "Tentacles"
 	L.guards = "Guards"
 	L.interrupted = "%s interrupted %s (%.1fs left)!"
 end
@@ -68,7 +67,7 @@ function mod:OnEngage()
 	tentaclesUp = 0
 	guardsUp = 0
 	eternalTwilightExplo = 0
-	self:Bar(-15926, 12, L.tentacles) -- Tentacles
+	self:Bar(-15926, 12, CL.tentacles) -- Tentacles
 	self:Bar(244751, 16) -- Howling Dark
 	self:Bar(246324, 32) -- Entropic Force
 	if self:Mythic() then
@@ -90,7 +89,7 @@ function mod:UpdateInfoBox()
 	if tentaclesUp > 0 or guardsUp > 0 then
 		self:OpenInfo("infobox", self.displayName)
 		if tentaclesUp > 0 then
-			self:SetInfo("infobox", 1, L.tentacles)
+			self:SetInfo("infobox", 1, CL.tentacles)
 			self:SetInfo("infobox", 2, tentaclesUp)
 		end
 		if guardsUp > 0 then
@@ -109,9 +108,9 @@ do
 		local t = GetTime()
 		if t-prev > 3 then
 			prev = t
-			self:MessageOld(-15926, "yellow", "info", CL.spawned:format(L.tentacles))
+			self:MessageOld(-15926, "yellow", "info", CL.spawned:format(CL.tentacles))
 			if not self:Mythic() or nextDarkBulwark - GetTime() > 30.5 then
-				self:CDBar(-15926, 30.5, L.tentacles)
+				self:CDBar(-15926, 30.5, CL.tentacles)
 			end
 		end
 		self:UpdateInfoBox()
@@ -168,7 +167,7 @@ function mod:Interrupt(args)
 	if args.extraSpellId == 248736 then -- Eternal Twilight
 		self:StopBar(CL.cast:format(args.extraSpellName))
 		self:MessageOld(248736, "green", "long", L.interrupted:format(self:ColorName(args.sourceName), args.extraSpellName, eternalTwilightExplo-GetTime()))
-		self:CDBar(-15926, 11, L.tentacles) -- Tentacles
+		self:CDBar(-15926, 11, CL.tentacles) -- Tentacles
 		self:CDBar(244751, 16) -- Howling Dark
 	end
 end

@@ -31,8 +31,6 @@ if L then
 	L.faljar = "Runeseer Faljar"
 
 	L.warmup_trigger = "What's this? The outsider has come to stop me?"
-
-	L.absorb = "Absorb"
 end
 
 --------------------------------------------------------------------------------
@@ -211,7 +209,7 @@ do
 			maxAbsorb = UnitGetTotalAbsorbs("boss2")
 			self:OpenInfo(args.spellId, args.spellName)
 			self:SetInfoBar(args.spellId, 1, 1)
-			self:SetInfo(args.spellId, 1, L.absorb)
+			self:SetInfo(args.spellId, 1, CL.absorb)
 			self:SetInfo(args.spellId, 2, ("%s (%d%%)"):format(self:AbbreviateNumber(maxAbsorb), 100))
 			self:SimpleTimer(updateInfoBox, 0.1)
 		end

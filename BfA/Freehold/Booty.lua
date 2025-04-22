@@ -35,9 +35,6 @@ if L then
 	L.lightning_caught = "Lightning caught after %.1f seconds!"
 	L.ludwig = "Ludwig Von Tortollan"
 	L.trothak = "Trothak"
-
-	L.left = "%s (Left)"
-	L.right = "%s (Right)"
 end
 
 --------------------------------------------------------------------------------
@@ -95,11 +92,11 @@ function mod:OnEngage()
 	self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
 
 	self:CDBar(256363, 9.3) -- Ripper Punch
-	self:CDBar(256358, 16.9, L.right:format(self:SpellName(256358))) -- Shark Toss (Right)
+	self:CDBar(256358, 16.9, CL.extra:format(self:SpellName(256358), CL.right)) -- Shark Toss (Right)
 	self:CDBar(256405, 23.1) -- Shark Tornado
-	self:CDBar(256358, 29.5, L.left:format(self:SpellName(256358))) -- Shark Toss (Left)
-	self:CDBar(256489, 30.7, L.right:format(self:SpellName(256494))) -- Rearm (Right)
-	self:CDBar(256489, 38.0, L.left:format(self:SpellName(256489))) -- Rearm (Left)
+	self:CDBar(256358, 29.5, CL.extra:format(self:SpellName(256358), CL.left)) -- Shark Toss (Left)
+	self:CDBar(256489, 30.7, CL.extra:format(self:SpellName(256494), CL.right)) -- Rearm (Right)
+	self:CDBar(256489, 38.0, CL.extra:format(self:SpellName(256489), CL.left)) -- Rearm (Left)
 end
 
 function mod:VerifyEnable(_, mobId)
@@ -198,9 +195,9 @@ do
 					-- throttle sound because both sharks can be tossed at a time
 					self:PlaySound(256358, "alarm", "watchstep")
 				end
-				self:CDBar(256358, 19.5, L.left:format(args.spellName))
+				self:CDBar(256358, 19.5, CL.extra:format(args.spellName, CL.left))
 			else -- 129359, Sawtooth Shark (Right)
-				self:CDBar(256358, 19.5, L.right:format(args.spellName))
+				self:CDBar(256358, 19.5, CL.extra:format(args.spellName, CL.right))
 			end
 		end
 	end
@@ -231,9 +228,9 @@ do
 			self:PlaySound(256489, "info")
 		end
 		if args.spellId == 256489 then -- Rearm (Left)
-			self:Bar(256489, 26.7, L.left:format(args.spellName))
+			self:Bar(256489, 26.7, CL.extra:format(args.spellName, CL.left))
 		else -- 256494, Rearm (Right)
-			self:CDBar(256489, 18.6, L.right:format(args.spellName))
+			self:CDBar(256489, 18.6, CL.extra:format(args.spellName, CL.right))
 		end
 	end
 end

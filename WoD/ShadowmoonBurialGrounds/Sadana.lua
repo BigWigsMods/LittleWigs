@@ -9,24 +9,14 @@ mod:SetEncounterID(1677)
 mod:SetRespawnTime(33)
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.custom_on_markadd = "Mark the Dark Communion Add"
-	L.custom_on_markadd_desc = "Mark the add spawned by Dark Communion with {rt8}, requires promoted or leader."
-	L.custom_on_markadd_icon = 8
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
+local darkCommunionMarker = mod:AddMarkerOption(true, "npc_aura", 8, 153153, 8) -- Dark Communion
 function mod:GetOptions()
 	return {
 		153153, -- Dark Communion
-		"custom_on_markadd", -- Add marker option
+		darkCommunionMarker,
 		153240, -- Daggerfall
 		153224, -- Shadow Burn
 		153094, -- Whispers of the Dark Star
@@ -79,7 +69,7 @@ function mod:DarkCommunion(args)
 	self:Message(args.spellId, "cyan", CL.add_spawned)
 	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 60.6)
-	if self:GetOption("custom_on_markadd") then
+	if self:GetOption(darkCommunionMarker) then
 		self:RegisterTargetEvents("MarkDefiledSpirit")
 	end
 end
