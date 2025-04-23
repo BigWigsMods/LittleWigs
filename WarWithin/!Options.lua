@@ -128,14 +128,14 @@ BigWigs:AddColors("Benk Buzzbee", {
 	[438025] = "yellow",
 	[438971] = "orange",
 	[439524] = "red",
-	[440134] = {"blue","purple"},
+	[440134] = {"blue","green","purple"},
 })
 
 BigWigs:AddSounds("Benk Buzzbee", {
 	[438025] = "info",
 	[438971] = "info",
 	[439524] = "alert",
-	[440134] = {"alarm","underyou"},
+	[440134] = {"alarm","info","underyou"},
 })
 
 BigWigs:AddColors("Goldie Baronbottom", {
