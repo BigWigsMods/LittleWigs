@@ -92,7 +92,7 @@ BigWigs:AddSounds("Ara-Kara, City of Echoes Trash", {
 
 BigWigs:AddColors("Brew Master Aldryr", {
 	[431895] = {"blue","green"},
-	[432179] = "red",
+	[432179] = {"blue","red","yellow"},
 	[432196] = "blue",
 	[432198] = "orange",
 	[432229] = "purple",
@@ -101,7 +101,7 @@ BigWigs:AddColors("Brew Master Aldryr", {
 
 BigWigs:AddSounds("Brew Master Aldryr", {
 	[431895] = "info",
-	[432179] = "alert",
+	[432179] = "info",
 	[432196] = "underyou",
 	[432198] = "alarm",
 	[432229] = "alert",

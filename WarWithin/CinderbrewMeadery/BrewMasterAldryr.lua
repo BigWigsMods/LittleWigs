@@ -42,11 +42,12 @@ end
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Clear the Bar
 	self:Log("SPELL_CAST_SUCCESS", "HappyHour", 442525)
-	self:Log("SPELL_AURA_REMOVED", "HappyHourOver", 442525)
-	self:Log("SPELL_AURA_APPLIED", "CarryingCinderbrew", 431895)
+	self:Log("SPELL_AURA_REMOVED", "HappyHourRemoved", 442525)
+	self:Log("SPELL_AURA_APPLIED", "CarryingCinderbrewApplied", 431895)
 	self:Log("SPELL_AURA_REMOVED", "CarryingCinderbrewRemoved", 431895)
 	self:Log("SPELL_CAST_START", "BlazingBelch", 432198)
 	self:Log("SPELL_CAST_START", "ThrowCinderbrew", 432179)
+	self:Log("SPELL_AURA_APPLIED", "ThrowCinderbrewApplied", 432182)
 	self:Log("SPELL_CAST_START", "KegSmash", 432229)
 	self:Log("SPELL_PERIODIC_DAMAGE", "HotHoneyDamage", 432196)
 	self:Log("SPELL_PERIODIC_MISSED", "HotHoneyDamage", 432196)
@@ -91,7 +92,7 @@ do
 		self:PlaySound(args.spellId, "long")
 	end
 
-	function mod:HappyHourOver(args)
+	function mod:HappyHourRemoved(args)
 		self:SetStage(1)
 		self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, args.time - happyHourStart))
 		self:CDBar(432229, 9.1) -- Keg Smash
@@ -101,7 +102,7 @@ do
 	end
 end
 
-function mod:CarryingCinderbrew(args)
+function mod:CarryingCinderbrewApplied(args)
 	if self:Me(args.destGUID) then
 		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
@@ -121,10 +122,25 @@ function mod:BlazingBelch(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:ThrowCinderbrew(args)
-	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 18.2)
-	self:PlaySound(args.spellId, "alert")
+
+do
+	local playerList = {}
+
+	function mod:ThrowCinderbrew(args)
+		playerList = {}
+		self:Message(args.spellId, "red")
+		self:CDBar(args.spellId, 18.2)
+	end
+
+	function mod:ThrowCinderbrewApplied(args)
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(432179, "yellow", playerList, 2)
+		if self:Healer() then
+			self:PlaySound(432179, "info", nil, playerList)
+		elseif self:Me(args.destGUID) then
+			self:PlaySound(432179, "info")
+		end
+	end
 end
 
 function mod:KegSmash(args)
