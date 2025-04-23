@@ -347,12 +347,12 @@ do
 		self:Message(args.spellId, "purple")
 		self:CDBar(args.spellId, 10.9)
 		self:Nameplate(args.spellId, 10.9, args.sourceGUID)
+		timer = self:ScheduleTimer("GuardCaptainSuleymanDeath", 30, nil, args.sourceGUID)
 		if self:Tank() then
 			self:PlaySound(args.spellId, "alarm")
 		else
 			self:PlaySound(args.spellId, "info")
 		end
-		timer = self:ScheduleTimer("GuardCaptainSuleymanDeath", 30, nil, args.sourceGUID)
 	end
 
 	function mod:Thunderclap(args)
@@ -362,8 +362,8 @@ do
 		self:Message(args.spellId, "red")
 		self:CDBar(args.spellId, 15.8)
 		self:Nameplate(args.spellId, 15.8, args.sourceGUID)
-		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("GuardCaptainSuleymanDeath", 30, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
 	end
 
 	function mod:GuardCaptainSuleymanDeath(args, guidFromTimer)
@@ -993,20 +993,20 @@ function mod:Purification(args)
 end
 
 function mod:PurificationApplied(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId)
-		self:PlaySound(args.spellId, "alert")
+	if self:Me(args.destGUID) or self:Healer() then
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "alert", nil, args.destName)
 	end
 end
 
 do
 	local prev = 0
 	function mod:BurstOfLight(args)
-		-- cast at 20%, mob dies after this cast
+		-- cast at 25%, mob dies after this cast
 		self:ClearNameplate(args.sourceGUID)
 		if args.time - prev > 2 then
 			prev = args.time
-			self:Message(args.spellId, "yellow")
+			self:Message(args.spellId, "yellow", CL.percent:format(25, args.spellName))
 			self:PlaySound(args.spellId, "long")
 		end
 	end
