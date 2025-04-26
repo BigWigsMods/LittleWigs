@@ -45,7 +45,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START") -- XXX no boss frames
 	self:Log("SPELL_CAST_START", "RipAndTear", 1214614)
 	self:Log("SPELL_CAST_START", "WhoopingRally", 1214620)
 	self:Log("SPELL_CAST_START", "AggravatingGrowl", 1214656)
@@ -63,12 +62,6 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:ENCOUNTER_START(_, id) -- XXX no boss frames
-	if id == self.engageId then
-		self:Engage()
-	end
-end
 
 function mod:RipAndTear(args)
 	self:Message(args.spellId, "purple")
