@@ -186,7 +186,7 @@ function mod:EmpowermentThunderRemoved(args)
 		thunderEmpowermentFalloffTime = 0
 	else -- if on non-Normal difficulty
 		-- 2 stacks are removed per 4 seconds when not empowered
-		thunderEmpowermentFalloffTime = GetTime() + ceil(thunderEmpowermentStacks / 2) * 4
+		thunderEmpowermentFalloffTime = GetTime() + math.ceil(thunderEmpowermentStacks / 2) * 4
 	end
 	recheckSpecial()
 end
@@ -208,7 +208,7 @@ function mod:EmpowermentHolyRemoved(args)
 		holyEmpowermentFalloffTime = 0
 	else -- if on non-Normal difficulty
 		-- 2 stacks are removed per 4 seconds when not empowered
-		holyEmpowermentFalloffTime = GetTime() + ceil(holyEmpowermentStacks / 2) * 4
+		holyEmpowermentFalloffTime = GetTime() + math.ceil(holyEmpowermentStacks / 2) * 4
 	end
 	recheckSpecial()
 end

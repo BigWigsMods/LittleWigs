@@ -74,7 +74,7 @@ function mod:UNIT_POWER_UPDATE(_, unit)
 	if recalculateFieryFocus then
 		recalculateFieryFocus = false
 		-- ~31 seconds between Fiery Focus casts, cast at max Energy
-		local nextFieryFocus = ceil(30.4 * (1 - UnitPower(unit) / 100))
+		local nextFieryFocus = math.ceil(30.4 * (1 - UnitPower(unit) / 100))
 		if nextFieryFocus > 0 then
 			self:Bar(375056, {nextFieryFocus + .2, 30.6}, CL.count:format(self:SpellName(375056), fieryFocusCount)) -- Fiery Focus, ~.2s delay at max energy
 		else

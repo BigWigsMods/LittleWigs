@@ -76,7 +76,7 @@ function mod:DismountedApplied(args)
 	self:StopBar(227363) -- Mighty Stomp
 	self:StopBar(227365) -- Spectral Charge
 	-- Midnight is unattackable and recovers 2% HP per second, phase ends when Midnight reaches 100% HP
-	self:Bar("stages", ceil((100 - self:GetHealth("boss2")) / 2), args.spellName, 164558) -- Dismounted
+	self:Bar("stages", math.ceil((100 - self:GetHealth("boss2")) / 2), args.spellName, 164558) -- Dismounted
 end
 
 function mod:DismountedRemoved(args)

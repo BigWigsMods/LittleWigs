@@ -113,7 +113,7 @@ do
 			-- calculate duration based on the minimum time until a bomb explodes
 			local duration = 30
 			for _, expirationTime in pairs(unstableGoodsContainer) do
-				duration = min(expirationTime - currentTime, duration)
+				duration = math.min(expirationTime - currentTime, duration)
 			end
 
 			-- stop any previous bar
