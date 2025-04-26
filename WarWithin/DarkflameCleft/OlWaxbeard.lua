@@ -57,7 +57,6 @@ function mod:OnBossEnable()
 
 	-- Mythic
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Underhanded Track-tics
-	self:RegisterEvent("CHAT_MSG_RAID_WARNING", "CHAT_MSG_RAID_BOSS_EMOTE") -- XXX remove compat in 11.1.5
 	self:Log("SPELL_CAST_START", "UnderhandedTracktics", 429093)
 	self:Death("DynamiteMineCartDeath", 213751)
 end
