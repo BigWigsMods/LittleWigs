@@ -1,0 +1,34 @@
+## Interface: 50500
+
+## Title: LittleWigs [|cffeda55fClassic|r]
+## Title-deDE: LittleWigs [|cffeda55fClassic|r]
+## Title-esES: LittleWigs [|cffeda55fClásico|r]
+## Title-esMX: LittleWigs [|cffeda55fClásico|r]
+## Title-frFR: LittleWigs [|cffeda55fClassique|r]
+## Title-itIT: LittleWigs [|cffeda55fClassic|r]
+## Title-koKR: LittleWigs [|cffeda55f오리지널|r]
+## Title-ptBR: LittleWigs [|cffeda55fClássico|r]
+## Title-ruRU: LittleWigs [|cffeda55fClassic|r]
+## Title-zhCN: LittleWigs [|cffeda55f经典旧世|r]
+## Title-zhTW: LittleWigs [|cffeda55f艾澤拉斯|r]
+## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-LoadOn-InstanceId: 209, 229, 329, 429
+
+BlackrockSpire\modules.xml
+modules.xml
+
+!Locales\deDE.lua
+!Locales\esES.lua
+!Locales\esMX.lua
+!Locales\frFR.lua
+!Locales\itIT.lua
+!Locales\koKR.lua
+!Locales\ptBR.lua
+!Locales\ruRU.lua
+!Locales\zhCN.lua
+!Locales\zhTW.lua

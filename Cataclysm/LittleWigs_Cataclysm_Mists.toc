@@ -1,0 +1,33 @@
+## Interface: 50500
+
+## Title: LittleWigs [|cffeda55fCataclysm|r]
+## Title-deDE: LittleWigs [|cffeda55fCataclysm|r]
+## Title-esES: LittleWigs [|cffeda55fCataclysm|r]
+## Title-esMX: LittleWigs [|cffeda55fCataclysm|r]
+## Title-frFR: LittleWigs [|cffeda55fCataclysm|r]
+## Title-itIT: LittleWigs [|cffeda55fCataclysm|r]
+## Title-koKR: LittleWigs [|cffeda55f대격변|r]
+## Title-ptBR: LittleWigs [|cffeda55fCataclysm|r]
+## Title-ruRU: LittleWigs [|cffeda55fCataclysm|r]
+## Title-zhCN: LittleWigs [|cffeda55f大地的裂变|r]
+## Title-zhTW: LittleWigs [|cffeda55f浩劫與重生|r]
+## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-LoadOn-InstanceId: 33, 36, 568, 643, 644, 645, 657, 670, 725, 755, 859, 938, 939, 940
+
+modules.xml
+
+!Locales\deDE.lua
+!Locales\esES.lua
+!Locales\esMX.lua
+!Locales\frFR.lua
+!Locales\itIT.lua
+!Locales\koKR.lua
+!Locales\ptBR.lua
+!Locales\ruRU.lua
+!Locales\zhCN.lua
+!Locales\zhTW.lua
