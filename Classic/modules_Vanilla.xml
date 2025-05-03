@@ -3,6 +3,8 @@
 
 <!--<Include file="BlackrockDepths\modules.xml"/>-->
 
+<Script file="BlackrockSpire\PyroguardEmberseer.lua"/>
+
 <Script file="Deadmines\RhahkZor.lua"/>
 <Script file="Deadmines\Sneed.lua"/>
 <Script file="Deadmines\Gilnid.lua"/>
@@ -10,6 +12,13 @@
 <Script file="Deadmines\CaptainGreenskin.lua"/>
 <Script file="Deadmines\EdwinVanCleef.lua"/>
 <Script file="Deadmines\Cookie.lua"/>
+
+<Script file="DemonFallCanyon\Grimroot.lua"/>
+<Script file="DemonFallCanyon\DestructorsWraith.lua"/>
+<Script file="DemonFallCanyon\Zilbagob.lua"/>
+<Script file="DemonFallCanyon\Pyranis.lua"/>
+<Script file="DemonFallCanyon\DiathorusTheSeeker.lua"/>
+<Script file="DemonFallCanyon\HellscreamsPhantom.lua"/>
 
 <Script file="DireMaul\TendrisWarpwood.lua"/>
 <Script file="DireMaul\IllyannaRavenoak.lua"/>
@@ -28,6 +37,18 @@
 <Script file="DireMaul\ZevrimThornhoof.lua"/>
 <Script file="DireMaul\AlzzinTheWildshaper.lua"/>
 <Script file="DireMaul\Trash.lua"/>
+
+<Script file="KarazhanCrypts\KaigyMaryla.lua"/>
+<Script file="KarazhanCrypts\SairuhMaryla.lua"/>
+<Script file="KarazhanCrypts\BarianMaryla.lua"/>
+<Script file="KarazhanCrypts\CreepingMalison.lua"/>
+<Script file="KarazhanCrypts\Trizivast.lua"/>
+<Script file="KarazhanCrypts\HansAndGreta.lua"/>
+<Script file="KarazhanCrypts\Goblins.lua"/>
+<Script file="KarazhanCrypts\HarbingerOfSin.lua"/>
+<Script file="KarazhanCrypts\Kharon.lua"/>
+<Script file="KarazhanCrypts\Unkomon.lua"/>
+<Script file="KarazhanCrypts\DarkRider.lua"/>
 
 <!--<Include file="Maraudon\modules.xml"/>-->
 
@@ -72,6 +93,6 @@
 <Script file="ZulFarrak\NekrumAndSezzziz.lua"/>
 <Script file="ZulFarrak\ChiefUkorzSandscalp.lua"/>
 
-<Script file="!Options.lua"/>
+<Script file="!Options_Vanilla.lua"/>
 
 </Ui>

@@ -29,19 +29,25 @@
 #@do-not-package@
 ## X-LittleWigs-Repo: 1
 ## X-BigWigs-LoadOn-InstanceId: 36, 209, 229, 329, 429, 2784, 2875
-Classic\BlackrockSpire\modules.xml
-Classic\Deadmines\modules.xml
-Classic\DemonFallCanyon\modules.xml
-Classic\KarazhanCrypts\modules.xml
-Classic\modules.xml
+Classic\modules_Vanilla.xml
 Classic\!Locales\deDE.lua
+Classic\!Locales\deDE_Vanilla.lua
 Classic\!Locales\esES.lua
+Classic\!Locales\esES_Vanilla.lua
 Classic\!Locales\esMX.lua
+Classic\!Locales\esMX_Vanilla.lua
 Classic\!Locales\frFR.lua
+Classic\!Locales\frFR_Vanilla.lua
 Classic\!Locales\itIT.lua
+Classic\!Locales\itIT_Vanilla.lua
 Classic\!Locales\koKR.lua
+Classic\!Locales\koKR_Vanilla.lua
 Classic\!Locales\ptBR.lua
+Classic\!Locales\ptBR_Vanilla.lua
 Classic\!Locales\ruRU.lua
+Classic\!Locales\ruRU_Vanilla.lua
 Classic\!Locales\zhCN.lua
+Classic\!Locales\zhCN_Vanilla.lua
 Classic\!Locales\zhTW.lua
+Classic\!Locales\zhTW_Vanilla.lua
 #@end-do-not-package@

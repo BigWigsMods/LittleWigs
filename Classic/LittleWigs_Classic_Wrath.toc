@@ -19,9 +19,7 @@
 ## X-Category: Party
 ## X-BigWigs-LoadOn-InstanceId: 36, 209, 229, 329, 429
 
-BlackrockSpire\modules.xml
-Deadmines\modules.xml
-modules.xml
+modules_TBC.xml
 
 !Locales\deDE.lua
 !Locales\esES.lua
