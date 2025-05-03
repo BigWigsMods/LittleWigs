@@ -222,7 +222,7 @@ end
 -- Cursed Rooktender
 
 function mod:CursedRooktenderEngaged(guid)
-	self:Nameplate(427260, 8.4, guid) -- Lightning Surge
+	self:Nameplate(427260, 8.3, guid) -- Lightning Surge
 end
 
 function mod:LightningSurge(args)
@@ -335,7 +335,6 @@ end
 
 do
 	local function printTarget(self, name, guid)
-		-- TODO verify target scanning works
 		self:TargetMessage(430805, "orange", name)
 		self:PlaySound(430805, "alarm", nil, name)
 	end
