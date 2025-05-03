@@ -26,6 +26,6 @@ jobs:
         if: always()
         uses: BigWigsMods/actions/gen-options@master
         with:
-          path: LittleWigs_Mainline.toc LittleWigs_Vanilla.toc LittleWigs_TBC.toc LittleWigs_Wrath.toc LittleWigs_Cata.toc LittleWigs_Mists.toc
+          path: LittleWigs_Vanilla.toc LittleWigs_TBC.toc LittleWigs_Wrath.toc LittleWigs_Cata.toc LittleWigs_Mists.toc LittleWigs_Mainline.toc
           quiet: true
           lint: true
