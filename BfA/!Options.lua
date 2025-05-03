@@ -747,15 +747,19 @@ BigWigs:AddSounds("K.U.-J.0.", {
 BigWigs:AddColors("Machinist's Garden", {
 	[285440] = "red",
 	[285454] = {"blue","orange","red"},
+	[292332] = "yellow",
 	[294853] = "cyan",
 	[294855] = {"blue","yellow"},
+	[1213154] = "blue",
 })
 
 BigWigs:AddSounds("Machinist's Garden", {
 	[285440] = "alarm",
 	[285454] = {"alert","info"},
+	[292332] = "info",
 	[294853] = "long",
 	[294855] = "alert",
+	[1213154] = "underyou",
 })
 
 BigWigs:AddColors("King Mechagon", {

@@ -14,7 +14,9 @@ mod:SetRespawnTime(30)
 
 local L = mod:GetLocale()
 if L then
-	L["294853_icon"] = "inv_misc_herb_felblossom"
+	L["294853_icon"] = "inv_misc_herb_felblossom" -- Activate Plant
+	L["292332_desc"] = 294954 -- Self-Trimming Hedge
+	L["292332_icon"] = 294954 -- Self-Trimming Hedge
 end
 
 --------------------------------------------------------------------------------
@@ -29,6 +31,8 @@ function mod:GetOptions()
 		{294855, "ME_ONLY"}, -- Blossom Blast
 		{285440, "CASTBAR"}, -- "Hidden" Flame Cannon
 		{285454, "DISPEL"}, -- Discom-BOMB-ulator
+		{292332, "OFF"}, -- Self-Trimming Hedge
+		1213154, -- Electrified Floor
 	}
 end
 
@@ -38,9 +42,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "HiddenFlameCannon", 285440)
 	self:Log("SPELL_CAST_START", "DiscomBOMBulator", 285454)
 	self:Log("SPELL_AURA_APPLIED", "DiscomBOMBulatorApplied", 285460)
+	self:Log("SPELL_CAST_SUCCESS", "SelfTrimmingHedge", 292332)
+	self:Log("SPELL_PERIODIC_DAMAGE", "ElectrifiedFloorDamage", 1213154)
+	self:Log("SPELL_PERIODIC_MISSED", "ElectrifiedFloorDamage", 1213154)
 end
 
 function mod:OnEngage()
+	self:CDBar(292332, 3.5, nil, L["292332_icon"]) -- Self-Trimming Hedge
 	self:CDBar(294853, 6.1, nil, L["294853_icon"]) -- Activate Plant
 	self:CDBar(285454, 8.5) -- Discom-BOMB-ulator
 	self:CDBar(285440, 12.1) -- "Hidden" Flame Cannon
@@ -104,6 +112,23 @@ do
 		if self:Dispeller("magic", nil, 285454) then
 			self:TargetsMessage(285454, "red", playerList, 5)
 			self:PlaySound(285454, "alert", nil, playerList)
+		end
+	end
+end
+
+function mod:SelfTrimmingHedge(args)
+	self:Message(args.spellId, "yellow", nil, L["292332_icon"])
+	self:CDBar(args.spellId, 25.4, nil, L["292332_icon"])
+	self:PlaySound(args.spellId, "info")
+end
+
+do
+	local prev = 0
+	function mod:ElectrifiedFloorDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
 		end
 	end
 end
