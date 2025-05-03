@@ -32,6 +32,7 @@ end
 L = BigWigs:NewBossLocale("Cinderbrew Meadery Trash", "koKR")
 if L then
 	L.venture_co_pyromaniac = "투자개발회사 불놀이꾼"
+	L.venture_co_patron = "투자개발회사 손님"
 	L.hired_muscle = "고용된 불한당"
 	L.tasting_room_attendant = "시식실 수행원"
 	L.chef_chewie = "주방장 츄이"

@@ -32,6 +32,7 @@ end
 L = BigWigs:NewBossLocale("Cinderbrew Meadery Trash", "frFR")
 if L then
 	L.venture_co_pyromaniac = "Pyromane de la KapitalRisk"
+	L.venture_co_patron = "Client de la KapitalRisk"
 	L.hired_muscle = "Mercenaire musclé"
 	L.tasting_room_attendant = "Préposé à la salle de dégustation"
 	L.chef_chewie = "Chef Mâchonne"

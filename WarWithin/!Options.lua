@@ -155,6 +155,7 @@ BigWigs:AddSounds("Goldie Baronbottom", {
 BigWigs:AddColors("Cinderbrew Meadery Trash", {
 	[434706] = "orange",
 	[434756] = {"blue","red"},
+	[434773] = {"blue","yellow"},
 	[434998] = "red",
 	[437721] = "red",
 	[437956] = {"blue","yellow"},
@@ -179,6 +180,7 @@ BigWigs:AddColors("Cinderbrew Meadery Trash", {
 BigWigs:AddSounds("Cinderbrew Meadery Trash", {
 	[434706] = "alarm",
 	[434756] = "alert",
+	[434773] = "info",
 	[434998] = "long",
 	[437721] = "alert",
 	[437956] = "alarm",

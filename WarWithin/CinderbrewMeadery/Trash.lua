@@ -7,6 +7,7 @@ if not mod then return end
 mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	218671, -- Venture Co. Pyromaniac
+	214668, -- Venture Co. Patron
 	210269, -- Hired Muscle
 	214920, -- Tasting Room Attendant
 	214697, -- Chef Chewie
@@ -36,6 +37,7 @@ local thirstyMobs = {}
 local L = mod:GetLocale()
 if L then
 	L.venture_co_pyromaniac = "Venture Co. Pyromaniac"
+	L.venture_co_patron = "Venture Co. Patron"
 	L.hired_muscle = "Hired Muscle"
 	L.tasting_room_attendant = "Tasting Room Attendant"
 	L.chef_chewie = "Chef Chewie"
@@ -71,6 +73,8 @@ function mod:GetOptions()
 		-- Venture Co. Pyromaniac
 		{437721, "NAMEPLATE"}, -- Boiling Flames
 		{437956, "NAMEPLATE"}, -- Erupting Inferno
+		-- Venture Co. Patron
+		{434773, "NAMEPLATE", "ME_ONLY", "OFF"}, -- Mean Mug
 		-- Hired Musle
 		{463218, "HEALER", "NAMEPLATE"}, -- Volatile Keg
 		{434756, "ME_ONLY", "NAMEPLATE"}, -- Throw Chair
@@ -131,6 +135,13 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "EruptingInferno", 437956)
 	self:Log("SPELL_AURA_APPLIED", "EruptingInfernoApplied", 437956)
 	self:Death("VentureCoPyromaniacDeath", 218671)
+
+	-- Venture Co. Patron
+	self:RegisterEngageMob("VentureCoPatronEngaged", 214668)
+	self:Log("SPELL_CAST_START", "MeanMug", 434773)
+	self:Log("SPELL_CAST_SUCCESS", "MeanMugSuccess", 434773)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "MeanMugApplied", 434773)
+	self:Death("VentureCoPatronDeath", 214668)
 
 	-- Hired Muscle
 	self:RegisterEngageMob("HiredMuscleEngaged", 210269)
@@ -259,6 +270,31 @@ function mod:EruptingInfernoApplied(args)
 end
 
 function mod:VentureCoPyromaniacDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Venture Co. Patron
+
+function mod:VentureCoPatronEngaged(guid)
+	self:Nameplate(434773, 8.3, guid) -- Mean Mug
+end
+
+function mod:MeanMug(args)
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+end
+
+function mod:MeanMugSuccess(args)
+	self:Nameplate(args.spellId, 14.8, args.sourceGUID)
+end
+
+function mod:MeanMugApplied(args)
+	if args.amount > 2 and args.amount % 2 == 1 then -- 3, 5, 7...
+		self:StackMessage(args.spellId, "yellow", args.destName, args.amount, 5)
+		self:PlaySound(args.spellId, "info", nil, args.destName)
+	end
+end
+
+function mod:VentureCoPatronDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
