@@ -3,6 +3,8 @@
 
 <!--<Include file="BlackrockDepths\modules.xml"/>-->
 
+<Script file="BlackrockSpire\PyroguardEmberseer.lua"/>
+
 <Script file="Deadmines\RhahkZor.lua"/>
 <Script file="Deadmines\Sneed.lua"/>
 <Script file="Deadmines\Gilnid.lua"/>
@@ -72,6 +74,6 @@
 <Script file="ZulFarrak\NekrumAndSezzziz.lua"/>
 <Script file="ZulFarrak\ChiefUkorzSandscalp.lua"/>
 
-<Script file="!Options.lua"/>
+<Script file="!Options_TBC.lua"/>
 
 </Ui>

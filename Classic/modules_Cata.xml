@@ -3,13 +3,7 @@
 
 <!--<Include file="BlackrockDepths\modules.xml"/>-->
 
-<Script file="Deadmines\RhahkZor.lua"/>
-<Script file="Deadmines\Sneed.lua"/>
-<Script file="Deadmines\Gilnid.lua"/>
-<Script file="Deadmines\MrSmite.lua"/>
-<Script file="Deadmines\CaptainGreenskin.lua"/>
-<Script file="Deadmines\EdwinVanCleef.lua"/>
-<Script file="Deadmines\Cookie.lua"/>
+<Script file="BlackrockSpire\PyroguardEmberseer.lua"/>
 
 <Script file="DireMaul\TendrisWarpwood.lua"/>
 <Script file="DireMaul\IllyannaRavenoak.lua"/>
@@ -72,6 +66,6 @@
 <Script file="ZulFarrak\NekrumAndSezzziz.lua"/>
 <Script file="ZulFarrak\ChiefUkorzSandscalp.lua"/>
 
-<Script file="!Options.lua"/>
+<Script file="!Options_Cata.lua"/>
 
 </Ui>
