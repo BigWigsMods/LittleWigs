@@ -35,7 +35,7 @@ end
 
 L = BigWigs:NewBossLocale("Kaigy Maryla", "koKR")
 if L then
-	--L.kaigy_maryla = "Kaigy Maryla"
+	L.kaigy_maryla = "카이기 메릴라"
 end
 
 L = BigWigs:NewBossLocale("Sairuh Maryla", "koKR")
@@ -68,9 +68,9 @@ end
 L = BigWigs:NewBossLocale("Goblins", "koKR")
 if L then
 	--L.goblins = "Goblins"
-	--L.geenkle = "Geenkle"
-	--L.jank = "Jank"
-	--L.gold_rustboot = "Gold Rustboot"
+	L.geenkle = "그린클"
+	L.jank = "쟁크"
+	L.gold_rustboot = "골드 러스트부트"
 end
 
 L = BigWigs:NewBossLocale("Harbinger of Sin", "koKR")
