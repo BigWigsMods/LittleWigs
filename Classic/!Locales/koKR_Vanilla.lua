@@ -40,12 +40,12 @@ end
 
 L = BigWigs:NewBossLocale("Sairuh Maryla", "koKR")
 if L then
-	--L.sairuh_maryla = "Sairuh Maryla"
+	L.sairuh_maryla = "사이루 메릴라"
 end
 
 L = BigWigs:NewBossLocale("Barian Maryla", "koKR")
 if L then
-	--L.barian_maryla = "Barian Maryla"
+	L.barian_maryla = "바리안 메릴라"
 end
 
 L = BigWigs:NewBossLocale("Creeping Malison", "koKR")
@@ -80,15 +80,15 @@ end
 
 L = BigWigs:NewBossLocale("Kharon", "koKR")
 if L then
-	--L.kharon = "Kharon"
+	L.kharon = "Kharon"
 end
 
 L = BigWigs:NewBossLocale("Unk'omon", "koKR")
 if L then
-	--L.unkomon = "Unk'omon"
+	L.unkomon = "운코몬"
 end
 
 L = BigWigs:NewBossLocale("Dark Rider", "koKR")
 if L then
-	--L.dark_rider = "Dark Rider"
+	L.dark_rider = "암흑 기수"
 end
