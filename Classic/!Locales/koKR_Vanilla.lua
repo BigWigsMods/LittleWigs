@@ -55,7 +55,7 @@ end
 
 L = BigWigs:NewBossLocale("Trizivast", "koKR")
 if L then
-	--L.trizivast = "Trizivast"
+	L.trizivast = "트리지바스트"
 end
 
 L = BigWigs:NewBossLocale("Hans and Greta", "koKR")
@@ -67,7 +67,7 @@ end
 
 L = BigWigs:NewBossLocale("Goblins", "koKR")
 if L then
-	--L.goblins = "Goblins"
+	L.goblins = "고블린"
 	L.geenkle = "그린클"
 	L.jank = "쟁크"
 	L.gold_rustboot = "골드 러스트부트"
@@ -80,7 +80,7 @@ end
 
 L = BigWigs:NewBossLocale("Kharon", "koKR")
 if L then
-	--L.kharon = "Kharon"
+	L.kharon = "카론"
 end
 
 L = BigWigs:NewBossLocale("Unk'omon", "koKR")
