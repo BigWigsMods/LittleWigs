@@ -35,60 +35,60 @@ end
 
 L = BigWigs:NewBossLocale("Kaigy Maryla", "koKR")
 if L then
-	--L.kaigy_maryla = "Kaigy Maryla"
+	L.kaigy_maryla = "카이기 메릴라"
 end
 
 L = BigWigs:NewBossLocale("Sairuh Maryla", "koKR")
 if L then
-	--L.sairuh_maryla = "Sairuh Maryla"
+	L.sairuh_maryla = "사이루 메릴라"
 end
 
 L = BigWigs:NewBossLocale("Barian Maryla", "koKR")
 if L then
-	--L.barian_maryla = "Barian Maryla"
+	L.barian_maryla = "바리안 메릴라"
 end
 
 L = BigWigs:NewBossLocale("Creeping Malison", "koKR")
 if L then
-	--L.creeping_malison = "Creeping Malison"
+	L.creeping_malison = "엄습하는 저주"
 end
 
 L = BigWigs:NewBossLocale("Trizivast", "koKR")
 if L then
-	--L.trizivast = "Trizivast"
+	L.trizivast = "트리지바스트"
 end
 
 L = BigWigs:NewBossLocale("Hans and Greta", "koKR")
 if L then
-	--L.hans_and_greta = "Hans and Greta"
-	--L.hans = "Hans"
-	--L.greta = "Greta"
+	L.hans_and_greta = "한스와 그레타"
+	L.hans = "한스"
+	L.greta = "그레타"
 end
 
 L = BigWigs:NewBossLocale("Goblins", "koKR")
 if L then
-	--L.goblins = "Goblins"
-	--L.geenkle = "Geenkle"
-	--L.jank = "Jank"
-	--L.gold_rustboot = "Gold Rustboot"
+	L.goblins = "고블린"
+	L.geenkle = "그린클"
+	L.jank = "쟁크"
+	L.gold_rustboot = "골드 러스트부트"
 end
 
 L = BigWigs:NewBossLocale("Harbinger of Sin", "koKR")
 if L then
-	--L.harbinger_of_sin = "Harbinger of Sin"
+	L.harbinger_of_sin = "죄악의 전령"
 end
 
 L = BigWigs:NewBossLocale("Kharon", "koKR")
 if L then
-	--L.kharon = "Kharon"
+	L.kharon = "카론"
 end
 
 L = BigWigs:NewBossLocale("Unk'omon", "koKR")
 if L then
-	--L.unkomon = "Unk'omon"
+	L.unkomon = "운코몬"
 end
 
 L = BigWigs:NewBossLocale("Dark Rider", "koKR")
 if L then
-	--L.dark_rider = "Dark Rider"
+	L.dark_rider = "암흑 기수"
 end
