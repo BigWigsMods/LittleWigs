@@ -50,7 +50,7 @@ end
 
 L = BigWigs:NewBossLocale("Creeping Malison", "koKR")
 if L then
-	--L.creeping_malison = "Creeping Malison"
+	L.creeping_malison = "엄습하는 저주"
 end
 
 L = BigWigs:NewBossLocale("Trizivast", "koKR")
@@ -60,9 +60,9 @@ end
 
 L = BigWigs:NewBossLocale("Hans and Greta", "koKR")
 if L then
-	--L.hans_and_greta = "Hans and Greta"
-	--L.hans = "Hans"
-	--L.greta = "Greta"
+	L.hans_and_greta = "한스와 그레타"
+	L.hans = "한스"
+	L.greta = "그레타"
 end
 
 L = BigWigs:NewBossLocale("Goblins", "koKR")
@@ -75,12 +75,12 @@ end
 
 L = BigWigs:NewBossLocale("Harbinger of Sin", "koKR")
 if L then
-	--L.harbinger_of_sin = "Harbinger of Sin"
+	L.harbinger_of_sin = "죄악의 전령"
 end
 
 L = BigWigs:NewBossLocale("Kharon", "koKR")
 if L then
-	L.kharon = "Kharon"
+	--L.kharon = "Kharon"
 end
 
 L = BigWigs:NewBossLocale("Unk'omon", "koKR")
