@@ -4,7 +4,10 @@
 
 local mod, CL = BigWigs:NewBoss("Geargrave", {2684, 2688, 2826}) -- The Dread Pit, The Spiral Weave, Sidestreet Sluice
 if not mod then return end
-mod:RegisterEnableMob(234949) -- Geargrave
+mod:RegisterEnableMob(
+	234949, -- Geargrave (Sidestreet Sluice, The Dread Pit)
+    236531 -- Geargrave (The Spiral Weave)
+)
 --mod:SetEncounterID(3174) -- encounter event doesn't fire in Sidestreet Sluice
 -- 3020 in The Dread Pit (does fire), 3123 in The Spiral Weave (does fire)
 --mod:SetRespawnTime(15) resets, doesn't respawn
@@ -46,7 +49,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_MISSED", "BlackBloodDamage", 1215912)
 	self:Log("SPELL_CAST_START", "JuiceItUp", 1215975)
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus") -- XXX no encounter events
-	self:Death("Win", 234949) -- Geargrave
+	self:Death("Win", 234949, 236531) -- Geargrave (Sidestreet Sluice, The Dread Pit), Geargrave (The Spiral Weave)
 end
 
 function mod:OnEngage()
@@ -67,7 +70,7 @@ end
 
 function mod:CarnageCannon(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 21.9)
+	self:CDBar(args.spellId, 21.1)
 	self:PlaySound(args.spellId, "alarm")
 end
 
