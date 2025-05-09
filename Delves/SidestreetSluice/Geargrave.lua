@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Geargrave", {2684, 2688, 2826}) -- The Dread Pi
 if not mod then return end
 mod:RegisterEnableMob(
 	234949, -- Geargrave (Sidestreet Sluice, The Dread Pit)
-    236531 -- Geargrave (The Spiral Weave)
+	236531 -- Geargrave (The Spiral Weave)
 )
 --mod:SetEncounterID(3174) -- encounter event doesn't fire in Sidestreet Sluice
 -- 3020 in The Dread Pit (does fire), 3123 in The Spiral Weave (does fire)
