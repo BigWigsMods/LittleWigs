@@ -6,12 +6,10 @@ local mod, CL = BigWigs:NewBoss("Lorewalker Stonestep", 960, 664)
 if not mod then return end
 mod:RegisterEnableMob(
 	57080, -- Corrupted Scroll
-
-	-- The Trial of the Yaungol:
+	-- The Trial of the Yaungol
 	59051, -- Strife
 	59726, -- Peril
-
-	-- The Champion of the Five Suns:
+	-- The Champion of the Five Suns
 	58826, -- Zao Sunseeker
 	56915 -- Sun
 )
@@ -22,11 +20,11 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
--- [[ The Trial of the Yaungol ]] --
+-- The Trial of the Yaungol
 local isTrialOfTheYaungol = nil
 local stacksOfIntensity = {}
 
--- [[ The Champion of the Five Suns ]] --
+-- The Champion of the Five Suns
 local sunsDead, shaDead = 0, 0
 
 --------------------------------------------------------------------------------
@@ -46,32 +44,49 @@ end
 -- Initialization
 --
 
-function mod:GetOptions()
-	return {
-		"warmup",
-		-5549, -- Intensity
-		{396150, "SAY"}, -- Feeling of Superiority
-		396152, -- Feeling of Inferiority
-		"stages",
-	}, {
-		["warmup"] = "general",
-		[-5549] = -5536, -- The Trial of the Yaungol
-		["stages"] = -5537, -- The Champion of the Five Suns
-	}
+if mod:Retail() then -- Dragonflight+
+	function mod:GetOptions()
+		return {
+			"warmup",
+			-- The Trial of the Yaungol
+			-5549, -- Intensity
+			{396150, "SAY"}, -- Feeling of Superiority
+			396152, -- Feeling of Inferiority
+			-- The Champion of the Five Suns
+			"stages",
+		}, {
+			[-5549] = -5536, -- The Trial of the Yaungol
+			["stages"] = -5537, -- The Champion of the Five Suns
+		}
+	end
+else -- Classic Mists through Shadowlands
+	function mod:GetOptions()
+		return {
+			"warmup",
+			-- The Trial of the Yaungol
+			-5549, -- Intensity
+			-- The Champion of the Five Suns
+			"stages",
+		}, {
+			[-5549] = -5536, -- The Trial of the Yaungol
+			["stages"] = -5537, -- The Champion of the Five Suns
+		}
+	end
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("ENCOUNTER_START")
-
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
+	self:RegisterEvent("ENCOUNTER_START")
 
 	-- [[ The Trial of the Yaungol ]] --
 	self:RegisterUnitEvent("UNIT_AURA", nil, "boss1", "boss2")
 	self:Log("SPELL_AURA_APPLIED", "UltimatePower", 113309)
-	self:Log("SPELL_AURA_APPLIED", "FeelingOfSuperiorityApplied", 396150)
-	self:Log("SPELL_AURA_APPLIED_DOSE", "FeelingOfSuperiorityAppliedDose", 396150)
-	self:Log("SPELL_AURA_APPLIED", "FeelingOfInferiorityApplied", 396152)
-	self:Log("SPELL_AURA_REMOVED", "FeelingOfInferiorityRemoved", 396152)
+	if self:Retail() then -- Dragonflight+
+		self:Log("SPELL_AURA_APPLIED", "FeelingOfSuperiorityApplied", 396150)
+		self:Log("SPELL_AURA_APPLIED_DOSE", "FeelingOfSuperiorityAppliedDose", 396150)
+		self:Log("SPELL_AURA_APPLIED", "FeelingOfInferiorityApplied", 396152)
+		self:Log("SPELL_AURA_REMOVED", "FeelingOfInferiorityRemoved", 396152)
+	end
 
 	-- [[ The Champion of the Five Suns ]] --
 	self:Log("SPELL_CAST_START", "HellfireArrows", 113017)
@@ -197,6 +212,7 @@ function mod:FeelingOfInferiorityRemoved(args)
 end
 
 -- [[ The Champion of the Five Suns ]] --
+
 function mod:SunDeath(args)
 	sunsDead = sunsDead + 1
 	self:Message("stages", "green", CL.mob_killed:format(args.destName, sunsDead, 4), false)
