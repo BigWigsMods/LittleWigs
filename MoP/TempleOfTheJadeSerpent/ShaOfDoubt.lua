@@ -34,7 +34,9 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "TouchOfNothingness", 106113)
 	self:Log("SPELL_AURA_APPLIED", "TouchOfNothingnessApplied", 106113)
-	self:Log("SPELL_CAST_START", "BoundsOfRealityStart", 117665)
+	if self:Retail() then -- Dragonflight+
+		self:Log("SPELL_CAST_START", "BoundsOfRealityStart", 117665)
+	end
 	self:Log("SPELL_AURA_APPLIED", "BoundsOfReality", 117665)
 	self:Log("SPELL_AURA_REMOVED", "BoundsOfRealityOver", 117665)
 	self:Log("SPELL_AURA_APPLIED", "GatheringDoubt", 117570)
@@ -81,12 +83,16 @@ do
 	end
 end
 
-function mod:BoundsOfRealityStart(args)
+function mod:BoundsOfRealityStart(args) -- Retail only
 	touchOfNothingnessRemaining = 3
 	self:StopBar(106113) -- Touch of Nothingness
 end
 
 function mod:BoundsOfReality(args)
+	if self:Classic() then -- Classic Mists through Shadowlands
+		touchOfNothingnessRemaining = 3
+		self:StopBar(106113) -- Touch of Nothingness
+	end
 	self:Message(args.spellId, "orange")
 	self:PlaySound(args.spellId, "long")
 	self:CDBar(args.spellId, 69.2)
