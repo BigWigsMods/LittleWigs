@@ -60,6 +60,7 @@
 <Script file="Trash\Underkeep.lua"/>
 <!--<Script file="Trash\ZekvirRares.lua"/>-->
 <Script file="Trash\UnderpinRares.lua"/>
+<Script file="Trash\Overcharged.lua"/>
 
 <Script file="ZekvirsLair\Zekvir.lua"/>
 <Script file="ZekvirsLair\Zekvir2.lua"/>

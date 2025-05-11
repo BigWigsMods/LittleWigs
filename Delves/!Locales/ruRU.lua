@@ -337,3 +337,12 @@ if L then
 
 	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
 end
+
+L = BigWigs:NewBossLocale("Overcharged Trash", "ruRU")
+if L then
+	--L.overcharged_trash = "Overcharged Trash"
+
+	--L.awakened_defensive_construct = "Awakened Defensive Construct"
+	--L.awakened_defense_matrix = "Awakened Defense Matrix"
+	--L.overcharged_bot = "Overcharged Bot"
+end
