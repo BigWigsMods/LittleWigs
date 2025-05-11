@@ -92,15 +92,9 @@ function mod:FootbombLauncher(args)
 end
 
 function mod:BlazingAzeriteApplied(args)
-	if self:Me(args.destGUID) then -- XXX this no longer seems possible
-		-- TODO it's 270882 on players, but do we care?
-		self:StackMessageOld(args.spellId, args.destName, args.amount, "blue")
-		self:PlaySound(args.spellId, "alarm")
-	elseif self:UnitGUID("boss1") == args.destGUID then
-		local amount = args.amount or 1
-		self:Message(args.spellId, "green", CL.stack:format(amount, args.spellName, CL.boss))
-		self:PlaySound(args.spellId, "info")
-	end
+	local amount = args.amount or 1
+	self:Message(args.spellId, "green", CL.stackboss:format(amount, args.spellName))
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:CoinMagnet(args)
@@ -117,7 +111,7 @@ do
 
 	local function warn()
 		timerStarted = false
-		mod:Message(271867, "purple", CL.stack:format(amount, mod:SpellName(271867), CL.boss)) -- Pay to Win
+		mod:Message(271867, "purple", CL.stackboss:format(amount, mod:SpellName(271867))) -- Pay to Win
 		mod:PlaySound(271867, "alarm") -- Pay to Win
 	end
 

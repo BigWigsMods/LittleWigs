@@ -1239,7 +1239,7 @@ BigWigs:AddSounds("Temple of Sethraliss Trash", {
 })
 
 BigWigs:AddColors("Coin-Operated Crowd Pummeler", {
-	[256493] = {"blue","green"},
+	[256493] = "green",
 	[262347] = "red",
 	[269493] = "cyan",
 	[271784] = "yellow",
@@ -1249,7 +1249,7 @@ BigWigs:AddColors("Coin-Operated Crowd Pummeler", {
 })
 
 BigWigs:AddSounds("Coin-Operated Crowd Pummeler", {
-	[256493] = {"alarm","info"},
+	[256493] = "info",
 	[262347] = "alert",
 	[269493] = "long",
 	[271784] = "info",
