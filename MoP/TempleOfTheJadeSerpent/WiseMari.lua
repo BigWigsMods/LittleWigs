@@ -19,30 +19,43 @@ local corruptedVortexCount = 0
 -- Initialization
 --
 
-function mod:GetOptions()
-	return {
-		-- Mythic+
-		{397785, "CASTBAR"}, -- Wash Away
-		{397797, "SAY", "SAY_COUNTDOWN"}, -- Corrupted Vortex
-		397793, -- Corrupted Geyser
-		-- Normal / Heroic
-		"stages",
-		-6327, -- Call Water
-		106653, -- Sha Residue
-		115167, -- Corrupted Waters
-	}, {
-		[397785] = CL.mythic,
-		["stages"] = CL.normal.." / "..CL.heroic,
-	}
+if mod:Retail() then -- Dragonflight+
+	function mod:GetOptions()
+		return {
+			-- Mythic+
+			{397785, "CASTBAR"}, -- Wash Away
+			{397797, "SAY", "SAY_COUNTDOWN"}, -- Corrupted Vortex
+			397793, -- Corrupted Geyser
+			-- Normal / Heroic
+			"stages",
+			-6327, -- Call Water
+			106653, -- Sha Residue
+			115167, -- Corrupted Waters
+		}, {
+			[397785] = CL.mythic,
+			["stages"] = CL.normal.." / "..CL.heroic,
+		}
+	end
+else -- Classic Mists through Shadowlands
+	function mod:GetOptions()
+		return {
+			"stages",
+			-6327, -- Call Water
+			106653, -- Sha Residue
+			115167, -- Corrupted Waters
+		}
+	end
 end
 
 function mod:OnBossEnable()
-	-- Mythic+
-	self:Log("SPELL_CAST_START", "WashAway", 397783)
-	self:Log("SPELL_CAST_SUCCESS", "WashAwayChannelStart", 397783)
-	self:Log("SPELL_AURA_APPLIED", "CorruptedVortexApplied", 397797)
-	self:Log("SPELL_PERIODIC_DAMAGE", "CorruptedVortexDamage", 397799)
-	self:Log("SPELL_PERIODIC_MISSED", "CorruptedVortexDamage", 397799)
+	if self:Retail() then -- Dragonflight+
+		-- Mythic+
+		self:Log("SPELL_CAST_START", "WashAway", 397783)
+		self:Log("SPELL_CAST_SUCCESS", "WashAwayChannelStart", 397783)
+		self:Log("SPELL_AURA_APPLIED", "CorruptedVortexApplied", 397797)
+		self:Log("SPELL_PERIODIC_DAMAGE", "CorruptedVortexDamage", 397799)
+		self:Log("SPELL_PERIODIC_MISSED", "CorruptedVortexDamage", 397799)
+	end
 
 	-- Normal / Heroic
 	self:Log("SPELL_CAST_START", "BubbleBurst", 106612)
