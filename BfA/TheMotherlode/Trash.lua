@@ -93,6 +93,7 @@ function mod:GetOptions()
 		{268846, "NAMEPLATE"}, -- Echo Blade
 		-- Venture Co. Mastermind
 		{473304, "NAMEPLATE"}, -- Brainstorm
+		{262794, "ME_ONLY"}, -- Mind Lash
 		-- Venture Co. Alchemist
 		{268797, "DISPEL", "NAMEPLATE"}, -- Transmute: Enemy to Goo
 		-- Venture Co. War Machine
@@ -210,6 +211,7 @@ function mod:OnBossEnable()
 	-- Venture Co. Mastermind
 	self:RegisterEngageMob("VentureCoMastermindEngaged", 133430)
 	self:Log("SPELL_CAST_SUCCESS", "Brainstorm", 473304)
+	self:Log("SPELL_CAST_START", "MindLash", 262794)
 	self:Death("VentureCoMastermindDeath", 133430)
 
 	-- Venture Co. Alchemist
@@ -717,6 +719,17 @@ function mod:Brainstorm(args)
 	self:Message(args.spellId, "orange")
 	self:Nameplate(args.spellId, 16.6, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local function printTarget(self, name)
+		self:TargetMessage(262794, "yellow", name)
+		self:PlaySound(262794, "info", nil, name)
+	end
+
+	function mod:MindLash(args)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+	end
 end
 
 function mod:VentureCoMastermindDeath(args)
