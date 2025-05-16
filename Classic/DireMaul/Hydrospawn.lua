@@ -30,7 +30,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Riptide", 22419)
 	self:Log("SPELL_CAST_START", "MassiveGeyser", 22421)
 	self:Log("SPELL_CAST_SUCCESS", "SummonHydroling", 22714)
-	if self:Heroic() or (self:Classic() and not self:Vanilla()) then -- no encounter events in Timewalking or Cataclysm Classic
+	if self:Classic() and not self:Vanilla() then -- no encounter events in Cataclysm Classic
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 		self:Death("Win", 13280)
 	end
