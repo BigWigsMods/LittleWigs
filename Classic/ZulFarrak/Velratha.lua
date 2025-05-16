@@ -24,7 +24,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "HealingWaveInterrupt", 15982)
 	self:Log("SPELL_CAST_SUCCESS", "HealingWaveSuccess", 15982)
 	self:Log("SPELL_CAST_START", "CrashingWave", 78802)
-	if self:Heroic() or (self:Classic() and not self:Vanilla()) then -- no encounter events in Timewalking or Cataclysm Classic
+	if self:Classic() and not self:Vanilla() then -- no encounter events in Cataclysm Classic
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 		self:Death("Win", 7795)
 	end

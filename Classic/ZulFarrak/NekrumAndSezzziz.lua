@@ -47,7 +47,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "HealInterrupt", 12039)
 	self:Log("SPELL_CAST_SUCCESS", "HealSuccess", 12039)
 
-	if self:Heroic() or (self:Classic() and not self:Vanilla()) then -- no encounter events in Timewalking or Cataclysm Classic
+	if self:Classic() and not self:Vanilla() then -- no encounter events in Cataclysm Classic
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	end
 	self:Death("BossDeath", 7796, 7275)
@@ -123,7 +123,7 @@ end
 
 function mod:BossDeath(args)
 	deaths = deaths + 1
-	if (self:Heroic() or (self:Classic() and not self:Vanilla())) and deaths == 2 then -- no encounter events in Timewalking
+	if (self:Classic() and not self:Vanilla()) and deaths == 2 then -- no encounter events in Cataclysm Classic
 		deaths = 0
 		self:Win()
 	elseif args.mobId == 7796 then -- Nekrum Gutchewer
