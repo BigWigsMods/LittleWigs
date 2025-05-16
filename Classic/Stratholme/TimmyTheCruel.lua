@@ -27,10 +27,10 @@ function mod:OnBossEnable()
 	if self:Retail() then
 		self:Log("SPELL_CAST_SUCCESS", "Fixate", 12021)
 	end
-	if self:Heroic() or (self:Classic() and not self:Vanilla()) then -- no encounter events in Timewalking or Cataclysm Classic
+	if self:Classic() and not self:Vanilla() then -- no encounter events in Cataclysm Classic
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	end
-	if self:Heroic() or self:Classic() then -- no encounter events in Timewalking, ENCOUNTER_END missing in Classic
+	if self:Classic() then -- ENCOUNTER_END missing in Classic
 		self:Death("Win", 10808)
 	end
 end

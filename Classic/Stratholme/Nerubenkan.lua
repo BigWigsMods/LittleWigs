@@ -25,7 +25,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "PierceArmor", 6016)
 	self:Log("SPELL_CAST_SUCCESS", "EncasingWebs", 4962)
 	self:Log("SPELL_AURA_APPLIED", "EncasingWebsApplied", 4962)
-	if self:Heroic() or (self:Classic() and not self:Vanilla()) then -- no encounter events in Timewalking or Cataclysm Classic
+	if self:Classic() and not self:Vanilla() then -- no encounter events in Cataclysm Classic
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 		self:Death("Win", 10437)
 	end
