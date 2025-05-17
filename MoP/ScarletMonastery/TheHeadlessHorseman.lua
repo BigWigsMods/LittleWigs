@@ -1,3 +1,4 @@
+if not BigWigsLoader.isRetail then return end -- Dragonflight+
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
