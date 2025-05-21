@@ -291,7 +291,7 @@ end
 
 L = BigWigs:NewBossLocale("Nightfall Delve Trash", "zhTW")
 if L then
-	L.nightfall_trash = "夜暮小怪"
+	L.nightfall_trash = "黑夜教團小怪"
 
 	L.dark_bombardier = "黑暗投彈手"
 	L.nightfall_inquisitor = "夜暮審判官"
@@ -335,14 +335,14 @@ if L then
 	L.aggressively_lost_hobgoblin = "極度迷路的大哥布林"
 	L.the_underpin = "幽坑霸主（隨機出現）"
 
-	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
+	L.underpin_retreat_trigger = "總是有人喜歡亂闖我完全合法的私有地！"
 end
 
 L = BigWigs:NewBossLocale("Overcharged Trash", "zhTW")
 if L then
-	--L.overcharged_trash = "Overcharged Trash"
+	L.overcharged_trash = "超載小怪"
 
-	--L.awakened_defensive_construct = "Awakened Defensive Construct"
-	--L.awakened_defense_matrix = "Awakened Defense Matrix"
-	--L.overcharged_bot = "Overcharged Bot"
+	L.awakened_defensive_construct = "覺醒防禦傀儡"
+	L.awakened_defense_matrix = "覺醒防禦矩陣"
+	L.overcharged_bot = "超載機器人"
 end
