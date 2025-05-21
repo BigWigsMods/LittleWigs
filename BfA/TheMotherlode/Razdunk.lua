@@ -28,7 +28,7 @@ function mod:GetOptions()
 		{260813, "SAY", "ME_ONLY_EMPHASIZE"}, -- Homing Missile
 		{276229, "CASTBAR"}, -- Micro Missiles (Mythic)
 		-- Stage Two: Drill!
-		{271456, "SAY", "SAY_COUNTDOWN"}, -- Drill Smash
+		{271456, "SAY", "SAY_COUNTDOWN", "ME_ONLY_EMPHASIZE"}, -- Drill Smash
 	}, {
 		[260280] = -18916, -- Stage One: Big Guns
 		[271456] = -17498, -- Stage Two: Drill!
@@ -141,8 +141,10 @@ do
 		if self:Me(guid) then
 			self:Say(271456, nil, nil, "Drill Smash")
 			self:SayCountdown(271456, 5 - elapsed)
+			self:PlaySound(271456, "warning", nil, name)
+		else
+			self:PlaySound(271456, "alert", nil, name)
 		end
-		self:PlaySound(271456, "alert", nil, name)
 	end
 
 	function mod:DrillSmash(args)

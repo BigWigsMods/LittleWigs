@@ -1299,7 +1299,7 @@ BigWigs:AddColors("Mogul Razdunk", {
 BigWigs:AddSounds("Mogul Razdunk", {
 	[260280] = "alert",
 	[260813] = {"alarm","warning"},
-	[271456] = "alert",
+	[271456] = {"alert","warning"},
 	[276229] = "long",
 	["stages"] = {"info","long"},
 })
