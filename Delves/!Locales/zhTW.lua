@@ -3,26 +3,26 @@
 local L = BigWigs:NewBossLocale("The Underpin", "zhTW")
 if not L then return end
 if L then
-	--L.the_underpin = "The Underpin (Tier 8)"
-	--L.crony = "Crony"
+	L.the_underpin = "幽坑霸主（8 層）"
+	L.crony = "親信"
 end
 
 L = BigWigs:NewBossLocale("The Underpin 2", "zhTW")
 if L then
-	--L.the_underpin = "The Underpin (Tier 11)"
-	--L.crony = "Crony"
+	L.the_underpin = "幽坑霸主（11 層）"
+	L.crony = "親信"
 end
 
 -- Earthcrawl Mines
 
 L = BigWigs:NewBossLocale("Maklin Drillstab", "zhTW")
 if L then
-	--L.maklin_drillstab = "Maklin Drillstab"
+	L.maklin_drillstab = "馬克林‧鑽刺"
 end
 
 L = BigWigs:NewBossLocale("The Biggest Bug", "zhTW")
 if L then
-	--L.the_biggest_bug = "The Biggest Bug"
+	L.the_biggest_bug = "超大的蟲子"
 end
 
 L = BigWigs:NewBossLocale("Web General Ab'enar", "zhTW")
@@ -34,25 +34,25 @@ end
 
 L = BigWigs:NewBossLocale("Craggle Fritzbrains", "zhTW")
 if L then
-	--L.craggle_fritzbrains = "Craggle Fritzbrains"
+	L.craggle_fritzbrains = "奎格‧弗里茲布連"
 end
 
 L = BigWigs:NewBossLocale("Harbinger Ul'thul", "zhTW")
 if L then
-	--L.harbinger_ulthul = "Harbinger Ul'thul"
+	L.harbinger_ulthul = "使者烏蘇爾"
 end
 
 L = BigWigs:NewBossLocale("Xel'anegh The Many", "zhTW")
 if L then
-	--L.xelanegh_the_many = "Xel'anegh The Many"
+	L.xelanegh_the_many = "「共體者」席拉涅"
 end
 
 -- Fungal Folly
 
 L = BigWigs:NewBossLocale("Maulspike", "zhTW")
 if L then
-	--L.maulspike = "Maulspike"
-	--L.darkfuse_cackler = "Darkfuse Cackler"
+	L.maulspike = "厲刺"
+	L.darkfuse_cackler = "暗融咯笑者"
 end
 
 L = BigWigs:NewBossLocale("Spinshroom", "zhTW")
@@ -83,39 +83,39 @@ end
 
 L = BigWigs:NewBossLocale("Speaker Davenruth", "zhTW")
 if L then
-	--L.speaker_davenruth = "Speaker Davenruth"
+	L.speaker_davenruth = "演說者德文魯斯"
 	L.reformed_fury = "重構怒影"
 end
 
 L = BigWigs:NewBossLocale("Speaker Wicke", "zhTW")
 if L then
-	--L.speaker_wicke = "Speaker Wicke"
+	L.speaker_wicke = "代言者維克"
 	L.reformed_fury = "重構怒影"
 end
 
 L = BigWigs:NewBossLocale("Cult Leaders", "zhTW")
 if L then
 	L.cult_leaders = "教徒領袖"
-	--L.inquisitor_speaker = "Inquisitor Speaker"
-	--L.shadeguard_speaker = "Shadeguard Speaker"
+	L.inquisitor_speaker = "審判官代言者"
+	L.shadeguard_speaker = "暗影衛兵代言者"
 end
 
 -- Sidestreet Sluice
 
 L = BigWigs:NewBossLocale("Geargrave", "zhTW")
 if L then
-	--L.geargrave = "Geargrave"
+	L.geargrave = "基爾葛瑞弗"
 end
 
 L = BigWigs:NewBossLocale("Gold Elemental", "zhTW")
 if L then
-	--L.gold_elemental = "Gold Elemental"
-	--L.gold_shaman = "Gold Shaman"
+	L.gold_elemental = "黃金元素"
+	L.gold_shaman = "黃金薩滿"
 end
 
 L = BigWigs:NewBossLocale("Vindle Snapcrank", "zhTW")
 if L then
-	--L.vindle_snapcrank = "Vindle Snapcrank"
+	L.vindle_snapcrank = "溫德‧斷柄"
 end
 
 -- Skittering Breach
@@ -127,7 +127,7 @@ end
 
 L = BigWigs:NewBossLocale("Faceless One", "zhTW")
 if L then
-	--L.faceless_one = "Faceless One"
+	L.faceless_one = "無面者"
 end
 
 L = BigWigs:NewBossLocale("Speaker Xanventh", "zhTW")
@@ -159,8 +159,8 @@ end
 L = BigWigs:NewBossLocale("Leviathan Caller", "zhTW")
 if L then
 	L.leviathan_caller = "海獸呼喚者"
-	--L.guardian_tentacle = "Guardian Tentacle"
-	--L.slamming_tentacles = "Slamming Tentacles" -- plural
+	L.guardian_tentacle = "守護觸手"
+	L.slamming_tentacles = "守護觸手" -- plural
 end
 
 L = BigWigs:NewBossLocale("Cragpie", "zhTW")
@@ -194,16 +194,16 @@ end
 
 L = BigWigs:NewBossLocale("Torque Clankfire and Sprok", "zhTW")
 if L then
-	--L.bossName = "Torque Clankfire and Sprok"
-	--L.torque_clankfire = "Torque Clankfire"
-	--L.sprok = "Sprok"
+	L.bossName = "托克‧噹火和斯伯洛克"
+	L.torque_clankfire = "托克‧噹火"
+	L.sprok = "斯伯洛克"
 end
 
 -- The Waterworks
 
 L = BigWigs:NewBossLocale("Shroomsprew", "zhTW")
 if L then
-	--L.shroomsprew = "Shroomsprew"
+	L.shroomsprew = "蘑菇斯普"
 end
 
 L = BigWigs:NewBossLocale("Waxface", "zhTW")
@@ -215,125 +215,125 @@ end
 
 L = BigWigs:NewBossLocale("Zekvir", "zhTW")
 if L then
-	--L.zekvir = "Zekvir (Tier 8)"
-	--L.web_terror = "Web Terror"
+	L.zekvir = "澤克維爾（8 層）"
+	L.web_terror = "蛛網恐懼"
 end
 
 L = BigWigs:NewBossLocale("Zekvir 2", "zhTW")
 if L then
-	--L.zekvir = "Zekvir (Tier 11)"
-	--L.web_terror = "Web Terror"
+	L.zekvir = "澤克維爾（11 層）"
+	L.web_terror = "蛛網恐懼"
 end
 
 -- Trash
 
 L = BigWigs:NewBossLocale("Fungarian Delve Trash", "zhTW")
 if L then
-	--L.fungarian_trash = "Fungarian Trash"
+	L.fungarian_trash = "蘑菇人小怪"
 
-	--L.sporbit = "Sporbit"
-	--L.fungal_speartender = "Fungal Speartender"
-	--L.gnarled_reviver = "Gnarled Reviver"
-	--L.infected_beast = "Infected Beast"
-	--L.fungal_gutter = "Fungal Gutter"
-	--L.fungarian_flinger = "Fungarian Flinger"
-	--L.fungal_rotcaster = "Fungal Rotcaster"
-	--L.particularly_bad_guy = "Particularly Bad Guy"
+	L.sporbit = "小孢子"
+	L.fungal_speartender = "真菌長矛看管者"
+	L.gnarled_reviver = "異瘤復活者"
+	L.infected_beast = "被感染的野獸"
+	L.fungal_gutter = "真菌開膛手"
+	L.fungarian_flinger = "蘑菇人投擲者"
+	L.fungal_rotcaster = "真菌施腐者"
+	L.particularly_bad_guy = "壞到不行的傢伙"
 end
 
 L = BigWigs:NewBossLocale("Goblin Delve Trash", "zhTW")
 if L then
-	--L.goblin_trash = "Goblin Trash"
+	L.goblin_trash = "哥布林小怪"
 
-	--L.bopper_bot = "Bopper Bot"
-	--L.aerial_support_bot = "Aerial Support Bot"
-	--L.masked_freelancer = "Masked Freelancer"
-	--L.underpaid_brute = "Underpaid Brute"
-	--L.drill_sergeant = "Drill Sergeant"
-	--L.punchy_thug = "Punchy Thug"
-	--L.flinging_flicker = "Flinging Flicker"
-	--L.bomb_bot = "Bomb Bot"
+	L.bopper_bot = "錘錘機器人"
+	L.aerial_support_bot = "空中支援機器人"
+	L.masked_freelancer = "蒙面自由工作者"
+	L.underpaid_brute = "廉價蠻卒"
+	L.drill_sergeant = "鑽鑿士官"
+	L.punchy_thug = "猛揍的暴徒"
+	L.flinging_flicker = "投射物施法者"
+	L.bomb_bot = "炸彈機器人"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "zhTW")
 if L then
-	--L.kobold_trash = "Kobold Trash"
+	L.kobold_trash = "狗頭人小怪"
 
-	--L.kobold_taskfinder = "Kobold Taskfinder"
-	--L.spitfire_charger = "Spitfire Charger"
-	--L.spitfire_fusetender = "Spitfire Fusetender"
+	L.kobold_taskfinder = "狗頭人號令者"
+	L.spitfire_charger = "噴火戰騎"
+	L.spitfire_fusetender = "噴火引線看顧者"
 end
 
 L = BigWigs:NewBossLocale("Kobyss Delve Trash", "zhTW")
 if L then
-	--L.kobyss_trash = "Kobyss Trash"
+	L.kobyss_trash = "寇拜斯小怪"
 
-	--L.kobyss_necromancer = "Kobyss Necromancer"
-	--L.kobyss_spearfisher = "Kobyss Spearfisher"
-	--L.kobyss_witherer = "Kobyss Witherer"
-	--L.wandering_gutter = "Wandering Gutter"
-	--L.crazed_predator = "Crazed Predator"
-	--L.deepwater_makura = "Deepwater Makura"
-	--L.kobyss_trickster = "Kobyss Trickster"
+	L.kobyss_necromancer = "寇拜斯死靈法師"
+	L.kobyss_spearfisher = "寇拜斯叉漁兵"
+	L.kobyss_witherer = "寇拜斯凋萎者"
+	L.wandering_gutter = "遊蕩開膛手"
+	L.crazed_predator = "癲狂掠食者"
+	L.deepwater_makura = "深水龍蝦人"
+	L.kobyss_trickster = "寇拜斯欺詐者"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "zhTW")
 if L then
-	--L.nerubian_trash = "Nerubian Trash"
+	L.nerubian_trash = "奈幽小怪"
 
-	--L.nerubian_lord = "Nerubian Lord"
-	--L.nerubian_darkcaster = "Nerubian Darkcaster"
-	--L.nerubian_captain = "Nerubian Captain"
-	--L.chittering_fearmonger = "Chittering Fearmonger"
-	--L.skittering_swarmer = "Skittering Swarmer"
-	--L.nerubian_webspinner = "Nerubian Webspinner"
+	L.nerubian_lord = "奈幽領主"
+	L.nerubian_darkcaster = "奈幽黑暗法師"
+	L.nerubian_captain = "奈幽隊長"
+	L.chittering_fearmonger = "碎念的恐懼散佈者"
+	L.skittering_swarmer = "滑膩的蟲群"
+	L.nerubian_webspinner = "奈幽織網者"
 end
 
 L = BigWigs:NewBossLocale("Nightfall Delve Trash", "zhTW")
 if L then
-	--L.nightfall_trash = "Nightfall Trash"
+	L.nightfall_trash = "夜暮小怪"
 
-	--L.dark_bombardier = "Dark Bombardier"
-	--L.nightfall_inquisitor = "Nightfall Inquisitor"
-	--L.devouring_shade = "Devouring Shade"
-	--L.weeping_shade = "Weeping Shade"
-	--L.nightfall_shadeguard = "Nightfall Shadeguard"
-	--L.shadow_elemental = "Shadow Elemental"
+	L.dark_bombardier = "黑暗投彈手"
+	L.nightfall_inquisitor = "夜暮審判官"
+	L.devouring_shade = "吞噬暗影"
+	L.weeping_shade = "哀泣的魔影"
+	L.nightfall_shadeguard = "夜暮暗影衛兵"
+	L.shadow_elemental = "暗影元素"
 end
 
 L = BigWigs:NewBossLocale("Old God Delve Trash", "zhTW")
 if L then
-	--L.old_god_trash = "Old God Trash"
+	L.old_god_trash = "古神小怪"
 
-	--L.dark_walker = "Dark Walker"
-	--L.hideous_amalgamation = "Hideous Amalgamation"
-	--L.coagulated_mass = "Coagulated Mass"
-	--L.silent_slitherer = "Silent Slitherer"
-	--L.amalgamized_mass = "Amalgamized Mass"
+	L.dark_walker = "暗黑行者"
+	L.hideous_amalgamation = "駭人聚合體"
+	L.coagulated_mass = "凝固實體"
+	L.silent_slitherer = "寂靜游鰻"
+	L.amalgamized_mass = "融合群體"
 end
 
 L = BigWigs:NewBossLocale("The Underkeep Trash", "zhTW")
 if L then
-	--L.ascended_webfriar = "Ascended Webfriar"
-	--L.deepwalker_guardian = "Deepwalker Guardian"
-	--L.crazed_abomination = "Crazed Abomination"
-	--L.web_marauder = "Web Marauder"
+	L.ascended_webfriar = "晉升蛛網修士"
+	L.deepwalker_guardian = "深行守護者"
+	L.crazed_abomination = "發狂憎惡體"
+	L.web_marauder = "蛛網掠奪者"
 end
 
 L = BigWigs:NewBossLocale("Underpin Rares", "zhTW")
 if L then
-	--L.rares = "Underpin Rares"
+	L.rares = "幽坑稀有"
 
-	--L.treasure_wraith = "Treasure Wraith"
-	--L.treasure_crab = "Treasure Crab"
-	--L.hovering_menace = "Hovering Menace"
-	--L.malfunctioning_pummeler = "Malfunctioning Pummeler"
-	--L.underpins_adoring_fan = "Underpin's Adoring Fan"
-	--L.underpins_well_connected_friend = "Underpin's Well-Connected Friend"
-	--L.underpins_explosive_ally = "Underpin's Explosive Ally"
-	--L.underpins_bodyguards_intern = "Underpin's Bodyguard's Intern"
-	--L.aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin"
-	--L.the_underpin = "The Underpin (Random Spawn)"
+	L.treasure_wraith = "寶藏怨靈"
+	L.treasure_crab = "寶藏蟹"
+	L.hovering_menace = "盤旋威脅者"
+	L.malfunctioning_pummeler = "故障的打擊者"
+	L.underpins_adoring_fan = "幽坑霸主的崇拜粉絲"
+	L.underpins_well_connected_friend = "幽坑霸主的好友"
+	L.underpins_explosive_ally = "幽坑霸主的爆炸盟友"
+	L.underpins_bodyguards_intern = "幽坑霸主的護衛見習生"
+	L.aggressively_lost_hobgoblin = "極度迷路的大哥布林"
+	L.the_underpin = "幽坑霸主（隨機出現）"
 
 	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
 end
