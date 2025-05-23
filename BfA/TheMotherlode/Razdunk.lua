@@ -45,6 +45,7 @@ function mod:OnBossEnable()
 
 	-- Stage Two: Drill!
 	self:Log("SPELL_CAST_START", "DrillSmash", 271456)
+	self:Log("SPELL_CAST_SUCCESS", "DrillSmashSuccess", 271456)
 	self:Log("SPELL_CAST_SUCCESS", "ConfigurationCombat", 260190)
 	self:Death("MogulRazdunkVehicleDeath", 129232)
 end
@@ -148,9 +149,16 @@ do
 	end
 
 	function mod:DrillSmash(args)
-		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 		-- time until next depends on the travel time of the previous Drill Smash
 		self:CDBar(args.spellId, 8.5)
+	end
+
+	function mod:DrillSmashSuccess(args)
+		if self:Me(args.destGUID) then
+			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+			self:PlaySound(args.spellId, "info")
+		end
 	end
 end
 

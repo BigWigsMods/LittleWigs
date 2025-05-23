@@ -1291,7 +1291,7 @@ BigWigs:AddSounds("Rixxa Fluxflame", {
 BigWigs:AddColors("Mogul Razdunk", {
 	[260280] = "yellow",
 	[260813] = {"blue","orange"},
-	[271456] = {"blue","orange"},
+	[271456] = {"blue","green","orange"},
 	[276229] = "red",
 	["stages"] = "cyan",
 })
@@ -1299,7 +1299,7 @@ BigWigs:AddColors("Mogul Razdunk", {
 BigWigs:AddSounds("Mogul Razdunk", {
 	[260280] = "alert",
 	[260813] = {"alarm","warning"},
-	[271456] = {"alert","warning"},
+	[271456] = {"alert","info","warning"},
 	[276229] = "long",
 	["stages"] = {"info","long"},
 })
