@@ -549,10 +549,16 @@ function mod:CultistSlavedriverEngaged(guid)
 	self:Nameplate(309882, 3.5, guid) -- Brutal Smash
 end
 
-function mod:BrutalSmash(args)
-	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 13.3, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:BrutalSmash(args)
+		self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:CultistSlavedriverDeath(args)
