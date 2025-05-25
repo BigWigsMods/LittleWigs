@@ -26,6 +26,7 @@ mod:RegisterEnableMob(
 	158136, -- Inquisitor Darkspeak
 	158437, -- Fallen Taskmaster
 	152987, -- Faceless Willbreaker
+	164188, -- Horrific Figment
 	156641, -- Enthralled Weaponsmith
 	158158, -- Forge-Guard Hurrul
 	156795, -- SI:7 Informant
@@ -290,9 +291,9 @@ function mod:OnBossEnable()
 	self:Death("FallenTaskmasterDeath", 158437)
 
 	-- Faceless Willbreaker
-	self:RegisterEngageMob("FacelessWillbreakerEngaged", 152987)
+	self:RegisterEngageMob("FacelessWillbreakerEngaged", 152987, 164188) -- Faceless Willbreaker, Horrific Figment
 	self:Log("SPELL_CAST_START", "DarkSmash", 296718)
-	self:Death("FacelessWillbreakerDeath", 152987)
+	self:Death("FacelessWillbreakerDeath", 152987, 164188) -- Faceless Willbreaker, Horrific Figment
 
 	-- Enthralled Weaponsmith
 	self:RegisterEngageMob("EnthralledWeaponsmithEngaged", 156641)
