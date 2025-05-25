@@ -132,6 +132,13 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Stormwind Trash", "zhCN")
 if L then
+	--L.sanity_change = "%d Sanity"
+	--L.portal_closed = "Portal Closed"
+	--L.portal_closed_desc = "Show a message when a portal is closed in the Mage Quarter."
+	--L.madnesses = "Madnesses"
+	--L.potions = "Potions"
+	--L.buffs = "Buffs"
+
 	L.crawling_corruption = "蠕行腐蚀"
 	L.enthralled_footman = "被奴役的步兵"
 	L.fallen_voidspeaker = "堕落的虚空语者"
@@ -156,6 +163,7 @@ if L then
 	L.zardeth_of_the_black_claw = "黑爪加尔德斯"
 	L.unstable_servant = "不稳定的仆从"
 	L.hogger = "霍格"
+	L.void_scarred_gryphon = "虚痕狮鹫"
 
 	L.therum_deepforge_warmup_trigger = "你们喜欢放烟花是吧？那我们就好好玩玩。"
 	L.alleria_windrunner_warmup_trigger = "母亲……别再听那些低语了！"

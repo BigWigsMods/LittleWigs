@@ -442,6 +442,8 @@ BigWigs:AddSounds("Magister Umbric", {
 
 BigWigs:AddColors("Horrific Vision of Stormwind Trash", {
 	[86736] = "orange",
+	[250505] = "red",
+	[258768] = "orange",
 	[264398] = "yellow",
 	[296492] = "orange",
 	[296510] = "cyan",
@@ -453,7 +455,7 @@ BigWigs:AddColors("Horrific Vision of Stormwind Trash", {
 	[298033] = "red",
 	[298074] = "orange",
 	[298584] = "cyan",
-	[306583] = {"blue","green"},
+	[306583] = "blue",
 	[306770] = "red",
 	[307870] = "green",
 	[308265] = {"blue","red"},
@@ -477,12 +479,22 @@ BigWigs:AddColors("Horrific Vision of Stormwind Trash", {
 	[311399] = "orange",
 	[311456] = "yellow",
 	[311996] = "cyan",
+	[312355] = "green",
+	[314087] = "green",
+	[314165] = "green",
+	[314203] = "green",
+	[315385] = "blue",
+	[315807] = "yellow",
+	[315814] = "green",
 	[1223111] = {"blue","yellow"},
 	[1223112] = "red",
+	["portal_closed"] = "green",
 })
 
 BigWigs:AddSounds("Horrific Vision of Stormwind Trash", {
 	[86736] = "info",
+	[250505] = "warning",
+	[258768] = "alarm",
 	[264398] = "alarm",
 	[296492] = "alarm",
 	[296510] = "info",
@@ -494,7 +506,7 @@ BigWigs:AddSounds("Horrific Vision of Stormwind Trash", {
 	[298033] = "warning",
 	[298074] = "alarm",
 	[298584] = "info",
-	[306583] = {"alert","info"},
+	[306583] = "alert",
 	[306770] = "alarm",
 	[307870] = "info",
 	[308265] = {"info","warning"},
@@ -518,8 +530,16 @@ BigWigs:AddSounds("Horrific Vision of Stormwind Trash", {
 	[311399] = "alarm",
 	[311456] = "warning",
 	[311996] = "long",
+	[312355] = "info",
+	[314087] = "info",
+	[314165] = "info",
+	[314203] = "info",
+	[315385] = "info",
+	[315807] = "warning",
+	[315814] = "info",
 	[1223111] = "alarm",
 	[1223112] = "alert",
+	["portal_closed"] = "info",
 })
 
 BigWigs:AddColors("The Golden Serpent", {

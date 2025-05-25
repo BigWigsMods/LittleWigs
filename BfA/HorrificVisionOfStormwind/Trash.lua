@@ -36,11 +36,19 @@ mod:RegisterEnableMob(
 	153130, -- Greater Void Elemental
 	152939, -- Boundless Corruption
 	159275, -- Portal Keeper
+	159266, -- Portal Master
 	158371, -- Zardeth of the Black Claw
 	158411, -- Unstable Servant
 	241698, -- Hogger (WANTED: Hogger!!) (Revisited only)
-	239437 -- Hogger (Mask of the Nemesis) (Revisited only)
+	239437, -- Hogger (Mask of the Nemesis) (Revisited only)
+	237991 -- Void-Scarred Gryphon (Revisited only)
 )
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local portalsClosed = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -48,6 +56,14 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.sanity_change = "%d Sanity"
+	L.portal_closed = "Portal Closed"
+	L.portal_closed_desc = "Show a message when a portal is closed in the Mage Quarter."
+	L.portal_closed_icon = "spell_arcane_teleportstormwind"
+	L.madnesses = "Madnesses"
+	L.potions = "Potions"
+	L.buffs = "Buffs"
+
 	L.crawling_corruption = "Crawling Corruption"
 	L.enthralled_footman = "Enthralled Footman"
 	L.fallen_voidspeaker = "Fallen Voidspeaker"
@@ -72,12 +88,13 @@ if L then
 	L.zardeth_of_the_black_claw = "Zardeth of the Black Claw"
 	L.unstable_servant = "Unstable Servant"
 	L.hogger = "Hogger"
+	L.void_scarred_gryphon = "Void-Scarred Gryphon"
 
 	L.therum_deepforge_warmup_trigger = "So ye like tae play with explosives, do ye? Then let's play."
 	L.alleria_windrunner_warmup_trigger = "Mother... do not listen to the whispers!"
 
-	L["298074_icon"] = 305155 -- Rupture
-	L["298074_desc"] = 305155 -- Rupture
+	L["298074_icon"] = 305155 -- Rupture XXX fixed in 11.1.7
+	L["298074_desc"] = 305155 -- Rupture XXX fixed in 11.1.7
 end
 
 --------------------------------------------------------------------------------
@@ -90,8 +107,19 @@ function mod:GetOptions()
 		"altpower",
 		{311996, "CASTBAR"}, -- Open Vision
 		307870, -- Sanity Restoration Orb
+		"portal_closed",
+		-- Madnesses
 		311390, -- Madness: Entomophobia
 		306583, -- Leaden Foot
+		315385, -- Scorched Feet
+		-- Potions
+		315814, -- Fermented Mixture
+		315807, -- Noxious Mixture
+		-- Buffs
+		314203, -- Requited Bulwark
+		312355, -- Bear Spirit
+		314165, -- Empowered
+		314087, -- Enriched
 		-- Crawling Corruption
 		296510, -- Creepy Crawler
 		-- Enthralled Footman
@@ -149,8 +177,14 @@ function mod:GetOptions()
 		{1223111, "ME_ONLY", "NAMEPLATE"}, -- Vicious Slice
 		{1223112, "NAMEPLATE"}, -- Maddening Call
 		86736, -- Enrage
+		-- Void-Scarred Gryphon
+		{250505, "NAMEPLATE"}, -- Hysteria
+		{258768, "NAMEPLATE"}, -- Splitting Slash
 	}, {
 		["altpower"] = "general",
+		[311390] = L.madnesses,
+		[315814] = L.potions,
+		[314203] = L.buffs,
 		[296510] = L.crawling_corruption,
 		[298584] = L.enthralled_footman,
 		[308375] = L.fallen_voidspeaker,
@@ -174,6 +208,7 @@ function mod:GetOptions()
 		[308801] = L.zardeth_of_the_black_claw,
 		[308862] = L.unstable_servant,
 		[1223111] = L.hogger,
+		[250505] = L.void_scarred_gryphon,
 	}
 end
 
@@ -193,7 +228,14 @@ function mod:OnBossEnable()
 	-- Madnesses
 	self:Log("SPELL_AURA_APPLIED_DOSE", "MadnessEntomophobiaApplied", 311390)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "LeadenFootApplied", 306583)
-	self:Log("SPELL_AURA_REMOVED", "LeadenFootRemoved", 306583)
+	self:Log("SPELL_AURA_APPLIED", "ScorchedFeetApplied", 315385)
+
+	-- Potions
+	self:Log("SPELL_ENERGIZE", "FermentedMixture", 315814)
+	self:Log("SPELL_ENERGIZE", "NoxiousMixture", 315807)
+
+	-- Buffs
+	self:Log("SPELL_AURA_APPLIED", "BuffApplied", 314203, 312355, 314165, 314087) -- Requited Bulwark, Bear Spirit, Empowered, Enriched
 
 	-- Crawling Corruption
 	self:Log("SPELL_CAST_START", "CreepyCrawler", 296510)
@@ -208,7 +250,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PsychicScream", 308375)
 	self:Log("SPELL_INTERRUPT", "PsychicScreamInterrupt", 308375)
 	self:Log("SPELL_CAST_SUCCESS", "PsychicScreamSuccess", 308375)
-	self:Death("FallenVoidspeakerDeath", 152722, 159275, 241718, 157700) -- Fallen Voidspeaker, Portal Keeper, Vengeful Voidspeaker, Agustus Moulaine
+	self:Death("FallenVoidspeakerDeath", 152722, 241718, 157700) -- Fallen Voidspeaker, Vengeful Voidspeaker, Agustus Moulaine
+	self:Death("PortalKeeperDeath", 159275)
 
 	-- Fallen Heartpiercer
 	self:RegisterEngageMob("FallenHeartpiercerEngaged", 158092, 241717) -- Fallen Heartpiercer, Vengeful Heartpiercer
@@ -301,6 +344,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "VoidBuffetSuccess", 297315)
 	self:Death("GreaterVoidElementalDeath", 153130)
 
+	-- Portal Master
+	self:Death("PortalMasterDeath", 159266)
+
 	-- Boundless Corruption
 	self:RegisterEngageMob("BoundlessCorruptionEngaged", 152939)
 	self:Log("SPELL_CAST_START", "ChaosBreath", 296911)
@@ -327,12 +373,25 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "MaddeningCallSuccess", 1223112)
 	self:Log("SPELL_CAST_SUCCESS", "Enrage", 86736)
 	self:Death("HoggerDeath", 241698, 239437) -- WANTED: Hogger!!, Mask of the Nemesis
+
+	-- Void-Scarred Gryphon
+	self:RegisterEngageMob("VoidScarredGryphonEngaged", 237991)
+	self:Log("SPELL_CAST_START", "Hysteria", 250505)
+	self:Log("SPELL_INTERRUPT", "HysteriaInterrupt", 250505)
+	self:Log("SPELL_CAST_SUCCESS", "HysteriaSuccess", 250505)
+	self:Log("SPELL_CAST_START", "SplittingSlash", 258768)
+	self:Log("SPELL_CAST_SUCCESS", "SplittingSlashSuccess", 258768)
+	self:Death("VoidScarredGryphonDeath", 237991)
 end
 
 function mod:VerifyEnable()
 	-- some enable mobs are shared with Horrific Vision of Orgrimmar
 	local _, _, _, _, _, _, _, instanceId = GetInstanceInfo()
 	return instanceId == 2213 or instanceId == 2827
+end
+
+function mod:OnBossDisable()
+	portalsClosed = 0
 end
 
 --------------------------------------------------------------------------------
@@ -405,23 +464,49 @@ function mod:MadnessEntomophobiaApplied(args)
 	end
 end
 
-do
-	local showRemovedWarning = false
-	function mod:LeadenFootApplied(args)
-		local amount = args.amount or 1
-		if self:Me(args.destGUID) and amount % 5 == 0 and amount >= 10 then
-			showRemovedWarning = true
-			self:StackMessage(args.spellId, "blue", args.destName, amount, 10)
-			self:PlaySound(args.spellId, "alert")
-		end
+function mod:LeadenFootApplied(args)
+	local amount = args.amount or 1
+	if self:Me(args.destGUID) and amount % 5 == 0 and amount >= 10 then
+		self:StackMessage(args.spellId, "blue", args.destName, amount, 10)
+		self:PlaySound(args.spellId, "alert")
 	end
+end
 
-	function mod:LeadenFootRemoved(args)
-		if self:Me(args.destGUID) and showRemovedWarning then
-			showRemovedWarning = false
-			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
-			self:PlaySound(args.spellId, "info")
+function mod:ScorchedFeetApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "info")
+	end
+end
+
+-- Potions
+
+function mod:FermentedMixture(args)
+	if self:Me(args.destGUID) then
+		local sanityGained = args.extraSpellId -- will be a positive number representing Sanity gained
+		self:Message(args.spellId, "green", CL.other:format(args.spellName, L.sanity_change:format(sanityGained)))
+		self:PlaySound(args.spellId, "info")
+	end
+end
+
+function mod:NoxiousMixture(args)
+	if self:Me(args.destGUID) then
+		local sanityLost = args.extraSpellId -- will be a negative number representing Sanity lost
+		self:Message(args.spellId, "yellow", CL.other:format(args.spellName, L.sanity_change:format(sanityLost)))
+		self:PlaySound(args.spellId, "warning")
+	end
+end
+
+-- Buffs
+
+function mod:BuffApplied(args)
+	if self:Me(args.destGUID) then
+		if self:Solo() then
+			self:Message(args.spellId, "green", CL.you:format(args.spellName))
+		else
+			self:Message(args.spellId, "green", CL.on_group:format(args.spellName))
 		end
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
@@ -479,6 +564,13 @@ function mod:FallenVoidspeakerDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
+function mod:PortalKeeperDeath(args)
+	portalsClosed = portalsClosed + 1
+	self:ClearNameplate(args.destGUID)
+	self:Message("portal_closed", "green", CL.count_amount:format(L.portal_closed, portalsClosed, 5), L.portal_closed_icon)
+	self:PlaySound("portal_closed", "info")
+end
+
 -- Fallen Heartpiercer
 
 function mod:FallenHeartpiercerEngaged(guid)
@@ -530,10 +622,10 @@ end
 do
 	local prev = 0
 	function mod:ShadowShift(args)
-		-- cast once at 50%
+		-- cast once at 60%
 		if args.time - prev > 1.5 then
 			prev = args.time
-			self:Message(args.spellId, "red", CL.percent:format(50, CL.casting:format(args.spellName)))
+			self:Message(args.spellId, "red", CL.percent:format(60, CL.casting:format(args.spellName)))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
@@ -977,6 +1069,14 @@ function mod:GreaterVoidElementalDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
+-- Portal Master
+
+function mod:PortalMasterDeath(args)
+	portalsClosed = portalsClosed + 1
+	self:Message("portal_closed", "green", CL.count_amount:format(L.portal_closed, portalsClosed, 5), L.portal_closed_icon)
+	self:PlaySound("portal_closed", "info")
+end
+
 -- Boundless Corruption
 
 do
@@ -995,7 +1095,7 @@ do
 		self:Message(args.spellId, "red")
 		self:CDBar(args.spellId, 12.2)
 		self:Nameplate(args.spellId, 12.2, args.sourceGUID)
-		timer = self:ScheduleTimer("ZardethOfTheBlackClawDeath", 30, nil, args.sourceGUID)
+		timer = self:ScheduleTimer("BoundlessCorruptionDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
 	end
 
@@ -1066,9 +1166,12 @@ do
 			self:CancelTimer(timer)
 			timer = nil
 		end
+		portalsClosed = portalsClosed + 1
 		self:StopBar(308801) -- Rain of Fire
 		self:StopBar(308878) -- Twisted Summons
 		self:ClearNameplate(guidFromTimer or args.destGUID)
+		self:Message("portal_closed", "green", CL.count_amount:format(L.portal_closed, portalsClosed, 5), L.portal_closed_icon)
+		self:PlaySound("portal_closed", "info")
 	end
 end
 
@@ -1149,6 +1252,65 @@ do
 		end
 		self:StopBar(1223111) -- Vicious Slice
 		self:StopBar(1223112) -- Maddening Call
+		self:ClearNameplate(guidFromTimer or args.destGUID)
+	end
+end
+
+-- Void-Scarred Gryphon
+
+do
+	local timer
+
+	function mod:VoidScarredGryphonEngaged(guid)
+		self:CDBar(250505, 6.0) -- Hysteria
+		self:Nameplate(250505, 6.0, guid) -- Hysteria
+		self:CDBar(258768, 10.9) -- Splitting Slash
+		self:Nameplate(258768, 10.9, guid) -- Splitting Slash
+		timer = self:ScheduleTimer("VoidScarredGryphonDeath", 20, nil, guid)
+	end
+
+	function mod:Hysteria(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		timer = self:ScheduleTimer("VoidScarredGryphonDeath", 30, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "warning")
+	end
+
+	function mod:HysteriaInterrupt(args)
+		self:CDBar(250505, 17.5)
+		self:Nameplate(250505, 17.5, args.destGUID)
+	end
+
+	function mod:HysteriaSuccess(args)
+		self:CDBar(args.spellId, 17.5)
+		self:Nameplate(args.spellId, 17.5, args.sourceGUID)
+	end
+
+	function mod:SplittingSlash(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		timer = self:ScheduleTimer("VoidScarredGryphonDeath", 30, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
+	end
+
+	function mod:SplittingSlashSuccess(args)
+		self:CDBar(args.spellId, 20.1)
+		self:Nameplate(args.spellId, 20.1, args.sourceGUID)
+	end
+
+	function mod:VoidScarredGryphonDeath(args, guidFromTimer)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(250505) -- Hysteria
+		self:StopBar(258768) -- Splitting Slash
 		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
 end

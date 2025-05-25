@@ -132,6 +132,13 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Stormwind Trash", "koKR")
 if L then
+	--L.sanity_change = "%d Sanity"
+	--L.portal_closed = "Portal Closed"
+	--L.portal_closed_desc = "Show a message when a portal is closed in the Mage Quarter."
+	--L.madnesses = "Madnesses"
+	--L.potions = "Potions"
+	--L.buffs = "Buffs"
+
 	L.crawling_corruption = "엄습하는 타락"
 	L.enthralled_footman = "속박된 보병"
 	L.fallen_voidspeaker = "타락한 공허신봉자"
@@ -156,6 +163,7 @@ if L then
 	L.zardeth_of_the_black_claw = "검은발톱 자데스"
 	L.unstable_servant = "불안정한 하수인"
 	L.hogger = "들창코"
+	L.void_scarred_gryphon = "공허의 자취가 남은 그리핀"
 
 	L.therum_deepforge_warmup_trigger = "폭발물로 장난치는 거 좋아하나 봐, 엉? 그럼 어디 놀아 보자고."
 	L.alleria_windrunner_warmup_trigger = "어머니... 속삭임에 굴복하시면 안 됩니다!"
