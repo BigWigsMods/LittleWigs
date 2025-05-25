@@ -72,6 +72,11 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Orgrimmar Trash", "ptBR")
 if L then
+	--L.sanity_change = "%d Sanity"
+	--L.madnesses = "Madnesses"
+	--L.potions = "Potions"
+	--L.buffs = "Buffs"
+
 	L.voidbound_shaman = "Xamã Distorcido pelo Caos"
 	L.endless_hunger_totem = "Totem da Fome sem Fim"
 	L.crawling_corruption = "Corrupção Rastejante"

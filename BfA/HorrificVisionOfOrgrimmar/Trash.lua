@@ -53,6 +53,11 @@ mod:RegisterEnableMob(
 
 local L = mod:GetLocale()
 if L then
+	L.sanity_change = "%d Sanity"
+	L.madnesses = "Madnesses"
+	L.potions = "Potions"
+	L.buffs = "Buffs"
+
 	L.voidbound_shaman = "Voidbound Shaman"
 	L.endless_hunger_totem = "Endless Hunger Totem"
 	L.crawling_corruption = "Crawling Corruption"
@@ -80,8 +85,8 @@ if L then
 	L.aqir_venomweaver = "Aqir Venomweaver"
 	L.gamon = "Gamon"
 
-	L["298074_icon"] = 305155 -- Rupture
-	L["298074_desc"] = 305155 -- Rupture
+	L["298074_icon"] = 305155 -- Rupture XXX fixed in 11.1.7
+	L["298074_desc"] = 305155 -- Rupture XXX fixed in 11.1.7
 end
 
 --------------------------------------------------------------------------------
@@ -96,8 +101,15 @@ function mod:GetOptions()
 		autotalk,
 		{311996, "CASTBAR"}, -- Open Vision
 		307870, -- Sanity Restoration Orb
+		-- Madnesses
 		311390, -- Madness: Entomophobia
 		306583, -- Leaden Foot
+		315385, -- Scorched Feet
+		-- Potions
+		315814, -- Fermented Mixture
+		315807, -- Noxious Mixture
+		-- Buffs
+		-- TODO
 		-- Voidbound Shaman
 		{297237, "NAMEPLATE"}, -- Endless Hunger Totem
 		-- Endless Hunger Totem
@@ -162,6 +174,9 @@ function mod:GetOptions()
 		{314723, "NAMEPLATE"}, -- War Stomp
 	}, {
 		["altpower"] = "general",
+		[311390] = L.madnesses,
+		[315814] = L.potions,
+		--[] = L.buffs,
 		[297237] = L.voidbound_shaman,
 		[297302] = L.endless_hunger_totem,
 		[296510] = L.crawling_corruption,
@@ -197,7 +212,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
 	self:RegisterEvent("UNIT_SPELLCAST_START") -- Open Vision
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Rupture
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Rupture, War Stomp
 
 	-- Sanity Restoration Orb
 	self:Log("SPELL_CAST_START", "SanityRestorationOrb", 307870)
@@ -205,7 +220,14 @@ function mod:OnBossEnable()
 	-- Madnesses
 	self:Log("SPELL_AURA_APPLIED_DOSE", "MadnessEntomophobiaApplied", 311390)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "LeadenFootApplied", 306583)
-	self:Log("SPELL_AURA_REMOVED", "LeadenFootRemoved", 306583)
+	self:Log("SPELL_AURA_APPLIED", "ScorchedFeetApplied", 315385)
+
+	-- Potions
+	self:Log("SPELL_ENERGIZE", "FermentedMixture", 315814)
+	self:Log("SPELL_ENERGIZE", "NoxiousMixture", 315807)
+
+	-- Buffs
+	-- TODO
 
 	-- Voidbound Shaman
 	self:Log("SPELL_CAST_SUCCESS", "EndlessHungerTotem", 297237)
@@ -365,7 +387,7 @@ function mod:UNIT_SPELLCAST_START(event, _, _, spellId)
 	if spellId == 311996 then -- Open Vision
 		self:UnregisterEvent(event)
 		self:Message(spellId, "cyan")
-		self:CastBar(spellId, 10) -- Open Vision
+		self:CastBar(spellId, 10)
 		self:PlaySound(spellId, "long")
 	end
 end
@@ -405,23 +427,36 @@ function mod:MadnessEntomophobiaApplied(args)
 	end
 end
 
-do
-	local showRemovedWarning = false
-	function mod:LeadenFootApplied(args)
-		local amount = args.amount or 1
-		if self:Me(args.destGUID) and amount % 5 == 0 and amount >= 10 then
-			showRemovedWarning = true
-			self:StackMessage(args.spellId, "blue", args.destName, amount, 10)
-			self:PlaySound(args.spellId, "alert")
-		end
+function mod:LeadenFootApplied(args)
+	local amount = args.amount or 1
+	if self:Me(args.destGUID) and amount % 5 == 0 and amount >= 10 then
+		self:StackMessage(args.spellId, "blue", args.destName, amount, 10)
+		self:PlaySound(args.spellId, "alert")
 	end
+end
 
-	function mod:LeadenFootRemoved(args)
-		if self:Me(args.destGUID) and showRemovedWarning then
-			showRemovedWarning = false
-			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
-			self:PlaySound(args.spellId, "info")
-		end
+function mod:ScorchedFeetApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "info")
+	end
+end
+
+-- Potions
+
+function mod:FermentedMixture(args)
+	if self:Me(args.destGUID) then
+		local sanityGained = args.extraSpellId -- will be a positive number representing Sanity gained
+		self:Message(args.spellId, "green", CL.other:format(args.spellName, L.sanity_change:format(sanityGained)))
+		self:PlaySound(args.spellId, "info")
+	end
+end
+
+function mod:NoxiousMixture(args)
+	if self:Me(args.destGUID) then
+		local sanityLost = args.extraSpellId -- will be a negative number representing Sanity lost
+		self:Message(args.spellId, "yellow", CL.other:format(args.spellName, L.sanity_change:format(sanityLost)))
+		self:PlaySound(args.spellId, "warning")
 	end
 end
 
