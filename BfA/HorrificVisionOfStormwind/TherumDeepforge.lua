@@ -36,7 +36,7 @@ function mod:GetOptions()
 end
 
 function mod:OnRegister()
-	L.displayName = L.therum_deepforge
+	self.displayName = L.therum_deepforge
 end
 
 function mod:OnBossEnable()
