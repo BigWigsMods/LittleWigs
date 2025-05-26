@@ -99,7 +99,7 @@ function mod:GetOptions()
 		-- General
 		"altpower",
 		autotalk,
-		{311996, "CASTBAR"}, -- Open Vision
+		{311996, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Open Vision
 		307870, -- Sanity Restoration Orb
 		-- Madnesses
 		311390, -- Madness: Entomophobia
