@@ -106,7 +106,7 @@ function mod:GetOptions()
 	return {
 		-- General
 		"altpower",
-		{311996, "CASTBAR"}, -- Open Vision
+		{311996, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Open Vision
 		307870, -- Sanity Restoration Orb
 		"portal_closed",
 		-- Madnesses
