@@ -72,10 +72,10 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Orgrimmar Trash", "koKR")
 if L then
-	--L.sanity_change = "%d Sanity"
-	--L.madnesses = "Madnesses"
-	--L.potions = "Potions"
-	--L.buffs = "Buffs"
+	L.sanity_change = "%d 이성"
+	L.madnesses = "광기"
+	L.potions = "물약"
+	L.buffs = "버프"
 
 	L.voidbound_shaman = "공허결속단 주술사"
 	L.endless_hunger_totem = "끝없는 허기의 토템"
@@ -137,12 +137,12 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Stormwind Trash", "koKR")
 if L then
-	--L.sanity_change = "%d Sanity"
-	--L.portal_closed = "Portal Closed"
-	--L.portal_closed_desc = "Show a message when a portal is closed in the Mage Quarter."
-	--L.madnesses = "Madnesses"
-	--L.potions = "Potions"
-	--L.buffs = "Buffs"
+	L.sanity_change = "%d 이성"
+	L.portal_closed = "차원문 닫힘"
+	L.portal_closed_desc = "마법사 지구의 차원문이 닫히면 메시지를 표시합니다."
+	L.madnesses = "광기"
+	L.potions = "물약"
+	L.buffs = "버프"
 
 	L.crawling_corruption = "엄습하는 타락"
 	L.enthralled_footman = "속박된 보병"
