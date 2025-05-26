@@ -5,11 +5,11 @@ if not L then return end
 if L then
 	L.skyscreamer = "進食中的嘯天龍"
 	L.tlonja = "特隆迦"
-	--L.monzumi = "Monzumi"
+	L.monzumi = "蒙祖彌"
 	L.shieldbearer = "祖爾的執盾兵"
 	L.witchdoctor = "贊庫爾巫醫"
 	L.kisho = "恐龍術師基莎"
-	--L.dazarai_juggernaut = "Dazar'ai Juggernaut"
+	L.dazarai_juggernaut = "達薩萊重戰士"
 	L.priestess = "金輝女祭司"
 	L.stalker = "影刃埋伏者"
 	L.confessor = "達薩萊告解者"
@@ -72,10 +72,10 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Orgrimmar Trash", "zhTW")
 if L then
-	--L.sanity_change = "%d Sanity"
-	--L.madnesses = "Madnesses"
-	--L.potions = "Potions"
-	--L.buffs = "Buffs"
+	L.sanity_change = "理智：%d"
+	L.madnesses = "瘋狂"
+	L.potions = "藥水"
+	L.buffs = "增益"
 
 	L.voidbound_shaman = "虛無之縛薩滿"
 	L.endless_hunger_totem = "無盡飢餓圖騰"
@@ -137,12 +137,12 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Stormwind Trash", "zhTW")
 if L then
-	--L.sanity_change = "%d Sanity"
-	--L.portal_closed = "Portal Closed"
-	--L.portal_closed_desc = "Show a message when a portal is closed in the Mage Quarter."
-	--L.madnesses = "Madnesses"
-	--L.potions = "Potions"
-	--L.buffs = "Buffs"
+	L.sanity_change = "理智：%d"
+	L.portal_closed = "傳送門關閉"
+	L.portal_closed_desc = "當法師區的傳送門關閉時顯示一條訊息。"
+	L.madnesses = "瘋狂"
+	L.potions = "藥水"
+	L.buffs = "增益"
 
 	L.crawling_corruption = "爬行腐化"
 	L.enthralled_footman = "被迷惑的步兵"
@@ -237,35 +237,35 @@ end
 
 L = BigWigs:NewBossLocale("Operation: Mechagon Trash", "zhTW")
 if L then
-	--L.scrapbone_shaman = "Scrapbone Shaman"
-	--L.scrapbone_bully = "Scrapbone Bully"
-	--L.scrapbone_grinder = "Scrapbone Grinder"
-	--L.saurolisk_bonenipper = "Saurolisk Bonenipper"
-	--L.malfunctioning_scrapbot = "Malfunctioning Scrapbot"
-	--L.heavy_scrapbot = "Heavy Scrapbot"
-	--L.pistonhead_blaster = "Pistonhead Blaster"
-	--L.pistonhead_scrapper = "Pistonhead Scrapper"
-	--L.weaponized_crawler = "Weaponized Crawler"
-	--L.slime_elemental = "Slime Elemental"
-	--L.toxic_monstrosity = "Toxic Monstrosity"
-	--L.toxic_lurker = "Toxic Lurker"
-	--L.pistonhead_mechanic = "Pistonhead Mechanic"
-	--L.scraphound = "Scraphound"
-	--L.mechagon_renormalizer = "Mechagon Renormalizer"
-	--L.mechagon_cavalry = "Mechagon Cavalry"
-	--L.mechagon_trooper = "Mechagon Trooper"
-	--L.anodized_coilbearer = "Anodized Coilbearer"
-	--L.bomb_tonk = "Bomb Tonk"
-	--L.rocket_tonk = "Rocket Tonk"
-	--L.waste_processing_unit = "Waste Processing Unit"
-	--L.metal_gunk = "Metal Gunk"
-	--L.junkyard_d0g = "Junkyard D.0.G."
-	--L.mechagon_tinkerer = "Mechagon Tinkerer"
-	--L.anti_personnel_squirrel = "Anti-Personnel Squirrel"
-	--L.defense_bot_mk_iii = "Defense Bot Mk III"
-	--L.blastatron_x80 = "Blastatron X-80"
-	--L.mechagon_mechanic = "Mechagon Mechanic"
-	--L.workshop_defender = "Workshop Defender"
+	L.scrapbone_shaman = "廢骨薩滿"
+	L.scrapbone_bully = "廢骨惡霸"
+	L.scrapbone_grinder = "廢骨研磨者"
+	L.saurolisk_bonenipper = "尖角蜥啃骨者"
+	L.malfunctioning_scrapbot = "故障的廢料機器人"
+	L.heavy_scrapbot = "重型廢料機器人"
+	L.pistonhead_blaster = "活塞頭火炮兵"
+	L.pistonhead_scrapper = "活塞頭拆解師"
+	L.weaponized_crawler = "武裝爬行蛛"
+	L.slime_elemental = "軟泥元素"
+	L.toxic_monstrosity = "劇毒巨怪"
+	L.toxic_lurker = "劇毒潛伏者"
+	L.pistonhead_mechanic = "活塞頭技師"
+	L.scraphound = "廢料獵犬"
+	L.mechagon_renormalizer = "機械岡回復者"
+	L.mechagon_cavalry = "機械岡騎兵"
+	L.mechagon_trooper = "機械岡騎兵"
+	L.anodized_coilbearer = "電鍍線圈機器人"
+	L.bomb_tonk = "炸彈機兵"
+	L.rocket_tonk = "火箭機兵"
+	L.waste_processing_unit = "廢棄物處理器"
+	L.metal_gunk = "金屬黏怪"
+	L.junkyard_d0g = "廢料場D.0.G."
+	L.mechagon_tinkerer = "機械岡技工"
+	L.anti_personnel_squirrel = "高殺傷性松鼠"
+	L.defense_bot_mk_iii = "防禦機器人MK III"
+	L.blastatron_x80 = "砲轟機器人X-80型"
+	L.mechagon_mechanic = "機械岡技師"
+	L.workshop_defender = "工坊防衛者"
 end
 
 L = BigWigs:NewBossLocale("Tussle Tonks", "zhTW")
@@ -275,10 +275,10 @@ end
 
 L = BigWigs:NewBossLocale("King Mechagon", "zhTW")
 if L then
-	--L.hardmode_desc = "Warning for when the Annihilo-tron 5000 starts displaying the button order."
+	L.hardmode_desc = "當殲滅爆彈5000型開始顯示按鈕順序時發出警報。"
 
-	--L.button = "Button"
-	--L.button_desc = "Show a warning when someone clicks a button."
+	L.button = "按鈕"
+	L.button_desc = "當有人點擊按鈕時發出警報。"
 end
 
 -- Shrine of the Storm
@@ -314,32 +314,32 @@ end
 
 L = BigWigs:NewBossLocale("Siege of Boralus Trash", "zhTW")
 if L then
-	--L.enforcer = "Scrimshaw Enforcer"
+	L.enforcer = "骨頭幫執行者"
 	L.halberd = "庫爾提拉斯長戟兵"
-	--L.gutter = "Scrimshaw Gutter"
-	--L.bomber = "Blackar Bomber"
-	--L.waveshaper = "Irontide Waveshaper"
+	L.gutter = "骨頭幫開膛手"
+	L.bomber = "黑油炸彈客"
+	L.waveshaper = "鐵潮造浪者"
 	L.wavetender = "庫爾提拉斯平浪者"
 	L.raider = "鐵潮劫掠者"
-	--L.shredder = "Riptide Shredder"
+	L.shredder = "破浪切割者"
 	L.vanguard = "庫爾提拉斯先鋒"
 	L.commander = "艾胥凡指揮官"
-	--L.curseblade = "Irontide Curseblade"
+	L.curseblade = "鐵潮咒刃"
 	L.spotter = "艾胥凡偵察兵"
 	L.cannoneer = "艾胥凡砲手"
 	L.demolisher = "污鼠會毀滅者"
 	L.buccaneer = "污鼠會海盜"
 	L.pillager = "污鼠會掠取者"
 	L.tempest = "污鼠會風暴法師"
-	--L.cutthroat = "Bilge Rat Cutthroat"
+	L.cutthroat = "污鼠會殺手"
 	L.invader = "艾胥凡入侵者"
 
-	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
+	L.gate_open_desc = "顯示當首領被擊殺后打開去下個區域屏障的計時器。"
 end
 
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "zhTW")
 if L then
-	--L.ordnance_dropped = "Unstable Ordnance dropped"
+	L.ordnance_dropped = "易炸火藥已掉落"
 end
 
 -- Temple of Sethraliss
@@ -362,7 +362,7 @@ L = BigWigs:NewBossLocale("The MOTHERLODE!! Trash", "zhTW")
 if L then
 	L.refreshment_vendor = "餐點小販"
 	L.mech_jockey = "機甲駕駛員"
-	--L.mechanized_peacekeeper = "Mechanized Peacekeeper"
+	L.mechanized_peacekeeper = "機械保安官"
 	L.addled_thug = "笨拙的搬運工"
 	L.hired_assassin = "受雇的刺客"
 	L.azerite_extractor = "艾澤萊晶岩採礦機"
@@ -438,3 +438,4 @@ L = BigWigs:NewBossLocale("Gorak Tul", "zhTW")
 if L then
 	L.add_killed = "小怪已擊殺 - 準備焚燒"
 end
+
