@@ -72,10 +72,10 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Orgrimmar Trash", "zhCN")
 if L then
-	--L.sanity_change = "%d Sanity"
-	--L.madnesses = "Madnesses"
-	--L.potions = "Potions"
-	--L.buffs = "Buffs"
+	L.sanity_change = "理智：%d"
+	L.madnesses = "疯狂"
+	L.potions = "药水"
+	L.buffs = "增益"
 
 	L.voidbound_shaman = "虚缚萨满祭司"
 	L.endless_hunger_totem = "无尽饥饿图腾"
@@ -137,12 +137,12 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Stormwind Trash", "zhCN")
 if L then
-	--L.sanity_change = "%d Sanity"
-	--L.portal_closed = "Portal Closed"
-	--L.portal_closed_desc = "Show a message when a portal is closed in the Mage Quarter."
-	--L.madnesses = "Madnesses"
-	--L.potions = "Potions"
-	--L.buffs = "Buffs"
+	L.sanity_change = "理智：%d"
+	L.portal_closed = "传送门关闭"
+	L.portal_closed_desc = "当法师区的传送门关闭时显示一条信息。"
+	L.madnesses = "疯狂"
+	L.potions = "药水"
+	L.buffs = "增益"
 
 	L.crawling_corruption = "蠕行腐蚀"
 	L.enthralled_footman = "被奴役的步兵"
