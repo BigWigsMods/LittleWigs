@@ -72,10 +72,10 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Orgrimmar Trash", "deDE")
 if L then
-	--L.sanity_change = "%d Sanity"
-	--L.madnesses = "Madnesses"
-	--L.potions = "Potions"
-	--L.buffs = "Buffs"
+	L.sanity_change = "%d Geistige Gesundheit"
+	L.madnesses = "Wahnsinn"
+	L.potions = "Tränke"
+	L.buffs = "Buffs"
 
 	L.voidbound_shaman = "Leerengebundener Schamane"
 	L.endless_hunger_totem = "Totem des endlosen Hungers"
@@ -137,12 +137,12 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Stormwind Trash", "deDE")
 if L then
-	--L.sanity_change = "%d Sanity"
-	--L.portal_closed = "Portal Closed"
-	--L.portal_closed_desc = "Show a message when a portal is closed in the Mage Quarter."
-	--L.madnesses = "Madnesses"
-	--L.potions = "Potions"
-	--L.buffs = "Buffs"
+	L.sanity_change = "%d Geistige Gesundheit"
+	L.portal_closed = "Portal geschlossen"
+	L.portal_closed_desc = "Zeigt eine Nachricht wenn ein Portal im Magierviertel geschlossen wird."
+	L.madnesses = "Wahnsinn"
+	L.potions = "Tränke"
+	L.buffs = "Buffs"
 
 	L.crawling_corruption = "Krabbelnde Verderbnis"
 	L.enthralled_footman = "Bezauberter Fußsoldat"
