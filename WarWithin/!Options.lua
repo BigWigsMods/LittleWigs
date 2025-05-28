@@ -112,16 +112,16 @@ BigWigs:AddColors("I'pa", {
 	[439031] = "purple",
 	[439202] = {"blue","orange"},
 	[439365] = "yellow",
+	[440087] = "blue",
 	[440147] = "cyan",
-	[441179] = "blue",
 })
 
 BigWigs:AddSounds("I'pa", {
 	[439031] = "alert",
 	[439202] = "alert",
 	[439365] = "long",
+	[440087] = "underyou",
 	[440147] = "warning",
-	[441179] = "underyou",
 })
 
 BigWigs:AddColors("Benk Buzzbee", {

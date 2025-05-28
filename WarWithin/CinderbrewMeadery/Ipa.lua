@@ -24,9 +24,9 @@ function mod:GetOptions()
 		440147, -- Fill 'Er Up
 		439202, -- Burning Fermentation
 		{439031, "TANK_HEALER"}, -- Bottoms Uppercut
-		441179, -- Oozing Honey
+		440087, -- Oozing Honey
 	}, {
-		[441179] = -28427, -- Brew Drop
+		[440087] = -28427, -- Brew Drop
 	}
 end
 
@@ -38,8 +38,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BottomsUppercut", 439031)
 
 	-- Brew Drop
-	self:Log("SPELL_PERIODIC_DAMAGE", "OozingHoneyDamage", 441179)
-	self:Log("SPELL_PERIODIC_MISSED", "OozingHoneyDamage", 441179)
+	self:Log("SPELL_PERIODIC_DAMAGE", "OozingHoneyDamage", 440087, 441179) -- first puddle, second puddle
+	self:Log("SPELL_PERIODIC_MISSED", "OozingHoneyDamage", 440087, 441179) -- first puddle, second puddle
 end
 
 function mod:OnEngage()
@@ -95,8 +95,8 @@ do
 		if self:MobId(args.sourceGUID) == 219301 then -- Brew Drop, boss version
 			if self:Me(args.destGUID) and args.time - prev > 2 then
 				prev = args.time
-				self:PersonalMessage(args.spellId, "underyou")
-				self:PlaySound(args.spellId, "underyou")
+				self:PersonalMessage(440087, "underyou")
+				self:PlaySound(440087, "underyou")
 			end
 		end
 	end
