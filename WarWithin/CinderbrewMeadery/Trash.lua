@@ -499,7 +499,7 @@ end
 do
 	local prev = 0
 	function mod:OozingHoneyDamage(args)
-		if self:MobId(args.sourceGUID) == 223562 then -- Brew Drop, trash version
+		if self:MobId(args.sourceGUID) ~= 219301 then -- Brew Drop, boss version
 			if self:Me(args.destGUID) and args.time - prev > 2 then
 				prev = args.time
 				self:PersonalMessage(args.spellId, "underyou")
