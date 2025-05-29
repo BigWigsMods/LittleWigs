@@ -109,7 +109,10 @@ function mod:GetOptions()
 		315814, -- Fermented Mixture
 		315807, -- Noxious Mixture
 		-- Buffs
-		-- TODO
+		313770, -- Smith's Strength
+		1225675, -- Prohibition
+		313670, -- Spirit of Wind
+		313961, -- Ethereal Essence
 		-- Voidbound Shaman
 		{297237, "NAMEPLATE"}, -- Endless Hunger Totem
 		-- Endless Hunger Totem
@@ -176,7 +179,7 @@ function mod:GetOptions()
 		["altpower"] = "general",
 		[311390] = L.madnesses,
 		[315814] = L.potions,
-		--[] = L.buffs,
+		[313770] = L.buffs,
 		[297237] = L.voidbound_shaman,
 		[297302] = L.endless_hunger_totem,
 		[296510] = L.crawling_corruption,
@@ -227,7 +230,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_ENERGIZE", "NoxiousMixture", 315807)
 
 	-- Buffs
-	-- TODO
+	self:Log("SPELL_AURA_APPLIED", "BuffApplied", 313770, 1225675, 313670, 313961) -- Smith's Strength, Prohibition, Spirit of Wind, Ethereal Essence
 
 	-- Voidbound Shaman
 	self:Log("SPELL_CAST_SUCCESS", "EndlessHungerTotem", 297237)
@@ -457,6 +460,19 @@ function mod:NoxiousMixture(args)
 		local sanityLost = args.extraSpellId -- will be a negative number representing Sanity lost
 		self:Message(args.spellId, "yellow", CL.other:format(args.spellName, L.sanity_change:format(sanityLost)))
 		self:PlaySound(args.spellId, "warning")
+	end
+end
+
+-- Buffs
+
+function mod:BuffApplied(args)
+	if self:Me(args.destGUID) then
+		if self:Solo() then
+			self:Message(args.spellId, "green", CL.you:format(args.spellName))
+		else
+			self:Message(args.spellId, "green", CL.on_group:format(args.spellName))
+		end
+		self:PlaySound(args.spellId, "info")
 	end
 end
 

@@ -330,12 +330,16 @@ BigWigs:AddColors("Horrific Vision of Orgrimmar Trash", {
 	[311390] = "blue",
 	[311996] = "cyan",
 	[312584] = "yellow",
+	[313670] = "green",
+	[313770] = "green",
+	[313961] = "green",
 	[314720] = "orange",
 	[314723] = "yellow",
 	[315385] = "blue",
 	[315807] = "yellow",
 	[315814] = "green",
 	[319304] = {"blue","yellow"},
+	[1225675] = "green",
 })
 
 BigWigs:AddSounds("Horrific Vision of Orgrimmar Trash", {
@@ -376,12 +380,16 @@ BigWigs:AddSounds("Horrific Vision of Orgrimmar Trash", {
 	[311390] = "info",
 	[311996] = "long",
 	[312584] = "info",
+	[313670] = "info",
+	[313770] = "info",
+	[313961] = "info",
 	[314720] = "alarm",
 	[314723] = "info",
 	[315385] = "info",
 	[315807] = "warning",
 	[315814] = "info",
 	[319304] = "alert",
+	[1225675] = "info",
 })
 
 BigWigs:AddColors("Alleria Windrunner", {
