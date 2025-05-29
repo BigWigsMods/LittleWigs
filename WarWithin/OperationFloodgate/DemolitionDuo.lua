@@ -29,6 +29,7 @@ function mod:GetOptions()
 		460867, -- Big Bada BOOM!
 		1217653, -- B.B.B.F.G.
 		{473690, "SAY"}, -- Kinetic Explosive Gel (Mythic)
+		{460602, "ME_ONLY", "OFF"}, -- Quick Shot
 		-- Bront
 		{459779, "SAY"}, -- Barreling Charge
 		{459799, "TANK"}, -- Wallop
@@ -47,6 +48,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "KineticExplosiveGel", 473690)
 	self:Log("SPELL_AURA_APPLIED", "KineticExplosiveGelApplied", 473713)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "KineticExplosiveGelApplied", 473713)
+	self:Log("SPELL_CAST_START", "QuickShot", 460602)
 	self:Death("KeezaQuickfuseDeath", 226403)
 
 	-- Bront
@@ -130,6 +132,17 @@ function mod:KineticExplosiveGelApplied(args)
 	if self:Dispeller("magic") then
 		self:TargetMessage(473690, "orange", args.destName)
 		self:PlaySound(473690, "info", nil, args.destName)
+	end
+end
+
+do
+	local function printTarget(self, name)
+		self:TargetMessage(460602, "yellow", name)
+		self:PlaySound(460602, "alert", nil, name)
+	end
+
+	function mod:QuickShot(args)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
 	end
 end
 

@@ -455,6 +455,7 @@ BigWigs:AddSounds("Big M.O.M.M.A.", {
 BigWigs:AddColors("Demolition Duo", {
 	[459779] = {"blue","green","red"},
 	[459799] = "purple",
+	[460602] = {"blue","yellow"},
 	[460867] = "yellow",
 	[470090] = "cyan",
 	[473690] = {"blue","orange"},
@@ -464,6 +465,7 @@ BigWigs:AddColors("Demolition Duo", {
 BigWigs:AddSounds("Demolition Duo", {
 	[459779] = {"alarm","info"},
 	[459799] = "alert",
+	[460602] = "alert",
 	[460867] = "long",
 	[470090] = "long",
 	[473690] = {"alarm","info"},
