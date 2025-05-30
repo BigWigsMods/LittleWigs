@@ -110,13 +110,15 @@ function mod:GetOptions()
 		307870, -- Sanity Restoration Orb
 		"portal_closed",
 		-- Madnesses
-		311390, -- Madness: Entomophobia
+		{311390, "EMPHASIZE"}, -- Madness: Entomophobia
+		292240, -- Entomophobia
 		306583, -- Leaden Foot
 		315385, -- Scorched Feet
 		-- Potions
 		315814, -- Fermented Mixture
 		315807, -- Noxious Mixture
 		-- Buffs
+		312456, -- Elite Extermination
 		314203, -- Requited Bulwark
 		312355, -- Bear Spirit
 		314165, -- Empowered
@@ -185,7 +187,7 @@ function mod:GetOptions()
 		["altpower"] = "general",
 		[311390] = L.madnesses,
 		[315814] = L.potions,
-		[314203] = L.buffs,
+		[312456] = L.buffs,
 		[296510] = L.crawling_corruption,
 		[298584] = L.enthralled_footman,
 		[308375] = L.fallen_voidspeaker,
@@ -228,6 +230,7 @@ function mod:OnBossEnable()
 
 	-- Madnesses
 	self:Log("SPELL_AURA_APPLIED_DOSE", "MadnessEntomophobiaApplied", 311390)
+	self:Log("SPELL_AURA_APPLIED", "EntomophobiaApplied", 292240)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "LeadenFootApplied", 306583)
 	self:Log("SPELL_AURA_APPLIED", "ScorchedFeetApplied", 315385)
 
@@ -236,6 +239,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_ENERGIZE", "NoxiousMixture", 315807)
 
 	-- Buffs
+	self:Log("SPELL_ENERGIZE", "EliteExtermination", 312456)
 	self:Log("SPELL_AURA_APPLIED", "BuffApplied", 314203, 312355, 314165, 314087) -- Requited Bulwark, Bear Spirit, Empowered, Enriched
 
 	-- Crawling Corruption
@@ -460,8 +464,15 @@ end
 function mod:MadnessEntomophobiaApplied(args)
 	local amount = args.amount or 1
 	if self:Me(args.destGUID) and amount >= 3 then
-		self:StackMessage(args.spellId, "blue", args.destName, amount, 3)
+		self:StackMessage(args.spellId, "blue", args.destName, amount, 5)
 		self:PlaySound(args.spellId, "info")
+	end
+end
+
+function mod:EntomophobiaApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "warning")
 	end
 end
 
@@ -499,6 +510,14 @@ function mod:NoxiousMixture(args)
 end
 
 -- Buffs
+
+function mod:EliteExtermination(args)
+	if self:Me(args.destGUID) then
+		local sanityGained = args.extraSpellId -- will be a positive number representing Sanity gained
+		self:Message(args.spellId, "green", CL.other:format(args.spellName, L.sanity_change:format(sanityGained)))
+		self:PlaySound(args.spellId, "info")
+	end
+end
 
 function mod:BuffApplied(args)
 	if self:Me(args.destGUID) then
