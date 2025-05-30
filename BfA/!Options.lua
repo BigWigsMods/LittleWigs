@@ -294,6 +294,7 @@ BigWigs:AddSounds("Rexxar", {
 
 BigWigs:AddColors("Horrific Vision of Orgrimmar Trash", {
 	[11641] = {"blue","orange"},
+	[292240] = "blue",
 	[296492] = "orange",
 	[296510] = "cyan",
 	[296718] = "orange",
@@ -329,6 +330,7 @@ BigWigs:AddColors("Horrific Vision of Orgrimmar Trash", {
 	[308346] = "orange",
 	[311390] = "blue",
 	[311996] = "cyan",
+	[312456] = "green",
 	[312584] = "yellow",
 	[313670] = "green",
 	[313770] = "green",
@@ -344,6 +346,7 @@ BigWigs:AddColors("Horrific Vision of Orgrimmar Trash", {
 
 BigWigs:AddSounds("Horrific Vision of Orgrimmar Trash", {
 	[11641] = "info",
+	[292240] = "warning",
 	[296492] = "alarm",
 	[296510] = "info",
 	[296718] = "alarm",
@@ -379,6 +382,7 @@ BigWigs:AddSounds("Horrific Vision of Orgrimmar Trash", {
 	[308346] = "alarm",
 	[311390] = "info",
 	[311996] = "long",
+	[312456] = "info",
 	[312584] = "info",
 	[313670] = "info",
 	[313770] = "info",

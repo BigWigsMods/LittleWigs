@@ -32,6 +32,7 @@ mod:RegisterEnableMob(
 	153942, -- Annihilator Lak'hal
 	153401, -- K'thir Dominator
 	157610, -- K'thir Dominator
+	244186, -- K'thir Dominator (Revisited only)
 	154524, -- K'thir Mindcarver
 	157609, -- K'thir Mindcarver
 	156653, -- Coagulated Horror
@@ -102,13 +103,15 @@ function mod:GetOptions()
 		{311996, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Open Vision
 		307870, -- Sanity Restoration Orb
 		-- Madnesses
-		311390, -- Madness: Entomophobia
+		{311390, "EMPHASIZE"}, -- Madness: Entomophobia
+		292240, -- Entomophobia
 		306583, -- Leaden Foot
 		315385, -- Scorched Feet
 		-- Potions
 		315814, -- Fermented Mixture
 		315807, -- Noxious Mixture
 		-- Buffs
+		312456, -- Elite Extermination
 		313770, -- Smith's Strength
 		1225675, -- Prohibition
 		313670, -- Spirit of Wind
@@ -179,7 +182,7 @@ function mod:GetOptions()
 		["altpower"] = "general",
 		[311390] = L.madnesses,
 		[315814] = L.potions,
-		[313770] = L.buffs,
+		[312456] = L.buffs,
 		[297237] = L.voidbound_shaman,
 		[297302] = L.endless_hunger_totem,
 		[296510] = L.crawling_corruption,
@@ -222,6 +225,7 @@ function mod:OnBossEnable()
 
 	-- Madnesses
 	self:Log("SPELL_AURA_APPLIED_DOSE", "MadnessEntomophobiaApplied", 311390)
+	self:Log("SPELL_AURA_APPLIED", "EntomophobiaApplied", 292240)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "LeadenFootApplied", 306583)
 	self:Log("SPELL_AURA_APPLIED", "ScorchedFeetApplied", 315385)
 
@@ -230,6 +234,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_ENERGIZE", "NoxiousMixture", 315807)
 
 	-- Buffs
+	self:Log("SPELL_ENERGIZE", "EliteExtermination", 312456)
 	self:Log("SPELL_AURA_APPLIED", "BuffApplied", 313770, 1225675, 313670, 313961) -- Smith's Strength, Prohibition, Spirit of Wind, Ethereal Essence
 
 	-- Voidbound Shaman
@@ -265,7 +270,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "ForgeBreathInterrupt", 306770)
 	self:Log("SPELL_CAST_SUCCESS", "ForgeBreathSuccess", 306770)
 	self:Log("SPELL_CAST_SUCCESS", "ShadowBrand", 319304)
-	self:Log("SPELL_AURA_APPLIED", "ShadowBrandApplied", 319304)
+	self:Log("SPELL_AURA_APPLIED", "ShadowBrandAppliedNaros", 319304)
 	self:Death("NarosDeath", 158565)
 
 	-- Barkeep Morag
@@ -308,11 +313,11 @@ function mod:OnBossEnable()
 	self:Death("AnnihilatorLakhalDeath", 153942)
 
 	-- K'thir Dominator
-	self:RegisterEngageMob("KthirDominatorEngaged", 153401, 157610)
+	self:RegisterEngageMob("KthirDominatorEngaged", 153401, 157610, 244186)
 	self:Log("SPELL_CAST_START", "TouchOfTheAbyss", 298033)
 	self:Log("SPELL_INTERRUPT", "TouchOfTheAbyssInterrupt", 298033)
 	self:Log("SPELL_CAST_SUCCESS", "TouchOfTheAbyssSuccess", 298033)
-	self:Death("KthirDominatorDeath", 153401, 157610)
+	self:Death("KthirDominatorDeath", 153401, 157610, 244186)
 
 	-- K'thir Mindcarver
 	self:RegisterEvent("UNIT_POWER_FREQUENT")
@@ -425,8 +430,15 @@ end
 function mod:MadnessEntomophobiaApplied(args)
 	local amount = args.amount or 1
 	if self:Me(args.destGUID) and amount >= 3 then
-		self:StackMessage(args.spellId, "blue", args.destName, amount, 3)
+		self:StackMessage(args.spellId, "blue", args.destName, amount, 5)
 		self:PlaySound(args.spellId, "info")
+	end
+end
+
+function mod:EntomophobiaApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "warning")
 	end
 end
 
@@ -464,6 +476,14 @@ function mod:NoxiousMixture(args)
 end
 
 -- Buffs
+
+function mod:EliteExtermination(args)
+	if self:Me(args.destGUID) then
+		local sanityGained = args.extraSpellId -- will be a positive number representing Sanity gained
+		self:Message(args.spellId, "green", CL.other:format(args.spellName, L.sanity_change:format(sanityGained)))
+		self:PlaySound(args.spellId, "info")
+	end
+end
 
 function mod:BuffApplied(args)
 	if self:Me(args.destGUID) then
@@ -634,7 +654,7 @@ do
 		timer = self:ScheduleTimer("NarosDeath", 30, nil, args.sourceGUID)
 	end
 
-	function mod:ShadowBrandApplied(args)
+	function mod:ShadowBrandAppliedNaros(args)
 		if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
 			self:TargetMessage(args.spellId, "yellow", args.destName)
 			self:PlaySound(args.spellId, "alert", nil, args.destName)
@@ -736,10 +756,14 @@ end
 
 -- Voidbound Berserker
 
-function mod:ShadowBrandApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "yellow", args.destName)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
+do
+	local prev = 0
+	function mod:ShadowBrandApplied(args)
+		if (self:Me(args.destGUID) or self:Dispeller("curse", nil, args.spellId)) and args.time - prev > 2 then
+			prev = args.time
+			self:TargetMessage(args.spellId, "yellow", args.destName)
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
+		end
 	end
 end
 
@@ -811,10 +835,16 @@ function mod:FacelessWillbreakerEngaged(guid)
 	self:Nameplate(296718, 3.4, guid) -- Dark Smash
 end
 
-function mod:DarkSmash(args)
-	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 7.2, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:DarkSmash(args)
+		self:Nameplate(args.spellId, 7.2, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:FacelessWillbreakerDeath(args)
