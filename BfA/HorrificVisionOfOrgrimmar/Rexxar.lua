@@ -56,15 +56,15 @@ do
 	local prev = 0
 	function mod:CHAT_MSG_MONSTER_YELL(event, msg)
 		if msg == L.pet_trigger_1 then
-			-- 80%, Huffer (155657) attacks
-			self:Message("adds", "yellow", CL.percent:format(80, CL.adds_spawned_count:format(1)), L.adds_icon)
+			-- 85%, Huffer (155657) attacks
+			self:Message("adds", "yellow", CL.percent:format(85, CL.adds_spawned_count:format(1)), L.adds_icon)
 		elseif msg == L.pet_trigger_2 then
 			-- 70%, Ruffer (155951) attacks
 			self:Message("adds", "yellow", CL.percent:format(70, CL.adds_spawned_count:format(1)), L.adds_icon)
 		elseif msg == L.pet_trigger_3 then
-			-- 60%, Suffer (155952) and C'Thuffer (155953) attack
+			-- 55%, Suffer (155952) and C'Thuffer (155953) attack
 			self:UnregisterEvent(event)
-			self:Message("adds", "yellow", CL.percent:format(60, CL.adds_spawned_count:format(2)), L.adds_icon)
+			self:Message("adds", "yellow", CL.percent:format(55, CL.adds_spawned_count:format(2)), L.adds_icon)
 		end
 		local t = GetTime()
 		if t - prev > 1 then
