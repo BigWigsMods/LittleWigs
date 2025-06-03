@@ -50,6 +50,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "ToxicCoagulant", 93617)
 
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- USCS events let us distinguish between two different "Conjure Mystery Toxin" casts
+
+	if self:Difficulty() == 232 then -- Dastardly Duos
+		-- no encounter events in Dastardly Duos
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 46963)
+	end
 end
 
 function mod:OnEngage()
