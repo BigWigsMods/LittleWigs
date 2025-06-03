@@ -28,6 +28,12 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "WorgenSpirit", 93857)
 	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
+
+	if self:Difficulty() == 232 then -- Dastardly Duos
+		-- no encounter events in Dastardly Duos
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 3887)
+	end
 end
 
 function mod:OnEngage()
