@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Foe Reaper 5000", 36, 91)
+local mod, CL = BigWigs:NewBoss("Foe Reaper 5000", {36, 2849}, 91)
 if not mod then return end
 mod:RegisterEnableMob(43778) -- Foe Reaper 5000
 mod:SetEncounterID(mod:Classic() and 1063 or {2975, 2980}) -- Classic, Retail Normal, Retail Heroic

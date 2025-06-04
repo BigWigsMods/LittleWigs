@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Glubtok", 36, 89)
+local mod, CL = BigWigs:NewBoss("Glubtok", {36, 2849}, 89)
 if not mod then return end
 mod:RegisterEnableMob(47162) -- Glubtok
 mod:SetEncounterID(mod:Classic() and 1064 or {2976, 2981}) -- Classic, Retail Normal, Retail Heroic
