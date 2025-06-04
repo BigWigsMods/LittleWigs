@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Rattlegore", 1007, 665)
+local mod, CL = BigWigs:NewBoss("Rattlegore", {1007, 2849}, 665)
 if not mod then return end
 mod:RegisterEnableMob(
 	59304, -- Bone Pile

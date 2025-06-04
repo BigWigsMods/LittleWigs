@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 --  Module Declaration
 
-local mod, CL = BigWigs:NewBoss("Broggok", 542, 556)
+local mod, CL = BigWigs:NewBoss("Broggok", {542, 2849}, 556)
 if not mod then return end
 mod:RegisterEnableMob(17380)
 -- mod.engageId = 1924 -- no boss frames

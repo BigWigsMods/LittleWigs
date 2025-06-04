@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Chrono-Lord Epoch", 595, 613)
+local mod, CL = BigWigs:NewBoss("Chrono-Lord Epoch", {595, 2849}, 613)
 if not mod then return end
 mod:RegisterEnableMob(26532)
 mod:SetEncounterID(mod:Classic() and 295 or 2003)

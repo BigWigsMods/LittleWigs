@@ -2,7 +2,7 @@
 --  Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Hydromancer Thespia", 545, 573)
+local mod, CL = BigWigs:NewBoss("Hydromancer Thespia", {545, 2849}, 573)
 if not mod then return end
 mod:RegisterEnableMob(17797)
 mod.engageId = 1942
