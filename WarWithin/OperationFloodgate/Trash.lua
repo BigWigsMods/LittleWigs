@@ -81,6 +81,7 @@ function mod:GetOptions()
 		{465813, "DISPEL", "NAMEPLATE"}, -- Lethargic Venom
 		-- Venture Co. Surveyor
 		{462771, "NAMEPLATE"}, -- Surveying Beam
+		{463169, "ME_ONLY", "NAMEPLATE", "OFF"}, -- EZ-Thro Dynamite III
 		-- Venture Co. Architect
 		{465408, "NAMEPLATE"}, -- Rapid Construction
 		-- Venture Co. Diver
@@ -187,6 +188,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SurveyingBeamSuccess", 462771)
 	self:Log("SPELL_PERIODIC_DAMAGE", "SurveyedGroundDamage", 472338)
 	self:Log("SPELL_PERIODIC_MISSED", "SurveyedGroundDamage", 472338)
+	self:Log("SPELL_CAST_START", "EZThroDynamiteIII", 463169)
+	self:Log("SPELL_CAST_SUCCESS", "EZThroDynamiteIIISuccess", 463169)
 	self:Death("VentureCoSurveyorDeath", 229686)
 
 	-- Venture Co. Architect
@@ -484,11 +487,11 @@ do
 end
 
 function mod:SurveyingBeamInterrupt(args)
-	self:Nameplate(462771, 22.3, args.destGUID)
+	self:Nameplate(462771, 19.5, args.destGUID)
 end
 
 function mod:SurveyingBeamSuccess(args)
-	self:Nameplate(args.spellId, 22.3, args.sourceGUID)
+	self:Nameplate(args.spellId, 19.5, args.sourceGUID)
 end
 
 do
@@ -500,6 +503,22 @@ do
 			self:PlaySound(462771, "underyou")
 		end
 	end
+end
+
+do
+	local function printTarget(self, name)
+		self:TargetMessage(463169, "yellow", name)
+		self:PlaySound(463169, "info", nil, name)
+	end
+
+	function mod:EZThroDynamiteIII(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
+	end
+end
+
+function mod:EZThroDynamiteIIISuccess(args)
+	self:Nameplate(args.spellId, 8.6, args.sourceGUID)
 end
 
 function mod:VentureCoSurveyorDeath(args)

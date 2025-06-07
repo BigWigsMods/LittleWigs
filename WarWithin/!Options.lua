@@ -505,6 +505,7 @@ BigWigs:AddSounds("Geezle Gigazap", {
 BigWigs:AddColors("Operation: Floodgate Trash", {
 	[462771] = {"blue","red"},
 	[463058] = "red",
+	[463169] = {"blue","yellow"},
 	[465120] = "yellow",
 	[465408] = "cyan",
 	[465666] = "purple",
@@ -530,6 +531,7 @@ BigWigs:AddColors("Operation: Floodgate Trash", {
 BigWigs:AddSounds("Operation: Floodgate Trash", {
 	[462771] = {"alert","underyou"},
 	[463058] = "alert",
+	[463169] = "info",
 	[465120] = "alarm",
 	[465408] = "info",
 	[465666] = "alert",
