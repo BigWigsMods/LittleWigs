@@ -29,6 +29,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "EnvelopingWinds", 31718)
 	self:Log("SPELL_AURA_APPLIED", "LungBurst", 31481)
 	self:Log("SPELL_AURA_REMOVED", "AuraRemoved", 31481, 31718)
+
+	if self:Difficulty() == 232 then -- Dastardly Duos
+		-- no encounter events in Dastardly Duos
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 17797)
+	end
 end
 
 -------------------------------------------------------------------------------
