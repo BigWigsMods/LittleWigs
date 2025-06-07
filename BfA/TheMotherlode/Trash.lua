@@ -64,6 +64,7 @@ function mod:GetOptions()
 		{280604, "DISPEL", "NAMEPLATE"}, -- Iced Spritzer
 		-- Mech Jockey
 		267433, -- Activate Mech
+		{267980, "NAMEPLATE", "OFF"}, -- Grease Gun
 		-- Mechanized Peacekeeper
 		{263628, "NAMEPLATE"}, -- Charged Shield
 		{472041, "NAMEPLATE"}, -- Tear Gas
@@ -139,6 +140,7 @@ function mod:OnBossEnable()
 
 	-- Mech Jockey
 	self:Log("SPELL_CAST_START", "ActivateMech", 267433) --  Heroic and Mythic only
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Grease Gun
 
 	-- Mechanized Peacekeeper
 	self:RegisterEngageMob("MechanizedPeacekeeperEngaged", 130485, 136139) -- Mech Jockey summon, regular
@@ -306,6 +308,24 @@ do
 			prev = args.time
 			self:Message(args.spellId, "yellow")
 			self:PlaySound(args.spellId, "warning")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
+		if spellId == 267980 then -- Grease Gun
+			local sourceGUID = self:UnitGUID(unit)
+			if sourceGUID then
+				self:Nameplate(spellId, 4.8, sourceGUID)
+			end
+			local t = GetTime()
+			if t - prev > 2 then
+				prev = t
+				self:Message(spellId, "yellow")
+				self:PlaySound(spellId, "info")
+			end
 		end
 	end
 end
