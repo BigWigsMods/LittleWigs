@@ -76,6 +76,10 @@ if L then
 	L.madnesses = "Wahnsinn"
 	L.potions = "Tränke"
 	L.buffs = "Buffs"
+	--L.slowed = "Slowed"
+	--L.sluggish_potion_effect = "Heal 2% every 5 sec"
+	--L.sickening_potion_effect = "5% damage reduction"
+	--L.spicy_potion_effect = "Breathe fire"
 
 	L.voidbound_shaman = "Leerengebundener Schamane"
 	L.endless_hunger_totem = "Totem des endlosen Hungers"
