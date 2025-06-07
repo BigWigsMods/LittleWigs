@@ -76,6 +76,10 @@ if L then
 	L.madnesses = "疯狂"
 	L.potions = "药水"
 	L.buffs = "增益"
+	--L.slowed = "Slowed"
+	--L.sluggish_potion_effect = "Heal 2% every 5 sec"
+	--L.sickening_potion_effect = "5% damage reduction"
+	--L.spicy_potion_effect = "Breathe fire"
 
 	L.voidbound_shaman = "虚缚萨满祭司"
 	L.endless_hunger_totem = "无尽饥饿图腾"
