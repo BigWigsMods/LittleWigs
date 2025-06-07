@@ -615,11 +615,17 @@ function mod:ShufflingHorrorEngaged(guid)
 	self:Nameplate(422541, 1.1, guid) -- Drain Light
 end
 
-function mod:DrainLight(args)
-	-- only cast if in range of the cart
-	self:Message(args.spellId, "cyan", CL.casting:format(args.spellName))
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "info")
+do
+	local prev = 0
+	function mod:DrainLight(args)
+		-- only cast if in range of the cart
+		self:Message(args.spellId, "cyan", CL.casting:format(args.spellName))
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 1.5 then -- casts can sync in big pulls
+			prev = args.time
+			self:PlaySound(args.spellId, "info")
+		end
+	end
 end
 
 function mod:DrainLightInterrupt(args)
