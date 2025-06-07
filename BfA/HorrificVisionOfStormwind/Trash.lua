@@ -114,6 +114,7 @@ function mod:GetOptions()
 		292240, -- Entomophobia
 		306583, -- Leaden Foot
 		315385, -- Scorched Feet
+		313303, -- Burned Bridge
 		-- Potions
 		315814, -- Fermented Mixture
 		315807, -- Noxious Mixture
@@ -233,6 +234,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "EntomophobiaApplied", 292240)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "LeadenFootApplied", 306583)
 	self:Log("SPELL_AURA_APPLIED", "ScorchedFeetApplied", 315385)
+	self:Log("SPELL_PERIODIC_ENERGIZE", "BurnedBridge", 313303)
 
 	-- Potions
 	self:Log("SPELL_ENERGIZE", "FermentedMixture", 315814)
@@ -488,6 +490,14 @@ function mod:ScorchedFeetApplied(args)
 	if self:Me(args.destGUID) then
 		self:PersonalMessage(args.spellId)
 		self:PlaySound(args.spellId, "info")
+	end
+end
+
+function mod:BurnedBridge(args)
+	if self:Me(args.destGUID) then
+		local sanityLost = args.extraSpellId -- will be a negative number representing Sanity lost
+		self:Message(args.spellId, "blue", CL.other:format(CL.underyou:format(args.spellName), L.sanity_change:format(sanityLost)))
+		self:PlaySound(args.spellId, "underyou")
 	end
 end
 
