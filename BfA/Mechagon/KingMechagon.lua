@@ -169,7 +169,8 @@ end
 do
 	local prev = nil
 	function mod:UNIT_SPELLCAST_SUCCEEDED(event, _, castGUID, spellId)
-		if spellId == 296323 then -- Activate Omega Buster
+		if spellId == 296323 and castGUID ~= prev then -- Activate Omega Buster
+			prev = castGUID
 			self:UnregisterUnitEvent(event, "boss1", "boss2", "boss3")
 			self:SetStage(2)
 			self:CDBar(291865, 6.75) -- Recalibrate
