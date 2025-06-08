@@ -76,6 +76,10 @@ if L then
 	L.madnesses = "광기"
 	L.potions = "물약"
 	L.buffs = "버프"
+	--L.slowed = "Slowed"
+	--L.sluggish_potion_effect = "Heal 2% every 5 sec"
+	--L.sickening_potion_effect = "5% damage reduction"
+	--L.spicy_potion_effect = "Breathe fire"
 
 	L.voidbound_shaman = "공허결속단 주술사"
 	L.endless_hunger_totem = "끝없는 허기의 토템"
