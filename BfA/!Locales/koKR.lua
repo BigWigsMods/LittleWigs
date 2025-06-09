@@ -147,6 +147,10 @@ if L then
 	L.madnesses = "광기"
 	L.potions = "물약"
 	L.buffs = "버프"
+	--L.slowed = "Slowed"
+	--L.sluggish_potion_effect = "Heal 2% every 5 sec"
+	--L.sickening_potion_effect = "5% damage reduction"
+	--L.spicy_potion_effect = "Breathe fire"
 
 	L.crawling_corruption = "엄습하는 타락"
 	L.enthralled_footman = "속박된 보병"

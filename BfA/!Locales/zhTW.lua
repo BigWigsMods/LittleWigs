@@ -147,6 +147,10 @@ if L then
 	L.madnesses = "瘋狂"
 	L.potions = "藥水"
 	L.buffs = "增益"
+	--L.slowed = "Slowed"
+	--L.sluggish_potion_effect = "Heal 2% every 5 sec"
+	--L.sickening_potion_effect = "5% damage reduction"
+	--L.spicy_potion_effect = "Breathe fire"
 
 	L.crawling_corruption = "爬行腐化"
 	L.enthralled_footman = "被迷惑的步兵"

@@ -147,6 +147,10 @@ if L then
 	--L.madnesses = "Madnesses"
 	--L.potions = "Potions"
 	--L.buffs = "Buffs"
+	--L.slowed = "Slowed"
+	--L.sluggish_potion_effect = "Heal 2% every 5 sec"
+	--L.sickening_potion_effect = "5% damage reduction"
+	--L.spicy_potion_effect = "Breathe fire"
 
 	L.crawling_corruption = "Corruption rampante"
 	L.enthralled_footman = "Fantassin ensorcelé"
