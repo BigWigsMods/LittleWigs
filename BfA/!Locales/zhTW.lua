@@ -147,10 +147,10 @@ if L then
 	L.madnesses = "瘋狂"
 	L.potions = "藥水"
 	L.buffs = "增益"
-	--L.slowed = "Slowed"
-	--L.sluggish_potion_effect = "Heal 2% every 5 sec"
-	--L.sickening_potion_effect = "5% damage reduction"
-	--L.spicy_potion_effect = "Breathe fire"
+	L.slowed = "減速"
+	L.sluggish_potion_effect = "每5秒恢復生命力上限的2%"
+	L.sickening_potion_effect = "受到的所有傷害降低5%"
+	L.spicy_potion_effect = "噴火"
 
 	L.crawling_corruption = "爬行腐化"
 	L.enthralled_footman = "被迷惑的步兵"
@@ -382,7 +382,7 @@ if L then
 	L.venture_co_mastermind = "風險投資公司高階主管"
 	L.venture_co_alchemist = "風險投資公司鍊金師"
 	L.venture_co_war_machine = "風險投資公司戰爭機器"
-	--L.crawler_mine = "Crawler Mine"
+	L.crawler_mine = "爬行者地雷"
 	L.ordnance_specialist = "爆裂物專家"
 end
 
