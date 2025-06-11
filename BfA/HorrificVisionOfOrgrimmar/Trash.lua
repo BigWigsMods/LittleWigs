@@ -507,69 +507,103 @@ end
 
 do
 	local buffIds = {
-		315845, -- Sluggish Potion
-		315849, -- Sickening Potion
-		315817, -- Spicy Potion
-		313698, -- Gift of the Titans
+		[315845] = true, -- Sluggish Potion
+		[315849] = true, -- Sickening Potion
+		[315817] = true, -- Spicy Potion
+		[313698] = true, -- Gift of the Titans
 	}
 	local numBuffs = #buffIds
 
 	function mod:InitBuffs() -- reload protection
-		for i = 1, numBuffs do
-			local spellId = buffIds[i]
-			local info = self:GetPlayerAura(spellId)
-			if info then
-				activeBuffs[spellId] = info.expirationTime
+		for spellId in next, buffIds do
+			local auraTbl = self:GetPlayerAura(spellId)
+			if auraTbl then
+				activeBuffs[auraTbl.auraInstanceID] = {auraTbl.expirationTime, auraTbl.spellId}
 				if spellId == 315845 then -- Sluggish Potion
-					self:Bar(spellId, info.expirationTime - GetTime(), L.sluggish_potion_effect)
+					self:Bar(spellId, auraTbl.expirationTime - GetTime(), L.sluggish_potion_effect)
 				elseif spellId == 315849 then -- Sickening Potion
-					self:Bar(spellId, info.expirationTime - GetTime(), L.sickening_potion_effect)
+					self:Bar(spellId, auraTbl.expirationTime - GetTime(), L.sickening_potion_effect)
 				elseif spellId == 315817 then -- Spicy Potion
-					self:Bar(spellId, info.expirationTime - GetTime(), L.spicy_potion_effect)
+					self:Bar(spellId, auraTbl.expirationTime - GetTime(), L.spicy_potion_effect)
 				elseif spellId == 313698 then -- Gift of the Titans
-					self:Bar(spellId, info.expirationTime - GetTime())
+					self:Bar(spellId, auraTbl.expirationTime - GetTime())
 				end
 			end
 		end
 	end
 
-	function mod:UNIT_AURA()
-		for i = 1, numBuffs do
-			local spellId = buffIds[i]
-			local info = self:GetPlayerAura(spellId)
-			if info and activeBuffs[spellId] ~= info.expirationTime then
-				activeBuffs[spellId] = info.expirationTime
-				if spellId == 315845 then -- Sluggish Potion
-					self:Message(spellId, "green", CL.other:format(CL.you:format(self:SpellName(spellId)), L.sluggish_potion_effect))
-					self:Bar(spellId, info.expirationTime - GetTime(), L.sluggish_potion_effect)
-					self:PlaySound(spellId, "info")
-				elseif spellId == 315849 then -- Sickening Potion
-					self:Message(spellId, "green", CL.other:format(CL.you:format(self:SpellName(spellId)), L.sickening_potion_effect))
-					self:Bar(spellId, info.expirationTime - GetTime(), L.sickening_potion_effect)
-					self:PlaySound(spellId, "info")
-				elseif spellId == 315817 then -- Spicy Potion
-					self:Message(spellId, "green", CL.other:format(CL.you:format(self:SpellName(spellId)), L.spicy_potion_effect))
-					self:Bar(spellId, info.expirationTime - GetTime(), L.spicy_potion_effect)
-					self:PlaySound(spellId, "info")
-				elseif spellId == 313698 then -- Gift of the Titans
-					self:Message(spellId, "green", CL.you:format(self:SpellName(spellId)))
-					self:Bar(spellId, info.expirationTime - GetTime())
-					self:PlaySound(spellId, "long")
+	function mod:UNIT_AURA(_, _, updateInfo)
+		if not updateInfo or updateInfo.isFullUpdate then
+			self:InitBuffs()
+		else
+			if updateInfo.addedAuras then
+				for i = 1, #updateInfo.addedAuras do
+					local auraTbl = updateInfo.addedAuras[i]
+					local spellId = auraTbl.spellId
+
+					if buffIds[spellId] then
+						buffIds[auraTbl.auraInstanceID] = {auraTbl.expirationTime, spellId}
+						if spellId == 315845 then -- Sluggish Potion
+							self:Message(spellId, "green", CL.other:format(CL.you:format(auraTbl.name), L.sluggish_potion_effect))
+							self:Bar(spellId, auraTbl.expirationTime - GetTime(), L.sluggish_potion_effect)
+							self:PlaySound(spellId, "info")
+						elseif spellId == 315849 then -- Sickening Potion
+							self:Message(spellId, "green", CL.other:format(CL.you:format(auraTbl.name), L.sickening_potion_effect))
+							self:Bar(spellId, auraTbl.expirationTime - GetTime(), L.sickening_potion_effect)
+							self:PlaySound(spellId, "info")
+						elseif spellId == 315817 then -- Spicy Potion
+							self:Message(spellId, "green", CL.other:format(CL.you:format(auraTbl.name), L.spicy_potion_effect))
+							self:Bar(spellId, auraTbl.expirationTime - GetTime(), L.spicy_potion_effect)
+							self:PlaySound(spellId, "info")
+						elseif spellId == 313698 then -- Gift of the Titans
+							self:Message(spellId, "green", CL.you:format(auraTbl.name))
+							self:Bar(spellId, auraTbl.expirationTime - GetTime())
+							self:PlaySound(spellId, "long")
+						end
+					end
 				end
-			elseif not info and activeBuffs[spellId] then
-				activeBuffs[spellId] = nil
-				if spellId == 315845 then -- Sluggish Potion
-					self:Message(spellId, "blue", CL.other:format(CL.removed:format(self:SpellName(spellId)), L.slowed))
-					self:StopBar(L.sluggish_potion_effect)
-					self:PlaySound(spellId, "warning")
-				elseif spellId == 315849 then -- Sickening Potion
-					self:Message(spellId, "blue", CL.other:format(CL.removed:format(self:SpellName(spellId)), self:SpellName(315850))) -- Vomit
-					self:StopBar(L.sickening_potion_effect)
-					self:PlaySound(spellId, "warning")
-				elseif spellId == 315817 then -- Spicy Potion
-					self:Message(spellId, "blue", CL.other:format(CL.removed:format(self:SpellName(spellId)), self:SpellName(315818))) -- Burning
-					self:StopBar(L.spicy_potion_effect)
-					self:PlaySound(spellId, "warning")
+			end
+			if updateInfo.removedAuraInstanceIDs then
+				for i = 1, #updateInfo.removedAuraInstanceIDs do
+					local hadBuff = buffIds[updateInfo.removedAuraInstanceIDs[i]]
+					if hadBuff then
+						local spellId = hadBuff[2]
+						buffIds[updateInfo.removedAuraInstanceIDs[i]] = nil
+						if spellId == 315845 then -- Sluggish Potion
+							self:Message(spellId, "blue", CL.other:format(CL.removed:format(self:SpellName(spellId)), L.slowed))
+							self:StopBar(L.sluggish_potion_effect)
+							self:PlaySound(spellId, "warning")
+						elseif spellId == 315849 then -- Sickening Potion
+							self:Message(spellId, "blue", CL.other:format(CL.removed:format(self:SpellName(spellId)), self:SpellName(315850))) -- Vomit
+							self:StopBar(L.sickening_potion_effect)
+							self:PlaySound(spellId, "warning")
+						elseif spellId == 315817 then -- Spicy Potion
+							self:Message(spellId, "blue", CL.other:format(CL.removed:format(self:SpellName(spellId)), self:SpellName(315818))) -- Burning
+							self:StopBar(L.spicy_potion_effect)
+							self:PlaySound(spellId, "warning")
+						end
+					end
+				end
+			end
+			if updateInfo.updatedAuraInstanceIDs then
+				for i = 1, #updateInfo.updatedAuraInstanceIDs do
+					local hadBuff = buffIds[updateInfo.updatedAuraInstanceIDs[i]]
+					if hadBuff then
+						local spellId = hadBuff[2]
+						local auraTbl = self:GetPlayerAura(spellId)
+						if hadBuff[1] ~= auraTbl.expirationTime then
+							buffIds[updateInfo.updatedAuraInstanceIDs[i]][1] = auraTbl.expirationTime
+							if spellId == 315845 then -- Sluggish Potion
+								self:Bar(spellId, auraTbl.expirationTime - GetTime(), L.sluggish_potion_effect)
+							elseif spellId == 315849 then -- Sickening Potion
+								self:Bar(spellId, auraTbl.expirationTime - GetTime(), L.sickening_potion_effect)
+							elseif spellId == 315817 then -- Spicy Potion
+								self:Bar(spellId, auraTbl.expirationTime - GetTime(), L.spicy_potion_effect)
+							elseif spellId == 313698 then -- Gift of the Titans
+								self:Bar(spellId, auraTbl.expirationTime - GetTime())
+							end
+						end
+					end
 				end
 			end
 		end
