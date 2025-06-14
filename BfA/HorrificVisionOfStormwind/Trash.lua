@@ -50,7 +50,6 @@ mod:RegisterEnableMob(
 --
 
 local portalsClosed = 0
-local activeBuffs = {}
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -410,7 +409,6 @@ end
 
 function mod:OnBossDisable()
 	portalsClosed = 0
-	activeBuffs = {}
 end
 
 --------------------------------------------------------------------------------
@@ -532,19 +530,20 @@ function mod:NoxiousMixture(args)
 end
 
 do
-	local buffIds = {
+	local trackedBuffs = {
 		[315845] = true, -- Sluggish Potion
 		[315849] = true, -- Sickening Potion
 		[315817] = true, -- Spicy Potion
 		[313698] = true, -- Gift of the Titans
 	}
-	local numBuffs = #buffIds
+	local activeBuffs = {}
 
 	function mod:InitBuffs() -- reload protection
-		for spellId in next, buffIds do
+		activeBuffs = {}
+		for spellId in next, trackedBuffs do
 			local auraTbl = self:GetPlayerAura(spellId)
 			if auraTbl then
-				activeBuffs[auraTbl.auraInstanceID] = {auraTbl.expirationTime, auraTbl.spellId}
+				activeBuffs[auraTbl.auraInstanceID] = {auraTbl.expirationTime, spellId}
 				if spellId == 315845 then -- Sluggish Potion
 					self:Bar(spellId, auraTbl.expirationTime - GetTime(), L.sluggish_potion_effect)
 				elseif spellId == 315849 then -- Sickening Potion
@@ -567,8 +566,8 @@ do
 					local auraTbl = updateInfo.addedAuras[i]
 					local spellId = auraTbl.spellId
 
-					if buffIds[spellId] then
-						buffIds[auraTbl.auraInstanceID] = {auraTbl.expirationTime, spellId}
+					if trackedBuffs[spellId] then
+						activeBuffs[auraTbl.auraInstanceID] = {auraTbl.expirationTime, spellId}
 						if spellId == 315845 then -- Sluggish Potion
 							self:Message(spellId, "green", CL.other:format(CL.you:format(auraTbl.name), L.sluggish_potion_effect))
 							self:Bar(spellId, auraTbl.expirationTime - GetTime(), L.sluggish_potion_effect)
@@ -591,10 +590,10 @@ do
 			end
 			if updateInfo.removedAuraInstanceIDs then
 				for i = 1, #updateInfo.removedAuraInstanceIDs do
-					local hadBuff = buffIds[updateInfo.removedAuraInstanceIDs[i]]
+					local hadBuff = activeBuffs[updateInfo.removedAuraInstanceIDs[i]]
 					if hadBuff then
 						local spellId = hadBuff[2]
-						buffIds[updateInfo.removedAuraInstanceIDs[i]] = nil
+						activeBuffs[updateInfo.removedAuraInstanceIDs[i]] = nil
 						if spellId == 315845 then -- Sluggish Potion
 							self:Message(spellId, "blue", CL.other:format(CL.removed:format(self:SpellName(spellId)), L.slowed))
 							self:StopBar(L.sluggish_potion_effect)
@@ -607,18 +606,20 @@ do
 							self:Message(spellId, "blue", CL.other:format(CL.removed:format(self:SpellName(spellId)), self:SpellName(315818))) -- Burning
 							self:StopBar(L.spicy_potion_effect)
 							self:PlaySound(spellId, "warning")
+						elseif spellId == 313698 then -- Gift of the Titans
+							self:StopBar(spellId)
 						end
 					end
 				end
 			end
 			if updateInfo.updatedAuraInstanceIDs then
 				for i = 1, #updateInfo.updatedAuraInstanceIDs do
-					local hadBuff = buffIds[updateInfo.updatedAuraInstanceIDs[i]]
+					local hadBuff = activeBuffs[updateInfo.updatedAuraInstanceIDs[i]]
 					if hadBuff then
 						local spellId = hadBuff[2]
 						local auraTbl = self:GetPlayerAura(spellId)
 						if hadBuff[1] ~= auraTbl.expirationTime then
-							buffIds[updateInfo.updatedAuraInstanceIDs[i]][1] = auraTbl.expirationTime
+							activeBuffs[updateInfo.updatedAuraInstanceIDs[i]][1] = auraTbl.expirationTime
 							if spellId == 315845 then -- Sluggish Potion
 								self:Bar(spellId, auraTbl.expirationTime - GetTime(), L.sluggish_potion_effect)
 							elseif spellId == 315849 then -- Sickening Potion
