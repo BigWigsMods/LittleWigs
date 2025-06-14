@@ -1,38 +1,41 @@
-
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Baron Silverlaine", {33, 2849}, 97)
 if not mod then return end
 mod:RegisterEnableMob(3887)
-mod.engageId = 1070
-mod.respawnTime = 30
+mod:SetEncounterID(1070)
+mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local nextWorgenSpiritWarning = 75
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
 	return {
-		93857, --Summon Worgen Spirit
+		23224, -- Veil of Shadow
+		93857, -- Summon Worgen Spirit
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "WorgenSpirit", 93857)
-	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
+	self:Log("SPELL_CAST_START", "VeilOfShadow", 23224)
+	self:Log("SPELL_CAST_START", "SummonWorgenSpirit", 93857)
 
 	if self:Difficulty() == 232 then -- Dastardly Duos
 		-- no encounter events in Dastardly Duos
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 		self:Death("Win", 3887)
+	else -- Normal, Heroic
+		-- Summon Worgen Spirit is not cast in Dastardly Duos
+		self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1") -- Summon Worgen Spirit
 	end
 end
 
@@ -41,11 +44,18 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
-function mod:WorgenSpirit(args)
-	self:MessageOld(args.spellId, "red")
+function mod:VeilOfShadow(args)
+	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 17.0)
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:SummonWorgenSpirit(args)
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:UNIT_HEALTH(event, unit)
