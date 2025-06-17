@@ -1,4 +1,3 @@
-if not BigWigsLoader.isNext then return end -- XXX remove in 11.1.7
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
