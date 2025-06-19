@@ -430,6 +430,30 @@ BigWigs:AddSounds("Darkflame Cleft Trash", {
 	["minecart"] = {"info","long"},
 })
 
+BigWigs:AddColors("Azhiccar", {
+})
+
+BigWigs:AddSounds("Azhiccar", {
+})
+
+BigWigs:AddColors("Taah'bat and A'wazj", {
+})
+
+BigWigs:AddSounds("Taah'bat and A'wazj", {
+})
+
+BigWigs:AddColors("Soul-Scribe", {
+})
+
+BigWigs:AddSounds("Soul-Scribe", {
+})
+
+BigWigs:AddColors("Eco-Dome Al'dani Trash", {
+})
+
+BigWigs:AddSounds("Eco-Dome Al'dani Trash", {
+})
+
 BigWigs:AddColors("Big M.O.M.M.A.", {
 	[460156] = "green",
 	[469981] = "cyan",
