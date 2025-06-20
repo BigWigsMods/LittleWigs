@@ -244,14 +244,14 @@ end
 
 function mod:GaleWinds(args)
 	self:Message(args.spellId, "orange")
+	self:Bar(args.spellId, 22)
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 22)
 end
 
 function mod:MinorSwiftnessWard(args)
 	self:Message(args.spellId, "yellow")
+	self:Bar(args.spellId, 32)
 	self:PlaySound(args.spellId, "info")
-	self:CDBar(args.spellId, 32)
 end
 
 function mod:WindspeakerHeldisDeath(args)
@@ -307,15 +307,15 @@ end
 
 function mod:ShipbreakerStorm(args)
 	self:Message(args.spellId, "orange")
+	self:Bar(args.spellId, 13)
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 13)
 end
 
 function mod:ElectrifyingShock(args)
 	if self:Dispeller("magic", nil, args.spellId) then
 		self:TargetMessage(args.spellId, "yellow", args.destName)
+		self:Bar(args.spellId, 15)
 		self:PlaySound(args.spellId, "info")
-		self:CDBar(args.spellId, 15)
 	end
 end
 
