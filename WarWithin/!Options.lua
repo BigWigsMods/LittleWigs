@@ -465,9 +465,23 @@ BigWigs:AddSounds("Taah'bat and A'wazj", {
 })
 
 BigWigs:AddColors("Soul-Scribe", {
+	[1224793] = "cyan",
+	[1224865] = "green",
+	[1225174] = "red",
+	[1225218] = "orange",
+	[1226444] = "blue",
+	[1236703] = "yellow",
+	[1237184] = "cyan",
 })
 
 BigWigs:AddSounds("Soul-Scribe", {
+	[1224793] = "alert",
+	[1224865] = "info",
+	[1225174] = "alarm",
+	[1225218] = "alarm",
+	[1226444] = "warning",
+	[1236703] = "long",
+	[1237184] = "alert",
 })
 
 BigWigs:AddColors("Eco-Dome Al'dani Trash", {
