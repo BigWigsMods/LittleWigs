@@ -118,6 +118,24 @@ if L then
 	--L.wriggling_darkspawn = "Wriggling Darkspawn"
 end
 
+-- Eco-Dome Al'dani
+
+L = BigWigs:NewBossLocale("Eco-Dome Al'dani Trash", "esMX")
+if L then
+	--L.terrified_broker = "Terrified Broker"
+	--L.arcane_siphon = "Arcane Siphon"
+	--L.voracious_gorger = "Voracious Gorger"
+	--L.ravenous_destroyer = "Ravenous Destroyer"
+	--L.overcharged_sentinel = "Overcharged Sentinel"
+	--L.wastelander_farstalker = "Wastelander Farstalker"
+	--L.tamed_ruinstalker = "Tamed Ruinstalker"
+	--L.wastelander_ritualist = "Wastelander Ritualist"
+	--L.wastelander_pactspeaker = "Wastelander Pactspeaker"
+	--L.karesh_elemental = "K'aresh Elemental"
+	--L.burrowing_creeper = "Burrowing Creeper"
+	--L.wastes_creeper = "Wastes Creeper"
+end
+
 -- Operation: Floodgate
 
 L = BigWigs:NewBossLocale("Operation: Floodgate Trash", "esMX")
