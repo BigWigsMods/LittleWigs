@@ -437,9 +437,19 @@ BigWigs:AddSounds("Azhiccar", {
 })
 
 BigWigs:AddColors("Taah'bat and A'wazj", {
+	[1219457] = "yellow",
+	[1219482] = "purple",
+	[1219700] = {"cyan","green"},
+	[1227918] = {"blue","orange"},
+	[1236130] = {"blue","red"},
 })
 
 BigWigs:AddSounds("Taah'bat and A'wazj", {
+	[1219457] = "info",
+	[1219482] = "alert",
+	[1219700] = {"info","long"},
+	[1227918] = {"alarm","warning"},
+	[1236130] = "info",
 })
 
 BigWigs:AddColors("Soul-Scribe", {
