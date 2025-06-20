@@ -24,6 +24,11 @@
 <Script file="DarkflameCleft\TheDarkness.lua"/>
 <Script file="DarkflameCleft\Trash.lua"/>
 
+<Script file="EcoDomeAldani\Azhiccar.lua"/>
+<Script file="EcoDomeAldani\TaahbatAndAwazj.lua"/>
+<Script file="EcoDomeAldani\SoulScribe.lua"/>
+<Script file="EcoDomeAldani\Trash.lua"/>
+
 <Script file="OperationFloodgate\BigMOMMA.lua"/>
 <Script file="OperationFloodgate\DemolitionDuo.lua"/>
 <Script file="OperationFloodgate\Swampface.lua"/>
