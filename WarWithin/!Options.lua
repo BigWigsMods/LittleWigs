@@ -431,9 +431,21 @@ BigWigs:AddSounds("Darkflame Cleft Trash", {
 })
 
 BigWigs:AddColors("Azhiccar", {
+	[1217232] = "cyan",
+	[1217247] = {"blue","red"},
+	[1217327] = "yellow",
+	[1217446] = "blue",
+	[1217664] = "purple",
+	[1227745] = {"blue","orange"},
 })
 
 BigWigs:AddSounds("Azhiccar", {
+	[1217232] = "long",
+	[1217247] = {"alarm","info"},
+	[1217327] = "alert",
+	[1217446] = "underyou",
+	[1217664] = "warning",
+	[1227745] = "alarm",
 })
 
 BigWigs:AddColors("Taah'bat and A'wazj", {
