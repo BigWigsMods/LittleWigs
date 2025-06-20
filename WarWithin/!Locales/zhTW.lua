@@ -122,18 +122,18 @@ end
 
 L = BigWigs:NewBossLocale("Eco-Dome Al'dani Trash", "zhTW")
 if L then
-	--L.terrified_broker = "Terrified Broker"
-	--L.arcane_siphon = "Arcane Siphon"
-	--L.voracious_gorger = "Voracious Gorger"
-	--L.ravenous_destroyer = "Ravenous Destroyer"
-	--L.overcharged_sentinel = "Overcharged Sentinel"
-	--L.wastelander_farstalker = "Wastelander Farstalker"
-	--L.tamed_ruinstalker = "Tamed Ruinstalker"
-	--L.wastelander_ritualist = "Wastelander Ritualist"
-	--L.wastelander_pactspeaker = "Wastelander Pactspeaker"
-	--L.karesh_elemental = "K'aresh Elemental"
-	--L.burrowing_creeper = "Burrowing Creeper"
-	--L.wastes_creeper = "Wastes Creeper"
+	L.terrified_broker = "驚恐的仲介者"
+	L.arcane_siphon = "秘法虹吸"
+	L.voracious_gorger = "饑渴吞食者"
+	L.ravenous_destroyer = "飢餓的毀滅者"
+	L.overcharged_sentinel = "過載啃兵"
+	L.wastelander_farstalker = "荒地居民遠獵者"
+	L.tamed_ruinstalker = "馴服的廢墟潛獵者"
+	L.wastelander_ritualist = "荒地居民祭儀師"
+	L.wastelander_pactspeaker = "荒地居民獸群語者"
+	L.karesh_elemental = "凯瑞西元素"
+	L.burrowing_creeper = "鑽地潛伏者"
+	L.wastes_creeper = "荒地潛伏者"
 end
 
 -- Operation: Floodgate
