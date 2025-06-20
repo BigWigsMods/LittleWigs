@@ -340,9 +340,9 @@ end
 
 L = BigWigs:NewBossLocale("Overcharged Trash", "deDE")
 if L then
-	--L.overcharged_trash = "Overcharged Trash"
+	L.overcharged_trash = "Überladener Trash"
 
-	--L.awakened_defensive_construct = "Awakened Defensive Construct"
-	--L.awakened_defense_matrix = "Awakened Defense Matrix"
-	--L.overcharged_bot = "Overcharged Bot"
+	L.awakened_defensive_construct = "Erwecktes Verteidigungskonstrukt"
+	L.awakened_defense_matrix = "Erweckte Verteidigungsmatrix"
+	L.overcharged_bot = "Überladener Bot"
 end
