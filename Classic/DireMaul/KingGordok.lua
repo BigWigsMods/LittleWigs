@@ -26,6 +26,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "SunderArmor", 15572)
 	self:Log("SPELL_CAST_SUCCESS", "MortalStrike", 16856)
 	self:Log("SPELL_CAST_SUCCESS", "WarStomp", 16727)
+	if self:Classic() and not self:Vanilla() then -- no encounter events in Cataclysm Classic
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 11501)
+	end
 end
 
 function mod:OnEngage()
