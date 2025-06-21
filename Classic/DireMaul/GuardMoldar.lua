@@ -26,6 +26,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ShieldCharge", 15749)
 	self:Log("SPELL_CAST_SUCCESS", "Strike", 14516)
 	self:Log("SPELL_AURA_APPLIED", "FrenzyApplied", 8269)
+	if self:Classic() and not self:Vanilla() then -- no encounter events in Cataclysm Classic
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 14326)
+	end
 end
 
 function mod:OnEngage()
