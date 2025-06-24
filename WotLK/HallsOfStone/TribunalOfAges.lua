@@ -68,7 +68,7 @@ function mod:VerifyEnable()
 	-- GetSubZoneText() approach was considered but the subzone he's initially in covers a huge chunk of the dungeon
 	-- (including the exact place where you need to talk to him to open the door to the last boss) and only checking
 	-- against the subzone the encounter is taking action in poses a risk of the module not being loaded.
-	return not lastKill or (GetTime() - lastKill > (UnitLevel("player") > 80 and 150 or 300))
+	return not lastKill or (GetTime() - lastKill > (BigWigsLoader.UnitLevel("player") > 80 and 150 or 300))
 end
 
 --------------------------------------------------------------------------------
