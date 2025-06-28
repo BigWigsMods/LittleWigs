@@ -216,6 +216,7 @@ end
 L = BigWigs:NewBossLocale("The Dawnbreaker Trash", "esES")
 if L then
 	L.arathi_lamplighter = "Prendelámparas arathi"
+	L.nightfall_curseblade = "Hoja maldita del Ocaso"
 	L.nightfall_shadowmage = "Mago oscuro del Ocaso"
 	L.nightfall_ritualist = "Ritualista del ocaso"
 	L.nightfall_commander = "Comandante del Ocaso"

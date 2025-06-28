@@ -873,6 +873,7 @@ BigWigs:AddColors("The Dawnbreaker Trash", {
 	[451112] = "yellow",
 	[451117] = "purple",
 	[451119] = {"blue","red"},
+	[1242074] = "purple",
 })
 
 BigWigs:AddSounds("The Dawnbreaker Trash", {
@@ -888,7 +889,7 @@ BigWigs:AddSounds("The Dawnbreaker Trash", {
 	[432565] = "alarm",
 	[446615] = "info",
 	[449042] = "info",
-	[450756] = "warning",
+	[450756] = {"info","warning"},
 	[450854] = "alarm",
 	[451091] = "info",
 	[451097] = "alert",
@@ -898,6 +899,7 @@ BigWigs:AddSounds("The Dawnbreaker Trash", {
 	[451112] = "info",
 	[451117] = "alarm",
 	[451119] = {"alarm","alert"},
+	[1242074] = "info",
 })
 
 BigWigs:AddColors("Kyrioss", {

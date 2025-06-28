@@ -216,6 +216,7 @@ end
 L = BigWigs:NewBossLocale("The Dawnbreaker Trash", "koKR")
 if L then
 	L.arathi_lamplighter = "아라시 점등원"
+	L.nightfall_curseblade = "일몰 저주칼날"
 	L.nightfall_shadowmage = "일몰 어둠마법사"
 	L.nightfall_ritualist = "일몰 의식술사"
 	L.nightfall_commander = "일몰 사령관"

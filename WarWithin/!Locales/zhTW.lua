@@ -216,6 +216,7 @@ end
 L = BigWigs:NewBossLocale("The Dawnbreaker Trash", "zhTW")
 if L then
 	L.arathi_lamplighter = "阿拉希燈火者"
+	L.nightfall_curseblade = "夜暮詛咒之刃"
 	L.nightfall_shadowmage = "夜暮暗影法師"
 	L.nightfall_ritualist = "夜暮祭儀師"
 	L.nightfall_commander = "夜暮指揮官"
