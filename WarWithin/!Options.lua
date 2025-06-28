@@ -60,13 +60,14 @@ BigWigs:AddColors("Ara-Kara, City of Echoes Trash", {
 	[434824] = "orange",
 	[434830] = "blue",
 	[436614] = {"blue","orange"},
-	[438622] = "yellow",
 	[438826] = {"blue","yellow"},
 	[438877] = "cyan",
 	[439208] = "green",
 	[448248] = "red",
 	[453161] = "orange",
 	[465012] = "yellow",
+	[1241693] = "yellow",
+	[1241785] = {"blue","purple"},
 })
 
 BigWigs:AddSounds("Ara-Kara, City of Echoes Trash", {
@@ -81,13 +82,14 @@ BigWigs:AddSounds("Ara-Kara, City of Echoes Trash", {
 	[434824] = "alarm",
 	[434830] = "underyou",
 	[436614] = "warning",
-	[438622] = "alarm",
 	[438826] = {"alert","underyou"},
 	[438877] = "info",
 	[439208] = "info",
 	[448248] = "alert",
 	[453161] = "alarm",
 	[465012] = "alert",
+	[1241693] = "info",
+	[1241785] = "alert",
 })
 
 BigWigs:AddColors("Brew Master Aldryr", {
