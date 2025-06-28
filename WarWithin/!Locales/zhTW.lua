@@ -124,6 +124,7 @@ L = BigWigs:NewBossLocale("Eco-Dome Al'dani Trash", "zhTW")
 if L then
 	L.terrified_broker = "驚恐的仲介者"
 	L.arcane_siphon = "秘法虹吸"
+	--L.overgorged_mite = "Overgorged Mite"
 	L.voracious_gorger = "饑渴吞食者"
 	L.ravenous_destroyer = "飢餓的毀滅者"
 	L.overcharged_sentinel = "過載啃兵"

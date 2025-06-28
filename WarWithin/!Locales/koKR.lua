@@ -124,6 +124,7 @@ L = BigWigs:NewBossLocale("Eco-Dome Al'dani Trash", "koKR")
 if L then
 	L.terrified_broker = "겁에 질린 중개자"
 	L.arcane_siphon = "비전 착취"
+	--L.overgorged_mite = "Overgorged Mite"
 	L.voracious_gorger = "게걸스러운 먹보"
 	L.ravenous_destroyer = "게걸스러운 파괴자"
 	L.overcharged_sentinel = "과충전된 파수꾼"
