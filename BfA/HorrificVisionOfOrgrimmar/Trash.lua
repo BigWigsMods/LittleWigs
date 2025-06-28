@@ -89,9 +89,6 @@ if L then
 	L.aqir_mindhunter = "Aqir Mindhunter"
 	L.aqir_venomweaver = "Aqir Venomweaver"
 	L.gamon = "Gamon"
-
-	L["298074_icon"] = 305155 -- Rupture XXX fixed in 11.1.7
-	L["298074_desc"] = 305155 -- Rupture XXX fixed in 11.1.7
 end
 
 --------------------------------------------------------------------------------
@@ -227,7 +224,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("GOSSIP_SHOW")
 
 	self:RegisterEvent("UNIT_SPELLCAST_START") -- Open Vision
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Rupture, War Stomp
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- War Stomp
 
 	-- Sanity Restoration Orb
 	self:Log("SPELL_CAST_START", "SanityRestorationOrb", 307870)
@@ -317,6 +314,9 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("FacelessWillbreakerEngaged", 152987, 157608, 164188) -- Faceless Willbreaker, Faceless Willbreaker, Horrific Figment
 	self:Log("SPELL_CAST_START", "DarkSmash", 296718)
 	self:Death("FacelessWillbreakerDeath", 152987, 157608, 164188) -- Faceless Willbreaker, Faceless Willbreaker, Horrific Figment
+
+	-- Burrowing Appendage
+	self:Log("SPELL_CAST_SUCCESS", "Rupture", 298074)
 
 	-- Annihilator Lak'hal
 	self:RegisterEngageMob("AnnihilatorLakhalEngaged", 153942)
@@ -413,17 +413,9 @@ function mod:UNIT_SPELLCAST_START(event, _, _, spellId)
 end
 
 do
-	local prevCast, prev = nil, 0
+	local prevCast = nil
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
-		if spellId == 298074 and castGUID ~= prevCast then -- Rupture (Burrowing Appendage)
-			prevCast = castGUID
-			local t = GetTime()
-			if t - prev > 2 then
-				prev = t
-				self:Message(spellId, "orange", nil, L["298074_icon"])
-				self:PlaySound(spellId, "alarm")
-			end
-		elseif spellId == 314723 and castGUID ~= prevCast then -- War Stomp (Gamon)
+		if spellId == 314723 and castGUID ~= prevCast then -- War Stomp (Gamon)
 			prevCast = castGUID
 			self:WarStomp({sourceGUID = self:UnitGUID(unit)})
 		end
@@ -977,6 +969,19 @@ end
 
 function mod:FacelessWillbreakerDeath(args)
 	self:ClearNameplate(args.destGUID)
+end
+
+-- Burrowing Appendage
+
+do
+	local prev = 0
+	function mod:Rupture(args)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 -- Annihilator Lak'hal
