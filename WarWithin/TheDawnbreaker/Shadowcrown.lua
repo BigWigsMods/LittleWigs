@@ -66,6 +66,11 @@ function mod:OnEngage()
 		self:CDBar(426735, 11.4) -- Burning Shadows
 		self:CDBar(445996, 12.9) -- Collapsing Darkness
 	end
+	local dawnbreakerTrashModule = BigWigs:GetBossModule("The Dawnbreaker Trash", true)
+	if dawnbreakerTrashModule then
+		-- if the boss is pulled we no longer care about the Plant Arathi Bomb bar
+		dawnbreakerTrashModule:StopBar(CL.explosion) -- Plant Arathi Bomb
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -73,10 +78,9 @@ end
 --
 
 function mod:DarknessComes(args)
-	local percent
-	if darknessComesCount == 1 then
+	if darknessComesCount == 1 then -- 1st cast
 		darknessComesCount = darknessComesCount + 1
-		percent = 50
+		self:Message(args.spellId, "cyan", CL.percent:format(50, args.spellName))
 		if self:Mythic() then
 			self:CDBar(453140, 23.8) -- Collapsing Night
 			self:CDBar(426735, 29.2) -- Burning Shadows
@@ -88,8 +92,8 @@ function mod:DarknessComes(args)
 			self:CDBar(426735, 26.3) -- Burning Shadows
 			self:CDBar(445996, 27.5) -- Collapsing Darkness
 		end
-	else
-		percent = 1
+	else -- 2nd and final cast
+		self:Message(args.spellId, "cyan", CL.percent:format(1, args.spellName))
 		self:StopBar(426735) -- Burning Shadows
 		if self:Mythic() then
 			self:StopBar(453212) -- Obsidian Beam
@@ -99,7 +103,6 @@ function mod:DarknessComes(args)
 			self:StopBar(445996) -- Collapsing Darkness
 		end
 	end
-	self:Message(args.spellId, "cyan", CL.percent:format(percent, args.spellName))
 	self:CastBar(args.spellId, 15)
 	self:PlaySound(args.spellId, "warning")
 end
