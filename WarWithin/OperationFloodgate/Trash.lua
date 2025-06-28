@@ -1,3 +1,4 @@
+local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -270,7 +271,11 @@ end
 
 function mod:Shreddation(args)
 	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 13.4, args.sourceGUID)
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:Nameplate(args.spellId, 25.5, args.sourceGUID)
+	else -- XXX remove block in 11.2
+		self:Nameplate(args.spellId, 13.4, args.sourceGUID)
+	end
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -287,7 +292,11 @@ end
 
 function mod:Flamethrower(args)
 	self:Message(args.spellId, "yellow")
-	self:Nameplate(args.spellId, 26.7, args.sourceGUID)
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:Nameplate(args.spellId, 25.5, args.sourceGUID)
+	else -- XXX remove block in 11.2
+		self:Nameplate(args.spellId, 26.7, args.sourceGUID)
+	end
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -314,6 +323,7 @@ do
 end
 
 function mod:TrickshotInterrupt(args)
+	-- TODO 10.5?
 	self:Nameplate(1214468, 12.3, args.destGUID)
 end
 
@@ -334,7 +344,7 @@ end
 do
 	local prev = 0
 	function mod:WindUp(args)
-		self:Nameplate(args.spellId, 17.4, args.sourceGUID)
+		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 		if args.time - prev > 2 then
 			prev = args.time
 			self:Message(args.spellId, "yellow")
@@ -660,8 +670,8 @@ do
 	local timer
 
 	function mod:BubblesEngaged(guid)
-		self:CDBar(469818, 4.6) -- Bubble Burp
-		self:Nameplate(469818, 4.6, guid) -- Bubble Burp
+		self:CDBar(469818, 4.3) -- Bubble Burp
+		self:Nameplate(469818, 4.3, guid) -- Bubble Burp
 		self:CDBar(1217496, 9.2) -- Splish Splash
 		self:Nameplate(1217496, 9.2, guid) -- Splish Splash
 		self:CDBar(469721, 15.3) -- Backwash
@@ -685,8 +695,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "orange")
-		self:CDBar(args.spellId, 21.9)
-		self:Nameplate(args.spellId, 21.9, args.sourceGUID)
+		self:CDBar(args.spellId, 21.8)
+		self:Nameplate(args.spellId, 21.8, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
 		timer = self:ScheduleTimer("BubblesDeath", 30)
 	end
@@ -696,8 +706,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "yellow")
-		self:CDBar(args.spellId, 21.9)
-		self:Nameplate(args.spellId, 21.9, args.sourceGUID)
+		self:CDBar(args.spellId, 21.8)
+		self:Nameplate(args.spellId, 21.8, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
 		timer = self:ScheduleTimer("BubblesDeath", 30)
 	end
@@ -740,7 +750,7 @@ end
 -- Darkfuse Jumpstarter
 
 function mod:DarkfuseJumpstarterEngaged(guid)
-	self:Nameplate(465666, 5.7, guid) -- Sparkslam
+	self:Nameplate(465666, 5.6, guid) -- Sparkslam
 end
 
 do
