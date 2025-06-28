@@ -657,6 +657,7 @@ BigWigs:AddColors("Captain Dailcry", {
 	[424419] = "red",
 	[447270] = "orange",
 	[447439] = {"blue","green","yellow"},
+	[1238780] = {"blue","orange"},
 })
 
 BigWigs:AddSounds("Captain Dailcry", {
@@ -664,6 +665,7 @@ BigWigs:AddSounds("Captain Dailcry", {
 	[424419] = "warning",
 	[447270] = "alarm",
 	[447439] = {"alert","info"},
+	[1238780] = {"alarm","underyou"},
 })
 
 BigWigs:AddColors("Baron Braunpyke", {
