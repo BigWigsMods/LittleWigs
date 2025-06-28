@@ -1,3 +1,4 @@
+local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -172,7 +173,6 @@ function mod:OnBossEnable()
 	-- High Priest Aemya
 	self:RegisterEngageMob("HighPriestAemyaEngaged", 212827)
 	self:Log("SPELL_CAST_START", "ReflectiveShield", 428150)
-	self:Log("SPELL_CAST_SUCCESS", "ReflectiveShieldSuccess", 428150)
 	self:Log("SPELL_AURA_REMOVED", "ReflectiveShieldRemoved", 428150)
 	self:Death("HighPriestAemyaDeath", 212827)
 
@@ -440,8 +440,8 @@ do
 	local timer
 
 	function mod:HighPriestAemyaEngaged(guid)
-		self:CDBar(428150, 21.4) -- Reflective Shield
-		self:Nameplate(428150, 21.4, guid) -- Reflective Shield
+		self:CDBar(428150, 12.0) -- Reflective Shield
+		self:Nameplate(428150, 12.0, guid) -- Reflective Shield
 		timer = self:ScheduleTimer("HighPriestAemyaDeath", 60, nil, guid)
 	end
 
@@ -449,14 +449,11 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
+		self:StopBar(args.spellId)
+		self:StopNameplate(args.spellId, args.sourceGUID)
 		self:Message(args.spellId, "red")
 		timer = self:ScheduleTimer("HighPriestAemyaDeath", 60, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alert")
-	end
-
-	function mod:ReflectiveShieldSuccess(args)
-		self:StopBar(args.spellId)
-		self:StopNameplate(args.spellId, args.sourceGUID)
 	end
 
 	function mod:ReflectiveShieldRemoved(args)
@@ -486,11 +483,11 @@ do
 		if self:MobId(guid) == 211291 then -- Sergeant Shaynemail, boss version
 			shaynemailGUID = guid
 		end
-		self:CDBar(424423, 5.2) -- Lunging Strike
-		self:Nameplate(424423, 5.2, guid) -- Lunging Strike
-		nextBrutalSmash = GetTime() + 25.2
-		self:CDBar(424621, 25.2) -- Brutal Smash
-		self:Nameplate(424621, 25.2, guid) -- Brutal Smash
+		self:CDBar(424423, 4.9) -- Lunging Strike
+		self:Nameplate(424423, 4.9, guid) -- Lunging Strike
+		nextBrutalSmash = GetTime() + 24.5
+		self:CDBar(424621, 24.5) -- Brutal Smash
+		self:Nameplate(424621, 24.5, guid) -- Brutal Smash
 		timer = self:ScheduleTimer("SergeantShaynemailDeath", 20, nil, guid)
 	end
 
@@ -635,8 +632,10 @@ do
 		if self:MobId(guid) == 211289 then -- Taener Duelmal, boss version
 			taenerGUID = guid
 		end
-		self:CDBar(424420, 8.1) -- Cinderblast
-		self:Nameplate(424420, 8.1, guid) -- Cinderblast
+		if not self:Solo() or not isElevenDotTwo then -- XXX Cinderblast is not cast when solo in 11.2
+			self:CDBar(424420, 8.1) -- Cinderblast
+			self:Nameplate(424420, 8.1, guid) -- Cinderblast
+		end
 		local unit = self:UnitTokenFromGUID(guid)
 		if unit then
 			-- Taener's energy doesn't always reset after a wipe
@@ -649,7 +648,7 @@ do
 			self:CDBar(424462, 25.2) -- Ember Storm
 			self:Nameplate(424462, 25.2, guid) -- Ember Storm
 		end
-		timer = self:ScheduleTimer("TaenerDuelmalDeath", 20, nil, guid)
+		timer = self:ScheduleTimer("TaenerDuelmalDeath", 30, nil, guid)
 	end
 
 	function mod:Cinderblast(args)
@@ -694,7 +693,7 @@ do
 		-- cast at 100 energy: 1.5s cast, 6s channel, 1s delay, 25s energy gain
 		self:CDBar(args.spellId, 34.0)
 		self:Nameplate(args.spellId, 34.0, args.sourceGUID)
-		timer = self:ScheduleTimer("TaenerDuelmalDeath", 30, nil, args.sourceGUID)
+		timer = self:ScheduleTimer("TaenerDuelmalDeath", 40, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "long")
 	end
 
@@ -789,7 +788,11 @@ end
 do
 	local prev = 0
 	function mod:DisruptingShout(args)
-		self:Nameplate(args.spellId, 21.8, args.sourceGUID)
+		if isElevenDotTwo then -- XXX remove check in 11.2
+			self:Nameplate(args.spellId, 23.1, args.sourceGUID)
+		else -- XXX remove block in 11.2
+			self:Nameplate(args.spellId, 21.8, args.sourceGUID)
+		end
 		if args.time - prev > 2 then
 			prev = args.time
 			self:Message(args.spellId, "red")
@@ -886,7 +889,11 @@ do
 	end
 
 	function mod:PotShotSuccess(args)
-		self:Nameplate(args.spellId, 10.2, args.sourceGUID)
+		if isElevenDotTwo then -- XXX remove check in 11.2
+			self:Nameplate(args.spellId, 8.4, args.sourceGUID)
+		else -- XXX remove block in 11.2
+			self:Nameplate(args.spellId, 10.2, args.sourceGUID)
+		end
 	end
 end
 
@@ -897,13 +904,13 @@ end
 -- War Lynx
 
 function mod:WarLynxEngaged(guid)
-	self:Nameplate(446776, 7.0, guid) -- Pounce
+	self:Nameplate(446776, 4.4, guid) -- Pounce
 end
 
 do
 	local prev = 0
 	function mod:Pounce(args)
-		self:Nameplate(args.spellId, 16.6, args.sourceGUID)
+		self:Nameplate(args.spellId, 15.8, args.sourceGUID)
 		if args.time - prev > 2 then
 			prev = args.time
 			self:Message(args.spellId, "red")
@@ -1025,14 +1032,14 @@ end
 
 function mod:Consecration(args)
 	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 23.0, args.sourceGUID)
+	self:Nameplate(args.spellId, 22.8, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
 do
 	local prev = 0
 	function mod:SacredToll(args)
-		self:Nameplate(args.spellId, 23.1, args.sourceGUID)
+		self:Nameplate(args.spellId, 17.8, args.sourceGUID)
 		if args.time - prev > 3 then
 			prev = args.time
 			self:Message(args.spellId, "yellow")
@@ -1059,7 +1066,7 @@ end
 -- Zealous Templar
 
 function mod:ZealousTemplarEngaged(guid)
-	self:Nameplate(427596, 5.1, guid) -- Seal of Light's Fury
+	self:Nameplate(427596, 4.8, guid) -- Seal of Light's Fury
 	if self:Dispeller("magic", true, 444728) then
 		self:Nameplate(444728, 9.4, guid) -- Templar's Wrath
 	end
