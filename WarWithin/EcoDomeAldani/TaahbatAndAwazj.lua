@@ -1,4 +1,4 @@
-if not BigWigsLoader.isNext then return end
+if not BigWigsLoader.isNext then return end -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -22,11 +22,21 @@ local bindingJavelinCount = 1
 local riftClawsCount = 1
 
 --------------------------------------------------------------------------------
+-- Localization
+--
+
+local L = mod:GetLocale()
+if L then
+	L.warmup_icon = "inv_112_achievement_dungeon_ecodome"
+end
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		-- Stage 1
 		1236130, -- Binding Javelin
 		1227918, -- Warp Strike
@@ -62,6 +72,7 @@ function mod:OnEngage()
 	bindingJavelinCount = 1
 	riftClawsCount = 1
 	self:SetStage(1)
+	self:StopBar(CL.active)
 	self:CDBar(1219482, 5.2, CL.count:format(self:SpellName(1219482), riftClawsCount)) -- Rift Claws
 	self:CDBar(1236130, 10.8, CL.count:format(self:SpellName(1236130), bindingJavelinCount)) -- Binding Javelin
 	self:CDBar(1227918, 22.2) -- Warp Strike
@@ -71,6 +82,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup() -- triggered from trash module on CHAT_MSG_MONSTER_YELL
+	-- 0.00 [CHAT_MSG_MONSTER_YELL] I have no time for this. Taah'bat! Be certain they follow no further.#Soul-Scribe
+	-- 11.83 [ENCOUNTER_START] 3108#Taah'bat and A'wazj#205#5",
+	self:Bar("warmup", 11.8, CL.active, L.warmup_icon)
+end
 
 -- Stage 1
 

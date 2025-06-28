@@ -134,6 +134,8 @@ if L then
 	L.karesh_elemental = "卡雷什元素"
 	L.burrowing_creeper = "掘地蠕行者"
 	L.wastes_creeper = "废土蠕行者"
+
+	--L.taahbat_and_awazj_warmup_trigger = "I have no time for this. Taah'bat! Be certain they follow no further."
 end
 
 -- Operation: Floodgate

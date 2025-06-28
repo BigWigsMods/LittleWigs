@@ -134,6 +134,8 @@ if L then
 	L.karesh_elemental = "크아레쉬의 정령"
 	L.burrowing_creeper = "잠복하는 살금벌레"
 	L.wastes_creeper = "황원 살금벌레"
+
+	--L.taahbat_and_awazj_warmup_trigger = "I have no time for this. Taah'bat! Be certain they follow no further."
 end
 
 -- Operation: Floodgate

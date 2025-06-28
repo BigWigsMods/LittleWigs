@@ -42,6 +42,8 @@ if L then
 	L.karesh_elemental = "K'aresh Elemental"
 	L.burrowing_creeper = "Burrowing Creeper"
 	L.wastes_creeper = "Wastes Creeper"
+
+	L.taahbat_and_awazj_warmup_trigger = "I have no time for this. Taah'bat! Be certain they follow no further."
 end
 
 --------------------------------------------------------------------------------
@@ -98,6 +100,9 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- Warmups
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
 	-- Terrified Broker
 	self:Log("SPELL_AURA_APPLIED", "DisruptionGrenadeApplied", 1236981)
 
@@ -174,6 +179,18 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+-- Warmups
+
+function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if msg == L.taahbat_and_awazj_warmup_trigger then
+		local taahbatAndAwazjModule = BigWigs:GetBossModule("Taah'bat and A'wazj", true)
+		if taahbatAndAwazjModule then
+			taahbatAndAwazjModule:Enable()
+			taahbatAndAwazjModule:Warmup()
+		end
+	end
+end
 
 -- Terrified Broker
 
