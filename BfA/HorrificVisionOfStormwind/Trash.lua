@@ -97,9 +97,6 @@ if L then
 
 	L.therum_deepforge_warmup_trigger = "So ye like tae play with explosives, do ye? Then let's play."
 	L.alleria_windrunner_warmup_trigger = "Mother... do not listen to the whispers!"
-
-	L["298074_icon"] = 305155 -- Rupture XXX fixed in 11.1.7
-	L["298074_desc"] = 305155 -- Rupture XXX fixed in 11.1.7
 end
 
 --------------------------------------------------------------------------------
@@ -232,7 +229,6 @@ function mod:OnBossEnable()
 	self:OpenAltPower("altpower", 318335, "ZA")
 
 	self:RegisterEvent("UNIT_SPELLCAST_START") -- Open Vision, Hoppy Finish
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Rupture
 
 	-- Sanity Restoration Orb
 	self:Log("SPELL_CAST_START", "SanityRestorationOrb", 307870)
@@ -337,6 +333,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BladeFlourish", 311399)
 	self:Log("SPELL_CAST_START", "RoaringBlast", 311456)
 	self:Death("ArmsmasterTerensonDeath", 156949)
+
+	-- Burrowing Appendage
+	self:Log("SPELL_CAST_SUCCESS", "Rupture", 298074)
 
 	-- Dod
 	self:RegisterEngageMob("DodEngaged", 156820)
@@ -446,20 +445,6 @@ do
 		elseif spellId == 264398 and castGUID ~= prevCast then -- Hoppy Finish (Dod)
 			prevCast = castGUID
 			self:HoppyFinish({sourceGUID = self:UnitGUID(unit)})
-		end
-	end
-end
-
-do
-	local prev = 0
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-		if spellId == 298074 then -- Rupture (Burrowing Appendage)
-			local t = GetTime()
-			if t - prev > 2 then
-				prev = t
-				self:Message(spellId, "orange", nil, L["298074_icon"])
-				self:PlaySound(spellId, "alarm")
-			end
 		end
 	end
 end
@@ -1067,6 +1052,19 @@ do
 		self:StopBar(311399) -- Blade Flourish
 		self:StopBar(311456) -- Roaring Blast
 		self:ClearNameplate(guidFromTimer or args.destGUID)
+	end
+end
+
+-- Burrowing Appendage
+
+do
+	local prev = 0
+	function mod:Rupture(args)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
 end
 
