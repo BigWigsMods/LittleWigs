@@ -103,7 +103,7 @@ do
 
 	function mod:BindingJavelinApplied(args)
 		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(1236130, "red", playerList, 5) -- TODO unknown target limit
+		self:TargetsMessage(1236130, "red", playerList, 2)
 		self:PlaySound(1236130, "info", nil, playerList)
 	end
 end
