@@ -124,7 +124,7 @@ L = BigWigs:NewBossLocale("Eco-Dome Al'dani Trash", "zhTW")
 if L then
 	L.terrified_broker = "驚恐的仲介者"
 	L.arcane_siphon = "秘法虹吸"
-	--L.overgorged_mite = "Overgorged Mite"
+	L.overgorged_mite = "膨脹的蜱蟲"
 	L.voracious_gorger = "饑渴吞食者"
 	L.ravenous_destroyer = "飢餓的毀滅者"
 	L.overcharged_sentinel = "過載啃兵"
@@ -136,7 +136,7 @@ if L then
 	L.burrowing_creeper = "鑽地潛伏者"
 	L.wastes_creeper = "荒地潛伏者"
 
-	--L.taahbat_and_awazj_warmup_trigger = "I have no time for this. Taah'bat! Be certain they follow no further."
+	L.taahbat_and_awazj_warmup_trigger = "別耽誤我的時間。塔巴特！讓他們別再跟過來。"
 end
 
 -- Operation: Floodgate
