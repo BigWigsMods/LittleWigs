@@ -135,17 +135,21 @@ BigWigs:AddSounds("Echelon", {
 })
 
 BigWigs:AddColors("High Adjudicator Aleez", {
-	[323538] = "yellow",
+	[323538] = "red",
 	[323552] = "red",
-	[323650] = {"blue","cyan"},
+	[323597] = "cyan",
+	[323650] = {"blue","green","yellow"},
 	[329340] = "orange",
+	[1236512] = {"blue","orange"},
 })
 
 BigWigs:AddSounds("High Adjudicator Aleez", {
 	[323538] = "alert",
 	[323552] = "warning",
-	[323650] = "warning",
+	[323597] = "long",
+	[323650] = {"info","warning"},
 	[329340] = "alarm",
+	[1236512] = "alarm",
 })
 
 BigWigs:AddColors("Lord Chamberlain", {
