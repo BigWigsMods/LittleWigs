@@ -155,10 +155,11 @@ BigWigs:AddSounds("High Adjudicator Aleez", {
 BigWigs:AddColors("Lord Chamberlain", {
 	[323143] = "yellow",
 	[323236] = "orange",
-	[323437] = {"blue","yellow"},
+	[323437] = {"blue","purple"},
 	[327885] = "red",
 	[328791] = "red",
 	[329104] = "cyan",
+	[1236973] = "red",
 })
 
 BigWigs:AddSounds("Lord Chamberlain", {
@@ -168,6 +169,7 @@ BigWigs:AddSounds("Lord Chamberlain", {
 	[327885] = "alarm",
 	[328791] = "warning",
 	[329104] = "long",
+	[1236973] = "alarm",
 })
 
 BigWigs:AddColors("Halls of Atonement Trash", {
