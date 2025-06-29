@@ -31,16 +31,17 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Atonement Trash", "koKR")
 if L then
-	L.houndmaster = "타락한 사냥개조련사"
-	L.gargon = "흉포한 가르곤"
-	L.loyalstoneborn = "충직한 돌숨결"
-	L.darkblade = "타락한 암흑칼날"
-	L.obliterator = "타락한 절멸자"
-	L.collector = "타락한 수집가"
-	L.shard = "할키아스의 조각"
-	L.reaver = "돌숨결 약탈자"
-	L.slasher = "돌숨결 난도질꾼"
-	L.sigar = "심문관 시가르"
+	L.depraved_houndmaster = "타락한 사냥개조련사"
+	L.vicious_gargon = "흉포한 가르곤"
+	L.loyal_stoneborn = "충직한 돌숨결"
+	L.depraved_darkblade = "타락한 암흑칼날"
+	L.depraved_obliterator = "타락한 절멸자"
+	L.depraved_collector = "타락한 수집가"
+	L.stoneborn_slasher = "돌숨결 난도질꾼"
+	L.shard_of_halkias = "할키아스의 조각"
+	L.stoneborn_reaver = "돌숨결 약탈자"
+	L.stoneborn_eviscerator = "돌숨결 적출자"
+	L.inquisitor_sigar = "심문관 시가르"
 end
 
 -- Mists of Tirna Scithe

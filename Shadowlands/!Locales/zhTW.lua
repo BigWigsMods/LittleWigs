@@ -31,16 +31,17 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Atonement Trash", "zhTW")
 if L then
-	L.houndmaster = "墮落的馴犬者"
-	L.gargon = "凶惡石獸"
-	L.loyalstoneborn = "忠誠的石源魔"
-	L.darkblade = "墮落的暗刃兵"
-	L.obliterator = "墮落的消滅者"
-	L.collector = "墮落的收集者"
-	L.shard = "哈奇厄斯裂片"
-	L.reaver = "石源魔劫奪者"
-	L.slasher = "石源魔斬擊者"
-	L.sigar = "審判者席加爾"
+	L.depraved_houndmaster = "墮落的馴犬者"
+	L.vicious_gargon = "凶惡石獸"
+	L.loyal_stoneborn = "忠誠的石源魔"
+	L.depraved_darkblade = "墮落的暗刃兵"
+	L.depraved_obliterator = "墮落的消滅者"
+	L.depraved_collector = "墮落的收集者"
+	L.stoneborn_slasher = "石源魔斬擊者"
+	L.shard_of_halkias = "哈奇厄斯裂片"
+	L.stoneborn_reaver = "石源魔劫奪者"
+	L.stoneborn_eviscerator = "石源魔剔骨者"
+	L.inquisitor_sigar = "審判者席加爾"
 end
 
 -- Mists of Tirna Scithe

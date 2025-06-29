@@ -31,16 +31,17 @@ end
 
 L = BigWigs:NewBossLocale("Halls of Atonement Trash", "esES")
 if L then
-	L.houndmaster = "Maestra de canes depravada"
-	L.gargon = "Gargon sañoso"
-	L.loyalstoneborn = "Natopiedra fiel"
-	L.darkblade = "Filoscuro depravada"
-	L.obliterator = "Obliterador depravado"
-	L.collector = "Recolectora depravada"
-	L.shard = "Fragmento de Halkias"
-	L.reaver = "Atracador natopiedra"
-	L.slasher = "Mutilador natopiedra"
-	L.sigar = "Inquisidor Sigar"
+	L.depraved_houndmaster = "Maestra de canes depravada"
+	L.vicious_gargon = "Gargon sañoso"
+	L.loyal_stoneborn = "Natopiedra fiel"
+	L.depraved_darkblade = "Filoscuro depravada"
+	L.depraved_obliterator = "Obliterador depravado"
+	L.depraved_collector = "Recolectora depravada"
+	L.stoneborn_slasher = "Mutilador natopiedra"
+	L.shard_of_halkias = "Fragmento de Halkias"
+	L.stoneborn_reaver = "Atracador natopiedra"
+	L.stoneborn_eviscerator = "Evisceradora natopiedra"
+	L.inquisitor_sigar = "Inquisidor Sigar"
 end
 
 -- Mists of Tirna Scithe
