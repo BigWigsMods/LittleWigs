@@ -124,7 +124,7 @@ L = BigWigs:NewBossLocale("Eco-Dome Al'dani Trash", "koKR")
 if L then
 	L.terrified_broker = "겁에 질린 중개자"
 	L.arcane_siphon = "비전 착취"
-	--L.overgorged_mite = "Overgorged Mite"
+	L.overgorged_mite = "과식한 진드기"
 	L.voracious_gorger = "게걸스러운 먹보"
 	L.ravenous_destroyer = "게걸스러운 파괴자"
 	L.overcharged_sentinel = "과충전된 파수꾼"
@@ -136,7 +136,7 @@ if L then
 	L.burrowing_creeper = "잠복하는 살금벌레"
 	L.wastes_creeper = "황원 살금벌레"
 
-	--L.taahbat_and_awazj_warmup_trigger = "I have no time for this. Taah'bat! Be certain they follow no further."
+	L.taahbat_and_awazj_warmup_trigger = "이럴 시간 없다. 타바트! 놈들이 더 따라오지 못하게 막아라."
 end
 
 -- Operation: Floodgate
