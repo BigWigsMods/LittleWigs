@@ -4,9 +4,8 @@
 
 local mod, CL = BigWigs:NewBoss("Vindle Snapcrank", {2689, 2826}) -- Tak-Rethan Abyss, Sidestreet Sluice
 if not mod then return end
-mod:RegisterEnableMob(234931) -- Vindle Snapcrank
---mod:SetEncounterID(3173) -- encounter event doesn't fire in Sidestreet Sluice
--- 3124 in Tek-Rethan Abyss (does fire)
+mod:RegisterEnableMob(234931, 240376) -- Vindle Snapcrank (Tak-Rethan Abyss, Sidestreet Sluice)
+mod:SetEncounterID({3124, 3173}) -- Tak-Rethan Abyss, Sidestreet Sluice
 --mod:SetRespawnTime(15) resets, doesn't respawn
 mod:SetAllowWin(true)
 
@@ -39,8 +38,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SprocketSmash", 1215870)
 	self:Log("SPELL_CAST_START", "ClankerBomb", 1215337)
 	self:Log("SPELL_CAST_START", "ShockMaintenance", 1215374)
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus") -- XXX no encounter events
-	self:Death("Win", 234931) -- Vindle Snapcrank
+	if not BigWigsLoader.isNext then -- XXX remove this in 11.2 as the encounter events have been fixed
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus") -- XXX no encounter events
+		self:Death("Win", 234931) -- Vindle Snapcrank
+	end
 end
 
 function mod:OnEngage()
