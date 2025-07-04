@@ -149,11 +149,6 @@ end
 
 -- Tazavesh, the Veiled Market
 
-L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "deDE")
-if L then
-	L.zophex_warmup_trigger = "Gebt alle... Schmuggelware... ab..."
-end
-
 L = BigWigs:NewBossLocale("The Grand Menagerie", "deDE")
 if L then
 	L.achillite_warmup_trigger = "Ruinieren Euch rasende Riesenbestien den Tag? Wir haben die Lösung!"
@@ -173,6 +168,7 @@ end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "deDE")
 if L then
+	L.zophex_warmup_trigger = "Gebt alle... Schmuggelware... ab..."
 	L.menagerie_warmup_trigger = "Und nun zu dem Posten, auf den alle warten! Die angeblich dämonenverfluchte Schneide des Vergessens!"
 	L.soazmi_warmup_trigger = "Entschuldigt unser Eindringen, So'leah. Ich hoffe, wir stören."
 	L.portal_authority = "Portalbehörde von Tazavesh"

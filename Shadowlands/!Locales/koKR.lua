@@ -149,11 +149,6 @@ end
 
 -- Tazavesh, the Veiled Market
 
-L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "koKR")
-if L then
-	L.zophex_warmup_trigger = "밀수품을... 전부... 내놓아라..."
-end
-
 L = BigWigs:NewBossLocale("The Grand Menagerie", "koKR")
 if L then
 	L.achillite_warmup_trigger = "날뛰는 야수 때문에 두려우신가요? 여기 해결책이 있습니다!"
@@ -173,6 +168,7 @@ end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "koKR")
 if L then
+	L.zophex_warmup_trigger = "밀수품을... 전부... 내놓아라..."
 	L.menagerie_warmup_trigger = "여러분 모두가 고대하던 상품 차례입니다! 이른바 악마의 저주를 받은 망각의 서슬도끼입니다!"
 	L.soazmi_warmup_trigger = "방해해서 참 미안하게 됐습니다, 소레아. 불편할 때 찾아온 거면 좋겠는데 말이죠."
 	L.portal_authority = "타자베쉬 차원문 관리국"

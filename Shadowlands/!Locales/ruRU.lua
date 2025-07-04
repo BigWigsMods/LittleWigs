@@ -149,11 +149,6 @@ end
 
 -- Tazavesh, the Veiled Market
 
-L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "ruRU")
-if L then
-	L.zophex_warmup_trigger = "Сдавайте... контрабанду."
-end
-
 L = BigWigs:NewBossLocale("The Grand Menagerie", "ruRU")
 if L then
 	L.achillite_warmup_trigger = "Докучают разъяренные звери? У нас есть решение!"
@@ -173,6 +168,7 @@ end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "ruRU")
 if L then
+	L.zophex_warmup_trigger = "Сдавайте... контрабанду."
 	L.menagerie_warmup_trigger = "А теперь лот, которого все ждали! Топор, якобы проклятый демонами – Грань Забвения!"
 	L.soazmi_warmup_trigger = "Прости нас за вторжение, Со'лея. Кажется, сейчас не самое подходящее время."
 	L.portal_authority = "Служба порталов Тазавеша"

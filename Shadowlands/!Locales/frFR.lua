@@ -149,11 +149,6 @@ end
 
 -- Tazavesh, the Veiled Market
 
-L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "frFR")
-if L then
-	L.zophex_warmup_trigger = "Toute contrebande… sera saisie…"
-end
-
 L = BigWigs:NewBossLocale("The Grand Menagerie", "frFR")
 if L then
 	L.achillite_warmup_trigger = "Des bêtes enragées vous pourrissent la vie ? Nous avons la solution !"
@@ -173,6 +168,7 @@ end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "frFR")
 if L then
+	L.zophex_warmup_trigger = "Toute contrebande… sera saisie…"
 	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	L.soazmi_warmup_trigger = "Pardonnez notre intrusion, So’leah. J’espère que nous ne vous dérangeons pas."
 	L.portal_authority = "Garde des portails de Tazavesh"

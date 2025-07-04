@@ -41,6 +41,7 @@ mod:RegisterEnableMob(
 local L = mod:GetLocale()
 if L then
 	------ Streets of Wonder ------
+	L.zophex_warmup_trigger = "Surrender... all... contraband..."
 	L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
 	L.portal_authority = "Tazavesh Portal Authority"
@@ -201,7 +202,12 @@ function mod:OnBossEnable()
 	passwordId = nil
 
 	------ Streets of Wonder ------
+
+	-- Trading Game, warmups
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+
+	-- Auto-gossip
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_CAST_START", "StasisBeam", 356031)
 	self:Log("SPELL_CAST_START", "EmpoweredGlyphOfRestraint", 356537)
@@ -268,18 +274,29 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 			self:PlaySound("trading_game", "info")
 		end
 	elseif msg == L.menagerie_warmup_trigger then
-		-- Menagerie 1st boss Warmup
+		-- Menagerie warmup
 		local menagerieModule = BigWigs:GetBossModule("The Grand Menagerie", true)
 		if menagerieModule then
 			menagerieModule:Enable()
 			menagerieModule:Warmup()
 		end
 	elseif msg == L.soazmi_warmup_trigger then
-		-- So'azmi Warmup
+		-- So'azmi warmup
 		local soazmiModule = BigWigs:GetBossModule("So'azmi", true)
 		if soazmiModule then
 			soazmiModule:Enable()
 			soazmiModule:Warmup()
+		end
+	end
+end
+
+function mod:CHAT_MSG_MONSTER_YELL(event, msg)
+	if msg == L.zophex_warmup_trigger then
+		-- Zo'phex warmup
+		local zophexModule = BigWigs:GetBossModule("Zo'phex the Sentinel", true)
+		if zophexModule then
+			zophexModule:Enable()
+			zophexModule:Warmup()
 		end
 	end
 end

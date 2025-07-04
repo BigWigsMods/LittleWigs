@@ -149,11 +149,6 @@ end
 
 -- Tazavesh, the Veiled Market
 
-L = BigWigs:NewBossLocale("Zo'phex the Sentinel", "zhCN")
-if L then
-	L.zophex_warmup_trigger = "上交……所有……违禁品……"
-end
-
 L = BigWigs:NewBossLocale("The Grand Menagerie", "zhCN")
 if L then
 	L.achillite_warmup_trigger = "狂暴的野兽给您添乱了？解决方法很简单！"
@@ -173,6 +168,7 @@ end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "zhCN")
 if L then
+	L.zophex_warmup_trigger = "上交……所有……违禁品……"
 	L.menagerie_warmup_trigger = "现在是大家期待已久的拍品！传说中被恶魔诅咒的湮灭之刃！"
 	L.soazmi_warmup_trigger = "不好意思打扰了，索·莉亚。希望我们没耽误你什么大事。"
 	L.portal_authority = "塔扎维什传送局"
