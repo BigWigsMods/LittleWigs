@@ -610,7 +610,11 @@ do
 end
 
 function mod:ExtractionStrikeSuccess(args)
-	self:Nameplate(args.spellId, 7.1, args.sourceGUID)
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:Nameplate(args.spellId, 12.5, args.sourceGUID)
+	else -- XXX remove block in 11.2
+		self:Nameplate(args.spellId, 7.1, args.sourceGUID)
+	end
 end
 
 function mod:BloodstainedAssistantDeath(args)
