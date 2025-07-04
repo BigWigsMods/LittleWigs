@@ -36,15 +36,15 @@
 <Script file="SpiresOfAscension\Devos.lua"/>
 <Script file="SpiresOfAscension\Trash.lua"/>
 
-<Script file="TazaveshTheVeiledMarket\Zophex.lua"/>
-<Script file="TazaveshTheVeiledMarket\TheGrandMenagerie.lua"/>
-<Script file="TazaveshTheVeiledMarket\MailroomMayhem.lua"/>
-<Script file="TazaveshTheVeiledMarket\MyzasOasis.lua"/>
-<Script file="TazaveshTheVeiledMarket\Soazmi.lua"/>
-<Script file="TazaveshTheVeiledMarket\Hylbrande.lua"/>
-<Script file="TazaveshTheVeiledMarket\TimecapnHooktail.lua"/>
-<Script file="TazaveshTheVeiledMarket\Soleah.lua"/>
-<Script file="TazaveshTheVeiledMarket\Trash.lua"/>
+<Script file="Tazavesh\Zophex.lua"/>
+<Script file="Tazavesh\TheGrandMenagerie.lua"/>
+<Script file="Tazavesh\MailroomMayhem.lua"/>
+<Script file="Tazavesh\MyzasOasis.lua"/>
+<Script file="Tazavesh\Soazmi.lua"/>
+<Script file="Tazavesh\Hylbrande.lua"/>
+<Script file="Tazavesh\TimecapnHooktail.lua"/>
+<Script file="Tazavesh\Soleah.lua"/>
+<Script file="Tazavesh\Trash.lua"/>
 
 <Script file="TheaterOfPain\AffrontOfChallengers.lua"/>
 <Script file="TheaterOfPain\Gorechop.lua"/>
