@@ -69,9 +69,15 @@ end
 --
 
 function mod:Warmup() -- called from trash module
-	-- 20.14 [CLEU] SPELL_CAST_SUCCESS#Player-5764#Creature-0-5770-2773-5861-234373#Bomb Pile#1214337#Plant Bombs
-	-- 37.72 [NAME_PLATE_UNIT_ADDED] Swampface#Creature-0-5770-2773-5861-226396
-	self:Bar("warmup", 17.6, CL.active, L.warmup_icon)
+	if BigWigsLoader.isNext then -- XXX remove check in 11.2
+		-- 0.00 [CLEU] SPELL_CAST_SUCCESS#Player-5764#Creature-0-5770-2773-5861-234373#Bomb Pile#1214337#Plant Bombs
+		-- 19.34 [NAME_PLATE_UNIT_ADDED] Swampface#Creature-0-5770-2773-5861-226396
+		self:Bar("warmup", 19.3, CL.active, L.warmup_icon)
+	else -- XXX remove block in 11.2
+		-- 20.14 [CLEU] SPELL_CAST_SUCCESS#Player-5764#Creature-0-5770-2773-5861-234373#Bomb Pile#1214337#Plant Bombs
+		-- 37.72 [NAME_PLATE_UNIT_ADDED] Swampface#Creature-0-5770-2773-5861-226396
+		self:Bar("warmup", 17.6, CL.active, L.warmup_icon)
+	end
 end
 
 function mod:AwakenTheSwamp(args)
