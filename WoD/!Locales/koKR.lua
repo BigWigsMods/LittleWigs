@@ -1,7 +1,14 @@
 -- Auchindoun
 
-local L = BigWigs:NewBossLocale("Auchindoun Trash", "koKR")
+local L = BigWigs:NewBossLocale("Teron'gor", "koKR")
 if not L then return end
+if L then
+	L.affliction = "고통"
+	L.demonology = "악마"
+	L.destruction = "파괴"
+end
+
+L = BigWigs:NewBossLocale("Auchindoun Trash", "koKR")
 if L then
 	L.abyssal = "지옥살이 심연불정령"
 end

@@ -1,9 +1,16 @@
 -- Auchindoun
 
-local L = BigWigs:NewBossLocale("Auchindoun Trash", "zhTW")
+local L = BigWigs:NewBossLocale("Teron'gor", "zhTW")
 if not L then return end
 if L then
-	--L.abyssal = "Felborne Abyssal"
+	L.affliction = "痛苦"
+	L.demonology = "惡魔學識"
+	L.destruction = "毀滅"
+end
+
+L = BigWigs:NewBossLocale("Auchindoun Trash", "zhTW")
+if L then
+	L.abyssal = "魔能冥淵火"
 end
 
 -- Bloodmaul Slag Mines
