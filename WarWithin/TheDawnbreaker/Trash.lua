@@ -99,7 +99,6 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 			{431637, "TANK", "NAMEPLATE", "OFF"}, -- Umbral Rush
 			-- Manifested Shadow
 			{432565, "NAMEPLATE"}, -- Black Hail
-			{431304, "NAMEPLATE"}, -- Dark Floes
 			-- Nightfall Dark Architect
 			{431349, "NAMEPLATE"}, -- Tormenting Eruption
 			446615, -- Usher Reinforcements
@@ -282,7 +281,9 @@ function mod:OnBossEnable()
 	-- Manifested Shadow
 	self:RegisterEngageMob("ManifestedShadowEngaged", 211341)
 	self:Log("SPELL_CAST_SUCCESS", "BlackHail", 432565)
-	self:Log("SPELL_CAST_START", "DarkFloes", 431304)
+	if not isElevenDotTwo then -- XXX remove block in 11.2
+		self:Log("SPELL_CAST_START", "DarkFloes", 431304)
+	end
 	self:Death("ManifestedShadowDeath", 211341)
 
 	-- Nightfall Dark Architect
@@ -838,8 +839,9 @@ end
 
 function mod:ManifestedShadowEngaged(guid)
 	self:Nameplate(432565, 8.9, guid) -- Black Hail
-	-- TODO is Dark Floes still cast at all?
-	--self:Nameplate(431304, 39.6, guid) -- Dark Floes
+	if not isElevenDotTwo then -- XXX remove in 11.2
+		self:Nameplate(431304, 39.6, guid) -- Dark Floes
+	end
 end
 
 do
@@ -860,7 +862,7 @@ end
 
 do
 	local prev = 0
-	function mod:DarkFloes(args)
+	function mod:DarkFloes(args) -- XXX remove in 11.2
 		self:Nameplate(args.spellId, 35.2, args.sourceGUID)
 		if args.time - prev > 1.5 then
 			prev = args.time
