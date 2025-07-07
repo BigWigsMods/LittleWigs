@@ -132,9 +132,9 @@ end
 L = BigWigs:NewBossLocale("Rexxar", "esES")
 if L then
 	L.rexxar = "Rexxar"
-	--L.pet_trigger_1 = "Come, my pets! Serve your master!"
-	--L.pet_trigger_2 = "My beasts will devour you!"
-	--L.pet_trigger_3 = "Hunt them down!"
+	L.pet_trigger_1 = "¡Vengan, mascotas! ¡Sirvan a su maestro!"
+	L.pet_trigger_2 = "¡Mis bestias los devorarán!"
+	L.pet_trigger_3 = "¡Hora de cazar!"
 end
 
 -- Horrific Vision of Stormwind
@@ -178,8 +178,8 @@ if L then
 	L.hogger = "Hogger"
 	L.void_scarred_gryphon = "Grifo marcado por el Vacío"
 
-	--L.therum_deepforge_warmup_trigger = "So ye like tae play with explosives, do ye? Then let's play."
-	--L.alleria_windrunner_warmup_trigger = "Mother... do not listen to the whispers!"
+	L.therum_deepforge_warmup_trigger = "¿Así que os gusta jugar con explosivos? Juguemos pues."
+	L.alleria_windrunner_warmup_trigger = "Madre... ¡No hagas caso a los susurros!"
 end
 
 L = BigWigs:NewBossLocale("Alleria Windrunner", "esES")
@@ -292,13 +292,13 @@ end
 
 L = BigWigs:NewBossLocale("Aqu'sirr", "esES")
 if L then
-	--L.warmup_trigger = "How dare you sully this holy place with your presence!"
+	L.warmup_trigger = "¡Cómo osáis mancillar este lugar sagrado con vuestra presencia!"
 end
 
 L = BigWigs:NewBossLocale("Lord Stormsong", "esES")
 if L then
-	--L.warmup_trigger_horde = "Intruders?! I shall cast your bodies to the blackened depths, to be crushed for eternity!"
-	--L.warmup_trigger_alliance = "Master! Stop this madness at once! The Kul Tiran fleet must not fall to darkness!"
+	L.warmup_trigger_horde = "¡¿Intrusos?! ¡Lanzaré vuestros cuerpos a las negras profundidades para su tormento eterno!"
+	L.warmup_trigger_alliance = "¡Maestro! ¡Detén esta locura! ¡La flota de Kul Tiras no puede caer en la oscuridad!"
 end
 
 L = BigWigs:NewBossLocale("Shrine of the Storm Trash", "esES")
@@ -443,5 +443,5 @@ end
 
 L = BigWigs:NewBossLocale("Gorak Tul", "esES")
 if L then
-	L.add_killed = "Add muerto - Listo para quemar"
+	L.add_killed = "Esbirro muerto - Listo para quemar"
 end
