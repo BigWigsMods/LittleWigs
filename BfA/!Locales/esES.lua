@@ -72,14 +72,14 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Orgrimmar Trash", "esES")
 if L then
-	--L.sanity_change = "%d Sanity"
-	--L.madnesses = "Madnesses"
-	--L.potions = "Potions"
-	--L.buffs = "Buffs"
-	--L.slowed = "Slowed"
-	--L.sluggish_potion_effect = "Heal 2% every 5 sec"
-	--L.sickening_potion_effect = "5% damage reduction"
-	--L.spicy_potion_effect = "Breathe fire"
+	L.sanity_change = "%d Cordura"
+	L.madnesses = "Locuras"
+	L.potions = "Pociones"
+	L.buffs = "Buffs"
+	L.slowed = "Ralentizado"
+	L.sluggish_potion_effect = "Cura 2% cada 5 segundos"
+	L.sickening_potion_effect = "5% reducción de daño"
+	L.spicy_potion_effect = "Aliento de fuego"
 
 	L.voidbound_shaman = "Chamán ligado al Vacío"
 	L.endless_hunger_totem = "Tótem de hambre insaciable"
@@ -141,16 +141,16 @@ end
 
 L = BigWigs:NewBossLocale("Horrific Vision of Stormwind Trash", "esES")
 if L then
-	--L.sanity_change = "%d Sanity"
-	--L.portal_closed = "Portal Closed"
-	--L.portal_closed_desc = "Show a message when a portal is closed in the Mage Quarter."
-	--L.madnesses = "Madnesses"
-	--L.potions = "Potions"
-	--L.buffs = "Buffs"
-	--L.slowed = "Slowed"
-	--L.sluggish_potion_effect = "Heal 2% every 5 sec"
-	--L.sickening_potion_effect = "5% damage reduction"
-	--L.spicy_potion_effect = "Breathe fire"
+	L.sanity_change = "%d Cordura"
+	L.portal_closed = "Portal Cerrado"
+	L.portal_closed_desc = "Muestra un mensaje cuando un portal es cerrado en el Barrio de los Magos."
+	L.madnesses = "Locuras"
+	L.potions = "Pociones"
+	L.buffs = "Buffs"
+	L.slowed = "Ralentizado"
+	L.sluggish_potion_effect = "Heal 2% every 5 sec"
+	L.sickening_potion_effect = "5% reducción de daño"
+	L.spicy_potion_effect = "Aliento de fuego"
 
 	L.crawling_corruption = "Corrupción trepadora"
 	L.enthralled_footman = "Lacayo sometido"
@@ -266,8 +266,8 @@ if L then
 	L.bomb_tonk = "Bomba potente"
 	L.rocket_tonk = "Tonque cohete"
 	L.waste_processing_unit = "Unidad de procesado de desperdicios"
-	--L.metal_gunk = "Metal Gunk"
-	--L.junkyard_d0g = "Junkyard D.0.G."
+	L.metal_gunk = "Mugre metálica"
+	L.junkyard_d0g = "P3RR0 de desguace."
 	L.mechagon_tinkerer = "Manitas de Mecandria"
 	L.anti_personnel_squirrel = "Ardilla antipersona"
 	L.defense_bot_mk_iii = "Robot de defensa Mk III"
@@ -278,15 +278,14 @@ end
 
 L = BigWigs:NewBossLocale("Tussle Tonks", "esES")
 if L then
-	--L.warmup_trigger = "Now this is a statistical anomaly! Our visitors are still alive!"
+	L.warmup_trigger = "¡Esto sí que es una anomalía estadística! ¡Nuestros visitantes siguen con vida!"
 end
 
 L = BigWigs:NewBossLocale("King Mechagon", "esES")
 if L then
-	--L.hardmode_desc = "Warning for when the Annihilo-tron 5000 starts displaying the button order."
-
-	--L.button = "Button"
-	--L.button_desc = "Show a warning when someone clicks a button."
+	L.hardmode_desc = "Aviso para cuando el Aniquilotrón 5000 empieza a mostrar el orden de los botones."
+	L.button = "Botón"
+	L.button_desc = "Muestra un aviso cuando alguien pulsa un botón."
 end
 
 -- Shrine of the Storm
@@ -342,12 +341,12 @@ if L then
 	L.cutthroat = "Degollador de las Ratas de Pantoque"
 	L.invader = "Invasor de los Gobernalle"
 
-	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
+	L.gate_open_desc = "Muestra una barra que indica cuándo se abre la puerta a la siguiente zona después de derrotar cada jefe."
 end
 
 L = BigWigs:NewBossLocale("Dread Captain Lockwood", "esES")
 if L then
-	--L.ordnance_dropped = "Unstable Ordnance dropped"
+	L.ordnance_dropped = "Cae Artillería Inestable"
 end
 
 -- Temple of Sethraliss
@@ -444,5 +443,5 @@ end
 
 L = BigWigs:NewBossLocale("Gorak Tul", "esES")
 if L then
-	--L.add_killed = "Add killed - Ready to burn"
+	L.add_killed = "Add muerto - Listo para quemar"
 end
