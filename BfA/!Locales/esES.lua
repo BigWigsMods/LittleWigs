@@ -16,9 +16,9 @@ if L then
 	L.augur = "Augur Dazar'ai"
 	L.reanimated_honor_guard = "Guardia de honor reanimado"
 
-	--L.stairs_open = "Stairs Open"
-	--L.stairs_open_desc = "Show a bar indicating when the stairs open to Yazma."
-	--L.stairs_open_trigger = "Impressive. You made it farther than I thought... but I will still be drinking your blood."
+	L.stairs_open = "Escaleras Abiertas"
+	L.stairs_open_desc = "Muestra una barra que indica que las escaleras hacia Yazma están abiertas."
+	L.stairs_open_trigger = "Impresionante. Habéih llegado máh lejoh de lo que creía... pero aun así me beberé vuehtra sangre."
 end
 
 -- Freehold
