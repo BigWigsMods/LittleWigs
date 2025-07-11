@@ -162,7 +162,7 @@ if L then
 	L.bubbles = "Pompas"
 	L.venture_co_electrician = "Electricista de Ventura y Cía"
 	L.darkfuse_jumpstarter = "Impulsador de Fundisombras"
-	
+
 	L.geezle_gigazap_warmup = "Este proyecto no podrá continuar sin el científico a cargo. ¡Congelen a ese cerebrote!"
 end
 
