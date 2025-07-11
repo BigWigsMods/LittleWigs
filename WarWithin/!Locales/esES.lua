@@ -53,7 +53,7 @@ end
 
 L = BigWigs:NewBossLocale("Brew Master Aldryr", "esES")
 if L then
-	--L.cinderbrew_delivered = "Cinderbrew delivered"
+	L.cinderbrew_delivered = "Tragoceniza servida"
 end
 
 -- City of Threads
@@ -164,7 +164,7 @@ if L then
 	L.venture_co_electrician = "Electricista de Ventura y Cía"
 	L.darkfuse_jumpstarter = "Impulsador de Fundisombras"
 	
-	L.geezle_gigazap_warmup = "Este projecto no podrá continuar sin el científico a cargo. ¡Congelen a ese cerebrote!"
+	L.geezle_gigazap_warmup = "Este proyecto no podrá continuar sin el científico a cargo. ¡Congelen a ese cerebrote!"
 end
 
 -- Priory of the Sacred Flame
@@ -250,7 +250,7 @@ if L then
 	L.coalescing_void_diffuser = "Difusor del Vacío aglomerado"
 	L.inflicted_civilian = "Civil afligido"
 	L.void_ascendant = "Ascendiente del Vacío"
-	--L.consuming_voidstone = "Consuming Voidstone"
+	L.consuming_voidstone = "Piedra del Vacío acuciante"
 end
 
 -- The Stonevault
@@ -271,6 +271,6 @@ if L then
 	L.cursedforge_stoneshaper = "Labrapiedras forjamaldita"
 	L.rock_smasher = "Machacador de roca"
 
-	--L.edna_warmup_trigger = "What's this? Is that golem fused with something else?"
+	L.edna_warmup_trigger = "¿Qué es eso? ¿El gólem está fusionado con otra cosa?"
 	L.custom_on_autotalk_desc = "|cFFFF0000Requiere Guerrero, Enano, o 25 de habilidad en Herrería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del NPC que otorga a tu grupo el aura 'Energía de hierro imbuido'."
 end
