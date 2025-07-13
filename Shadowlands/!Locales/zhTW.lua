@@ -188,21 +188,26 @@ if L then
 		["蒼白花朵"] = 53267,
 		["赤紅小刀"] = 53268
 	}
-
+	--L.gatewarden_zomazz = "Gatewarden Zo'mazz"
+	--L.customs_security = "Customs Security"
 	L.interrogation_specialist = "審問專家"
 	L.portalmancer_zohonn = "傳送門法師佐尼"
-	L.armored_overseer_tracker_zokorss = "武裝監督者 / 『追蹤者』佐寇司"
+	L.armored_overseer = "武裝監督者"
+	L.support_officer = "支援官"
 	L.tracker_zokorss = "『追蹤者』佐寇司"
 	L.ancient_core_hound = "上古熔核犬"
 	L.enraged_direhorn = "暴怒的恐角龍"
+	--L.cartel_skulker = "Cartel Skulker"
+	--L.cartel_wiseguy = "Cartel Wiseguy"
 	L.cartel_muscle = "集團警衛"
 	L.cartel_smuggler = "集圖走私者"
-	L.support_officer = "支援官"
 	L.defective_sorter = "故障的分類機"
+	--L.overloaded_mailemental = "Overloaded Mailemental"
+	--L.post_worker = "P.O.S.T. Worker"
+	--L.bazaar_overseer = "Bazaar Overseer"
 	L.market_peacekeeper = "市場保安官"
 	L.veteran_sparkcaster = "老練的火花施放者"
 	L.commerce_enforcer = "貿易執法者"
-	L.commerce_enforcer_commander_zofar = "貿易執法者 / 指揮官佐發"
 	L.commander_zofar = "指揮官佐發"
 
 	L.tazavesh_soleahs_gambit = "塔札維許：索利亞的險招"

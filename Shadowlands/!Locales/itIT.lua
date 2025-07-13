@@ -188,21 +188,26 @@ if L then
 		["Fiore Pallido"] = 53267,
 		["Coltello Cremisi"] = 53268
 	}
-
+	--L.gatewarden_zomazz = "Gatewarden Zo'mazz"
+	--L.customs_security = "Customs Security"
 	L.interrogation_specialist = "Specialista in Interrogatori"
 	L.portalmancer_zohonn = "Portalmante Zo'honn"
-	L.armored_overseer_tracker_zokorss = "Sovrintendente Corazzato / Braccatore Zo'korss"
+	L.armored_overseer = "Sovrintendente Corazzato"
+	L.support_officer = "Ufficiale Ausiliario"
 	L.tracker_zokorss = "Braccatore Zo'korss"
 	L.ancient_core_hound = "Segugio del Nucleo Antico"
 	L.enraged_direhorn = "Cornofurente Rabbioso"
+	--L.cartel_skulker = "Cartel Skulker"
+	--L.cartel_wiseguy = "Cartel Wiseguy"
 	L.cartel_muscle = "Forzuto del Cartello"
 	L.cartel_smuggler = "Contrabbandiere del Cartello"
-	L.support_officer = "Ufficiale Ausiliario"
 	L.defective_sorter = "Smistatore Difettoso"
+	--L.overloaded_mailemental = "Overloaded Mailemental"
+	--L.post_worker = "P.O.S.T. Worker"
+	--L.bazaar_overseer = "Bazaar Overseer"
 	L.market_peacekeeper = "Pacificatore del Mercato"
 	L.veteran_sparkcaster = "Lanciafaville Veterano"
 	L.commerce_enforcer = "Esecutore del Commercio"
-	L.commerce_enforcer_commander_zofar = "Esecutore del Commercio / Comandante Zo'far"
 	L.commander_zofar = "Comandante Zo'far"
 
 	L.tazavesh_soleahs_gambit = "Tazavesh: Azzardo di So'leah"

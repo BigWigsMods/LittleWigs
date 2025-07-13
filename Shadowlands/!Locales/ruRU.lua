@@ -188,21 +188,26 @@ if L then
 		["Бледный цветок"] = 53267,
 		["Багровый нож"] = 53268
 	}
-
+	--L.gatewarden_zomazz = "Gatewarden Zo'mazz"
+	--L.customs_security = "Customs Security"
 	L.interrogation_specialist = "Специалист по допросу"
 	L.portalmancer_zohonn = "Заклинатель порталов Зо'хонн"
-	L.armored_overseer_tracker_zokorss = "Тяжелый смотритель / Следопыт Зо'корсс"
+	L.armored_overseer = "Тяжелый смотритель"
+	L.support_officer = "Офицер поддержки"
 	L.tracker_zokorss = "Следопыт Зо'корсс"
 	L.ancient_core_hound = "Древняя гончая недр"
 	L.enraged_direhorn = "Разъяренный дикорог"
+	--L.cartel_skulker = "Cartel Skulker"
+	--L.cartel_wiseguy = "Cartel Wiseguy"
 	L.cartel_muscle = "Громила из картеля"
 	L.cartel_smuggler = "Контрабандист из картеля"
-	L.support_officer = "Офицер поддержки"
 	L.defective_sorter = "Дефективный сортировщик"
+	--L.overloaded_mailemental = "Overloaded Mailemental"
+	--L.post_worker = "P.O.S.T. Worker"
+	--L.bazaar_overseer = "Bazaar Overseer
 	L.market_peacekeeper = "Тазавешский хранитель порядка"
 	L.veteran_sparkcaster = "Опытный заклинатель искр"
 	L.commerce_enforcer = "Охранитель коммерции"
-	L.commerce_enforcer_commander_zofar = "Охранитель коммерции / Командир Зо'фар"
 	L.commander_zofar = "Командир Зо'фар"
 
 	L.tazavesh_soleahs_gambit = "Тазавеш: гамбит Со'леи"

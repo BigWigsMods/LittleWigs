@@ -188,21 +188,26 @@ if L then
 		["창백한 꽃"] = 53267,
 		["진홍색 손칼"] = 53268
 	}
-
+	--L.gatewarden_zomazz = "Gatewarden Zo'mazz"
+	--L.customs_security = "Customs Security"
 	L.interrogation_specialist = "심문 전문가"
 	L.portalmancer_zohonn = "차원문술사 조혼"
-	L.armored_overseer_tracker_zokorss = "무장한 감독관 / 추적자 조코르스"
+	L.armored_overseer = "무장한 감독관"
+	L.support_officer = "지원 장교"
 	L.tracker_zokorss = "추적자 조코르스"
 	L.ancient_core_hound = "고대의 심장부 사냥개"
 	L.enraged_direhorn = "격노한 공포뿔"
+	--L.cartel_skulker = "Cartel Skulker"
+	--L.cartel_wiseguy = "Cartel Wiseguy"
 	L.cartel_muscle = "중개단 불한당"
 	L.cartel_smuggler = "중개단 밀수업자"
-	L.support_officer = "지원 장교"
 	L.defective_sorter = "불량 분류기"
+	--L.overloaded_mailemental = "Overloaded Mailemental"
+	--L.post_worker = "P.O.S.T. Worker"
+	--L.bazaar_overseer = "Bazaar Overseer"
 	L.market_peacekeeper = "시장 평화감시단"
 	L.veteran_sparkcaster = "노련한 불꽃술사"
 	L.commerce_enforcer = "상업구 집행자"
-	L.commerce_enforcer_commander_zofar = "상업구 집행자 / 사령관 조파르"
 	L.commander_zofar = "사령관 조파르"
 
 	L.tazavesh_soleahs_gambit = "타자베쉬: 소레아의 승부수"

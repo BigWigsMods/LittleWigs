@@ -188,21 +188,26 @@ if L then
 		["Fleur pâle"] = 53267,
 		["Couteau carmin"] = 53268
 	}
-
+	--L.gatewarden_zomazz = "Gatewarden Zo'mazz"
+	--L.customs_security = "Customs Security"
 	L.interrogation_specialist = "Spécialiste en interrogatoire"
 	L.portalmancer_zohonn = "Portomancien Zo'honn"
-	L.armored_overseer_tracker_zokorss = "Surveillant cuirassé / Pisteur Zo'korss"
+	L.armored_overseer = "Surveillant cuirassé"
+	L.support_officer = "Agent de soutien"
 	L.tracker_zokorss = "Pisteur Zo'korss"
 	L.ancient_core_hound = "Ancien chien du magma"
 	L.enraged_direhorn = "Navrecorne enragé"
+	--L.cartel_skulker = "Cartel Skulker"
+	--L.cartel_wiseguy = "Cartel Wiseguy"
 	L.cartel_muscle = "Gros-bras du cartel"
 	L.cartel_smuggler = "Contrebandier du cartel"
-	L.support_officer = "Agent de soutien"
 	L.defective_sorter = "Trieur défectueux"
+	--L.overloaded_mailemental = "Overloaded Mailemental"
+	--L.post_worker = "P.O.S.T. Worker"
+	--L.bazaar_overseer = "Bazaar Overseer"
 	L.market_peacekeeper = "Garde-paix du marché"
 	L.veteran_sparkcaster = "Embraseur vétéran"
 	L.commerce_enforcer = "Massacreur du marché"
-	L.commerce_enforcer_commander_zofar = "Massacreur du marché / Commandant Zo'far"
 	L.commander_zofar = "Commandant Zo'far"
 
 	L.tazavesh_soleahs_gambit = "Tazavesh : le stratagème de So’leah"
