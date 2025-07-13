@@ -1,3 +1,4 @@
+local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -27,6 +28,7 @@ function mod:GetOptions()
 	return {
 		"delivery_portal",
 		346286, -- Hazardous Liquids
+		346329, -- Spilled Liquids
 		346742, -- Fan Mail
 		{346962, "SAY", "SAY_COUNTDOWN"}, -- Money Order
 		346947, -- Unstable Goods
@@ -35,9 +37,16 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
+	else -- XXX remove block in 11.2
+		self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+	end
 	self:Log("SPELL_CAST_SUCCESS", "HazardousLiquids", 346286)
+	self:Log("SPELL_PERIODIC_DAMAGE", "SpilledLiquidsDamage", 346329)
+	self:Log("SPELL_PERIODIC_MISSED", "SpilledLiquidsDamage", 346329)
 	self:Log("SPELL_CAST_START", "FanMail", 346742)
+	self:Log("SPELL_CAST_SUCCESS", "MoneyOrder", 346962)
 	self:Log("SPELL_AURA_APPLIED", "MoneyOrderApplied", 346962)
 	self:Log("SPELL_AURA_REMOVED", "MoneyOrderRemoved", 346962)
 	self:Log("SPELL_CAST_SUCCESS", "UnstableGoods", 346947)
@@ -46,11 +55,16 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:Bar(346286, 6) -- Hazardous Liquids
-	self:Bar(346742, 16) -- Fan Mail
-	self:Bar(346962, 22.8) -- Money Order
-	self:Bar(346947, 30.1) -- Unstable Goods
-	self:Bar("delivery_portal", 35, L.delivery_portal, L.delivery_portal_icon) -- Delivery Portal
+	self:CDBar(346286, 8.0) -- Hazardous Liquids
+	self:CDBar(346742, 15.6) -- Fan Mail
+	self:CDBar(346962, 22.8) -- Money Order
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:CDBar(346947, 37.0) -- Unstable Goods
+		self:CDBar("delivery_portal", 37.5, L.delivery_portal, L.delivery_portal_icon) -- Delivery Portal
+	else -- XXX remove block in 11.2
+		self:CDBar(346947, 30.1) -- Unstable Goods
+		self:CDBar("delivery_portal", 35, L.delivery_portal, L.delivery_portal_icon) -- Delivery Portal
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -61,15 +75,27 @@ end
 do
 	local function deliveryPortalSpawned()
 		mod:Message("delivery_portal", "cyan", CL.spawned:format(L.delivery_portal), L.delivery_portal_icon)
+		if isElevenDotTwo then -- XXX remove check in 11.2
+			mod:CDBar("delivery_portal", 43.5, L.delivery_portal, L.delivery_portal_icon)
+		else
+			mod:Bar("delivery_portal", 35, L.delivery_portal, L.delivery_portal_icon)
+		end
 		mod:PlaySound("delivery_portal", "info")
-		mod:Bar("delivery_portal", 30, L.delivery_portal, L.delivery_portal_icon)
 	end
 
-	function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+		if spellId == 1242877 then -- Activated Portal
+			-- portal spawns 5 seconds after this cast, then lasts for 30 seconds
+			self:CDBar("delivery_portal", {5, 43.5}, L.delivery_portal, L.delivery_portal_icon)
+			self:ScheduleTimer(deliveryPortalSpawned, 5)
+		end
+	end
+
+	function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg) -- XXX remove in 11.2
 		-- emotes that don't have the unstable goods spell ID must be for delivery portals
 		if self:IsEngaged() and not msg:find("346947", nil, true) then
 			-- portal spawns 5 seconds after the emote, then lasts for 30 seconds
-			self:Bar("delivery_portal", 5, CL.spawning:format(L.delivery_portal), L.delivery_portal_icon)
+			self:Bar("delivery_portal", {5, 35}, L.delivery_portal, L.delivery_portal_icon)
 			self:ScheduleTimer(deliveryPortalSpawned, 5)
 		end
 	end
@@ -77,24 +103,50 @@ end
 
 function mod:HazardousLiquids(args)
 	self:Message(args.spellId, "yellow")
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:CDBar(args.spellId, 43.5)
+	else -- XXX remove block in 11.2
+		self:CDBar(args.spellId, 52.2)
+	end
 	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 52.2)
+end
+
+do
+	local prev = 0
+	function mod:SpilledLiquidsDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then -- 1s tick rate
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
 end
 
 function mod:FanMail(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 25.5)
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:CDBar(args.spellId, 42.5)
+	else -- XXX remove block in 11.2
+		self:CDBar(args.spellId, 25.5)
+	end
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:MoneyOrder(args)
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:CDBar(args.spellId, 43.5)
+	else -- XXX remove block in 11.2
+		self:CDBar(args.spellId, 50.5)
+	end
 end
 
 function mod:MoneyOrderApplied(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
-	self:Bar(args.spellId, 50.5)
 	if self:Me(args.destGUID) then
 		self:Yell(args.spellId, nil, nil, "Money Order")
 		self:YellCountdown(args.spellId, 7)
 	end
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 end
 
 function mod:MoneyOrderRemoved(args)
@@ -127,9 +179,9 @@ do
 		else
 			-- the last bomb has been delivered (or... it exploded)
 			mod:Message(spellId, "green", CL.over:format(mod:SpellName(346947))) -- Unstable Goods
-			mod:PlaySound(spellId, "info")
 			mod:StopBar(barText)
 			barText = nil
+			mod:PlaySound(spellId, "info")
 		end
 	end
 
@@ -137,8 +189,12 @@ do
 		instabilityCount = 0
 		unstableGoodsContainer = {}
 		self:Message(args.spellId, "yellow")
+		if isElevenDotTwo then -- XXX remove check in 11.2
+			self:CDBar(args.spellId, 43.5)
+		else -- XXX remove block in 11.2
+			self:CDBar(args.spellId, 52.2)
+		end
 		self:PlaySound(args.spellId, "long")
-		self:Bar(args.spellId, 52.2)
 	end
 
 	function mod:InstabilityApplied(args)

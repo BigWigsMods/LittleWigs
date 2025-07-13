@@ -704,6 +704,7 @@ BigWigs:AddSounds("The Grand Menagerie", {
 BigWigs:AddColors("Mailroom Mayhem", {
 	[346286] = "yellow",
 	[346296] = "green",
+	[346329] = "blue",
 	[346742] = "red",
 	[346947] = "yellow",
 	[346962] = {"blue","orange"},
@@ -713,9 +714,10 @@ BigWigs:AddColors("Mailroom Mayhem", {
 BigWigs:AddSounds("Mailroom Mayhem", {
 	[346286] = "alert",
 	[346296] = "info",
-	[346742] = "alarm",
+	[346329] = "underyou",
+	[346742] = "alert",
 	[346947] = "long",
-	[346962] = "alert",
+	[346962] = "alarm",
 	["delivery_portal"] = "info",
 })
 
