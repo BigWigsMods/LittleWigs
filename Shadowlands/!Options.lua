@@ -674,13 +674,16 @@ BigWigs:AddSounds("Zo'phex the Sentinel", {
 BigWigs:AddColors("The Grand Menagerie", {
 	[349627] = {"blue","yellow"},
 	[349663] = "red",
-	[349797] = "red",
-	[349934] = "red",
+	[349797] = "orange",
+	[349934] = "purple",
 	[349954] = {"blue","yellow"},
-	[349987] = "red",
-	[350010] = {"blue","green"},
-	[350086] = {"blue","red"},
-	[350101] = {"blue","orange"},
+	[349987] = "yellow",
+	[350010] = "green",
+	[350037] = "cyan",
+	[350045] = "blue",
+	[350086] = {"blue","orange"},
+	[350101] = {"blue","red"},
+	["warmup"] = "cyan",
 })
 
 BigWigs:AddSounds("The Grand Menagerie", {
@@ -689,10 +692,13 @@ BigWigs:AddSounds("The Grand Menagerie", {
 	[349797] = "alarm",
 	[349934] = "alert",
 	[349954] = "alert",
-	[349987] = "alarm",
+	[349987] = "long",
 	[350010] = "info",
+	[350037] = "info",
+	[350045] = "underyou",
 	[350086] = {"alarm","underyou"},
 	[350101] = "alert",
+	["warmup"] = "long",
 })
 
 BigWigs:AddColors("Mailroom Mayhem", {

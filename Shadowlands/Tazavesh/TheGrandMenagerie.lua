@@ -1,3 +1,4 @@
+local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -14,6 +15,12 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local chainsOfDamnationCount = 1
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -21,6 +28,7 @@ local L = mod:GetLocale()
 if L then
 	L.achillite_warmup_trigger = "Are rampaging beasts ruining your day? We have the solution!"
 	L.venza_goldfuse_warmup_trigger = "Now's my chance! That axe is mine!"
+	L.warmup_icon = "achievement_dungeon_brokerdungeon"
 end
 
 --------------------------------------------------------------------------------
@@ -32,26 +40,34 @@ function mod:GetOptions()
 		"warmup",
 		-- Alcruux
 		349627, -- Gluttony
-		{350010, "EMPHASIZE", "ME_ONLY"}, -- Devoured Anima
+		350010, -- Devoured Anima
 		349663, -- Grip of Hunger
 		349797, -- Grand Consumption
 		-- Achillite
 		{349954, "SAY_COUNTDOWN"}, -- Purification Protocol
-		349934, -- Flagellation Protocol
+		{349934, "TANK_HEALER"}, -- Flagellation Protocol
 		349987, -- Venting Protocol
+		350045, -- Corrosive Anima
+		350037, -- Exposed Anima Core
 		-- Venza Goldfuse
 		{350101, "SAY"}, -- Chains of Damnation
 		350086, -- Whirling Annihilation
+	}, {
+		[349627] = -23159, -- Alcruux
+		[349954] = -23231, -- Achillite
+		[350101] = -23241, -- Venza Goldfuse
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+	-- Staging
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Achillite and Venza Goldfuse engaged
+	end
 
 	-- Alcruux
 	self:Log("SPELL_AURA_APPLIED", "GluttonyApplied", 349627)
 	self:Log("SPELL_AURA_REMOVED", "GluttonyRemoved", 349627)
-	self:Log("SPELL_AURA_APPLIED", "DevouredAnimaApplied", 350010)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "DevouredAnimaApplied", 350010)
 	self:Log("SPELL_CAST_START", "GripOfHunger", 349663)
 	self:Log("SPELL_CAST_SUCCESS", "GrandConsumption", 349797)
@@ -63,56 +79,93 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "PurificationProtocolRemoved", 349954)
 	self:Log("SPELL_CAST_START", "FlagellationProtocol", 349934)
 	self:Log("SPELL_CAST_START", "VentingProtocol", 349987)
-	self:Log("SPELL_AURA_APPLIED", "ExposedAnimaCoreApplied", 350037)
+	self:Log("SPELL_PERIODIC_DAMAGE", "CorrosiveAnimaDamage", 350045)
+	self:Log("SPELL_PERIODIC_MISSED", "CorrosiveAnimaDamage", 350045)
+	self:Log("SPELL_AURA_APPLIED", "ExposedAnimaCoreApplied", 350037) -- Achillite Death
 
 	-- Venza Goldfuse
 	self:Log("SPELL_CAST_START", "ChainsOfDamnation", 350101)
 	self:Log("SPELL_CAST_START", "WhirlingAnnihilation", 350086)
 	self:Log("SPELL_DAMAGE", "WhirlingAnnihilationDamage", 350090)
+	self:Death("VenzaGoldfuseDeath", 176705)
 end
 
 function mod:OnEngage()
+	chainsOfDamnationCount = 1
 	self:SetStage(1)
-	self:Bar(349663, 12) -- Grip of Hunger
-	self:Bar(349797, 25.9) -- Grand Consumption
-
-	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+	-- first Gluttony applied shortly after pull
+	self:CDBar(349663, 11.9) -- Grip of Hunger
+	self:CDBar(349797, 25.7) -- Grand Consumption
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+	if not isElevenDotTwo then -- XXX remove block in 11.2
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
--- called from trash module
-function mod:Warmup()
-	self:Bar("warmup", 39, CL.active, "achievement_dungeon_brokerdungeon")
+-- Staging
+
+function mod:Warmup() -- called from trash module
+	self:Bar("warmup", 39, CL.active, L.warmup_icon)
 end
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 	if msg == L.achillite_warmup_trigger then
-		self:Bar("warmup", 22, CL.count:format(CL.active, 2), "achievement_dungeon_brokerdungeon")
+		self:Message("warmup", "cyan", CL.incoming:format(self:SpellName(-23231)), L.warmup_icon) -- Achillite
+		if isElevenDotTwo then -- XXX remove check in 11.2
+			self:Bar("warmup", 13.5, CL.count:format(CL.active, 2), L.warmup_icon)
+		else -- XXX remove block in 11.2
+			self:Bar("warmup", 22, CL.count:format(CL.active, 2), L.warmup_icon)
+		end
+		self:PlaySound("warmup", "long")
 	elseif msg == L.venza_goldfuse_warmup_trigger then
-		self:Bar("warmup", 23, CL.count:format(CL.active, 3), "achievement_dungeon_brokerdungeon")
+		self:UnregisterEvent(event)
+		self:Message("warmup", "cyan", CL.incoming:format(self:SpellName(-23241)), L.warmup_icon) -- Venza Goldfuse
+		self:Bar("warmup", 23, CL.count:format(CL.active, 3), L.warmup_icon)
+		self:PlaySound("warmup", "long")
 	end
 end
 
-function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
-	if self:GetStage() == 1 and self:GetBossId(176555) then -- Achillite
+function mod:EncounterEvent(args)
+	if self:MobId(args.sourceGUID) == 176555 then -- Achillite
+		self:StopBar(CL.count:format(CL.active, 2))
 		self:SetStage(2)
-		self:Bar(349954, 6.7) -- Purification Protocol
-		self:Bar(349934, 15.7) -- Flagellation Protocol
-		self:Bar(349987, 26.7) -- Venting Protocol
-	elseif self:GetStage() == 2 and self:GetBossId(176705) then -- Venza Goldfuse
+		self:CDBar(349954, 6.7) -- Purification Protocol
+		self:CDBar(349934, 15.7) -- Flagellation Protocol
+		self:CDBar(349987, 26.7) -- Venting Protocol
+	elseif self:MobId(args.sourceGUID) == 176705 then -- Venza Goldfuse
+		self:StopBar(CL.count:format(CL.active, 3))
 		self:SetStage(3)
-		self:Bar(350101, 5.2) -- Chains of Damnation
-		self:Bar(350086, 17.4) -- Whirling Annihilation
+		self:CDBar(350101, 5.2) -- Chains of Damnation
+		self:CDBar(350086, 17.4) -- Whirling Annihilation
 	end
 end
+
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event) -- XXX remove in 11.2
+	if self:GetStage() == 1 and self:GetBossId(176555) then -- Achillite
+		self:StopBar(CL.count:format(CL.active, 2))
+		self:SetStage(2)
+		self:CDBar(349954, 6.7) -- Purification Protocol
+		self:CDBar(349934, 15.7) -- Flagellation Protocol
+		self:CDBar(349987, 26.7) -- Venting Protocol
+	elseif self:GetStage() == 2 and self:GetBossId(176705) then -- Venza Goldfuse
+		self:UnregisterEvent(event)
+		self:StopBar(CL.count:format(CL.active, 3))
+		self:SetStage(3)
+		self:CDBar(350101, 5.2) -- Chains of Damnation
+		self:CDBar(350086, 17.4) -- Whirling Annihilation
+	end
+end
+
+-- Alcruux
 
 function mod:GluttonyApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:TargetBar(args.spellId, 21.0, args.destName)
 	self:PlaySound(args.spellId, "info", nil, args.destName)
-	self:TargetBar(args.spellId, 21, args.destName)
 end
 
 function mod:GluttonyRemoved(args)
@@ -120,23 +173,23 @@ function mod:GluttonyRemoved(args)
 end
 
 function mod:DevouredAnimaApplied(args)
-	local amount = args.amount or 1
-	if amount % 5 == 0 then
-		self:StackMessage(args.spellId, "green", args.destName, args.amount, 20) -- Caps at 20 stacks
+	if self:Me(args.destGUID) and args.amount % 5 == 0 then
+		-- not using StackMessage in order to preserve message color, since alerts are just for the player
+		self:Message(args.spellId, "green", CL.stackyou:format(args.amount, args.spellName))
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
 
 function mod:GripOfHunger(args)
 	self:Message(args.spellId, "red")
+	self:CDBar(args.spellId, 23.0)
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 23)
 end
 
 function mod:GrandConsumption(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 30.3)
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 30.3)
 end
 
 function mod:AlcruuxDeath(args)
@@ -144,19 +197,23 @@ function mod:AlcruuxDeath(args)
 	self:StopBar(349797) -- Grand Consumption
 end
 
-function mod:PurificationProtocol(args)
-	self:CDBar(args.spellId, 18.2)
-end
+-- Achillite
 
 do
-	local playerList = mod:NewTargetList()
+	local playerList = {}
+
+	function mod:PurificationProtocol(args)
+		playerList = {}
+		self:CDBar(args.spellId, 23.9)
+	end
+
 	function mod:PurificationProtocolApplied(args)
-		playerList[#playerList+1] = args.destName
-		self:TargetsMessageOld(args.spellId, "yellow", playerList, 2)
-		self:PlaySound(args.spellId, "alert", nil, playerList)
+		playerList[#playerList + 1] = args.destName
+		self:TargetsMessage(args.spellId, "yellow", playerList, 2)
 		if self:Me(args.destGUID) then
 			self:SayCountdown(args.spellId, 6)
 		end
+		self:PlaySound(args.spellId, "alert", nil, playerList)
 	end
 end
 
@@ -167,55 +224,76 @@ function mod:PurificationProtocolRemoved(args)
 end
 
 function mod:FlagellationProtocol(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "purple")
+	self:CDBar(args.spellId, 22.7)
 	self:PlaySound(args.spellId, "alert")
-	self:CDBar(args.spellId, 23)
 end
 
 function mod:VentingProtocol(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 27)
-end
-
-function mod:ExposedAnimaCoreApplied(args)
-	self:StopBar(349954) -- Purification Protocol
-	self:StopBar(349934) -- Flagellation Protocol
-	self:StopBar(349987) -- Venting Protocol
+	self:Message(args.spellId, "yellow")
+	self:CDBar(args.spellId, 26.6)
+	self:PlaySound(args.spellId, "long")
 end
 
 do
-	local function printTarget(self, name, guid)
-		self:TargetMessage(350101, "orange", name)
-		self:PlaySound(350101, "alert", nil, name)
+	local prev = 0
+	function mod:CorrosiveAnimaDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
+end
 
+function mod:ExposedAnimaCoreApplied(args)
+	self:Message(args.spellId, "cyan")
+	self:StopBar(349954) -- Purification Protocol
+	self:StopBar(349934) -- Flagellation Protocol
+	self:StopBar(349987) -- Venting Protocol
+	self:PlaySound(args.spellId, "info")
+end
+
+-- Venza Goldfuse
+
+do
+	local function printTarget(self, name, guid)
+		self:TargetMessage(350101, "red", name)
 		if self:Me(guid) then
 			self:Say(350101, nil, nil, "Chains of Damnation")
 		end
+		self:PlaySound(350101, "alert", nil, name)
 	end
 
 	function mod:ChainsOfDamnation(args)
 		self:GetUnitTarget(printTarget, 0.4, args.sourceGUID)
-		self:Bar(args.spellId, 25.5)
+		chainsOfDamnationCount = chainsOfDamnationCount + 1
+		if chainsOfDamnationCount == 2 then
+			self:CDBar(args.spellId, 21.8)
+		else
+			self:CDBar(args.spellId, 30.3)
+		end
 	end
 end
 
 function mod:WhirlingAnnihilation(args)
-	self:Message(args.spellId, "red")
+	self:Message(args.spellId, "orange")
+	self:CDBar(args.spellId, 30.3)
 	self:PlaySound(args.spellId, "alarm")
-	self:Bar(args.spellId, 25.5)
 end
 
 do
 	local prev = 0
 	function mod:WhirlingAnnihilationDamage(args)
-		if self:Me(args.destGUID) then
-			local t = args.time
-			if t - prev > 1.5 then
-				prev = t
-				self:PersonalMessage(350086, "underyou")
-				self:PlaySound(350086, "underyou")
-			end
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(350086, "underyou")
+			self:PlaySound(350086, "underyou")
 		end
 	end
+end
+
+function mod:VenzaGoldfuseDeath(args)
+	self:StopBar(350101) -- Chains of Damnation
+	self:StopBar(350086) -- Whirling Annihilation
 end
