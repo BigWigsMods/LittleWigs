@@ -657,14 +657,18 @@ BigWigs:AddColors("Zo'phex the Sentinel", {
 	[345770] = {"blue","green"},
 	[345990] = {"blue","green","red"},
 	[346204] = {"blue","yellow"},
-	[347949] = {"blue","orange"},
+	[348128] = "purple",
+	[348350] = {"blue","orange"},
+	[1236348] = "orange",
 })
 
 BigWigs:AddSounds("Zo'phex the Sentinel", {
 	[345770] = {"alarm","info"},
 	[345990] = {"alert","info","warning"},
 	[346204] = {"alert","underyou"},
-	[347949] = {"alert","warning"},
+	[348128] = "alert",
+	[348350] = {"alert","warning"},
+	[1236348] = "alarm",
 })
 
 BigWigs:AddColors("The Grand Menagerie", {
