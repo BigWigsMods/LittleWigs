@@ -722,28 +722,30 @@ BigWigs:AddSounds("Mailroom Mayhem", {
 })
 
 BigWigs:AddColors("Myza's Oasis", {
-	[350916] = "red",
+	[350916] = "purple",
 	[350919] = "orange",
-	[350922] = "orange",
-	[353706] = "red",
+	[350922] = "red",
+	[353706] = "yellow",
 	[353783] = "yellow",
-	[353835] = "orange",
+	[353835] = "red",
 	[355438] = "red",
-	[356482] = "yellow",
-	[359028] = "red",
+	[356482] = "orange",
+	[359028] = "purple",
+	[1241032] = "yellow",
 	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("Myza's Oasis", {
-	[350916] = "alarm",
-	[350919] = "alert",
+	[350916] = "alert",
+	[350919] = "alarm",
 	[350922] = "warning",
-	[353706] = "alert",
-	[353783] = "alert",
-	[353835] = "alarm",
-	[355438] = "alarm",
-	[356482] = "info",
-	[359028] = "alarm",
+	[353706] = "long",
+	[353783] = "info",
+	[353835] = "alert",
+	[355438] = "info",
+	[356482] = "alarm",
+	[359028] = "alert",
+	[1241032] = "long",
 	["stages"] = "long",
 })
 
