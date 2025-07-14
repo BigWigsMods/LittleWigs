@@ -157,8 +157,8 @@ end
 
 L = BigWigs:NewBossLocale("Mailroom Mayhem", "zhTW")
 if L then
-	--L.delivery_portal = "Delivery Portal"
-	--L.delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations."
+	L.delivery_portal = "中央郵務傳送門"
+	L.delivery_portal_desc = "顯示中央郵務傳送門何時改變位置的計時器。"
 end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "zhTW")
@@ -171,8 +171,8 @@ if L then
 	L.zophex_warmup_trigger = "放下...所有...違禁品..."
 	L.menagerie_warmup_trigger = "接下來，是你們千呼萬喚的東西！據說是被惡魔詛咒的湮滅之鋒！"
 	L.soazmi_warmup_trigger = "索利亞，抱歉打擾啦。看來我們來的時機不太對啊。"
-	--L.portal_authority = "Tazavesh Portal Authority"
-	--L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
+	L.portal_authority = "傳送門管理局隧道法師"
+	L.custom_on_portal_autotalk_desc = "與傳送門NPC對話時立即打開傳送門并使你可以在副本內傳送。"
 	L.trading_game = "交易游戲"
 	L.trading_game_desc = "在交易游戲期間使用正確的密碼發出警報。"
 	L.custom_on_trading_game_autotalk_desc = "交易游戲結束後，立即選擇正確的密碼。"
@@ -188,8 +188,8 @@ if L then
 		["蒼白花朵"] = 53267,
 		["赤紅小刀"] = 53268
 	}
-	--L.gatewarden_zomazz = "Gatewarden Zo'mazz"
-	--L.customs_security = "Customs Security"
+	L.gatewarden_zomazz = "看門者佐瑪茲"
+	L.customs_security = "海關警衛"
 	L.interrogation_specialist = "審問專家"
 	L.portalmancer_zohonn = "傳送門法師佐尼"
 	L.armored_overseer = "武裝監督者"
@@ -197,14 +197,14 @@ if L then
 	L.tracker_zokorss = "『追蹤者』佐寇司"
 	L.ancient_core_hound = "上古熔核犬"
 	L.enraged_direhorn = "暴怒的恐角龍"
-	--L.cartel_skulker = "Cartel Skulker"
-	--L.cartel_wiseguy = "Cartel Wiseguy"
+	L.cartel_skulker = "集團潛藏者"
+	L.cartel_wiseguy = "集團幫派"
 	L.cartel_muscle = "集團警衛"
 	L.cartel_smuggler = "集圖走私者"
 	L.defective_sorter = "故障的分類機"
-	--L.overloaded_mailemental = "Overloaded Mailemental"
-	--L.post_worker = "P.O.S.T. Worker"
-	--L.bazaar_overseer = "Bazaar Overseer"
+	L.overloaded_mailemental = "超載的郵件元素"
+	L.post_worker = "郵務工作員"
+	L.bazaar_overseer = "市集監督者"
 	L.market_peacekeeper = "市場保安官"
 	L.veteran_sparkcaster = "老練的火花施放者"
 	L.commerce_enforcer = "貿易執法者"
