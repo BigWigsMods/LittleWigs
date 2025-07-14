@@ -188,8 +188,8 @@ if L then
 		["Fahlblume"] = 53267,
 		["Purpurmesser"] = 53268
 	}
-	--L.gatewarden_zomazz = "Gatewarden Zo'mazz"
-	--L.customs_security = "Customs Security"
+	L.gatewarden_zomazz = "Torwächter Zo'mazz"
+	L.customs_security = "Zollsicherheit"
 	L.interrogation_specialist = "Verhörspezialist"
 	L.portalmancer_zohonn = "Portalmagier Zo'honn"
 	L.armored_overseer = "Gepanzerter Aufseher"
@@ -197,13 +197,13 @@ if L then
 	L.tracker_zokorss = "Fährtenleser Zo'korss"
 	L.ancient_core_hound = "Uralter Kernhund"
 	L.enraged_direhorn = "Wütendes Terrorhorn"
-	--L.cartel_skulker = "Cartel Skulker"
-	--L.cartel_wiseguy = "Cartel Wiseguy"
+	L.cartel_skulker = "Kartellschleicher"
+	L.cartel_wiseguy = "Kartellmitglied"
 	L.cartel_muscle = "Kartellkraftprotz"
 	L.cartel_smuggler = "Kartellschmuggler"
 	L.defective_sorter = "Defekter Sortierer"
-	--L.overloaded_mailemental = "Overloaded Mailemental"
-	--L.post_worker = "P.O.S.T. Worker"
+	L.overloaded_mailemental = "Überladener Eilementarl"
+	L.post_worker = "P.O.S.T.-Mitarbeiter"
 	--L.bazaar_overseer = "Bazaar Overseer"
 	L.market_peacekeeper = "Friedensbewahrer des Marktes"
 	L.veteran_sparkcaster = "Erfahrener Funkenzauberer"
