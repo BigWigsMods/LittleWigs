@@ -170,7 +170,7 @@ L = BigWigs:NewBossLocale("Tazavesh Trash", "esES")
 if L then
 	L.zophex_warmup_trigger = "Entrega... todo... el contrabando..."
 	L.menagerie_warmup_trigger = "¡Y ahora, lo que todos estabais esperando! ¡El filo del olvido, supuestamente maldito por un demonio!
-	L.soazmi_warmup_trigger = "Disculpa la intrusión, So'leah. Espero que sea un momento inoportuno." -- TODO unverified
+	L.soazmi_warmup_trigger = "Disculpa la intrusión, So'leah. Espero que sea un momento inoportuno."
 	L.portal_authority = "Jefatura de Portales de Tazavesh"
 	L.custom_on_portal_autotalk_desc = "Al instante se abren portales que llevan a la entrada al hablar con un PNJ Especulador."
 	L.trading_game = "Juego del trueque"
