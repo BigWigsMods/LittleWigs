@@ -163,7 +163,7 @@ end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "esES")
 if L then
-	L.add_wave_killed = "Onda de esbirros matados (%d/%d)"
+	L.add_wave_killed = "Oleada de esbirros matados (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "esES")
