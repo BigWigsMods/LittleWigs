@@ -64,11 +64,11 @@ if L then
 	L.mistveil_tender = "霧紗看管者"
 	L.spinemaw_acidgullet = "脊喉噴毒蟲"
 	L.spinemaw_staghorn = "脊喉雄角蟲"
-	--L.spinemaw_gorger = "Spinemaw Gorger"
-	--L.gormling_larva = "Gormling Larva"
-	--L.spinemaw_reaver = "Spinemaw Reaver"
+	L.spinemaw_gorger = "脊喉吞食者"
+	L.gormling_larva = "小果姆幼蟲"
+	L.spinemaw_reaver = "脊喉劫奪者"
 
-	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
+	L.gate_open_desc = "擊敗每個首領後，顯示通往下一區域大門開啟的計時器。"
 end
 
 L = BigWigs:NewBossLocale("Mistcaller", "zhTW")
@@ -123,7 +123,7 @@ if L then
 	L.research_scribe = "研究紀錄者"
 	L.wicked_oppressor = "邪惡壓迫者"
 	L.ravenous_dreadbat = "飢餓的懼蝠"
-	--L.zrali = "Z'rali"
+	L.zrali = "吉雷麗"
 end
 
 -- Spires of Ascension
@@ -237,7 +237,7 @@ if L then
 	L.putrid_butcher = "腐臭屠夫"
 	L.disgusting_refuse = "噁心廢棄物"
 	L.rancid_gasbag = "腐臭肉囊"
-	--L.shambling_arbalest = "Shambling Arbalest"
+	L.shambling_arbalest = "蹣跚重弩手"
 	L.dokigg_the_brutalizer = "『殘暴者』多奇格"
 	L.nekthara_the_mangler = "『割碎者』奈克薩拉"
 	L.heavin_the_breaker = "『毀壞者』黑文"
@@ -262,19 +262,19 @@ if L then
 	L.corpse_harvester = "屍體收割者"
 	L.stitched_vanguard = "縫合前鋒兵"
 	L.zolramus_gatekeeper = "佐拉慕斯守門者"
-	--L.zolramus_necromancer = "Zolramus Necromancer"
+	L.zolramus_necromancer = "佐拉慕斯死靈法師"
 	L.brittlebone_mage = "脆骨法師"
-	--L.zolramus_bonecarver = "Zolramus Bonecarver"
+	L.zolramus_bonecarver = "佐拉慕斯雕骨者"
 	L.skeletal_marauder = "骷髏掠奪者"
 	L.zolramus_bonemender = "佐拉慕斯修骨者"
-	--L.zolramus_sorcerer = "Zolramus Sorcerer"
+	L.zolramus_sorcerer = "佐拉慕斯巫士"
 	L.narzudah = "納爾祖達"
 	L.skeletal_monstrosity = "骷髏巨怪"
 	L.corpse_collector = "屍骸收集者"
 	L.kyrian_stitchwerk = "琪瑞安縫補怪"
 	L.flesh_crafter = "血肉工匠"
-	--L.loyal_creation = "Loyal Creation"
+	L.loyal_creation = "忠誠造物"
 	L.separation_assistant = "肢解助理"
-	--L.goregrind = "Goregrind"
-	--L.rotspew = "Rotspew"
+	L.goregrind = "磨血"
+	L.rotspew = "腐爛嘔吐者"
 end
