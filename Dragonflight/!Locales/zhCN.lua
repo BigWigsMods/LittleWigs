@@ -262,5 +262,5 @@ if L then
 	L.earthen_guardian = "土灵守护者"
 	L.infinite_agent = "永恒密探"
 
-	--L.door_open_desc = "Show a bar indicating when The Lost Dwarves will open the door after Bromach."
+	L.door_open_desc = "显示失落的矮人会在布罗马奇被击败后的开门计时器。"
 end
