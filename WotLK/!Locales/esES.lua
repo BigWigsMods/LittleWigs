@@ -31,7 +31,7 @@ end
 
 L = BigWigs:NewBossLocale("Tribunal of Ages", "esES")
 if L then
-	L.engage_trigger = "Atentos" -- Now keep an eye out! I'll have this licked in two shakes of a--
+	L.engage_trigger = "¡Atentos!" -- Now keep an eye out! I'll have this licked in two shakes of a--
 	L.defeat_trigger = "los viejos dedos mágicos" --  Ha! The old magic fingers finally won through! Now let's get down to--
 	L.fail_trigger = "¡Aún no!... Aún no..."
 
