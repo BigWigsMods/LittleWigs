@@ -393,8 +393,8 @@ end
 
 L = BigWigs:NewBossLocale("Neltharions Lair Trash", "esES")
 if L then
-	--L.rokmora_first_warmup_trigger = "Navarrogg?! Betrayer! You would lead these intruders against us?!"
-	--L.rokmora_second_warmup_trigger = "Either way, I will enjoy every moment of it. Rokmora, crush them!"
+	L.rokmora_first_warmup_trigger = "¿Navarrogg?! ¡Traidor! ¿Osas liderar a los intrusos contra nosotros?"
+	L.rokmora_second_warmup_trigger = "Pase lo que pase, pienso disfrutarlo. Rokmora, ¡acaba con ellos!"
 
 	L.vileshard_crawler = "Reptador Pizcavil"
 	L.tarspitter_lurker = "Rondador Escupebrea"
@@ -414,35 +414,35 @@ end
 
 L = BigWigs:NewBossLocale("Ularogg Cragshaper", "esES")
 if L then
-	--L.hands = "Hands" -- Short for "Stone Hands"
+	L.hands = "Manos" -- Short for "Stone Hands"
 end
 
 -- Seat of the Triumvirate
 
 L = BigWigs:NewBossLocale("Viceroy Nezhar", "esES")
 if L then
-	--L.guards = "Guards"
-	--L.interrupted = "%s interrupted %s (%.1fs left)!"
+	L.guards = "Guardias"
+	L.interrupted = "¡%s interrumpió %s (%.1fs restantes)!"
 end
 
 L = BigWigs:NewBossLocale("L'ura", "esES")
 if L then
-	--L.warmup_text = "L'ura Active"
-	--L.warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
-	--L.warmup_trigger_2 = "Such musings can wait, though. This entity must die."
+	L.warmup_text = "L'ura activada"
+	L.warmup_trigger = "Cuánto caos y cuánto tormento... Jamás había sentido algo parecido."
+	L.warmup_trigger_2 = "Pero esas reflexiones pueden esperar. Esta entidad debe morir."
 end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "esES")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly selects Alleria Winrunners gossip option."
-	--L.gossip_available = "Gossip available"
-	--L.alleria_gossip_trigger = "Follow me!" -- Allerias yell after the first boss is defeated
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de Alleria Brisaveloz." 
+	L.gossip_available = "Conversación disponible"
+	L.alleria_gossip_trigger = "¡Venid por aquí!" -- Allerias yell after the first boss is defeated
 
-	--L.alleria = "Alleria Windrunner"
-	--L.subjugator = "Shadowguard Subjugator"
-	--L.voidbender = "Shadowguard Voidbender"
-	--L.conjurer = "Shadowguard Conjurer"
-	--L.weaver = "Grand Shadow-Weaver"
+	L.alleria = "Alleria Brisaveloz"
+	L.subjugator = "Subyugador de la Guardia de las Sombras"
+	L.voidbender = "Dominadora del Vacío de la Guardia de las Sombras"
+	L.conjurer = "Conjuradora de la Guardia de las Sombras"
+	L.weaver = "Gran tejesombras"
 end
 
 -- The Arcway
@@ -460,27 +460,27 @@ end
 
 L = BigWigs:NewBossLocale("Cordana Felsong", "esES")
 if L then
-	--L.kick_combo = "Kick Combo"
+	L.kick_combo = "Combo de Patadas"
 
-	--L.light_dropped = "%s dropped the Light."
-	--L.light_picked = "%s picked up the Light."
+	L.light_dropped = "%s tiró la Luz."
+	L.light_picked = "%s cogió la Luz."
 
-	--L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
-	--L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
+	L.warmup_trigger = "Ya tengo lo que quería, pero me he quedado para poder acabar con vosotros... de una vez por todas."
+	L.warmup_trigger_2 = "Y ahora, habéis caído en mi trampa. A ver cómo os desenvolvéis en la oscuridad."
 end
 
 L = BigWigs:NewBossLocale("Tirathon Saltheril", "esES")
 if L then
-	--L.warmup_trigger = "I will serve MY people, the exiled and the reviled."
+	L.warmup_trigger = "Serviré a mi gente: ¡los exiliados y los agravados!"
 end
 
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "esES")
 if L then
-	--L.infester = "Felsworn Infester"
-	--L.myrmidon = "Felsworn Myrmidon"
-	--L.fury = "Fel-Infused Fury"
-	--L.mother = "Foul Mother"
-	--L.illianna = "Blade Dancer Illianna"
-	--L.mendacius = "Dreadlord Mendacius"
-	--L.grimhorn = "Grimhorn the Enslaver"
+	L.infester = "Infestador jurapenas"
+	L.myrmidon = "Mirmidón jurapenas"
+	L.fury = "Furia imbuida de vileza"
+	L.mother = "Madre hedionda"
+	L.illianna = "Bailarina de hojas Illiana"
+	L.mendacius = "Señor del Terror Mendacius"
+	L.grimhorn = "Cuernomacabro el Esclavista"
 end
