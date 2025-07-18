@@ -89,6 +89,7 @@ if L then
 	L.summon_worms = "Invoca Gusano carroñero"
 	L.summon_worms_desc = "Quijahueso invoca dos Gusanos carroñeros." 
 	L.summon_worms_trigger = "¡Chirrido penetrante atrae Gusanos carroñeros cercanos!" 
+	
 	L.submerge = "Sumersión"
 	L.submerge_desc = "Quijahueso se sumerge y se reposiciona." 
 	L.submerge_trigger = "¡sisea, merodeando de nuevo en las profundidades sombrías!"
@@ -139,7 +140,6 @@ if L then
 
 	L.gate_open_desc = "Muestra una barra que indica cuándo el Mago menor Kesalon abrirá la puerta hacia Yalnu." 
 	L.yalnu_warmup_trigger = "¡Hemos perdido el portal! ¡No dejéis escapar a esta bestia! 
-
 end
 
 -- Upper Blackrock Spire
