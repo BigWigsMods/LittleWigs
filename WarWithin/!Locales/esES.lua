@@ -102,7 +102,6 @@ if L then
 	L.shuffling_horror = "Horror esquivo"
 	L.corridor_creeper = "Trepador de corredores"
 	L.creaky_mine_cart = "Vagoneta chirriante"
-
 	L.minecart = "Minijuego de la vagoneta"
 	L.hits = "Golpes"
 	L.minecart_over = "Ganador: %s (%d golpes)"
