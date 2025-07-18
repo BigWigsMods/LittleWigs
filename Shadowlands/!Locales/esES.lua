@@ -158,24 +158,24 @@ end
 L = BigWigs:NewBossLocale("Mailroom Mayhem", "esES")
 if L then
 	L.delivery_portal = "Portal de entrega"
-	--L.delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations."
+	L.delivery_portal_desc = "Muestra un temporizador cuando Portal de entrega cambie de ubicación." 
 end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "esES")
 if L then
-	--L.add_wave_killed = "Add wave killed (%d/%d)"
+	L.add_wave_killed = "Oleada de esbirros matados (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "esES")
 if L then
 	L.zophex_warmup_trigger = "Entrega... todo... el contrabando..."
-	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
-	L.soazmi_warmup_trigger = "Disculpa la intrusión, So'leah. Espero que sea un momento inoportuno." -- TODO unverified
+	L.menagerie_warmup_trigger = "¡Y ahora, lo que todos estabais esperando! ¡El filo del olvido, supuestamente maldito por un demonio!"
+	L.soazmi_warmup_trigger = "Disculpa la intrusión, So'leah. Espero que sea un momento inoportuno."
 	L.portal_authority = "Jefatura de Portales de Tazavesh"
-	--L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
-	--L.trading_game = "Trading Game"
-	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	--L.custom_on_trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
+	L.custom_on_portal_autotalk_desc = "Al instante se abren portales que llevan a la entrada al hablar con un PNJ Especulador."
+	L.trading_game = "Juego del trueque"
+	L.trading_game_desc = "Aviso con la contraseña correcta durante el Juego del trueque."
+	L.custom_on_trading_game_autotalk_desc = "Selecciona al instante la contraseña correcta después de que el Juego del trueque haya finalizado." 
 	L.password_triggers = {
 		["Caparazón de marfil"] = 53259,
 		["Oasis de zafiro"] = 53260,
@@ -192,8 +192,7 @@ if L then
 	--L.customs_security = "Customs Security"
 	L.interrogation_specialist = "Especialista en interrogatorios"
 	L.portalmancer_zohonn = "Portalmante Zo'honn"
-	L.armored_overseer = "Sobrestante acorazado"
-	L.support_officer = "Oficial de apoyo"
+	L.armored_overseer_tracker_zokorss = "Sobrestante acorazado / Rastreador Zo'korss"
 	L.tracker_zokorss = "Rastreador Zo'korss"
 	L.ancient_core_hound = "Can del Núcleo anciano"
 	L.enraged_direhorn = "Cuernoatroz iracundo"
@@ -201,6 +200,7 @@ if L then
 	--L.cartel_wiseguy = "Cartel Wiseguy"
 	L.cartel_muscle = "Matón del cártel"
 	L.cartel_smuggler = "Contrabandista del cártel"
+	L.support_officer = "Oficial de apoyo"
 	L.defective_sorter = "Clasificador defectuoso"
 	--L.overloaded_mailemental = "Overloaded Mailemental"
 	--L.post_worker = "P.O.S.T. Worker"
@@ -225,7 +225,7 @@ end
 
 L = BigWigs:NewBossLocale("Xav the Unfallen", "esES")
 if L then
-	--L.defeated = "%s has defeated %s"
+	L.defeated = "%s ha sido derrotado %s"
 end
 
 L = BigWigs:NewBossLocale("Theater Of Pain Trash", "esES")
