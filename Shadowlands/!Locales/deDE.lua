@@ -1,280 +1,275 @@
 -- De Other Side
 
-local L = BigWigs:NewBossLocale("De Other Side Trash", "deDE")
+local L = BigWigs:NewBossLocale("De Other Side Trash", "esES")
 if not L then return end
 if L then
 	-- [[ The ring ]] --
-	L.cultist = "Auferstandener Kultist"
-	L.warlord = "Auferstandener Kriegsherr"
-	L.enraged = "Wütender Geist"
-	L.speaker = "Todessprecher"
+	L.cultist = "Cultor renacido"
+	L.warlord = "Señor de la guerra resucitado"
+	L.enraged = "Espíritu iracundo"
+	L.speaker = "Portavoz de la muerte"
 
 	-- [[ Path to Hakkar ]] --
-	L.deathwalker = "Todeswandler der Atal'ai"
-	L.priest = "Hohepriester der Atal'ai"
-	L.hexxer = "Hoodooverhexer der Atal'ai"
+	L.deathwalker = "Caminamuerte Atal'ai"
+	L.priest = "Sumo sacerdote Atal'ai"
+	L.hexxer = "Aojador hudú Atal'ai"
 
 	-- [[ Path to the Manastorms ]] --
-	L.drill = "Defekter Zahnbohrer"
-	L.arf_arf = "W4U-W4U"
-	L.lubricator = "Schmierer"
-	L.headless = "Kopfloser Klient"
+	L.drill = "Taladro dental en desuso"
+	L.arf_arf = "GU.4U-GU.4U"
+	L.lubricator = "Lubricador"
+	L.headless = "Cliente decapitado"
 
 	-- [[ Path to Xyexa ]] --
-	L.shimmermoth = "Waldschimmermotte"
-	L.mythresh = "Mythresh, Krallen des Himmels"
+	L.shimmermoth = "Polilla brillante de foresta"
+	L.mythresh = "Mythresh, Garfas del Cielo"
 
-	L.soporific_shimmerdust_desc = "Dieser Fluch lässt den Spieler bei 10 Stapeln einschlafen. Springen entfernt die Stapel."
+	--L.soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks."
 end
 
 -- Halls of Atonement
 
-L = BigWigs:NewBossLocale("Halls of Atonement Trash", "deDE")
+L = BigWigs:NewBossLocale("Halls of Atonement Trash", "esES")
 if L then
-	L.depraved_houndmaster = "Verkommener Hundemeister"
-	L.vicious_gargon = "Boshafter Gargon"
-	L.loyal_stoneborn = "Treuer Steingeborener"
-	L.depraved_darkblade = "Verkommene Dunkelklinge"
-	L.depraved_obliterator = "Verkommener Vernichter"
-	L.depraved_collector = "Verkommener Sammler"
-	L.stoneborn_slasher = "Steingeborener Schlitzer"
-	L.shard_of_halkias = "Splitter von Halkias"
-	L.stoneborn_reaver = "Steingeborener Häscher"
-	L.stoneborn_eviscerator = "Steingeborene Ausweiderin"
-	L.inquisitor_sigar = "Inquisitor Sigar"
+	L.depraved_houndmaster = "Maestra de canes depravada"
+	L.vicious_gargon = "Gargon sañoso"
+	L.loyal_stoneborn = "Natopiedra fiel"
+	L.depraved_darkblade = "Filoscuro depravada"
+	L.depraved_obliterator = "Obliterador depravado"
+	L.depraved_collector = "Recolectora depravada"
+	L.stoneborn_slasher = "Mutilador natopiedra"
+	L.shard_of_halkias = "Fragmento de Halkias"
+	L.stoneborn_reaver = "Atracador natopiedra"
+	L.stoneborn_eviscerator = "Evisceradora natopiedra"
+	L.inquisitor_sigar = "Inquisidor Sigar"
 end
 
 -- Mists of Tirna Scithe
 
-L = BigWigs:NewBossLocale("Mists of Tirna Scithe Trash", "deDE")
+L = BigWigs:NewBossLocale("Mists of Tirna Scithe Trash", "esES")
 if L then
-	L.tirnenn_villager = "Tirnenneinwohner"
-	L.drust_harvester = "Drusternter"
-	L.drust_soulcleaver = "Drustseelenspalter"
-	L.drust_spiteclaw = "Drustteufelsklaue"
-	L.drust_boughbreaker = "Drustzweigbrecher"
-	L.mistveil_defender = "Nebelschleierverteidigerin"
-	L.mistveil_gorgegullet = "Nebelschleierschlingrachen"
-	L.mistveil_guardian = "Nebelschleierwächter"
-	L.mistveil_matriarch = "Nebelschleiermatriarchin"
-	L.mistveil_nightblossom = "Nebelschleiernachtblüte"
-	L.mistveil_shaper = "Nebelschleierformer"
-	L.mistveil_stalker = "Nebelschleierpirscher"
-	L.mistveil_stinger = "Nebelschleierstecher"
-	L.mistveil_tender = "Nebelschleierhüterin"
-	L.spinemaw_acidgullet = "Stachelschlundsäurerachen"
-	L.spinemaw_staghorn = "Stachelschlundzottelhorn"
-	L.spinemaw_gorger = "Stachelschlundfresser"
-	L.gormling_larva = "Gormlinglarve"
-	L.spinemaw_reaver = "Stachelschlundhäscher"
+	L.tirnenn_villager = "Aldeana tirnenn"
+	L.drust_harvester = "Cosechador Drust"
+	L.drust_soulcleaver = "Rajaalmas Drust"
+	L.drust_spiteclaw = "Zarparrencor Drust"
+	L.drust_boughbreaker = "Romperramas Drust"
+	L.mistveil_defender = "Defensora Velo de Niebla"
+	L.mistveil_gorgegullet = "Engullidor Velo de Niebla"
+	L.mistveil_guardian = "Guardián Velo de Niebla"
+	L.mistveil_matriarch = "Matriarca Velo de Niebla"
+	L.mistveil_nightblossom = "Flor de noche Velo de Niebla"
+	L.mistveil_shaper = "Modelador Velo de Niebla"
+	L.mistveil_stalker = "Acechador Velo de Niebla"
+	L.mistveil_stinger = "Aguijonero Velo de Niebla"
+	L.mistveil_tender = "Cuidadora Velo de Niebla"
+	L.spinemaw_acidgullet = "Gargantácida faucespina"
+	L.spinemaw_staghorn = "Astado faucespina"
+	L.spinemaw_gorger = "Engullidor faucespina"
+	L.gormling_larva = "Larva de gormito"
+	L.spinemaw_reaver = "Atracador faucespina"
 
-	L.gate_open_desc = "Zeigt einen Timer wann das Tor zum nächsten Gebiet nach einer Bossbegegnung geöffnet wird."
+	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
 end
 
-L = BigWigs:NewBossLocale("Mistcaller", "deDE")
+L = BigWigs:NewBossLocale("Mistcaller", "esES")
 if L then
-	L.vulpin = "Vulpin"
+	L.vulpin = "Vulpino"
 end
 
 -- Plaguefall
 
-L = BigWigs:NewBossLocale("Plaguefall Trash", "deDE")
+L = BigWigs:NewBossLocale("Plaguefall Trash", "esES")
 if L then
-	L.plagueborer = "Seuchenbohrer"
-	L.fen_hatchling = "Moorküken"
-	L.fen_hornet = "Sumpfhornisse"
-	L.decaying_flesh_giant = "Verwesender Fleischriese"
-	L.plagueroc = "Seuchenroc"
-	L.plaguebelcher = "Seuchenspucker"
-	L.rotting_slimeclaw = "Verrottende Schleimklaue"
-	L.blighted_spinebreaker = "Verseuchter Rückenbrecher"
-	L.plaguebinder = "Seuchenbinder"
-	L.congealed_slime = "Geronnener Schleim"
-	L.slime_tentacle = "Schleimtentakel"
-	L.defender_of_many_eyes = "Verteidiger der vielzähligen Augen"
-	L.venomous_sniper = "Giftiger Heckenschütze"
-	L.brood_ambusher = "Brutwegelagerer"
-	L.ickor_bileflesh = "Ickor Gallenfleisch"
-	L.fungalmancer = "Fungumant"
-	L.pestilent_harvester = "Pestilenter Ernter"
-	L.fungi_stormer = "Fungistürmer"
+	L.plagueborer = "Perforapeste"
+	L.fen_hatchling = "Cría del pantano"
+	L.fen_hornet = "Avispón de pantano"
+	L.decaying_flesh_giant = "Gigante de carne putrefacta"
+	L.plagueroc = "Roc de peste"
+	L.plaguebelcher = "Eructador de peste"
+	L.rotting_slimeclaw = "Garrababosa putrefacta"
+	L.blighted_spinebreaker = "Partemédulas contagiado"
+	L.plaguebinder = "Vinculapestes"
+	L.congealed_slime = "Baba coagulada"
+	L.slime_tentacle = "Tentáculo de baba"
+	L.defender_of_many_eyes = "Defensor de muchos ojos"
+	L.venomous_sniper = "Francotirador venenoso"
+	L.brood_ambusher = "Emboscador de linaje"
+	L.ickor_bileflesh = "Ickor Carnebilis"
+	L.fungalmancer = "Fungimántico"
+	L.pestilent_harvester = "Cosechador pestilente"
+	L.fungi_stormer = "Agitador de hongos"
 
-	L.summon_stealthlings_desc = "Zeigt eine Warnung wenn die Tarnlinge erscheinen."
+	--L.summon_stealthlings_desc = "Show a warning when the Stealthlings spawn."
 end
 
 -- Sanguine Depths
 
-L = BigWigs:NewBossLocale("Sanguine Depths Trash", "deDE")
+L = BigWigs:NewBossLocale("Sanguine Depths Trash", "esES")
 if L then
-	L.kaal_engage_trigger1 = "Wachen! Tötet sie alle!"
-	L.kaal_engage_trigger2 = "Der Gefangene gehört dem Meister! Ihr bekommt ihn nicht!"
-	L.kaal_engage_trigger3 = "Diese Hallen werden Euer Grab!"
-	L.kaal_retreat_trigger1 = "Verfluchte Sterbliche!"
-	L.kaal_retreat_trigger2 = "Ihr seid doch nur Dravens Lakaien!"
-	L.kaal_retreat_trigger3 = "Sture Rebellen. Hier findet Ihr Euer Ende!"
-	L.anima_collector = "Animasammler"
-	L.chamber_sentinel = "Kammerwache"
-	L.depths_warden = "Tiefenwächter"
-	L.dreadful_huntmaster = "Schrecklicher Meisterjäger"
-	L.grand_overseer = "Oberaufseher"
-	L.head_custodian_javlin = "Oberverwalter Javlin"
-	L.insatiable_brute = "Unersättlicher Schläger"
-	L.regal_mistdancer = "Majestätischer Nebeltänzer"
-	L.research_scribe = "Forschungsschreiberin"
-	L.wicked_oppressor = "Tückische Unterdrückerin"
-	L.ravenous_dreadbat = "Unersättliche Fleddermaus"
+	--L.kaal_engage_trigger1 = "Guards! Slay them all!"
+	--L.kaal_engage_trigger2 = "That prisoner belongs to the Master. You will not take it!"
+	--L.kaal_engage_trigger3 = "These halls will be your tomb!"
+	--L.kaal_retreat_trigger1 = "Wretched mortals!"
+	--L.kaal_retreat_trigger2 = "You are nothing but Draven's dogs!"
+	--L.kaal_retreat_trigger3 = "Stubborn rebels. You will meet your end!"
+	L.anima_collector = "Recolector de ánima"
+	L.chamber_sentinel = "Centinela de la cámara"
+	L.depths_warden = "Celador de las profundidades"
+	L.dreadful_huntmaster = "Maestro de caza pavoroso"
+	L.grand_overseer = "Gran sobrestante"
+	L.head_custodian_javlin = "Custodio jefe Javlin"
+	L.insatiable_brute = "Bruto insaciable"
+	L.regal_mistdancer = "Bailarín de la niebla regio"
+	L.research_scribe = "Escriba de investigación"
+	L.wicked_oppressor = "Opresora perversa"
+	L.ravenous_dreadbat = "Murciélago aterrador voraz"
 	L.zrali = "Z'rali"
 end
 
 -- Spires of Ascension
 
-L = BigWigs:NewBossLocale("Oryphrion", "deDE")
+L = BigWigs:NewBossLocale("Oryphrion", "esES")
 if L then
-	L.early_intermission_over = "Zwischenphase vorbei (%d |4Kugel:Kugeln; durchgekommen)"
+	L.early_intermission_over = "Intermedio terminado (%d |4orb:orbs; reached)"
 end
 
-L = BigWigs:NewBossLocale("Spires of Ascension Trash", "deDE")
+L = BigWigs:NewBossLocale("Spires of Ascension Trash", "esES")
 if L then
-	L.etherdiver = "Äthertaucher"
-	L.forsworn_castigator = "Züchtigerin der Verschmähten"
-	L.forsworn_champion = "Champion der Verschmähten"
-	L.forsworn_goliath = "Goliath der Verschmähten"
-	L.forsworn_inquisitor = "Inquisitorin der Verschmähten"
-	L.forsworn_mender = "Heiler der Verschmähten"
-	L.forsworn_squad_leader = "Schwadronsführer der Verschmähten"
-	L.forsworn_warden = "Wärter der Verschmähten"
+	L.etherdiver = "Colimbo de éter"
+	L.forsworn_castigator = "Castigadora abjurante"
+	L.forsworn_champion = "Campeón abjurante"
+	L.forsworn_goliath = "Goliat abjurante"
+	L.forsworn_inquisitor = "Inquisidora abjurante"
+	L.forsworn_mender = "Ensalmador abjurante"
+	L.forsworn_squad_leader = "Líder de escuadrón abjurante"
+	L.forsworn_warden = "Celador abjurante"
 	L.astronos = "Astronos"
 	L.lakesis = "Lakesis"
 end
 
 -- Tazavesh, the Veiled Market
 
-L = BigWigs:NewBossLocale("The Grand Menagerie", "deDE")
+L = BigWigs:NewBossLocale("The Grand Menagerie", "esES")
 if L then
-	L.achillite_warmup_trigger = "Ruinieren Euch rasende Riesenbestien den Tag? Wir haben die Lösung!"
-	L.venza_goldfuse_warmup_trigger = "Das ist meine Chance! Die Axt gehört mir!"
+	L.achillite_warmup_trigger = "¿Las bestias devastadoras no os dejan vivir? ¡Tenemos la solución!"
+	L.venza_goldfuse_warmup_trigger = "¡Es mi oportunidad! ¡El hacha será mía!"
 end
 
-L = BigWigs:NewBossLocale("Mailroom Mayhem", "deDE")
+L = BigWigs:NewBossLocale("Mailroom Mayhem", "esES")
 if L then
-	L.delivery_portal = "Zustellportal"
-	L.delivery_portal_desc = "Zeigt einen Timer für die Änderung der Position des Zustellportals."
+	L.delivery_portal = "Portal de entrega"
+	L.delivery_portal_desc = "Muestra un temporizador cuando Portal de entrega cambie de ubicación." 
 end
 
-L = BigWigs:NewBossLocale("Myza's Oasis", "deDE")
+L = BigWigs:NewBossLocale("Myza's Oasis", "esES")
 if L then
-	L.add_wave_killed = "Add Welle getötet (%d/%d)"
+	L.add_wave_killed = "Oleada de esbirros matados (%d/%d)"
 end
 
-L = BigWigs:NewBossLocale("Tazavesh Trash", "deDE")
+L = BigWigs:NewBossLocale("Tazavesh Trash", "esES")
 if L then
-	L.zophex_warmup_trigger = "Gebt alle... Schmuggelware... ab..."
-	L.menagerie_warmup_trigger = "Und nun zu dem Posten, auf den alle warten! Die angeblich dämonenverfluchte Schneide des Vergessens!"
-	L.soazmi_warmup_trigger = "Entschuldigt unser Eindringen, So'leah. Ich hoffe, wir stören."
-	L.portal_authority = "Portalbehörde von Tazavesh"
-	L.custom_on_portal_autotalk_desc = "Portale zurück zum Eingang sofort öffnen wenn mit Mittlern gesprochen wird."
-	L.trading_game = "Handels-Event"
-	L.trading_game_desc = "Warnungen mit korrektem Password während des Handels-Event."
-	L.custom_on_trading_game_autotalk_desc = "Wählt direkt das korrekte Passwort nach Abschluss des Handels-Events."
+	L.zophex_warmup_trigger = "Entrega... todo... el contrabando..."
+	L.menagerie_warmup_trigger = "¡Y ahora, lo que todos estabais esperando! ¡El filo del olvido, supuestamente maldito por un demonio!"
+	L.soazmi_warmup_trigger = "Disculpa la intrusión, So'leah. Espero que sea un momento inoportuno."
+	L.portal_authority = "Jefatura de Portales de Tazavesh"
+	L.custom_on_portal_autotalk_desc = "Al instante se abren portales que llevan a la entrada al hablar con un PNJ Especulador."
+	L.trading_game = "Juego del trueque"
+	L.trading_game_desc = "Aviso con la contraseña correcta durante el Juego del trueque."
+	L.custom_on_trading_game_autotalk_desc = "Selecciona al instante la contraseña correcta después de que el Juego del trueque haya finalizado." 
 	L.password_triggers = {
-		["Elfenbeinmuschel"] = 53259,
-		["Saphiroase"] = 53260,
-		["Jadepalme"] = 53261,
-		["Goldsand"] = 53262,
-		["Berndämmerung"] = 53263,
-		["Smaragdozean"] = 53264,
-		["Rubinedelstein"] = 53265,
-		["Zinngestein"] = 53266,
-		["Fahlblume"] = 53267,
-		["Purpurmesser"] = 53268
+		["Caparazón de marfil"] = 53259,
+		["Oasis de zafiro"] = 53260,
+		["Palma de jade"] = 53261,
+		["Arenas doradas"] = 53262,
+		["Amanecer ámbar"] = 53263,
+		["Océano esmeralda"] = 53264,
+		["Gema rubí"] = 53265,
+		["Piedra de peltre"] = 53266,
+		["Flor pálida"] = 53267,
+		["Cuchillo carmesí"] = 53268
 	}
-	L.gatewarden_zomazz = "Torwächter Zo'mazz"
-	L.customs_security = "Zollsicherheit"
-	L.interrogation_specialist = "Verhörspezialist"
-	L.portalmancer_zohonn = "Portalmagier Zo'honn"
-	L.armored_overseer = "Gepanzerter Aufseher"
-	L.support_officer = "Unterstützungsoffizier"
-	L.tracker_zokorss = "Fährtenleser Zo'korss"
-	L.ancient_core_hound = "Uralter Kernhund"
-	L.enraged_direhorn = "Wütendes Terrorhorn"
-	L.cartel_skulker = "Kartellschleicher"
-	L.cartel_wiseguy = "Kartellmitglied"
-	L.cartel_muscle = "Kartellkraftprotz"
-	L.cartel_smuggler = "Kartellschmuggler"
-	L.defective_sorter = "Defekter Sortierer"
-	L.overloaded_mailemental = "Überladener Eilementarl"
-	L.post_worker = "P.O.S.T.-Mitarbeiter"
-	--L.bazaar_overseer = "Bazaar Overseer"
-	L.market_peacekeeper = "Friedensbewahrer des Marktes"
-	L.veteran_sparkcaster = "Erfahrener Funkenzauberer"
-	L.commerce_enforcer = "Handelsvollstrecker"
-	L.commander_zofar = "Kommandant Zo'far"
 
-	L.tazavesh_soleahs_gambit = "Tazavesh: So'leahs Schachzug"
-	L.murkbrine_scalebinder = "Schuppenbinder der Finstergischt"
-	L.murkbrine_shellcrusher = "Panzerbrecher der Finstergischt"
-	L.coastwalker_goliath = "Küstenschreitergoliath"
-	L.stormforged_guardian = "Sturmgeschmiedeter Wächter"
-	L.burly_deckhand = "Bulliger Deckmatrose"
-	L.adorned_starseer = "Geschmückter Sternenseher"
-	L.focused_ritualist = "Fokussierter Ritualist"
-	L.devoted_accomplice = "Hingebungsvoller Komplize"
+	L.interrogation_specialist = "Especialista en interrogatorios"
+	L.portalmancer_zohonn = "Portalmante Zo'honn"
+	L.armored_overseer_tracker_zokorss = "Sobrestante acorazado / Rastreador Zo'korss"
+	L.tracker_zokorss = "Rastreador Zo'korss"
+	L.ancient_core_hound = "Can del Núcleo anciano"
+	L.enraged_direhorn = "Cuernoatroz iracundo"
+	L.cartel_muscle = "Matón del cártel"
+	L.cartel_smuggler = "Contrabandista del cártel"
+	L.support_officer = "Oficial de apoyo"
+	L.defective_sorter = "Clasificador defectuoso"
+	L.market_peacekeeper = "Pacificador del mercado"
+	L.veteran_sparkcaster = "Chispaturgo veterano"
+	L.commerce_enforcer = "Déspota comercial"
+	L.commerce_enforcer_commander_zofar = "Déspota comercial / Comandante Zo'far"
+	L.commander_zofar = "Comandante Zo'far"
+
+	L.tazavesh_soleahs_gambit = "Tazavesh: Gambito de So'leah"
+	L.murkbrine_scalebinder = "Sujetascamas Salmuerasucia"
+	L.murkbrine_shellcrusher = "Rompeconchas Salmuerasucia"
+	L.coastwalker_goliath = "Goliat caminacostas"
+	L.stormforged_guardian = "Guardián Tronaforjado"
+	L.burly_deckhand = "Marinero de cubierta fornido"
+	L.adorned_starseer = "Vidente estelar adornado"
+	L.focused_ritualist = "Ritualista enfocado"
+	L.devoted_accomplice = "Cómplice devoto"
 end
 
 -- Theater of Pain
 
-L = BigWigs:NewBossLocale("Xav the Unfallen", "deDE")
+L = BigWigs:NewBossLocale("Xav the Unfallen", "esES")
 if L then
-	L.defeated = "%s hat %s besiegt"
+	L.defeated = "%s ha sido derrotado %s"
 end
 
-L = BigWigs:NewBossLocale("Theater Of Pain Trash", "deDE")
+L = BigWigs:NewBossLocale("Theater Of Pain Trash", "esES")
 if L then
-	L.battlefield_ritualist = "Schlachtfeldritualist"
-	L.raging_bloodhorn = "Tobendes Bluthorn"
-	L.diseased_horror = "Kranker Schrecken"
-	L.blighted_sludge_spewer = "Verseuchter Schlickspeier"
-	L.putrid_butcher = "Eitriger Schlächter"
-	L.disgusting_refuse = "Widerliche Zuflucht"
-	L.rancid_gasbag = "Ranziger Gasbeutel"
-	L.shambling_arbalest = "Schlurfender Armbrustschütze"
-	L.dokigg_the_brutalizer = "Dokigg der Metzler"
-	L.nekthara_the_mangler = "Nekthara der Zerfleischer"
-	L.heavin_the_breaker = "Wuchtus der Brecher"
-	L.harugia_the_bloodthirsty = "Harugia die Blutrünstige"
-	L.ancient_captain = "Uralter Hauptmann"
-	L.advent_nevermore = "Advent Nimmermehr"
-	L.rek_the_hardened = "Rek die Gehärtete"
-	L.portal_guardian = "Portalwächter"
-	L.maniacal_soulbinder = "Manischer Seelenbinder"
-	L.bone_magus = "Knochenmagus"
-	L.nefarious_darkspeaker = "Ruchloser Dunkelsprecher"
-	L.soulforged_bonereaver = "Seelengeschmiedeter Knochenhäscher"
+	L.battlefield_ritualist = "Ritualista del campo de batalla"
+	L.raging_bloodhorn = "Cuernosangre enfurecido"
+	L.diseased_horror = "Horror malsano"
+	L.blighted_sludge_spewer = "Vomitalodos contagiado"
+	L.putrid_butcher = "Carnicero pútrido"
+	L.disgusting_refuse = "Desecho asqueroso"
+	L.rancid_gasbag = "Saco de gas rancio"
+	L.shambling_arbalest = "Arbalestero renqueante"
+	L.dokigg_the_brutalizer = "Dokigg el Brutalizador"
+	L.nekthara_the_mangler = "Nekthara el Mutilador"
+	L.heavin_the_breaker = "Heavin el Rompedor"
+	L.harugia_the_bloodthirsty = "Harugia la Sanguinaria"
+	L.ancient_captain = "Capitán ancestral"
+	L.advent_nevermore = "Venida Nuncamás"
+	L.rek_the_hardened = "Rek la Endurecida"
+	L.portal_guardian = "Guardián de portal"
+	L.maniacal_soulbinder = "Vinculador de almas maníaco"
+	L.bone_magus = "Magus osario"
+	L.nefarious_darkspeaker = "Hablaoscuro nefario"
+	L.soulforged_bonereaver = "Espetahuesos forjado con almas"
 
-	L.mordretha_warmup_trigger = "Soldaten von Maldraxxus! Seid Ihr bereit für ein Massaker?!"
+	--L.mordretha_warmup_trigger = "Soldiers of Maldraxxus! Are you ready for some carnage?!"
 end
 
 -- The Necrotic Wake
 
-L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "deDE")
+L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "esES")
 if L then
-	L.amarth_warmup_trigger = "Ihr bekommt Eure gerechte Strafe!"
-	L.corpse_harvester = "Leichenernter"
-	L.stitched_vanguard = "Zusammengeflickte Vorhut"
-	L.zolramus_gatekeeper = "Torwächter von Zolramus"
-	L.zolramus_necromancer = "Nekromant von Zolramus"
-	L.brittlebone_mage = "Morschknochenmagier"
-	L.zolramus_bonecarver = "Knochenschnitzer von Zolramus"
-	L.skeletal_marauder = "Skelettmarodeur"
-	L.zolramus_bonemender = "Knochenheiler von Zolramus"
-	L.zolramus_sorcerer = "Zauberer von Zolramus"
+	--L.amarth_warmup_trigger = "You will be brought to justice!"
+	L.corpse_harvester = "Cosechacadáveres"
+	L.stitched_vanguard = "Vanguardia cosida"
+	L.zolramus_gatekeeper = "Guardián de la puerta de Zolramus"
+	L.zolramus_necromancer = "Nigromante de Zolramus"
+	L.brittlebone_mage = "Mago de huesos frágiles"
+	L.zolramus_bonecarver = "Tallahuesos de Zolramus"
+	L.skeletal_marauder = "Maleante esquelético"
+	L.zolramus_bonemender = "Sueldahuesos de Zolramus"
+	L.zolramus_sorcerer = "Hechicero de Zolramus"
 	L.narzudah = "Nar'zudah"
-	L.skeletal_monstrosity = "Skelettmonstrum"
-	L.corpse_collector = "Leichensammler"
-	L.kyrian_stitchwerk = "Kyrianisches Flickwerk"
-	L.flesh_crafter = "Fleischformer"
-	L.loyal_creation = "Loyale Kreation"
-	L.separation_assistant = "Trennungsgehilfe"
-	L.goregrind = "Metzelmahler"
-	L.rotspew = "Rottspeier"
+	L.skeletal_monstrosity = "Monstruosidad esquelética"
+	L.corpse_collector = "Recolector de cadáveres"
+	L.kyrian_stitchwerk = "Remendado kyriano"
+	L.flesh_crafter = "Modelador de carne"
+	L.loyal_creation = "Creación leal"
+	L.separation_assistant = "Asistente de separación"
+	L.goregrind = "Picacrúor"
+	L.rotspew = "Flemapútrida"
 end
