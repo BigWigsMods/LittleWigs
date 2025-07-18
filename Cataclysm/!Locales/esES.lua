@@ -119,7 +119,7 @@ end
 
 L = BigWigs:NewBossLocale("Daakara", "esES")
 if L then
-	L[42594] = "Forma de oso" short form for "Esencia del espíritu de oso"
+	L[42594] = "Forma de oso" -- short form for "Esencia del espíritu de oso"
 	L[42607] = "Forma de lince"
 	L[42606] = "Forma del águila"
 	L[42608] = "Forma de dracohalcón"
@@ -141,5 +141,5 @@ end
 
 L = BigWigs:NewBossLocale("Jin'do the Godbreaker", "esES")
 if L then
-	L.barrier_down_message = "Barrera derribada, %d restantes" short name for "Barrera quebradiza" (97417)
+	L.barrier_down_message = "Barrera derribada, %d restantes" -- short name for "Barrera quebradiza" (97417)
 end
