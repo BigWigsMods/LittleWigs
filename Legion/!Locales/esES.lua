@@ -224,32 +224,32 @@ if L then
 	--L.spyFoundChat = "I found the spy!"
 	L.spyFoundPattern = "Bueno, bueno, no nos precipitemos" -- Bueno, bueno, no nos precipitemos. ¿Y si me acompañas para poder discutirlo en un ambiente más privado...?
 
-	--L.hints[1] = "Cape"
-	--L.hints[2] = "No Cape"
+	L.hints[1] = "Capa"
+	L.hints[2] = "Sin capa"
 	--L.hints[3] = "Pouch"
-	--L.hints[4] = "Potions"
+	L.hints[4] = "Pociones"
 	--L.hints[5] = "Long Sleeves"
 	--L.hints[6] = "Short Sleeves"
 	--L.hints[7] = "Gloves"
 	--L.hints[8] = "No Gloves"
-	--L.hints[9] = "Male"
-	--L.hints[10] = "Female"
+	L.hints[9] = "Hombre"
+	L.hints[10] = "Mujer"
 	--L.hints[11] = "Light Vest"
 	--L.hints[12] = "Dark Vest"
-	--L.hints[13] = "No Potions"
-	--L.hints[14] = "Book"
+	L.hints[13] = "Sin pociones"
+	L.hints[14] = "Libro"
 end
 
 L = BigWigs:NewBossLocale("Advisor Melandrus", "esES")
 if L then
-	--L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
+	L.warmup_trigger = "Un fracaso más, Melandrus. Esta es tu oportunidad de corregirlo. Deshazte de estos intrusos. Debo regresar al Bastión Nocturno." 
 end
 
 -- Darkheart Thicket
 
 L = BigWigs:NewBossLocale("Darkheart Thicket Trash", "esES")
 if L then
-	--L.archdruid_glaidalis_warmup_trigger = "Defilers... I can smell the Nightmare in your blood. Be gone from these woods or suffer nature's wrath!"
+	L.archdruid_glaidalis_warmup_trigger = "Corruptores... Huelo la pesadilla en vuestra sangre. ¡Abandonad estos bosques o sufrid la ira de la naturaleza!"
 
 	L.mindshattered_screecher = "Estridador Mentequebrada"
 	L.dreadsoul_ruiner = "Arruinador Almaespanto"
@@ -269,7 +269,7 @@ end
 
 L = BigWigs:NewBossLocale("Oakheart", "esES")
 if L then
-	--L.throw = "Throw"
+	L.throw = "Lanzar"
 end
 
 -- Eye of Azshara
@@ -287,32 +287,32 @@ end
 
 L = BigWigs:NewBossLocale("Lady Hatecoil", "esES")
 if L then
-	--L.custom_on_show_helper_messages = "Helper messages for Static Nova and Focused Lightning"
-	--L.custom_on_show_helper_messages_desc = "Enable this option to add a helper message telling you whether water or land is safe when the boss starts casting |cff71d5ffStatic Nova|r or |cff71d5ffFocused Lightning|r."
+	L.custom_on_show_helper_messages = "Mensajes de ayuda para Nova estática y Relámpago enfocado" -- Helper messages for Static Nova and Focused Lightning
+	L.custom_on_show_helper_messages_desc = "Activa esta opción para añadir un mensaje de ayuda diciéndote si el agua o la arena es segura cuando el jefe esté lanzando |cff71d5ffNova estática|r o |cff71d5ffRelámpago enfocado|r."
 
-	--L.water_safe = "%s (water is safe)"
-	--L.land_safe = "%s (land is safe)"
+	L.water_safe = "%s (el agua es segura)"
+	L.land_safe = "%s (la arena es segura)"
 end
 
 -- Halls of Valor
 
 L = BigWigs:NewBossLocale("Odyn", "esES")
 if L then
-	--L.gossip_available = "Gossip available"
-	--L.gossip_trigger = "Most impressive! I never thought I would meet anyone who could match the Valarjar's strength... and yet here you stand."
+	L.gossip_available = "Conversación disponible"
+	L.gossip_trigger = "Impresionante. Nunca pensé que encontraría a alguien capaz de igualar la fuerza de los Valajar... pero aquí estáis." 
 
-	--L[197963] = "|cFF800080Top Right|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Right"
-	--L[197964] = "|cFFFFA500Bottom Right|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Right"
-	--L[197965] = "|cFFFFFF00Bottom Left|r (|T1323038:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Left"
-	--L[197966] = "|cFF0000FFTop Left|r (|T1323035:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Left"
-	--L[197967] = "|cFF008000Top|r (|T1323036:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top"
+	L[197963] = "|cFF800080Arriba derecha|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Right"
+	L[197964] = "|cFFFFA500Abajo derecha|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Right"
+	L[197965] = "|cFFFFFF00BAbajo izquierda|r (|T1323038:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Left"
+	L[197966] = "|cFF0000FFArriba izquierda|r (|T1323035:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Left"
+	L[197967] = "|cFF008000Arriba|r (|T1323036:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top"
 end
 
 L = BigWigs:NewBossLocale("God-King Skovald", "esES")
 if L then
-	--L.warmup_text = "God-King Skovald Active"
-	--L.warmup_trigger = "The vanquishers have already taken possession of it, Skovald, as was their right. Your protest comes too late."
-	--L.warmup_trigger_2 = "If these false champions will not yield the aegis by choice... then they will surrender it in death!"
+	L.warmup_text = "Rey dios Skovald activo"
+	L.warmup_trigger = "Los triunfadores  ya han tomado posesión de ella, Skovald, pues tal era su derecho. Llegas demasiado tarde." 
+	L.warmup_trigger_2 = "Si estos falsos campeones no me entregan la égida por propia voluntad... ¡será mía cuando mueran!" 
 end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "esES")
@@ -340,13 +340,13 @@ end
 L = BigWigs:NewBossLocale("Karazhan Trash", "esES")
 if L then
 	-- Opera Event
-	--L.custom_on_autotalk_desc = "Instantly selects Barnes' gossip option to start the Opera Hall encounter."
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de Barnes para comenzar el encuentro de la Sala de Ópera." 
 	L.opera_hall_wikket_story_text = "Sala de la Ópera: Makaku"
-	--L.opera_hall_wikket_story_trigger = "Shut your jabber" -- Shut your jabber, drama man! The Monkey King got another plan!
+	L.opera_hall_wikket_story_trigger = "¡Cierra el piko" -- ¡Cierra el piko, miko dramas! ¡El Rey Mono domina el panorama! / Shut your jabber, drama man! The Monkey King got another plan!
 	L.opera_hall_westfall_story_text = "Sala de la Ópera: Historia de Poniente"
-	--L.opera_hall_westfall_story_trigger = "we meet two lovers" -- Tonight... we meet two lovers born on opposite sides of Sentinel Hill.
+	L.opera_hall_westfall_story_trigger = "conoceremos a dos amantes" -- Tonight... we meet two lovers born on opposite sides of Sentinel Hill.
 	L.opera_hall_beautiful_beast_story_text = "Sala de la Ópera: Bella Bestia"
-	--L.opera_hall_beautiful_beast_story_trigger = "a tale of romance and rage" -- Tonight... a tale of romance and rage, one which will prove once and for all if beaty is more than skin deep.
+	L.opera_hall_beautiful_beast_story_trigger = "una historia de amor y rabia" -- Tonight... a tale of romance and rage, one which will prove once and for all if beaty is more than skin deep.
 
 	-- Return to Karazhan: Lower
 	L.barnes = "Barnes"
@@ -368,7 +368,7 @@ end
 L = BigWigs:NewBossLocale("Moroes", "esES")
 if L then
 	L.cc = "Control de masas"
-	--L.cc_desc = "Timers and alerts for crowd control on the dinner guests."
+	L.cc_desc = "Temporizadores y alertas de control de masas en los invitados de la cena."
 end
 
 L = BigWigs:NewBossLocale("Nightbane", "esES")
