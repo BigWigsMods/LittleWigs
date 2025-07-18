@@ -140,6 +140,8 @@ if L then
 	L.gate_open_desc = "Muestra una barra que indica cuándo el Mago menor Kesalon abrirá la puerta hacia Yalnu." 
 	L.yalnu_warmup_trigger = "¡Hemos perdido el portal! ¡No dejéis escapar a esta bestia! 
 
+end
+
 -- Upper Blackrock Spire
 
 L = BigWigs:NewBossLocale("Orebender Gor'ashan", "esES")
