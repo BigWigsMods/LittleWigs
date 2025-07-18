@@ -95,7 +95,7 @@ end
 
 L = BigWigs:NewBossLocale("Assault on Violet Hold Trash", "esES")
 if L then
-	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de la Teniente Sinclari para empezar el Asalto en el Bastión Violeta." 
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de la Teniente Sinclari para empezar el Asalto en el Bastión Violeta."
 	L.keeper = "Vigilante de portal"
 	L.guardian = "Guardián de portal"
 	L.infernal = "Infernal llameante"
@@ -138,16 +138,16 @@ end
 
 L = BigWigs:NewBossLocale("Mephistroth", "esES")
 if L then
-	L.custom_on_time_lost = "Tiempo perdido en Oculto en las sombras" 
+	L.custom_on_time_lost = "Tiempo perdido en Oculto en las sombras"
 	L.custom_on_time_lost_desc = "Muestra el tiempo perdido en Oculto en las sombras en la barra |cffff0000red|r."
 	L.time_lost = "%s |cffff0000(+%ds)|r"
 end
 
 L = BigWigs:NewBossLocale("Domatrax", "esES")
 if L then
-	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de la Égida de Aggramar para empezar el encuentro con Domatrax." 
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de la Égida de Aggramar para empezar el encuentro con Domatrax."
 
-	L.missing_aegis = "No estás dentro de la Égida" -- Aegis is a short name for Aegis of Aggramar
+	L.missing_aegis = "No estás dentro de la Égida" 
 	L.aegis_healing = "Égida: Sanación realizada reducida"
 	L.aegis_damage = "Égida: Daño infligido reducido"
 end
@@ -216,7 +216,7 @@ if L then
 	L.custom_on_use_buff_items = "Usa al instante el buff de los objetos." -- Instantly use buff items
 	L.custom_on_use_buff_items_desc = "Activa esta opción para usar instantáneamente los buffs de los objetos alrededor de la mazmorra. Esto no será usado en los objetos que amenazan a los guardias antes del segundo jefe." --Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss.
 
-	L.spy_helper = "Asistente para el evento del espía" 
+	L.spy_helper = "Asistente para el evento del espía"
 	L.spy_helper_desc = "Muestra una plantilla de información con todas las pistas que el grupo haya reunido sobre el espía. Las pistas también serán enviadas a tus miembros de grupo en el chat." --Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat.
 
 	L.clueFound = "Pista hallada (%d/5): |cffffffff%s|r"
@@ -242,7 +242,7 @@ end
 
 L = BigWigs:NewBossLocale("Advisor Melandrus", "esES")
 if L then
-	L.warmup_trigger = "Un fracaso más, Melandrus. Esta es tu oportunidad de corregirlo. Deshazte de estos intrusos. Debo regresar al Bastión Nocturno." 
+	L.warmup_trigger = "Un fracaso más, Melandrus. Esta es tu oportunidad de corregirlo. Deshazte de estos intrusos. Debo regresar al Bastión Nocturno."
 end
 
 -- Darkheart Thicket
@@ -287,7 +287,7 @@ end
 
 L = BigWigs:NewBossLocale("Lady Hatecoil", "esES")
 if L then
-	L.custom_on_show_helper_messages = "Mensajes de ayuda para Nova estática y Relámpago enfocado" 
+	L.custom_on_show_helper_messages = "Mensajes de ayuda para Nova estática y Relámpago enfocado"
 	L.custom_on_show_helper_messages_desc = "Activa esta opción para añadir un mensaje de ayuda diciéndote si el agua o la arena es segura cuando el jefe esté lanzando |cff71d5ffNova estática|r o |cff71d5ffRelámpago enfocado|r."
 
 	L.water_safe = "%s (el agua es segura)"
@@ -299,7 +299,7 @@ end
 L = BigWigs:NewBossLocale("Odyn", "esES")
 if L then
 	L.gossip_available = "Conversación disponible"
-	L.gossip_trigger = "Impresionante. Nunca pensé que encontraría a alguien capaz de igualar la fuerza de los Valajar... pero aquí estáis." 
+	L.gossip_trigger = "Impresionante. Nunca pensé que encontraría a alguien capaz de igualar la fuerza de los Valajar... pero aquí estáis."
 
 	L[197963] = "|cFF800080Arriba derecha|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Right"
 	L[197964] = "|cFFFFA500Abajo derecha|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Right"
@@ -311,8 +311,8 @@ end
 L = BigWigs:NewBossLocale("God-King Skovald", "esES")
 if L then
 	L.warmup_text = "Rey dios Skovald activo"
-	L.warmup_trigger = "Los triunfadores  ya han tomado posesión de ella, Skovald, pues tal era su derecho. Llegas demasiado tarde." 
-	L.warmup_trigger_2 = "Si estos falsos campeones no me entregan la égida por propia voluntad... ¡será mía cuando mueran!" 
+	L.warmup_trigger = "Los triunfadores  ya han tomado posesión de ella, Skovald, pues tal era su derecho. Llegas demasiado tarde."
+	L.warmup_trigger_2 = "Si estos falsos campeones no me entregan la égida por propia voluntad... ¡será mía cuando mueran!"
 end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "esES")
@@ -340,7 +340,7 @@ end
 L = BigWigs:NewBossLocale("Karazhan Trash", "esES")
 if L then
 	-- Opera Event
-	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de Barnes para comenzar el encuentro de la Sala de Ópera." 
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de Barnes para comenzar el encuentro de la Sala de Ópera."
 	L.opera_hall_wikket_story_text = "Sala de la Ópera: Makaku"
 	L.opera_hall_wikket_story_trigger = "¡Cierra el piko" -- ¡Cierra el piko, miko dramas! ¡El Rey Mono domina el panorama! / Shut your jabber, drama man! The Monkey King got another plan!
 	L.opera_hall_westfall_story_text = "Sala de la Ópera: Historia de Poniente"
@@ -434,7 +434,7 @@ end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "esES")
 if L then
-	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de Alleria Brisaveloz." 
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de Alleria Brisaveloz."
 	L.gossip_available = "Conversación disponible"
 	L.alleria_gossip_trigger = "¡Venid por aquí!" -- Allerias yell after the first boss is defeated
 
