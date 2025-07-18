@@ -37,6 +37,7 @@ if L then
 
 	L.timers = "Temporizadores"
 	L.timers_desc = "Temporizadores para varios eventos que ocurren."
+
 	L.victory = "Victoria"
 end
 
