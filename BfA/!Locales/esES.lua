@@ -284,6 +284,7 @@ end
 L = BigWigs:NewBossLocale("King Mechagon", "esES")
 if L then
 	L.hardmode_desc = "Aviso para cuando el Aniquilotrón 5000 empieza a mostrar el orden de los botones."
+
 	L.button = "Botón"
 	L.button_desc = "Muestra un aviso cuando alguien pulsa un botón."
 end
