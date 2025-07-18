@@ -91,7 +91,7 @@ if L then
 	L.summon_worms_trigger = "¡Chirrido penetrante atrae Gusanos carroñeros cercanos!" 
 	L.submerge = "Sumersión"
 	L.submerge_desc = "Quijahueso se sumerge y se reposiciona." 
-	L.submerge_trigger = "¡sisea, merodeando de nuevo en las profundidades sombrías!
+	L.submerge_trigger = "¡sisea, merodeando de nuevo en las profundidades sombrías!"
 end
 
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "esES")
