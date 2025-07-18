@@ -89,7 +89,7 @@ if L then
 	L.summon_worms = "Invoca Gusano carroñero"
 	L.summon_worms_desc = "Quijahueso invoca dos Gusanos carroñeros."
 	L.summon_worms_trigger = "¡Chirrido penetrante atrae Gusanos carroñeros cercanos!"
-	
+
 	L.submerge = "Sumersión"
 	L.submerge_desc = "Quijahueso se sumerge y se reposiciona."
 	L.submerge_trigger = "¡sisea, merodeando de nuevo en las profundidades sombrías!"
