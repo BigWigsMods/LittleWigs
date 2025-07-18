@@ -158,7 +158,7 @@ end
 L = BigWigs:NewBossLocale("Mailroom Mayhem", "esES")
 if L then
 	L.delivery_portal = "Portal de entrega"
-	L.delivery_portal_desc = "Muestra un temporizador cuando Portal de entrega cambie de ubicación." 
+	L.delivery_portal_desc = "Muestra un temporizador cuando Portal de entrega cambie de ubicación."
 end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "esES")
@@ -175,7 +175,7 @@ if L then
 	L.custom_on_portal_autotalk_desc = "Al instante se abren portales que llevan a la entrada al hablar con un PNJ Especulador."
 	L.trading_game = "Juego del trueque"
 	L.trading_game_desc = "Aviso con la contraseña correcta durante el Juego del trueque."
-	L.custom_on_trading_game_autotalk_desc = "Selecciona al instante la contraseña correcta después de que el Juego del trueque haya finalizado." 
+	L.custom_on_trading_game_autotalk_desc = "Selecciona al instante la contraseña correcta después de que el Juego del trueque haya finalizado."
 	L.password_triggers = {
 		["Caparazón de marfil"] = 53259,
 		["Oasis de zafiro"] = 53260,
