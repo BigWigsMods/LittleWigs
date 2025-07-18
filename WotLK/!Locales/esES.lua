@@ -13,7 +13,7 @@ end
 L = BigWigs:NewBossLocale("Gal'darah", "esES")
 if L then
 	L.forms = "Formas"
-	L.forms_desc = "Alertar antes de que Gal'darah cambie de formas." 
+	L.forms_desc = "Alertar antes de que Gal'darah cambie de formas."
 
 	L.form_rhino = "Forma de rino"
 	L.form_troll = "Forma de troll"
@@ -36,7 +36,7 @@ if L then
 	L.fail_trigger = "¡Aún no!... Aún no..."
 
 	L.timers = "Temporizadores"
-	L.timers_desc = "Temporizadores para varios eventos que ocurren." 
+	L.timers_desc = "Temporizadores para varios eventos que ocurren."
 	L.victory = "Victoria"
 end
 
@@ -44,7 +44,7 @@ end
 
 L = BigWigs:NewBossLocale("The Culling of Stratholme Trash", "esES")
 if L then
-	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de Chromie y Arthas." 
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de Chromie y Arthas."
 
 	L.gossip_available = "Conversación disponible"
 	L.gossip_timer_trigger = "Me alegro que lo consiguieras, Uther."
@@ -88,14 +88,14 @@ end
 
 L = BigWigs:NewBossLocale("The Violet Hold Trash", "esES")
 if L then
-	L.portals_desc = "Información sobre los portales." 
+	L.portals_desc = "Información sobre los portales."
 end
 
 -- Trial of the Champion
 
 L = BigWigs:NewBossLocale("Trial of the Champion Trash", "esES")
 if L then
-	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversar para comenzar los encuentros." 
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversar para comenzar los encuentros."
 end
 
 -- Utgarde Pinnacle
