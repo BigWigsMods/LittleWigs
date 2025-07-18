@@ -26,7 +26,7 @@ end
 
 L = BigWigs:NewBossLocale("Nitrogg Thundertower", "esES")
 if L then
-	--L.dropped = "%s dropped!"
+	L.dropped = "¡%s cae!"
 	L.add_trigger1 = "¡A por ellos!"
 	L.add_trigger2 = "Dadles con todo."
 
@@ -58,12 +58,12 @@ end
 
 L = BigWigs:NewBossLocale("Grimrail Enforcers", "esES")
 if L then
-	--L.sphere_fail_message = "Shield was broken - They're all healing :("
+	L.sphere_fail_message = "El escudo se ha roto - Se están curando todos :(" 
 end
 
 L = BigWigs:NewBossLocale("Oshir", "esES")
 if L then
-	--L.freed = "Freed after %.1f sec!"
+	L.freed = "Liberado después de %.1f seg!"
 	L.wolves = "Lobos"
 	L.rylak = "Rylak"
 end
@@ -86,13 +86,13 @@ end
 
 L = BigWigs:NewBossLocale("Bonemaw", "esES")
 if L then
-	--L.summon_worms = "Summon Carrion Worms"
-	--L.summon_worms_desc = "Bonemaw summons two Carrion Worms."
-	--L.summon_worms_trigger = "piercing screech attracts nearby Carrion Worms!"
-
+	L.summon_worms = "Invoca Gusano carroñero"
+	L.summon_worms_desc = "Quijahueso invoca dos Gusanos carroñeros." 
+	L.summon_worms_trigger = "¡Chirrido penetrante atrae Gusanos carroñeros cercanos!" 
+	
 	L.submerge = "Sumersión"
-	--L.submerge_desc = "Bonemaw submerges and repositions."
-	--L.submerge_trigger = "hisses, slinking back into the shadowy depths!"
+	L.submerge_desc = "Quijahueso se sumerge y se reposiciona." 
+	L.submerge_trigger = "¡sisea, merodeando de nuevo en las profundidades sombrías!"
 end
 
 L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "esES")
@@ -121,7 +121,7 @@ end
 
 L = BigWigs:NewBossLocale("Witherbark", "esES")
 if L then
-	--L.energyStatus = "A Globule reached Witherbark: %d%% energy"
+	L.energyStatus = "Un glóbulo llegó a Cortezamustia: %d%% energía"
 end
 
 L = BigWigs:NewBossLocale("The Everbloom Trash", "esES")
@@ -138,13 +138,13 @@ if L then
 	L.putrid_pyromancer = "Piromántico pútrido"
 	L.addled_arcanomancer = "Arcanomántico desconcertado"
 
-	--L.gate_open_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
-	--L.yalnu_warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
+	L.gate_open_desc = "Muestra una barra que indica cuándo el Mago menor Kesalon abrirá la puerta hacia Yalnu." 
+	L.yalnu_warmup_trigger = "¡Hemos perdido el portal! ¡No dejéis escapar a esta bestia! 
 end
 
 -- Upper Blackrock Spire
 
 L = BigWigs:NewBossLocale("Orebender Gor'ashan", "esES")
 if L then
-	--L.counduitLeft = "%d |4Conduit:Conduits; left"
+	L.counduitLeft = "%d |4Conducto:Conductos; restantes"
 end
