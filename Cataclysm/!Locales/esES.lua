@@ -3,39 +3,39 @@
 local L = BigWigs:NewBossLocale("Echo of Baine", "esES")
 if not L then return end
 if L then
-	--L.totemDrop = "Totem dropped"
-	--L.totemThrow = "Totem thrown by %s"
+	L.totemDrop = "Cae Tótem"
+	L.totemThrow = "Tótem lanzado por %s"
 end
 
 -- Grim Batol
 
 L = BigWigs:NewBossLocale("Erudax", "esES")
 if L then
-	--L.summon = "Summon Faceless Corruptor"
-	--L.summon_desc = "Warn when Erudax summons a Faceless Corruptor."
-	--L.summon_message = "Faceless Corruptor Summoned"
-	--L.summon_trigger = "summons a"
+	L.summon = "Invoca Corruptor ignoto"
+	L.summon_desc = "Alerta cuando Erudax invoca a un Corruptor ignoto." 
+	L.summon_message = "Corruptor ignoto invocado"
+	L.summon_trigger = "invoca un"
 end
 
 L = BigWigs:NewBossLocale("Grim Batol Trash", "esES")
 if L then
-	--L.twilight_earthcaller = "Twilight Earthcaller"
-	--L.twilight_brute = "Twilight Brute"
-	--L.twilight_destroyer = "Twilight Destroyer"
+	L.twilight_earthcaller = "Clamatierras crepuscular"
+	L.twilight_brute = "Tosco Crepuscular"
+	L.twilight_destroyer = "Draco Crepuscular"
 	L.twilight_overseer = "Sobrestante Crepuscular"
-	--L.twilight_beguiler = "Twilight Beguiler"
-	--L.molten_giant = "Molten Giant"
-	--L.twilight_warlock = "Twilight Warlock"
-	--L.twilight_flamerender = "Twilight Flamerender"
-	--L.twilight_lavabender = "Twilight Lavabender"
-	--L.faceless_corruptor = "Faceless Corruptor"
+	L.twilight_beguiler = "Cautivador Crepuscular"
+	L.molten_giant = "Gigante fundido"
+	L.twilight_warlock = "Brujo crepuscular"
+	L.twilight_flamerender = "Desgarrallamas crepuscular"
+	L.twilight_lavabender = "Doblalava crepuscular"
+	L.faceless_corruptor = "Corruptor ignoto"
 end
 
 -- Hour of Twilight
 
 L = BigWigs:NewBossLocale("The Hour of Twilight Trash", "esES")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly select Thrall's gossip options."
+	L.custom_on_autotalk_desc = "Selecciona al instante las opciones de conversación de Thrall." 
 end
 
 -- Lost City of the Tol'vir
@@ -50,10 +50,10 @@ end
 
 L = BigWigs:NewBossLocale("Lord Walden", "esES")
 if L then
-	-- %s will be either "Toxic Coagulant" or "Toxic Catalyst"
-	--L.coagulant = "%s: Move to dispel"
-	--L.catalyst = "%s: Crit Buff"
-	--L.toxin_healer_message = "%s: DoT on everyone"
+	-- %s will be either "Coagulante tóxico" or "Catalizador tóxico"
+	L.coagulant = "%s: Muévete para disipar"
+	L.catalyst = "%s: Crit Buff"
+	L.toxin_healer_message = "%s: DoT en todos"
 end
 
 -- The Stonecore
@@ -81,13 +81,13 @@ if L then
 	L.faceless_watcher = "Vigía ignoto"
 	L.tainted_sentry = "Avizor corrupto"
 
-	--L.ozumat_warmup_trigger = "The beast has returned! It must not pollute my waters!"
+	L.ozumat_warmup_trigger = "¡La bestia ha regresado! ¡No debe contaminar mis aguas!"
 end
 
 L = BigWigs:NewBossLocale("Lady Naz'jar", "esES")
 if L then
-	--L.high_tide_trigger1 = "Take arms, minions! Rise from the icy depths!"
-	--L.high_tide_trigger2 = "Destroy these intruders! Leave them for the great dark beyond!"
+	L.high_tide_trigger1 = "¡A lasss armasss, esbirrosss! ¡Alzaos de las heladas profundidadesss!" 
+	L.high_tide_trigger2 = "¡Dessstruid a los intrusosss! ¡Que losss devore la ossscuridad del másss allá!" 
 end
 
 -- The Vortex Pinnacle
@@ -112,34 +112,34 @@ end
 
 L = BigWigs:NewBossLocale("Well Of Eternity Trash", "esES")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly select Illidan's gossip option."
+	L.custom_on_autotalk_desc = "Selecciona al instante las opciones de conversación de Illidan."
 end
 
 -- Zul'Aman
 
 L = BigWigs:NewBossLocale("Daakara", "esES")
 if L then
-	--L[42594] = "Bear Form" -- short form for "Essence of the Bear"
-	--L[42607] = "Lynx Form"
-	--L[42606] = "Eagle Form"
-	--L[42608] = "Dragonhawk Form"
+	L[42594] = "Forma de oso" short form for "Esencia del espíritu de oso"
+	L[42607] = "Forma de lince"
+	L[42606] = "Forma del águila"
+	L[42608] = "Forma de dracohalcón"
 end
 
 L = BigWigs:NewBossLocale("Halazzi", "esES")
 if L then
-	--L.spirit_message = "Spirit Phase"
-	--L.normal_message = "Normal Phase"
+	L.spirit_message = "Fase de espíritu"
+	L.normal_message = "Fase normal"
 end
 
 L = BigWigs:NewBossLocale("Nalorakk", "esES")
 if L then
-	--L.troll_message = "Troll Form"
-	--L.troll_trigger = "Make way for da Nalorakk!"
+	L.troll_message = "Forma de troll"
+	L.troll_trigger = "¡Dejad paso al Nalorakk!"
 end
 
 -- Zul'Gurub
 
 L = BigWigs:NewBossLocale("Jin'do the Godbreaker", "esES")
 if L then
-	--L.barrier_down_message = "Barrier down, %d remaining" -- short name for "Brittle Barrier" (97417)
+	L.barrier_down_message = "Barrera derribada, %d restantes" short name for "Barrera quebradiza" (97417)
 end
