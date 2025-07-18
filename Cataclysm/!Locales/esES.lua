@@ -12,7 +12,7 @@ end
 L = BigWigs:NewBossLocale("Erudax", "esES")
 if L then
 	L.summon = "Invoca Corruptor ignoto"
-	L.summon_desc = "Alerta cuando Erudax invoca a un Corruptor ignoto." 
+	L.summon_desc = "Alerta cuando Erudax invoca a un Corruptor ignoto."
 	L.summon_message = "Corruptor ignoto invocado"
 	L.summon_trigger = "invoca un"
 end
@@ -35,7 +35,7 @@ end
 
 L = BigWigs:NewBossLocale("The Hour of Twilight Trash", "esES")
 if L then
-	L.custom_on_autotalk_desc = "Selecciona al instante las opciones de conversación de Thrall." 
+	L.custom_on_autotalk_desc = "Selecciona al instante las opciones de conversación de Thrall."
 end
 
 -- Lost City of the Tol'vir
@@ -86,8 +86,8 @@ end
 
 L = BigWigs:NewBossLocale("Lady Naz'jar", "esES")
 if L then
-	L.high_tide_trigger1 = "¡A lasss armasss, esbirrosss! ¡Alzaos de las heladas profundidadesss!" 
-	L.high_tide_trigger2 = "¡Dessstruid a los intrusosss! ¡Que losss devore la ossscuridad del másss allá!" 
+	L.high_tide_trigger1 = "¡A lasss armasss, esbirrosss! ¡Alzaos de las heladas profundidadesss!"
+	L.high_tide_trigger2 = "¡Dessstruid a los intrusosss! ¡Que losss devore la ossscuridad del másss allá!"
 end
 
 -- The Vortex Pinnacle
