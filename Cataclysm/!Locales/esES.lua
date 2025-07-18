@@ -50,7 +50,7 @@ end
 
 L = BigWigs:NewBossLocale("Lord Walden", "esES")
 if L then
-	 %s will be either "Coagulante tóxico" or "Catalizador tóxico"
+	-- %s will be either "Coagulante tóxico" or "Catalizador tóxico"
 	L.coagulant = "%s: Muévete para disipar"
 	L.catalyst = "%s: Crit Buff"
 	L.toxin_healer_message = "%s: DoT en todos"
