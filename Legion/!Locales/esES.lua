@@ -95,15 +95,15 @@ end
 
 L = BigWigs:NewBossLocale("Assault on Violet Hold Trash", "esES")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly selects Lieutenant Sinclaris gossip option to start the Assault on Violet Hold."
-	--L.keeper = "Portal Keeper"
-	--L.guardian = "Portal Guardian"
-	--L.infernal = "Blazing Infernal"
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de la Teniente Sinclari para empezar el Asalto en el Bastión Violeta." 
+	L.keeper = "Vigilante de portal"
+	L.guardian = "Guardián de portal"
+	L.infernal = "Infernal llameante"
 end
 
 L = BigWigs:NewBossLocale("Thalena", "esES")
 if L then
-	--L.essence = "Essence"
+	L.essence = "Esencia"
 end
 
 -- Black Rook Hold
@@ -126,30 +126,30 @@ if L then
 	L.risen_swordsman = "Espadachín resucitado"
 	L.risen_lancer = "Lancero resucitado"
 
-	--L.door_open_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
+	L.door_open_desc = "Muestra una barra que indica cuando se abre la puerta hacia el Pasadizo secreto."
 end
 
 L = BigWigs:NewBossLocale("Kurtalos Ravencrest", "esES")
 if L then
-	--L.phase_2_trigger = "Enough! I tire of this."
+	L.phase_2_trigger = "¡Basta! Me estoy cansando."
 end
 
 -- Cathedral of Eternal Night
 
 L = BigWigs:NewBossLocale("Mephistroth", "esES")
 if L then
-	--L.custom_on_time_lost = "Time lost during Shadow Fade"
-	--L.custom_on_time_lost_desc = "Show the time lost during Shadow Fade on the bar in |cffff0000red|r."
-	--L.time_lost = "%s |cffff0000(+%ds)|r"
+	L.custom_on_time_lost = "Tiempo perdido en Oculto en las sombras" 
+	L.custom_on_time_lost_desc = "Muestra el tiempo perdido en Oculto en las sombras en la barra |cffff0000red|r."
+	L.time_lost = "%s |cffff0000(+%ds)|r"
 end
 
 L = BigWigs:NewBossLocale("Domatrax", "esES")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramar's gossip option to start the Domatrax encounter."
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de la Égida de Aggramar para empezar el encuentro con Domatrax." 
 
-	--L.missing_aegis = "You're not standing in Aegis" -- Aegis is a short name for Aegis of Aggramar
-	--L.aegis_healing = "Aegis: Reduced Healing Done"
-	--L.aegis_damage = "Aegis: Reduced Damage Done"
+	L.missing_aegis = "No estás dentro de la Égida" -- Aegis is a short name for Aegis of Aggramar
+	L.aegis_healing = "Égida: Sanación realizada reducida"
+	L.aegis_damage = "Égida: Daño infligido reducido"
 end
 
 L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "esES")
@@ -166,7 +166,7 @@ if L then
 	L.gazerax = "Avizorax"
 	L.vilebark = "Caminante Cortezavil"
 
-	--L.throw_tome = "Throw Tome" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
+	L.throw_tome = "Lanzar escrito" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
 end
 
 -- Court of Stars
@@ -207,35 +207,35 @@ if L then
 	L.DiscardedJunk = "Chatarra desechada"
 	L.WoundedNightborneCivilian = "Civil Nocheterna herido"
 
-	--L.announce_buff_items = "Announce buff items"
-	--L.announce_buff_items_desc = "Anounces all available buff items around the dungeon and who is able to use them."
+	L.announce_buff_items = "Anuncia los buffs de los objetos" --Announce buff items
+	L.announce_buff_items_desc = "Anuncia los buffs disponibles de los objetos alrededor de la mazmorra y quién los puede utilizar." --Anounces all available buff items around the dungeon and who is able to use them.
 
-	--L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
-	--L.usableBy = "usable by %s" -- Context: item is usable by someone
+	L.available = "%s|cffffffff%s|r disponible" -- Context: item is available to use
+	L.usableBy = "puede ser utilizado por %s" -- Context: item is usable by someone
 
-	--L.custom_on_use_buff_items = "Instantly use buff items"
-	--L.custom_on_use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
+	L.custom_on_use_buff_items = "Usa al instante el buff de los objetos." -- Instantly use buff items
+	L.custom_on_use_buff_items_desc = "Activa esta opción para usar instantáneamente los buffs de los objetos alrededor de la mazmorra. Esto no será usado en los objetos que amenazan a los guardias antes del segundo jefe." --Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss.
 
-	--L.spy_helper = "Spy Event Helper"
-	--L.spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."
+	L.spy_helper = "Asistente para el evento del espía" 
+	L.spy_helper_desc = "Muestra una plantilla de información con todas las pistas que el grupo haya reunido sobre el espía. Las pistas también serán enviadas a tus miembros de grupo en el chat." --Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat.
 
-	--L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
-	--L.spyFound = "Spy found by %s!"
-	--L.spyFoundChat = "I found the spy!"
+	L.clueFound = "Pista hallada (%d/5): |cffffffff%s|r"
+	L.spyFound = "Espía encontrado por %s!"
+	L.spyFoundChat = "¡Encontré al espía!"
 	L.spyFoundPattern = "Bueno, bueno, no nos precipitemos" -- Bueno, bueno, no nos precipitemos. ¿Y si me acompañas para poder discutirlo en un ambiente más privado...?
 
 	L.hints[1] = "Capa"
 	L.hints[2] = "Sin capa"
-	--L.hints[3] = "Pouch"
+	L.hints[3] = "Faltriquera"
 	L.hints[4] = "Pociones"
-	--L.hints[5] = "Long Sleeves"
-	--L.hints[6] = "Short Sleeves"
-	--L.hints[7] = "Gloves"
-	--L.hints[8] = "No Gloves"
+	L.hints[5] = "Mangas largas"
+	L.hints[6] = "Mangas cortas"
+	L.hints[7] = "Guantes"
+	L.hints[8] = "Sin guantes"
 	L.hints[9] = "Hombre"
 	L.hints[10] = "Mujer"
-	--L.hints[11] = "Light Vest"
-	--L.hints[12] = "Dark Vest"
+	L.hints[11] = "Jubón claro"
+	L.hints[12] = "Jubón oscuro"
 	L.hints[13] = "Sin pociones"
 	L.hints[14] = "Libro"
 end
@@ -287,7 +287,7 @@ end
 
 L = BigWigs:NewBossLocale("Lady Hatecoil", "esES")
 if L then
-	L.custom_on_show_helper_messages = "Mensajes de ayuda para Nova estática y Relámpago enfocado" -- Helper messages for Static Nova and Focused Lightning
+	L.custom_on_show_helper_messages = "Mensajes de ayuda para Nova estática y Relámpago enfocado" 
 	L.custom_on_show_helper_messages_desc = "Activa esta opción para añadir un mensaje de ayuda diciéndote si el agua o la arena es segura cuando el jefe esté lanzando |cff71d5ffNova estática|r o |cff71d5ffRelámpago enfocado|r."
 
 	L.water_safe = "%s (el agua es segura)"
