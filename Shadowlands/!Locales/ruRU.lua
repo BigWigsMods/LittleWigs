@@ -217,10 +217,13 @@ if L then
 
 	L.tazavesh_soleahs_gambit = "Тазавеш: гамбит Со'леи"
 	L.murkbrine_scalebinder = "Лататель чешуи из племени Соленой Хмари"
+	L.murkbrine_fishmancer = "Рыбомант из племени Соленой Хмари"
 	L.murkbrine_shellcrusher = "Крушитель панцирей из племени Соленой Хмари"
 	L.coastwalker_goliath = "Береговой голиаф"
 	L.stormforged_guardian = "Бурекованый страж"
 	L.burly_deckhand = "Дюжий матрос"
+	L.hourglass_tidesage = "Заклинатель волн с \"Песочных часов\""
+	L.corsair_officer = "Корсар-офицер"
 	L.adorned_starseer = "Нарядный звездочет"
 	L.focused_ritualist = "Настойчивый ритуалист"
 	L.devoted_accomplice = "Усердный подручный"

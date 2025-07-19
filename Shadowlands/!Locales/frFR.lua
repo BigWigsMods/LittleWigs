@@ -217,10 +217,13 @@ if L then
 
 	L.tazavesh_soleahs_gambit = "Tazavesh : le stratagème de So’leah"
 	L.murkbrine_scalebinder = "Lieur d'écailles bourbe-sel"
+	L.murkbrine_fishmancer = "Pescomancien bourbe-sel"
 	L.murkbrine_shellcrusher = "Brise-conque bourbe-sel"
 	L.coastwalker_goliath = "Goliath marche-côte"
 	L.stormforged_guardian = "Gardien forge-foudren"
 	L.burly_deckhand = "Matelot costaud"
+	L.hourglass_tidesage = "Eaugure du Sablier"
+	L.corsair_officer = "Officier corsaire"
 	L.adorned_starseer = "Stellomancien distingué"
 	L.focused_ritualist = "Ritualiste concentré"
 	L.devoted_accomplice = "Complice loyal"

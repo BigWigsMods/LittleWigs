@@ -32,11 +32,15 @@ mod:RegisterEnableMob(
 	179842, -- Commerce Enforcer
 	179821, -- Commander Zo'far
 	------ So'leah's Gambit ------
+	178163, -- Murkbrine Shorerunner
 	178141, -- Murkbrine Scalebinder
+	178142, -- Murkbrine Fishmancer
 	178139, -- Murkbrine Shellcrusher
 	178165, -- Coastwalker Goliath
 	178171, -- Stormforged Guardian
 	180015, -- Burly Deckhand
+	179388, -- Hourglass Tidesage
+	179386, -- Corsair Officer
 	180429, -- Adorned Starseer
 	180431, -- Focused Ritualist
 	180432 -- Devoted Accomplice
@@ -99,13 +103,18 @@ if L then
 	------ So'leah's Gambit ------
 	L.tazavesh_soleahs_gambit = "Tazavesh: So'leah's Gambit"
 	L.murkbrine_scalebinder = "Murkbrine Scalebinder"
+	L.murkbrine_fishmancer = "Murkbrine Fishmancer"
 	L.murkbrine_shellcrusher = "Murkbrine Shellcrusher"
 	L.coastwalker_goliath = "Coastwalker Goliath"
 	L.stormforged_guardian = "Stormforged Guardian"
 	L.burly_deckhand = "Burly Deckhand"
+	L.hourglass_tidesage = "Hourglass Tidesage"
+	L.corsair_officer = "Corsair Officer"
 	L.adorned_starseer = "Adorned Starseer"
 	L.focused_ritualist = "Focused Ritualist"
 	L.devoted_accomplice = "Devoted Accomplice"
+
+	-- TODO Tidal Burst (1244650) has no icon or description, could copy from 356260
 end
 
 --------------------------------------------------------------------------------
@@ -185,22 +194,31 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 			358443, -- Blood in the Water
 			-- Murkbrine Scalebinder
 			{355132, "NAMEPLATE"}, -- Invigorating Fish Stick
+			-- Murkbrine Fishmancer
+			{355234, "NAMEPLATE"}, -- Volatile Pufferfish
 			-- Murkbrine Shellcrusher
-			355057, -- Cry of Mrrggllrrgg
+			{355057, "DISPEL", "NAMEPLATE"}, -- Cry of Mrrggllrrgg
+			{355048, "TANK", "NAMEPLATE"}, -- Shellcracker
 			-- Coastwalker Goliath
-			355429, -- Tidal Stomp
+			{355429, "NAMEPLATE"}, -- Tidal Stomp
+			{355464, "NAMEPLATE"}, -- Boulder Throw
 			-- Stormforged Guardian
-			355584, -- Charged Pulse
-			355577, -- Crackle
+			{355584, "NAMEPLATE"}, -- Charged Pulse
+			{355577, "NAMEPLATE"}, -- Crackle
 			-- Burly Deckhand
-			356133, -- Super Saison
+			{356133, "DISPEL", "NAMEPLATE"}, -- Super Saison
+			-- Hourglass Tidesage
+			{1244650, "NAMEPLATE"}, -- Tidal Burst
+			-- Corsair Officer
+			{368661, "NAMEPLATE"}, -- Sword Toss
 			-- Adorned Starseer
-			357226, -- Drifting Star
-			357238, -- Wandering Pulsar
+			{357226, "NAMEPLATE"}, -- Drifting Star
+			{357238, "NAMEPLATE"}, -- Wandering Pulsar
 			-- Focused Ritualist
-			357260, -- Unstable Rift
+			{357260, "NAMEPLATE"}, -- Unstable Rift
 			-- Devoted Accomplice
-			357284, -- Reinvigorate
+			{357284, "NAMEPLATE"}, -- Reinvigorate
+			{357281, "TANK", "NAMEPLATE"}, -- Energy Slash
 		}, {
 			------ Streets of Wonder ------
 			["custom_on_portal_autotalk"] = L.portal_authority,
@@ -229,10 +247,13 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 			------ So'leah's Gambit ------
 			[358443] = L.tazavesh_soleahs_gambit,
 			[355132] = L.murkbrine_scalebinder,
+			[355234] = L.murkbrine_fishmancer,
 			[355057] = L.murkbrine_shellcrusher,
 			[355429] = L.coastwalker_goliath,
 			[355584] = L.stormforged_guardian,
 			[356133] = L.burly_deckhand,
+			[1244650] = L.hourglass_tidesage,
+			[368661] = L.corsair_officer,
 			[357226] = L.adorned_starseer,
 			[357260] = L.focused_ritualist,
 			[357284] = L.devoted_accomplice,
@@ -301,22 +322,26 @@ else -- XXX remove block in 11.2
 			358443, -- Blood in the Water
 			-- Murkbrine Scalebinder
 			{355132, "NAMEPLATE"}, -- Invigorating Fish Stick
+			-- Murkbrine Fishmancer
+			{355234, "NAMEPLATE"}, -- Volatile Pufferfish
 			-- Murkbrine Shellcrusher
-			355057, -- Cry of Mrrggllrrgg
+			{355057, "DISPEL", "NAMEPLATE"}, -- Cry of Mrrggllrrgg
+			{355048, "TANK", "NAMEPLATE"}, -- Shellcracker
 			-- Coastwalker Goliath
-			355429, -- Tidal Stomp
+			{355429, "NAMEPLATE"}, -- Tidal Stomp
+			{355464, "NAMEPLATE"}, -- Boulder Throw
 			-- Stormforged Guardian
-			355584, -- Charged Pulse
-			355577, -- Crackle
+			{355584, "NAMEPLATE"}, -- Charged Pulse
+			{355577, "NAMEPLATE"}, -- Crackle
 			-- Burly Deckhand
-			356133, -- Super Saison
+			{356133, "DISPEL", "NAMEPLATE"}, -- Super Saison
 			-- Adorned Starseer
-			357226, -- Drifting Star
-			357238, -- Wandering Pulsar
+			{357226, "NAMEPLATE"}, -- Drifting Star
+			{357238, "NAMEPLATE"}, -- Wandering Pulsar
 			-- Focused Ritualist
-			357260, -- Unstable Rift
+			{357260, "NAMEPLATE"}, -- Unstable Rift
 			-- Devoted Accomplice
-			357284, -- Reinvigorate
+			{357284, "NAMEPLATE"}, -- Reinvigorate
 		}, {
 			------ Streets of Wonder ------
 			["custom_on_portal_autotalk"] = L.portal_authority,
@@ -344,6 +369,7 @@ else -- XXX remove block in 11.2
 			------ So'leah's Gambit ------
 			[358443] = L.tazavesh_soleahs_gambit,
 			[355132] = L.murkbrine_scalebinder,
+			[355234] = L.murkbrine_fishmancer,
 			[355057] = L.murkbrine_shellcrusher,
 			[355429] = L.coastwalker_goliath,
 			[355584] = L.stormforged_guardian,
@@ -512,38 +538,85 @@ function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER") -- Blood in the Water
 
 	-- Murkbrine Scalebinder
-	self:RegisterEvent("UNIT_TARGET")
+	self:RegisterEngageMob("MurkbrineScalebinderEngaged", 178141)
 	self:Log("SPELL_CAST_START", "InvigoratingFishStick", 355132)
-	self:Log("SPELL_CAST_SUCCESS", "InvigoratingFishStickSpawned", 355132)
+	self:Log("SPELL_CAST_SUCCESS", "InvigoratingFishStickSuccess", 355132)
 	self:Death("MurkbrineScalebinderDeath", 178141)
 
+	-- Murkbrine Fishmancer
+	self:RegisterEngageMob("MurkbrineFishmancerEngaged", 178142)
+	self:Log("SPELL_CAST_SUCCESS", "VolatilePufferfish", 355234)
+	self:Death("MurkbrineFishmancerDeath", 178142)
+
 	-- Murkbrine Shellcrusher
+	self:RegisterEngageMob("MurkbrineShellcrusherEngaged", 178139)
 	self:Log("SPELL_CAST_START", "CryofMrrggllrrgg", 355057)
+	self:Log("SPELL_INTERRUPT", "CryofMrrggllrrggInterrupt", 355057)
+	self:Log("SPELL_CAST_SUCCESS", "CryofMrrggllrrggSuccess", 355057)
 	self:Log("SPELL_AURA_APPLIED", "CryofMrrggllrrggApplied", 355057)
+	self:Log("SPELL_CAST_START", "Shellcracker", 355048)
+	self:Log("SPELL_CAST_SUCCESS", "ShellcrackerSuccess", 355048)
+	self:Death("MurkbrineShellcrusherDeath", 178139)
 
 	-- Coastwalker Goliath
+	self:RegisterEngageMob("CoastwalkerGoliathEngaged", 178165)
 	self:Log("SPELL_CAST_START", "TidalStomp", 355429)
+	self:Log("SPELL_CAST_START", "BoulderThrow", 355464)
+	self:Death("CoastwalkerGoliathDeath", 178165)
 
 	-- Stormforged Guardian
+	self:RegisterEngageMob("StormforgedGuardianEngaged", 178171)
 	self:Log("SPELL_CAST_START", "ChargedPulse", 355584)
 	self:Log("SPELL_CAST_START", "Crackle", 355577)
-	self:Log("SPELL_AURA_APPLIED", "CrackleDamage", 355581)
 	self:Log("SPELL_PERIODIC_DAMAGE", "CrackleDamage", 355581)
 	self:Log("SPELL_PERIODIC_MISSED", "CrackleDamage", 355581)
+	self:Death("StormforgedGuardianDeath", 178171)
 
 	-- Burly Deckhand
+	self:RegisterEngageMob("BurlyDeckhandEngaged", 180015)
 	self:Log("SPELL_CAST_START", "SuperSaison", 356133)
+	self:Log("SPELL_CAST_SUCCESS", "SuperSaisonSuccess", 356133)
 	self:Log("SPELL_AURA_APPLIED", "SuperSaisonApplied", 356133)
+	self:Death("BurlyDeckhandDeath", 180015)
+
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		-- Hourglass Tidesage
+		self:RegisterEngageMob("HourglassTidesageEngaged", 179388)
+		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Tidal Burst
+		self:Death("HourglassTidesageDeath", 179388)
+
+		-- Corsair Officer
+		self:RegisterEngageMob("CorsairOfficerEngaged", 179386)
+		self:Log("SPELL_CAST_START", "SwordToss", 368661)
+		self:Log("SPELL_CAST_SUCCESS", "SwordTossSuccess", 368661)
+		self:Death("CorsairOfficerDeath", 179386)
+	end
 
 	-- Adorned Starseer
+	self:RegisterEngageMob("AdornedStarseerEngaged", 180429)
 	self:Log("SPELL_CAST_START", "DriftingStar", 357226)
-	self:Log("SPELL_CAST_SUCCESS", "WanderingPulsar", 357238)
+	self:Log("SPELL_CAST_START", "WanderingPulsar", 357238)
+	self:Death("AdornedStarseerDeath", 180429)
 
 	-- Focused Ritualist
+	self:RegisterEngageMob("FocusedRitualistEngaged", 180431)
 	self:Log("SPELL_CAST_START", "UnstableRift", 357260)
+	self:Log("SPELL_INTERRUPT", "UnstableRiftInterrupt", 357260)
+	self:Log("SPELL_CAST_SUCCESS", "UnstableRiftSuccess", 357260)
+	self:Death("FocusedRitualistDeath", 180431)
 
 	-- Devoted Accomplice
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:RegisterEngageMob("DevotedAccompliceEngaged", 180432)
+	end
 	self:Log("SPELL_CAST_START", "Reinvigorate", 357284)
+	self:Log("SPELL_INTERRUPT", "ReinvigorateInterrupt", 357284)
+	self:Log("SPELL_CAST_SUCCESS", "ReinvigorateSuccess", 357284)
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:Log("SPELL_CAST_START", "EnergySlash", 357281)
+		self:Log("SPELL_CAST_SUCCESS", "EnergySlashSuccess", 357281)
+	end
+	self:Death("DevotedAccompliceDeath", 180432)
 end
 
 function mod:OnBossDisable()
@@ -1366,12 +1439,12 @@ do
 		end
 		self:CDBar(355473, 3.4) -- Shock Mines
 		self:Nameplate(355473, 3.4, guid) -- Shock Mines
+		if not self:Solo() then
+			self:CDBar(355479, 7.0) -- Lethal Force
+			self:Nameplate(355479, 7.0, guid) -- Lethal Force
+		end
 		self:CDBar(355477, 8.2) -- Power Kick
 		self:Nameplate(355477, 8.2, guid) -- Power Kick
-		if not self:Solo() then
-			self:CDBar(355479, 100) -- Lethal Force
-			self:Nameplate(355479, 100, guid) -- Lethal Force
-		end
 		timer = self:ScheduleTimer("CommanderZofarDeath", 20, nil, guid)
 	end
 
@@ -1458,32 +1531,19 @@ end
 
 -- Murkbrine Scalebinder
 
-do
-	local registeredMobs = {}
-
-	function mod:UNIT_TARGET(event, unit)
-		local sourceGUID = self:UnitGUID(unit)
-		local mobId = self:MobId(sourceGUID)
-		-- we only want to show the initial CD icon if it's the first time the mob has ever targeted anything.
-		-- we're using UNIT_TARGET as a proxy for the Scalebinder entering combat.
-		if mobId == 178141 and not registeredMobs[sourceGUID] then -- Murkbrine Scalebinder
-			registeredMobs[sourceGUID] = true
-			self:Nameplate(355132, 7.2, sourceGUID) -- Invigorating Fish Stick
-		end
-	end
-
-	function mod:InvigoratingFishStick(args)
-		self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-		self:PlaySound(args.spellId, "alert")
-
-		-- if for some reason this mob isn't registered already, register it so this timer won't be overwritten
-		registeredMobs[args.sourceGUID] = true
-		self:Nameplate(args.spellId, 27.9, args.sourceGUID)
-	end
+function mod:MurkbrineScalebinderEngaged(guid)
+	self:Nameplate(355132, 8.4, guid) -- Invigorating Fish Stick
 end
 
-function mod:InvigoratingFishStickSpawned(args)
-	self:Message(args.spellId, "red")
+function mod:InvigoratingFishStick(args)
+	self:Message(args.spellId, "yellow")
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:InvigoratingFishStickSuccess(args)
+	self:Message(args.spellId, "red", CL.spawned:format(args.spellName))
+	self:Nameplate(args.spellId, 27.5, args.sourceGUID)
 	self:PlaySound(args.spellId, "warning")
 end
 
@@ -1493,102 +1553,331 @@ end
 
 -- Murkbrine Shellcrusher
 
+function mod:MurkbrineShellcrusherEngaged(guid)
+	-- Cry of Mrrggllrrgg is not cast until 50%
+	self:Nameplate(355048, 9.6, guid) -- Shellcracker
+end
+
 function mod:CryofMrrggllrrgg(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:CryofMrrggllrrggInterrupt(args)
+	self:Nameplate(355057, 30.9, args.destGUID)
+end
+
+function mod:CryofMrrggllrrggSuccess(args)
+	self:Nameplate(args.spellId, 30.9, args.sourceGUID)
 end
 
 do
 	local prev = 0
 	function mod:CryofMrrggllrrggApplied(args)
-		if self:Tank() or self:Healer() or self:Dispeller("enrage", true) then
-			local t = args.time
-			if t - prev > 1 then
-				prev = t
-				self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
-				self:PlaySound(args.spellId, "warning")
-			end
+		if self:Dispeller("enrage", true, args.spellId) and args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "yellow", CL.buff_other:format(args.destName, args.spellName))
+			self:PlaySound(args.spellId, "warning")
 		end
 	end
 end
 
+do
+	local prev = 0
+	function mod:Shellcracker(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:ShellcrackerSuccess(args)
+	self:Nameplate(args.spellId, 14.2, args.sourceGUID)
+end
+
+function mod:MurkbrineShellcrusherDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Murkbrine Fishmancer
+
+function mod:MurkbrineFishmancerEngaged(guid)
+	self:Nameplate(355234, 13.1, guid) -- Volatile Pufferfish
+end
+
+do
+	local prev = 0
+	function mod:VolatilePufferfish(args)
+		self:Nameplate(args.spellId, 16.9, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+function mod:MurkbrineFishmancerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
 -- Coastwalker Goliath
 
+function mod:CoastwalkerGoliathEngaged(guid)
+	self:Nameplate(355429, 12.0, guid) -- Tidal Stomp
+	self:Nameplate(355464, 18.1, guid) -- Boulder Throw
+end
+
 function mod:TidalStomp(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
-	self:CDBar(args.spellId, 17)
+	self:Message(args.spellId, "yellow")
+	self:Nameplate(args.spellId, 22.2, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:BoulderThrow(args)
+	self:Message(args.spellId, "orange")
+	self:Nameplate(args.spellId, 22.6, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:CoastwalkerGoliathDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Stormforged Guardian
 
+function mod:StormforgedGuardianEngaged(guid)
+	self:Nameplate(355577, 4.7, guid) -- Crackle
+	self:Nameplate(355584, 10.8, guid) -- Charged Pulse
+end
+
 function mod:ChargedPulse(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+	self:Message(args.spellId, "orange")
+	self:Nameplate(args.spellId, 20.5, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:Crackle(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Message(args.spellId, "red")
+	self:Nameplate(args.spellId, 8.5, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
 end
 
 do
 	local prev = 0
 	function mod:CrackleDamage(args)
-		if self:Me(args.destGUID) then
-			local t = args.time
-			if t - prev > 2 then
-				prev = t
-				self:PersonalMessage(355577, "underyou")
-				self:PlaySound(355577, "underyou")
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(355577, "underyou")
+			self:PlaySound(355577, "underyou")
+		end
+	end
+end
+
+function mod:StormforgedGuardianDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Burly Deckhand
+
+function mod:BurlyDeckhandEngaged(guid)
+	if self:Tank() or self:Dispeller("enrage", true, 356133) then
+		self:Nameplate(356133, 7.1, guid) -- Super Saison
+	end
+end
+
+do
+	local prev = 0
+	function mod:SuperSaison(args)
+		if self:Tank() or self:Dispeller("enrage", true, args.spellId) then
+			self:Nameplate(args.spellId, 0, args.sourceGUID)
+			if args.time - prev > 2 then
+				prev = args.time
+				self:Message(args.spellId, "purple")
+				self:PlaySound(args.spellId, "alert")
 			end
 		end
 	end
 end
 
--- Burly Deckhand
-
-function mod:SuperSaison(args)
-	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
+function mod:SuperSaisonSuccess(args)
+	if self:Tank() or self:Dispeller("enrage", true, args.spellId) then
+		self:Nameplate(args.spellId, 30.3, args.sourceGUID)
+	end
 end
 
-function mod:SuperSaisonApplied(args)
-	if self:Tank() or self:Healer() or self:Dispeller("enrage", true) then
-		self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
-		self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:SuperSaisonApplied(args)
+		if (self:Tank() or self:Dispeller("enrage", true, args.spellId)) and args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.buff_other:format(args.destName, args.spellName))
+			self:PlaySound(args.spellId, "warning")
+		end
 	end
+end
+
+function mod:BurlyDeckhandDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Hourglass Tidesage
+
+function mod:HourglassTidesageEngaged(guid)
+	self:Nameplate(1244650, 8.0, guid) -- Tidal Burst
+end
+
+do
+	local prevCast, prev = nil, 0
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
+		if spellId == 1244650 and castGUID ~= prevCast then -- Tidal Burst
+			prevCast = castGUID
+			local sourceGUID = self:UnitGUID(unit)
+			if sourceGUID then
+				self:Nameplate(spellId, 18.2, sourceGUID)
+			end
+			local t = GetTime()
+			if t - prev > 2 then
+				prev = t
+				self:Message(spellId, "orange")
+				self:PlaySound(spellId, "alarm")
+			end
+		end
+	end
+end
+
+function mod:HourglassTidesageDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Corsair Officer
+
+function mod:CorsairOfficerEngaged(guid)
+	self:Nameplate(368661, 8.3, guid) -- Sword Toss
+end
+
+do
+	local prev = 0
+	function mod:SwordToss(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			-- TODO target scan?
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:SwordTossSuccess(args)
+	self:Nameplate(args.spellId, 14.0, args.sourceGUID)
+end
+
+function mod:CorsairOfficerDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Adorned Starseer
 
+function mod:AdornedStarseerEngaged(guid)
+	self:Nameplate(357226, 7.1, guid) -- Drifting Star
+	self:Nameplate(357238, 12.0, guid) -- Wandering Pulsar
+end
+
 do
 	local prev = 0
 	function mod:DriftingStar(args)
-		local t = args.time
-		if t - prev > 1.5 then
-			prev = t
-			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:Nameplate(args.spellId, 16.9, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
 		end
 	end
 end
 
 function mod:WanderingPulsar(args)
-	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "warning")
+	self:Message(args.spellId, "cyan", CL.spawning:format(args.spellName))
+	self:Nameplate(args.spellId, 26.6, args.sourceGUID)
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:AdornedStarseerDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Focused Ritualist
 
+function mod:FocusedRitualistEngaged(guid)
+	self:Nameplate(357260, 9.5, guid) -- Unstable Rift
+end
+
 function mod:UnstableRift(args)
 	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:UnstableRiftInterrupt(args)
+	self:Nameplate(357260, 21.4, args.destGUID)
+end
+
+function mod:UnstableRiftSuccess(args)
+	self:Nameplate(args.spellId, 21.4, args.sourceGUID)
+end
+
+function mod:FocusedRitualistDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Devoted Accomplice
 
-function mod:Reinvigorate(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
+function mod:DevotedAccompliceEngaged(guid)
+	-- Reinvigorate is not cast until its own HP is low
+	self:Nameplate(355891, 3.4, guid) -- Teleport
+	self:Nameplate(357281, 7.1, guid) -- Energy Slash
+end
+
+do
+	local prev = 0
+	function mod:Reinvigorate(args)
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:ReinvigorateInterrupt(args)
+	self:Nameplate(357284, 20.7, args.destGUID)
+end
+
+function mod:ReinvigorateSuccess(args)
+	self:Nameplate(args.spellId, 20.7, args.sourceGUID)
+end
+
+do
+	local prev = 0
+	function mod:EnergySlash(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2.5 then
+			prev = args.time
+			self:Message(args.spellId, "purple")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
+end
+
+function mod:EnergySlashSuccess(args)
+	self:Nameplate(args.spellId, 15.4, args.sourceGUID)
+end
+
+function mod:DevotedAccompliceDeath(args)
+	self:ClearNameplate(args.destGUID)
 end

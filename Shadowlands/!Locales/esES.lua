@@ -217,10 +217,13 @@ if L then
 
 	L.tazavesh_soleahs_gambit = "Tazavesh: Gambito de So'leah"
 	L.murkbrine_scalebinder = "Sujetascamas Salmuerasucia"
+	L.murkbrine_fishmancer = "Piscimante Salmuerasucia"
 	L.murkbrine_shellcrusher = "Rompeconchas Salmuerasucia"
 	L.coastwalker_goliath = "Goliat caminacostas"
 	L.stormforged_guardian = "Guardián Tronaforjado"
 	L.burly_deckhand = "Marinero de cubierta fornido"
+	L.hourglass_tidesage = "Sabiomar del Reloj de Arena"
+	L.corsair_officer = "Oficial corsario"
 	L.adorned_starseer = "Vidente estelar adornado"
 	L.focused_ritualist = "Ritualista enfocado"
 	L.devoted_accomplice = "Cómplice devoto"

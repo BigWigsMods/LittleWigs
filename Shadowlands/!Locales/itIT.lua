@@ -217,10 +217,13 @@ if L then
 
 	L.tazavesh_soleahs_gambit = "Tazavesh: Azzardo di So'leah"
 	L.murkbrine_scalebinder = "Vincolascaglie Acquasporca"
+	L.murkbrine_fishmancer = "Pescomante Acquasporca"
 	L.murkbrine_shellcrusher = "Frantumagusci Acquasporca"
 	L.coastwalker_goliath = "Mastodonte Calcacoste"
 	L.stormforged_guardian = "Guardiano Forgiatuono"
 	L.burly_deckhand = "Mozzo Smilzo"
+	L.hourglass_tidesage = "Saggio delle Maree della Clessidra"
+	L.corsair_officer = "Ufficiale Corsaro"
 	L.adorned_starseer = "Veggente Stellare Decorato"
 	L.focused_ritualist = "Ritualista Concentrato"
 	L.devoted_accomplice = "Complice Devoto"

@@ -217,10 +217,13 @@ if L then
 
 	L.tazavesh_soleahs_gambit = "塔札維許：索利亞的險招"
 	L.murkbrine_scalebinder = "暗洋縛鱗者"
+	L.murkbrine_fishmancer = "暗洋魚法師"
 	L.murkbrine_shellcrusher = "暗洋碎殼者"
 	L.coastwalker_goliath = "岸行者巨人"
 	L.stormforged_guardian = "風鑄守護者"
 	L.burly_deckhand = "結實的水手"
+	L.hourglass_tidesage = "沙漏號浪潮賢者"
+	L.corsair_officer = "海盜軍官"
 	L.adorned_starseer = "絢麗觀星者"
 	L.focused_ritualist = "專注的祭儀師"
 	L.devoted_accomplice = "忠誠的共犯"

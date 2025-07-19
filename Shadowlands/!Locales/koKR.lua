@@ -217,10 +217,13 @@ if L then
 
 	L.tazavesh_soleahs_gambit = "타자베쉬: 소레아의 승부수"
 	L.murkbrine_scalebinder = "진흙소금 비늘결속자"
+	L.murkbrine_fishmancer = "진흙소금 생선술사"
 	L.murkbrine_shellcrusher = "진흙소금 껍질분쇄자"
 	L.coastwalker_goliath = "해안방랑자 거수"
 	L.stormforged_guardian = "폭풍벼림 수호자"
 	L.burly_deckhand = "건장한 갑판원"
+	L.hourglass_tidesage = "모래시계 파도현자"
+	L.corsair_officer = "해적 장교"
 	L.adorned_starseer = "화려한 별예언가"
 	L.focused_ritualist = "몰두하는 의식술사"
 	L.devoted_accomplice = "헌신적인 동조자"
