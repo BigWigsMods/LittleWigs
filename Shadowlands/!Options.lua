@@ -773,17 +773,17 @@ BigWigs:AddSounds("So'azmi", {
 
 BigWigs:AddColors("Hylbrande", {
 	[346116] = "purple",
-	[346766] = "cyan",
-	[346959] = {"blue","orange"},
+	[346766] = {"cyan","green"},
+	[346957] = {"blue","orange"},
 	[347094] = "red",
 	[353312] = "yellow",
 	["vault_purifier"] = "yellow",
 })
 
 BigWigs:AddSounds("Hylbrande", {
-	[346116] = "alarm",
+	[346116] = "alert",
 	[346766] = "long",
-	[346959] = {"alert","underyou","warning"},
+	[346957] = {"underyou","warning"},
 	[347094] = "alarm",
 	[353312] = "info",
 	["vault_purifier"] = "info",

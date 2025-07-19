@@ -7,12 +7,13 @@ if not mod then return end
 mod:RegisterEnableMob(175663) -- Hylbrande
 mod:SetEncounterID(2426)
 mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local sanitizingCycleTime = 0
+local nextSanitizingCycle = 0
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -33,7 +34,7 @@ function mod:GetOptions()
 		353312, -- Purifying Burst
 		{346116, "TANK"}, -- Shearing Swings
 		347094, -- Titanic Crash
-		{346959, "SAY"}, -- Purged by Fire
+		{346957, "SAY"}, -- Purged by Fire
 		346766, -- Sanitizing Cycle
 		"vault_purifier", -- Vault Purifier
 	}, nil, {
@@ -49,18 +50,19 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TitanicCrash", 347094)
 	self:Log("SPELL_CAST_START", "PurgedByFire", 346957)
 	self:Log("SPELL_DAMAGE", "PurgedByFireDamage", 346960)
+	self:Log("SPELL_MISSED", "PurgedByFireDamage", 346960)
 	self:Log("SPELL_CAST_START", "SanitizingCycle", 346766)
 	self:Log("SPELL_AURA_REMOVED", "SanitizingCycleRemoved", 346766)
 end
 
 function mod:OnEngage()
-	sanitizingCycleTime = GetTime() + 38.8
-	self:Bar(353312, 5.6) -- Purifying Burst
-	self:Bar(346116, 8.1) -- Shearing Swings
-	self:Bar(346959, 10.5) -- Purged by Fire
-	self:Bar(347094, 15.4) -- Titanic Crash
-	self:Bar("vault_purifier", 19, CL.adds, L.vault_purifier_icon) -- Vault Purifier
-	self:Bar(346766, 38.8) -- Sanitizing Cycle
+	nextSanitizingCycle = GetTime() + 38.0
+	self:CDBar(353312, 5.6) -- Purifying Burst
+	self:CDBar(346116, 8.1) -- Shearing Swings
+	self:CDBar(346957, 10.5) -- Purged by Fire
+	self:CDBar(347094, 15.4) -- Titanic Crash
+	self:CDBar("vault_purifier", 19, CL.adds, L.vault_purifier_icon) -- Vault Purifier
+	self:CDBar(346766, 38.0) -- Sanitizing Cycle
 end
 
 --------------------------------------------------------------------------------
@@ -69,103 +71,109 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 346971 then -- [DNT] Summon Vault Defender
-		self:Message("vault_purifier", "yellow", CL.add_spawned, L.vault_purifier_icon)
-		self:PlaySound("vault_purifier", "info")
-		if sanitizingCycleTime - GetTime() > 29.1 then -- Sanitizing Cycle
-			self:Bar("vault_purifier", 29.1, CL.adds, L.vault_purifier_icon)
+		self:Message("vault_purifier", "yellow", CL.adds_spawning, L.vault_purifier_icon)
+		if nextSanitizingCycle - GetTime() > 29.8 then
+			self:CDBar("vault_purifier", 27.8, CL.adds, L.vault_purifier_icon)
+		else
+			self:StopBar(CL.adds)
 		end
+		self:PlaySound("vault_purifier", "info")
 	end
 end
 
 function mod:PurifyingBurst(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "info")
-	if sanitizingCycleTime - GetTime() > 21.8 then -- Sanitizing Cycle
-		self:CDBar(args.spellId, 21.8)
+	if nextSanitizingCycle - GetTime() > 25.0 then
+		self:CDBar(args.spellId, 23.0)
+	else
+		self:StopBar(args.spellId)
 	end
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:ShearingSwings(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
-	if sanitizingCycleTime - GetTime() > 10.9 then -- Sanitizing Cycle
+	if nextSanitizingCycle - GetTime() > 12.9 then
 		self:CDBar(args.spellId, 10.9)
+	else
+		self:StopBar(args.spellId)
 	end
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:TitanicCrash(args)
 	self:Message(args.spellId, "red")
+	if nextSanitizingCycle - GetTime() > 25.0 then
+		self:CDBar(args.spellId, 23.0)
+	else
+		self:StopBar(args.spellId)
+	end
 	self:PlaySound(args.spellId, "alarm")
-	if sanitizingCycleTime - GetTime() > 23.1 then -- Sanitizing Cycle
-		self:Bar(args.spellId, 23.1)
+end
+
+function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
+	-- |TInterface\\ICONS\\Ability_Priest_Flashoflight.blp:20|t %s targets you with |cFFFF0000|Hspell:346959|h[Purged by Fire]|h|r!#Titanic Defense Turret###playerName
+	if msg:find("346959", nil, true) then -- Purged by Fire
+		self:PersonalMessage(346957)
+		self:Say(346957, nil, nil, "Purged by Fire")
+		self:PlaySound(346957, "warning")
 	end
 end
 
-do
-	local prev = 0
-	function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, _, _, _, _, playerName)
-		-- "Titanic Defense Turret acquires a new target."
-		prev = GetTime()
-		self:TargetMessage(346959, "blue", playerName) -- Purged by Fire
-		self:PlaySound(346959, "warning") -- Purged by Fire
-		self:Say(346959, nil, nil, "Purged by Fire") -- Purged by Fire
-	end
-	local function warnPurgedByFire()
-		if GetTime() - prev > 1 then
-			mod:Message(346959, "orange") -- Purged by Fire
-			mod:PlaySound(346959, "alert") -- Purged by Fire
-		end
-	end
-	function mod:PurgedByFire(args)
-		self:SimpleTimer(warnPurgedByFire, 0.1)
-		if sanitizingCycleTime - GetTime() > 17 then -- Sanitizing Cycle
-			self:Bar(346959, 17) -- Purged by Fire
-		end
+function mod:PurgedByFire(args)
+	self:Message(args.spellId, "orange", CL.incoming:format(args.spellName))
+	if nextSanitizingCycle - GetTime() > 19 then
+		self:CDBar(args.spellId, 17)
+	else
+		self:StopBar(args.spellId)
 	end
 end
 
 do
 	local prev = 0
 	function mod:PurgedByFireDamage(args)
-		if self:Me(args.destGUID) then
-			local t = args.time
-			if t - prev > 1 then
-				prev = t
-				self:PersonalMessage(346959, "underyou")
-				self:PlaySound(346959, "underyou")
-			end
+		if self:Me(args.destGUID) and args.time - prev > 2 then
+			prev = args.time
+			self:PersonalMessage(346957, "underyou")
+			self:PlaySound(346957, "underyou")
 		end
 	end
 end
 
 do
-	local prev = 0
+	local sanitizingCycleStart = 0
+
 	function mod:SanitizingCycle(args)
-		-- SPELL_CAST_START fires twice for this spell at the exact same time
-		local t = args.time
-		if t-prev > 1.5 then
-			prev = t
-			sanitizingCycleTime = 0
+		-- SPELL_CAST_START fires twice for this spell at the exact same time XXX fixed in 11.2
+		if args.time - sanitizingCycleStart > 1.5 then
+			self:SetStage(2)
+			sanitizingCycleStart = args.time
+			nextSanitizingCycle = 0
 			self:Message(args.spellId, "cyan")
-			self:PlaySound(args.spellId, "long")
 			self:StopBar(args.spellId)
 			self:StopBar(353312) -- Purifying Burst
 			self:StopBar(346116) -- Shearing Swings
-			self:StopBar(346959) -- Purged by Fire
+			self:StopBar(346957) -- Purged by Fire
 			self:StopBar(CL.adds) -- Vault Purifier
 			self:StopBar(347094) -- Titanic Crash
+			self:PlaySound(args.spellId, "long")
 		end
 	end
-end
 
-function mod:SanitizingCycleRemoved(args)
-	sanitizingCycleTime = GetTime() + 70
-	self:Message(args.spellId, "cyan", CL.over:format(args.spellName))
-	self:PlaySound(args.spellId, "long")
-	self:Bar(args.spellId, 70)
-	self:Bar(353312, 13.3) -- Purifying Burst
-	self:Bar(346116, 16.6) -- Shearing Swings
-	self:Bar(346959, 19.2) -- Purged by Fire
-	self:Bar("vault_purifier", 20.3, CL.adds, L.vault_purifier_icon) -- Vault Purifier
-	self:Bar(347094, 22.8) -- Titanic Crash
+	function mod:SanitizingCycleRemoved(args)
+		nextSanitizingCycle = GetTime() + 69.4
+		self:SetStage(1)
+		if sanitizingCycleStart ~= 0 then
+			self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, args.time - sanitizingCycleStart))
+		else
+			self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+		end
+		self:CDBar(353312, 13.3) -- Purifying Burst
+		self:CDBar(346116, 15.9) -- Shearing Swings
+		self:CDBar(346957, 19.2) -- Purged by Fire
+		self:CDBar("vault_purifier", 19.5, CL.adds, L.vault_purifier_icon) -- Vault Purifier
+		self:CDBar(347094, 22.8) -- Titanic Crash
+		self:CDBar(args.spellId, 69.4)
+		self:PlaySound(args.spellId, "long")
+	end
 end
