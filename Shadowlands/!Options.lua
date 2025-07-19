@@ -790,21 +790,25 @@ BigWigs:AddSounds("Hylbrande", {
 })
 
 BigWigs:AddColors("Timecap'n Hooktail", {
-	[347149] = "red",
+	[347149] = "purple",
 	[347151] = "orange",
 	[347371] = "yellow",
 	[350517] = "orange",
 	[352345] = {"blue","red"},
 	[354334] = {"blue","orange"},
+	[358947] = "blue",
+	[1240102] = {"blue","orange"},
 })
 
 BigWigs:AddSounds("Timecap'n Hooktail", {
-	[347149] = "alarm",
+	[347149] = {"alarm","info"},
 	[347151] = "alert",
 	[347371] = "alert",
 	[350517] = "alert",
-	[352345] = "alarm",
+	[352345] = "warning",
 	[354334] = "alert",
+	[358947] = "underyou",
+	[1240102] = "info",
 })
 
 BigWigs:AddColors("So'leah", {
