@@ -154,18 +154,21 @@ function mod:ENCOUNTER_END(_, encounterId, _, _, _, status)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE()
-	self:StopBar(353706) -- Rowdy
-	-- There is one performance phase immediately at the start of the fight and then one after each add wave
-	if addWave >= 1 then
-		self:Message("stages", "cyan", L.add_wave_killed:format(addWave, 2), "achievement_dungeon_brokerdungeon")
-		self:PlaySound("stages", "long")
+	if self:IsEngaged() then
+		-- [CHAT_MSG_RAID_BOSS_EMOTE] Get to your spotlight and hit notes when they light up!#[DNT] Encounter Controller
+		self:StopBar(353706) -- Rowdy
+		-- There is one performance phase immediately at the start of the fight and then one after each add wave
+		if addWave >= 1 then
+			self:Message("stages", "cyan", L.add_wave_killed:format(addWave, 2), "achievement_dungeon_brokerdungeon")
+			self:PlaySound("stages", "long")
+		end
+		addWave = addWave + 1
 	end
-	addWave = addWave + 1
 end
 
-function mod:CHAT_MSG_RAID_BOSS_WHISPER()
-	-- Unruly patrons rush the stage!
-	if addWave <= 2 then
+function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
+	-- [CHAT_MSG_RAID_BOSS_WHISPER] |TInterface\\Icons\\Spell_Shadow_DeathPact.blp:20|t Unruly patrons rush the stage!#Oasis Security
+	if msg:find("Spell_Shadow_DeathPact", nil, true) and addWave <= 2 then
 		self:CDBar(353706, 41.3) -- Rowdy
 	end
 end
