@@ -1,7 +1,25 @@
+-- Archival Assault
+
+local L = BigWigs:NewBossLocale("Captain Nil'hitan", "zhTW")
+if not L then return end
+if L then
+	--L.captain_nilhitan = "Captain Nil'hitan"
+end
+
+L = BigWigs:NewBossLocale("Portalmaster Halsan", "zhTW")
+if L then
+	--L.portalmaster_halsan = "Portalmaster Halsan"
+end
+
+L = BigWigs:NewBossLocale("Voidrider Challnax", "zhTW")
+if L then
+	--L.voidripper = "Voidripper"
+	--L.voidrider_challnax= "Voidrider Challnax"
+end
+
 -- Demolition Dome
 
-local L = BigWigs:NewBossLocale("The Underpin", "zhTW")
-if not L then return end
+L = BigWigs:NewBossLocale("The Underpin", "zhTW")
 if L then
 	L.the_underpin = "幽坑霸主（8 層）"
 	L.crony = "親信"
