@@ -13,9 +13,19 @@ BigWigs:AddSounds("Portalmaster Halsan", {
 })
 
 BigWigs:AddColors("Voidrider Challnax", {
+	[1238892] = "red",
+	[1238909] = "yellow",
+	[1238930] = "orange",
+	[1239134] = "red",
+	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("Voidrider Challnax", {
+	[1238892] = "alarm",
+	[1238909] = "info",
+	[1238930] = "info",
+	[1239134] = "alert",
+	["stages"] = "long",
 })
 
 BigWigs:AddColors("The Underpin", {
