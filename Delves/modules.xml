@@ -54,6 +54,7 @@
 <Script file="TheWaterworks\Shroomsprew.lua"/>
 <Script file="TheWaterworks\Waxface.lua"/>
 
+<Script file="Trash\Ethereal.lua"/>
 <Script file="Trash\Fungarian.lua"/>
 <Script file="Trash\Goblin.lua"/>
 <Script file="Trash\Kobold.lua"/>

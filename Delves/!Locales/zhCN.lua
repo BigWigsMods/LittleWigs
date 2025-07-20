@@ -257,6 +257,18 @@ end
 
 -- Trash
 
+L = BigWigs:NewBossLocale("Ethereal Trash", "zhCN")
+if L then
+	--L.ethereal_trash = "Ethereal Trash"
+
+	--L.shadeye_observer = "Shadeye Observer"
+	--L.shadowguard_phasecutter = "Shadowguard Phasecutter"
+	--L.shadowguard_arcanotech = "Shadowguard Arcanotech"
+	--L.shadowguard_soulbreaker = "Shadowguard Soulbreaker"
+	--L.shadowguard_steelsoul = "Shadowguard Steelsoul"
+	--L.siphoned_drake = "Siphoned Drake"
+end
+
 L = BigWigs:NewBossLocale("Fungarian Delve Trash", "zhCN")
 if L then
 	L.fungarian_trash = "真菌人小怪"
