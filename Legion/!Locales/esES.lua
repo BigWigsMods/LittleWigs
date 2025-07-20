@@ -303,7 +303,7 @@ if L then
 
 	L[197963] = "|cFF800080Arriba derecha|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Right"
 	L[197964] = "|cFFFFA500Abajo derecha|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Right"
-	L[197965] = "|cFFFFFF00BAbajo izquierda|r (|T1323038:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Left"
+	L[197965] = "|cFFFFFF00Abajo izquierda|r (|T1323038:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Left"
 	L[197966] = "|cFF0000FFArriba izquierda|r (|T1323035:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Left"
 	L[197967] = "|cFF008000Arriba|r (|T1323036:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top"
 end
