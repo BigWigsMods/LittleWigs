@@ -94,7 +94,7 @@ function mod:InvadingShriek(args)
 	if invadingShriekCount % 2 == 0 then
 		self:CDBar(args.spellId, 37.6, CL.count:format(args.spellName, invadingShriekCount))
 	else
-		self:CDBar(args.spellId, 48.6, CL.count:format(args.spellName, invadingShriekCount))
+		self:CDBar(args.spellId, 48.5, CL.count:format(args.spellName, invadingShriekCount))
 	end
 	self:PlaySound(args.spellId, "alert")
 end
@@ -107,10 +107,10 @@ do
 		self:StopBar(CL.count:format(args.spellName, toxicRegurgitationCount))
 		self:Message(args.spellId, "orange", CL.count:format(args.spellName, toxicRegurgitationCount))
 		toxicRegurgitationCount = toxicRegurgitationCount + 1
-		if toxicRegurgitationCount % 3 == 1 then -- 4, 7, 10...
-			self:CDBar(args.spellId, 48.6, CL.count:format(args.spellName, toxicRegurgitationCount))
-		else -- 2, 3, 5, 6, 8, 9...
+		if toxicRegurgitationCount % 2 == 0 then -- 2, 4, 6...
 			self:CDBar(args.spellId, 18.2, CL.count:format(args.spellName, toxicRegurgitationCount))
+		else -- 3, 5, 7...
+			self:CDBar(args.spellId, 68.0, CL.count:format(args.spellName, toxicRegurgitationCount))
 		end
 		self:PlaySound(args.spellId, "alarm")
 	end
@@ -124,7 +124,7 @@ do
 			if castStartTime then
 				local delay = GetTime() - castStartTime
 				castStartTime = nil
-				self:SayCountdown(1227745, 3.5 - delay, nil, 2)
+				self:SayCountdown(1227745, 5 - delay)
 			end
 		end
 	end
