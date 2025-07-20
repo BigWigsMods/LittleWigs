@@ -37,7 +37,7 @@ BigWigs:AddColors("Ki'katal the Harvester", {
 	[432117] = "cyan",
 	[432130] = "orange",
 	[432227] = "red",
-	[461487] = "red",
+	[461487] = {"blue","red","yellow"},
 })
 
 BigWigs:AddSounds("Ki'katal the Harvester", {
@@ -45,7 +45,7 @@ BigWigs:AddSounds("Ki'katal the Harvester", {
 	[432117] = "long",
 	[432130] = "alarm",
 	[432227] = "alert",
-	[461487] = "alarm",
+	[461487] = {"alarm","info"},
 })
 
 BigWigs:AddColors("Ara-Kara, City of Echoes Trash", {

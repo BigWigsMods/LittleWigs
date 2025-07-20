@@ -26,7 +26,7 @@ function mod:GetOptions()
 		-- Normal / Heroic
 		432227, -- Venom Volley
 		-- Mythic
-		461487, -- Cultivated Poisons
+		{461487, "DISPEL"}, -- Cultivated Poisons
 	}, {
 		[432227] = CL.normal.." / "..CL.heroic,
 		[461487] = CL.mythic,
@@ -43,6 +43,7 @@ function mod:OnBossEnable()
 
 	-- Mythic
 	self:Log("SPELL_CAST_START", "CultivatedPoisons", 461487)
+	self:Log("SPELL_AURA_APPLIED", "CultivatedPoisonsApplied", 461487)
 end
 
 function mod:OnEngage()
@@ -104,9 +105,22 @@ end
 
 -- Mythic
 
-function mod:CultivatedPoisons(args)
-	nextPoisonCast = GetTime() + 21.8
-	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 21.8)
-	self:PlaySound(args.spellId, "alarm")
+do
+	local playerList = {}
+
+	function mod:CultivatedPoisons(args)
+		nextPoisonCast = GetTime() + 21.8
+		playerList = {}
+		self:Message(args.spellId, "red")
+		self:CDBar(args.spellId, 21.8)
+		self:PlaySound(args.spellId, "alarm")
+	end
+
+	function mod:CultivatedPoisonsApplied(args)
+		if self:Me(args.destGUID) or self:Dispeller("poison", nil, args.spellId) then
+			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(args.spellId, "yellow", playerList, 3)
+			self:PlaySound(args.spellId, "info", nil, playerList)
+		end
+	end
 end
