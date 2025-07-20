@@ -111,6 +111,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NullBreath", 1231144)
 	self:Log("SPELL_CAST_SUCCESS", "NullBreathSuccess", 1231144)
 	self:Death("SiphonedDrakeDeath", 245053)
+
+	-- TODO also enable Rares module depending on season
 end
 
 --------------------------------------------------------------------------------
