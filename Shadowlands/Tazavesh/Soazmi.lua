@@ -50,7 +50,7 @@ function mod:OnBossEnable()
 		self:Log("SPELL_CAST_START", "PhaseSlash", 1248209)
 	else -- XXX remove block in 11.2
 		self:Log("SPELL_CAST_START", "DoubleTechnique", 357188)
-		self:Log("SPELL_CAST_SUCCESS", "Shuri", 347610)
+		self:Log("SPELL_CAST_START", "Shuri", 347610)
 		self:Log("SPELL_CAST_START", "DivideOld", 347249, 347414)
 		self:Log("SPELL_CAST_START", "Quickblade", 347623)
 	end
@@ -93,6 +93,8 @@ function mod:Shuri(args)
 	else -- XXX remove block in 11.2
 		if self:GetStage() == 3 then
 			self:CDBar(args.spellId, shuriCount % 3 == 0 and 31.5 or 15.8)
+		else
+			self:CDBar(args.spellId, 15.8)
 		end
 	end
 	self:PlaySound(args.spellId, "warning")
