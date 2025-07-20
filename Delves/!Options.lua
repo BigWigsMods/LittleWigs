@@ -699,6 +699,44 @@ BigWigs:AddSounds("Underpin Rares", {
 	[1220869] = "alert",
 })
 
+BigWigs:AddColors("Ky'veza Rares", {
+	[1237258] = "blue",
+	[1237671] = "yellow",
+	[1238713] = "orange",
+	[1238737] = "red",
+	[1242469] = "red",
+	[1242521] = "yellow",
+	[1242534] = "cyan",
+	[1242752] = "cyan",
+	[1243017] = "orange",
+	[1243448] = "cyan",
+	[1244108] = "orange",
+	[1244249] = "yellow",
+	[1244313] = "orange",
+	[1245156] = "cyan",
+	[1245203] = "yellow",
+	[1245240] = "orange",
+})
+
+BigWigs:AddSounds("Ky'veza Rares", {
+	[1237258] = "underyou",
+	[1237671] = "alarm",
+	[1238713] = "alarm",
+	[1238737] = "alarm",
+	[1242469] = "alert",
+	[1242521] = "info",
+	[1242534] = "info",
+	[1242752] = "info",
+	[1243017] = "alarm",
+	[1243448] = "info",
+	[1244108] = "alarm",
+	[1244249] = "alarm",
+	[1244313] = "alarm",
+	[1245156] = "warning",
+	[1245203] = "info",
+	[1245240] = "alarm",
+})
+
 BigWigs:AddColors("Overcharged Trash", {
 	[455380] = "purple",
 	[455613] = "yellow",
