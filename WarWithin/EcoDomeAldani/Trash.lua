@@ -58,7 +58,7 @@ function mod:GetOptions()
 		-- Arcane Siphon
 		1239229, -- K'areshi Surge
 		-- Overgorged Mite
-		{1229474, "OFF"}, -- Gorge
+		{1229474, "NAMEPLATE", "OFF"}, -- Gorge
 		-- Voracious Gorger
 		{1221152, "NAMEPLATE"}, -- Gorging Smash
 		-- Ravenous Destroyer
@@ -76,7 +76,8 @@ function mod:GetOptions()
 		{1221483, "NAMEPLATE"}, -- Arcing Energy
 		-- Wastelander Pactspeaker
 		{1221532, "NAMEPLATE"}, -- Erratic Ritual
-		{1226306, "NAMEPLATE"}, -- Consume Spirit
+		{1248699, "NAMEPLATE"}, -- Consume Spirit
+		1226492, -- Ritual Disrupted
 		-- K'aresh Elemental
 		{1223000, "DISPEL", "NAMEPLATE"}, -- Embrace of K'aresh
 		-- Burrowing Creeper
@@ -114,7 +115,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "KareshiSurgeApplied", 1239229)
 
 	-- Overgorged Mite
+	self:RegisterEngageMob("OvergorgedMiteEngaged", 242209)
 	self:Log("SPELL_CAST_START", "Gorge", 1229474)
+	self:Log("SPELL_INTERRUPT", "GorgeInterrupt", 1229474)
+	self:Log("SPELL_CAST_SUCCESS", "GorgeSuccess", 1229474)
+	self:Death("OvergorgedMiteDeath", 242209)
 
 	-- Voracious Gorger
 	self:RegisterEngageMob("VoraciousGorgerEngaged", 234883)
@@ -131,6 +136,7 @@ function mod:OnBossEnable()
 	-- Overcharged Sentinel
 	self:RegisterEngageMob("OverchargedSentinelEngaged", 242631)
 	self:Log("SPELL_CAST_START", "ArcaneSlash", 1235368)
+	self:Log("SPELL_CAST_SUCCESS", "ArcaneSlashSuccess", 1235368)
 	self:Log("SPELL_AURA_APPLIED", "ShatteredCoreApplied", 1231328) -- for Unstable Core
 	self:Log("SPELL_PERIODIC_DAMAGE", "ArcaneBurnDamage", 1222202)
 	self:Log("SPELL_PERIODIC_MISSED", "ArcaneBurnDamage", 1222202)
@@ -157,7 +163,8 @@ function mod:OnBossEnable()
 	-- Wastelander Pactspeaker
 	self:RegisterEngageMob("WastelanderPactspeakerEngaged", 234955)
 	self:Log("SPELL_CAST_START", "ErraticRitual", 1221532)
-	self:Log("SPELL_CAST_START", "ConsumeSpirit", 1226306)
+	self:Log("SPELL_CAST_START", "ConsumeSpirit", 1248699)
+	self:Log("SPELL_AURA_APPLIED", "RitualDisruptedApplied", 1226492)
 	self:Death("WastelanderPactspeakerDeath", 234955)
 
 	-- K'aresh Elemental
@@ -217,15 +224,32 @@ end
 
 -- Overgorged Mite
 
+function mod:OvergorgedMiteEngaged(guid)
+	self:Nameplate(1229474, 3.9, guid) -- Gorge
+end
+
 do
 	local prev = 0
 	function mod:Gorge(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		if args.time - prev > 1.5 then
 			prev = args.time
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
+end
+
+function mod:GorgeInterrupt(args)
+	self:Nameplate(1229474, 5.0, args.destGUID)
+end
+
+function mod:GorgeSuccess(args)
+	self:Nameplate(args.spellId, 5.0, args.sourceGUID)
+end
+
+function mod:OvergorgedMiteDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Voracious Gorger
@@ -292,12 +316,16 @@ end
 function mod:ArcaneSlash(args)
 	-- follows the tank
 	self:Message(args.spellId, "purple")
-	self:Nameplate(args.spellId, 15.9, args.sourceGUID)
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	if self:Tank() then
 		self:PlaySound(args.spellId, "alert")
 	else
 		self:PlaySound(args.spellId, "alarm")
 	end
+end
+
+function mod:ArcaneSlashSuccess(args)
+	self:Nameplate(args.spellId, 12.9, args.sourceGUID)
 end
 
 function mod:ShatteredCoreApplied(args) -- Unstable Core
@@ -384,19 +412,24 @@ end
 
 function mod:WastelanderPactspeakerEngaged(guid)
 	self:Nameplate(1221532, 8.4, guid) -- Erratic Ritual
-	self:Nameplate(1226306, 23.8, guid) -- Consume Spirit
+	self:Nameplate(1248699, 23.2, guid) -- Consume Spirit
 end
 
 function mod:ErraticRitual(args)
 	self:Message(args.spellId, "yellow")
 	self:Nameplate(args.spellId, 19.8, args.sourceGUID)
-	self:PlaySound(args.spellId, "info")
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:ConsumeSpirit(args)
 	self:Message(args.spellId, "red")
-	self:Nameplate(args.spellId, 51.9, args.sourceGUID)
+	self:Nameplate(args.spellId, 40.1, args.sourceGUID)
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:RitualDisruptedApplied(args)
+	self:Message(args.spellId, "green")
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:WastelanderPactspeakerDeath(args)
@@ -439,7 +472,7 @@ end
 function mod:BurrowingCreeperEngaged(guid)
 	self:Nameplate(1237195, 5.4, guid) -- Burrow Charge
 	self:Nameplate(1237220, 14.0, guid) -- Singing Sandstorm
-	self:Nameplate(1215850, 20.1, guid) -- Earth Crusher
+	self:Nameplate(1215850, 20.0, guid) -- Earth Crusher
 end
 
 do

@@ -498,7 +498,7 @@ BigWigs:AddColors("Eco-Dome Al'dani Trash", {
 	[1223000] = {"orange","red"},
 	[1223007] = "orange",
 	[1226111] = {"blue","orange"},
-	[1226306] = "red",
+	[1226492] = "green",
 	[1229474] = "red",
 	[1229510] = "red",
 	[1231244] = "yellow",
@@ -507,6 +507,7 @@ BigWigs:AddColors("Eco-Dome Al'dani Trash", {
 	[1237195] = {"blue","yellow"},
 	[1237220] = "red",
 	[1239229] = "green",
+	[1248699] = "red",
 })
 
 BigWigs:AddSounds("Eco-Dome Al'dani Trash", {
@@ -514,14 +515,14 @@ BigWigs:AddSounds("Eco-Dome Al'dani Trash", {
 	[1221152] = "alarm",
 	[1221190] = "info",
 	[1221483] = "alert",
-	[1221532] = "info",
+	[1221532] = "alert",
 	[1222202] = "underyou",
 	[1222341] = "alert",
 	[1222356] = "alarm",
 	[1223000] = {"alert","info"},
 	[1223007] = "alarm",
 	[1226111] = "alarm",
-	[1226306] = "long",
+	[1226492] = "info",
 	[1229474] = "alert",
 	[1229510] = "alert",
 	[1231244] = "long",
@@ -530,6 +531,7 @@ BigWigs:AddSounds("Eco-Dome Al'dani Trash", {
 	[1237195] = "alarm",
 	[1237220] = "info",
 	[1239229] = "info",
+	[1248699] = "long",
 })
 
 BigWigs:AddColors("Big M.O.M.M.A.", {
