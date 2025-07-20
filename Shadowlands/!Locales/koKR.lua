@@ -168,7 +168,7 @@ end
 
 L = BigWigs:NewBossLocale("So'leah", "koKR")
 if L then
-	--L.group = "GROUP"
+	L.group = "그룹"
 end
 
 L = BigWigs:NewBossLocale("Tazavesh Trash", "koKR")
