@@ -7,9 +7,15 @@ BigWigs:AddSounds("Captain Nil'hitan", {
 })
 
 BigWigs:AddColors("Portalmaster Halsan", {
+	[1241753] = "cyan",
+	[1241991] = "yellow",
+	[1242142] = "orange",
 })
 
 BigWigs:AddSounds("Portalmaster Halsan", {
+	[1241753] = "info",
+	[1241991] = "long",
+	[1242142] = "alarm",
 })
 
 BigWigs:AddColors("Voidrider Challnax", {
