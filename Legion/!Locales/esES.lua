@@ -95,15 +95,15 @@ end
 
 L = BigWigs:NewBossLocale("Assault on Violet Hold Trash", "esES")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly selects Lieutenant Sinclaris gossip option to start the Assault on Violet Hold."
-	--L.keeper = "Portal Keeper"
-	--L.guardian = "Portal Guardian"
-	--L.infernal = "Blazing Infernal"
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de la Teniente Sinclari para empezar el Asalto en el Bastión Violeta."
+	L.keeper = "Vigilante de portal"
+	L.guardian = "Guardián de portal"
+	L.infernal = "Infernal llameante"
 end
 
 L = BigWigs:NewBossLocale("Thalena", "esES")
 if L then
-	--L.essence = "Essence"
+	L.essence = "Esencia"
 end
 
 -- Black Rook Hold
@@ -126,36 +126,36 @@ if L then
 	L.risen_swordsman = "Espadachín resucitado"
 	L.risen_lancer = "Lancero resucitado"
 
-	--L.door_open_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
+	L.door_open_desc = "Muestra una barra que indica cuando se abre la puerta hacia el Pasadizo secreto."
 end
 
 L = BigWigs:NewBossLocale("Kurtalos Ravencrest", "esES")
 if L then
-	--L.phase_2_trigger = "Enough! I tire of this."
+	L.phase_2_trigger = "¡Basta! Me estoy cansando."
 end
 
 -- Cathedral of Eternal Night
 
 L = BigWigs:NewBossLocale("Mephistroth", "esES")
 if L then
-	--L.custom_on_time_lost = "Time lost during Shadow Fade"
-	--L.custom_on_time_lost_desc = "Show the time lost during Shadow Fade on the bar in |cffff0000red|r."
-	--L.time_lost = "%s |cffff0000(+%ds)|r"
+	L.custom_on_time_lost = "Tiempo perdido en Oculto en las sombras"
+	L.custom_on_time_lost_desc = "Muestra el tiempo perdido en Oculto en las sombras en la barra |cffff0000red|r."
+	L.time_lost = "%s |cffff0000(+%ds)|r"
 end
 
 L = BigWigs:NewBossLocale("Domatrax", "esES")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramar's gossip option to start the Domatrax encounter."
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de la Égida de Aggramar para empezar el encuentro con Domatrax."
 
-	--L.missing_aegis = "You're not standing in Aegis" -- Aegis is a short name for Aegis of Aggramar
-	--L.aegis_healing = "Aegis: Reduced Healing Done"
-	--L.aegis_damage = "Aegis: Reduced Damage Done"
+	L.missing_aegis = "No estás dentro de la Égida"
+	L.aegis_healing = "Égida: Sanación realizada reducida"
+	L.aegis_damage = "Égida: Daño infligido reducido"
 end
 
 L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "esES")
 if L then
 	L.dulzak = "Dul'zak"
-	--L.wrathguard = "Wrathguard Invader"
+	L.wrathguard = "Invasor guardia de cólera"
 	L.felguard = "Destructor guardia vil"
 	L.soulmender = "Ensalmador de almas Llama Infernal"
 	L.temptress = "Tentadora Llama Infernal"
@@ -166,7 +166,7 @@ if L then
 	L.gazerax = "Avizorax"
 	L.vilebark = "Caminante Cortezavil"
 
-	--L.throw_tome = "Throw Tome" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
+	L.throw_tome = "Lanzar escrito" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
 end
 
 -- Court of Stars
@@ -207,49 +207,49 @@ if L then
 	L.DiscardedJunk = "Chatarra desechada"
 	L.WoundedNightborneCivilian = "Civil Nocheterna herido"
 
-	--L.announce_buff_items = "Announce buff items"
-	--L.announce_buff_items_desc = "Anounces all available buff items around the dungeon and who is able to use them."
+	L.announce_buff_items = "Anuncia los buffs de los objetos" --Announce buff items
+	L.announce_buff_items_desc = "Anuncia los buffs disponibles de los objetos alrededor de la mazmorra y quién los puede utilizar." --Anounces all available buff items around the dungeon and who is able to use them.
 
-	--L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
-	--L.usableBy = "usable by %s" -- Context: item is usable by someone
+	L.available = "%s|cffffffff%s|r disponible" -- Context: item is available to use
+	L.usableBy = "puede ser utilizado por %s" -- Context: item is usable by someone
 
-	--L.custom_on_use_buff_items = "Instantly use buff items"
-	--L.custom_on_use_buff_items_desc = "Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
+	L.custom_on_use_buff_items = "Usa al instante el buff de los objetos." -- Instantly use buff items
+	L.custom_on_use_buff_items_desc = "Activa esta opción para usar instantáneamente los buffs de los objetos alrededor de la mazmorra. Esto no será usado en los objetos que amenazan a los guardias antes del segundo jefe." --Enable this options to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss.
 
-	--L.spy_helper = "Spy Event Helper"
-	--L.spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat."
+	L.spy_helper = "Asistente para el evento del espía"
+	L.spy_helper_desc = "Muestra una plantilla de información con todas las pistas que el grupo haya reunido sobre el espía. Las pistas también serán enviadas a tus miembros de grupo en el chat." --Shows an InfoBox with all clues your group gathered about the spy. The clues will also be send to your party members in chat.
 
-	--L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
-	--L.spyFound = "Spy found by %s!"
-	--L.spyFoundChat = "I found the spy!"
+	L.clueFound = "Pista hallada (%d/5): |cffffffff%s|r"
+	L.spyFound = "Espía encontrado por %s!"
+	L.spyFoundChat = "¡Encontré al espía!"
 	L.spyFoundPattern = "Bueno, bueno, no nos precipitemos" -- Bueno, bueno, no nos precipitemos. ¿Y si me acompañas para poder discutirlo en un ambiente más privado...?
 
-	--L.hints[1] = "Cape"
-	--L.hints[2] = "No Cape"
-	--L.hints[3] = "Pouch"
-	--L.hints[4] = "Potions"
-	--L.hints[5] = "Long Sleeves"
-	--L.hints[6] = "Short Sleeves"
-	--L.hints[7] = "Gloves"
-	--L.hints[8] = "No Gloves"
-	--L.hints[9] = "Male"
-	--L.hints[10] = "Female"
-	--L.hints[11] = "Light Vest"
-	--L.hints[12] = "Dark Vest"
-	--L.hints[13] = "No Potions"
-	--L.hints[14] = "Book"
+	L.hints[1] = "Capa"
+	L.hints[2] = "Sin capa"
+	L.hints[3] = "Faltriquera"
+	L.hints[4] = "Pociones"
+	L.hints[5] = "Mangas largas"
+	L.hints[6] = "Mangas cortas"
+	L.hints[7] = "Guantes"
+	L.hints[8] = "Sin guantes"
+	L.hints[9] = "Hombre"
+	L.hints[10] = "Mujer"
+	L.hints[11] = "Jubón claro"
+	L.hints[12] = "Jubón oscuro"
+	L.hints[13] = "Sin pociones"
+	L.hints[14] = "Libro"
 end
 
 L = BigWigs:NewBossLocale("Advisor Melandrus", "esES")
 if L then
-	--L.warmup_trigger = "Yet another failure, Melandrus. Consider this your chance to correct it. Dispose of these outsiders. I must return to the Nighthold."
+	L.warmup_trigger = "Un fracaso más, Melandrus. Esta es tu oportunidad de corregirlo. Deshazte de estos intrusos. Debo regresar al Bastión Nocturno."
 end
 
 -- Darkheart Thicket
 
 L = BigWigs:NewBossLocale("Darkheart Thicket Trash", "esES")
 if L then
-	--L.archdruid_glaidalis_warmup_trigger = "Defilers... I can smell the Nightmare in your blood. Be gone from these woods or suffer nature's wrath!"
+	L.archdruid_glaidalis_warmup_trigger = "Corruptores... Huelo la pesadilla en vuestra sangre. ¡Abandonad estos bosques o sufrid la ira de la naturaleza!"
 
 	L.mindshattered_screecher = "Estridador Mentequebrada"
 	L.dreadsoul_ruiner = "Arruinador Almaespanto"
@@ -269,7 +269,7 @@ end
 
 L = BigWigs:NewBossLocale("Oakheart", "esES")
 if L then
-	--L.throw = "Throw"
+	L.throw = "Lanzar"
 end
 
 -- Eye of Azshara
@@ -287,32 +287,32 @@ end
 
 L = BigWigs:NewBossLocale("Lady Hatecoil", "esES")
 if L then
-	--L.custom_on_show_helper_messages = "Helper messages for Static Nova and Focused Lightning"
-	--L.custom_on_show_helper_messages_desc = "Enable this option to add a helper message telling you whether water or land is safe when the boss starts casting |cff71d5ffStatic Nova|r or |cff71d5ffFocused Lightning|r."
+	L.custom_on_show_helper_messages = "Mensajes de ayuda para Nova estática y Relámpago enfocado"
+	L.custom_on_show_helper_messages_desc = "Activa esta opción para añadir un mensaje de ayuda diciéndote si el agua o la arena es segura cuando el jefe esté lanzando |cff71d5ffNova estática|r o |cff71d5ffRelámpago enfocado|r."
 
-	--L.water_safe = "%s (water is safe)"
-	--L.land_safe = "%s (land is safe)"
+	L.water_safe = "%s (el agua es segura)"
+	L.land_safe = "%s (la arena es segura)"
 end
 
 -- Halls of Valor
 
 L = BigWigs:NewBossLocale("Odyn", "esES")
 if L then
-	--L.gossip_available = "Gossip available"
-	--L.gossip_trigger = "Most impressive! I never thought I would meet anyone who could match the Valarjar's strength... and yet here you stand."
+	L.gossip_available = "Conversación disponible"
+	L.gossip_trigger = "Impresionante. Nunca pensé que encontraría a alguien capaz de igualar la fuerza de los Valajar... pero aquí estáis."
 
-	--L[197963] = "|cFF800080Top Right|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Right"
-	--L[197964] = "|cFFFFA500Bottom Right|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Right"
-	--L[197965] = "|cFFFFFF00Bottom Left|r (|T1323038:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Left"
-	--L[197966] = "|cFF0000FFTop Left|r (|T1323035:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Left"
-	--L[197967] = "|cFF008000Top|r (|T1323036:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top"
+	L[197963] = "|cFF800080Arriba derecha|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Right"
+	L[197964] = "|cFFFFA500Abajo derecha|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Right"
+	L[197965] = "|cFFFFFF00Abajo izquierda|r (|T1323038:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Left"
+	L[197966] = "|cFF0000FFArriba izquierda|r (|T1323035:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Left"
+	L[197967] = "|cFF008000Arriba|r (|T1323036:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top"
 end
 
 L = BigWigs:NewBossLocale("God-King Skovald", "esES")
 if L then
-	--L.warmup_text = "God-King Skovald Active"
-	--L.warmup_trigger = "The vanquishers have already taken possession of it, Skovald, as was their right. Your protest comes too late."
-	--L.warmup_trigger_2 = "If these false champions will not yield the aegis by choice... then they will surrender it in death!"
+	L.warmup_text = "Rey dios Skovald activo"
+	L.warmup_trigger = "Los triunfadores  ya han tomado posesión de ella, Skovald, pues tal era su derecho. Llegas demasiado tarde."
+	L.warmup_trigger_2 = "Si estos falsos campeones no me entregan la égida por propia voluntad... ¡será mía cuando mueran!"
 end
 
 L = BigWigs:NewBossLocale("Halls of Valor Trash", "esES")
@@ -340,13 +340,13 @@ end
 L = BigWigs:NewBossLocale("Karazhan Trash", "esES")
 if L then
 	-- Opera Event
-	--L.custom_on_autotalk_desc = "Instantly selects Barnes' gossip option to start the Opera Hall encounter."
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de Barnes para comenzar el encuentro de la Sala de Ópera."
 	L.opera_hall_wikket_story_text = "Sala de la Ópera: Makaku"
-	--L.opera_hall_wikket_story_trigger = "Shut your jabber" -- Shut your jabber, drama man! The Monkey King got another plan!
+	L.opera_hall_wikket_story_trigger = "¡Cierra el piko" -- ¡Cierra el piko, miko dramas! ¡El Rey Mono domina el panorama! / Shut your jabber, drama man! The Monkey King got another plan!
 	L.opera_hall_westfall_story_text = "Sala de la Ópera: Historia de Poniente"
-	--L.opera_hall_westfall_story_trigger = "we meet two lovers" -- Tonight... we meet two lovers born on opposite sides of Sentinel Hill.
+	L.opera_hall_westfall_story_trigger = "conoceremos a dos amantes" -- Tonight... we meet two lovers born on opposite sides of Sentinel Hill.
 	L.opera_hall_beautiful_beast_story_text = "Sala de la Ópera: Bella Bestia"
-	--L.opera_hall_beautiful_beast_story_trigger = "a tale of romance and rage" -- Tonight... a tale of romance and rage, one which will prove once and for all if beaty is more than skin deep.
+	L.opera_hall_beautiful_beast_story_trigger = "una historia de amor y rabia" -- Tonight... a tale of romance and rage, one which will prove once and for all if beaty is more than skin deep.
 
 	-- Return to Karazhan: Lower
 	L.barnes = "Barnes"
@@ -368,7 +368,7 @@ end
 L = BigWigs:NewBossLocale("Moroes", "esES")
 if L then
 	L.cc = "Control de masas"
-	--L.cc_desc = "Timers and alerts for crowd control on the dinner guests."
+	L.cc_desc = "Temporizadores y alertas de control de masas en los invitados de la cena."
 end
 
 L = BigWigs:NewBossLocale("Nightbane", "esES")
@@ -393,8 +393,8 @@ end
 
 L = BigWigs:NewBossLocale("Neltharions Lair Trash", "esES")
 if L then
-	--L.rokmora_first_warmup_trigger = "Navarrogg?! Betrayer! You would lead these intruders against us?!"
-	--L.rokmora_second_warmup_trigger = "Either way, I will enjoy every moment of it. Rokmora, crush them!"
+	L.rokmora_first_warmup_trigger = "¿Navarrogg?! ¡Traidor! ¿Osas liderar a los intrusos contra nosotros?"
+	L.rokmora_second_warmup_trigger = "Pase lo que pase, pienso disfrutarlo. Rokmora, ¡acaba con ellos!"
 
 	L.vileshard_crawler = "Reptador Pizcavil"
 	L.tarspitter_lurker = "Rondador Escupebrea"
@@ -414,35 +414,35 @@ end
 
 L = BigWigs:NewBossLocale("Ularogg Cragshaper", "esES")
 if L then
-	--L.hands = "Hands" -- Short for "Stone Hands"
+	L.hands = "Manos" -- Short for "Stone Hands"
 end
 
 -- Seat of the Triumvirate
 
 L = BigWigs:NewBossLocale("Viceroy Nezhar", "esES")
 if L then
-	--L.guards = "Guards"
-	--L.interrupted = "%s interrupted %s (%.1fs left)!"
+	L.guards = "Guardias"
+	L.interrupted = "¡%s interrumpió %s (%.1fs restantes)!"
 end
 
 L = BigWigs:NewBossLocale("L'ura", "esES")
 if L then
-	--L.warmup_text = "L'ura Active"
-	--L.warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
-	--L.warmup_trigger_2 = "Such musings can wait, though. This entity must die."
+	L.warmup_text = "L'ura activada"
+	L.warmup_trigger = "Cuánto caos y cuánto tormento... Jamás había sentido algo parecido."
+	L.warmup_trigger_2 = "Pero esas reflexiones pueden esperar. Esta entidad debe morir."
 end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "esES")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly selects Alleria Winrunners gossip option."
-	--L.gossip_available = "Gossip available"
-	--L.alleria_gossip_trigger = "Follow me!" -- Allerias yell after the first boss is defeated
+	L.custom_on_autotalk_desc = "Selecciona al instante la opción de conversación de Alleria Brisaveloz."
+	L.gossip_available = "Conversación disponible"
+	L.alleria_gossip_trigger = "¡Venid por aquí!" -- Allerias yell after the first boss is defeated
 
-	--L.alleria = "Alleria Windrunner"
-	--L.subjugator = "Shadowguard Subjugator"
-	--L.voidbender = "Shadowguard Voidbender"
-	--L.conjurer = "Shadowguard Conjurer"
-	--L.weaver = "Grand Shadow-Weaver"
+	L.alleria = "Alleria Brisaveloz"
+	L.subjugator = "Subyugador de la Guardia de las Sombras"
+	L.voidbender = "Dominadora del Vacío de la Guardia de las Sombras"
+	L.conjurer = "Conjuradora de la Guardia de las Sombras"
+	L.weaver = "Gran tejesombras"
 end
 
 -- The Arcway
@@ -460,27 +460,27 @@ end
 
 L = BigWigs:NewBossLocale("Cordana Felsong", "esES")
 if L then
-	--L.kick_combo = "Kick Combo"
+	L.kick_combo = "Combo de Patadas"
 
-	--L.light_dropped = "%s dropped the Light."
-	--L.light_picked = "%s picked up the Light."
+	L.light_dropped = "%s tiró la Luz."
+	L.light_picked = "%s cogió la Luz."
 
-	--L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
-	--L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
+	L.warmup_trigger = "Ya tengo lo que quería, pero me he quedado para poder acabar con vosotros... de una vez por todas."
+	L.warmup_trigger_2 = "Y ahora, habéis caído en mi trampa. A ver cómo os desenvolvéis en la oscuridad."
 end
 
 L = BigWigs:NewBossLocale("Tirathon Saltheril", "esES")
 if L then
-	--L.warmup_trigger = "I will serve MY people, the exiled and the reviled."
+	L.warmup_trigger = "Serviré a mi gente: ¡los exiliados y los agravados!"
 end
 
 L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "esES")
 if L then
-	--L.infester = "Felsworn Infester"
-	--L.myrmidon = "Felsworn Myrmidon"
-	--L.fury = "Fel-Infused Fury"
-	--L.mother = "Foul Mother"
-	--L.illianna = "Blade Dancer Illianna"
-	--L.mendacius = "Dreadlord Mendacius"
-	--L.grimhorn = "Grimhorn the Enslaver"
+	L.infester = "Infestador jurapenas"
+	L.myrmidon = "Mirmidón jurapenas"
+	L.fury = "Furia imbuida de vileza"
+	L.mother = "Madre hedionda"
+	L.illianna = "Bailarina de hojas Illiana"
+	L.mendacius = "Señor del Terror Mendacius"
+	L.grimhorn = "Cuernomacabro el Esclavista"
 end
