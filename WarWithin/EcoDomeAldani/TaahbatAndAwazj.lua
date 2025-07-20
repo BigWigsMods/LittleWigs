@@ -63,7 +63,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "IncorporealApplied", 1219457)
 	self:Log("SPELL_AURA_REMOVED_DOSE", "IncorporealApplied", 1219457)
 	self:Log("SPELL_AURA_APPLIED", "DestabilizedApplied", 1219731) -- Arcane Blitz over
-	self:Log("SPELL_CAST_START", "WarpStrikeStage2", 1227900)
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER") -- Stage 2 Warp Strike
 end
 
@@ -109,7 +108,7 @@ do
 end
 
 function mod:WarpStrikeStage1(args)
-	-- 3 targets in Mythic, target's aura 1227142 is hidden
+	-- target's aura 1227142 is hidden
 	self:Message(args.spellId, "orange")
 	self:CDBar(args.spellId, 26.7)
 	self:PlaySound(args.spellId, "alarm")
@@ -130,14 +129,13 @@ function mod:ArcaneBlitz(args)
 	self:StopBar(CL.count:format(self:SpellName(1219482), riftClawsCount)) -- Rift Claws
 	self:StopBar(CL.count:format(args.spellName, arcaneBlitzCount))
 	self:SetStage(2)
-	self:CDBar(1227918, 6.0) -- Warp Strike
 	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, arcaneBlitzCount))
 	arcaneBlitzCount = arcaneBlitzCount + 1
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:IncorporealApplied(args)
-	local amount = args.amount or 3
+	local amount = args.amount or 3 -- starts at 3 stacks
 	self:Message(args.spellId, "yellow", CL.stack:format(amount, args.spellName, CL.boss))
 	self:PlaySound(args.spellId, "info")
 end
@@ -154,12 +152,6 @@ function mod:DestabilizedApplied(args)
 		self:CDBar(1219700, 78.9, CL.count:format(self:SpellName(1219700), arcaneBlitzCount)) -- Arcane Blitz
 		self:PlaySound(1219700, "info")
 	end
-end
-
-function mod:WarpStrikeStage2(args)
-	self:Message(1227918, "orange")
-	self:CDBar(1227918, 8.0)
-	-- sound in CHAT_MSG_RAID_BOSS_WHISPER
 end
 
 function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
