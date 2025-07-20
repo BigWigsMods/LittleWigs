@@ -264,7 +264,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "PickingUpSuccess", 214697)
 
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
-	self:RegisterEvent("UPDATE_MOUSEOVER_UNIT")
+	BigWigsLoader.CTimerAfter(0, function() self:RegisterEvent("UPDATE_MOUSEOVER_UNIT") end) -- RegisterEvent after enable complete to prevent an error
 	self:RegisterMessage("BigWigs_BossComm")
 	self:RegisterMessage("DBM_AddonMessage") -- Catch DBM clues
 
