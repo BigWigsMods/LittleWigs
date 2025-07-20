@@ -229,6 +229,18 @@ if L then
 	L.waxface = "밀랍얼굴"
 end
 
+-- Voidrazor Sanctuary
+
+L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 8)", "koKR")
+if L then
+	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Tier 8)"
+end
+
+L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 11)", "koKR")
+if L then
+	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Tier 11)"
+end
+
 -- Zekvir's Lair
 
 L = BigWigs:NewBossLocale("Zekvir", "koKR")

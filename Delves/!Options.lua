@@ -719,6 +719,18 @@ BigWigs:AddSounds("Overcharged Trash", {
 	[1239731] = "alarm",
 })
 
+BigWigs:AddColors("Nexus-Princess Ky'veza (Tier 8)", {
+})
+
+BigWigs:AddSounds("Nexus-Princess Ky'veza (Tier 8)", {
+})
+
+BigWigs:AddColors("Nexus-Princess Ky'veza (Tier 11)", {
+})
+
+BigWigs:AddSounds("Nexus-Princess Ky'veza (Tier 11)", {
+})
+
 BigWigs:AddColors("Zekvir", {
 	[450451] = "orange",
 	[450492] = "yellow",
