@@ -720,9 +720,29 @@ BigWigs:AddSounds("Overcharged Trash", {
 })
 
 BigWigs:AddColors("Nexus-Princess Ky'veza (Tier 8)", {
+	[1225642] = "cyan",
+	[1244462] = "yellow",
+	[1244473] = "cyan",
+	[1244505] = "yellow",
+	[1244600] = "red",
+	[1244601] = "red",
+	[1245035] = "yellow",
+	[1245240] = "orange",
+	[1245582] = "orange",
+	[1250050] = "yellow",
 })
 
 BigWigs:AddSounds("Nexus-Princess Ky'veza (Tier 8)", {
+	[1225642] = "long",
+	[1244462] = "info",
+	[1244473] = "info",
+	[1244505] = "alarm",
+	[1244600] = "warning",
+	[1244601] = "warning",
+	[1245035] = "info",
+	[1245240] = "alarm",
+	[1245582] = "alarm",
+	[1250050] = "alarm",
 })
 
 BigWigs:AddColors("Nexus-Princess Ky'veza (Tier 11)", {
