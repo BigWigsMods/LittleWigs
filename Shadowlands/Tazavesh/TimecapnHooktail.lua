@@ -38,6 +38,7 @@ else -- XXX remove block in 11.2
 			354334, -- Hook'd!
 			{352345, "ME_ONLY"}, -- Anchor Shot
 			347371, -- Grapeshot
+			358947, -- Burning Tar
 			350517, -- Double Time
 		}
 	end
