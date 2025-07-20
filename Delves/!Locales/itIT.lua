@@ -319,6 +319,21 @@ if L then
 	L.kobyss_trickster = "Ingannatore Kobyss"
 end
 
+L = BigWigs:NewBossLocale("Ky'veza Rares", "itIT")
+if L then
+	--L.rares = "Ky'veza Rares"
+
+	--L.pactsworn_fraycaller = "Pactsworn Fraycaller"
+	--L.pactsworn_dustblade = "Pactsworn Dustblade"
+	--L.pactsworn_sandreaver = "Pactsworn Sandreaver"
+	--L.pactsworn_arcanist = "Pactsworn Arcanist"
+	--L.pactsworn_wildcaller = "Pactsworn Wildcaller"
+	--L.invasive_phasecrawler = "Invasive Phasecrawler"
+	--L.drude = "D'rude"
+	--L.great_devourer = "Great Devourer"
+	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)"
+end
+
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "itIT")
 if L then
 	--L.nerubian_trash = "Nerubian Trash"
