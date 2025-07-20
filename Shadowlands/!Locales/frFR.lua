@@ -166,6 +166,11 @@ if L then
 	L.add_wave_killed = "Vague d'adds tuée (%d/%d)"
 end
 
+L = BigWigs:NewBossLocale("So'leah", "frFR")
+if L then
+	L.group = "GROUPE"
+end
+
 L = BigWigs:NewBossLocale("Tazavesh Trash", "frFR")
 if L then
 	L.zophex_warmup_trigger = "Toute contrebande… sera saisie…"

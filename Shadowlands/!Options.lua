@@ -814,21 +814,25 @@ BigWigs:AddSounds("Timecap'n Hooktail", {
 BigWigs:AddColors("So'leah", {
 	[350796] = "orange",
 	[350804] = {"blue","green"},
-	[351086] = "yellow",
-	[351096] = "orange",
+	[350875] = "red",
+	[351086] = {"cyan","green"},
+	[351096] = "yellow",
 	[351119] = "red",
 	[351124] = "yellow",
+	[351646] = "orange",
 	[353635] = "red",
 	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("So'leah", {
 	[350796] = "alert",
-	[350804] = "info",
+	[350804] = {"alert","info"},
+	[350875] = "info",
 	[351086] = "long",
 	[351096] = "alert",
 	[351119] = "warning",
 	[351124] = "alert",
+	[351646] = "alarm",
 	[353635] = "alarm",
 	["stages"] = "long",
 })

@@ -166,6 +166,11 @@ if L then
 	L.add_wave_killed = "웨이브 (%d/%d)"
 end
 
+L = BigWigs:NewBossLocale("So'leah", "koKR")
+if L then
+	--L.group = "GROUP"
+end
+
 L = BigWigs:NewBossLocale("Tazavesh Trash", "koKR")
 if L then
 	L.zophex_warmup_trigger = "밀수품을... 전부... 내놓아라..."

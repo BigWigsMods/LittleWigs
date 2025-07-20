@@ -166,6 +166,11 @@ if L then
 	L.add_wave_killed = "擊退保安 (%d/%d)"
 end
 
+L = BigWigs:NewBossLocale("So'leah", "zhTW")
+if L then
+	--L.group = "GROUP"
+end
+
 L = BigWigs:NewBossLocale("Tazavesh Trash", "zhTW")
 if L then
 	L.zophex_warmup_trigger = "放下...所有...違禁品..."
