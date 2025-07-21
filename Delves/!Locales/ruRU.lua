@@ -1,7 +1,8 @@
+if GetLocale() ~= "ruRU" then return end -- XXX remove in 11.2, to be replaced with AllowLoadTextLocale
+
 -- Archival Assault
 
 local L = BigWigs:NewBossLocale("Captain Nil'hitan", "ruRU")
-if not L then return end
 if L then
 	--L.captain_nilhitan = "Captain Nil'hitan"
 end
