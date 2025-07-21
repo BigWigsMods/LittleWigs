@@ -4,18 +4,18 @@ if GetLocale() ~= "zhCN" then return end -- XXX remove in 11.2, to be replaced w
 
 local L = BigWigs:NewBossLocale("Captain Nil'hitan", "zhCN")
 if L then
-	--L.captain_nilhitan = "Captain Nil'hitan"
+	L.captain_nilhitan = "尼尔西坦船长"
 end
 
 L = BigWigs:NewBossLocale("Portalmaster Halsan", "zhCN")
 if L then
-	--L.portalmaster_halsan = "Portalmaster Halsan"
+	L.portalmaster_halsan = "传送门主管哈尔桑"
 end
 
 L = BigWigs:NewBossLocale("Voidrider Challnax", "zhCN")
 if L then
-	--L.voidripper = "Voidripper"
-	--L.voidrider_challnax= "Voidrider Challnax"
+	L.voidripper = "虚空撕裂者"
+	L.voidrider_challnax= "虚空骑手查尔纳克斯"
 end
 
 -- Demolition Dome
@@ -234,12 +234,12 @@ end
 
 L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 8)", "zhCN")
 if L then
-	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Tier 8)"
+	L.nexus_princess_kyveza = "节点女亲王凯威扎（难度8）"
 end
 
 L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 11)", "zhCN")
 if L then
-	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Tier 11)"
+	L.nexus_princess_kyveza = "节点女亲王凯威扎（难度11）"
 end
 
 -- Zekvir's Lair
@@ -260,19 +260,19 @@ end
 
 L = BigWigs:NewBossLocale("Ethereal Trash", "zhCN")
 if L then
-	--L.ethereal_trash = "Ethereal Trash"
+	L.ethereal_trash = "虚灵部队"
 
-	--L.shadeye_observer = "Shadeye Observer"
-	--L.shadowguard_phasecutter = "Shadowguard Phasecutter"
-	--L.shadowguard_arcanotech = "Shadowguard Arcanotech"
-	--L.shadowguard_soulbreaker = "Shadowguard Soulbreaker"
-	--L.shadowguard_steelsoul = "Shadowguard Steelsoul"
-	--L.siphoned_drake = "Siphoned Drake"
+	L.shadeye_observer = "影目眼魔"
+	L.shadowguard_phasecutter = "影卫相位斩裂者"
+	L.shadowguard_arcanotech = "影卫奥法技师"
+	L.shadowguard_soulbreaker = "影卫碎魂者"
+	L.shadowguard_steelsoul = "影卫钢魂守卫"
+	L.siphoned_drake = "被吸干的幼龙"
 end
 
 L = BigWigs:NewBossLocale("Fungarian Delve Trash", "zhCN")
 if L then
-	L.fungarian_trash = "真菌人小怪"
+	L.fungarian_trash = "真菌人部队"
 
 	L.sporbit = "孢点"
 	L.fungal_speartender = "真菌护矛者"
@@ -286,7 +286,7 @@ end
 
 L = BigWigs:NewBossLocale("Goblin Delve Trash", "zhCN")
 if L then
-	L.goblin_trash = "地精小怪"
+	L.goblin_trash = "地精部队"
 
 	L.bopper_bot = "新潮机器人"
 	L.aerial_support_bot = "空中支援机器人"
@@ -300,7 +300,7 @@ end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "zhCN")
 if L then
-	L.kobold_trash = "狗头人小怪"
+	L.kobold_trash = "狗头人部队"
 
 	L.kobold_taskfinder = "狗头人领职者"
 	L.spitfire_charger = "喷火冲锋者"
@@ -309,7 +309,7 @@ end
 
 L = BigWigs:NewBossLocale("Kobyss Delve Trash", "zhCN")
 if L then
-	L.kobyss_trash = "蜃鱼人小怪"
+	L.kobyss_trash = "蜃鱼人部队"
 
 	L.kobyss_necromancer = "蜃鱼人通灵师"
 	L.kobyss_spearfisher = "蜃鱼人矛渔夫"
@@ -322,22 +322,22 @@ end
 
 L = BigWigs:NewBossLocale("Ky'veza Rares", "zhCN")
 if L then
-	--L.rares = "Ky'veza Rares"
+	L.rares = "凯威扎精英（稀有）"
 
-	--L.pactsworn_fraycaller = "Pactsworn Fraycaller"
-	--L.pactsworn_dustblade = "Pactsworn Dustblade"
-	--L.pactsworn_sandreaver = "Pactsworn Sandreaver"
-	--L.pactsworn_arcanist = "Pactsworn Arcanist"
-	--L.pactsworn_wildcaller = "Pactsworn Wildcaller"
-	--L.invasive_phasecrawler = "Invasive Phasecrawler"
-	--L.drude = "D'rude"
-	--L.great_devourer = "Great Devourer"
-	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)"
+	L.pactsworn_fraycaller = "誓约唤荒者"
+	L.pactsworn_dustblade = "誓约沙尘剑士"
+	L.pactsworn_sandreaver = "誓约掠沙者"
+	L.pactsworn_arcanist = "誓约奥术师"
+	L.pactsworn_wildcaller = "誓约唤荒者"
+	L.invasive_phasecrawler = "入侵的相位爬行者"
+	L.drude = "德鲁德"
+	L.great_devourer = "大吞噬者"
+	L.nexus_princess_kyveza = "节点女亲王凯威扎（随机出现）"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "zhCN")
 if L then
-	L.nerubian_trash = "蛛魔小怪"
+	L.nerubian_trash = "蛛魔部队"
 
 	L.nerubian_lord = "蛛魔领主"
 	L.nerubian_darkcaster = "蛛魔暗法师"
@@ -349,7 +349,7 @@ end
 
 L = BigWigs:NewBossLocale("Nightfall Delve Trash", "zhCN")
 if L then
-	L.nightfall_trash = "玄夜会小怪"
+	L.nightfall_trash = "玄夜会部队"
 
 	L.dark_bombardier = "黑暗投弹手"
 	L.nightfall_inquisitor = "夜幕审判者"
@@ -361,7 +361,7 @@ end
 
 L = BigWigs:NewBossLocale("Old God Delve Trash", "zhCN")
 if L then
-	L.old_god_trash = "古神小怪"
+	L.old_god_trash = "古神部队"
 
 	L.dark_walker = "黑暗行者"
 	L.hideous_amalgamation = "丑恶聚合体"
@@ -398,7 +398,7 @@ end
 
 L = BigWigs:NewBossLocale("Overcharged Trash", "zhCN")
 if L then
-	L.overcharged_trash = "过载小怪"
+	L.overcharged_trash = "过载部队"
 
 	L.awakened_defensive_construct = "觉醒的防御构装体"
 	L.awakened_defense_matrix = "觉醒的防御矩阵"
