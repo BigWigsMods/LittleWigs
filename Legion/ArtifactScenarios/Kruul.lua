@@ -176,8 +176,8 @@ function mod:AuraOfDecay(args)
 end
 
 function mod:Smash(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+	self:Message(234631, "red")
+	self:PlaySound(234631, "alarm")
 end
 
 function mod:KruulIncoming(args)
