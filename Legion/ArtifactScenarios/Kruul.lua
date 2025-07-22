@@ -57,7 +57,7 @@ function mod:GetOptions()
 		234422, -- Aura of Decay
 		234428, -- Summon Tormenting Eye
 		"smoldering_infernal", -- Smoldering Infernal Summon
-		241717, -- Smash
+		234631, -- Smash
 
 		--[[ Highlord Kruul ]]--
 		236572, -- Annihilate
