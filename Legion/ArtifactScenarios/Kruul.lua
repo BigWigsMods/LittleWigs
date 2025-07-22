@@ -57,7 +57,7 @@ function mod:GetOptions()
 		234422, -- Aura of Decay
 		234428, -- Summon Tormenting Eye
 		"smoldering_infernal", -- Smoldering Infernal Summon
-		234631, -- Smash
+		241717, -- Smash
 
 		--[[ Highlord Kruul ]]--
 		236572, -- Annihilate
@@ -85,7 +85,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DrainLife", 234423)
 	self:Log("SPELL_CAST_START", "HolyWard", 233473)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "AuraOfDecay", 234422)
-	self:Log("SPELL_CAST_START", "Smash", 234631)
+	self:Log("SPELL_CAST_START", "Smash", 241717)
+	self:Log("SPELL_CAST_START", "Smash", 236537)
 	self:Log("SPELL_CAST_START", "Annihilate", 236572)
 	self:Log("SPELL_CAST_SUCCESS", "AnnihilateSuccess", 236572)
 	self:Log("SPELL_CAST_START", "TwistedReflections", 234676)
