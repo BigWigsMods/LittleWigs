@@ -40,8 +40,8 @@ end
 
 function mod:OnEngage()
 	stoneCallCount = 1
-	nextBloodTorrent = GetTime() + 4.7
-	self:CDBar(326389, 4.7) -- Blood Torrent
+	nextBloodTorrent = GetTime() + 4.6
+	self:CDBar(326389, 4.6) -- Blood Torrent
 	self:CDBar(319733, 9.6) -- Stone Call
 	self:CDBar(328206, 20.4) -- Flesh to Stone
 	self:CDBar(319941, 23.4) -- Stone Shattering Leap
