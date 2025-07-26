@@ -51,14 +51,13 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 		return {
 			-- Depraved Houndmaster
 			{326450, "DISPEL", "NAMEPLATE"}, -- Loyal Beasts
-			{325793, "NAMEPLATE"}, -- Rapid Fire
 			-- Vicious Gargon
 			1237602, -- Gushing Wound
 			-- Depraved Darkblade
 			{1235060, "DISPEL"}, -- Anima Tainted Armor
 			325523, -- Deadly Thrust XXX removed in 11.2?
 			-- Depraved Obliterator
-			{325876, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Curse of Obliteration
+			{325876, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Mark of Obliteration
 			-- Depraved Collector
 			{325700, "NAMEPLATE"}, -- Collect Sins
 			{325701, "DISPEL", "NAMEPLATE"}, -- Siphon Life
@@ -91,8 +90,6 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 			[1235762] = L.stoneborn_reaver,
 			[326638] = L.stoneborn_eviscerator,
 			[326794] = L.inquisitor_sigar,
-		}, {
-			[325876] = CL.curse, -- Curse of Obliteration (Curse)
 		}
 	end
 else -- XXX remove block in 11.2
@@ -146,9 +143,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "LoyalBeastsInterrupt", 326450)
 	self:Log("SPELL_CAST_SUCCESS", "LoyalBeastsSuccess", 326450)
 	self:Log("SPELL_AURA_APPLIED", "LoyalBeastsApplied", 326450)
-	self:Log("SPELL_CAST_SUCCESS", "RapidFire", 325793)
-	self:Log("SPELL_DAMAGE", "RapidFireDamage", 325799)
-	self:Log("SPELL_MISSED", "RapidFireDamage", 325799)
+	if not isElevenDotTwo then -- XXX remove in 11.2
+		self:Log("SPELL_CAST_SUCCESS", "RapidFire", 325793)
+		self:Log("SPELL_DAMAGE", "RapidFireDamage", 325799)
+		self:Log("SPELL_MISSED", "RapidFireDamage", 325799)
+	end
 	self:Death("DepravedHoundmasterDeath", 164562)
 
 	-- Vicious Gargon
@@ -177,9 +176,9 @@ function mod:OnBossEnable()
 		self:Log("SPELL_CAST_START", "CurseOfObliterationStart", 325876) -- instant cast in 11.2
 		self:Log("SPELL_INTERRUPT", "CurseOfObliterationInterrupt", 325876) -- not possible in 11.2
 	end
-	self:Log("SPELL_CAST_SUCCESS", "CurseOfObliteration", 325876)
-	self:Log("SPELL_AURA_APPLIED", "CurseOfObliterationApplied", 325876)
-	self:Log("SPELL_AURA_REMOVED", "CurseOfObliterationRemoved", 325876)
+	self:Log("SPELL_CAST_SUCCESS", "MarkOfObliteration", 325876)
+	self:Log("SPELL_AURA_APPLIED", "MarkOfObliterationApplied", 325876)
+	self:Log("SPELL_AURA_REMOVED", "MarkOfObliterationRemoved", 325876)
 	self:Death("DepravedObliteratorDeath", 165414)
 
 	-- Depraved Collector
@@ -253,8 +252,10 @@ end
 -- Depraved Houndmaster
 
 function mod:DepravedHoundmasterEngaged(guid)
-	self:Nameplate(325793, 8.9, guid) -- Rapid Fire
-	self:Nameplate(326450, 17.3, guid) -- Loyal Beasts
+	if not isElevenDotTwo then -- XXX remove in 11.2
+		self:Nameplate(325793, 8.9, guid) -- Rapid Fire
+	end
+	self:Nameplate(326450, 15.8, guid) -- Loyal Beasts
 end
 
 function mod:LoyalBeasts(args)
@@ -264,11 +265,11 @@ function mod:LoyalBeasts(args)
 end
 
 function mod:LoyalBeastsInterrupt(args)
-	self:Nameplate(326450, 23.8, args.destGUID)
+	self:Nameplate(326450, 22.6, args.destGUID)
 end
 
 function mod:LoyalBeastsSuccess(args)
-	self:Nameplate(args.spellId, 23.8, args.sourceGUID)
+	self:Nameplate(args.spellId, 22.6, args.sourceGUID)
 end
 
 do
@@ -364,7 +365,7 @@ end
 -- Depraved Obliterator
 
 function mod:DepravedObliteratorEngaged(guid)
-	self:Nameplate(325876, 4.8, guid) -- Curse of Obliteration
+	self:Nameplate(325876, 4.8, guid) -- Mark of Obliteration
 end
 
 do
@@ -383,19 +384,24 @@ function mod:CurseOfObliterationInterrupt(args) -- XXX remove in 11.2
 	self:Nameplate(325876, 18.2, args.destGUID)
 end
 
-function mod:CurseOfObliteration(args)
+function mod:MarkOfObliteration(args)
 	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 end
 
 do
 	local prevOnMe = 0
-	function mod:CurseOfObliterationApplied(args)
-		self:TargetMessage(args.spellId, "orange", args.destName, CL.curse)
+	function mod:MarkOfObliterationApplied(args)
+		self:TargetMessage(args.spellId, "orange", args.destName)
 		if self:Me(args.destGUID) then
-			if not self:Solo() and args.time - prevOnMe > 6 then
+			if not self:Solo() and args.time - prevOnMe > 8 then
 				prevOnMe = args.time
-				self:Say(args.spellId, CL.curse, nil, "Curse")
-				self:SayCountdown(args.spellId, 6)
+				if isElevenDotTwo then -- XXX remove check in 11.2
+					self:Say(args.spellId, nil, nil, "Mark of Obliteration")
+					self:SayCountdown(args.spellId, 8)
+				else -- XXX remove block in 11.2
+					self:Say(args.spellId, CL.curse, nil, "Curse")
+					self:SayCountdown(args.spellId, 6)
+				end
 			end
 			self:PlaySound(args.spellId, "alarm")
 		else
@@ -404,7 +410,7 @@ do
 	end
 end
 
-function mod:CurseOfObliterationRemoved(args)
+function mod:MarkOfObliterationRemoved(args)
 	if self:Me(args.destGUID) then
 		self:CancelSayCountdown(args.spellId)
 	end
@@ -515,7 +521,7 @@ end
 
 function mod:StonebornReaverEngaged(guid)
 	self:Nameplate(1235766, 4.7, guid) -- Mortal Strike
-	self:Nameplate(1235762, 20.5, guid) -- Turn to Stone
+	self:Nameplate(1235762, 20.2, guid) -- Turn to Stone
 end
 
 do
@@ -593,8 +599,8 @@ end
 -- Stoneborn Eviscerator
 
 function mod:StonebornEvisceratorEngaged(guid)
-	self:Nameplate(1235257, 4.6, guid) -- Glaivestorm
-	self:Nameplate(326638, 9.4, guid) -- Hurl Glaive
+	self:Nameplate(1235257, 4.4, guid) -- Glaivestorm
+	self:Nameplate(326638, 9.2, guid) -- Hurl Glaive
 end
 
 do
