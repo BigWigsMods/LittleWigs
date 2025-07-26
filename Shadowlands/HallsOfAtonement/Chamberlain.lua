@@ -24,7 +24,7 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 		return {
 			329104, -- Door of Shadows
 			328791, -- Ritual of Woe
-			323143, -- Telekinetic Toss
+			323142, -- Telekinetic Toss
 			323236, -- Unleashed Suffering
 			{323437, "TANK_HEALER"}, -- Stigma of Pride
 			1236973, -- Erupting Torment
@@ -46,7 +46,11 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "DoorOfShadows", 329104)
 	self:Log("SPELL_CAST_START", "RitualOfWoe", 323393, 328791) -- Normal/Heroic, Mythic
-	self:Log("SPELL_AURA_APPLIED", "TelekineticToss", 323143) -- applied on the statue being thrown
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:Log("SPELL_CAST_SUCCESS", "TelekineticToss", 323142)
+	else -- XXX remove in 11.2
+		self:Log("SPELL_AURA_APPLIED", "TelekineticToss", 323143) -- applied on the statue being thrown
+	end
 	self:Log("SPELL_CAST_START", "UnleashedSuffering", 323236)
 	self:Log("SPELL_CAST_SUCCESS", "StigmaOfPride", 323437)
 	self:Log("SPELL_AURA_APPLIED", "StigmaOfPrideApplied", 323437)
@@ -61,7 +65,7 @@ function mod:OnEngage()
 	doorOfShadowsCount = 1
 	if isElevenDotTwo then -- XXX remove check in 11.2
 		self:CDBar(323437, 7.3) -- Stigma of Pride
-		self:CDBar(323143, 9.5) -- Telekinetic Toss
+		self:CDBar(323142, 9.5) -- Telekinetic Toss
 		self:CDBar(323236, 15.6) -- Unleashed Suffering
 		self:CDBar(1236973, 25.3) -- Erupting Torment
 	else -- XXX remove block in 11.2
@@ -81,11 +85,11 @@ function mod:DoorOfShadows(args)
 	doorOfShadowsCount = doorOfShadowsCount + 1
 	self:Message(args.spellId, "cyan", CL.percent:format(percent, args.spellName))
 	if isElevenDotTwo then -- XXX remove check in 11.2
-		-- XXX Stigma of Pride is not recast in 11.2
 		self:CDBar(328791, 11.0) -- Ritual of Woe
 		self:CDBar(1236973, 24.3) -- Erupting Torment
-		self:CDBar(323143, 30.4) -- Telekinetic Toss
+		self:CDBar(323142, 30.4) -- Telekinetic Toss
 		self:CDBar(323236, 36.5) -- Unleashed Suffering
+		self:CDBar(323437, 49.8) -- Stigma of Pride
 	else -- XXX remove block in 11.2
 		self:CDBar(328791, 10.9) -- Ritual of Woe
 		self:CDBar(323437, 29.4) -- Stigma of Pride
@@ -105,7 +109,7 @@ end
 function mod:TelekineticToss(args)
 	self:Message(args.spellId, "yellow")
 	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:CDBar(args.spellId, 12.2) -- Telekinetic Toss
+		self:CDBar(args.spellId, 10.5) -- Telekinetic Toss
 	else -- XXX remove block in 11.2
 		self:CDBar(args.spellId, 9.7) -- Telekinetic Toss
 	end
@@ -114,13 +118,13 @@ end
 
 function mod:UnleashedSuffering(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 22.0) -- TODO 12.2 but delayed by Erupting Torment?
+	self:CDBar(args.spellId, 22.8)
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:StigmaOfPride(args)
 	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:StopBar(args.spellId) -- XXX just cast once in 11.2, probably broken
+		self:CDBar(args.spellId, 25.6)
 	else -- XXX remove block in 11.2
 		self:CDBar(args.spellId, 21.8)
 	end
@@ -133,6 +137,6 @@ end
 
 function mod:EruptingTorment(args)
 	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 24.4)
+	self:CDBar(args.spellId, 25.6)
 	self:PlaySound(args.spellId, "alarm")
 end
