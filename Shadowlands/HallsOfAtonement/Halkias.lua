@@ -12,7 +12,7 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
-local crumblingSlamCount = 0
+local nextSinlightVisions = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -47,13 +47,13 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	crumblingSlamCount = 0
-	self:CDBar(322936, 4.5) -- Crumbling Slam
-	self:CDBar(322943, 13.1) -- Heave Debris
+	self:CDBar(322936, 4.4) -- Crumbling Slam
+	self:CDBar(322943, 12.0) -- Heave Debris
 	if self:Mythic() then
-		self:CDBar(322711, 49.8, CL.beams) -- Refracted Sinlight
+		self:CDBar(322711, 32.8, CL.beams) -- Refracted Sinlight
 	else -- Heroic/Normal
-		self:CDBar(339237, 13.1, CL.fear) -- Sinlight Visions
+		nextSinlightVisions = GetTime() + 19.2
+		self:CDBar(339237, 19.2, CL.fear) -- Sinlight Visions
 		self:CDBar(322711, 32.6, CL.beams) -- Refracted Sinlight
 	end
 end
@@ -75,28 +75,42 @@ end
 
 function mod:CrumblingSlam(args)
 	self:Message(args.spellId, "purple")
-	crumblingSlamCount = crumblingSlamCount + 1
-	-- only the second Crumbling Slam of the fight is delayed
-	self:CDBar(args.spellId, crumblingSlamCount == 1 and 13.4 or 12.1)
+	self:CDBar(args.spellId, 13.3)
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:HeaveDebris(args)
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 12.1)
+	if self:Mythic() then
+		self:CDBar(args.spellId, 13.3)
+	else -- Heroic / Normal
+		self:CDBar(args.spellId, 11.0)
+	end
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:RefractedSinlight(args)
 	self:Message(args.spellId, "red", CL.beams)
-	self:CDBar(322936, 15.7) -- Crumbling Slam
-	self:CDBar(322943, 17.2) -- Heave Debris
-	self:CDBar(args.spellId, 47.3, CL.beams)
+	if self:Mythic() then
+		self:CDBar(322943, 15.0) -- Heave Debris
+		self:CDBar(322936, 21.8) -- Crumbling Slam
+		self:CDBar(args.spellId, 49.7, CL.beams)
+	else -- Heroic / Normal
+		self:CDBar(322936, 15.6) -- Crumbling Slam
+		self:CDBar(322943, 15.6) -- Heave Debris
+		local t = GetTime()
+		if nextSinlightVisions - t < 15.6 then
+			nextSinlightVisions = t + 15.6
+			self:CDBar(339237, {15.6, 24.4}, CL.fear) -- Sinlight Visions
+		end
+		self:CDBar(args.spellId, 46.4, CL.beams)
+	end
 	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:SinlightVisions(args) -- Heroic/Normal only
-	self:CDBar(339237, 30.1, CL.fear) -- Sinlight Visions
+	nextSinlightVisions = GetTime() + 24.4
+	self:CDBar(339237, 24.4, CL.fear) -- Sinlight Visions
 end
 
 function mod:SinlightVisionsApplied(args)
