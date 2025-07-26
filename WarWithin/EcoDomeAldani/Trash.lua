@@ -275,19 +275,13 @@ function mod:RavenousDestroyerEngaged(guid)
 	self:Nameplate(1226111, 14.3, guid) -- Volatile Ejection
 end
 
-do
-	local playerList = {}
+function mod:GluttonousMiasma(args)
+	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+end
 
-	function mod:GluttonousMiasma(args)
-		playerList = {}
-		self:Nameplate(args.spellId, 20.6, args.sourceGUID)
-	end
-
-	function mod:GluttonousMiasmaApplied(args)
-		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(args.spellId, "yellow", playerList, 5) -- TODO unknown target limit
-		self:PlaySound(args.spellId, "info", nil, playerList)
-	end
+function mod:GluttonousMiasmaApplied(args)
+	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "info", nil, args.destName)
 end
 
 do
