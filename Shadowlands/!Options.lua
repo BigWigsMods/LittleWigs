@@ -699,7 +699,7 @@ BigWigs:AddSounds("The Grand Menagerie", {
 	[350037] = "info",
 	[350045] = "underyou",
 	[350086] = {"alarm","underyou"},
-	[350101] = "alert",
+	[350101] = {"alert","info"},
 	["warmup"] = "long",
 })
 

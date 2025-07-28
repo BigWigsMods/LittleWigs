@@ -50,7 +50,7 @@ function mod:GetOptions()
 		350045, -- Corrosive Anima
 		350037, -- Exposed Anima Core
 		-- Venza Goldfuse
-		{350101, "SAY"}, -- Chains of Damnation
+		{350101, "SAY", "DISPEL"}, -- Chains of Damnation
 		350086, -- Whirling Annihilation
 	}, {
 		[349627] = -23159, -- Alcruux
@@ -85,6 +85,7 @@ function mod:OnBossEnable()
 
 	-- Venza Goldfuse
 	self:Log("SPELL_CAST_START", "ChainsOfDamnation", 350101)
+	self:Log("SPELL_AURA_APPLIED", "ChainsOfDamnationApplied", 350101)
 	self:Log("SPELL_CAST_START", "WhirlingAnnihilation", 350086)
 	self:Log("SPELL_DAMAGE", "WhirlingAnnihilationDamage", 350090)
 	self:Death("VenzaGoldfuseDeath", 176705)
@@ -92,6 +93,7 @@ end
 
 function mod:OnEngage()
 	chainsOfDamnationCount = 1
+	self:StopBar(CL.active)
 	self:SetStage(1)
 	-- first Gluttony applied shortly after pull
 	self:CDBar(349663, 11.9) -- Grip of Hunger
@@ -273,6 +275,13 @@ do
 		else
 			self:CDBar(args.spellId, 30.3)
 		end
+	end
+end
+
+function mod:ChainsOfDamnationApplied(args)
+	if self:Me(args.destGUID) or self:Dispeller("movement", nil, args.spellId) then
+		self:TargetMessage(args.spellId, "red", args.destName)
+		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
 end
 
