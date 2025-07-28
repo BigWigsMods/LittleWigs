@@ -135,7 +135,7 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 			"trading_game",
 			"custom_on_trading_game_autotalk",
 			-- Gatewarden Zo'mazz
-			{351047, "TANK", "NAMEPLATE"}, -- Proxy Strike
+			{352796, "TANK", "NAMEPLATE"}, -- Proxy Strike
 			{356548, "NAMEPLATE"}, -- Radiant Pulse
 			-- Customs Security
 			{355900, "NAMEPLATE"}, -- Disruption Grenade
@@ -143,7 +143,6 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 			{355891, "NAMEPLATE", "OFF"}, -- Teleport
 			-- Interrogation Specialist
 			{355915, "DISPEL", "NAMEPLATE"}, -- Glyph of Restraint
-			356031, -- Stasis Beam XXX removed in 11.2?
 			-- Armored Overseer
 			{356001, "NAMEPLATE"}, -- Beam Splicer
 			-- Support Officer
@@ -216,14 +215,11 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 			{357238, "NAMEPLATE"}, -- Wandering Pulsar
 			-- Focused Ritualist
 			{357260, "NAMEPLATE"}, -- Unstable Rift
-			-- Devoted Accomplice
-			{357284, "NAMEPLATE"}, -- Reinvigorate
-			{357281, "TANK", "NAMEPLATE"}, -- Energy Slash
 		}, {
 			------ Streets of Wonder ------
 			["custom_on_portal_autotalk"] = L.portal_authority,
 			["trading_game"] = L.trading_game,
-			[351047] = L.gatewarden_zomazz,
+			[352796] = L.gatewarden_zomazz,
 			[355900] = L.customs_security,
 			[355915] = L.interrogation_specialist,
 			[356537] = L.portalmancer_zohonn,
@@ -256,7 +252,6 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 			[368661] = L.corsair_officer,
 			[357226] = L.adorned_starseer,
 			[357260] = L.focused_ritualist,
-			[357284] = L.devoted_accomplice,
 		}
 	end
 else -- XXX remove block in 11.2
@@ -275,7 +270,7 @@ else -- XXX remove block in 11.2
 			{355891, "NAMEPLATE", "OFF"}, -- Teleport
 			-- Interrogation Specialist
 			{355915, "DISPEL", "NAMEPLATE"}, -- Glyph of Restraint
-			356031, -- Stasis Beam XXX removed in 11.2?
+			356031, -- Stasis Beam
 			-- Armored Overseer
 			{356001, "NAMEPLATE"}, -- Beam Splicer
 			-- Support Officer
@@ -393,7 +388,11 @@ function mod:OnBossEnable()
 
 	-- Gatewarden Zo'mazz
 	self:RegisterEngageMob("GatewardenZomazzEngaged", 178392)
-	self:Log("SPELL_CAST_START", "ProxyStrike", 351047)
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:Log("SPELL_CAST_START", "ProxyStrike", 352796)
+	else -- XXX remove in 11.2
+		self:Log("SPELL_CAST_START", "ProxyStrike", 351047)
+	end
 	self:Log("SPELL_CAST_START", "RadiantPulse", 356548)
 	self:Death("GatewardenZomazzDeath", 178392)
 
@@ -539,8 +538,7 @@ function mod:OnBossEnable()
 
 	-- Murkbrine Scalebinder
 	self:RegisterEngageMob("MurkbrineScalebinderEngaged", 178141)
-	self:Log("SPELL_CAST_START", "InvigoratingFishStick", 355132)
-	self:Log("SPELL_CAST_SUCCESS", "InvigoratingFishStickSuccess", 355132)
+	self:Log("SPELL_CAST_SUCCESS", "InvigoratingFishStick", 355132)
 	self:Death("MurkbrineScalebinderDeath", 178141)
 
 	-- Murkbrine Fishmancer
@@ -608,13 +606,10 @@ function mod:OnBossEnable()
 	-- Devoted Accomplice
 	if isElevenDotTwo then -- XXX remove check in 11.2
 		self:RegisterEngageMob("DevotedAccompliceEngaged", 180432)
-	end
-	self:Log("SPELL_CAST_START", "Reinvigorate", 357284)
-	self:Log("SPELL_INTERRUPT", "ReinvigorateInterrupt", 357284)
-	self:Log("SPELL_CAST_SUCCESS", "ReinvigorateSuccess", 357284)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_CAST_START", "EnergySlash", 357281)
-		self:Log("SPELL_CAST_SUCCESS", "EnergySlashSuccess", 357281)
+	else -- XXX remove block in 11.2
+		self:Log("SPELL_CAST_START", "Reinvigorate", 357284) -- XXX removed in 11.2
+		self:Log("SPELL_INTERRUPT", "ReinvigorateInterrupt", 357284) -- XXX removed in 11.2
+		self:Log("SPELL_CAST_SUCCESS", "ReinvigorateSuccess", 357284) -- XXX removed in 11.2
 	end
 	self:Death("DevotedAccompliceDeath", 180432)
 end
@@ -695,10 +690,10 @@ end
 do
 	local prev = 0
 	function mod:ProxyStrike(args)
-		self:Nameplate(args.spellId, 24.2, args.sourceGUID)
 		if self:MobId(args.sourceGUID) == 178392 then -- Gatewarden Zo'mazz
-			self:CDBar(args.spellId, 24.2)
 			self:GatewardenZomazzProxyStrike(args.sourceGUID)
+		else -- Armored Overseer
+			self:Nameplate(args.spellId, 31.5, args.sourceGUID)
 		end
 		if args.time - prev > 2 then
 			prev = args.time
@@ -729,8 +724,13 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:CDBar(351047, 7.2) -- Proxy Strike
-		self:Nameplate(351047, 7.2, guid) -- Proxy Strike
+		if isElevenDotTwo then -- XXX remove check in 11.2
+			self:CDBar(352796, 9.6) -- Proxy Strike
+			self:Nameplate(352796, 9.6, guid) -- Proxy Strike
+		else -- XXX remove block in 11.2
+			self:CDBar(351047, 7.2) -- Proxy Strike
+			self:Nameplate(351047, 7.2, guid) -- Proxy Strike
+		end
 		self:CDBar(356548, 13.2) -- Radiant Pulse
 		self:Nameplate(356548, 13.2, guid) -- Radiant Pulse
 		timer = self:ScheduleTimer("GatewardenZomazzDeath", 20, nil, guid)
@@ -739,6 +739,13 @@ do
 	function mod:GatewardenZomazzProxyStrike(guid)
 		if timer then
 			self:CancelTimer(timer)
+		end
+		if isElevenDotTwo then -- XXX remove check in 11.2
+			self:CDBar(352796, 25.5)
+			self:Nameplate(352796, 25.5, guid)
+		else -- XXX remove block in 11.2
+			self:CDBar(351047, 24.2)
+			self:Nameplate(351047, 24.2, guid)
 		end
 		timer = self:ScheduleTimer("GatewardenZomazzDeath", 30, nil, guid)
 	end
@@ -757,7 +764,11 @@ do
 			self:CancelTimer(timer)
 			timer = nil
 		end
-		self:StopBar(351047) -- Proxy Strike
+		if isElevenDotTwo then -- XXX remove check in 11.2
+			self:StopBar(352796) -- Proxy Strike
+		else -- XXX remove block in 11.2
+			self:StopBar(351047) -- Proxy Strike
+		end
 		self:StopBar(356548) -- Radiant Pulse
 		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
@@ -848,7 +859,11 @@ end
 -- Armored Overseer
 
 function mod:ArmoredOverseerEngaged(guid)
-	self:Nameplate(351047, 6.5, guid) -- Proxy Strike
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:Nameplate(352796, 12.1, guid) -- Proxy Strike
+	else -- XXX remove block in 11.2
+		self:Nameplate(351047, 6.5, guid) -- Proxy Strike
+	end
 	self:Nameplate(356001, 7.3, guid) -- Beam Splicer
 end
 
@@ -1211,7 +1226,7 @@ function mod:CartelMuscleEngaged(guid)
 	if isElevenDotTwo then -- XXX remove check in 11.2
 		self:Nameplate(357229, 9.1, guid) -- Chronolight Enhancer
 	end
-	self:Nameplate(356967, 34.5, guid) -- Hyperlight Backhand
+	self:Nameplate(356967, 27.7, guid) -- Hyperlight Backhand
 end
 
 function mod:HyperlightBackhand(args)
@@ -1349,7 +1364,7 @@ end
 
 function mod:MarketPeacekeeperEngaged(guid)
 	self:Nameplate(355637, 3.5, guid) -- Quelling Strike
-	self:Nameplate(355640, 10.8, guid) -- Phalanx Field
+	self:Nameplate(355640, 9.5, guid) -- Phalanx Field
 end
 
 do
@@ -1440,11 +1455,11 @@ do
 		self:CDBar(355473, 3.4) -- Shock Mines
 		self:Nameplate(355473, 3.4, guid) -- Shock Mines
 		if not self:Solo() then
-			self:CDBar(355479, 7.0) -- Lethal Force
-			self:Nameplate(355479, 7.0, guid) -- Lethal Force
+			self:CDBar(355479, 5.8) -- Lethal Force
+			self:Nameplate(355479, 5.8, guid) -- Lethal Force
 		end
-		self:CDBar(355477, 8.2) -- Power Kick
-		self:Nameplate(355477, 8.2, guid) -- Power Kick
+		self:CDBar(355477, 8.0) -- Power Kick
+		self:Nameplate(355477, 8.0, guid) -- Power Kick
 		timer = self:ScheduleTimer("CommanderZofarDeath", 20, nil, guid)
 	end
 
@@ -1467,8 +1482,8 @@ do
 			end
 			playerList = {}
 			onMe = false
-			self:CDBar(args.spellId, 13.2)
-			self:Nameplate(args.spellId, 13.2, args.sourceGUID)
+			self:CDBar(args.spellId, 13.3)
+			self:Nameplate(args.spellId, 13.3, args.sourceGUID)
 			timer = self:ScheduleTimer("CommanderZofarDeath", 30, nil, args.sourceGUID)
 		end
 
@@ -1536,15 +1551,9 @@ function mod:MurkbrineScalebinderEngaged(guid)
 end
 
 function mod:InvigoratingFishStick(args)
-	self:Message(args.spellId, "yellow")
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "info")
-end
-
-function mod:InvigoratingFishStickSuccess(args)
-	self:Message(args.spellId, "red", CL.spawned:format(args.spellName))
+	self:Message(args.spellId, "cyan", CL.spawned:format(args.spellName))
 	self:Nameplate(args.spellId, 27.5, args.sourceGUID)
-	self:PlaySound(args.spellId, "warning")
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:MurkbrineScalebinderDeath(args)
@@ -1606,7 +1615,7 @@ end
 -- Murkbrine Fishmancer
 
 function mod:MurkbrineFishmancerEngaged(guid)
-	self:Nameplate(355234, 13.1, guid) -- Volatile Pufferfish
+	self:Nameplate(355234, 7.3, guid) -- Volatile Pufferfish
 end
 
 do
@@ -1628,19 +1637,19 @@ end
 -- Coastwalker Goliath
 
 function mod:CoastwalkerGoliathEngaged(guid)
-	self:Nameplate(355429, 12.0, guid) -- Tidal Stomp
-	self:Nameplate(355464, 18.1, guid) -- Boulder Throw
+	self:Nameplate(355464, 9.4, guid) -- Boulder Throw
+	self:Nameplate(355429, 15.4, guid) -- Tidal Stomp
 end
 
 function mod:TidalStomp(args)
 	self:Message(args.spellId, "yellow")
-	self:Nameplate(args.spellId, 22.2, args.sourceGUID)
+	self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:BoulderThrow(args)
 	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 22.6, args.sourceGUID)
+	self:Nameplate(args.spellId, 19.3, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -1651,8 +1660,8 @@ end
 -- Stormforged Guardian
 
 function mod:StormforgedGuardianEngaged(guid)
-	self:Nameplate(355577, 4.7, guid) -- Crackle
-	self:Nameplate(355584, 10.8, guid) -- Charged Pulse
+	self:Nameplate(355577, 3.4, guid) -- Crackle
+	self:Nameplate(355584, 9.5, guid) -- Charged Pulse
 end
 
 function mod:ChargedPulse(args)
@@ -1784,7 +1793,7 @@ end
 -- Adorned Starseer
 
 function mod:AdornedStarseerEngaged(guid)
-	self:Nameplate(357226, 7.1, guid) -- Drifting Star
+	self:Nameplate(357226, 6.8, guid) -- Drifting Star
 	self:Nameplate(357238, 12.0, guid) -- Wandering Pulsar
 end
 
@@ -1816,10 +1825,16 @@ function mod:FocusedRitualistEngaged(guid)
 	self:Nameplate(357260, 9.5, guid) -- Unstable Rift
 end
 
-function mod:UnstableRift(args)
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "warning")
+do
+	local prev = 0
+	function mod:UnstableRift(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "warning")
+		end
+	end
 end
 
 function mod:UnstableRiftInterrupt(args)
@@ -1837,14 +1852,12 @@ end
 -- Devoted Accomplice
 
 function mod:DevotedAccompliceEngaged(guid)
-	-- Reinvigorate is not cast until its own HP is low
 	self:Nameplate(355891, 3.4, guid) -- Teleport
-	self:Nameplate(357281, 7.1, guid) -- Energy Slash
 end
 
 do
 	local prev = 0
-	function mod:Reinvigorate(args)
+	function mod:Reinvigorate(args) -- XXX removed in 11.2
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 		self:Nameplate(args.spellId, 0, args.sourceGUID)
 		if args.time - prev > 1.5 then
@@ -1854,28 +1867,12 @@ do
 	end
 end
 
-function mod:ReinvigorateInterrupt(args)
+function mod:ReinvigorateInterrupt(args) -- XXX removed in 11.2
 	self:Nameplate(357284, 20.7, args.destGUID)
 end
 
-function mod:ReinvigorateSuccess(args)
+function mod:ReinvigorateSuccess(args) -- XXX removed in 11.2
 	self:Nameplate(args.spellId, 20.7, args.sourceGUID)
-end
-
-do
-	local prev = 0
-	function mod:EnergySlash(args)
-		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		if args.time - prev > 2.5 then
-			prev = args.time
-			self:Message(args.spellId, "purple")
-			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
-function mod:EnergySlashSuccess(args)
-	self:Nameplate(args.spellId, 15.4, args.sourceGUID)
 end
 
 function mod:DevotedAccompliceDeath(args)
