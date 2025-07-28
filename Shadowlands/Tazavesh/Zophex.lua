@@ -69,6 +69,7 @@ function mod:OnEngage()
 		self:CDBar(1236348, 12.1) -- Charged Slash
 		self:CDBar(345770, 20.4) -- Impound Contraband
 		self:CDBar(348128, 29.0) -- Fully Armed
+		-- 2s delay + 35s energy gain + delay
 		self:CDBar(348350, 39.9) -- Interrogation
 	else -- XXX remove block in 11.2
 		self:CDBar(345770, 19.3) -- Impound Contraband
@@ -86,8 +87,8 @@ end
 
 function mod:Interrogation(args)
 	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
-	-- energy is reset to 0 after this 1.5s cast, with a 30s energy gain afterwards
-	self:CDBar(args.spellId, 31.5)
+	-- energy is reset to 0 after this 1.5s cast, with a 35s energy gain afterwards
+	self:CDBar(args.spellId, 36.5)
 end
 
 function mod:InterrogationApplied(args)
@@ -125,6 +126,12 @@ do
 end
 
 function mod:ContainmentCellApplied(args)
+	if isElevenDotTwo then -- XXX remove check in 11.2
+		self:StopBar(346204) -- Armed Security
+		self:StopBar(1236348) -- Charged Slash
+		self:StopBar(345770) -- Impound Contraband
+		self:StopBar(348128) -- Fully Armed
+	end
 	-- if Containment Cell is applied, the boss's energy resets and the gain is paused
 	self:StopBar(348350) -- Interrogation
 	self:TargetMessage(args.spellId, "red", args.destName)
@@ -154,9 +161,9 @@ end
 
 function mod:ContainmentCellMissed(args)
 	if self:Me(args.destGUID) then
-		self:Message(args.spellId, "green", CL.removed:format(args.spellName))
+		self:Message(args.spellId, "green", CL.extra:format(CL.removed:format(args.spellName), CL.immune))
 	else
-		self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, self:ColorName(args.destName)))
+		self:Message(args.spellId, "green", CL.extra:format(CL.removed_from:format(args.spellName, self:ColorName(args.destName)), CL.immune))
 	end
 	if not isElevenDotTwo then -- XXX remove block in 11.2
 		-- if you immune the Interrogation cast Zo'phex's energy doesn't reset back to 0 which makes the next Interrogation phase come sooner
@@ -208,6 +215,6 @@ end
 
 function mod:ChargedSlash(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 20.7)
+	self:CDBar(args.spellId, 16.9)
 	self:PlaySound(args.spellId, "alarm")
 end
