@@ -52,6 +52,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_DAMAGE", "PurgedByFireDamage", 346960)
 	self:Log("SPELL_MISSED", "PurgedByFireDamage", 346960)
 	self:Log("SPELL_CAST_START", "SanitizingCycle", 346766)
+	self:Log("SPELL_CAST_SUCCESS", "SanitizingCycleSuccess", 346766)
 	self:Log("SPELL_AURA_REMOVED", "SanitizingCycleRemoved", 346766)
 end
 
@@ -62,7 +63,7 @@ function mod:OnEngage()
 	self:CDBar(346957, 10.5) -- Purged by Fire
 	self:CDBar(347094, 15.4) -- Titanic Crash
 	self:CDBar("vault_purifier", 19, CL.adds, L.vault_purifier_icon) -- Vault Purifier
-	self:CDBar(346766, 38.0) -- Sanitizing Cycle
+	self:CDBar(346766, 40.0) -- Sanitizing Cycle
 end
 
 --------------------------------------------------------------------------------
@@ -140,24 +141,24 @@ do
 	end
 end
 
+function mod:SanitizingCycle()
+	self:StopBar(353312) -- Purifying Burst
+	self:StopBar(346116) -- Shearing Swings
+	self:StopBar(346957) -- Purged by Fire
+	self:StopBar(CL.adds) -- Vault Purifier
+	self:StopBar(347094) -- Titanic Crash
+end
+
 do
 	local sanitizingCycleStart = 0
 
-	function mod:SanitizingCycle(args)
-		-- SPELL_CAST_START fires twice for this spell at the exact same time XXX fixed in 11.2
-		if args.time - sanitizingCycleStart > 1.5 then
-			self:SetStage(2)
-			sanitizingCycleStart = args.time
-			nextSanitizingCycle = 0
-			self:Message(args.spellId, "cyan")
-			self:StopBar(args.spellId)
-			self:StopBar(353312) -- Purifying Burst
-			self:StopBar(346116) -- Shearing Swings
-			self:StopBar(346957) -- Purged by Fire
-			self:StopBar(CL.adds) -- Vault Purifier
-			self:StopBar(347094) -- Titanic Crash
-			self:PlaySound(args.spellId, "long")
-		end
+	function mod:SanitizingCycleSuccess(args)
+		sanitizingCycleStart = args.time
+		nextSanitizingCycle = 0
+		self:SetStage(2)
+		self:StopBar(args.spellId)
+		self:Message(args.spellId, "cyan")
+		self:PlaySound(args.spellId, "long")
 	end
 
 	function mod:SanitizingCycleRemoved(args)
