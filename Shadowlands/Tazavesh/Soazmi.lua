@@ -15,6 +15,7 @@ mod:SetStage(1)
 --
 
 local shuriCount = 1
+local firstDoubleTechnique = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -47,6 +48,8 @@ function mod:OnBossEnable()
 		self:Log("SPELL_CAST_START", "Shuri", 1245579)
 		self:Log("SPELL_CAST_START", "Divide", 1245634)
 		self:Log("SPELL_CAST_START", "DoubleTechnique", 1245669)
+		self:Log("SPELL_INTERRUPT", "DoubleTechniqueInterrupt", 1245669)
+		self:Log("SPELL_CAST_SUCCESS", "DoubleTechniqueSuccess", 1245669)
 		self:Log("SPELL_CAST_START", "PhaseSlash", 1248209)
 	else -- XXX remove block in 11.2
 		self:Log("SPELL_CAST_START", "DoubleTechnique", 357188)
@@ -58,9 +61,12 @@ end
 
 function mod:OnEngage()
 	shuriCount = 1
+	self:StopBar(CL.active)
 	self:SetStage(1)
+	-- energy gain for Double Technique starts on pull, but it won't be cast until after the first Divide
+	firstDoubleTechnique = GetTime() + 49.4
 	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:CDBar(1248209, 8.5) -- Phase Slash
+		self:CDBar(1248209, 8.2) -- Phase Slash
 		self:CDBar(1245579, 12.2) -- Shuri
 	else -- XXX remove block in 11.2
 		self:CDBar(347623, 8.2) -- Quickblade
@@ -105,13 +111,16 @@ function mod:Divide(args)
 	if self:GetStage() == 2 then
 		shuriCount = 1 -- resets counter
 		self:Message(args.spellId, "cyan", CL.percent:format(70, args.spellName))
-		if isElevenDotTwo then -- XXX remove check in 11.2
+		-- Double Technique is cast at 100 energy, but energy gain starts on pull
+		local timeUntilDoubleTechnique = firstDoubleTechnique - GetTime()
+		if timeUntilDoubleTechnique > 2.4 then
+			self:CDBar(1245669, timeUntilDoubleTechnique) -- Double Technique
+		else
 			self:CDBar(1245669, 2.4) -- Double Technique
-			self:CDBar(1245579, 30.2) -- Shuri
 		end
+		self:CDBar(1245579, 26.7) -- Shuri
 	else -- 3
 		self:Message(args.spellId, "cyan", CL.percent:format(40, args.spellName))
-		self:CDBar(1245579, 27.9) -- Shuri
 	end
 	self:PlaySound(args.spellId, "info")
 end
@@ -127,23 +136,33 @@ function mod:DivideOld() -- XXX remove in 11.2
 end
 
 do
+	local count = 1
 	local prev = 0
 	function mod:DoubleTechnique(args)
-		local count = args.time - prev > 15 and 1 or 2
+		-- cast at 100 energy, energy resets to 0 and gain is paused while casting Double Technique
+		count = args.time - prev > 20 and 1 or 2
 		prev = args.time
+		self:StopBar(args.spellId)
 		self:Message(args.spellId, "red", CL.count_amount:format(CL.casting:format(args.spellName), count, 2))
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			if count == 1 then
-				self:CDBar(args.spellId, 64.1)
-			end
-		end
 		self:PlaySound(args.spellId, "alert")
+	end
+
+	function mod:DoubleTechniqueInterrupt(args)
+		if count == 2 then
+			-- energy gain resumes, 48s energy gain + delay
+			self:CDBar(args.spellId, 48.1)
+		end
+	end
+
+	function mod:DoubleTechniqueSuccess(args)
+		-- energy gain resumes, 48s energy gain + delay
+		self:CDBar(args.spellId, 48.1)
 	end
 end
 
 function mod:PhaseSlash(args)
 	self:Message(args.spellId, "purple")
-	self:CDBar(args.spellId, 16.1)
+	self:CDBar(args.spellId, 15.8)
 	self:PlaySound(args.spellId, "alert")
 end
 
