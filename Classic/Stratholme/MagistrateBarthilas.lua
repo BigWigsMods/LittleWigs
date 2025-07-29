@@ -87,7 +87,7 @@ end
 
 function mod:FuriousAngerApplied(args)
 	if args.amount % 3 == 0 and self:Dispeller("enrage", true, args.spellId) then
-		self:Message(args.spellId, "yellow", CL.stack:format(args.amount, CL.onboss:format(args.spellName)))
+		self:Message(args.spellId, "yellow", CL.stackboss:format(args.amount, args.spellName))
 		self:PlaySound(args.spellId, "info")
 	end
 end
