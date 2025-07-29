@@ -30,10 +30,6 @@ function mod:GetOptions()
 		1236703, -- Eternal Weave
 		1225218, -- Dread of the Unknown
 		1225174, -- Ceremonial Dagger
-		-- Mythic
-		1237184, -- Splinters of Fate
-	}, {
-		[1237184] = "mythic",
 	}
 end
 
@@ -46,9 +42,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "EternalWeave", 1236703)
 	self:Log("SPELL_CAST_START", "DreadOfTheUnknown", 1225218)
 	self:Log("SPELL_CAST_START", "CeremonialDagger", 1225174)
-
-	-- Mythic
-	self:Log("SPELL_CAST_START", "SplintersOfFate", 1237184)
 end
 
 function mod:OnEngage()
@@ -88,7 +81,6 @@ end
 
 function mod:WoundedFate(args)
 	if self:Me(args.destGUID) then
-		-- TODO might not be possible to actually stack this? need to check Mythic
 		local amount = args.amount or 1
 		self:StackMessage(args.spellId, "blue", args.destName, amount, 1)
 		self:PlaySound(args.spellId, "warning")
@@ -121,11 +113,4 @@ function mod:CeremonialDagger(args)
 		self:CDBar(args.spellId, 49.5, CL.count:format(args.spellName, ceremonialDaggerCount))
 	end
 	self:PlaySound(args.spellId, "alarm")
-end
-
--- Mythic
-
-function mod:SplintersOfFate(args)
-	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "alert")
 end

@@ -473,7 +473,6 @@ BigWigs:AddColors("Soul-Scribe", {
 	[1225218] = "orange",
 	[1226444] = "blue",
 	[1236703] = "yellow",
-	[1237184] = "cyan",
 })
 
 BigWigs:AddSounds("Soul-Scribe", {
@@ -483,7 +482,6 @@ BigWigs:AddSounds("Soul-Scribe", {
 	[1225218] = "alarm",
 	[1226444] = "warning",
 	[1236703] = "long",
-	[1237184] = "alert",
 })
 
 BigWigs:AddColors("Eco-Dome Al'dani Trash", {
