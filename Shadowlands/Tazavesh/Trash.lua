@@ -1671,10 +1671,16 @@ function mod:ChargedPulse(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-function mod:Crackle(args)
-	self:Message(args.spellId, "red")
-	self:Nameplate(args.spellId, 8.5, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:Crackle(args)
+		self:Nameplate(args.spellId, 8.5, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 do
