@@ -52,7 +52,7 @@ function mod:OnEngage()
 	toxicRegurgitationCount = 1
 	self:CDBar(1217327, 5.2, CL.count:format(self:SpellName(1217327), invadingShriekCount)) -- Invading Shriek
 	self:CDBar(1227745, 15.4, CL.count:format(self:SpellName(1227745), toxicRegurgitationCount)) -- Toxic Regurgitation
-	-- cast at 100 energy, 60s energy gain
+	-- cast at 100 energy, 60s energy gain + delay
 	self:CDBar(1217232, 60.3, CL.count:format(self:SpellName(1217232), devourCount)) -- Devour
 end
 
@@ -92,7 +92,7 @@ function mod:InvadingShriek(args)
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, invadingShriekCount))
 	invadingShriekCount = invadingShriekCount + 1
 	if invadingShriekCount % 2 == 0 then
-		self:CDBar(args.spellId, 37.6, CL.count:format(args.spellName, invadingShriekCount))
+		self:CDBar(args.spellId, 37.2, CL.count:format(args.spellName, invadingShriekCount))
 	else
 		self:CDBar(args.spellId, 48.5, CL.count:format(args.spellName, invadingShriekCount))
 	end
@@ -110,7 +110,7 @@ do
 		if toxicRegurgitationCount % 2 == 0 then -- 2, 4, 6...
 			self:CDBar(args.spellId, 18.2, CL.count:format(args.spellName, toxicRegurgitationCount))
 		else -- 3, 5, 7...
-			self:CDBar(args.spellId, 68.0, CL.count:format(args.spellName, toxicRegurgitationCount))
+			self:CDBar(args.spellId, 67.5, CL.count:format(args.spellName, toxicRegurgitationCount))
 		end
 		self:PlaySound(args.spellId, "alarm")
 	end
