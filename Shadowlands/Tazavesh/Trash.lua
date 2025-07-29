@@ -839,7 +839,8 @@ end
 do
 	local prev = 0
 	function mod:GlyphOfRestraintApplied(args)
-		if (self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId)) and args.time - prev > 2 then
+		-- can be reflected with Diffuse Magic
+		if (self:Me(args.destGUID) or (self:Friendly(args.destFlags) and (self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId)))) and args.time - prev > 2 then
 			prev = args.time
 			self:TargetMessage(args.spellId, "yellow", args.destName)
 			self:PlaySound(args.spellId, "alert", nil, args.destName)
