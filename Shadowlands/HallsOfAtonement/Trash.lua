@@ -1,4 +1,4 @@
-local isElevenDotTwo = BigWigsLoader.isNext
+local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -59,8 +59,7 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 			-- Depraved Obliterator
 			{325876, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Mark of Obliteration
 			-- Depraved Collector
-			{325700, "NAMEPLATE"}, -- Collect Sins
-			{325701, "DISPEL", "NAMEPLATE"}, -- Siphon Life
+			{325701, "NAMEPLATE"}, -- Siphon Life
 			-- Stoneborn Slasher
 			{326997, "NAMEPLATE"}, -- Powerful Swipe
 			{1235326, "NAMEPLATE"}, -- Disrupting Screech
@@ -73,7 +72,6 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 			{1235766, "TANK", "NAMEPLATE"}, -- Mortal Strike
 			-- Stoneborn Eviscerator
 			{326638, "NAMEPLATE", "OFF"}, -- Hurl Glaive
-			{1235257, "NAMEPLATE", "OFF"}, -- Glaivestorm
 			-- Inquisitor Sigar
 			{326794, "NAMEPLATE"}, -- Dark Communion
 			{1236614, "SAY_COUNTDOWN", "NAMEPLATE"}, -- Display of Power
@@ -84,7 +82,7 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 			[1237602] = L.vicious_gargon,
 			[1235060] = L.depraved_darkblade,
 			[325876] = L.depraved_obliterator,
-			[325700] = L.depraved_collector,
+			[325701] = L.depraved_collector,
 			[326997] = L.stoneborn_slasher,
 			[326409] = L.shard_of_halkias,
 			[1235762] = L.stoneborn_reaver,
@@ -109,7 +107,7 @@ else -- XXX remove block in 11.2
 			{325876, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Curse of Obliteration
 			-- Depraved Collector
 			{325700, "NAMEPLATE"}, -- Collect Sins
-			{325701, "DISPEL", "NAMEPLATE"}, -- Siphon Life
+			{325701, "NAMEPLATE"}, -- Siphon Life
 			-- Stoneborn Slasher
 			{326997, "NAMEPLATE"}, -- Powerful Swipe
 			-- Shard of Halkias
@@ -183,10 +181,10 @@ function mod:OnBossEnable()
 
 	-- Depraved Collector
 	self:RegisterEngageMob("DepravedCollectorEngaged", 165529)
-	self:Log("SPELL_CAST_START", "CollectSins", 325700)
-	self:Log("SPELL_INTERRUPT", "CollectSinsInterrupt", 325700)
-	self:Log("SPELL_CAST_SUCCESS", "CollectSinsSuccess", 325700)
 	if not isElevenDotTwo then -- XXX remove block in 11.2
+		self:Log("SPELL_CAST_START", "CollectSins", 325700)
+		self:Log("SPELL_INTERRUPT", "CollectSinsInterrupt", 325700)
+		self:Log("SPELL_CAST_SUCCESS", "CollectSinsSuccess", 325700)
 		self:Log("SPELL_CAST_START", "SiphonLifeStart", 325701) -- instant cast in 11.2
 	end
 	self:Log("SPELL_CAST_SUCCESS", "SiphonLife", 325701)
@@ -225,7 +223,6 @@ function mod:OnBossEnable()
 		-- Stoneborn Eviscerator
 		self:RegisterEngageMob("StonebornEvisceratorEngaged", 167611)
 		self:Log("SPELL_CAST_SUCCESS", "HurlGlaive", 326638)
-		self:Log("SPELL_CAST_SUCCESS", "Glaivestorm", 1235257)
 		self:Death("StonebornEvisceratorDeath", 167611)
 	end
 
@@ -255,7 +252,7 @@ function mod:DepravedHoundmasterEngaged(guid)
 	if not isElevenDotTwo then -- XXX remove in 11.2
 		self:Nameplate(325793, 8.9, guid) -- Rapid Fire
 	end
-	self:Nameplate(326450, 15.8, guid) -- Loyal Beasts
+	self:Nameplate(326450, 15.1, guid) -- Loyal Beasts
 end
 
 function mod:LoyalBeasts(args)
@@ -365,7 +362,7 @@ end
 -- Depraved Obliterator
 
 function mod:DepravedObliteratorEngaged(guid)
-	self:Nameplate(325876, 4.8, guid) -- Mark of Obliteration
+	self:Nameplate(325876, 8.2, guid) -- Mark of Obliteration
 end
 
 do
@@ -385,7 +382,7 @@ function mod:CurseOfObliterationInterrupt(args) -- XXX remove in 11.2
 end
 
 function mod:MarkOfObliteration(args)
-	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+	self:Nameplate(args.spellId, 23.6, args.sourceGUID)
 end
 
 do
@@ -393,26 +390,27 @@ do
 	function mod:MarkOfObliterationApplied(args)
 		self:TargetMessage(args.spellId, "orange", args.destName)
 		if self:Me(args.destGUID) then
-			if not self:Solo() and args.time - prevOnMe > 8 then
+			if not self:Solo() and args.time - prevOnMe > 12 then
 				prevOnMe = args.time
 				if isElevenDotTwo then -- XXX remove check in 11.2
 					self:Say(args.spellId, nil, nil, "Mark of Obliteration")
-					self:SayCountdown(args.spellId, 8)
+					self:SayCountdown(args.spellId, 12)
 				else -- XXX remove block in 11.2
 					self:Say(args.spellId, CL.curse, nil, "Curse")
 					self:SayCountdown(args.spellId, 6)
 				end
 			end
-			self:PlaySound(args.spellId, "alarm")
+			self:PlaySound(args.spellId, "info")
 		else
-			self:PlaySound(args.spellId, "info", nil, args.destName)
+			self:PlaySound(args.spellId, "alarm", nil, args.destName)
 		end
 	end
-end
 
-function mod:MarkOfObliterationRemoved(args)
-	if self:Me(args.destGUID) then
-		self:CancelSayCountdown(args.spellId)
+	function mod:MarkOfObliterationRemoved(args)
+		if self:Me(args.destGUID) then
+			prevOnMe = 0
+			self:CancelSayCountdown(args.spellId)
+		end
 	end
 end
 
@@ -423,21 +421,20 @@ end
 -- Depraved Collector
 
 function mod:DepravedCollectorEngaged(guid)
-	self:Nameplate(325701, 3.5, guid) -- Siphon Life
-	self:Nameplate(325700, 7.1, guid) -- Collect Sins
+	self:Nameplate(325701, 3.1, guid) -- Siphon Life
 end
 
-function mod:CollectSins(args)
+function mod:CollectSins(args) -- XXX remove in 11.2
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:CollectSinsInterrupt(args)
+function mod:CollectSinsInterrupt(args) -- XXX remove in 11.2
 	self:Nameplate(325700, 15.1, args.destGUID)
 end
 
-function mod:CollectSinsSuccess(args)
+function mod:CollectSinsSuccess(args) -- XXX remove in 11.2
 	self:Nameplate(args.spellId, 15.1, args.sourceGUID)
 end
 
@@ -448,14 +445,12 @@ function mod:SiphonLifeStart(args) -- XXX remove in 11.2
 end
 
 function mod:SiphonLife(args)
-	self:Nameplate(args.spellId, 12.2, args.sourceGUID)
+	self:Nameplate(args.spellId, 15.9, args.sourceGUID)
 end
 
 function mod:SiphonLifeApplied(args)
-	if self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) then
-		self:TargetMessage(args.spellId, "orange", args.destName)
-		self:PlaySound(args.spellId, "info", nil, args.destName)
-	end
+	self:TargetMessage(args.spellId, "orange", args.destName)
+	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end
 
 function mod:DepravedCollectorDeath(args)
@@ -520,7 +515,7 @@ end
 -- Stoneborn Reaver
 
 function mod:StonebornReaverEngaged(guid)
-	self:Nameplate(1235766, 4.7, guid) -- Mortal Strike
+	self:Nameplate(1235766, 4.3, guid) -- Mortal Strike
 	self:Nameplate(1235762, 20.2, guid) -- Turn to Stone
 end
 
@@ -599,7 +594,6 @@ end
 -- Stoneborn Eviscerator
 
 function mod:StonebornEvisceratorEngaged(guid)
-	self:Nameplate(1235257, 4.4, guid) -- Glaivestorm
 	self:Nameplate(326638, 9.2, guid) -- Hurl Glaive
 end
 
@@ -611,18 +605,6 @@ do
 			prev = args.time
 			self:TargetMessage(args.spellId, "red", args.destName)
 			self:PlaySound(args.spellId, "alert", nil, args.destName)
-		end
-	end
-end
-
-do
-	local prev = 0
-	function mod:Glaivestorm(args)
-		self:Nameplate(args.spellId, 12.1, args.sourceGUID)
-		if args.time - prev > 2 then
-			prev = args.time
-			self:Message(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "alert")
 		end
 	end
 end
