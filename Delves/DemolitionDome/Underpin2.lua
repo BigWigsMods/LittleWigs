@@ -25,6 +25,11 @@ end
 
 function mod:OnRegister()
 	self.displayName = L.the_underpin
+	self:SetSpellRename(1213852, CL.leap) -- Crush (Leap)
+	self:SetSpellRename(1217371, CL.frontal_cone) -- Flamethrower (Frontal Cone)
+	self:SetSpellRename(1214147, CL.bombs) -- Time Bomb Launcher (Bombs)
+	self:SetSpellRename(1217661, CL.adds) -- Signal Cronies (Adds)
+	self:SetSpellRename(1217667, CL.shield) -- Divert Energy to Shields (Shield)
 end
 
 function mod:GetOptions()
@@ -38,8 +43,14 @@ function mod:GetOptions()
 		-- Crony
 		{1214043, "OFF"}, -- Molten Cannon
 		1218153, -- Flaming Wreckage
-	}, {
+	},{
 		[1214043] = L.crony,
+	},{
+		[1213852] = CL.leap, -- Crush (Leap)
+		[1217371] = CL.frontal_cone, -- Flamethrower (Frontal Cone)
+		[1214147] = CL.bombs, -- Time Bomb Launcher (Bombs)
+		[1217661] = CL.adds, -- Signal Cronies (Adds)
+		[1217667] = CL.shield, -- Divert Energy to Shields (Shield)
 	}
 end
 
@@ -59,12 +70,12 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(1213852, 4.6) -- Crush
-	self:CDBar(1217371, 9.4) -- Flamethrower
-	self:CDBar(1214147, 17.0) -- Time Bomb Launcher
-	self:CDBar(1217661, 21.1) -- Signal Cronies
+	self:CDBar(1213852, 4.6, CL.leap) -- Crush
+	self:CDBar(1217371, 9.4, CL.frontal_cone) -- Flamethrower
+	self:CDBar(1214147, 17.0, CL.bombs) -- Time Bomb Launcher
+	self:CDBar(1217661, 21.1, CL.adds) -- Signal Cronies
 	-- cast at 100 energy, 45s energy gain + delay
-	self:CDBar(1217667, 45.8) -- Divert Energy to Shields
+	self:CDBar(1217667, 45.8, CL.shield) -- Divert Energy to Shields
 end
 
 --------------------------------------------------------------------------------
@@ -72,33 +83,33 @@ end
 --
 
 function mod:Crush(args)
-	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 15.4)
+	self:Message(args.spellId, "orange", CL.leap)
+	self:CDBar(args.spellId, 15.4, CL.leap)
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:Flamethrower(args)
-	self:Message(args.spellId, "red")
-	self:CDBar(args.spellId, 15.1)
+	self:Message(args.spellId, "red", CL.frontal_cone)
+	self:CDBar(args.spellId, 15.1, CL.frontal_cone)
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:TimeBombLauncher(args)
-	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 20.6)
+	self:Message(args.spellId, "yellow", CL.bombs)
+	self:CDBar(args.spellId, 20.6, CL.bombs)
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:SignalCronies(args)
-	self:Message(args.spellId, "cyan")
-	self:CDBar(args.spellId, 48.2)
+	self:Message(args.spellId, "cyan", CL.adds)
+	self:CDBar(args.spellId, 48.2, CL.adds)
 	self:PlaySound(args.spellId, "long")
 end
 
 function mod:DivertEnergyToShields(args)
 	-- will not be cast if above 80% HP
-	self:StopBar(args.spellId)
-	self:Message(args.spellId, "cyan")
+	self:StopBar(CL.shield)
+	self:Message(args.spellId, "cyan", CL.shield)
 	self:PlaySound(args.spellId, "warning")
 end
 
@@ -113,12 +124,12 @@ do
 	function mod:DivertEnergyToShieldsRemoved(args)
 		self:StopCastBar(self:SpellName(1217666)) -- Recharge
 		-- 45s enery gain + delay
-		self:CDBar(args.spellId, 45.8) -- Divert Energy to Shields
+		self:CDBar(args.spellId, 45.8, CL.shield) -- Divert Energy to Shields
 		if args.amount > 0 then
 			self:Message(args.spellId, "cyan", CL.percent:format(25, self:SpellName(1217666))) -- Recharge
 			self:PlaySound(args.spellId, "warning")
 		else
-			self:Message(args.spellId, "green", CL.removed_after:format(args.spellName, args.time - rechargeStart))
+			self:Message(args.spellId, "green", CL.removed_after:format(CL.shield, args.time - rechargeStart))
 			self:PlaySound(args.spellId, "info")
 		end
 	end
