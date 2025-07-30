@@ -169,9 +169,7 @@ function mod:OnBossEnable()
 
 	-- K'aresh Elemental
 	self:RegisterEngageMob("KareshElementalEngaged", 235151)
-	self:Log("SPELL_CAST_START", "EmbraceOfKaresh", 1223000)
-	self:Log("SPELL_INTERRUPT", "EmbraceOfKareshInterrupt", 1223000)
-	self:Log("SPELL_CAST_SUCCESS", "EmbraceOfKareshSuccess", 1223000)
+	self:Log("SPELL_CAST_SUCCESS", "EmbraceOfKaresh", 1223000)
 	self:Log("SPELL_AURA_APPLIED", "EmbraceOfKareshApplied", 1223000)
 	self:Death("KareshElementalDeath", 235151)
 
@@ -433,27 +431,25 @@ end
 -- K'aresh Elemental
 
 function mod:KareshElementalEngaged(guid)
-	self:Nameplate(1223000, 7.1, guid) -- Embrace of K'aresh
+	if self:Dispeller("magic", true, 1223000) then
+		self:Nameplate(1223000, 7.1, guid) -- Embrace of K'aresh
+	end
 end
 
 function mod:EmbraceOfKaresh(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
+	if self:Dispeller("magic", true, args.spellId) then
+		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+	end
 end
 
-function mod:EmbraceOfKareshInterrupt(args)
-	self:Nameplate(1223000, 18.2, args.destGUID)
-end
-
-function mod:EmbraceOfKareshSuccess(args)
-	self:Nameplate(args.spellId, 18.2, args.sourceGUID)
-end
-
-function mod:EmbraceOfKareshApplied(args)
-	if self:Dispeller("magic", true, args.spellId) and not self:Friendly(args.destFlags) then
-		self:Message(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
-		self:PlaySound(args.spellId, "info")
+do
+	local prev = 0
+	function mod:EmbraceOfKareshApplied(args)
+		if self:Dispeller("magic", true, args.spellId) and not self:Friendly(args.destFlags) and args.time - prev > 2.5 then
+			prev = args.time
+			self:Message(args.spellId, "orange", CL.on:format(args.spellName, args.destName))
+			self:PlaySound(args.spellId, "info")
+		end
 	end
 end
 
