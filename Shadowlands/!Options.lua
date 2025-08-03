@@ -833,6 +833,7 @@ BigWigs:AddColors("So'leah", {
 	[351124] = "yellow",
 	[351646] = "orange",
 	[353635] = "red",
+	[357190] = {"blue","orange"},
 	["stages"] = "cyan",
 })
 

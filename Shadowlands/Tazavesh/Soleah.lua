@@ -36,9 +36,12 @@ function mod:GetOptions()
 		350875, -- Hyperlight Jolt
 		351096, -- Energy Fragmentation
 		351646, -- Hyperlight Nova
+		-- Hard Mode
+		{357190, "ME_ONLY"}, -- Star Vulnerability
 	}, {
 		[350796] = -23344, -- Stage One: Final Preparations
 		[351086] = -23340, -- Stage Two: Power Overwhelming
+		[357190] = CL.hard,
 	}
 end
 
@@ -64,6 +67,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "PowerOverwhelmingRemoved", 351086)
 	self:Log("SPELL_CAST_START", "EnergyFragmentation", 351096)
 	self:Log("SPELL_CAST_START", "HyperlightNova", 351646)
+
+	-- Hard Mode
+	self:Log("SPELL_AURA_APPLIED", "StarVulnerabilityApplied", 357190)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "StarVulnerabilityApplied", 357190)
 end
 
 function mod:OnEngage()
@@ -222,4 +229,11 @@ function mod:HyperlightNova(args)
 		self:CDBar(args.spellId, 38.9)
 		self:PlaySound(args.spellId, "alarm")
 	end
+end
+
+-- Hard Mode
+
+function mod:StarVulnerabilityApplied(args)
+	self:StackMessage(args.spellId, "orange", args.destName, args.amount, 1)
+	-- sound covered by :CollapsingEnergyApplied
 end
