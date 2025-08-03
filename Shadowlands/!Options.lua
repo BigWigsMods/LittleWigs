@@ -756,6 +756,7 @@ BigWigs:AddSounds("Myza's Oasis", {
 })
 
 BigWigs:AddColors("So'azmi", {
+	[347150] = "red",
 	[347249] = "cyan",
 	[347610] = "yellow",
 	[347623] = "orange",
@@ -763,10 +764,12 @@ BigWigs:AddColors("So'azmi", {
 	[1245579] = "yellow",
 	[1245634] = "cyan",
 	[1245669] = "red",
+	[1245752] = "red",
 	[1248209] = "purple",
 })
 
 BigWigs:AddSounds("So'azmi", {
+	[347150] = "alert",
 	[347249] = "info",
 	[347610] = "warning",
 	[347623] = "alarm",
@@ -774,6 +777,7 @@ BigWigs:AddSounds("So'azmi", {
 	[1245579] = "warning",
 	[1245634] = "info",
 	[1245669] = "alert",
+	[1245752] = "alert",
 	[1248209] = "alert",
 })
 
