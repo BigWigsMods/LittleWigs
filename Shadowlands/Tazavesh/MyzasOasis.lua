@@ -14,7 +14,12 @@ mod:RegisterEnableMob(
 	176563, -- Zo'gron
 	176562, -- Brawling Patron
 	176565, -- Disruptive Patron
-	179269 -- Oasis Security
+	179269, -- Oasis Security
+	180486, -- Dirtwhistle (Hard Mode)
+	180399, -- Evaile (Hard Mode)
+	180485, -- Hips (Hard Mode)
+	180470, -- Verethian (Hard Mode)
+	180484 -- Vilt (Hard Mode)
 )
 --mod:SetEncounterID(2440) no boss frames in Stage 1
 mod:SetRespawnTime(30)
@@ -59,9 +64,14 @@ if isElevenDotTwo then -- XXX remove check in 11.2
 			355438, -- Suppression Spark
 			{359028, "TANK"}, -- Security Slam
 			1241032, -- Final Warning
+			-- Hard Mode
+			{357404, "NAMEPLATE"}, -- Dischordant Song
+			{357436, "NAMEPLATE"}, -- Infectious Solo
+			{357542, "NAMEPLATE"}, -- Rip Chord
 		}, {
 			[356482] = -23096, -- Stage One: Unruly Patrons
-			[350922] = -23749, -- Stage Two: Closing Time
+			[350919] = -23749, -- Stage Two: Closing Time
+			[357404] = CL.hard,
 		}
 	end
 else -- XXX remove block in 11.2
@@ -82,9 +92,14 @@ else -- XXX remove block in 11.2
 			350919, -- Crowd Control
 			355438, -- Suppression Spark
 			{359028, "TANK"}, -- Security Slam
+			-- Hard Mode
+			{357404, "NAMEPLATE"}, -- Dischordant Song
+			{357436, "NAMEPLATE"}, -- Infectious Solo
+			{357542, "NAMEPLATE"}, -- Rip Chord
 		}, {
 			[356482] = -23096, -- Stage One: Unruly Patrons
-			[350922] = -23749, -- Stage Two: Closing Time
+			[350919] = -23749, -- Stage Two: Closing Time
+			[357404] = CL.hard,
 		}
 	end
 end
@@ -122,6 +137,14 @@ function mod:OnBossEnable()
 	if isElevenDotTwo then -- XXX remove check in 11.2
 		self:Log("SPELL_CAST_START", "FinalWarning", 1241032)
 	end
+
+	-- Hard Mode
+	self:RegisterEngageMob("EvaileEngaged", 180399)
+	self:Log("SPELL_CAST_START", "DischordantSong", 357404)
+	self:RegisterEngageMob("VerethianEngaged", 180470)
+	self:Log("SPELL_CAST_START", "InfectiousSolo", 357436)
+	self:RegisterEngageMob("ViltEngaged", 180484)
+	self:Log("SPELL_CAST_START", "RipChord", 357542)
 end
 
 function mod:OnEngage()
@@ -305,4 +328,36 @@ function mod:FinalWarning(args)
 	end
 	finalWarningCount = finalWarningCount + 1
 	self:PlaySound(args.spellId, "long")
+end
+
+-- Hard Mode
+
+function mod:EvaileEngaged(guid)
+	self:Nameplate(357404, 13.9, guid) -- Dischordant Song
+end
+
+function mod:DischordantSong(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:VerethianEngaged(guid)
+	self:Nameplate(357436, 9.9, guid) -- Infectious Solo
+end
+
+function mod:InfectiousSolo(args)
+	self:Message(args.spellId, "yellow")
+	self:Nameplate(args.spellId, 20.2, args.sourceGUID)
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:ViltEngaged(guid)
+	self:Nameplate(357542, 16.1, guid) -- Rip Chord
+end
+
+function mod:RipChord(args)
+	self:Message(args.spellId, "orange")
+	self:Nameplate(args.spellId, 16.6, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
 end
