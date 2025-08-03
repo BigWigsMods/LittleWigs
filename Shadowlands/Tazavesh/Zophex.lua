@@ -90,7 +90,9 @@ end
 --
 
 function mod:Warmup() -- called from trash module
-	self:Bar("warmup", 9.2, CL.active, "achievement_dungeon_brokerdungeon")
+	if not self:IsEngaged() then -- prevent this bar in Hard Mode
+		self:Bar("warmup", 9.2, CL.active, "achievement_dungeon_brokerdungeon")
+	end
 end
 
 function mod:Interrogation(args)
