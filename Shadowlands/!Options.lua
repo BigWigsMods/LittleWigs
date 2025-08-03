@@ -787,6 +787,7 @@ BigWigs:AddColors("Hylbrande", {
 	[346957] = {"blue","orange"},
 	[347094] = "red",
 	[353312] = "yellow",
+	[358131] = "red",
 	["vault_purifier"] = "yellow",
 })
 
@@ -796,6 +797,7 @@ BigWigs:AddSounds("Hylbrande", {
 	[346957] = {"underyou","warning"},
 	[347094] = "alarm",
 	[353312] = "info",
+	[358131] = "alert",
 	["vault_purifier"] = "info",
 })
 

@@ -36,24 +36,31 @@ function mod:GetOptions()
 		347094, -- Titanic Crash
 		{346957, "SAY"}, -- Purged by Fire
 		346766, -- Sanitizing Cycle
-		"vault_purifier", -- Vault Purifier
-	}, nil, {
+		"vault_purifier", -- Vault Purifier (Adds)
+		-- Hard Mode
+		358131, -- Lightning Nova
+	}, {
+		[358131] = CL.hard,
+	}, {
 		["vault_purifier"] = CL.adds,
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
-	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1")
 	self:Log("SPELL_CAST_START", "PurifyingBurst", 353312)
 	self:Log("SPELL_CAST_SUCCESS", "ShearingSwings", 346116)
 	self:Log("SPELL_CAST_START", "TitanicCrash", 347094)
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER") -- Purged By Fire
 	self:Log("SPELL_CAST_START", "PurgedByFire", 346957)
 	self:Log("SPELL_DAMAGE", "PurgedByFireDamage", 346960)
 	self:Log("SPELL_MISSED", "PurgedByFireDamage", 346960)
 	self:Log("SPELL_CAST_START", "SanitizingCycle", 346766)
 	self:Log("SPELL_CAST_SUCCESS", "SanitizingCycleSuccess", 346766)
 	self:Log("SPELL_AURA_REMOVED", "SanitizingCycleRemoved", 346766)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Vault Purifier
+
+	-- Hard Mode
+	self:Log("SPELL_CAST_START", "LightningNova", 358131)
 end
 
 function mod:OnEngage()
@@ -69,18 +76,6 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-
-function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 346971 then -- [DNT] Summon Vault Defender
-		self:Message("vault_purifier", "yellow", CL.adds_spawning, L.vault_purifier_icon)
-		if nextSanitizingCycle - GetTime() > 29.8 then
-			self:CDBar("vault_purifier", 27.8, CL.adds, L.vault_purifier_icon)
-		else
-			self:StopBar(CL.adds)
-		end
-		self:PlaySound("vault_purifier", "info")
-	end
-end
 
 function mod:PurifyingBurst(args)
 	self:Message(args.spellId, "yellow")
@@ -177,4 +172,23 @@ do
 		self:CDBar(args.spellId, 69.4)
 		self:PlaySound(args.spellId, "long")
 	end
+end
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
+	if spellId == 346971 then -- [DNT] Summon Vault Defender
+		self:Message("vault_purifier", "yellow", CL.adds_spawning, L.vault_purifier_icon)
+		if nextSanitizingCycle - GetTime() > 29.8 then
+			self:CDBar("vault_purifier", 27.8, CL.adds, L.vault_purifier_icon)
+		else
+			self:StopBar(CL.adds)
+		end
+		self:PlaySound("vault_purifier", "info")
+	end
+end
+
+-- Hard Mode
+
+function mod:LightningNova(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:PlaySound(args.spellId, "alert")
 end
