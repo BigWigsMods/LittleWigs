@@ -22,13 +22,13 @@
 
 modules.xml
 
-!Locales\deDE.lua
-!Locales\esES.lua
-!Locales\esMX.lua
-!Locales\frFR.lua
-!Locales\itIT.lua
-!Locales\koKR.lua
-!Locales\ptBR.lua
-!Locales\ruRU.lua
-!Locales\zhCN.lua
-!Locales\zhTW.lua
+!Locales\deDE.lua [AllowLoadTextLocale deDE]
+!Locales\esES.lua [AllowLoadTextLocale esES]
+!Locales\esMX.lua [AllowLoadTextLocale esMX]
+!Locales\frFR.lua [AllowLoadTextLocale frFR]
+!Locales\itIT.lua [AllowLoadTextLocale itIT]
+!Locales\koKR.lua [AllowLoadTextLocale koKR]
+!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+!Locales\zhTW.lua [AllowLoadTextLocale zhTW]

@@ -33,136 +33,136 @@
 ## X-BigWigs-NoMenu: 1616, 1673, 1684, 1698, 1702, 1703, 1710, 2827, 2828
 ## X-BigWigs-LoadOn-InstanceId: 36,209,329,429, 269,540,542,543,545,546,547,552,553,554,555,556,557,558,560,585, 536,574,575,576,578,595,599,600,601,602,604,608,619,632,650,658,668, 33,568,643,644,645,657,670,725,755,859,938,939,940, 959,960,961,962,994,1001,1004,1007,1011,1112, 1175,1176,1182,1195,1208,1209,1279,1358, 1456,1466,1477,1458,1492,1493,1501,1516,1544,1571,1616,1651,1673,1677,1684,1698,1702,1703,1710,1753, 1594,1754,1762,1763,1771,1822,1841,1862,1864,1877,2097,2212,2213,2827,2828, 2284,2285,2286,2287,2289,2290,2291,2293,2441, 2520,2527,2519,2521,2526,2515,2516,2451,2579, 2648,2649,2651,2652,2660,2661,2662,2669,2773,2830, 2710, 2664,2679,2680,2681,2682,2683,2684,2685,2686,2687,2688,2689,2690,2803,2815,2826,2831,2849,2951
 Classic\modules.xml
-Classic\!Locales\deDE.lua
-Classic\!Locales\esES.lua
-Classic\!Locales\esMX.lua
-Classic\!Locales\frFR.lua
-Classic\!Locales\itIT.lua
-Classic\!Locales\koKR.lua
-Classic\!Locales\ptBR.lua
-Classic\!Locales\ruRU.lua
-Classic\!Locales\zhCN.lua
-Classic\!Locales\zhTW.lua
+Classic\!Locales\deDE.lua [AllowLoadTextLocale deDE]
+Classic\!Locales\esES.lua [AllowLoadTextLocale esES]
+Classic\!Locales\esMX.lua [AllowLoadTextLocale esMX]
+Classic\!Locales\frFR.lua [AllowLoadTextLocale frFR]
+Classic\!Locales\itIT.lua [AllowLoadTextLocale itIT]
+Classic\!Locales\koKR.lua [AllowLoadTextLocale koKR]
+Classic\!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+Classic\!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+Classic\!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+Classic\!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
 TBC\modules.xml
-TBC\!Locales\deDE.lua
-TBC\!Locales\esES.lua
-TBC\!Locales\esMX.lua
-TBC\!Locales\frFR.lua
-TBC\!Locales\itIT.lua
-TBC\!Locales\koKR.lua
-TBC\!Locales\ptBR.lua
-TBC\!Locales\ruRU.lua
-TBC\!Locales\zhCN.lua
-TBC\!Locales\zhTW.lua
+TBC\!Locales\deDE.lua [AllowLoadTextLocale deDE]
+TBC\!Locales\esES.lua [AllowLoadTextLocale esES]
+TBC\!Locales\esMX.lua [AllowLoadTextLocale esMX]
+TBC\!Locales\frFR.lua [AllowLoadTextLocale frFR]
+TBC\!Locales\itIT.lua [AllowLoadTextLocale itIT]
+TBC\!Locales\koKR.lua [AllowLoadTextLocale koKR]
+TBC\!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+TBC\!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+TBC\!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+TBC\!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
 WotLK\modules.xml
-WotLK\!Locales\deDE.lua
-WotLK\!Locales\esES.lua
-WotLK\!Locales\esMX.lua
-WotLK\!Locales\frFR.lua
-WotLK\!Locales\itIT.lua
-WotLK\!Locales\koKR.lua
-WotLK\!Locales\ptBR.lua
-WotLK\!Locales\ruRU.lua
-WotLK\!Locales\zhCN.lua
-WotLK\!Locales\zhTW.lua
+WotLK\!Locales\deDE.lua [AllowLoadTextLocale deDE]
+WotLK\!Locales\esES.lua [AllowLoadTextLocale esES]
+WotLK\!Locales\esMX.lua [AllowLoadTextLocale esMX]
+WotLK\!Locales\frFR.lua [AllowLoadTextLocale frFR]
+WotLK\!Locales\itIT.lua [AllowLoadTextLocale itIT]
+WotLK\!Locales\koKR.lua [AllowLoadTextLocale koKR]
+WotLK\!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+WotLK\!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+WotLK\!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+WotLK\!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
 Cataclysm\modules.xml
-Cataclysm\!Locales\deDE.lua
-Cataclysm\!Locales\esES.lua
-Cataclysm\!Locales\esMX.lua
-Cataclysm\!Locales\frFR.lua
-Cataclysm\!Locales\itIT.lua
-Cataclysm\!Locales\koKR.lua
-Cataclysm\!Locales\ptBR.lua
-Cataclysm\!Locales\ruRU.lua
-Cataclysm\!Locales\zhCN.lua
-Cataclysm\!Locales\zhTW.lua
+Cataclysm\!Locales\deDE.lua [AllowLoadTextLocale deDE]
+Cataclysm\!Locales\esES.lua [AllowLoadTextLocale esES]
+Cataclysm\!Locales\esMX.lua [AllowLoadTextLocale esMX]
+Cataclysm\!Locales\frFR.lua [AllowLoadTextLocale frFR]
+Cataclysm\!Locales\itIT.lua [AllowLoadTextLocale itIT]
+Cataclysm\!Locales\koKR.lua [AllowLoadTextLocale koKR]
+Cataclysm\!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+Cataclysm\!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+Cataclysm\!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+Cataclysm\!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
 MoP\modules.xml
-MoP\!Locales\deDE.lua
-MoP\!Locales\esES.lua
-MoP\!Locales\esMX.lua
-MoP\!Locales\frFR.lua
-MoP\!Locales\itIT.lua
-MoP\!Locales\koKR.lua
-MoP\!Locales\ptBR.lua
-MoP\!Locales\ruRU.lua
-MoP\!Locales\zhCN.lua
-MoP\!Locales\zhTW.lua
+MoP\!Locales\deDE.lua [AllowLoadTextLocale deDE]
+MoP\!Locales\esES.lua [AllowLoadTextLocale esES]
+MoP\!Locales\esMX.lua [AllowLoadTextLocale esMX]
+MoP\!Locales\frFR.lua [AllowLoadTextLocale frFR]
+MoP\!Locales\itIT.lua [AllowLoadTextLocale itIT]
+MoP\!Locales\koKR.lua [AllowLoadTextLocale koKR]
+MoP\!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+MoP\!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+MoP\!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+MoP\!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
 WoD\modules.xml
-WoD\!Locales\deDE.lua
-WoD\!Locales\esES.lua
-WoD\!Locales\esMX.lua
-WoD\!Locales\frFR.lua
-WoD\!Locales\itIT.lua
-WoD\!Locales\koKR.lua
-WoD\!Locales\ptBR.lua
-WoD\!Locales\ruRU.lua
-WoD\!Locales\zhCN.lua
-WoD\!Locales\zhTW.lua
+WoD\!Locales\deDE.lua [AllowLoadTextLocale deDE]
+WoD\!Locales\esES.lua [AllowLoadTextLocale esES]
+WoD\!Locales\esMX.lua [AllowLoadTextLocale esMX]
+WoD\!Locales\frFR.lua [AllowLoadTextLocale frFR]
+WoD\!Locales\itIT.lua [AllowLoadTextLocale itIT]
+WoD\!Locales\koKR.lua [AllowLoadTextLocale koKR]
+WoD\!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+WoD\!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+WoD\!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+WoD\!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
 Legion\modules.xml
-Legion\!Locales\deDE.lua
-Legion\!Locales\esES.lua
-Legion\!Locales\esMX.lua
-Legion\!Locales\frFR.lua
-Legion\!Locales\itIT.lua
-Legion\!Locales\koKR.lua
-Legion\!Locales\ptBR.lua
-Legion\!Locales\ruRU.lua
-Legion\!Locales\zhCN.lua
-Legion\!Locales\zhTW.lua
+Legion\!Locales\deDE.lua [AllowLoadTextLocale deDE]
+Legion\!Locales\esES.lua [AllowLoadTextLocale esES]
+Legion\!Locales\esMX.lua [AllowLoadTextLocale esMX]
+Legion\!Locales\frFR.lua [AllowLoadTextLocale frFR]
+Legion\!Locales\itIT.lua [AllowLoadTextLocale itIT]
+Legion\!Locales\koKR.lua [AllowLoadTextLocale koKR]
+Legion\!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+Legion\!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+Legion\!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+Legion\!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
 BfA\modules.xml
-BfA\!Locales\deDE.lua
-BfA\!Locales\esES.lua
-BfA\!Locales\esMX.lua
-BfA\!Locales\frFR.lua
-BfA\!Locales\itIT.lua
-BfA\!Locales\koKR.lua
-BfA\!Locales\ptBR.lua
-BfA\!Locales\ruRU.lua
-BfA\!Locales\zhCN.lua
-BfA\!Locales\zhTW.lua
+BfA\!Locales\deDE.lua [AllowLoadTextLocale deDE]
+BfA\!Locales\esES.lua [AllowLoadTextLocale esES]
+BfA\!Locales\esMX.lua [AllowLoadTextLocale esMX]
+BfA\!Locales\frFR.lua [AllowLoadTextLocale frFR]
+BfA\!Locales\itIT.lua [AllowLoadTextLocale itIT]
+BfA\!Locales\koKR.lua [AllowLoadTextLocale koKR]
+BfA\!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+BfA\!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+BfA\!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+BfA\!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
 Shadowlands\modules.xml
-Shadowlands\!Locales\deDE.lua
-Shadowlands\!Locales\esES.lua
-Shadowlands\!Locales\esMX.lua
-Shadowlands\!Locales\frFR.lua
-Shadowlands\!Locales\itIT.lua
-Shadowlands\!Locales\koKR.lua
-Shadowlands\!Locales\ptBR.lua
-Shadowlands\!Locales\ruRU.lua
-Shadowlands\!Locales\zhCN.lua
-Shadowlands\!Locales\zhTW.lua
+Shadowlands\!Locales\deDE.lua [AllowLoadTextLocale deDE]
+Shadowlands\!Locales\esES.lua [AllowLoadTextLocale esES]
+Shadowlands\!Locales\esMX.lua [AllowLoadTextLocale esMX]
+Shadowlands\!Locales\frFR.lua [AllowLoadTextLocale frFR]
+Shadowlands\!Locales\itIT.lua [AllowLoadTextLocale itIT]
+Shadowlands\!Locales\koKR.lua [AllowLoadTextLocale koKR]
+Shadowlands\!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+Shadowlands\!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+Shadowlands\!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+Shadowlands\!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
 Dragonflight\modules.xml
-Dragonflight\!Locales\deDE.lua
-Dragonflight\!Locales\esES.lua
-Dragonflight\!Locales\esMX.lua
-Dragonflight\!Locales\frFR.lua
-Dragonflight\!Locales\itIT.lua
-Dragonflight\!Locales\koKR.lua
-Dragonflight\!Locales\ptBR.lua
-Dragonflight\!Locales\ruRU.lua
-Dragonflight\!Locales\zhCN.lua
-Dragonflight\!Locales\zhTW.lua
+Dragonflight\!Locales\deDE.lua [AllowLoadTextLocale deDE]
+Dragonflight\!Locales\esES.lua [AllowLoadTextLocale esES]
+Dragonflight\!Locales\esMX.lua [AllowLoadTextLocale esMX]
+Dragonflight\!Locales\frFR.lua [AllowLoadTextLocale frFR]
+Dragonflight\!Locales\itIT.lua [AllowLoadTextLocale itIT]
+Dragonflight\!Locales\koKR.lua [AllowLoadTextLocale koKR]
+Dragonflight\!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+Dragonflight\!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+Dragonflight\!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+Dragonflight\!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
 #@end-do-not-package@
 
 WarWithin\modules.xml
-WarWithin\!Locales\deDE.lua
-WarWithin\!Locales\esES.lua
-WarWithin\!Locales\esMX.lua
-WarWithin\!Locales\frFR.lua
-WarWithin\!Locales\itIT.lua
-WarWithin\!Locales\koKR.lua
-WarWithin\!Locales\ptBR.lua
-WarWithin\!Locales\ruRU.lua
-WarWithin\!Locales\zhCN.lua
-WarWithin\!Locales\zhTW.lua
+WarWithin\!Locales\deDE.lua [AllowLoadTextLocale deDE]
+WarWithin\!Locales\esES.lua [AllowLoadTextLocale esES]
+WarWithin\!Locales\esMX.lua [AllowLoadTextLocale esMX]
+WarWithin\!Locales\frFR.lua [AllowLoadTextLocale frFR]
+WarWithin\!Locales\itIT.lua [AllowLoadTextLocale itIT]
+WarWithin\!Locales\koKR.lua [AllowLoadTextLocale koKR]
+WarWithin\!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+WarWithin\!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+WarWithin\!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+WarWithin\!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
 Delves\modules.xml
-Delves\!Locales\deDE.lua
-Delves\!Locales\esES.lua
-Delves\!Locales\esMX.lua
-Delves\!Locales\frFR.lua
-Delves\!Locales\itIT.lua
-Delves\!Locales\koKR.lua
-Delves\!Locales\ptBR.lua
-Delves\!Locales\ruRU.lua
-Delves\!Locales\zhCN.lua
-Delves\!Locales\zhTW.lua
+Delves\!Locales\deDE.lua [AllowLoadTextLocale deDE]
+Delves\!Locales\esES.lua [AllowLoadTextLocale esES]
+Delves\!Locales\esMX.lua [AllowLoadTextLocale esMX]
+Delves\!Locales\frFR.lua [AllowLoadTextLocale frFR]
+Delves\!Locales\itIT.lua [AllowLoadTextLocale itIT]
+Delves\!Locales\koKR.lua [AllowLoadTextLocale koKR]
+Delves\!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
+Delves\!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
+Delves\!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
+Delves\!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
