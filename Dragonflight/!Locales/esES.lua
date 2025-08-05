@@ -1,7 +1,6 @@
 -- Algeth'ar Academy
 
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "esES")
-if not L then return end
 if L then
 	L.custom_on_recruiter_autotalk_desc = "Ofrece instantánemante un beneficio a los reclutadores Dragonflight."
 	L.critical_strike = "+5% Golpe crítico"

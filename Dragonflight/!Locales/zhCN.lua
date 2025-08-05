@@ -1,7 +1,6 @@
 -- Algeth'ar Academy
 
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "zhCN")
-if not L then return end
 if L then
 	L.custom_on_recruiter_autotalk_desc = "在与你选择的巨龙招募人员对话时自动确认选项，获取增益。"
 	L.critical_strike = "+5% 爆击"

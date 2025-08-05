@@ -1,7 +1,6 @@
 -- Atal'Dazar
 
 local L = BigWigs:NewBossLocale("Atal'Dazar Trash", "ptBR")
-if not L then return end
 if L then
 	L.skyscreamer = "Gritacéu Devorante"
 	L.tlonja = "T'lonja"

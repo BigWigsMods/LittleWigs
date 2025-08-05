@@ -1,7 +1,6 @@
 -- Algeth'ar Academy
 
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "deDE")
-if not L then return end
 if L then
 	L.custom_on_recruiter_autotalk_desc = "Umgehend den Stärkungszauber der Dragonflight Rekrutierer bestätigen."
 	L.critical_strike = "+5% Kritische Trefferchance"

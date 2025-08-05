@@ -1,7 +1,6 @@
 -- Algeth'ar Academy
 
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "koKR")
-if not L then return end
 if L then
 	L.custom_on_recruiter_autotalk_desc = "즉시 용군단 징집관에게 서약하여 강화 효과를 받습니다."
 	L.critical_strike = "+5% 치명타 및 극대화"

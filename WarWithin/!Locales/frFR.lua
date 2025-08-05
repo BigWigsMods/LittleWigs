@@ -1,7 +1,6 @@
 -- Ara-Kara, City of Echoes
 
 local L = BigWigs:NewBossLocale("Ara-Kara, City of Echoes Trash", "frFR")
-if not L then return end
 if L then
 	L.discordant_attendant = "Auxiliaire discordant"
 	L.engorged_crawler = "Rampante rassasiée"

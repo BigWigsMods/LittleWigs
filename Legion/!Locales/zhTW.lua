@@ -1,7 +1,6 @@
 -- Artifact Scenarios
 
 local L = BigWigs:NewBossLocale("Tugar Bloodtotem", "zhTW")
-if not L then return end
 if L then
 	--L.tugar = "Tugar Bloodtotem"
 	--L.jormog = "Jormog the Behemoth"
