@@ -20,14 +20,4 @@
 ## X-BigWigs-LoadOn-InstanceId: 536, 574, 575, 576, 578, 595, 599, 600, 601, 602, 604, 608, 619, 632, 650, 658, 668, 2849
 
 modules.xml
-
-!Locales\deDE.lua [AllowLoadTextLocale deDE]
-!Locales\esES.lua [AllowLoadTextLocale esES]
-!Locales\esMX.lua [AllowLoadTextLocale esMX]
-!Locales\frFR.lua [AllowLoadTextLocale frFR]
-!Locales\itIT.lua [AllowLoadTextLocale itIT]
-!Locales\koKR.lua [AllowLoadTextLocale koKR]
-!Locales\ptBR.lua [AllowLoadTextLocale ptBR]
-!Locales\ruRU.lua [AllowLoadTextLocale ruRU]
-!Locales\zhCN.lua [AllowLoadTextLocale zhCN]
-!Locales\zhTW.lua [AllowLoadTextLocale zhTW]
+!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
