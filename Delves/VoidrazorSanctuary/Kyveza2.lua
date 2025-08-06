@@ -15,6 +15,7 @@ mod:SetAllowWin(true)
 
 local netherRiftCount = 1
 local darkMassacreCount = 1
+local invokeTheShadowsCount = 1
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -47,7 +48,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NexusDaggers", 1245240)
 	self:Log("SPELL_CAST_START", "NetherRift", 1245582)
 	self:Log("SPELL_CAST_START", "DarkMassacre", 1245203)
-	self:Log("SPELL_CAST_START", "DarkMassacrePhantom", 1245035)
+	self:Log("SPELL_CAST_SUCCESS", "DarkMassacrePhantom", 1245035)
 	self:Log("SPELL_CAST_START", "InvokeTheShadows", 1244462)
 	self:Log("SPELL_CAST_START", "ShadowEruption", 1244600)
 end
@@ -55,10 +56,11 @@ end
 function mod:OnEngage()
 	netherRiftCount = 1
 	darkMassacreCount = 1
+	invokeTheShadowsCount = 1
 	-- Nexus Daggers is cast on pull
 	self:CDBar(1245582, 5.0) -- Nether Rift
 	self:CDBar(1245203, 20.0) -- Dark Massacre
-	self:CDBar(1244462, 64.0) -- Invoke the Shadows
+	self:CDBar(1244462, 64.0, CL.count:format(self:SpellName(1244462), invokeTheShadowsCount)) -- Invoke the Shadows
 end
 
 --------------------------------------------------------------------------------
@@ -66,7 +68,7 @@ end
 --
 
 function mod:NexusDaggers(args)
-	-- also cast by clones immediately after the boss's cast
+	-- also cast by Nether Phantoms immediately after the boss's cast
 	if self:MobId(args.sourceGUID) == 244753 then -- Nexus-Princess Ky'veza
 		self:Message(args.spellId, "orange")
 		self:CDBar(args.spellId, 30.0)
@@ -85,35 +87,46 @@ function mod:NetherRift(args)
 	self:PlaySound(args.spellId, "info")
 end
 
-function mod:DarkMassacre(args)
-	self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
-	darkMassacreCount = darkMassacreCount + 1
-	if darkMassacreCount % 2 == 0 then
-		self:CDBar(args.spellId, 30.0)
-	else
-		self:CDBar(args.spellId, 60.0)
+do
+	local phantomCount = 1
+	function mod:DarkMassacre(args)
+		phantomCount = 1
+		self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
+		darkMassacreCount = darkMassacreCount + 1
+		if darkMassacreCount % 2 == 0 then
+			self:CDBar(args.spellId, 30.0)
+		else
+			self:CDBar(args.spellId, 60.0)
+		end
+		self:PlaySound(args.spellId, "long")
+	end
+
+	function mod:DarkMassacrePhantom(args)
+		-- this alerts on SPELL_CAST_SUCCESS, denoting when it's safe to turn away from the active Nether Phantom
+		self:Message(1245203, "yellow", CL.count_amount:format(args.spellName, phantomCount, 6))
+		phantomCount = phantomCount + 1
+		if phantomCount <= 6 then
+			-- don't play a sound after the last cast
+			self:PlaySound(1245203, "alert")
+		end
 	end
 end
 
-function mod:DarkMassacrePhantom(args)
-	self:Message(1245203, "yellow")
-	self:PlaySound(1245203, "alert")
-end
-
 function mod:InvokeTheShadows(args)
-	self:Message(args.spellId, "cyan")
-	self:CDBar(args.spellId, 90.0)
+	self:StopBar(CL.count:format(args.spellName, invokeTheShadowsCount))
+	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, invokeTheShadowsCount))
+	invokeTheShadowsCount = invokeTheShadowsCount + 1
+	self:CDBar(args.spellId, 90.0, CL.count:format(args.spellName, invokeTheShadowsCount))
 	self:PlaySound(args.spellId, "info")
 end
 
 do
 	local prev = 0
 	function mod:ShadowEruption(args)
-		if args.time - prev > 5 then -- cast simultaneously by all clones
+		if args.time - prev > 5 then -- cast simultaneously by all Nether Phantoms
 			prev = args.time
 			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "warning")
 		end
 	end
 end
-

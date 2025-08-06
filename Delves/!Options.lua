@@ -826,7 +826,7 @@ BigWigs:AddColors("Nexus-Princess Ky'veza (Tier 11)", {
 BigWigs:AddSounds("Nexus-Princess Ky'veza (Tier 11)", {
 	[1244462] = "info",
 	[1244600] = "warning",
-	[1245203] = "alert",
+	[1245203] = {"alert","long"},
 	[1245240] = "alarm",
 	[1245582] = "info",
 })
