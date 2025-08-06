@@ -423,7 +423,7 @@ end
 
 function mod:TouchOfTheDrownedApplied(args)
 	if self:UnitBuff(args.destName, 5697) then return end -- Warlock Unending Breath
-	if self:Dispeller("magic") or IsSpellKnown(5697) then -- Warlock Unending Breath
+	if self:Dispeller("magic") or BigWigsLoader.IsSpellKnownOrInSpellBook(5697) then -- Warlock Unending Breath
 		self:TargetMessage(args.spellId, "yellow", args.destName)
 		self:PlaySound(args.spellId, "info", nil, args.destName)
 	end
