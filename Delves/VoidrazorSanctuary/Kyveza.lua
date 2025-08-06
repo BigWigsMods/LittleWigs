@@ -41,6 +41,7 @@ function mod:GetOptions()
 		1245203, -- Dark Massacre
 		1244462, -- Invoke the Shadows
 		1244600, -- Shadow Eruption
+		1250052, -- The Shadows
 	}
 end
 
@@ -51,6 +52,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "DarkMassacrePhantom", 1245035)
 	self:Log("SPELL_CAST_START", "InvokeTheShadows", 1244462)
 	self:Log("SPELL_CAST_START", "ShadowEruption", 1244600)
+	self:Log("SPELL_PERIODIC_DAMAGE", "TheShadowsDamage", 1250052)
+	self:Log("SPELL_PERIODIC_MISSED", "TheShadowsDamage", 1250052)
 end
 
 function mod:OnEngage()
@@ -127,6 +130,17 @@ do
 			prev = args.time
 			self:Message(args.spellId, "red")
 			self:PlaySound(args.spellId, "warning")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:TheShadowsDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then -- 1s tick rate
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
 		end
 	end
 end
