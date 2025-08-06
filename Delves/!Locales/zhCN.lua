@@ -1,5 +1,3 @@
-if GetLocale() ~= "zhCN" then return end -- XXX remove in 11.2, to be replaced with AllowLoadTextLocale
-
 -- Archival Assault
 
 local L = BigWigs:NewBossLocale("Captain Nil'hitan", "zhCN")

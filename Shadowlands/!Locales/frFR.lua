@@ -1,7 +1,6 @@
 -- De Other Side
 
 local L = BigWigs:NewBossLocale("De Other Side Trash", "frFR")
-if not L then return end
 if L then
 	-- [[ The ring ]] --
 	L.cultist = "Sectateur ressuscité"
