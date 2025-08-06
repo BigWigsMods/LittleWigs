@@ -98,6 +98,7 @@ function mod:OnBossEnable()
 	-- Pactsworn Dustblade
 	self:RegisterEngageMob("PactswornDustbladeEngaged", 244415)
 	self:Log("SPELL_CAST_START", "SandCrash", 1243017)
+	self:Log("SPELL_CAST_SUCCESS", "SandCrashSuccess", 1243017)
 	self:Death("PactswornFraycallerDeath", 244413)
 
 	-- Pactsworn Sandreaver
@@ -115,7 +116,6 @@ function mod:OnBossEnable()
 	self:Death("PactswornArcanistDeath", 244411)
 
 	-- Pactsworn Wildcaller
-	self:RegisterEngageMob("PactswornWildcallerEngaged", 244418)
 	self:Log("SPELL_CAST_START", "DuneflyerCall", 1242521)
 	self:Log("SPELL_CAST_SUCCESS", "DuneflyerCallSuccess", 1242521)
 	self:Log("SPELL_CAST_START", "SummonWarpstalker", 1242534)
@@ -185,8 +185,12 @@ end
 
 function mod:SandCrash(args)
 	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:SandCrashSuccess(args)
+	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 end
 
 function mod:PactswornDustbladeDeath(args)
@@ -243,11 +247,6 @@ function mod:PactswornArcanistDeath(args)
 end
 
 -- Pactsworn Wildcaller
-
-function mod:PactswornWildcallerEngaged(guid)
-	self:Nameplate(1242521, 100, guid) -- Duneflyer Call
-	self:Nameplate(1242534, 100, guid) -- Summon Warpstalker
-end
 
 function mod:DuneflyerCall(args)
 	self:Message(args.spellId, "yellow")
