@@ -1,4 +1,3 @@
-local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -22,7 +21,6 @@ mod:RegisterEnableMob(
 	223253, -- Bloodstained Webmage
 	216364, -- Blood Overseer
 	216363, -- Reinforced Drone
-	217039, -- Nerubian Hauler
 	216365 -- Winged Carrier
 )
 
@@ -58,109 +56,54 @@ end
 -- Initialization
 --
 
-if isElevenDotTwo then -- XXX remove check in 11.2
-	function mod:GetOptions()
-		return {
-			-- Vile Webbing
-			434830, -- Vile Webbing
-			{436614, "DISPEL"}, -- Web Wrap
-			-- Discordant Attendant
-			"custom_on_autotalk",
-			439208, -- Silk Wrap
-			-- Trilling Attendant
-			{434793, "NAMEPLATE"}, -- Resonant Barrage
-			-- Ixin
-			{434824, "NAMEPLATE"}, -- Web Spray
-			{434802, "NAMEPLATE"}, -- Horrifying Shrill
-			-- Nakt
-			{438877, "NAMEPLATE"}, -- Call of the Brood
-			-- Atik
-			{438826, "NAMEPLATE"}, -- Poisonous Cloud
-			-- Hulking Bloodguard
-			{453161, "NAMEPLATE"}, -- Impale
-			{1241693, "NAMEPLATE"}, -- Locust Swarm
-			-- Sentry Stagshell
-			432967, -- Alarm Shrill
-			-- Bloodstained Assistant
-			{433002, "TANK", "NAMEPLATE", "OFF"}, -- Extraction Strike
-			-- Bloodstained Webmage
-			{448248, "NAMEPLATE"}, -- Revolting Volley
-			-- Blood Overseer
-			{433845, "NAMEPLATE"}, -- Erupting Webs
-			{433841, "NAMEPLATE"}, -- Venom Volley
-			-- Reinforced Drone
-			{1241785, "DISPEL"}, -- Tainted Blood
-			-- Winged Carrier
-			{433821, "NAMEPLATE", "OFF"}, -- Dashing Strike
-		}, {
-			[434830] = L.vile_webbing,
-			["custom_on_autotalk"] = L.discordant_attendant,
-			[434793] = L.trilling_attendant,
-			[434824] = L.ixin,
-			[438877] = L.nakt,
-			[438826] = L.atik,
-			[453161] = L.hulking_bloodguard,
-			[432967] = L.sentry_stagshell,
-			[433002] = L.bloodstained_assistant,
-			[448248] = L.bloodstained_webmage,
-			[433845] = L.blood_overseer,
-			[1241785] = L.reinforced_drone,
-			[433821] = L.winged_carrier,
-		}
-	end
-else -- XXX remove block in 11.2
-	function mod:GetOptions()
-		return {
-			-- Vile Webbing
-			434830, -- Vile Webbing
-			{436614, "DISPEL"}, -- Web Wrap
-			-- Discordant Attendant
-			"custom_on_autotalk",
-			439208, -- Silk Wrap
-			-- Trilling Attendant
-			{434793, "NAMEPLATE"}, -- Resonant Barrage
-			-- Ixin
-			{434824, "NAMEPLATE"}, -- Web Spray
-			{434802, "NAMEPLATE"}, -- Horrifying Shrill
-			-- Nakt
-			{438877, "NAMEPLATE"}, -- Call of the Brood
-			-- Atik
-			{438826, "NAMEPLATE"}, -- Poisonous Cloud
-			-- Hulking Bloodguard
-			{453161, "NAMEPLATE"}, -- Impale
-			{465012, "NAMEPLATE"}, -- Slam
-			-- Sentry Stagshell
-			432967, -- Alarm Shrill
-			-- Bloodstained Assistant
-			{433002, "TANK", "NAMEPLATE", "OFF"}, -- Extraction Strike
-			-- Bloodstained Webmage
-			{448248, "NAMEPLATE"}, -- Revolting Volley
-			-- Blood Overseer
-			{433845, "NAMEPLATE"}, -- Erupting Webs
-			{433841, "NAMEPLATE"}, -- Venom Volley
-			-- Reinforced Drone
-			{433785, "TANK", "NAMEPLATE", "OFF"}, -- Grasping Slash
-			-- Nerubian Hauler
-			{434252, "NAMEPLATE"}, -- Massive Slam
-			-- Winged Carrier
-			{433821, "NAMEPLATE", "OFF"}, -- Dashing Strike
-		}, {
-			[434830] = L.vile_webbing,
-			["custom_on_autotalk"] = L.discordant_attendant,
-			[434793] = L.trilling_attendant,
-			[434824] = L.ixin,
-			[438877] = L.nakt,
-			[438826] = L.atik,
-			[453161] = L.hulking_bloodguard,
-			[432967] = L.sentry_stagshell,
-			[433002] = L.bloodstained_assistant,
-			[448248] = L.bloodstained_webmage,
-			[433845] = L.blood_overseer,
-			[433785] = L.reinforced_drone,
-			[434252] = L.nerubian_hauler,
-			[433821] = L.winged_carrier,
-		}
-	end
+function mod:GetOptions()
+	return {
+		-- Vile Webbing
+		434830, -- Vile Webbing
+		{436614, "DISPEL"}, -- Web Wrap
+		-- Discordant Attendant
+		"custom_on_autotalk",
+		439208, -- Silk Wrap
+		-- Trilling Attendant
+		{434793, "NAMEPLATE"}, -- Resonant Barrage
+		-- Ixin
+		{434824, "NAMEPLATE"}, -- Web Spray
+		{434802, "NAMEPLATE"}, -- Horrifying Shrill
+		-- Nakt
+		{438877, "NAMEPLATE"}, -- Call of the Brood
+		-- Atik
+		{438826, "NAMEPLATE"}, -- Poisonous Cloud
+		-- Hulking Bloodguard
+		{453161, "NAMEPLATE"}, -- Impale
+		{1241693, "NAMEPLATE"}, -- Locust Swarm
+		-- Sentry Stagshell
+		432967, -- Alarm Shrill
+		-- Bloodstained Assistant
+		{433002, "TANK", "NAMEPLATE", "OFF"}, -- Extraction Strike
+		-- Bloodstained Webmage
+		{448248, "NAMEPLATE"}, -- Revolting Volley
+		-- Blood Overseer
+		{433845, "NAMEPLATE"}, -- Erupting Webs
+		{433841, "NAMEPLATE"}, -- Venom Volley
+		-- Reinforced Drone
+		{1241785, "DISPEL"}, -- Tainted Blood
+		-- Winged Carrier
+		{433821, "NAMEPLATE", "OFF"}, -- Dashing Strike
+	}, {
+		[434830] = L.vile_webbing,
+		["custom_on_autotalk"] = L.discordant_attendant,
+		[434793] = L.trilling_attendant,
+		[434824] = L.ixin,
+		[438877] = L.nakt,
+		[438826] = L.atik,
+		[453161] = L.hulking_bloodguard,
+		[432967] = L.sentry_stagshell,
+		[433002] = L.bloodstained_assistant,
+		[448248] = L.bloodstained_webmage,
+		[433845] = L.blood_overseer,
+		[1241785] = L.reinforced_drone,
+		[433821] = L.winged_carrier,
+	}
 end
 
 function mod:OnBossEnable()
@@ -206,11 +149,7 @@ function mod:OnBossEnable()
 	-- Hulking Bloodguard
 	self:RegisterEngageMob("HulkingBloodguardEngaged", 216338, 228015)
 	self:Log("SPELL_CAST_START", "Impale", 453161)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_CAST_START", "LocustSwarm", 1241693)
-	else -- XXX remove block in 11.2
-		self:Log("SPELL_CAST_START", "Slam", 465012)
-	end
+	self:Log("SPELL_CAST_START", "LocustSwarm", 1241693)
 	self:Death("HulkingBloodguardDeath", 216338, 228015)
 
 	-- Sentry Stagshell
@@ -239,21 +178,7 @@ function mod:OnBossEnable()
 	self:Death("BloodOverseerDeath", 216364)
 
 	-- Reinforced Drone
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_AURA_APPLIED_DOSE", "TaintedBloodApplied", 1241785)
-	else -- XXX remove block in 11.2
-		self:RegisterEngageMob("ReinforcedDroneEngaged", 216363)
-		self:Log("SPELL_CAST_START", "GraspingSlash", 433785)
-		self:Log("SPELL_CAST_SUCCESS", "GraspingSlashSuccess", 433785)
-		self:Death("ReinforcedDroneDeath", 216363)
-	end
-
-	if not isElevenDotTwo then -- XXX remove block in 11.2
-		-- Nerubian Hauler
-		self:RegisterEngageMob("NerubianHaulerEngaged", 217039)
-		self:Log("SPELL_CAST_START", "MassiveSlam", 434252)
-		self:Death("NerubianHaulerDeath", 217039)
-	end
+	self:Log("SPELL_AURA_APPLIED_DOSE", "TaintedBloodApplied", 1241785)
 
 	-- Winged Carrier
 	self:RegisterEngageMob("WingedCarrierEngaged", 216365)
@@ -361,17 +286,10 @@ do
 	local timer
 
 	function mod:IxinEngaged(guid)
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			self:CDBar(434824, 5.3) -- Web Spray
-			self:Nameplate(434824, 5.3, guid) -- Web Spray
-			self:CDBar(434802, 11.1) -- Horrifying Shrill
-			self:Nameplate(434802, 11.1, guid) -- Horrifying Shrill
-		else -- XXX remove block in 11.2
-			self:CDBar(434824, 4.8) -- Web Spray
-			self:Nameplate(434824, 4.8, guid) -- Web Spray
-			self:CDBar(434802, 10.7) -- Horrifying Shrill
-			self:Nameplate(434802, 10.7, guid) -- Horrifying Shrill
-		end
+		self:CDBar(434824, 5.3) -- Web Spray
+		self:Nameplate(434824, 5.3, guid) -- Web Spray
+		self:CDBar(434802, 11.1) -- Horrifying Shrill
+		self:Nameplate(434802, 11.1, guid) -- Horrifying Shrill
 		timer = self:ScheduleTimer("IxinDeath", 30, nil, guid)
 	end
 
@@ -393,23 +311,13 @@ do
 	end
 
 	function mod:HorrifyingShrillInterrupt(args)
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			self:CDBar(434802, 20.6)
-			self:Nameplate(434802, 20.6, args.destGUID)
-		else -- XXX remove block in 11.2
-			self:CDBar(434802, 13.1)
-			self:Nameplate(434802, 13.1, args.destGUID)
-		end
+		self:CDBar(434802, 20.6)
+		self:Nameplate(434802, 20.6, args.destGUID)
 	end
 
 	function mod:HorrifyingShrillSuccess(args)
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			self:CDBar(args.spellId, 20.6)
-			self:Nameplate(args.spellId, 20.6, args.sourceGUID)
-		else -- XXX remove block in 11.2
-			self:CDBar(args.spellId, 13.1)
-			self:Nameplate(args.spellId, 13.1, args.sourceGUID)
-		end
+		self:CDBar(args.spellId, 20.6)
+		self:Nameplate(args.spellId, 20.6, args.sourceGUID)
 	end
 
 	function mod:IxinDeath(args, guidFromTimer)
@@ -429,17 +337,10 @@ do
 	local timer
 
 	function mod:NaktEngaged(guid)
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			self:CDBar(438877, 10.3) -- Call of the Brood
-			self:Nameplate(438877, 10.3, guid) -- Call of the Brood
-			self:CDBar(434824, 15.3) -- Web Spray
-			self:Nameplate(434824, 15.3, guid) -- Web Spray
-		else -- XXX remove block in 11.2
-			self:CDBar(438877, 6.0) -- Call of the Brood
-			self:Nameplate(438877, 6.0, guid) -- Call of the Brood
-			self:CDBar(434824, 9.0) -- Web Spray
-			self:Nameplate(434824, 9.0, guid) -- Web Spray
-		end
+		self:CDBar(438877, 10.3) -- Call of the Brood
+		self:Nameplate(438877, 10.3, guid) -- Call of the Brood
+		self:CDBar(434824, 15.3) -- Web Spray
+		self:Nameplate(434824, 15.3, guid) -- Web Spray
 		timer = self:ScheduleTimer("NaktDeath", 30, nil, guid)
 	end
 
@@ -455,13 +356,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "cyan")
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			self:CDBar(args.spellId, 20.9)
-			self:Nameplate(args.spellId, 20.9, args.sourceGUID)
-		else -- XXX remove block in 11.2
-			self:CDBar(args.spellId, 26.7)
-			self:Nameplate(args.spellId, 26.7, args.sourceGUID)
-		end
+		self:CDBar(args.spellId, 20.9)
+		self:Nameplate(args.spellId, 20.9, args.sourceGUID)
 		timer = self:ScheduleTimer("NaktDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "info")
 	end
@@ -533,22 +429,13 @@ end
 -- Hulking Bloodguard
 
 function mod:HulkingBloodguardEngaged(guid)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(1241693, 5.1, guid) -- Locust Swarm
-		self:Nameplate(453161, 16.0, guid) -- Impale
-	else -- XXX remove block in 11.2
-		self:Nameplate(453161, 4.8, guid) -- Impale
-		self:Nameplate(465012, 11.9, guid) -- Slam
-	end
+	self:Nameplate(1241693, 5.1, guid) -- Locust Swarm
+	self:Nameplate(453161, 16.0, guid) -- Impale
 end
 
 function mod:Impale(args)
 	self:Message(args.spellId, "orange")
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(args.spellId, 10.9, args.sourceGUID)
-	else -- XXX remove block in 11.2
-		self:Nameplate(args.spellId, 14.6, args.sourceGUID)
-	end
+	self:Nameplate(args.spellId, 10.9, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -556,12 +443,6 @@ function mod:LocustSwarm(args)
 	self:Message(args.spellId, "yellow")
 	self:Nameplate(args.spellId, 30.2, args.sourceGUID)
 	self:PlaySound(args.spellId, "info")
-end
-
-function mod:Slam(args) -- XXX remove in 11.2
-	self:Message(args.spellId, "yellow")
-	self:Nameplate(args.spellId, 25.5, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:HulkingBloodguardDeath(args)
@@ -590,11 +471,7 @@ end
 -- Bloodstained Assistant
 
 function mod:BloodstainedAssistantEngaged(guid)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(433002, 5.4, guid) -- Extraction Strike
-	else -- XXX remove block in 11.2
-		self:Nameplate(433002, 0, guid) -- Extraction Strike
-	end
+	self:Nameplate(433002, 5.4, guid) -- Extraction Strike
 end
 
 do
@@ -610,11 +487,7 @@ do
 end
 
 function mod:ExtractionStrikeSuccess(args)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(args.spellId, 12.5, args.sourceGUID)
-	else -- XXX remove block in 11.2
-		self:Nameplate(args.spellId, 7.1, args.sourceGUID)
-	end
+	self:Nameplate(args.spellId, 12.5, args.sourceGUID)
 end
 
 function mod:BloodstainedAssistantDeath(args)
@@ -624,11 +497,7 @@ end
 -- Bloodstained Webmage
 
 function mod:BloodstainedWebmageEngaged(guid)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(448248, 5.9, guid) -- Revolting Volley
-	else -- XXX remove block in 11.2
-		self:Nameplate(448248, 2.8, guid) -- Revolting Volley
-	end
+	self:Nameplate(448248, 5.9, guid) -- Revolting Volley
 end
 
 do
@@ -644,19 +513,11 @@ do
 end
 
 function mod:RevoltingVolleyInterrupt(args)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(448248, 22.5, args.destGUID)
-	else -- XXX remove block in 11.2
-		self:Nameplate(448248, 18.0, args.destGUID)
-	end
+	self:Nameplate(448248, 22.5, args.destGUID)
 end
 
 function mod:RevoltingVolleySuccess(args)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(args.spellId, 22.5, args.sourceGUID)
-	else -- XXX remove block in 11.2
-		self:Nameplate(args.spellId, 18.0, args.sourceGUID)
-	end
+	self:Nameplate(args.spellId, 22.5, args.sourceGUID)
 end
 
 function mod:BloodstainedWebmageDeath(args)
@@ -673,11 +534,7 @@ end
 do
 	local prev = 0
 	function mod:EruptingWebs(args)
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			self:Nameplate(args.spellId, 21.8, args.sourceGUID)
-		else -- XXX remove block in 11.2
-			self:Nameplate(args.spellId, 18.2, args.sourceGUID)
-		end
+		self:Nameplate(args.spellId, 21.8, args.sourceGUID)
 		if args.time - prev > 1.5 then
 			prev = args.time
 			self:Message(args.spellId, "orange")
@@ -719,46 +576,6 @@ function mod:TaintedBloodApplied(args)
 	end
 end
 
-function mod:ReinforcedDroneEngaged(guid) -- XXX remove in 11.2
-	self:Nameplate(433785, 3.4, guid) -- Grasping Slash
-end
-
-do
-	local prev = 0
-	function mod:GraspingSlash(args) -- XXX remove in 11.2
-		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		if args.time - prev > 2 then
-			prev = args.time
-			self:Message(args.spellId, "purple")
-			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
-function mod:GraspingSlashSuccess(args) -- XXX remove in 11.2
-	self:Nameplate(args.spellId, 12.2, args.sourceGUID)
-end
-
-function mod:ReinforcedDroneDeath(args) -- XXX remove in 11.2
-	self:ClearNameplate(args.destGUID)
-end
-
--- Nerubian Hauler
-
-function mod:NerubianHaulerEngaged(guid) -- XXX remove in 11.2
-	self:Nameplate(434252, 3.6, guid) -- Massive Slam
-end
-
-function mod:MassiveSlam(args) -- XXX remove in 11.2
-	self:Message(args.spellId, "yellow")
-	self:Nameplate(args.spellId, 15.4, args.sourceGUID)
-	self:PlaySound(args.spellId, "info")
-end
-
-function mod:NerubianHaulerDeath(args) -- XXX remove in 11.2
-	self:ClearNameplate(args.destGUID)
-end
-
 -- Winged Carrier
 
 function mod:WingedCarrierEngaged(guid)
@@ -766,11 +583,7 @@ function mod:WingedCarrierEngaged(guid)
 end
 
 function mod:DashingStrike(args)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(args.spellId, 8.5, args.sourceGUID)
-	else -- XXX remove block in 11.2
-		self:Nameplate(args.spellId, 4.8, args.sourceGUID)
-	end
+	self:Nameplate(args.spellId, 8.5, args.sourceGUID)
 end
 
 function mod:WingedCarrierDeath(args)

@@ -1,4 +1,3 @@
-local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -51,11 +50,7 @@ function mod:OnEngage()
 	self:SetStage(1)
 	self:CDBar(473351, 5.7) -- Electrocrush
 	self:CDBar(473220, 15.4) -- Sonic Boom
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:CDBar(469981, 55.7) -- Kill-o-Block Barrier
-	else -- XXX remove block in 11.2
-		self:CDBar(469981, 51.0) -- Kill-o-Block Barrier
-	end
+	self:CDBar(469981, 55.7) -- Kill-o-Block Barrier
 end
 
 --------------------------------------------------------------------------------
@@ -94,11 +89,7 @@ function mod:MobilizeMechadrones(args)
 	self:Message(args.spellId, "cyan")
 	self:CDBar(473351, 9.2) -- Electrocrush
 	self:CDBar(473220, 18.9) -- Sonic Boom
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:CDBar(469981, 58.9) -- Kill-o-Block Barrier
-	else -- XXX remove block in 11.2
-		self:CDBar(469981, 54.1) -- Kill-o-Block Barrier
-	end
+	self:CDBar(469981, 58.9) -- Kill-o-Block Barrier
 	self:PlaySound(args.spellId, "info")
 end
 

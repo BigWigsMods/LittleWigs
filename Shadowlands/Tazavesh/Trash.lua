@@ -1,4 +1,3 @@
-local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -127,253 +126,131 @@ local passwordId = nil
 -- Initialization
 --
 
-if isElevenDotTwo then -- XXX remove check in 11.2
-	function mod:GetOptions()
-		return {
-			------ Streets of Wonder ------
-			"custom_on_portal_autotalk",
-			"trading_game",
-			"custom_on_trading_game_autotalk",
-			-- Gatewarden Zo'mazz
-			{352796, "TANK", "NAMEPLATE"}, -- Proxy Strike
-			{356548, "NAMEPLATE"}, -- Radiant Pulse
-			-- Customs Security
-			{355900, "NAMEPLATE"}, -- Disruption Grenade
-			{355888, "DISPEL", "NAMEPLATE"}, -- Hard Light Baton
-			{355891, "NAMEPLATE", "OFF"}, -- Teleport
-			-- Interrogation Specialist
-			{355915, "DISPEL", "NAMEPLATE"}, -- Glyph of Restraint
-			-- Armored Overseer
-			{356001, "NAMEPLATE"}, -- Beam Splicer
-			-- Support Officer
-			{355934, "DISPEL", "NAMEPLATE"}, -- Hard Light Barrier
-			{355980, "DISPEL"}, -- Refraction Shield
-			-- Portalmancer Zo'honn
-			{356537, "NAMEPLATE"}, -- Empowered Glyph of Restraint
-			-- Tracker Zo'korss
-			356929, -- Chain of Custody
-			{356942, "DISPEL", "NAMEPLATE"}, -- Lockdown
-			-- Ancient Core Hound
-			{356404, "NAMEPLATE"}, -- Lava Breath
-			{356407, "NAMEPLATE"}, -- Ancient Dread
-			-- Enraged Direhorn
-			{357512, "SAY", "NAMEPLATE"}, -- Frenzied Charge
-			{357508, "NAMEPLATE"}, -- Wild Thrash
-			-- Cartel Skulker
-			{355830, "NAMEPLATE"}, -- Quickblade
-			-- Cartel Wiseguy
-			{357197, "NAMEPLATE"}, -- Lightshard Retreat
-			-- Cartel Muscle
-			{356967, "TANK_HEALER", "NAMEPLATE"}, -- Hyperlight Backhand
-			{357229, "TANK", "NAMEPLATE", "OFF"}, -- Chronolight Enhancer
-			-- Cartel Smuggler
-			{357029, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Hyperlight Bomb
-			-- Defective Sorter
-			347721, -- Open Cage
-			-- Overloaded Mailemental
-			{347775, "NAMEPLATE"}, -- Spam Filter
-			-- P.O.S.T. Worker
-			{347716, "TANK", "NAMEPLATE"}, -- Letter Opener
-			-- Bazaar Overseer
-			{1240821, "NAMEPLATE"}, -- Energized Slam
-			{1240912, "NAMEPLATE"}, -- Pierce
-			-- Market Peacekeeper
-			{355640, "NAMEPLATE"}, -- Phalanx Field
-			{355637, "ME_ONLY", "NAMEPLATE", "OFF"}, -- Quelling Strike
-			-- Veteran Sparkcaster
-			{355642, "NAMEPLATE"}, -- Hyperlight Salvo
-			-- Commerce Enforcer
-			{1244443, "NAMEPLATE", "OFF"}, -- Force Multiplier
-			{355477, "TANK_HEALER", "NAMEPLATE"}, -- Power Kick
-			-- Commander Zo'far
-			{355479, "NAMEPLATE"}, -- Lethal Force
-			{355473, "NAMEPLATE"}, -- Shock Mines
-			------ So'leah's Gambit ------
-			-- General
-			358443, -- Blood in the Water
-			-- Murkbrine Scalebinder
-			{355132, "NAMEPLATE"}, -- Invigorating Fish Stick
-			-- Murkbrine Fishmancer
-			{355234, "NAMEPLATE"}, -- Volatile Pufferfish
-			-- Murkbrine Shellcrusher
-			{355057, "DISPEL", "NAMEPLATE"}, -- Cry of Mrrggllrrgg
-			{355048, "TANK", "NAMEPLATE"}, -- Shellcracker
-			-- Coastwalker Goliath
-			{355429, "NAMEPLATE"}, -- Tidal Stomp
-			{355464, "NAMEPLATE"}, -- Boulder Throw
-			-- Stormforged Guardian
-			{355584, "NAMEPLATE"}, -- Charged Pulse
-			{355577, "NAMEPLATE"}, -- Crackle
-			-- Burly Deckhand
-			{356133, "DISPEL", "NAMEPLATE"}, -- Super Saison
-			-- Hourglass Tidesage
-			{1244650, "NAMEPLATE"}, -- Tidal Burst
-			-- Corsair Officer
-			{368661, "NAMEPLATE", "OFF"}, -- Sword Toss
-			-- Adorned Starseer
-			{357226, "NAMEPLATE"}, -- Drifting Star
-			{357238, "NAMEPLATE"}, -- Wandering Pulsar
-			-- Focused Ritualist
-			{357260, "NAMEPLATE"}, -- Unstable Rift
-		}, {
-			------ Streets of Wonder ------
-			["custom_on_portal_autotalk"] = L.portal_authority,
-			["trading_game"] = L.trading_game,
-			[352796] = L.gatewarden_zomazz,
-			[355900] = L.customs_security,
-			[355915] = L.interrogation_specialist,
-			[356537] = L.portalmancer_zohonn,
-			[356001] = L.armored_overseer,
-			[355934] = L.support_officer,
-			[356929] = L.tracker_zokorss,
-			[356404] = L.ancient_core_hound,
-			[357512] = L.enraged_direhorn,
-			[355830] = L.cartel_skulker,
-			[357197] = L.cartel_wiseguy,
-			[356967] = L.cartel_muscle,
-			[357029] = L.cartel_smuggler,
-			[347721] = L.defective_sorter,
-			[347775] = L.overloaded_mailemental,
-			[347716] = L.post_worker,
-			[1240821] = L.bazaar_overseer,
-			[355640] = L.market_peacekeeper,
-			[355642] = L.veteran_sparkcaster,
-			[1244443] = L.commerce_enforcer,
-			[355479] = L.commander_zofar,
-			------ So'leah's Gambit ------
-			[358443] = L.tazavesh_soleahs_gambit,
-			[355132] = L.murkbrine_scalebinder,
-			[355234] = L.murkbrine_fishmancer,
-			[355057] = L.murkbrine_shellcrusher,
-			[355429] = L.coastwalker_goliath,
-			[355584] = L.stormforged_guardian,
-			[356133] = L.burly_deckhand,
-			[1244650] = L.hourglass_tidesage,
-			[368661] = L.corsair_officer,
-			[357226] = L.adorned_starseer,
-			[357260] = L.focused_ritualist,
-		}
-	end
-else -- XXX remove block in 11.2
-	function mod:GetOptions()
-		return {
-			------ Streets of Wonder ------
-			"custom_on_portal_autotalk",
-			"trading_game",
-			"custom_on_trading_game_autotalk",
-			-- Gatewarden Zo'mazz
-			{351047, "TANK", "NAMEPLATE"}, -- Proxy Strike
-			{356548, "NAMEPLATE"}, -- Radiant Pulse
-			-- Customs Security
-			{355900, "NAMEPLATE"}, -- Disruption Grenade
-			{355888, "DISPEL", "NAMEPLATE"}, -- Hard Light Baton
-			{355891, "NAMEPLATE", "OFF"}, -- Teleport
-			-- Interrogation Specialist
-			{355915, "DISPEL", "NAMEPLATE"}, -- Glyph of Restraint
-			356031, -- Stasis Beam
-			-- Armored Overseer
-			{356001, "NAMEPLATE"}, -- Beam Splicer
-			-- Support Officer
-			{355934, "DISPEL", "NAMEPLATE"}, -- Hard Light Barrier
-			{355980, "DISPEL"}, -- Refraction Shield
-			-- Portalmancer Zo'honn
-			{356537, "NAMEPLATE"}, -- Empowered Glyph of Restraint
-			-- Tracker Zo'korss
-			356929, -- Chain of Custody
-			{356942, "DISPEL", "NAMEPLATE"}, -- Lockdown
-			-- Ancient Core Hound
-			{356404, "NAMEPLATE"}, -- Lava Breath
-			{356407, "NAMEPLATE"}, -- Ancient Dread
-			-- Enraged Direhorn
-			{357512, "SAY", "NAMEPLATE"}, -- Frenzied Charge
-			{357508, "NAMEPLATE"}, -- Wild Thrash
-			-- Cartel Skulker
-			{355830, "NAMEPLATE"}, -- Quickblade
-			-- Cartel Wiseguy
-			{357197, "NAMEPLATE"}, -- Lightshard Retreat
-			-- Cartel Muscle
-			{356967, "TANK_HEALER", "NAMEPLATE"}, -- Hyperlight Backhand
-			-- Cartel Smuggler
-			{357029, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Hyperlight Bomb
-			-- Defective Sorter
-			347721, -- Open Cage
-			-- Overloaded Mailemental
-			{347775, "NAMEPLATE"}, -- Spam Filter
-			-- P.O.S.T. Worker
-			{347716, "TANK", "NAMEPLATE"}, -- Letter Opener
-			-- Market Peacekeeper
-			{355640, "NAMEPLATE"}, -- Phalanx Field
-			{355637, "ME_ONLY", "NAMEPLATE", "OFF"}, -- Quelling Strike
-			-- Veteran Sparkcaster
-			{355642, "NAMEPLATE"}, -- Hyperlight Salvo
-			-- Commerce Enforcer
-			355782, -- Force Multiplier
-			{355477, "TANK_HEALER", "NAMEPLATE"}, -- Power Kick
-			-- Commander Zo'far
-			{355479, "NAMEPLATE"}, -- Lethal Force
-			{355473, "NAMEPLATE"}, -- Shock Mines
-			------ So'leah's Gambit ------
-			-- General
-			358443, -- Blood in the Water
-			-- Murkbrine Scalebinder
-			{355132, "NAMEPLATE"}, -- Invigorating Fish Stick
-			-- Murkbrine Fishmancer
-			{355234, "NAMEPLATE"}, -- Volatile Pufferfish
-			-- Murkbrine Shellcrusher
-			{355057, "DISPEL", "NAMEPLATE"}, -- Cry of Mrrggllrrgg
-			{355048, "TANK", "NAMEPLATE"}, -- Shellcracker
-			-- Coastwalker Goliath
-			{355429, "NAMEPLATE"}, -- Tidal Stomp
-			{355464, "NAMEPLATE"}, -- Boulder Throw
-			-- Stormforged Guardian
-			{355584, "NAMEPLATE"}, -- Charged Pulse
-			{355577, "NAMEPLATE"}, -- Crackle
-			-- Burly Deckhand
-			{356133, "DISPEL", "NAMEPLATE"}, -- Super Saison
-			-- Adorned Starseer
-			{357226, "NAMEPLATE"}, -- Drifting Star
-			{357238, "NAMEPLATE"}, -- Wandering Pulsar
-			-- Focused Ritualist
-			{357260, "NAMEPLATE"}, -- Unstable Rift
-			-- Devoted Accomplice
-			{357284, "NAMEPLATE"}, -- Reinvigorate
-		}, {
-			------ Streets of Wonder ------
-			["custom_on_portal_autotalk"] = L.portal_authority,
-			["trading_game"] = L.trading_game,
-			[351047] = L.gatewarden_zomazz,
-			[355900] = L.customs_security,
-			[355915] = L.interrogation_specialist,
-			[356537] = L.portalmancer_zohonn,
-			[356001] = L.armored_overseer,
-			[355934] = L.support_officer,
-			[356929] = L.tracker_zokorss,
-			[356404] = L.ancient_core_hound,
-			[357512] = L.enraged_direhorn,
-			[355830] = L.cartel_skulker,
-			[357197] = L.cartel_wiseguy,
-			[356967] = L.cartel_muscle,
-			[357029] = L.cartel_smuggler,
-			[347721] = L.defective_sorter,
-			[347775] = L.overloaded_mailemental,
-			[347716] = L.post_worker,
-			[355640] = L.market_peacekeeper,
-			[355642] = L.veteran_sparkcaster,
-			[355782] = L.commerce_enforcer,
-			[355479] = L.commander_zofar,
-			------ So'leah's Gambit ------
-			[358443] = L.tazavesh_soleahs_gambit,
-			[355132] = L.murkbrine_scalebinder,
-			[355234] = L.murkbrine_fishmancer,
-			[355057] = L.murkbrine_shellcrusher,
-			[355429] = L.coastwalker_goliath,
-			[355584] = L.stormforged_guardian,
-			[356133] = L.burly_deckhand,
-			[357226] = L.adorned_starseer,
-			[357260] = L.focused_ritualist,
-			[357284] = L.devoted_accomplice,
-		}
-	end
+function mod:GetOptions()
+	return {
+		------ Streets of Wonder ------
+		"custom_on_portal_autotalk",
+		"trading_game",
+		"custom_on_trading_game_autotalk",
+		-- Gatewarden Zo'mazz
+		{352796, "TANK", "NAMEPLATE"}, -- Proxy Strike
+		{356548, "NAMEPLATE"}, -- Radiant Pulse
+		-- Customs Security
+		{355900, "NAMEPLATE"}, -- Disruption Grenade
+		{355888, "DISPEL", "NAMEPLATE"}, -- Hard Light Baton
+		{355891, "NAMEPLATE", "OFF"}, -- Teleport
+		-- Interrogation Specialist
+		{355915, "DISPEL", "NAMEPLATE"}, -- Glyph of Restraint
+		-- Armored Overseer
+		{356001, "NAMEPLATE"}, -- Beam Splicer
+		-- Support Officer
+		{355934, "DISPEL", "NAMEPLATE"}, -- Hard Light Barrier
+		{355980, "DISPEL"}, -- Refraction Shield
+		-- Portalmancer Zo'honn
+		{356537, "NAMEPLATE"}, -- Empowered Glyph of Restraint
+		-- Tracker Zo'korss
+		356929, -- Chain of Custody
+		{356942, "DISPEL", "NAMEPLATE"}, -- Lockdown
+		-- Ancient Core Hound
+		{356404, "NAMEPLATE"}, -- Lava Breath
+		{356407, "NAMEPLATE"}, -- Ancient Dread
+		-- Enraged Direhorn
+		{357512, "SAY", "NAMEPLATE"}, -- Frenzied Charge
+		{357508, "NAMEPLATE"}, -- Wild Thrash
+		-- Cartel Skulker
+		{355830, "NAMEPLATE"}, -- Quickblade
+		-- Cartel Wiseguy
+		{357197, "NAMEPLATE"}, -- Lightshard Retreat
+		-- Cartel Muscle
+		{356967, "TANK_HEALER", "NAMEPLATE"}, -- Hyperlight Backhand
+		{357229, "TANK", "NAMEPLATE", "OFF"}, -- Chronolight Enhancer
+		-- Cartel Smuggler
+		{357029, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Hyperlight Bomb
+		-- Defective Sorter
+		347721, -- Open Cage
+		-- Overloaded Mailemental
+		{347775, "NAMEPLATE"}, -- Spam Filter
+		-- P.O.S.T. Worker
+		{347716, "TANK", "NAMEPLATE"}, -- Letter Opener
+		-- Bazaar Overseer
+		{1240821, "NAMEPLATE"}, -- Energized Slam
+		{1240912, "NAMEPLATE"}, -- Pierce
+		-- Market Peacekeeper
+		{355640, "NAMEPLATE"}, -- Phalanx Field
+		{355637, "ME_ONLY", "NAMEPLATE", "OFF"}, -- Quelling Strike
+		-- Veteran Sparkcaster
+		{355642, "NAMEPLATE"}, -- Hyperlight Salvo
+		-- Commerce Enforcer
+		{1244443, "NAMEPLATE", "OFF"}, -- Force Multiplier
+		{355477, "TANK_HEALER", "NAMEPLATE"}, -- Power Kick
+		-- Commander Zo'far
+		{355479, "NAMEPLATE"}, -- Lethal Force
+		{355473, "NAMEPLATE"}, -- Shock Mines
+		------ So'leah's Gambit ------
+		-- General
+		358443, -- Blood in the Water
+		-- Murkbrine Scalebinder
+		{355132, "NAMEPLATE"}, -- Invigorating Fish Stick
+		-- Murkbrine Fishmancer
+		{355234, "NAMEPLATE"}, -- Volatile Pufferfish
+		-- Murkbrine Shellcrusher
+		{355057, "DISPEL", "NAMEPLATE"}, -- Cry of Mrrggllrrgg
+		{355048, "TANK", "NAMEPLATE"}, -- Shellcracker
+		-- Coastwalker Goliath
+		{355429, "NAMEPLATE"}, -- Tidal Stomp
+		{355464, "NAMEPLATE"}, -- Boulder Throw
+		-- Stormforged Guardian
+		{355584, "NAMEPLATE"}, -- Charged Pulse
+		{355577, "NAMEPLATE"}, -- Crackle
+		-- Burly Deckhand
+		{356133, "DISPEL", "NAMEPLATE"}, -- Super Saison
+		-- Hourglass Tidesage
+		{1244650, "NAMEPLATE"}, -- Tidal Burst
+		-- Corsair Officer
+		{368661, "NAMEPLATE", "OFF"}, -- Sword Toss
+		-- Adorned Starseer
+		{357226, "NAMEPLATE"}, -- Drifting Star
+		{357238, "NAMEPLATE"}, -- Wandering Pulsar
+		-- Focused Ritualist
+		{357260, "NAMEPLATE"}, -- Unstable Rift
+	}, {
+		------ Streets of Wonder ------
+		["custom_on_portal_autotalk"] = L.portal_authority,
+		["trading_game"] = L.trading_game,
+		[352796] = L.gatewarden_zomazz,
+		[355900] = L.customs_security,
+		[355915] = L.interrogation_specialist,
+		[356537] = L.portalmancer_zohonn,
+		[356001] = L.armored_overseer,
+		[355934] = L.support_officer,
+		[356929] = L.tracker_zokorss,
+		[356404] = L.ancient_core_hound,
+		[357512] = L.enraged_direhorn,
+		[355830] = L.cartel_skulker,
+		[357197] = L.cartel_wiseguy,
+		[356967] = L.cartel_muscle,
+		[357029] = L.cartel_smuggler,
+		[347721] = L.defective_sorter,
+		[347775] = L.overloaded_mailemental,
+		[347716] = L.post_worker,
+		[1240821] = L.bazaar_overseer,
+		[355640] = L.market_peacekeeper,
+		[355642] = L.veteran_sparkcaster,
+		[1244443] = L.commerce_enforcer,
+		[355479] = L.commander_zofar,
+		------ So'leah's Gambit ------
+		[358443] = L.tazavesh_soleahs_gambit,
+		[355132] = L.murkbrine_scalebinder,
+		[355234] = L.murkbrine_fishmancer,
+		[355057] = L.murkbrine_shellcrusher,
+		[355429] = L.coastwalker_goliath,
+		[355584] = L.stormforged_guardian,
+		[356133] = L.burly_deckhand,
+		[1244650] = L.hourglass_tidesage,
+		[368661] = L.corsair_officer,
+		[357226] = L.adorned_starseer,
+		[357260] = L.focused_ritualist,
+	}
 end
 
 function mod:OnBossEnable()
@@ -388,11 +265,7 @@ function mod:OnBossEnable()
 
 	-- Gatewarden Zo'mazz
 	self:RegisterEngageMob("GatewardenZomazzEngaged", 178392)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_CAST_START", "ProxyStrike", 352796)
-	else -- XXX remove in 11.2
-		self:Log("SPELL_CAST_START", "ProxyStrike", 351047)
-	end
+	self:Log("SPELL_CAST_START", "ProxyStrike", 352796)
 	self:Log("SPELL_CAST_START", "RadiantPulse", 356548)
 	self:Death("GatewardenZomazzDeath", 178392)
 
@@ -407,9 +280,6 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("InterrogationSpecialistEngaged", 177816)
 	self:Log("SPELL_CAST_SUCCESS", "GlyphOfRestraint", 355915)
 	self:Log("SPELL_AURA_APPLIED", "GlyphOfRestraintApplied", 355915)
-	if not isElevenDotTwo then -- XXX remove in 11.2
-		self:Log("SPELL_CAST_START", "StasisBeam", 356031)
-	end
 	self:Death("InterrogationSpecialistDeath", 177816)
 
 	-- Armored Overseer
@@ -466,9 +336,7 @@ function mod:OnBossEnable()
 	-- Cartel Muscle
 	self:RegisterEngageMob("CartelMuscleEngaged", 180348)
 	self:Log("SPELL_CAST_START", "HyperlightBackhand", 356967)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_CAST_START", "ChronolightEnhancer", 357229)
-	end
+	self:Log("SPELL_CAST_START", "ChronolightEnhancer", 357229)
 	self:Death("CartelMuscleDeath", 180348)
 
 	-- Cartel Smuggler
@@ -494,13 +362,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "LetterOpenerSuccess", 347716)
 	self:Death("POSTWorkerDeath", 176394)
 
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		-- Bazaar Overseer
-		self:RegisterEngageMob("BazaarOverseerEngaged", 246285)
-		self:Log("SPELL_CAST_START", "EnergizedSlam", 1240821)
-		self:Log("SPELL_CAST_START", "Pierce", 1240912)
-		self:Death("BazaarOverseerDeath", 246285)
-	end
+	-- Bazaar Overseer
+	self:RegisterEngageMob("BazaarOverseerEngaged", 246285)
+	self:Log("SPELL_CAST_START", "EnergizedSlam", 1240821)
+	self:Log("SPELL_CAST_START", "Pierce", 1240912)
+	self:Death("BazaarOverseerDeath", 246285)
 
 	-- Market Peacekeeper
 	self:RegisterEngageMob("MarketPeacekeeperEngaged", 179840)
@@ -514,16 +380,10 @@ function mod:OnBossEnable()
 	self:Death("VeteranSparkcasterDeath", 179841)
 
 	-- Commerce Enforcer
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:RegisterEngageMob("CommerceEnforcerEngaged", 179842)
-		self:Log("SPELL_CAST_SUCCESS", "ForceMultiplier", 1244443)
-	else -- XXX remove block in 11.2
-		self:Log("SPELL_AURA_APPLIED", "ForceMultiplierApplied", 355782)
-	end
+	self:RegisterEngageMob("CommerceEnforcerEngaged", 179842)
+	self:Log("SPELL_CAST_SUCCESS", "ForceMultiplier", 1244443)
 	self:Log("SPELL_CAST_START", "PowerKick", 355477)
-	if isElevenDotTwo then
-		self:Death("CommerceEnforcerDeath", 179842)
-	end
+	self:Death("CommerceEnforcerDeath", 179842)
 
 	-- Commander Zo'far
 	self:RegisterEngageMob("CommanderZofarEngaged", 179821)
@@ -577,17 +437,15 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SuperSaisonApplied", 356133)
 	self:Death("BurlyDeckhandDeath", 180015)
 
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		-- Hourglass Tidesage
-		self:RegisterEngageMob("HourglassTidesageEngaged", 179388)
-		self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Tidal Burst
-		self:Death("HourglassTidesageDeath", 179388)
+	-- Hourglass Tidesage
+	self:RegisterEngageMob("HourglassTidesageEngaged", 179388)
+	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Tidal Burst
+	self:Death("HourglassTidesageDeath", 179388)
 
-		-- Corsair Officer
-		self:RegisterEngageMob("CorsairOfficerEngaged", 179386)
-		self:Log("SPELL_CAST_SUCCESS", "SwordToss", 368661)
-		self:Death("CorsairOfficerDeath", 179386)
-	end
+	-- Corsair Officer
+	self:RegisterEngageMob("CorsairOfficerEngaged", 179386)
+	self:Log("SPELL_CAST_SUCCESS", "SwordToss", 368661)
+	self:Death("CorsairOfficerDeath", 179386)
 
 	-- Adorned Starseer
 	self:RegisterEngageMob("AdornedStarseerEngaged", 180429)
@@ -603,13 +461,7 @@ function mod:OnBossEnable()
 	self:Death("FocusedRitualistDeath", 180431)
 
 	-- Devoted Accomplice
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:RegisterEngageMob("DevotedAccompliceEngaged", 180432)
-	else -- XXX remove block in 11.2
-		self:Log("SPELL_CAST_START", "Reinvigorate", 357284) -- XXX removed in 11.2
-		self:Log("SPELL_INTERRUPT", "ReinvigorateInterrupt", 357284) -- XXX removed in 11.2
-		self:Log("SPELL_CAST_SUCCESS", "ReinvigorateSuccess", 357284) -- XXX removed in 11.2
-	end
+	self:RegisterEngageMob("DevotedAccompliceEngaged", 180432)
 	self:Death("DevotedAccompliceDeath", 180432)
 end
 
@@ -723,13 +575,8 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			self:CDBar(352796, 9.6) -- Proxy Strike
-			self:Nameplate(352796, 9.6, guid) -- Proxy Strike
-		else -- XXX remove block in 11.2
-			self:CDBar(351047, 7.2) -- Proxy Strike
-			self:Nameplate(351047, 7.2, guid) -- Proxy Strike
-		end
+		self:CDBar(352796, 9.6) -- Proxy Strike
+		self:Nameplate(352796, 9.6, guid) -- Proxy Strike
 		self:CDBar(356548, 13.2) -- Radiant Pulse
 		self:Nameplate(356548, 13.2, guid) -- Radiant Pulse
 		timer = self:ScheduleTimer("GatewardenZomazzDeath", 20, nil, guid)
@@ -739,13 +586,8 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			self:CDBar(352796, 25.5)
-			self:Nameplate(352796, 25.5, guid)
-		else -- XXX remove block in 11.2
-			self:CDBar(351047, 24.2)
-			self:Nameplate(351047, 24.2, guid)
-		end
+		self:CDBar(352796, 25.5)
+		self:Nameplate(352796, 25.5, guid)
 		timer = self:ScheduleTimer("GatewardenZomazzDeath", 30, nil, guid)
 	end
 
@@ -763,11 +605,7 @@ do
 			self:CancelTimer(timer)
 			timer = nil
 		end
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			self:StopBar(352796) -- Proxy Strike
-		else -- XXX remove block in 11.2
-			self:StopBar(351047) -- Proxy Strike
-		end
+		self:StopBar(352796) -- Proxy Strike
 		self:StopBar(356548) -- Radiant Pulse
 		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
@@ -847,11 +685,6 @@ do
 	end
 end
 
-function mod:StasisBeam(args) -- XXX removed in 11.2
-	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
-end
-
 function mod:InterrogationSpecialistDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
@@ -859,11 +692,7 @@ end
 -- Armored Overseer
 
 function mod:ArmoredOverseerEngaged(guid)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(352796, 12.1, guid) -- Proxy Strike
-	else -- XXX remove block in 11.2
-		self:Nameplate(351047, 6.5, guid) -- Proxy Strike
-	end
+	self:Nameplate(352796, 12.1, guid) -- Proxy Strike
 	self:Nameplate(356001, 7.3, guid) -- Beam Splicer
 end
 
@@ -969,14 +798,9 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			-- cd on cast start
-			self:CDBar(args.spellId, 23.0)
-			self:Nameplate(args.spellId, 23.0, args.sourceGUID)
-		else -- XXX remove block in 11.2
-			self:CDBar(args.spellId, 21.9)
-			self:Nameplate(args.spellId, 21.9, args.sourceGUID)
-		end
+		-- cd on cast start
+		self:CDBar(args.spellId, 23.0)
+		self:Nameplate(args.spellId, 23.0, args.sourceGUID)
 		timer = self:ScheduleTimer("PortalmancerZohonnDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "warning")
 	end
@@ -1223,9 +1047,7 @@ end
 -- Cartel Muscle
 
 function mod:CartelMuscleEngaged(guid)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(357229, 9.1, guid) -- Chronolight Enhancer
-	end
+	self:Nameplate(357229, 9.1, guid) -- Chronolight Enhancer
 	self:Nameplate(356967, 27.7, guid) -- Hyperlight Backhand
 end
 
@@ -1422,11 +1244,6 @@ function mod:ForceMultiplier(args)
 	self:Message(args.spellId, "yellow")
 	self:Nameplate(args.spellId, 29.1, args.sourceGUID)
 	self:PlaySound(args.spellId, "info")
-end
-
-function mod:ForceMultiplierApplied(args) -- XXX remove in 11.2
-	self:Message(args.spellId, "yellow", CL.buff_other:format(args.destName, args.spellName))
-	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:PowerKick(args)
@@ -1854,26 +1671,6 @@ end
 
 function mod:DevotedAccompliceEngaged(guid)
 	self:Nameplate(355891, 3.4, guid) -- Teleport
-end
-
-do
-	local prev = 0
-	function mod:Reinvigorate(args) -- XXX removed in 11.2
-		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		if args.time - prev > 1.5 then
-			prev = args.time
-			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
-function mod:ReinvigorateInterrupt(args) -- XXX removed in 11.2
-	self:Nameplate(357284, 20.7, args.destGUID)
-end
-
-function mod:ReinvigorateSuccess(args) -- XXX removed in 11.2
-	self:Nameplate(args.spellId, 20.7, args.sourceGUID)
 end
 
 function mod:DevotedAccompliceDeath(args)

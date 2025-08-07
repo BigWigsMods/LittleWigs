@@ -1,4 +1,3 @@
-local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -13,50 +12,27 @@ mod:SetRespawnTime(30)
 -- Initialization
 --
 
-if isElevenDotTwo then -- XXX remove check when 11.2 is live
-	function mod:GetOptions()
-		return {
-			-- High Adjudicator Aleez
-			{323538, "OFF"}, -- Anima Bolt
-			329340, -- Anima Fountain
-			323597, -- Spectral Procession
-			1236512, -- Unstable Anima
-			-- Ghastly Parishioner
-			323650, -- Haunting Fixation
-		}, {
-			[323538] = self.displayName, -- High Adjudicator Aleez
-			[323650] = -21861, -- Ghastly Parishioner
-		}, {
-			[323597] = CL.add_spawning, -- Spectral Procession (Add spawning)
-		}
-	end
-else -- XXX remove block when 11.2 is live
-	function mod:GetOptions()
-		return {
-			-- High Adjudicator Aleez
-			{323538, "OFF"}, -- Anima Bolt
-			323552, -- Volley of Power
-			329340, -- Anima Fountain
-			323597, -- Spectral Procession
-			-- Ghastly Parishioner
-			323650, -- Haunting Fixation
-		}, {
-			[323538] = self.displayName, -- High Adjudicator Aleez
-			[323650] = -21861, -- Ghastly Parishioner
-		}, {
-			[323597] = CL.add_spawning, -- Spectral Procession (Add spawning)
-		}
-	end
+function mod:GetOptions()
+	return {
+		-- High Adjudicator Aleez
+		{323538, "OFF"}, -- Anima Bolt
+		329340, -- Anima Fountain
+		323597, -- Spectral Procession
+		1236512, -- Unstable Anima
+		-- Ghastly Parishioner
+		323650, -- Haunting Fixation
+	}, {
+		[323538] = self.displayName, -- High Adjudicator Aleez
+		[323650] = -21861, -- Ghastly Parishioner
+	}, {
+		[323597] = CL.add_spawning, -- Spectral Procession (Add spawning)
+	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AnimaBolt", 323538)
-	if isElevenDotTwo then -- XXX remove check when 11.2 is live
-		self:Log("SPELL_CAST_SUCCESS", "UnstableAnima", 1236512)
-		self:Log("SPELL_AURA_APPLIED", "UnstableAnimaApplied", 1236513)
-	else -- XXX remove block when 11.2 is live
-		self:Log("SPELL_CAST_START", "VolleyOfPower", 323552)
-	end
+	self:Log("SPELL_CAST_SUCCESS", "UnstableAnima", 1236512)
+	self:Log("SPELL_AURA_APPLIED", "UnstableAnimaApplied", 1236513)
 	self:Log("SPELL_SUMMON", "SpectralProcession", 323597)
 	self:Log("SPELL_AURA_APPLIED", "HauntingFixation", 323650)
 	self:Log("SPELL_AURA_REMOVED", "HauntingFixationRemoved", 323650)
@@ -65,12 +41,8 @@ end
 
 function mod:OnEngage()
 	self:CDBar(323538, 5.0) -- Anima Bolt
-	if isElevenDotTwo then -- XXX remove check when 11.2 is live
-		if self:Mythic() then
-			self:CDBar(1236512, 10.1) -- Unstable Anima
-		end
-	else -- XXX remove block when 11.2 is live
-		self:CDBar(323552, 12.0) -- Volley of Power
+	if self:Mythic() then
+		self:CDBar(1236512, 10.1) -- Unstable Anima
 	end
 	self:CDBar(323650, 17.2, CL.add_spawning) -- Spectral Procession
 	self:CDBar(329340, 19.1) -- Anima Fountain
@@ -101,15 +73,6 @@ do
 		playerList[#playerList + 1] = args.destName
 		self:TargetsMessage(1236512, "orange", playerList, 2)
 		self:PlaySound(1236512, "alarm", nil, playerList)
-	end
-end
-
-function mod:VolleyOfPower(args) -- XXX removed in 11.2
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:CDBar(args.spellId, 10.9)
-	local _, ready = self:Interrupter()
-	if ready then
-		self:PlaySound(args.spellId, "warning")
 	end
 end
 

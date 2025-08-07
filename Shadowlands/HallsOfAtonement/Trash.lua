@@ -1,4 +1,3 @@
-local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -9,7 +8,6 @@ mod.displayName = CL.trash
 mod:RegisterEnableMob(
 	164562, -- Depraved Houndmaster
 	164563, -- Vicious Gargon
-	174175, -- Loyal Stoneborn XXX removed in 11.2
 	165515, -- Depraved Darkblade (outdoors)
 	167615, -- Depraved Darkblade (indoors)
 	165414, -- Depraved Obliterator
@@ -46,92 +44,47 @@ end
 -- Initialization
 --
 
-if isElevenDotTwo then -- XXX remove check in 11.2
-	function mod:GetOptions()
-		return {
-			-- Depraved Houndmaster
-			{326450, "DISPEL", "NAMEPLATE"}, -- Loyal Beasts
-			-- Vicious Gargon
-			1237602, -- Gushing Wound
-			-- Depraved Darkblade
-			{1235060, "DISPEL"}, -- Anima Tainted Armor
-			325523, -- Deadly Thrust XXX removed in 11.2?
-			-- Depraved Obliterator
-			{325876, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Mark of Obliteration
-			-- Depraved Collector
-			{325701, "NAMEPLATE"}, -- Siphon Life
-			-- Stoneborn Slasher
-			{326997, "NAMEPLATE"}, -- Powerful Swipe
-			{1235326, "NAMEPLATE"}, -- Disrupting Screech
-			{1237071, "TANK", "NAMEPLATE"}, -- Stone Fist
-			-- Shard of Halkias
-			{326409, "NAMEPLATE"}, -- Thrash
-			{326441, "NAMEPLATE"}, -- Sin Quake
-			-- Stoneborn Reaver
-			{1235762, "NAMEPLATE"}, -- Turn to Stone
-			{1235766, "TANK", "NAMEPLATE"}, -- Mortal Strike
-			-- Stoneborn Eviscerator
-			{326638, "NAMEPLATE", "OFF"}, -- Hurl Glaive
-			-- Inquisitor Sigar
-			{326794, "NAMEPLATE"}, -- Dark Communion
-			{1236614, "SAY_COUNTDOWN", "NAMEPLATE"}, -- Display of Power
-			326847, -- Disperse Sin
-			326891, -- Anguish
-		}, {
-			[326450] = L.depraved_houndmaster,
-			[1237602] = L.vicious_gargon,
-			[1235060] = L.depraved_darkblade,
-			[325876] = L.depraved_obliterator,
-			[325701] = L.depraved_collector,
-			[326997] = L.stoneborn_slasher,
-			[326409] = L.shard_of_halkias,
-			[1235762] = L.stoneborn_reaver,
-			[326638] = L.stoneborn_eviscerator,
-			[326794] = L.inquisitor_sigar,
-		}
-	end
-else -- XXX remove block in 11.2
-	function mod:GetOptions()
-		return {
-			-- Depraved Houndmaster
-			{326450, "DISPEL", "NAMEPLATE"}, -- Loyal Beasts
-			{325793, "NAMEPLATE"}, -- Rapid Fire
-			-- Vicious Gargon
-			344993, -- Jagged Swipe
-			-- Loyal Stoneborn
-			346866, -- Stone Breath
-			342171, -- Loyal Stoneborn
-			-- Depraved Darkblade
-			325523, -- Deadly Thrust
-			-- Depraved Obliterator
-			{325876, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Curse of Obliteration
-			-- Depraved Collector
-			{325700, "NAMEPLATE"}, -- Collect Sins
-			{325701, "NAMEPLATE"}, -- Siphon Life
-			-- Stoneborn Slasher
-			{326997, "NAMEPLATE"}, -- Powerful Swipe
-			-- Shard of Halkias
-			{326409, "NAMEPLATE"}, -- Thrash
-			{326441, "NAMEPLATE"}, -- Sin Quake
-			-- Stoneborn Reaver
-			326607, -- Turn to Stone
-			-- Inquisitor Sigar
-			326891, -- Anguish
-		}, {
-			[326450] = L.depraved_houndmaster,
-			[344993] = L.vicious_gargon,
-			[346866] = L.loyal_stoneborn,
-			[325523] = L.depraved_darkblade,
-			[325876] = L.depraved_obliterator,
-			[325700] = L.depraved_collector,
-			[326997] = L.stoneborn_slasher,
-			[326409] = L.shard_of_halkias,
-			[326607] = L.stoneborn_reaver,
-			[326891] = L.inquisitor_sigar,
-		}, {
-			[325876] = CL.curse, -- Curse of Obliteration (Curse)
-		}
-	end
+function mod:GetOptions()
+	return {
+		-- Depraved Houndmaster
+		{326450, "DISPEL", "NAMEPLATE"}, -- Loyal Beasts
+		-- Vicious Gargon
+		1237602, -- Gushing Wound
+		-- Depraved Darkblade
+		{1235060, "DISPEL"}, -- Anima Tainted Armor
+		-- Depraved Obliterator
+		{325876, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Mark of Obliteration
+		-- Depraved Collector
+		{325701, "NAMEPLATE"}, -- Siphon Life
+		-- Stoneborn Slasher
+		{326997, "NAMEPLATE"}, -- Powerful Swipe
+		{1235326, "NAMEPLATE"}, -- Disrupting Screech
+		{1237071, "TANK", "NAMEPLATE"}, -- Stone Fist
+		-- Shard of Halkias
+		{326409, "NAMEPLATE"}, -- Thrash
+		{326441, "NAMEPLATE"}, -- Sin Quake
+		-- Stoneborn Reaver
+		{1235762, "NAMEPLATE"}, -- Turn to Stone
+		{1235766, "TANK", "NAMEPLATE"}, -- Mortal Strike
+		-- Stoneborn Eviscerator
+		{326638, "NAMEPLATE", "OFF"}, -- Hurl Glaive
+		-- Inquisitor Sigar
+		{326794, "NAMEPLATE"}, -- Dark Communion
+		{1236614, "SAY_COUNTDOWN", "NAMEPLATE"}, -- Display of Power
+		326847, -- Disperse Sin
+		326891, -- Anguish
+	}, {
+		[326450] = L.depraved_houndmaster,
+		[1237602] = L.vicious_gargon,
+		[1235060] = L.depraved_darkblade,
+		[325876] = L.depraved_obliterator,
+		[325701] = L.depraved_collector,
+		[326997] = L.stoneborn_slasher,
+		[326409] = L.shard_of_halkias,
+		[1235762] = L.stoneborn_reaver,
+		[326638] = L.stoneborn_eviscerator,
+		[326794] = L.inquisitor_sigar,
+	}
 end
 
 function mod:OnBossEnable()
@@ -141,39 +94,16 @@ function mod:OnBossEnable()
 	self:Log("SPELL_INTERRUPT", "LoyalBeastsInterrupt", 326450)
 	self:Log("SPELL_CAST_SUCCESS", "LoyalBeastsSuccess", 326450)
 	self:Log("SPELL_AURA_APPLIED", "LoyalBeastsApplied", 326450)
-	if not isElevenDotTwo then -- XXX remove in 11.2
-		self:Log("SPELL_CAST_SUCCESS", "RapidFire", 325793)
-		self:Log("SPELL_DAMAGE", "RapidFireDamage", 325799)
-		self:Log("SPELL_MISSED", "RapidFireDamage", 325799)
-	end
 	self:Death("DepravedHoundmasterDeath", 164562)
 
 	-- Vicious Gargon
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_AURA_APPLIED_DOSE", "GushingWoundApplied", 1237602)
-	else -- XXX remove block in 11.2
-		self:Log("SPELL_AURA_APPLIED_DOSE", "GushingWoundApplied", 344993) -- Jagged Swipe
-	end
-
-	if not isElevenDotTwo then -- XXX removed in 11.2
-		-- Loyal Stoneborn
-		self:Log("SPELL_CAST_START", "StoneBreath", 346866)
-		self:Log("SPELL_CAST_SUCCESS", "LoyalStoneborn", 342171)
-	end
+	self:Log("SPELL_AURA_APPLIED_DOSE", "GushingWoundApplied", 1237602)
 
 	-- Depraved Darkblade
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_AURA_APPLIED_DOSE", "AnimaTaintedArmorApplied", 1235060)
-	else -- XXX remove block in 11.2
-		self:Log("SPELL_CAST_START", "DeadlyThrust", 325523) -- XXX removed in 11.2
-	end
+	self:Log("SPELL_AURA_APPLIED_DOSE", "AnimaTaintedArmorApplied", 1235060)
 
 	-- Depraved Obliterator
 	self:RegisterEngageMob("DepravedObliteratorEngaged", 165414)
-	if not isElevenDotTwo then -- XXX remove block in 11.2
-		self:Log("SPELL_CAST_START", "CurseOfObliterationStart", 325876) -- instant cast in 11.2
-		self:Log("SPELL_INTERRUPT", "CurseOfObliterationInterrupt", 325876) -- not possible in 11.2
-	end
 	self:Log("SPELL_CAST_SUCCESS", "MarkOfObliteration", 325876)
 	self:Log("SPELL_AURA_APPLIED", "MarkOfObliterationApplied", 325876)
 	self:Log("SPELL_AURA_REMOVED", "MarkOfObliterationRemoved", 325876)
@@ -181,12 +111,6 @@ function mod:OnBossEnable()
 
 	-- Depraved Collector
 	self:RegisterEngageMob("DepravedCollectorEngaged", 165529)
-	if not isElevenDotTwo then -- XXX remove block in 11.2
-		self:Log("SPELL_CAST_START", "CollectSins", 325700)
-		self:Log("SPELL_INTERRUPT", "CollectSinsInterrupt", 325700)
-		self:Log("SPELL_CAST_SUCCESS", "CollectSinsSuccess", 325700)
-		self:Log("SPELL_CAST_START", "SiphonLifeStart", 325701) -- instant cast in 11.2
-	end
 	self:Log("SPELL_CAST_SUCCESS", "SiphonLife", 325701)
 	self:Log("SPELL_AURA_APPLIED", "SiphonLifeApplied", 325701)
 	self:Death("DepravedCollectorDeath", 165529)
@@ -194,10 +118,8 @@ function mod:OnBossEnable()
 	-- Stoneborn Slasher
 	self:RegisterEngageMob("StonebornSlasherEngaged", 167607)
 	self:Log("SPELL_CAST_START", "PowerfulSwipe", 326997)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_CAST_START", "DisruptingScreech", 1235326)
-		self:Log("SPELL_CAST_START", "StoneFist", 1237071)
-	end
+	self:Log("SPELL_CAST_START", "DisruptingScreech", 1235326)
+	self:Log("SPELL_CAST_START", "StoneFist", 1237071)
 	self:Death("StonebornSlasherDeath", 167607)
 
 	-- Shard of Halkias
@@ -207,39 +129,27 @@ function mod:OnBossEnable()
 	self:Death("ShardOfHalkiasDeath", 164557)
 
 	-- Stoneborn Reaver
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:RegisterEngageMob("StonebornReaverEngaged", 167612)
-		self:Log("SPELL_CAST_START", "TurnToStone", 1235762)
-		self:Log("SPELL_AURA_APPLIED", "TurnToStoneApplied", 1235762)
-		self:Log("SPELL_CAST_START", "MortalStrike", 1235766)
-		self:Death("StonebornReaverDeath", 167612)
-	else -- XXX remove block in 11.2
-		self:Log("SPELL_CAST_START", "TurnToStoneOld", 326607)
-		self:Log("SPELL_AURA_APPLIED", "TurnToStoneBuffApplied", 326607)
-		self:Log("SPELL_AURA_APPLIED", "TurnToStoneDebuffApplied", 326617)
-	end
+	self:RegisterEngageMob("StonebornReaverEngaged", 167612)
+	self:Log("SPELL_CAST_START", "TurnToStone", 1235762)
+	self:Log("SPELL_AURA_APPLIED", "TurnToStoneApplied", 1235762)
+	self:Log("SPELL_CAST_START", "MortalStrike", 1235766)
+	self:Death("StonebornReaverDeath", 167612)
 
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		-- Stoneborn Eviscerator
-		self:RegisterEngageMob("StonebornEvisceratorEngaged", 167611)
-		self:Log("SPELL_CAST_SUCCESS", "HurlGlaive", 326638)
-		self:Death("StonebornEvisceratorDeath", 167611)
-	end
+	-- Stoneborn Eviscerator
+	self:RegisterEngageMob("StonebornEvisceratorEngaged", 167611)
+	self:Log("SPELL_CAST_SUCCESS", "HurlGlaive", 326638)
+	self:Death("StonebornEvisceratorDeath", 167611)
 
 	-- Inquisitor Sigar
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:RegisterEngageMob("InquisitorSigarEngaged", 167876)
-		self:Log("SPELL_CAST_START", "DarkCommunion", 326794)
-		self:Log("SPELL_CAST_START", "DisplayOfPower", 1236614)
-		self:Log("SPELL_AURA_APPLIED", "DisplayOfPowerApplied", 1236614)
-		self:Log("SPELL_AURA_REMOVED", "DisplayOfPowerRemoved", 1236614)
-		self:Log("SPELL_CAST_START", "DisperseSin", 326847)
-	end
+	self:RegisterEngageMob("InquisitorSigarEngaged", 167876)
+	self:Log("SPELL_CAST_START", "DarkCommunion", 326794)
+	self:Log("SPELL_CAST_START", "DisplayOfPower", 1236614)
+	self:Log("SPELL_AURA_APPLIED", "DisplayOfPowerApplied", 1236614)
+	self:Log("SPELL_AURA_REMOVED", "DisplayOfPowerRemoved", 1236614)
+	self:Log("SPELL_CAST_START", "DisperseSin", 326847)
 	self:Log("SPELL_PERIODIC_DAMAGE", "AnguishDamage", 326891)
 	self:Log("SPELL_PERIODIC_MISSED", "AnguishDamage", 326891)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Death("InquisitorSigarDeath", 167876)
-	end
+	self:Death("InquisitorSigarDeath", 167876)
 end
 
 --------------------------------------------------------------------------------
@@ -249,9 +159,6 @@ end
 -- Depraved Houndmaster
 
 function mod:DepravedHoundmasterEngaged(guid)
-	if not isElevenDotTwo then -- XXX remove in 11.2
-		self:Nameplate(325793, 8.9, guid) -- Rapid Fire
-	end
 	self:Nameplate(326450, 15.1, guid) -- Loyal Beasts
 end
 
@@ -280,29 +187,6 @@ do
 	end
 end
 
-do
-	local prev = 0
-	function mod:RapidFire(args)
-		self:Nameplate(args.spellId, 18.7, args.sourceGUID)
-		if args.time - prev > 1.5 then
-			prev = args.time
-			self:Message(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "alarm")
-		end
-	end
-end
-
-do
-	local prev = 0
-	function mod:RapidFireDamage(args)
-		if self:Me(args.destGUID) and args.time - prev > 1.5 then
-			prev = args.time
-			self:PersonalMessage(325793, "near")
-			self:PlaySound(325793, "info")
-		end
-	end
-end
-
 function mod:DepravedHoundmasterDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
@@ -320,21 +204,6 @@ function mod:GushingWoundApplied(args)
 	end
 end
 
--- Loyal Stoneborn XXX removed in 11.2
-
-function mod:StoneBreath(args) -- XXX removed in 11.2
-	if not self:Friendly(args.sourceFlags) then -- can be controlled by Venthyr
-		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "alarm")
-	end
-end
-
-function mod:LoyalStoneborn(args) -- XXX removed in 11.2
-	self:Message(args.spellId, "green")
-	self:Bar(args.spellId, 45)
-	self:PlaySound(args.spellId, "info")
-end
-
 -- Depraved Darkblade
 
 function mod:AnimaTaintedArmorApplied(args)
@@ -348,37 +217,10 @@ function mod:AnimaTaintedArmorApplied(args)
 	end
 end
 
-do
-	local prev = 0
-	function mod:DeadlyThrust(args) -- XXX removed in 11.2
-		if args.time - prev > 1.5 then
-			prev = args.time
-			self:Message(args.spellId, "purple")
-			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
 -- Depraved Obliterator
 
 function mod:DepravedObliteratorEngaged(guid)
 	self:Nameplate(325876, 8.2, guid) -- Mark of Obliteration
-end
-
-do
-	local prev = 0
-	function mod:CurseOfObliterationStart(args) -- XXX removed in 11.2
-		self:Nameplate(args.spellId, 0, args.sourceGUID)
-		if args.time - prev > 1.5 then
-			prev = args.time
-			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
-function mod:CurseOfObliterationInterrupt(args) -- XXX remove in 11.2
-	self:Nameplate(325876, 18.2, args.destGUID)
 end
 
 function mod:MarkOfObliteration(args)
@@ -392,13 +234,8 @@ do
 		if self:Me(args.destGUID) then
 			if not self:Solo() and args.time - prevOnMe > 12 then
 				prevOnMe = args.time
-				if isElevenDotTwo then -- XXX remove check in 11.2
-					self:Say(args.spellId, nil, nil, "Mark of Obliteration")
-					self:SayCountdown(args.spellId, 12)
-				else -- XXX remove block in 11.2
-					self:Say(args.spellId, CL.curse, nil, "Curse")
-					self:SayCountdown(args.spellId, 6)
-				end
+				self:Say(args.spellId, nil, nil, "Mark of Obliteration")
+				self:SayCountdown(args.spellId, 12)
 			end
 			self:PlaySound(args.spellId, "info")
 		else
@@ -424,26 +261,6 @@ function mod:DepravedCollectorEngaged(guid)
 	self:Nameplate(325701, 3.1, guid) -- Siphon Life
 end
 
-function mod:CollectSins(args) -- XXX remove in 11.2
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
-end
-
-function mod:CollectSinsInterrupt(args) -- XXX remove in 11.2
-	self:Nameplate(325700, 15.1, args.destGUID)
-end
-
-function mod:CollectSinsSuccess(args) -- XXX remove in 11.2
-	self:Nameplate(args.spellId, 15.1, args.sourceGUID)
-end
-
-function mod:SiphonLifeStart(args) -- XXX remove in 11.2
-	self:Message(args.spellId, "yellow")
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
-end
-
 function mod:SiphonLife(args)
 	self:Nameplate(args.spellId, 15.9, args.sourceGUID)
 end
@@ -460,11 +277,9 @@ end
 -- Stoneborn Slasher
 
 function mod:StonebornSlasherEngaged(guid)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(1237071, 5.0, guid) -- Stone Fist
-		self:Nameplate(1235326, 15.9, guid) -- Disrupting Screech
-	end
+	self:Nameplate(1237071, 5.0, guid) -- Stone Fist
 	self:Nameplate(326997, 10.7, guid) -- Powerful Swipe
+	self:Nameplate(1235326, 15.9, guid) -- Disrupting Screech
 end
 
 function mod:PowerfulSwipe(args)
@@ -554,35 +369,6 @@ do
 			prev = args.time
 			self:Message(args.spellId, "purple")
 			self:PlaySound(args.spellId, "alert")
-		end
-	end
-end
-
-function mod:TurnToStoneOld(args) -- XXX remove in 11.2
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	if self:Interrupter() then
-		self:PlaySound(args.spellId, "warning")
-	end
-end
-
-do
-	local prev = 0
-	function mod:TurnToStoneBuffApplied(args) -- XXX remove in 11.2
-		if self:Dispeller("magic", true) and not self:Player(args.destFlags) and args.time - prev > 2 then
-			prev = args.time
-			self:Message(args.spellId, "yellow", CL.on:format(args.spellName, args.destName))
-			self:PlaySound(args.spellId, "warning")
-		end
-	end
-end
-
-do
-	local playerList = mod:NewTargetList()
-	function mod:TurnToStoneDebuffApplied(args) -- XXX remove in 11.2
-		if self:Dispeller("magic") then
-			playerList[#playerList+1] = args.destName
-			self:TargetsMessageOld(326607, "orange", playerList, 5)
-			self:PlaySound(326607, "alert", nil, playerList)
 		end
 	end
 end

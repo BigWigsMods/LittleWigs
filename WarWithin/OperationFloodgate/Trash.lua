@@ -1,4 +1,3 @@
-local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -20,7 +19,6 @@ mod:RegisterEnableMob(
 	231496, -- Venture Co. Diver
 	231223, -- Disturbed Kelp
 	234373, -- Bomb Pile
-	231197, -- Bubbles XXX removed in 11.2
 	231312, -- Venture Co. Electrician
 	231325 -- Darkfuse Jumpstarter
 )
@@ -59,125 +57,61 @@ end
 -- Initialization
 --
 
-if isElevenDotTwo then -- XXX remove check in 11.2
-	function mod:GetOptions()
-		return {
-			-- Weapons Stockpile
-			"weapons_stockpiles_pilfered",
-			-- Shreddinator 3000
-			{474337, "NAMEPLATE"}, -- Shreddation
-			{465754, "NAMEPLATE"}, -- Flamethrower
-			-- Mechadrone Sniper
-			{1214468, "NAMEPLATE"}, -- Trickshot
-			-- Loaderbot
-			{465120, "NAMEPLATE"}, -- Wind Up
-			-- Darkfuse Hyena
-			{463058, "NAMEPLATE"}, -- Bloodthirsty Cackle
-			-- Darkfuse Demolitionist
-			1216039, -- R.P.G.G.
-			-- Darkfuse Inspector
-			{465682, "NAMEPLATE"}, -- Surprise Inspection
-			-- Darkfuse Bloodwarper
-			{465827, "NAMEPLATE"}, -- Warp Blood
-			-- Undercrawler
-			{465813, "DISPEL", "NAMEPLATE"}, -- Lethargic Venom
-			-- Venture Co. Surveyor
-			{462771, "NAMEPLATE"}, -- Surveying Beam
-			{463169, "ME_ONLY", "NAMEPLATE", "OFF"}, -- EZ-Thro Dynamite III
-			-- Venture Co. Architect
-			{465408, "NAMEPLATE"}, -- Rapid Construction
-			-- Venture Co. Diver
-			{468726, "NAMEPLATE"}, -- Plant Seaforium Charge
-			{468631, "NAMEPLATE"}, -- Harpoon
-			-- Disturbed Kelp
-			{471736, "NAMEPLATE"}, -- Jettison Kelp
-			{471733, "NAMEPLATE"}, -- Restorative Algae
-			-- Bomb Pile
-			1214337, -- Plant Bombs
-			-- Venture Co. Electrician
-			{469799, "DISPEL", "NAMEPLATE"}, -- Overcharge
-			-- Darkfuse Jumpstarter
-			{465666, "TANK", "NAMEPLATE"}, -- Sparkslam
-		}, {
-			["weapons_stockpiles_pilfered"] = CL.general,
-			[474337] = L.shreddinator_3000,
-			[1214468] = L.mechadrone_sniper,
-			[463058] = L.darkfuse_hyena,
-			[1216039] = L.darkfuse_demolitionist,
-			[465682] = L.darkfuse_inspector,
-			[465827] = L.darkfuse_bloodwarper,
-			[465813] = L.undercrawler,
-			[462771] = L.venture_co_surveyor,
-			[465408] = L.venture_co_architect,
-			[468726] = L.venture_co_diver,
-			[471736] = L.disturbed_kelp,
-			[1214337] = L.bomb_pile,
-			[469799] = L.venture_co_electrician,
-			[465666] = L.darkfuse_jumpstarter,
-		}
-	end
-else -- XXX remove block in 11.2
-	function mod:GetOptions()
-		return {
-			-- Weapons Stockpile
-			"weapons_stockpiles_pilfered",
-			-- Shreddinator 3000
-			{474337, "NAMEPLATE"}, -- Shreddation
-			{465754, "NAMEPLATE"}, -- Flamethrower
-			-- Mechadrone Sniper
-			{1214468, "NAMEPLATE"}, -- Trickshot
-			-- Loaderbot
-			{465120, "NAMEPLATE"}, -- Wind Up
-			-- Darkfuse Hyena
-			{463058, "NAMEPLATE"}, -- Bloodthirsty Cackle
-			-- Darkfuse Demolitionist
-			1216039, -- R.P.G.G.
-			-- Darkfuse Inspector
-			{465682, "NAMEPLATE"}, -- Surprise Inspection
-			-- Darkfuse Bloodwarper
-			{465827, "NAMEPLATE"}, -- Warp Blood
-			-- Undercrawler
-			{465813, "DISPEL", "NAMEPLATE"}, -- Lethargic Venom
-			-- Venture Co. Surveyor
-			{462771, "NAMEPLATE"}, -- Surveying Beam
-			{463169, "ME_ONLY", "NAMEPLATE", "OFF"}, -- EZ-Thro Dynamite III
-			-- Venture Co. Architect
-			{465408, "NAMEPLATE"}, -- Rapid Construction
-			-- Venture Co. Diver
-			{468726, "NAMEPLATE"}, -- Plant Seaforium Charge
-			{468631, "NAMEPLATE"}, -- Harpoon
-			-- Disturbed Kelp
-			{471736, "NAMEPLATE"}, -- Jettison Kelp
-			{471733, "NAMEPLATE"}, -- Restorative Algae
-			-- Bomb Pile
-			1214337, -- Plant Bombs
-			-- Bubbles
-			{469818, "NAMEPLATE"}, -- Bubble Burp
-			{1217496, "NAMEPLATE"}, -- Splish Splash
-			{469721, "NAMEPLATE"}, -- Backwash
-			-- Venture Co. Electrician
-			{469799, "DISPEL", "NAMEPLATE"}, -- Overcharge
-			-- Darkfuse Jumpstarter
-			{465666, "TANK", "NAMEPLATE"}, -- Sparkslam
-		}, {
-			["weapons_stockpiles_pilfered"] = CL.general,
-			[474337] = L.shreddinator_3000,
-			[1214468] = L.mechadrone_sniper,
-			[463058] = L.darkfuse_hyena,
-			[1216039] = L.darkfuse_demolitionist,
-			[465682] = L.darkfuse_inspector,
-			[465827] = L.darkfuse_bloodwarper,
-			[465813] = L.undercrawler,
-			[462771] = L.venture_co_surveyor,
-			[465408] = L.venture_co_architect,
-			[468726] = L.venture_co_diver,
-			[471736] = L.disturbed_kelp,
-			[1214337] = L.bomb_pile,
-			[469818] = L.bubbles,
-			[469799] = L.venture_co_electrician,
-			[465666] = L.darkfuse_jumpstarter,
-		}
-	end
+function mod:GetOptions()
+	return {
+		-- Weapons Stockpile
+		"weapons_stockpiles_pilfered",
+		-- Shreddinator 3000
+		{474337, "NAMEPLATE"}, -- Shreddation
+		{465754, "NAMEPLATE"}, -- Flamethrower
+		-- Mechadrone Sniper
+		{1214468, "NAMEPLATE"}, -- Trickshot
+		-- Loaderbot
+		{465120, "NAMEPLATE"}, -- Wind Up
+		-- Darkfuse Hyena
+		{463058, "NAMEPLATE"}, -- Bloodthirsty Cackle
+		-- Darkfuse Demolitionist
+		1216039, -- R.P.G.G.
+		-- Darkfuse Inspector
+		{465682, "NAMEPLATE"}, -- Surprise Inspection
+		-- Darkfuse Bloodwarper
+		{465827, "NAMEPLATE"}, -- Warp Blood
+		-- Undercrawler
+		{465813, "DISPEL", "NAMEPLATE"}, -- Lethargic Venom
+		-- Venture Co. Surveyor
+		{462771, "NAMEPLATE"}, -- Surveying Beam
+		{463169, "ME_ONLY", "NAMEPLATE", "OFF"}, -- EZ-Thro Dynamite III
+		-- Venture Co. Architect
+		{465408, "NAMEPLATE"}, -- Rapid Construction
+		-- Venture Co. Diver
+		{468726, "NAMEPLATE"}, -- Plant Seaforium Charge
+		{468631, "NAMEPLATE"}, -- Harpoon
+		-- Disturbed Kelp
+		{471736, "NAMEPLATE"}, -- Jettison Kelp
+		{471733, "NAMEPLATE"}, -- Restorative Algae
+		-- Bomb Pile
+		1214337, -- Plant Bombs
+		-- Venture Co. Electrician
+		{469799, "DISPEL", "NAMEPLATE"}, -- Overcharge
+		-- Darkfuse Jumpstarter
+		{465666, "TANK", "NAMEPLATE"}, -- Sparkslam
+	}, {
+		["weapons_stockpiles_pilfered"] = CL.general,
+		[474337] = L.shreddinator_3000,
+		[1214468] = L.mechadrone_sniper,
+		[463058] = L.darkfuse_hyena,
+		[1216039] = L.darkfuse_demolitionist,
+		[465682] = L.darkfuse_inspector,
+		[465827] = L.darkfuse_bloodwarper,
+		[465813] = L.undercrawler,
+		[462771] = L.venture_co_surveyor,
+		[465408] = L.venture_co_architect,
+		[468726] = L.venture_co_diver,
+		[471736] = L.disturbed_kelp,
+		[1214337] = L.bomb_pile,
+		[469799] = L.venture_co_electrician,
+		[465666] = L.darkfuse_jumpstarter,
+	}
 end
 
 function mod:OnBossEnable()
@@ -277,15 +211,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PlantBombs", 1214337)
 	self:Log("SPELL_CAST_SUCCESS", "PlantBombsSuccess", 1214337)
 
-	if not isElevenDotTwo then -- XXX remove block in 11.2
-		-- Bubbles
-		self:RegisterEngageMob("BubblesEngaged", 231197)
-		self:Log("SPELL_CAST_START", "BubbleBurp", 469818)
-		self:Log("SPELL_CAST_START", "SplishSplash", 1217496)
-		self:Log("SPELL_CAST_START", "Backwash", 469721)
-		self:Death("BubblesDeath", 231197)
-	end
-
 	-- Venture Co. Electrician
 	self:RegisterEngageMob("VentureCoElectricianEngaged", 231312)
 	self:Log("SPELL_CAST_SUCCESS", "Overcharge", 469799)
@@ -332,11 +257,7 @@ end
 
 function mod:Shreddation(args)
 	self:Message(args.spellId, "orange")
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(args.spellId, 25.5, args.sourceGUID)
-	else -- XXX remove block in 11.2
-		self:Nameplate(args.spellId, 13.4, args.sourceGUID)
-	end
+	self:Nameplate(args.spellId, 25.5, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -353,11 +274,7 @@ end
 
 function mod:Flamethrower(args)
 	self:Message(args.spellId, "yellow")
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Nameplate(args.spellId, 25.5, args.sourceGUID)
-	else -- XXX remove block in 11.2
-		self:Nameplate(args.spellId, 26.7, args.sourceGUID)
-	end
+	self:Nameplate(args.spellId, 25.5, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -405,11 +322,7 @@ end
 do
 	local prev = 0
 	function mod:WindUp(args)
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			self:Nameplate(args.spellId, 18.2, args.sourceGUID)
-		else -- XXX remove block in 11.2
-			self:Nameplate(args.spellId, 17.0, args.sourceGUID)
-		end
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
 		if args.time - prev > 2 then
 			prev = args.time
 			self:Message(args.spellId, "yellow")
@@ -725,68 +638,6 @@ do
 				swampfaceModule:Enable()
 				swampfaceModule:Warmup()
 			end
-		end
-	end
-end
-
--- Bubbles XXX removed in 11.2
-
-do
-	local timer
-
-	function mod:BubblesEngaged(guid) -- XXX remove in 11.2
-		self:CDBar(469818, 4.3) -- Bubble Burp
-		self:Nameplate(469818, 4.3, guid) -- Bubble Burp
-		self:CDBar(1217496, 9.2) -- Splish Splash
-		self:Nameplate(1217496, 9.2, guid) -- Splish Splash
-		self:CDBar(469721, 15.3) -- Backwash
-		self:Nameplate(469721, 15.3, guid) -- Backwash
-		timer = self:ScheduleTimer("BubblesDeath", 30)
-	end
-
-	function mod:BubbleBurp(args) -- XXX remove in 11.2
-		if timer then
-			self:CancelTimer(timer)
-		end
-		self:Message(args.spellId, "red")
-		self:CDBar(args.spellId, 21.9)
-		self:Nameplate(args.spellId, 21.9, args.sourceGUID)
-		self:PlaySound(args.spellId, "alarm")
-		timer = self:ScheduleTimer("BubblesDeath", 30)
-	end
-
-	function mod:SplishSplash(args) -- XXX remove in 11.2
-		if timer then
-			self:CancelTimer(timer)
-		end
-		self:Message(args.spellId, "orange")
-		self:CDBar(args.spellId, 21.8)
-		self:Nameplate(args.spellId, 21.8, args.sourceGUID)
-		self:PlaySound(args.spellId, "alarm")
-		timer = self:ScheduleTimer("BubblesDeath", 30)
-	end
-
-	function mod:Backwash(args) -- XXX remove in 11.2
-		if timer then
-			self:CancelTimer(timer)
-		end
-		self:Message(args.spellId, "yellow")
-		self:CDBar(args.spellId, 21.8)
-		self:Nameplate(args.spellId, 21.8, args.sourceGUID)
-		self:PlaySound(args.spellId, "alert")
-		timer = self:ScheduleTimer("BubblesDeath", 30)
-	end
-
-	function mod:BubblesDeath(args) -- XXX remove in 11.2
-		if timer then
-			self:CancelTimer(timer)
-			timer = nil
-		end
-		self:StopBar(469818) -- Bubble Burp
-		self:StopBar(1217496) -- Splish Splash
-		self:StopBar(469721) -- Backwash
-		if args then
-			self:ClearNameplate(args.destGUID)
 		end
 	end
 end

@@ -136,7 +136,6 @@ BigWigs:AddSounds("Echelon", {
 
 BigWigs:AddColors("High Adjudicator Aleez", {
 	[323538] = "red",
-	[323552] = "red",
 	[323597] = "cyan",
 	[323650] = {"blue","green","yellow"},
 	[329340] = "orange",
@@ -145,7 +144,6 @@ BigWigs:AddColors("High Adjudicator Aleez", {
 
 BigWigs:AddSounds("High Adjudicator Aleez", {
 	[323538] = "alert",
-	[323552] = "warning",
 	[323597] = "long",
 	[323650] = {"info","warning"},
 	[329340] = "alarm",
@@ -154,10 +152,8 @@ BigWigs:AddSounds("High Adjudicator Aleez", {
 
 BigWigs:AddColors("Lord Chamberlain", {
 	[323142] = "yellow",
-	[323143] = "yellow",
 	[323236] = "orange",
 	[323437] = {"blue","purple"},
-	[327885] = "red",
 	[328791] = "red",
 	[329104] = "cyan",
 	[1236973] = "red",
@@ -165,33 +161,24 @@ BigWigs:AddColors("Lord Chamberlain", {
 
 BigWigs:AddSounds("Lord Chamberlain", {
 	[323142] = "alert",
-	[323143] = "alert",
 	[323236] = "alarm",
 	[323437] = "alert",
-	[327885] = "alarm",
 	[328791] = "warning",
 	[329104] = "long",
 	[1236973] = "alarm",
 })
 
 BigWigs:AddColors("Halls of Atonement Trash", {
-	[325523] = "purple",
-	[325700] = "red",
-	[325701] = {"blue","orange","yellow"},
-	[325793] = {"blue","yellow"},
-	[325876] = {"blue","orange","red"},
+	[325701] = {"blue","orange"},
+	[325876] = {"blue","orange"},
 	[326409] = "yellow",
 	[326441] = "orange",
 	[326450] = {"purple","red"},
-	[326607] = {"blue","orange","red","yellow"},
 	[326638] = {"blue","red"},
 	[326794] = "cyan",
 	[326847] = "orange",
 	[326891] = "blue",
 	[326997] = "orange",
-	[342171] = "green",
-	[344993] = "blue",
-	[346866] = "yellow",
 	[1235060] = {"blue","purple"},
 	[1235326] = "yellow",
 	[1235762] = {"blue","orange","yellow"},
@@ -202,23 +189,16 @@ BigWigs:AddColors("Halls of Atonement Trash", {
 })
 
 BigWigs:AddSounds("Halls of Atonement Trash", {
-	[325523] = "alert",
-	[325700] = "alert",
 	[325701] = "alert",
-	[325793] = {"alarm","info"},
-	[325876] = {"alarm","alert","info"},
+	[325876] = {"alarm","info"},
 	[326409] = "warning",
 	[326441] = "alarm",
 	[326450] = {"alert","warning"},
-	[326607] = {"alert","warning"},
 	[326638] = "alert",
 	[326794] = "long",
 	[326847] = "alarm",
 	[326891] = "underyou",
 	[326997] = "alarm",
-	[342171] = "info",
-	[344993] = {"info","warning"},
-	[346866] = "alarm",
 	[1235060] = {"info","warning"},
 	[1235326] = "warning",
 	[1235762] = {"alarm","info"},
@@ -727,7 +707,6 @@ BigWigs:AddColors("Myza's Oasis", {
 	[350922] = "red",
 	[353706] = "yellow",
 	[353783] = "yellow",
-	[353835] = "red",
 	[355438] = "red",
 	[356482] = "orange",
 	[357404] = "red",
@@ -744,7 +723,6 @@ BigWigs:AddSounds("Myza's Oasis", {
 	[350922] = "warning",
 	[353706] = "long",
 	[353783] = "info",
-	[353835] = "alert",
 	[355438] = "info",
 	[356482] = "alarm",
 	[357404] = "alert",
@@ -756,11 +734,6 @@ BigWigs:AddSounds("Myza's Oasis", {
 })
 
 BigWigs:AddColors("So'azmi", {
-	[347150] = "red",
-	[347249] = "cyan",
-	[347610] = "yellow",
-	[347623] = "orange",
-	[357188] = "red",
 	[1245579] = "yellow",
 	[1245634] = "cyan",
 	[1245669] = "red",
@@ -769,11 +742,6 @@ BigWigs:AddColors("So'azmi", {
 })
 
 BigWigs:AddSounds("So'azmi", {
-	[347150] = "alert",
-	[347249] = "info",
-	[347610] = "warning",
-	[347623] = "alarm",
-	[357188] = "alert",
 	[1245579] = "warning",
 	[1245634] = "info",
 	[1245669] = "alert",
@@ -803,22 +771,14 @@ BigWigs:AddSounds("Hylbrande", {
 
 BigWigs:AddColors("Timecap'n Hooktail", {
 	[347149] = "purple",
-	[347151] = "orange",
-	[347371] = "yellow",
-	[350517] = "orange",
 	[352345] = {"blue","red"},
-	[354334] = {"blue","orange"},
 	[358947] = "blue",
 	[1240102] = {"blue","orange"},
 })
 
 BigWigs:AddSounds("Timecap'n Hooktail", {
 	[347149] = {"alarm","info"},
-	[347151] = "alert",
-	[347371] = "alert",
-	[350517] = "alert",
 	[352345] = "warning",
-	[354334] = "alert",
 	[358947] = "underyou",
 	[1240102] = "info",
 })
@@ -854,7 +814,6 @@ BigWigs:AddColors("Tazavesh Trash", {
 	[347716] = "purple",
 	[347721] = "yellow",
 	[347775] = "red",
-	[351047] = "purple",
 	[352796] = "purple",
 	[355048] = "purple",
 	[355057] = {"red","yellow"},
@@ -870,7 +829,6 @@ BigWigs:AddColors("Tazavesh Trash", {
 	[355637] = {"blue","orange"},
 	[355640] = "yellow",
 	[355642] = "red",
-	[355782] = "yellow",
 	[355830] = "yellow",
 	[355888] = "purple",
 	[355891] = "cyan",
@@ -879,7 +837,6 @@ BigWigs:AddColors("Tazavesh Trash", {
 	[355934] = "red",
 	[355980] = "yellow",
 	[356001] = {"blue","yellow"},
-	[356031] = "yellow",
 	[356133] = {"purple","red"},
 	[356404] = "red",
 	[356407] = {"orange","yellow"},
@@ -894,7 +851,6 @@ BigWigs:AddColors("Tazavesh Trash", {
 	[357229] = "red",
 	[357238] = "cyan",
 	[357260] = "yellow",
-	[357284] = "red",
 	[357508] = "yellow",
 	[357512] = {"blue","red"},
 	[368661] = {"blue","yellow"},
@@ -909,7 +865,6 @@ BigWigs:AddSounds("Tazavesh Trash", {
 	[347716] = "alert",
 	[347721] = "warning",
 	[347775] = "alert",
-	[351047] = "alert",
 	[352796] = "alert",
 	[355048] = "alert",
 	[355057] = {"alert","warning"},
@@ -925,7 +880,6 @@ BigWigs:AddSounds("Tazavesh Trash", {
 	[355637] = "alert",
 	[355640] = "info",
 	[355642] = "alert",
-	[355782] = "warning",
 	[355830] = "info",
 	[355888] = "alert",
 	[355891] = "info",
@@ -934,7 +888,6 @@ BigWigs:AddSounds("Tazavesh Trash", {
 	[355934] = {"alert","info"},
 	[355980] = "warning",
 	[356001] = {"alarm","underyou"},
-	[356031] = "alert",
 	[356133] = {"alert","warning"},
 	[356404] = "alarm",
 	[356407] = "warning",
@@ -949,7 +902,6 @@ BigWigs:AddSounds("Tazavesh Trash", {
 	[357229] = "alarm",
 	[357238] = "info",
 	[357260] = "warning",
-	[357284] = "alert",
 	[357508] = "info",
 	[357512] = {"alert","warning"},
 	[368661] = "alert",

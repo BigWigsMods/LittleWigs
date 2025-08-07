@@ -51,10 +51,8 @@ BigWigs:AddSounds("Ki'katal the Harvester", {
 BigWigs:AddColors("Ara-Kara, City of Echoes Trash", {
 	[432967] = "cyan",
 	[433002] = "purple",
-	[433785] = "purple",
 	[433841] = "red",
 	[433845] = "orange",
-	[434252] = "yellow",
 	[434793] = "red",
 	[434802] = "red",
 	[434824] = "orange",
@@ -65,7 +63,6 @@ BigWigs:AddColors("Ara-Kara, City of Echoes Trash", {
 	[439208] = "green",
 	[448248] = "red",
 	[453161] = "orange",
-	[465012] = "yellow",
 	[1241693] = "yellow",
 	[1241785] = {"blue","purple"},
 })
@@ -73,10 +70,8 @@ BigWigs:AddColors("Ara-Kara, City of Echoes Trash", {
 BigWigs:AddSounds("Ara-Kara, City of Echoes Trash", {
 	[432967] = {"info","warning"},
 	[433002] = "alert",
-	[433785] = "alert",
 	[433841] = "alert",
 	[433845] = "alarm",
-	[434252] = "info",
 	[434793] = "alert",
 	[434802] = "warning",
 	[434824] = "alarm",
@@ -87,7 +82,6 @@ BigWigs:AddSounds("Ara-Kara, City of Echoes Trash", {
 	[439208] = "info",
 	[448248] = "alert",
 	[453161] = "alarm",
-	[465012] = "alert",
 	[1241693] = "info",
 	[1241785] = "alert",
 })
@@ -617,16 +611,13 @@ BigWigs:AddColors("Operation: Floodgate Trash", {
 	[465827] = "yellow",
 	[468631] = "red",
 	[468726] = "cyan",
-	[469721] = "yellow",
 	[469799] = {"blue","orange"},
-	[469818] = "red",
 	[471733] = "red",
 	[471736] = "orange",
 	[474337] = {"blue","orange"},
 	[1214337] = "green",
 	[1214468] = "red",
 	[1216039] = "orange",
-	[1217496] = "orange",
 	["weapons_stockpiles_pilfered"] = "green",
 })
 
@@ -643,23 +634,19 @@ BigWigs:AddSounds("Operation: Floodgate Trash", {
 	[465827] = "info",
 	[468631] = "alert",
 	[468726] = "info",
-	[469721] = "alert",
 	[469799] = "info",
-	[469818] = "alarm",
 	[471733] = "alert",
 	[471736] = "alarm",
 	[474337] = {"alarm","underyou"},
 	[1214337] = "info",
 	[1214468] = "alert",
 	[1216039] = "alarm",
-	[1217496] = "alarm",
 	["weapons_stockpiles_pilfered"] = "info",
 })
 
 BigWigs:AddColors("Captain Dailcry", {
 	[424414] = "purple",
 	[424419] = "red",
-	[447270] = "orange",
 	[447439] = {"blue","green","yellow"},
 	[1238780] = {"blue","orange"},
 })
@@ -667,7 +654,6 @@ BigWigs:AddColors("Captain Dailcry", {
 BigWigs:AddSounds("Captain Dailcry", {
 	[424414] = "alert",
 	[424419] = "warning",
-	[447270] = "alarm",
 	[447439] = {"alert","info"},
 	[1238780] = {"alarm","underyou"},
 })
@@ -711,7 +697,6 @@ BigWigs:AddSounds("Prioress Murrpray", {
 })
 
 BigWigs:AddColors("Priory of the Sacred Flame Trash", {
-	[424420] = {"blue","orange","red"},
 	[424423] = "red",
 	[424429] = {"blue","orange"},
 	[424431] = "yellow",
@@ -730,7 +715,6 @@ BigWigs:AddColors("Priory of the Sacred Flame Trash", {
 	[428150] = {"green","red"},
 	[435088] = "green",
 	[435165] = "purple",
-	[444296] = "orange",
 	[444728] = "yellow",
 	[444743] = "red",
 	[446776] = "red",
@@ -744,7 +728,6 @@ BigWigs:AddColors("Priory of the Sacred Flame Trash", {
 })
 
 BigWigs:AddSounds("Priory of the Sacred Flame Trash", {
-	[424420] = {"info","warning"},
 	[424423] = "alert",
 	[424429] = {"alarm","underyou"},
 	[424431] = "alert",
@@ -763,7 +746,6 @@ BigWigs:AddSounds("Priory of the Sacred Flame Trash", {
 	[428150] = {"alert","info"},
 	[435088] = "info",
 	[435165] = "alert",
-	[444296] = "alert",
 	[444728] = "alert",
 	[444743] = "alert",
 	[446776] = "alert",
@@ -859,8 +841,7 @@ BigWigs:AddSounds("Rasha'nan Dawnbreaker", {
 })
 
 BigWigs:AddColors("The Dawnbreaker Trash", {
-	[431304] = "red",
-	[431309] = {"blue","orange","red"},
+	[431309] = {"blue","orange"},
 	[431349] = {"blue","red"},
 	[431364] = {"blue","yellow"},
 	[431491] = "purple",
@@ -885,8 +866,7 @@ BigWigs:AddColors("The Dawnbreaker Trash", {
 })
 
 BigWigs:AddSounds("The Dawnbreaker Trash", {
-	[431304] = "alert",
-	[431309] = {"alert","info"},
+	[431309] = "info",
 	[431349] = "alarm",
 	[431364] = "alert",
 	[431491] = "alert",
@@ -897,7 +877,7 @@ BigWigs:AddSounds("The Dawnbreaker Trash", {
 	[432565] = "alarm",
 	[446615] = "info",
 	[449042] = "info",
-	[450756] = {"info","warning"},
+	[450756] = "info",
 	[450854] = "alarm",
 	[451091] = "info",
 	[451097] = "alert",

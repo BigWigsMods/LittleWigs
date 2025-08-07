@@ -1,4 +1,3 @@
-local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -19,63 +18,30 @@ local timeBombsCount = 1
 -- Initialization
 --
 
-if isElevenDotTwo then -- XXX remove check in 11.2
-	function mod:GetOptions()
-		return {
-			347149, -- Infinite Breath
-			{352345, "ME_ONLY"}, -- Anchor Shot
-			--347371, -- Grapeshot XXX no longer logs in 11.2
-			358947, -- Burning Tar
-			350517, -- Double Time
-			{1240102, "DISPEL"}, -- Time Bombs
-		}
-	end
-else -- XXX remove block in 11.2
-	function mod:GetOptions()
-		return {
-			347149, -- Infinite Breath
-			347151, -- Hook Swipe
-			354334, -- Hook'd!
-			{352345, "ME_ONLY"}, -- Anchor Shot
-			347371, -- Grapeshot
-			358947, -- Burning Tar
-			350517, -- Double Time
-		}
-	end
+function mod:GetOptions()
+	return {
+		347149, -- Infinite Breath
+		{352345, "ME_ONLY"}, -- Anchor Shot
+		358947, -- Burning Tar
+		{1240102, "DISPEL"}, -- Time Bombs
+	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "InfiniteBreathApplied", 350134)
 	self:Log("SPELL_CAST_START", "InfiniteBreath", 347149)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_CAST_SUCCESS", "AnchorShot", 352345)
-	else -- XXX remove block in 11.2
-		self:Log("SPELL_AURA_APPLIED", "AnchorShot", 352345)
-		self:Log("SPELL_CAST_START", "HookSwipe", 347151)
-		self:Log("SPELL_AURA_APPLIED", "HookdApplied", 354334)
-		self:Log("SPELL_CAST_SUCCESS", "Grapeshot", 347371) -- XXX no longer logs in 11.2
-	end
+	self:Log("SPELL_CAST_SUCCESS", "AnchorShot", 352345)
 	self:Log("SPELL_PERIODIC_DAMAGE", "BurningTarDamage", 358947)
 	self:Log("SPELL_PERIODIC_MISSED", "BurningTarDamage", 358947)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_CAST_SUCCESS", "TimeBombs", 1240102)
-		self:Log("SPELL_AURA_APPLIED", "TimeBombApplied", 1240097)
-	else -- XXX remove block in 11.2
-		self:Log("SPELL_CAST_START", "DoubleTime", 350517)
-	end
+	self:Log("SPELL_CAST_SUCCESS", "TimeBombs", 1240102)
+	self:Log("SPELL_AURA_APPLIED", "TimeBombApplied", 1240097)
 end
 
 function mod:OnEngage()
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		timeBombsCount = 1
-		self:CDBar(347149, 12.0) -- Infinite Breath
-		self:CDBar(352345, 15.0) -- Anchor Shot
-		self:CDBar(1240102, 22.0) -- Time Bombs
-	else -- XXX remove block in 11.2
-		self:CDBar(347151, 8.1) -- Hook Swipe
-		self:CDBar(347149, 15) -- Infinite Breath
-		self:CDBar(350517, 55) -- Double Time
-	end
+	timeBombsCount = 1
+	self:CDBar(347149, 12.0) -- Infinite Breath
+	self:CDBar(352345, 15.0) -- Anchor Shot
+	self:CDBar(1240102, 22.0) -- Time Bombs
 end
 
 --------------------------------------------------------------------------------
@@ -100,29 +66,6 @@ function mod:AnchorShot(args)
 	self:CDBar(args.spellId, 20.0)
 	if self:Me(args.destGUID) then
 		self:PlaySound(args.spellId, "warning", nil, args.destName)
-	end
-end
-
-function mod:HookSwipe(args) -- XXX remove in 11.2
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-end
-
-function mod:HookdApplied(args) -- XXX remove in 11.2
-	if self:Healer() or self:Me(args.destGUID) then
-		self:TargetMessage(args.spellId, "orange", args.destName)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
-	end
-end
-
-do
-	local prev = 0
-	function mod:Grapeshot(args) -- XXX no longer logs in 11.2
-		if args.time - prev > 5 then
-			prev = args.time
-			self:Message(args.spellId, "yellow")
-			self:PlaySound(args.spellId, "alert")
-		end
 	end
 end
 
@@ -167,10 +110,4 @@ do
 			end
 		end
 	end
-end
-
-function mod:DoubleTime(args) -- XXX remove in 11.2
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alert")
-	self:Bar(args.spellId, 55)
 end

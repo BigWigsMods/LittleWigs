@@ -1,4 +1,3 @@
-local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -20,69 +19,46 @@ local interrogateCount = 1
 --
 
 local containmentCellMarker = mod:AddMarkerOption(true, "npc", 8, 345764, 8) -- Containment Cell
-if isElevenDotTwo then -- XXX remove check in 11.2
-	function mod:GetOptions()
-		return {
-			"warmup",
-			348350, -- Interrogation
-			345990, -- Containment Cell
-			containmentCellMarker,
-			345770, -- Impound Contraband
-			346204, -- Armed Security
-			{348128, "TANK"}, -- Fully Armed
-			1236348, -- Charged Slash
-		}
-	end
-else -- XXX remove block in 11.2
-	function mod:GetOptions()
-		return {
-			"warmup",
-			348350, -- Interrogation
-			345990, -- Containment Cell
-			345770, -- Impound Contraband
-			346204, -- Armed Security
-		}
-	end
+function mod:GetOptions()
+	return {
+		"warmup",
+		348350, -- Interrogation
+		345990, -- Containment Cell
+		containmentCellMarker,
+		345770, -- Impound Contraband
+		346204, -- Armed Security
+		{348128, "TANK"}, -- Fully Armed
+		1236348, -- Charged Slash
+	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Interrogation", 348350)
 	self:Log("SPELL_AURA_APPLIED", "InterrogationApplied", 347949)
 	self:Log("SPELL_AURA_REMOVED", "InterrogationRemovedBoss", 345989)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_SUMMON", "ContainmentCellSummon", 345764)
-	end
+	self:Log("SPELL_SUMMON", "ContainmentCellSummon", 345764)
 	self:Log("SPELL_AURA_APPLIED", "ContainmentCellApplied", 345990)
 	self:Log("SPELL_AURA_REMOVED", "ContainmentCellRemoved", 345990)
 	self:Log("SPELL_MISSED", "ContainmentCellMissed", 345990)
 	self:Log("SPELL_CAST_SUCCESS", "ArmedSecurity", 346204)
 	self:Log("SPELL_PERIODIC_DAMAGE", "ArmedSecurityDamage", 348366)
 	self:Log("SPELL_PERIODIC_MISSED", "ArmedSecurityDamage", 348366)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_CAST_START", "FullyArmed", 348128)
-	end
+	self:Log("SPELL_CAST_START", "FullyArmed", 348128)
 	self:Log("SPELL_CAST_SUCCESS", "ImpoundContraband", 346006)
 	self:Log("SPELL_AURA_APPLIED", "ImpoundContrabandApplied", 345770)
 	self:Log("SPELL_AURA_REMOVED", "ImpoundContrabandRemoved", 345770)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_CAST_START", "ChargedSlash", 1236348)
-	end
+	self:Log("SPELL_CAST_START", "ChargedSlash", 1236348)
 end
 
 function mod:OnEngage()
 	interrogateCount = 1
 	self:StopBar(CL.active)
 	self:CDBar(346204, 8.7) -- Armed Security
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:CDBar(1236348, 12.1) -- Charged Slash
-		self:CDBar(345770, 20.4) -- Impound Contraband
-		self:CDBar(348128, 29.0) -- Fully Armed
-		-- 2s delay + 35s energy gain + delay
-		self:CDBar(348350, 39.9) -- Interrogation
-	else -- XXX remove block in 11.2
-		self:CDBar(345770, 19.3) -- Impound Contraband
-		self:CDBar(348350, 34.1) -- Interrogation
-	end
+	self:CDBar(1236348, 12.1) -- Charged Slash
+	self:CDBar(345770, 20.4) -- Impound Contraband
+	self:CDBar(348128, 29.0) -- Fully Armed
+	-- 2s delay + 35s energy gain + delay
+	self:CDBar(348350, 39.9) -- Interrogation
 end
 
 --------------------------------------------------------------------------------
@@ -141,12 +117,10 @@ do
 end
 
 function mod:ContainmentCellApplied(args)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:StopBar(346204) -- Armed Security
-		self:StopBar(1236348) -- Charged Slash
-		self:StopBar(345770) -- Impound Contraband
-		self:StopBar(348128) -- Fully Armed
-	end
+	self:StopBar(346204) -- Armed Security
+	self:StopBar(1236348) -- Charged Slash
+	self:StopBar(345770) -- Impound Contraband
+	self:StopBar(348128) -- Fully Armed
 	-- if Containment Cell is applied, the boss's energy resets and the gain is paused
 	self:StopBar(348350) -- Interrogation
 	self:TargetMessage(args.spellId, "red", args.destName)
@@ -163,14 +137,10 @@ function mod:ContainmentCellRemoved(args)
 	else
 		self:Message(args.spellId, "green", CL.removed_from:format(args.spellName, self:ColorName(args.destName)))
 	end
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:CDBar(346204, 8.6) -- Armed Security
-		self:CDBar(1236348, 12.0) -- Charged Slash
-		self:CDBar(345770, 20.4) -- Impound Contraband
-		self:CDBar(348128, 29.0) -- Fully Armed
-	else -- XXX remove block in 11.2
-		self:CDBar(348350, 31.5) -- Interrogation
-	end
+	self:CDBar(346204, 8.6) -- Armed Security
+	self:CDBar(1236348, 12.0) -- Charged Slash
+	self:CDBar(345770, 20.4) -- Impound Contraband
+	self:CDBar(348128, 29.0) -- Fully Armed
 	self:PlaySound(args.spellId, "info")
 end
 
@@ -179,10 +149,6 @@ function mod:ContainmentCellMissed(args)
 		self:Message(args.spellId, "green", CL.extra:format(CL.removed:format(args.spellName), CL.immune))
 	else
 		self:Message(args.spellId, "green", CL.extra:format(CL.removed_from:format(args.spellName, self:ColorName(args.destName)), CL.immune))
-	end
-	if not isElevenDotTwo then -- XXX remove block in 11.2
-		-- if you immune the Interrogation cast Zo'phex's energy doesn't reset back to 0 which makes the next Interrogation phase come sooner
-		self:CDBar(348350, 26.5) -- Interrogation
 	end
 	self:PlaySound(args.spellId, "info")
 end

@@ -1,4 +1,3 @@
-local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -61,9 +60,7 @@ end
 
 function mod:OnBossEnable()
 	-- Staging
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Achillite and Venza Goldfuse engaged
-	end
+	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Achillite and Venza Goldfuse engaged
 
 	-- Alcruux
 	self:Log("SPELL_AURA_APPLIED", "GluttonyApplied", 349627)
@@ -99,9 +96,6 @@ function mod:OnEngage()
 	self:CDBar(349663, 11.9) -- Grip of Hunger
 	self:CDBar(349797, 25.7) -- Grand Consumption
 	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
-	if not isElevenDotTwo then -- XXX remove block in 11.2
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-	end
 end
 
 --------------------------------------------------------------------------------
@@ -117,11 +111,7 @@ end
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 	if msg == L.achillite_warmup_trigger then
 		self:Message("warmup", "cyan", CL.incoming:format(self:SpellName(-23231)), L.warmup_icon) -- Achillite
-		if isElevenDotTwo then -- XXX remove check in 11.2
-			self:Bar("warmup", 13.5, CL.count:format(CL.active, 2), L.warmup_icon)
-		else -- XXX remove block in 11.2
-			self:Bar("warmup", 22, CL.count:format(CL.active, 2), L.warmup_icon)
-		end
+		self:Bar("warmup", 13.5, CL.count:format(CL.active, 2), L.warmup_icon)
 		self:PlaySound("warmup", "long")
 	elseif msg == L.venza_goldfuse_warmup_trigger then
 		self:UnregisterEvent(event)
@@ -139,22 +129,6 @@ function mod:EncounterEvent(args)
 		self:CDBar(349934, 15.7) -- Flagellation Protocol
 		self:CDBar(349987, 26.7) -- Venting Protocol
 	elseif self:MobId(args.sourceGUID) == 176705 then -- Venza Goldfuse
-		self:StopBar(CL.count:format(CL.active, 3))
-		self:SetStage(3)
-		self:CDBar(350101, 5.2) -- Chains of Damnation
-		self:CDBar(350086, 17.4) -- Whirling Annihilation
-	end
-end
-
-function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event) -- XXX remove in 11.2
-	if self:GetStage() == 1 and self:GetBossId(176555) then -- Achillite
-		self:StopBar(CL.count:format(CL.active, 2))
-		self:SetStage(2)
-		self:CDBar(349954, 6.7) -- Purification Protocol
-		self:CDBar(349934, 15.7) -- Flagellation Protocol
-		self:CDBar(349987, 26.7) -- Venting Protocol
-	elseif self:GetStage() == 2 and self:GetBossId(176705) then -- Venza Goldfuse
-		self:UnregisterEvent(event)
 		self:StopBar(CL.count:format(CL.active, 3))
 		self:SetStage(3)
 		self:CDBar(350101, 5.2) -- Chains of Damnation

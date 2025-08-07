@@ -1,4 +1,3 @@
-local isElevenDotTwo = BigWigsLoader.isNext -- XXX remove in 11.2
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -45,63 +44,32 @@ end
 -- Initialization
 --
 
-if isElevenDotTwo then -- XXX remove check in 11.2
-	function mod:GetOptions()
-		return {
-			"stages",
-			-- Unruly Patron
-			356482, -- Rotten Food
-			-- Disruptive Patron
-			{353783, "NAMEPLATE"}, -- Teleport
-			353835, -- Suppression
-			-- Oasis Security
-			{350916, "TANK", "NAMEPLATE"}, -- Security Slam
-			{350922, "NAMEPLATE"}, -- Menacing Shout
-			-- All Stage One adds
-			353706, -- Rowdy
-			-- Zo'gron
-			350919, -- Crowd Control
-			355438, -- Suppression Spark
-			{359028, "TANK"}, -- Security Slam
-			1241032, -- Final Warning
-			-- Hard Mode
-			{357404, "NAMEPLATE"}, -- Dischordant Song
-			{357436, "NAMEPLATE"}, -- Infectious Solo
-			{357542, "NAMEPLATE"}, -- Rip Chord
-		}, {
-			[356482] = -23096, -- Stage One: Unruly Patrons
-			[350919] = -23749, -- Stage Two: Closing Time
-			[357404] = CL.hard,
-		}
-	end
-else -- XXX remove block in 11.2
-	function mod:GetOptions()
-		return {
-			"stages",
-			-- Unruly Patron
-			356482, -- Rotten Food
-			-- Disruptive Patron
-			{353783, "NAMEPLATE"}, -- Teleport
-			353835, -- Suppression
-			-- Oasis Security
-			{350916, "TANK", "NAMEPLATE"}, -- Security Slam
-			{350922, "NAMEPLATE"}, -- Menacing Shout
-			-- All Stage One adds
-			353706, -- Rowdy
-			-- Zo'gron
-			350919, -- Crowd Control
-			355438, -- Suppression Spark
-			{359028, "TANK"}, -- Security Slam
-			-- Hard Mode
-			{357404, "NAMEPLATE"}, -- Dischordant Song
-			{357436, "NAMEPLATE"}, -- Infectious Solo
-			{357542, "NAMEPLATE"}, -- Rip Chord
-		}, {
-			[356482] = -23096, -- Stage One: Unruly Patrons
-			[350919] = -23749, -- Stage Two: Closing Time
-			[357404] = CL.hard,
-		}
-	end
+function mod:GetOptions()
+	return {
+		"stages",
+		-- Unruly Patron
+		356482, -- Rotten Food
+		-- Disruptive Patron
+		{353783, "NAMEPLATE"}, -- Teleport
+		-- Oasis Security
+		{350916, "TANK", "NAMEPLATE"}, -- Security Slam
+		{350922, "NAMEPLATE"}, -- Menacing Shout
+		-- All Stage One adds
+		353706, -- Rowdy
+		-- Zo'gron
+		350919, -- Crowd Control
+		355438, -- Suppression Spark
+		{359028, "TANK"}, -- Security Slam
+		1241032, -- Final Warning
+		-- Hard Mode
+		{357404, "NAMEPLATE"}, -- Dischordant Song
+		{357436, "NAMEPLATE"}, -- Infectious Solo
+		{357542, "NAMEPLATE"}, -- Rip Chord
+	}, {
+		[356482] = -23096, -- Stage One: Unruly Patrons
+		[350919] = -23749, -- Stage Two: Closing Time
+		[357404] = CL.hard,
+	}
 end
 
 function mod:OnBossEnable()
@@ -117,7 +85,6 @@ function mod:OnBossEnable()
 	-- Disruptive Patron
 	self:RegisterEngageMob("DisruptivePatronEngaged", 176565)
 	self:Log("SPELL_CAST_START", "Teleport", 353783)
-	self:Log("SPELL_CAST_START", "Suppression", 353835) -- XXX not cast? still in journal
 
 	-- Oasis Security
 	self:RegisterEngageMob("OasisSecurityEngaged", 179269)
@@ -128,15 +95,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "RowdyApplied", 353706)
 
 	-- Zo'gron
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Zo'gron engaged
-	end
+	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Zo'gron engaged
 	self:Log("SPELL_CAST_START", "SecuritySlamBoss", 359028)
 	self:Log("SPELL_CAST_START", "CrowdControl", 350919)
 	self:Log("SPELL_CAST_START", "SuppressionSpark", 355438)
-	if isElevenDotTwo then -- XXX remove check in 11.2
-		self:Log("SPELL_CAST_START", "FinalWarning", 1241032)
-	end
+	self:Log("SPELL_CAST_START", "FinalWarning", 1241032)
 
 	-- Hard Mode
 	self:RegisterEngageMob("EvaileEngaged", 180399)
@@ -151,9 +114,6 @@ function mod:OnEngage()
 	addWave = 0
 	finalWarningCount = 1
 	self:SetStage(1)
-	if not isElevenDotTwo then -- XXX remove in 11.2
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
-	end
 end
 
 --------------------------------------------------------------------------------
@@ -196,18 +156,6 @@ function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
 	end
 end
 
-function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT() -- XXX remove in 11.2
-	if self:GetStage() == 1 and self:GetBossId(176563) then -- Zo'gron
-		self:SetStage(2)
-		self:Message("stages", "cyan", CL.stage:format(2), "achievement_dungeon_brokerdungeon")
-		self:CDBar(359028, 8.8) -- Security Slam
-		self:CDBar(350922, 12.5) -- Menacing Shout
-		self:CDBar(350919, 18.5) -- Crowd Control
-		self:CDBar(355438, 27.1) -- Suppression Spark
-		self:PlaySound("stages", "long")
-	end
-end
-
 function mod:EncounterEvent(args) -- Zo'gron engaged
 	if self:MobId(args.sourceGUID) == 176563 then -- Zo'gron
 		finalWarningCount = 1
@@ -244,11 +192,6 @@ function mod:Teleport(args)
 	self:Message(args.spellId, "yellow")
 	self:Nameplate(args.spellId, 16.9, args.sourceGUID)
 	self:PlaySound(args.spellId, "info")
-end
-
-function mod:Suppression(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "alert")
 end
 
 -- Oasis Security
