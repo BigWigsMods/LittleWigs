@@ -122,7 +122,7 @@ end
 L = BigWigs:NewBossLocale("Eco-Dome Al'dani Trash", "frFR")
 if L then
 	--L.terrified_broker = "Terrified Broker"
-	--L.arcane_siphon = "Arcane Siphon"
+	L.arcane_siphon = "Siphon arcanique"
 	--L.overgorged_mite = "Overgorged Mite"
 	--L.voracious_gorger = "Voracious Gorger"
 	--L.ravenous_destroyer = "Ravenous Destroyer"
