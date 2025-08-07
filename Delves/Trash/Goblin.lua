@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Goblin Delve Trash", {2664, 2680, 2681, 2684, 2685, 2686, 2689, 2690, 2826}) -- Fungal Folly, Earthcrawl Mines, Kriegval's Rest, The Dread Pit, Skittering Breach, Nightfall Sanctum, Tek-Rethan Abyss, The Underkeep, Sidestreet Sluice
+local mod, CL = BigWigs:NewBoss("Goblin Delve Trash", {2664, 2680, 2681, 2684, 2685, 2686, 2688, 2689, 2690, 2826}) -- Fungal Folly, Earthcrawl Mines, Kriegval's Rest, The Dread Pit, Skittering Breach, Nightfall Sanctum, Spiral Weave, Tek-Rethan Abyss, The Underkeep, Sidestreet Sluice
 if not mod then return end
 mod:RegisterEnableMob(
 	234212, -- Exterminator Janx (Earthcrawl Mines gossip NPC)
@@ -12,6 +12,7 @@ mod:RegisterEnableMob(
 	235090, -- Prospera Cogwail (The Dread Pit gossip NPC)
 	235269, -- Lamplighter Kaerter (Skittering Breach gossip NPC)
 	234012, -- Nimsi Loosefire (Nightfall Sanctum gossip NPC)
+	235083, -- Nerubian Scout (Spiral Weave gossip NPC)
 	235439, -- Pamsy (Tek-Rethan Abyss gossip NPC)
 	234680, -- Madam Goya (The Underkeep gossip NPC)
 	231908, -- Bopper Bot
@@ -20,6 +21,7 @@ mod:RegisterEnableMob(
 	231909, -- Underpaid Brute
 	234903, -- Pea-brained Hauler
 	231925, -- Drill Sergeant
+	235129, -- Mechanized Reinforcement
 	231904, -- Punchy Thug
 	235489, -- Snorkel Goon
 	231905, -- Flinging Flicker
@@ -187,6 +189,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(125516) then -- Nightfall Sanctum, start delve (Nimsi Loosefire)
 			-- 125516:|cFF0000FF(Delve)|r I'll recover your weapons.
 			self:SelectGossipID(125516)
+		elseif self:GetGossipID(131402) then -- Spiral Weave, start delve (Nerubian Scout)
+			-- 131402:|cFF0000FF(Delve)|r I'll clear out these greedy goblins.
+			self:SelectGossipID(131402)
 		elseif self:GetGossipID(131474) then -- Tek-Rethan Abyss, start delve (Pamsy)
 			-- 131474:|cFF0000FF(Delve)|r I'll rescue your crew and put a stop to Gallywix's operation here.
 			self:SelectGossipID(131474)
@@ -271,19 +276,27 @@ end
 
 -- Drill Sergeant
 
-function mod:DrillQuake(args)
-	local unit = self:UnitTokenFromGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then -- RP fights in Skittering Breach
-		self:Message(args.spellId, "orange")
-		self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:DrillQuake(args)
+		local unit = self:UnitTokenFromGUID(args.sourceGUID)
+		if unit and UnitAffectingCombat(unit) and args.time - prev > 2 then -- RP fights in Skittering Breach
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
 	end
 end
 
-function mod:Overtime(args)
-	local unit = self:UnitTokenFromGUID(args.sourceGUID)
-	if unit and UnitAffectingCombat(unit) then -- RP fights in Skittering Breach
-		self:Message(args.spellId, "yellow")
-		self:PlaySound(args.spellId, "info")
+do
+	local prev = 0
+	function mod:Overtime(args)
+		local unit = self:UnitTokenFromGUID(args.sourceGUID)
+		if unit and UnitAffectingCombat(unit) and args.time - prev > 2 then -- RP fights in Skittering Breach
+			prev = args.time
+			self:Message(args.spellId, "yellow")
+			self:PlaySound(args.spellId, "info")
+		end
 	end
 end
 
@@ -309,9 +322,15 @@ function mod:FlurryOfPunchesSuccess(args)
 	self:Nameplate(args.spellId, 10.8, args.sourceGUID)
 end
 
-function mod:Uppercut(args)
-	self:Message(args.spellId, "orange", CL.knockback)
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:Uppercut(args)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange", CL.knockback)
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:UppercutSuccess(args)
