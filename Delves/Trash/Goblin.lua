@@ -149,7 +149,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "Destroy", 472842)
 
 	-- also enable the Rares module
-	local raresModule = BigWigs:GetBossModule("Underpin Rares", true)
+	local raresModule = BigWigs:GetBossModule("Ky'veza Rares", true)
 	if raresModule then
 		raresModule:Enable()
 	end
