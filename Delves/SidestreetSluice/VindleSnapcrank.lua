@@ -38,10 +38,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SprocketSmash", 1215870)
 	self:Log("SPELL_CAST_START", "ClankerBomb", 1215337)
 	self:Log("SPELL_CAST_START", "ShockMaintenance", 1215374)
-	if not BigWigsLoader.isNext then -- XXX remove this in 11.2 as the encounter events have been fixed
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus") -- XXX no encounter events
-		self:Death("Win", 234931) -- Vindle Snapcrank
-	end
 end
 
 function mod:OnEngage()
