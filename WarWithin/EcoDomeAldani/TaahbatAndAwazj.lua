@@ -135,8 +135,8 @@ function mod:ArcaneBlitz(args)
 end
 
 function mod:IncorporealApplied(args)
-	local amount = args.amount or 3 -- starts at 3 stacks
-	self:Message(args.spellId, "yellow", CL.stack:format(amount, args.spellName, CL.boss))
+	local amount = args.amount or (self:Mythic() and 6 or 3) -- starting stacks varies by difficulty
+	self:Message(args.spellId, "yellow", CL.stackboss:format(amount, args.spellName))
 	self:PlaySound(args.spellId, "info")
 end
 
