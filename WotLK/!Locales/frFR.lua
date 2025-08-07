@@ -12,11 +12,11 @@ end
 
 L = BigWigs:NewBossLocale("Gal'darah", "frFR")
 if L then
-	--L.forms = "Forms"
-	--L.forms_desc = "Warn before Gal'darah changes forms."
+	L.forms = "Formes"
+	L.forms_desc = "Avertis avant que Gal'darah change de forme."
 
-	--L.form_rhino = "Rhino Form"
-	--L.form_troll = "Troll Form"
+	L.form_rhino = "Forme de Rhino"
+	L.form_troll = "Forme de troll"
 end
 
 -- Halls of Lightning
@@ -35,19 +35,19 @@ if L then
 	--L.defeat_trigger = "The old magic fingers" --  Ha! The old magic fingers finally won through! Now let's get down to--
 	--L.fail_trigger = "Not yet... not ye--"
 
-	--L.timers = "Timers"
-	--L.timers_desc = "Timers for various events that take place."
+	L.timers = "Compte à rebours"
+	L.timers_desc = "Compte à rebours pour divers éléments ayant lieu."
 
-	--L.victory = "Victory"
+	L.victory = "Victoire"
 end
 
 -- The Culling of Stratholme
 
 L = BigWigs:NewBossLocale("The Culling of Stratholme Trash", "frFR")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly select Chromie's and Arthas's gossip options."
+	L.custom_on_autotalk_desc = "Selectionne automatiquement les options de dialogue de Chromie et Arthas."
 
-	--L.gossip_available = "Gossip available"
+	L.gossip_available = "Dialogue disponible"
 	--L.gossip_timer_trigger = "Glad you could make it, Uther."
 end
 
@@ -84,19 +84,19 @@ end
 
 L = BigWigs:NewBossLocale("Zuramat the Obliterator", "frFR")
 if L then
-	--L.short_name = "Zuramat"
+	L.short_name = "Zuramat"
 end
 
 L = BigWigs:NewBossLocale("The Violet Hold Trash", "frFR")
 if L then
-	--L.portals_desc = "Information about portals."
+	L.portals_desc = "Information sur les portails."
 end
 
 -- Trial of the Champion
 
 L = BigWigs:NewBossLocale("Trial of the Champion Trash", "frFR")
 if L then
-	--L.custom_on_autotalk_desc = "Instantly select gossip option to start encounters."
+	L.custom_on_autotalk_desc = "Selectionne automatiquement l'option de dialogue pour commencer les rencontres."
 end
 
 -- Utgarde Pinnacle
