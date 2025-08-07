@@ -393,12 +393,3 @@ if L then
 
 	L.underpin_retreat_trigger = "總是有人喜歡亂闖我完全合法的私有地！"
 end
-
-L = BigWigs:NewBossLocale("Overcharged Trash", "zhTW")
-if L then
-	L.overcharged_trash = "超載部隊"
-
-	L.awakened_defensive_construct = "覺醒防禦傀儡"
-	L.awakened_defense_matrix = "覺醒防禦矩陣"
-	L.overcharged_bot = "超載機器人"
-end

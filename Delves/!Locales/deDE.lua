@@ -393,12 +393,3 @@ if L then
 
 	L.underpin_retreat_trigger = "Die Leute bringen immer mein legal und urkundlich übertragenes Land durcheinander!"
 end
-
-L = BigWigs:NewBossLocale("Overcharged Trash", "deDE")
-if L then
-	L.overcharged_trash = "Überladener Trash"
-
-	L.awakened_defensive_construct = "Erwecktes Verteidigungskonstrukt"
-	L.awakened_defense_matrix = "Erweckte Verteidigungsmatrix"
-	L.overcharged_bot = "Überladener Bot"
-end
