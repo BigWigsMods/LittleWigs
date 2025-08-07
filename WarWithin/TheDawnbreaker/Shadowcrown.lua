@@ -20,7 +20,7 @@ local darknessComesCount = 1
 
 function mod:GetOptions()
 	return {
-		{451026, "CASTBAR"}, -- Darkness Comes
+		{451026, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Darkness Comes
 		{426735, "DISPEL"}, -- Burning Shadows
 		{428086, "OFF"}, -- Shadow Bolt
 		-- Normal / Heroic
