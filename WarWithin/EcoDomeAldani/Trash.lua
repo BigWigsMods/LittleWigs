@@ -347,10 +347,16 @@ function mod:WastelanderFarstalkerEngaged(guid)
 	self:Nameplate(1229510, 9.9, guid) -- Arcing Zap
 end
 
-function mod:ArcingZap(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:ArcingZap(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:ArcingZapInterrupt(args)
@@ -371,10 +377,16 @@ function mod:TamedRuinstalkerEngaged(guid)
 	self:Nameplate(1222356, 4.4, guid) -- Warp
 end
 
-function mod:Warp(args)
-	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 12.2, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:Warp(args)
+		self:Nameplate(args.spellId, 12.2, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:TamedRuinstalkerDeath(args)
