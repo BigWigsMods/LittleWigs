@@ -5,6 +5,7 @@ BigWigs:AddColors("Captain Nil'hitan", {
 	[1239407] = "yellow",
 	[1239427] = {"blue","red"},
 	[1239445] = "orange",
+	[1239533] = "blue",
 })
 
 BigWigs:AddSounds("Captain Nil'hitan", {
@@ -12,6 +13,7 @@ BigWigs:AddSounds("Captain Nil'hitan", {
 	[1239407] = "alarm",
 	[1239427] = {"alert","info"},
 	[1239445] = "alarm",
+	[1239533] = "underyou",
 })
 
 BigWigs:AddColors("Portalmaster Halsan", {
