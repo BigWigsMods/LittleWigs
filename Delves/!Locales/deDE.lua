@@ -232,12 +232,12 @@ end
 
 L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 8)", "deDE")
 if L then
-	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Tier 8)"
+	L.nexus_princess_kyveza = "Nexusprinzessin Ky'veza (Stufe 8)"
 end
 
 L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 11)", "deDE")
 if L then
-	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Tier 11)"
+	L.nexus_princess_kyveza = "Nexusprinzessin Ky'veza (Stufe 11)"
 end
 
 -- Zekvir's Lair
@@ -258,7 +258,7 @@ end
 
 L = BigWigs:NewBossLocale("Ethereal Trash", "deDE")
 if L then
-	--L.ethereal_trash = "Ethereal Trash"
+	L.ethereal_trash = "Astraler Trash"
 
 	--L.shadeye_observer = "Shadeye Observer"
 	--L.shadowguard_phasecutter = "Shadowguard Phasecutter"
@@ -320,17 +320,17 @@ end
 
 L = BigWigs:NewBossLocale("Ky'veza Rares", "deDE")
 if L then
-	--L.rares = "Ky'veza Rares"
+	L.rares = "Ky'veza Rares"
 
-	--L.pactsworn_fraycaller = "Pactsworn Fraycaller"
-	--L.pactsworn_dustblade = "Pactsworn Dustblade"
-	--L.pactsworn_sandreaver = "Pactsworn Sandreaver"
-	--L.pactsworn_arcanist = "Pactsworn Arcanist"
-	--L.pactsworn_wildcaller = "Pactsworn Wildcaller"
-	--L.invasive_phasecrawler = "Invasive Phasecrawler"
-	--L.drude = "D'rude"
-	--L.great_devourer = "Great Devourer"
-	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)"
+	L.pactsworn_fraycaller = "Paktgeschworener Getümmelrufer"
+	L.pactsworn_dustblade = "Paktgeschworene Staubklinge"
+	L.pactsworn_sandreaver = "Paktgeschworener Sandjäger"
+	L.pactsworn_arcanist = "Paktgeschworener Arkanist"
+	L.pactsworn_wildcaller = "Paktgeschworener Wildrufer"
+	L.invasive_phasecrawler = "Invasiver Phasenkriecher"
+	L.drude = "D'rude"
+	L.great_devourer = "Großer Verschlinger"
+	L.nexus_princess_kyveza = "Nexusprinzessin Ky'veza (Zufälliges Erscheinen)"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "deDE")
