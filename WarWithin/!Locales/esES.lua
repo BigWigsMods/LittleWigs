@@ -135,7 +135,7 @@ if L then
 	--L.burrowing_creeper = "Burrowing Creeper"
 	--L.wastes_creeper = "Wastes Creeper"
 
-	--L.taahbat_and_awazj_warmup_trigger = "I have no time for this. Taah'bat! Be certain they follow no further."
+	L.taahbat_and_awazj_warmup_trigger = "No tengo tiempo para esto. ¡Taah'bat! Asegúrate de que no avancen."
 end
 
 -- Operation: Floodgate
@@ -162,7 +162,7 @@ if L then
 	L.venture_co_electrician = "Electricista de Ventura y Cía"
 	L.darkfuse_jumpstarter = "Impulsador de Fundisombras"
 
-	L.geezle_gigazap_warmup = "Este proyecto no podrá continuar sin el científico a cargo. ¡Congelen a ese cerebrote!"
+	L.geezle_gigazap_warmup = "Este proyecto no podrá continuar sin su científico al mando. ¡Manda ese cerebrito a la nevera!"
 end
 
 -- Priory of the Sacred Flame
