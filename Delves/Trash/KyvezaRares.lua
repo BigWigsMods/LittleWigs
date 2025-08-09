@@ -54,7 +54,6 @@ function mod:GetOptions()
 		{1243017, "NAMEPLATE"}, -- Sand Crash
 		-- Pactsworn Sandreaver
 		{1242469, "NAMEPLATE"}, -- Sands of Karesh
-		1243448, -- Oath of Vengeance
 		-- Pactsworn Arcanist
 		{1244313, "NAMEPLATE"}, -- Torrential Energy
 		-- Pactsworn Wildcaller
@@ -105,7 +104,6 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SandsOfKaresh", 1242469)
 	self:Log("SPELL_INTERRUPT", "SandsOfKareshInterrupt", 1242469)
 	self:Log("SPELL_CAST_SUCCESS", "SandsOfKareshSuccess", 1242469)
-	self:Log("SPELL_CAST_SUCCESS", "OathOfVengeance", 1243448)
 	self:Death("PactswornSandreaverDeath", 244410)
 
 	-- Pactsworn Arcanist
@@ -182,10 +180,16 @@ function mod:PactswornDustbladeEngaged(guid)
 	self:Nameplate(1243017, 10.4, guid) -- Sand Crash
 end
 
-function mod:SandCrash(args)
-	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:SandCrash(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:SandCrashSuccess(args)
@@ -214,11 +218,6 @@ end
 
 function mod:SandsOfKareshSuccess(args)
 	self:Nameplate(args.spellId, 17.5, args.sourceGUID)
-end
-
-function mod:OathOfVengeance(args)
-	self:Message(args.spellId, "cyan", CL.on:format(args.spellName, args.sourceName))
-	self:PlaySound(args.spellId, "info")
 end
 
 function mod:PactswornSandreaverDeath(args)
