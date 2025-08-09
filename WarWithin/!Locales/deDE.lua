@@ -121,21 +121,21 @@ end
 
 L = BigWigs:NewBossLocale("Eco-Dome Al'dani Trash", "deDE")
 if L then
-	--L.terrified_broker = "Terrified Broker"
-	--L.arcane_siphon = "Arcane Siphon"
-	--L.overgorged_mite = "Overgorged Mite"
-	--L.voracious_gorger = "Voracious Gorger"
-	--L.ravenous_destroyer = "Ravenous Destroyer"
-	--L.overcharged_sentinel = "Overcharged Sentinel"
-	--L.wastelander_farstalker = "Wastelander Farstalker"
-	--L.tamed_ruinstalker = "Tamed Ruinstalker"
-	--L.wastelander_ritualist = "Wastelander Ritualist"
-	--L.wastelander_pactspeaker = "Wastelander Pactspeaker"
-	--L.karesh_elemental = "K'aresh Elemental"
-	--L.burrowing_creeper = "Burrowing Creeper"
-	--L.wastes_creeper = "Wastes Creeper"
+	L.terrified_broker = "Verängstigter Mittler"
+	L.arcane_siphon = "Arkanentzug"
+	L.overgorged_mite = "Überfressene Milbe"
+	L.voracious_gorger = "Gieriger Fresser"
+	L.ravenous_destroyer = "Gefräßiger Zerstörer"
+	L.overcharged_sentinel = "Überladener Wächter"
+	L.wastelander_farstalker = "Weitenpirscherin der Ödnisbewohner"
+	L.tamed_ruinstalker = "Gezähmter Ruinenpirscher"
+	L.wastelander_ritualist = "Ritualist der Ödnisbewohner"
+	L.wastelander_pactspeaker = "Paktsprecherin der Ödnisbewohner"
+	L.karesh_elemental = "Elementar der K'aresh"
+	L.burrowing_creeper = "Grabender Kriecher"
+	L.wastes_creeper = "Ödniskriecher"
 
-	--L.taahbat_and_awazj_warmup_trigger = "I have no time for this. Taah'bat! Be certain they follow no further."
+	L.taahbat_and_awazj_warmup_trigger = "Ich habe keine Zeit dafür. Taah'bat! Sie dürfen uns nicht weiter folgen."
 end
 
 -- Operation: Floodgate

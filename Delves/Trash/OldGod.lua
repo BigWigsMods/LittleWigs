@@ -87,7 +87,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_MISSED", "GraspingShadowsDamage", 455662)
 
 	-- also enable the Rares module
-	local raresModule = BigWigs:GetBossModule("Underpin Rares", true)
+	local raresModule = BigWigs:GetBossModule("Ky'veza Rares", true)
 	if raresModule then
 		raresModule:Enable()
 	end

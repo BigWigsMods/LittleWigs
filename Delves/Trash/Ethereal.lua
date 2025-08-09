@@ -111,7 +111,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "NullBreathSuccess", 1231144)
 	self:Death("SiphonedDrakeDeath", 245053)
 
-	-- TODO also enable Rares module depending on season
+	-- also enable the Rares module
+	local raresModule = BigWigs:GetBossModule("Ky'veza Rares", true)
+	if raresModule then
+		raresModule:Enable()
+	end
 end
 
 --------------------------------------------------------------------------------

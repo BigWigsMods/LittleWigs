@@ -5,6 +5,7 @@ BigWigs:AddColors("Captain Nil'hitan", {
 	[1239407] = "yellow",
 	[1239427] = {"blue","red"},
 	[1239445] = "orange",
+	[1239533] = "blue",
 })
 
 BigWigs:AddSounds("Captain Nil'hitan", {
@@ -12,6 +13,7 @@ BigWigs:AddSounds("Captain Nil'hitan", {
 	[1239407] = "alarm",
 	[1239427] = {"alert","info"},
 	[1239445] = "alarm",
+	[1239533] = "underyou",
 })
 
 BigWigs:AddColors("Portalmaster Halsan", {
@@ -29,6 +31,7 @@ BigWigs:AddSounds("Portalmaster Halsan", {
 BigWigs:AddColors("Voidrider Challnax", {
 	[1238892] = "red",
 	[1238909] = "yellow",
+	[1238919] = "yellow",
 	[1238930] = "orange",
 	[1239134] = "red",
 	["stages"] = "cyan",
@@ -37,6 +40,7 @@ BigWigs:AddColors("Voidrider Challnax", {
 BigWigs:AddSounds("Voidrider Challnax", {
 	[1238892] = "alarm",
 	[1238909] = "info",
+	[1238919] = "alert",
 	[1238930] = "info",
 	[1239134] = "alert",
 	["stages"] = "long",
@@ -751,7 +755,7 @@ BigWigs:AddColors("Ky'veza Rares", {
 	[1242534] = "cyan",
 	[1242752] = "cyan",
 	[1243017] = "orange",
-	[1243448] = "cyan",
+	[1243656] = "red",
 	[1244108] = "orange",
 	[1244249] = "yellow",
 	[1244313] = "orange",
@@ -770,7 +774,7 @@ BigWigs:AddSounds("Ky'veza Rares", {
 	[1242534] = "info",
 	[1242752] = "info",
 	[1243017] = "alarm",
-	[1243448] = "info",
+	[1243656] = "alert",
 	[1244108] = "alarm",
 	[1244249] = "alarm",
 	[1244313] = "alarm",

@@ -2,7 +2,7 @@
 
 local L = BigWigs:NewBossLocale("Captain Nil'hitan", "frFR")
 if L then
-	--L.captain_nilhitan = "Captain Nil'hitan"
+	L.captain_nilhitan = "Capitaine Nil'hitan"
 end
 
 L = BigWigs:NewBossLocale("Portalmaster Halsan", "frFR")
@@ -20,26 +20,26 @@ end
 
 L = BigWigs:NewBossLocale("The Underpin", "frFR")
 if L then
-	--L.the_underpin = "The Underpin (Tier 8)"
-	--L.crony = "Crony"
+	L.the_underpin = "Le Père Foreur (Tier 8)"
+	L.crony = "Crony"
 end
 
 L = BigWigs:NewBossLocale("The Underpin 2", "frFR")
 if L then
-	--L.the_underpin = "The Underpin (Tier 11)"
-	--L.crony = "Crony"
+	L.the_underpin = "Le Père Foreur (Tier 11)"
+	L.crony = "Crony"
 end
 
 -- Earthcrawl Mines
 
 L = BigWigs:NewBossLocale("Maklin Drillstab", "frFR")
 if L then
-	--L.maklin_drillstab = "Maklin Drillstab"
+	L.maklin_drillstab = "Maklin Vrillechoc"
 end
 
 L = BigWigs:NewBossLocale("The Biggest Bug", "frFR")
 if L then
-	--L.the_biggest_bug = "The Biggest Bug"
+	L.the_biggest_bug = "Un très gros insecte"
 end
 
 L = BigWigs:NewBossLocale("Web General Ab'enar", "frFR")
@@ -51,25 +51,25 @@ end
 
 L = BigWigs:NewBossLocale("Craggle Fritzbrains", "frFR")
 if L then
-	--L.craggle_fritzbrains = "Craggle Fritzbrains"
+	L.craggle_fritzbrains = "Pierre Ecervelle"
 end
 
 L = BigWigs:NewBossLocale("Harbinger Ul'thul", "frFR")
 if L then
-	--L.harbinger_ulthul = "Harbinger Ul'thul"
+	L.harbinger_ulthul = "Messager Ul'thul"
 end
 
 L = BigWigs:NewBossLocale("Xel'anegh The Many", "frFR")
 if L then
-	--L.xelanegh_the_many = "Xel'anegh The Many"
+	L.xelanegh_the_many = "Xel'anegh la Multiple"
 end
 
 -- Fungal Folly
 
 L = BigWigs:NewBossLocale("Maulspike", "frFR")
 if L then
-	--L.maulspike = "Maulspike"
-	--L.darkfuse_cackler = "Darkfuse Cackler"
+	L.maulspike = "Massepique"
+	L.darkfuse_cackler = "Rieuse imprégnée de ténèbres"
 end
 
 L = BigWigs:NewBossLocale("Spinshroom", "frFR")
@@ -112,27 +112,27 @@ end
 
 L = BigWigs:NewBossLocale("Cult Leaders", "frFR")
 if L then
-	--L.cult_leaders = "Cult Leaders"
-	--L.inquisitor_speaker = "Inquisitor Speaker"
-	--L.shadeguard_speaker = "Shadeguard Speaker"
+	L.cult_leaders = "Chefs de culte"
+	L.inquisitor_speaker = "Mandataire inquisiteur"
+	L.shadeguard_speaker = "Mandataire gardien des ombres"
 end
 
 -- Sidestreet Sluice
 
 L = BigWigs:NewBossLocale("Geargrave", "frFR")
 if L then
-	--L.geargrave = "Geargrave"
+	L.geargrave = "Tombrouage"
 end
 
 L = BigWigs:NewBossLocale("Gold Elemental", "frFR")
 if L then
-	--L.gold_elemental = "Gold Elemental"
-	--L.gold_shaman = "Gold Shaman"
+	L.gold_elemental = "Elémentaire d'or"
+	L.gold_shaman = "Chaman doré"
 end
 
 L = BigWigs:NewBossLocale("Vindle Snapcrank", "frFR")
 if L then
-	--L.vindle_snapcrank = "Vindle Snapcrank"
+	L.vindle_snapcrank = "Vindle Maniclaque"
 end
 
 -- Skittering Breach
@@ -211,9 +211,9 @@ end
 
 L = BigWigs:NewBossLocale("Torque Clankfire and Sprok", "frFR")
 if L then
-	--L.bossName = "Torque Clankfire and Sprok"
-	--L.torque_clankfire = "Torque Clankfire"
-	--L.sprok = "Sprok"
+	L.bossName = "Dyna Cliquefeu et Sprok"
+	L.torque_clankfire = "Dyna Cliquefeu"
+	L.sprok = "Sprok"
 end
 
 -- The Waterworks
@@ -232,12 +232,12 @@ end
 
 L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 8)", "frFR")
 if L then
-	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Tier 8)"
+	L.nexus_princess_kyveza = "Princesse-nexus Ky'veza (Tier 8)"
 end
 
 L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 11)", "frFR")
 if L then
-	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Tier 11)"
+	L.nexus_princess_kyveza = "Princesse-nexus Ky'veza (Tier 11)"
 end
 
 -- Zekvir's Lair
@@ -284,13 +284,13 @@ end
 
 L = BigWigs:NewBossLocale("Goblin Delve Trash", "frFR")
 if L then
-	--L.goblin_trash = "Goblin Trash"
+	L.goblin_trash = "Trash Gobelins"
 
-	--L.bopper_bot = "Bopper Bot"
-	--L.aerial_support_bot = "Aerial Support Bot"
-	--L.masked_freelancer = "Masked Freelancer"
-	--L.underpaid_brute = "Underpaid Brute"
-	--L.drill_sergeant = "Drill Sergeant"
+	L.bopper_bot = "Robot virevoltant"
+	L.aerial_support_bot = "Robot de soutien aérien"
+	L.masked_freelancer = "Indépendant masqué"
+	L.underpaid_brute = "Brute sous-payée"
+	L.drill_sergeant = "Sergent foreur"
 	L.punchy_thug = "Criminel percutant"
 	L.flinging_flicker = "Ombre frappante"
 	L.bomb_bot = "Robo-bombe"
@@ -359,12 +359,12 @@ end
 
 L = BigWigs:NewBossLocale("Old God Delve Trash", "frFR")
 if L then
-	--L.old_god_trash = "Old God Trash"
+	L.old_god_trash = "Trash Dieux Très Anciens"
 
-	--L.dark_walker = "Dark Walker"
-	--L.hideous_amalgamation = "Hideous Amalgamation"
-	--L.coagulated_mass = "Coagulated Mass"
-	--L.silent_slitherer = "Silent Slitherer"
+	L.dark_walker = "Marcheur sombre"
+	L.hideous_amalgamation = "Amalgame hideux"
+	L.coagulated_mass = "Masse coagulée"
+	L.silent_slitherer = "Siffleur silencieux"
 	L.amalgamized_mass = "Masse amalgamée"
 end
 
@@ -381,15 +381,15 @@ if L then
 	--L.rares = "Underpin Rares"
 
 	L.treasure_wraith = "Âme en peine de trésor"
-	--L.treasure_crab = "Treasure Crab"
-	--L.hovering_menace = "Hovering Menace"
-	--L.malfunctioning_pummeler = "Malfunctioning Pummeler"
-	--L.underpins_adoring_fan = "Underpin's Adoring Fan"
-	--L.underpins_well_connected_friend = "Underpin's Well-Connected Friend"
-	--L.underpins_explosive_ally = "Underpin's Explosive Ally"
-	--L.underpins_bodyguards_intern = "Underpin's Bodyguard's Intern"
-	--L.aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin"
-	--L.the_underpin = "The Underpin (Random Spawn)"
+	L.treasure_crab = "Crabe au trésor"
+	L.hovering_menace = "Menace planante"
+	L.malfunctioning_pummeler = "Disperseur défectueux"
+	L.underpins_adoring_fan = "Fan inconditionnel du Père Foreur"
+	L.underpins_well_connected_friend = "Ami avec le bras long du Père Foreur"
+	L.underpins_explosive_ally = "Allié explosif du Père Foreur"
+	L.underpins_bodyguards_intern = "Stagiaire garde du corps du Père Foreur"
+	L.aggressively_lost_hobgoblin = "Hobgobelin agressivement perdu "
+	L.the_underpin = "Père Foreur (Apparition aléatoire)"
 
 	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
 end

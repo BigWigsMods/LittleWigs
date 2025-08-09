@@ -54,9 +54,9 @@ function mod:GetOptions()
 		{1243017, "NAMEPLATE"}, -- Sand Crash
 		-- Pactsworn Sandreaver
 		{1242469, "NAMEPLATE"}, -- Sands of Karesh
-		1243448, -- Oath of Vengeance
 		-- Pactsworn Arcanist
 		{1244313, "NAMEPLATE"}, -- Torrential Energy
+		{1243656, "NAMEPLATE"}, -- Arcane Barrier
 		-- Pactsworn Wildcaller
 		{1242521, "NAMEPLATE"}, -- Duneflyer Call
 		{1242534, "NAMEPLATE"}, -- Summon Warpstalker
@@ -92,6 +92,7 @@ function mod:OnBossEnable()
 	-- Pactsworn Fraycaller
 	self:RegisterEngageMob("PactswornFraycallerEngaged", 244413)
 	self:Log("SPELL_CAST_SUCCESS", "UnworthyVessel", 1242752)
+	self:Log("SPELL_SUMMON", "UnworthyVesselSummon", 1242752)
 	self:Death("PactswornFraycallerDeath", 244413)
 
 	-- Pactsworn Dustblade
@@ -105,13 +106,15 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SandsOfKaresh", 1242469)
 	self:Log("SPELL_INTERRUPT", "SandsOfKareshInterrupt", 1242469)
 	self:Log("SPELL_CAST_SUCCESS", "SandsOfKareshSuccess", 1242469)
-	self:Log("SPELL_CAST_SUCCESS", "OathOfVengeance", 1243448)
 	self:Death("PactswornSandreaverDeath", 244410)
 
 	-- Pactsworn Arcanist
 	self:RegisterEngageMob("PactswornArcanistEngaged", 244411)
 	self:Log("SPELL_CAST_START", "TorrentialEnergy", 1244313)
 	self:Log("SPELL_CAST_SUCCESS", "TorrentialEnergySuccess", 1244313)
+	self:Log("SPELL_CAST_START", "ArcaneBarrier", 1243656)
+	self:Log("SPELL_INTERRUPT", "ArcaneBarrierInterrupt", 1243656)
+	self:Log("SPELL_CAST_SUCCESS", "ArcaneBarrierSuccess", 1243656)
 	self:Death("PactswornArcanistDeath", 244411)
 
 	-- Pactsworn Wildcaller
@@ -160,13 +163,16 @@ function mod:PactswornFraycallerEngaged(guid)
 	self:Nameplate(1242752, 10.8, guid) -- Unworthy Vessel
 end
 
+function mod:UnworthyVessel(args)
+	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+end
+
 do
 	local prev = 0
-	function mod:UnworthyVessel(args)
-		self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+	function mod:UnworthyVesselSummon(args)
 		if args.time - prev > 1.5 then
 			prev = args.time
-			self:Message(args.spellId, "cyan", CL.spawning:format(args.spellName))
+			self:Message(args.spellId, "cyan", CL.spawning:format(args.destName)) -- Unbound Remnant spawning
 			self:PlaySound(args.spellId, "info")
 		end
 	end
@@ -182,10 +188,16 @@ function mod:PactswornDustbladeEngaged(guid)
 	self:Nameplate(1243017, 10.4, guid) -- Sand Crash
 end
 
-function mod:SandCrash(args)
-	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:SandCrash(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "orange")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:SandCrashSuccess(args)
@@ -216,11 +228,6 @@ function mod:SandsOfKareshSuccess(args)
 	self:Nameplate(args.spellId, 17.5, args.sourceGUID)
 end
 
-function mod:OathOfVengeance(args)
-	self:Message(args.spellId, "cyan", CL.on:format(args.spellName, args.sourceName))
-	self:PlaySound(args.spellId, "info")
-end
-
 function mod:PactswornSandreaverDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
@@ -228,6 +235,7 @@ end
 -- Pactsworn Arcanist
 
 function mod:PactswornArcanistEngaged(guid)
+	self:Nameplate(1243656, 7.0, guid) -- Arcane Barrier
 	self:Nameplate(1244313, 9.5, guid) -- Torrential Energy
 end
 
@@ -239,6 +247,20 @@ end
 
 function mod:TorrentialEnergySuccess(args)
 	self:Nameplate(args.spellId, 10.2, args.sourceGUID)
+end
+
+function mod:ArcaneBarrier(args)
+	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:ArcaneBarrierInterrupt(args)
+	self:Nameplate(1243656, 21.9, args.destGUID)
+end
+
+function mod:ArcaneBarrierSuccess(args)
+	self:Nameplate(args.spellId, 21.9, args.sourceGUID)
 end
 
 function mod:PactswornArcanistDeath(args)
@@ -254,7 +276,7 @@ function mod:DuneflyerCall(args)
 end
 
 function mod:DuneflyerCallSuccess(args)
-	self:Nameplate(args.spellId, 44.3, args.sourceGUID)
+	self:Nameplate(args.spellId, 26.5, args.sourceGUID)
 end
 
 function mod:SummonWarpstalker(args)
@@ -301,8 +323,8 @@ end
 -- Invasive Phasecrawler
 
 function mod:InvasivePhasecrawlerEngaged(guid)
-	self:Nameplate(1238737, 100, guid) -- Essence Cleave
-	self:Nameplate(1238713, 100, guid) -- Gravity Shatter
+	self:Nameplate(1238737, 6.2, guid) -- Essence Cleave
+	self:Nameplate(1238713, 12.6, guid) -- Gravity Shatter
 end
 
 function mod:EssenceCleave(args)
