@@ -135,7 +135,7 @@ if L then
 	--L.burrowing_creeper = "Burrowing Creeper"
 	--L.wastes_creeper = "Wastes Creeper"
 
-	--L.taahbat_and_awazj_warmup_trigger = "I have no time for this. Taah'bat! Be certain they follow no further."
+	L.taahbat_and_awazj_warmup_trigger = "No tengo tiempo para esto. ¡Taah'bat! Asegúrate de que no avancen."
 end
 
 -- Operation: Floodgate
