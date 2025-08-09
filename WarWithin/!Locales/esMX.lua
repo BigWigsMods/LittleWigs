@@ -162,7 +162,7 @@ if L then
 	--L.venture_co_electrician = "Venture Co. Electrician"
 	--L.darkfuse_jumpstarter = "Darkfuse Jumpstarter"
 
-	--L.geezle_gigazap_warmup = "This project can't continue without the scientist behind it all. Put that big brain on ice!"
+	L.geezle_gigazap_warmup = "Este proyecto no podrá continuar sin el científico a cargo. ¡Congelen a ese cerebrote!"
 end
 
 -- Priory of the Sacred Flame
