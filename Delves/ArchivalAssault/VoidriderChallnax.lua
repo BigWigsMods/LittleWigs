@@ -40,6 +40,7 @@ function mod:GetOptions()
 		1238909, -- Umbral Devastation
 		-- Voidrider Challnax
 		1239134, -- Cosmic Tranquilization
+		1238919, -- Void Empowerment
 		1238930, -- Impale
 	}, {
 		[1238892] = L.voidripper,
@@ -56,8 +57,9 @@ function mod:OnBossEnable()
 	-- Voidrider Challnax
 	self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss2")
 	self:Log("SPELL_CAST_START", "CosmicTranquilization", 1239134)
+	self:Log("SPELL_CAST_START", "VoidEmpowerment", 1238919)
 	self:Log("SPELL_CAST_START", "Impale", 1238930)
-	self:Death("VoidriderChallnaxDeath", 244382)
+	self:Death("VoidriderChallnaxDeath", 244320)
 end
 
 function mod:OnEngage()
@@ -80,13 +82,15 @@ end
 
 function mod:UmbralDevastation(args)
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 18.1)
+	self:CDBar(args.spellId, 18.2)
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:VoidripperDeath()
 	self:StopBar(1238892) -- Null Breath
 	self:StopBar(1238909) -- Umbral Devastation
+	-- Void Empowerment is cast on Voidripper by Voidrider Challnax
+	self:StopBar(1238919) -- Void Empowerment
 end
 
 -- Voidrider Challnax
@@ -97,6 +101,7 @@ function mod:UNIT_TARGETABLE_CHANGED(event, unit)
 		self:SetStage(2)
 		self:Message("stages", "cyan", CL.other:format(CL.stage:format(2), L.voidrider_challnax), L.stages_icon)
 		self:CDBar(1239134, 3.6) -- Cosmic Tranquilization
+		self:CDBar(1238919, 6.0) -- Void Empowerment
 		self:CDBar(1238930, 7.2) -- Impale
 		self:PlaySound("stages", "long")
 	end
@@ -104,17 +109,24 @@ end
 
 function mod:CosmicTranquilization(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:CDBar(args.spellId, 18.1)
+	self:CDBar(args.spellId, 15.8)
+	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:VoidEmpowerment(args)
+	self:Message(args.spellId, "yellow", CL.casting:format(args.spellName))
+	self:CDBar(args.spellId, 20.2)
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:Impale(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 23.0)
+	self:CDBar(args.spellId, 12.2)
 	self:PlaySound(args.spellId, "info")
 end
 
 function mod:VoidriderChallnaxDeath()
 	self:StopBar(1239134) -- Cosmic Tranquilization
+	self:StopBar(1238919) -- Void Empowerment
 	self:StopBar(1238930) -- Impale
 end
