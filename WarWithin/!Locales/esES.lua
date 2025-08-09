@@ -121,19 +121,19 @@ end
 
 L = BigWigs:NewBossLocale("Eco-Dome Al'dani Trash", "esES")
 if L then
-	--L.terrified_broker = "Terrified Broker"
-	--L.arcane_siphon = "Arcane Siphon"
-	--L.overgorged_mite = "Overgorged Mite"
-	--L.voracious_gorger = "Voracious Gorger"
-	--L.ravenous_destroyer = "Ravenous Destroyer"
-	--L.overcharged_sentinel = "Overcharged Sentinel"
-	--L.wastelander_farstalker = "Wastelander Farstalker"
-	--L.tamed_ruinstalker = "Tamed Ruinstalker"
-	--L.wastelander_ritualist = "Wastelander Ritualist"
-	--L.wastelander_pactspeaker = "Wastelander Pactspeaker"
-	--L.karesh_elemental = "K'aresh Elemental"
-	--L.burrowing_creeper = "Burrowing Creeper"
-	--L.wastes_creeper = "Wastes Creeper"
+	L.terrified_broker = "Especulador aterrorizado"
+	L.arcane_siphon = "Sifón arcano"
+	L.overgorged_mite = "Ácaro empachado"
+	L.voracious_gorger = "Engullidor voraz"
+	L.ravenous_destroyer = "Destructor voraz"
+	L.overcharged_sentinel = "Centinela sobrecargado"
+	L.wastelander_farstalker = "Acechador lejano del páramo"
+	L.tamed_ruinstalker = "Acecharruina domesticado"
+	L.wastelander_ritualist = "Ritualista del páramo"
+	L.wastelander_pactspeaker = "Emitepactos del páramo"
+	L.karesh_elemental = "Elemental de K'aresh"
+	L.burrowing_creeper = "Trepador excavador"
+	L.wastes_creeper = "Trepador del páramo"
 
 	L.taahbat_and_awazj_warmup_trigger = "No tengo tiempo para esto. ¡Taah'bat! Asegúrate de que no avancen."
 end
