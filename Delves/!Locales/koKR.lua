@@ -2,18 +2,18 @@
 
 local L = BigWigs:NewBossLocale("Captain Nil'hitan", "koKR")
 if L then
-	--L.captain_nilhitan = "Captain Nil'hitan"
+	L.captain_nilhitan = "선장 닐히탄"
 end
 
 L = BigWigs:NewBossLocale("Portalmaster Halsan", "koKR")
 if L then
-	--L.portalmaster_halsan = "Portalmaster Halsan"
+	L.portalmaster_halsan = "차원문장인 할산"
 end
 
 L = BigWigs:NewBossLocale("Voidrider Challnax", "koKR")
 if L then
-	--L.voidripper = "Voidripper"
-	--L.voidrider_challnax= "Voidrider Challnax"
+	L.voidripper = "공허분쇄자"
+	L.voidrider_challnax= "공허기수 챌낙스"
 end
 
 -- Demolition Dome
@@ -232,12 +232,12 @@ end
 
 L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 8)", "koKR")
 if L then
-	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Tier 8)"
+	L.nexus_princess_kyveza = "연합공작 카이베자 (8단계)"
 end
 
 L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 11)", "koKR")
 if L then
-	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Tier 11)"
+	L.nexus_princess_kyveza = "연합공작 카이베자 (11단계)"
 end
 
 -- Zekvir's Lair
@@ -258,14 +258,14 @@ end
 
 L = BigWigs:NewBossLocale("Ethereal Trash", "koKR")
 if L then
-	--L.ethereal_trash = "Ethereal Trash"
+	L.ethereal_trash = "기록 침공"
 
-	--L.shadeye_observer = "Shadeye Observer"
-	--L.shadowguard_phasecutter = "Shadowguard Phasecutter"
-	--L.shadowguard_arcanotech = "Shadowguard Arcanotech"
-	--L.shadowguard_soulbreaker = "Shadowguard Soulbreaker"
-	--L.shadowguard_steelsoul = "Shadowguard Steelsoul"
-	--L.siphoned_drake = "Siphoned Drake"
+	L.shadeye_observer = "그늘눈 감시자"
+	L.shadowguard_phasecutter = "어둠수호병 위상절단자"
+	L.shadowguard_arcanotech = "어둠수호병 비전기술자"
+	L.shadowguard_soulbreaker = "어둠수호병 영혼파괴자"
+	L.shadowguard_steelsoul = "어둠수호병 영혼탈취자"
+	L.siphoned_drake = "흡수당한 비룡"
 end
 
 L = BigWigs:NewBossLocale("Fungarian Delve Trash", "koKR")
@@ -320,17 +320,17 @@ end
 
 L = BigWigs:NewBossLocale("Ky'veza Rares", "koKR")
 if L then
-	--L.rares = "Ky'veza Rares"
+	L.rares = "카이베자"
 
-	--L.pactsworn_fraycaller = "Pactsworn Fraycaller"
-	--L.pactsworn_dustblade = "Pactsworn Dustblade"
-	--L.pactsworn_sandreaver = "Pactsworn Sandreaver"
-	--L.pactsworn_arcanist = "Pactsworn Arcanist"
-	--L.pactsworn_wildcaller = "Pactsworn Wildcaller"
-	--L.invasive_phasecrawler = "Invasive Phasecrawler"
-	--L.drude = "D'rude"
-	--L.great_devourer = "Great Devourer"
-	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)"
+	L.pactsworn_fraycaller = "서약혈맹 전투소환사"
+	L.pactsworn_dustblade = "서약혈맹 먼지칼날"
+	L.pactsworn_sandreaver = "서약혈맹 모래약탈자"
+	L.pactsworn_arcanist = "서약혈맹 비전술사"
+	L.pactsworn_wildcaller = "서약혈맹 야생소환사"
+	L.invasive_phasecrawler = "침략하는 위상포복자"
+	L.drude = "드루드"
+	L.great_devourer = "위대한 포식자"
+	L.nexus_princess_kyveza = "연합공작 카이베자 (랜덤 생성)"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "koKR")
