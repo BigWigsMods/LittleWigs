@@ -375,21 +375,3 @@ if L then
 	L.crazed_abomination = "Wahnsinnige Monstrosität"
 	L.web_marauder = "Netzmarodeur"
 end
-
-L = BigWigs:NewBossLocale("Underpin Rares", "deDE")
-if L then
-	L.rares = "Lorenboss Rares"
-
-	L.treasure_wraith = "Schatzgespenst"
-	L.treasure_crab = "Schatzkrabbe"
-	L.hovering_menace = "Schwebende Bedrohung"
-	L.malfunctioning_pummeler = "Defekter Verprügler"
-	L.underpins_adoring_fan = "Schwärmender Fan des Lorenbosses"
-	L.underpins_well_connected_friend = "Gut vernetzter Freund des Lorenbosses"
-	L.underpins_explosive_ally = "Explosiver Verbündeter des Lorenbosses"
-	L.underpins_bodyguards_intern = "Praktikant des Leibwächters des Lorenbosses"
-	L.aggressively_lost_hobgoblin = "Wirklich verirrter Hobgoblin"
-	L.the_underpin = "Der Lorenboss (Zufälliges Erscheinen)"
-
-	L.underpin_retreat_trigger = "Die Leute bringen immer mein legal und urkundlich übertragenes Land durcheinander!"
-end

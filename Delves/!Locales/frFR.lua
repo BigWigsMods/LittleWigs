@@ -375,21 +375,3 @@ if L then
 	L.crazed_abomination = "Abomination affolée"
 	L.web_marauder = "Maraudeur des toiles"
 end
-
-L = BigWigs:NewBossLocale("Underpin Rares", "frFR")
-if L then
-	--L.rares = "Underpin Rares"
-
-	L.treasure_wraith = "Âme en peine de trésor"
-	L.treasure_crab = "Crabe au trésor"
-	L.hovering_menace = "Menace planante"
-	L.malfunctioning_pummeler = "Disperseur défectueux"
-	L.underpins_adoring_fan = "Fan inconditionnel du Père Foreur"
-	L.underpins_well_connected_friend = "Ami avec le bras long du Père Foreur"
-	L.underpins_explosive_ally = "Allié explosif du Père Foreur"
-	L.underpins_bodyguards_intern = "Stagiaire garde du corps du Père Foreur"
-	L.aggressively_lost_hobgoblin = "Hobgobelin agressivement perdu "
-	L.the_underpin = "Père Foreur (Apparition aléatoire)"
-
-	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
-end

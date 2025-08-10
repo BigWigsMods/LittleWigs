@@ -375,21 +375,3 @@ if L then
 	L.crazed_abomination = "發狂憎惡體"
 	L.web_marauder = "蛛網掠奪者"
 end
-
-L = BigWigs:NewBossLocale("Underpin Rares", "zhTW")
-if L then
-	L.rares = "幽坑稀有"
-
-	L.treasure_wraith = "寶藏怨靈"
-	L.treasure_crab = "寶藏蟹"
-	L.hovering_menace = "盤旋威脅者"
-	L.malfunctioning_pummeler = "故障的打擊者"
-	L.underpins_adoring_fan = "幽坑霸主的崇拜粉絲"
-	L.underpins_well_connected_friend = "幽坑霸主的好友"
-	L.underpins_explosive_ally = "幽坑霸主的爆炸盟友"
-	L.underpins_bodyguards_intern = "幽坑霸主的護衛見習生"
-	L.aggressively_lost_hobgoblin = "極度迷路的大哥布林"
-	L.the_underpin = "幽坑霸主（隨機出現）"
-
-	L.underpin_retreat_trigger = "總是有人喜歡亂闖我完全合法的私有地！"
-end

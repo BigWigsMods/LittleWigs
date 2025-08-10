@@ -375,21 +375,3 @@ if L then
 	L.crazed_abomination = "광기 어린 흉물"
 	L.web_marauder = "거미줄 약탈자"
 end
-
-L = BigWigs:NewBossLocale("Underpin Rares", "koKR")
-if L then
-	L.rares = "대지주"
-
-	L.treasure_wraith = "보물의 망령"
-	L.treasure_crab = "보물 게"
-	L.hovering_menace = "부유하는 위협"
-	L.malfunctioning_pummeler = "오작동하는 난타기"
-	L.underpins_adoring_fan = "대지주를 흠모하는 추종자"
-	L.underpins_well_connected_friend = "대지주의 마당발 친구"
-	L.underpins_explosive_ally = "대지주의 폭발적인 아군"
-	L.underpins_bodyguards_intern = "대지주의 경호원 수습생"
-	L.aggressively_lost_hobgoblin = "난폭한 길 잃은 밥통고블린"
-	L.the_underpin = "대지주 (무작위 생성)"
-
-	L.underpin_retreat_trigger = "왜 인간들은 늘 완벽하게 합법적으로 내 소유인 땅에서 노는 거냐고!"
-end
