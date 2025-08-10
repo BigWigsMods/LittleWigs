@@ -294,6 +294,7 @@ if L then
 	L.punchy_thug = "Schlagfertiger Schläger"
 	L.flinging_flicker = "Schleuderflacker"
 	L.bomb_bot = "Bombenbot"
+	--L.rad_rat = "Rad Rat"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "deDE")
@@ -322,14 +323,15 @@ L = BigWigs:NewBossLocale("Ky'veza Rares", "deDE")
 if L then
 	L.rares = "Ky'veza Rares"
 
+	L.treasure_wraith = "Schatzgespenst"
+	L.invasive_phasecrawler = "Invasiver Phasenkriecher"
+	L.drude = "D'rude"
+	L.great_devourer = "Großer Verschlinger"
 	L.pactsworn_fraycaller = "Paktgeschworener Getümmelrufer"
 	L.pactsworn_dustblade = "Paktgeschworene Staubklinge"
 	L.pactsworn_sandreaver = "Paktgeschworener Sandjäger"
 	L.pactsworn_arcanist = "Paktgeschworener Arkanist"
 	L.pactsworn_wildcaller = "Paktgeschworener Wildrufer"
-	L.invasive_phasecrawler = "Invasiver Phasenkriecher"
-	L.drude = "D'rude"
-	L.great_devourer = "Großer Verschlinger"
 	L.nexus_princess_kyveza = "Nexusprinzessin Ky'veza (Zufälliges Erscheinen)"
 end
 
@@ -374,22 +376,4 @@ if L then
 	L.deepwalker_guardian = "Tiefenläuferwächter"
 	L.crazed_abomination = "Wahnsinnige Monstrosität"
 	L.web_marauder = "Netzmarodeur"
-end
-
-L = BigWigs:NewBossLocale("Underpin Rares", "deDE")
-if L then
-	L.rares = "Lorenboss Rares"
-
-	L.treasure_wraith = "Schatzgespenst"
-	L.treasure_crab = "Schatzkrabbe"
-	L.hovering_menace = "Schwebende Bedrohung"
-	L.malfunctioning_pummeler = "Defekter Verprügler"
-	L.underpins_adoring_fan = "Schwärmender Fan des Lorenbosses"
-	L.underpins_well_connected_friend = "Gut vernetzter Freund des Lorenbosses"
-	L.underpins_explosive_ally = "Explosiver Verbündeter des Lorenbosses"
-	L.underpins_bodyguards_intern = "Praktikant des Leibwächters des Lorenbosses"
-	L.aggressively_lost_hobgoblin = "Wirklich verirrter Hobgoblin"
-	L.the_underpin = "Der Lorenboss (Zufälliges Erscheinen)"
-
-	L.underpin_retreat_trigger = "Die Leute bringen immer mein legal und urkundlich übertragenes Land durcheinander!"
 end

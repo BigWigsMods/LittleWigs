@@ -294,6 +294,7 @@ if L then
 	L.punchy_thug = "Criminel percutant"
 	L.flinging_flicker = "Ombre frappante"
 	L.bomb_bot = "Robo-bombe"
+	--L.rad_rat = "Rad Rat"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "frFR")
@@ -322,14 +323,15 @@ L = BigWigs:NewBossLocale("Ky'veza Rares", "frFR")
 if L then
 	--L.rares = "Ky'veza Rares"
 
+	L.treasure_wraith = "Âme en peine de trésor"
+	--L.invasive_phasecrawler = "Invasive Phasecrawler"
+	--L.drude = "D'rude"
+	--L.great_devourer = "Great Devourer"
 	--L.pactsworn_fraycaller = "Pactsworn Fraycaller"
 	--L.pactsworn_dustblade = "Pactsworn Dustblade"
 	--L.pactsworn_sandreaver = "Pactsworn Sandreaver"
 	--L.pactsworn_arcanist = "Pactsworn Arcanist"
 	--L.pactsworn_wildcaller = "Pactsworn Wildcaller"
-	--L.invasive_phasecrawler = "Invasive Phasecrawler"
-	--L.drude = "D'rude"
-	--L.great_devourer = "Great Devourer"
 	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)"
 end
 
@@ -374,22 +376,4 @@ if L then
 	L.deepwalker_guardian = "Gardien des Marche-Fonds"
 	L.crazed_abomination = "Abomination affolée"
 	L.web_marauder = "Maraudeur des toiles"
-end
-
-L = BigWigs:NewBossLocale("Underpin Rares", "frFR")
-if L then
-	--L.rares = "Underpin Rares"
-
-	L.treasure_wraith = "Âme en peine de trésor"
-	L.treasure_crab = "Crabe au trésor"
-	L.hovering_menace = "Menace planante"
-	L.malfunctioning_pummeler = "Disperseur défectueux"
-	L.underpins_adoring_fan = "Fan inconditionnel du Père Foreur"
-	L.underpins_well_connected_friend = "Ami avec le bras long du Père Foreur"
-	L.underpins_explosive_ally = "Allié explosif du Père Foreur"
-	L.underpins_bodyguards_intern = "Stagiaire garde du corps du Père Foreur"
-	L.aggressively_lost_hobgoblin = "Hobgobelin agressivement perdu "
-	L.the_underpin = "Père Foreur (Apparition aléatoire)"
-
-	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
 end

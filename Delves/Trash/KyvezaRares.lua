@@ -5,16 +5,19 @@
 local mod, CL = BigWigs:NewBoss("Ky'veza Rares", {2664, 2679, 2680, 2681, 2683, 2684, 2685, 2686, 2687, 2688, 2689, 2690, 2803, 2815, 2826}) -- All Delves
 if not mod then return end
 mod:RegisterEnableMob(
+	-- TWW Season 3, standard rares
+	209721, -- Secret Treasure (spawns Treasure Wraith)
+	208728, -- Treasure Wraith
+	244448, -- Invasive Phasecrawler
+	244453, -- D'rude
+	244444, -- Great Devourer
 	-- TWW Season 3, Ky'veza rares
 	244413, -- Pactsworn Fraycaller
 	244415, -- Pactsworn Dustblade
 	244410, -- Pactsworn Sandreaver
 	244411, -- Pactsworn Arcanist
 	244418, -- Pactsworn Wildcaller
-	248084, -- Pactsworn Sandreaver (XXX incorrectly named?)
-	244448, -- Invasive Phasecrawler
-	244453, -- D'rude
-	244444, -- Great Devourer
+	248084, -- Pactsworn Sandreaver (summoned)
 	244755 -- Nexus-Princess Ky'veza (Random Spawn)
 )
 
@@ -26,14 +29,15 @@ local L = mod:GetLocale()
 if L then
 	L.rares = "Ky'veza Rares"
 
+	L.treasure_wraith = "Treasure Wraith"
+	L.invasive_phasecrawler = "Invasive Phasecrawler"
+	L.drude = "D'rude"
+	L.great_devourer = "Great Devourer"
 	L.pactsworn_fraycaller = "Pactsworn Fraycaller"
 	L.pactsworn_dustblade = "Pactsworn Dustblade"
 	L.pactsworn_sandreaver = "Pactsworn Sandreaver"
 	L.pactsworn_arcanist = "Pactsworn Arcanist"
 	L.pactsworn_wildcaller = "Pactsworn Wildcaller"
-	L.invasive_phasecrawler = "Invasive Phasecrawler"
-	L.drude = "D'rude"
-	L.great_devourer = "Great Devourer"
 	L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)"
 end
 
@@ -47,6 +51,16 @@ end
 
 function mod:GetOptions()
 	return {
+		-- Treasure Wraith
+		{418295, "NAMEPLATE"}, -- Umbral Slash
+		{418297, "NAMEPLATE"}, -- Castigate
+		-- Invasive Phasecrawler
+		{1238737, "NAMEPLATE"}, -- Essence Cleave
+		{1238713, "NAMEPLATE"}, -- Gravity Shatter
+		-- D'rude
+		{1237671, "NAMEPLATE"}, -- Sandstorm
+		-- Great Devourer
+		1237258, -- Decroding Puddle
 		-- Pactsworn Fraycaller
 		{1242752, "NAMEPLATE"}, -- Unworthy Vessel
 		-- TODO probably Consume too
@@ -60,35 +74,50 @@ function mod:GetOptions()
 		-- Pactsworn Wildcaller
 		{1242521, "NAMEPLATE"}, -- Duneflyer Call
 		{1242534, "NAMEPLATE"}, -- Summon Warpstalker
-		-- Pactsworn Sandreaver (XXX incorrectly named?)
+		-- Pactsworn Sandreaver (summoned)
 		{1244108, "NAMEPLATE"}, -- Terrifying Screech
 		{1244249, "NAMEPLATE"}, -- Charge Throug
-		-- Invasive Phasecrawler
-		{1238737, "NAMEPLATE"}, -- Essence Cleave
-		{1238713, "NAMEPLATE"}, -- Gravity Shatter
-		-- D'rude
-		{1237671, "NAMEPLATE"}, -- Sandstorm
-		-- Great Devourer
-		1237258, -- Decroding Puddle
 		-- Nexus-Princess Ky'veza
 		{1245156, "EMPHASIZE"}, -- Ky'veza's Grand Entrance
 		{1245203, "NAMEPLATE"}, -- Dark Massacre
 		{1245240, "NAMEPLATE"}, -- Nexus Daggers
 	}, {
+		[418295] = L.treasure_wraith,
+		[1238737] = L.invasive_phasecrawler,
+		[1237671] = L.drude,
+		[1237258] = L.great_devourer,
 		[1242752] = L.pactsworn_fraycaller,
 		[1243017] = L.pactsworn_dustblade,
 		[1242469] = L.pactsworn_sandreaver,
 		[1244313] = L.pactsworn_arcanist,
 		[1242521] = L.pactsworn_wildcaller,
 		[1244108] = L.pactsworn_sandreaver,
-		[1238737] = L.invasive_phasecrawler,
-		[1237671] = L.drude,
-		[1237258] = L.great_devourer,
 		[1245156] = L.nexus_princess_kyveza,
 	}
 end
 
 function mod:OnBossEnable()
+	-- Treasure Wraith
+	self:RegisterEngageMob("TreasureWraithEngaged", 208728)
+	self:Log("SPELL_CAST_START", "UmbralSlash", 418295)
+	self:Log("SPELL_AURA_APPLIED", "Castigate", 418297)
+	self:Death("TreasureWraithDeath", 208728)
+
+	-- Invasive Phasecrawler
+	self:RegisterEngageMob("InvasivePhasecrawlerEngaged", 244448)
+	self:Log("SPELL_CAST_START", "EssenceCleave", 1238737)
+	self:Log("SPELL_CAST_START", "GravityShatter", 1238713)
+	self:Death("InvasivePhasecrawlerDeath", 244448)
+
+	-- D'rude
+	self:RegisterEngageMob("DrudeEngaged", 244453)
+	self:Log("SPELL_CAST_START", "Sandstorm", 1237671)
+	self:Death("DrudeDeath", 244453)
+
+	-- Great Devourer
+	self:Log("SPELL_PERIODIC_DAMAGE", "DecrodingPuddleDamage", 1237258)
+	self:Log("SPELL_PERIODIC_MISSED", "DecrodingPuddleDamage", 1237258)
+
 	-- Pactsworn Fraycaller
 	self:RegisterEngageMob("PactswornFraycallerEngaged", 244413)
 	self:Log("SPELL_CAST_SUCCESS", "UnworthyVessel", 1242752)
@@ -131,24 +160,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ChargeThrough", 1244249)
 	self:Death("PactswornSandreaver2Death", 248084)
 
-	-- Invasive Phasecrawler
-	self:RegisterEngageMob("InvasivePhasecrawlerEngaged", 244448)
-	self:Log("SPELL_CAST_START", "EssenceCleave", 1238737)
-	self:Log("SPELL_CAST_START", "GravityShatter", 1238713)
-	self:Death("InvasivePhasecrawlerDeath", 244448)
-
-	-- D'rude
-	self:RegisterEngageMob("DrudeEngaged", 244453)
-	self:Log("SPELL_CAST_START", "Sandstorm", 1237671)
-	self:Death("DrudeDeath", 244453)
-
-	-- Great Devourer
-	self:Log("SPELL_PERIODIC_DAMAGE", "DecrodingPuddleDamage", 1237258)
-	self:Log("SPELL_PERIODIC_MISSED", "DecrodingPuddleDamage", 1237258)
-
 	-- Nexus-Princess Ky'veza
 	self:Log("SPELL_CAST_START", "KyvezasGrandEntrance", 1245156)
-	self:Log("SPELL_CAST_SUCCESS", "Reaper", 1245040)
 	self:Log("SPELL_CAST_START", "DarkMassacre", 1245203)
 	self:Log("SPELL_CAST_START", "NexusDaggers", 1245240)
 end
@@ -157,10 +170,112 @@ end
 -- Event Handlers
 --
 
+-- Treasure Wraith
+
+do
+	local timer
+
+	function mod:TreasureWraithEngaged(guid)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(418295, 5.2) -- Umbral Slash
+		self:Nameplate(418295, 5.2, guid) -- Umbral Slash
+		self:CDBar(418297, 6.7) -- Castigate
+		self:Nameplate(418297, 6.7, guid) -- Castigate
+		timer = self:ScheduleTimer("TreasureWraithDeath", 30, nil, guid)
+	end
+
+	function mod:UmbralSlash(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "yellow")
+		self:CDBar(args.spellId, 17.6)
+		self:Nameplate(args.spellId, 17.6, args.sourceGUID)
+		timer = self:ScheduleTimer("TreasureWraithDeath", 30, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
+	end
+
+	function mod:Castigate(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:CDBar(args.spellId, 17.5)
+		self:Nameplate(args.spellId, 17.5, args.sourceGUID)
+		timer = self:ScheduleTimer("TreasureWraithDeath", 30, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
+	end
+
+	function mod:TreasureWraithDeath(args, guidFromTimer)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(418295) -- Umbral Slash
+		self:StopBar(418297) -- Castigate
+		self:ClearNameplate(guidFromTimer or args.destGUID)
+	end
+end
+
+-- Invasive Phasecrawler
+
+function mod:InvasivePhasecrawlerEngaged(guid)
+	self:Nameplate(1238737, 6.2, guid) -- Essence Cleave
+	self:Nameplate(1238713, 10.6, guid) -- Gravity Shatter
+end
+
+function mod:EssenceCleave(args)
+	self:Message(args.spellId, "red")
+	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:GravityShatter(args)
+	self:Message(args.spellId, "orange")
+	self:Nameplate(args.spellId, 24.3, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:InvasivePhasecrawlerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- D'rude
+
+function mod:DrudeEngaged(guid)
+	self:Nameplate(1237671, 17.2, guid) -- Sandstorm
+end
+
+function mod:Sandstorm(args)
+	self:Message(args.spellId, "yellow")
+	-- TODO confirm this is cd on cast start
+	self:Nameplate(args.spellId, 18.1, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:DrudeDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Great Devourer
+
+do
+	local prev = 0
+	function mod:DecrodingPuddleDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 2 then -- 1.5s tick rate
+			prev = args.time
+			self:PersonalMessage(1237258, "underyou")
+			self:PlaySound(1237258, "underyou")
+		end
+	end
+end
+
 -- Pactsworn Fraycaller
 
 function mod:PactswornFraycallerEngaged(guid)
-	self:Nameplate(1242752, 10.8, guid) -- Unworthy Vessel
+	self:Nameplate(1242752, 10.7, guid) -- Unworthy Vessel
 end
 
 function mod:UnworthyVessel(args)
@@ -185,7 +300,7 @@ end
 -- Pactsworn Dustblade
 
 function mod:PactswornDustbladeEngaged(guid)
-	self:Nameplate(1243017, 10.4, guid) -- Sand Crash
+	self:Nameplate(1243017, 8.3, guid) -- Sand Crash
 end
 
 do
@@ -293,7 +408,7 @@ function mod:PactswornWildcallerDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
--- Pactsworn Sandreaver (XXX incorrectly named?)
+-- Pactsworn Sandreaver (summoned)
 
 function mod:PactswornSandreaver2Engaged(guid)
 	self:Nameplate(1244249, 5.5, guid) -- Charge Through
@@ -320,76 +435,34 @@ function mod:PactswornSandreaver2Death(args)
 	self:ClearNameplate(args.destGUID)
 end
 
--- Invasive Phasecrawler
-
-function mod:InvasivePhasecrawlerEngaged(guid)
-	self:Nameplate(1238737, 6.2, guid) -- Essence Cleave
-	self:Nameplate(1238713, 12.6, guid) -- Gravity Shatter
-end
-
-function mod:EssenceCleave(args)
-	self:Message(args.spellId, "red")
-	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:GravityShatter(args)
-	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 24.3, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:InvasivePhasecrawlerDeath(args)
-	self:ClearNameplate(args.destGUID)
-end
-
--- D'rude
-
-function mod:DrudeEngaged(guid)
-	self:Nameplate(1237671, 17.2, guid) -- Sandstorm
-end
-
-function mod:Sandstorm(args)
-	self:Message(args.spellId, "yellow")
-	-- TODO confirm this is cd on cast start
-	self:Nameplate(args.spellId, 18.1, args.sourceGUID)
-	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:DrudeDeath(args)
-	self:ClearNameplate(args.destGUID)
-end
-
--- Great Devourer
-
-do
-	local prev = 0
-	function mod:DecrodingPuddleDamage(args)
-		if self:Me(args.destGUID) and args.time - prev > 2 then -- 1.5s tick rate
-			prev = args.time
-			self:PersonalMessage(1237258, "underyou")
-			self:PlaySound(1237258, "underyou")
-		end
-	end
-end
-
 -- Nexus-Princess Ky'veza
 
 do
 	local timer
 
 	function mod:KyvezasGrandEntrance(args)
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT") -- Ky'veza engages after this 6s cast
 		-- this is cast by some dummy NPC (248134) so can't use the guid for nameplate timers
 		self:Message(args.spellId, "cyan")
 		self:PlaySound(args.spellId, "warning")
 	end
 
-	function mod:Reaper(args)
-		self:CDBar(1245203, 14.4) -- Dark Massacre
-		self:Nameplate(1245203, 14.4, args.sourceGUID) -- Dark Massacre
-		self:CDBar(1245240, 29.0) -- Nexus Daggers
-		self:Nameplate(1245240, 29.0, args.sourceGUID) -- Nexus Daggers
-		timer = self:ScheduleTimer("KyvezaRetreat", 30, args.sourceGUID)
+	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
+		local _, guid = self:GetBossId(244755)
+		if not timer and guid then -- Nexus-Princess Ky'veza
+			-- Ky'veza engaged
+			self:CDBar(1245203, 15.5) -- Dark Massacre
+			self:Nameplate(1245203, 15.5, guid) -- Dark Massacre
+			self:CDBar(1245240, 30.2) -- Nexus Daggers
+			self:Nameplate(1245240, 30.2, guid) -- Nexus Daggers
+			timer = self:ScheduleTimer("KyvezaRetreat", 30, guid)
+		elseif timer and not guid then -- Nexus-Princess Ky'veza
+			-- Ky'veza disengaged
+			self:UnregisterEvent(event)
+			timer:Invoke()
+			self:CancelTimer(timer)
+			timer = nil
+		end
 	end
 
 	function mod:DarkMassacre(args)

@@ -294,6 +294,7 @@ if L then
 	L.punchy_thug = "Matón contundente"
 	--L.flinging_flicker = "Flinging Flicker"
 	L.bomb_bot = "Bombabot"
+	--L.rad_rat = "Rad Rat"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "esMX")
@@ -322,14 +323,15 @@ L = BigWigs:NewBossLocale("Ky'veza Rares", "esMX")
 if L then
 	--L.rares = "Ky'veza Rares"
 
+	L.treasure_wraith = "Ánima del tesoro"
+	--L.invasive_phasecrawler = "Invasive Phasecrawler"
+	--L.drude = "D'rude"
+	--L.great_devourer = "Great Devourer"
 	--L.pactsworn_fraycaller = "Pactsworn Fraycaller"
 	--L.pactsworn_dustblade = "Pactsworn Dustblade"
 	--L.pactsworn_sandreaver = "Pactsworn Sandreaver"
 	--L.pactsworn_arcanist = "Pactsworn Arcanist"
 	--L.pactsworn_wildcaller = "Pactsworn Wildcaller"
-	--L.invasive_phasecrawler = "Invasive Phasecrawler"
-	--L.drude = "D'rude"
-	--L.great_devourer = "Great Devourer"
 	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)"
 end
 
@@ -374,22 +376,4 @@ if L then
 	L.deepwalker_guardian = "Guardián Andahondo"
 	L.crazed_abomination = "Abominación enloquecida"
 	L.web_marauder = "Maleante de telaraña"
-end
-
-L = BigWigs:NewBossLocale("Underpin Rares", "esMX")
-if L then
-	--L.rares = "Underpin Rares"
-
-	L.treasure_wraith = "Ánima del tesoro"
-	--L.treasure_crab = "Treasure Crab"
-	--L.hovering_menace = "Hovering Menace"
-	--L.malfunctioning_pummeler = "Malfunctioning Pummeler"
-	--L.underpins_adoring_fan = "Underpin's Adoring Fan"
-	--L.underpins_well_connected_friend = "Underpin's Well-Connected Friend"
-	--L.underpins_explosive_ally = "Underpin's Explosive Ally"
-	--L.underpins_bodyguards_intern = "Underpin's Bodyguard's Intern"
-	--L.aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin"
-	--L.the_underpin = "The Underpin (Random Spawn)"
-
-	--L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
 end
