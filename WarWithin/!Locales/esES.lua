@@ -122,7 +122,7 @@ end
 L = BigWigs:NewBossLocale("Eco-Dome Al'dani Trash", "esES")
 if L then
 	L.terrified_broker = "Especulador aterrorizado"
-	L.arcane_siphon = "Sifón arcano"
+	L.arcane_siphon = "Succión arcana"
 	L.overgorged_mite = "Ácaro empachado"
 	L.voracious_gorger = "Engullidor voraz"
 	L.ravenous_destroyer = "Destructor voraz"
@@ -136,6 +136,7 @@ if L then
 	L.wastes_creeper = "Trepador del páramo"
 
 	L.taahbat_and_awazj_warmup_trigger = "No tengo tiempo para esto. ¡Taah'bat! Asegúrate de que no avancen."
+	--azhiccar_warmup_trigger = "¡Cuidado! ¡Algo se acerca!" --from Ve'nari
 end
 
 -- Operation: Floodgate
