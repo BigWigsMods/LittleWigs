@@ -549,6 +549,7 @@ BigWigs:AddColors("Goblin Delve Trash", {
 	[474001] = "red",
 	[474004] = "orange",
 	[1213656] = "yellow",
+	[1237160] = "blue",
 })
 
 BigWigs:AddSounds("Goblin Delve Trash", {
@@ -563,6 +564,7 @@ BigWigs:AddSounds("Goblin Delve Trash", {
 	[474001] = "alert",
 	[474004] = "alarm",
 	[1213656] = "info",
+	[1237160] = "underyou",
 })
 
 BigWigs:AddColors("Kobold Delve Trash", {

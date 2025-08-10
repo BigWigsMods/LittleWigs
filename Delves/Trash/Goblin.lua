@@ -29,7 +29,8 @@ mod:RegisterEnableMob(
 	235295, -- Flinging Flicker
 	235298, -- Flinging Flicker
 	235635, -- Aquatic Wrench
-	231928 -- Bomb Bot
+	231928, -- Bomb Bot
+	241969 -- Rad Rat
 )
 
 --------------------------------------------------------------------------------
@@ -48,6 +49,7 @@ if L then
 	L.punchy_thug = "Punchy Thug"
 	L.flinging_flicker = "Flinging Flicker"
 	L.bomb_bot = "Bomb Bot"
+	L.rad_rat = "Rad Rat"
 end
 
 --------------------------------------------------------------------------------
@@ -89,6 +91,8 @@ function mod:GetOptions()
 		473696, -- Molotov Cocktail
 		-- Bomb Bot
 		{472842, "ME_ONLY"}, -- Destroy
+		-- Rad Rat
+		1237160, -- Radiation Pool
 	},{
 		[473684] = L.bopper_bot,
 		[473550] = L.aerial_support_bot,
@@ -98,6 +102,7 @@ function mod:GetOptions()
 		[473541] = L.punchy_thug,
 		[473696] = L.flinging_flicker,
 		[472842] = L.bomb_bot,
+		[1237160] = L.rad_rat,
 	},{
 		[474001] = CL.enrage, -- Bathe in Blood (Enrage)
 		[473972] = CL.charge, -- Reckless Charge (Charge)
@@ -149,6 +154,10 @@ function mod:OnBossEnable()
 
 	-- Bomb Bot
 	self:Log("SPELL_CAST_SUCCESS", "Destroy", 472842)
+
+	-- Rad Rat
+	self:Log("SPELL_PERIODIC_DAMAGE", "RadiationPoolDamage", 1237160)
+	self:Log("SPELL_PERIODIC_MISSED", "RadiationPoolDamage", 1237160)
 
 	-- also enable the Rares module
 	local raresModule = BigWigs:GetBossModule("Ky'veza Rares", true)
@@ -352,6 +361,19 @@ do
 			prev = args.time
 			self:Message(args.spellId, "orange")
 			self:PlaySound(args.spellId, "alarm")
+		end
+	end
+end
+
+-- Rad Rat
+
+do
+	local prev = 0
+	function mod:RadiationPoolDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then -- 2s tick rate
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
 		end
 	end
 end

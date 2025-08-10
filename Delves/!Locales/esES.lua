@@ -294,6 +294,7 @@ if L then
 	L.punchy_thug = "Matón contundente"
 	--L.flinging_flicker = "Flinging Flicker"
 	L.bomb_bot = "Bombabot"
+	--L.rad_rat = "Rad Rat"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "esES")
