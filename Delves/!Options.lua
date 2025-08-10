@@ -733,24 +733,6 @@ BigWigs:AddSounds("Ky'veza Rares", {
 	[1245240] = "alarm",
 })
 
-BigWigs:AddColors("Nexus-Princess Ky'veza (Tier 8)", {
-	[1244462] = "cyan",
-	[1244600] = "red",
-	[1245203] = "yellow",
-	[1245240] = "orange",
-	[1245582] = "red",
-	[1250052] = "blue",
-})
-
-BigWigs:AddSounds("Nexus-Princess Ky'veza (Tier 8)", {
-	[1244462] = "info",
-	[1244600] = "warning",
-	[1245203] = {"alert","long"},
-	[1245240] = "alarm",
-	[1245582] = "info",
-	[1250052] = "underyou",
-})
-
 BigWigs:AddColors("Nexus-Princess Ky'veza (Tier 11)", {
 	[1244462] = "cyan",
 	[1244600] = "red",

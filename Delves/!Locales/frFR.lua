@@ -230,14 +230,9 @@ end
 
 -- Voidrazor Sanctuary
 
-L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 8)", "frFR")
-if L then
-	L.nexus_princess_kyveza = "Princesse-nexus Ky'veza (Tier 8)"
-end
-
 L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 11)", "frFR")
 if L then
-	L.nexus_princess_kyveza = "Princesse-nexus Ky'veza (Tier 11)"
+	L.nexus_princess_kyveza = "Princesse-nexus Ky'veza"
 end
 
 -- Zekvir's Lair
