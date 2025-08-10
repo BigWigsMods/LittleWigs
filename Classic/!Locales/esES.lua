@@ -10,7 +10,7 @@ end
 
 L = BigWigs:NewBossLocale("Lord Aurius Rivendare", "esES")
 if L then
-	--L.death_pact_trigger = "attempts to cast Death Pact on his servants!"
+		L.death_pact_trigger = "intenta lanzar un Pacto de muerte a sus sirvientes!"  -- ¡Lord Aurius Osahendido intenta lanzar un Pacto de muerte a sus sirvientes!
 end
 
 -- Blackrock Spire (Vanilla through Mists only)
