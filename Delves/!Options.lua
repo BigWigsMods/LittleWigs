@@ -690,6 +690,8 @@ BigWigs:AddSounds("The Underkeep Trash", {
 })
 
 BigWigs:AddColors("Ky'veza Rares", {
+	[418295] = "yellow",
+	[418297] = "red",
 	[1237258] = "blue",
 	[1237671] = "yellow",
 	[1238713] = "orange",
@@ -709,6 +711,8 @@ BigWigs:AddColors("Ky'veza Rares", {
 })
 
 BigWigs:AddSounds("Ky'veza Rares", {
+	[418295] = "alarm",
+	[418297] = "alert",
 	[1237258] = "underyou",
 	[1237671] = "alarm",
 	[1238713] = "alarm",

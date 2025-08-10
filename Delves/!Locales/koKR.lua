@@ -322,14 +322,15 @@ L = BigWigs:NewBossLocale("Ky'veza Rares", "koKR")
 if L then
 	L.rares = "카이베자"
 
+	L.treasure_wraith = "보물의 망령"
+	L.invasive_phasecrawler = "침략하는 위상포복자"
+	L.drude = "드루드"
+	L.great_devourer = "위대한 포식자"
 	L.pactsworn_fraycaller = "서약혈맹 전투소환사"
 	L.pactsworn_dustblade = "서약혈맹 먼지칼날"
 	L.pactsworn_sandreaver = "서약혈맹 모래약탈자"
 	L.pactsworn_arcanist = "서약혈맹 비전술사"
 	L.pactsworn_wildcaller = "서약혈맹 야생소환사"
-	L.invasive_phasecrawler = "침략하는 위상포복자"
-	L.drude = "드루드"
-	L.great_devourer = "위대한 포식자"
 	L.nexus_princess_kyveza = "연합공작 카이베자 (랜덤 생성)"
 end
 

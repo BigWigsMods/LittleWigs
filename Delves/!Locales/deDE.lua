@@ -322,14 +322,15 @@ L = BigWigs:NewBossLocale("Ky'veza Rares", "deDE")
 if L then
 	L.rares = "Ky'veza Rares"
 
+	L.treasure_wraith = "Schatzgespenst"
+	L.invasive_phasecrawler = "Invasiver Phasenkriecher"
+	L.drude = "D'rude"
+	L.great_devourer = "Großer Verschlinger"
 	L.pactsworn_fraycaller = "Paktgeschworener Getümmelrufer"
 	L.pactsworn_dustblade = "Paktgeschworene Staubklinge"
 	L.pactsworn_sandreaver = "Paktgeschworener Sandjäger"
 	L.pactsworn_arcanist = "Paktgeschworener Arkanist"
 	L.pactsworn_wildcaller = "Paktgeschworener Wildrufer"
-	L.invasive_phasecrawler = "Invasiver Phasenkriecher"
-	L.drude = "D'rude"
-	L.great_devourer = "Großer Verschlinger"
 	L.nexus_princess_kyveza = "Nexusprinzessin Ky'veza (Zufälliges Erscheinen)"
 end
 

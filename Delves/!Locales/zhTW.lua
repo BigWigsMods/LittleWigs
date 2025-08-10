@@ -322,14 +322,15 @@ L = BigWigs:NewBossLocale("Ky'veza Rares", "zhTW")
 if L then
 	L.rares = "奇維扎精英（稀有）"
 
+	L.treasure_wraith = "寶藏怨靈"
+	L.invasive_phasecrawler = "入侵的相位爬行者"
+	L.drude = "德魯德"
+	L.great_devourer = "大型吞噬者"
 	L.pactsworn_fraycaller = "群誓戰罔呼喚者"
 	L.pactsworn_dustblade = "群誓塵刃"
 	L.pactsworn_sandreaver = "群誓沙奪者"
 	L.pactsworn_arcanist = "群誓秘法師"
 	L.pactsworn_wildcaller = "群誓喚風者"
-	L.invasive_phasecrawler = "入侵的相位爬行者"
-	L.drude = "德魯德"
-	L.great_devourer = "大型吞噬者"
 	L.nexus_princess_kyveza = "奥核公主奇維扎（隨機出現）"
 end
 
