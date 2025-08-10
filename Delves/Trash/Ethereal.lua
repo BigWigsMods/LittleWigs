@@ -164,7 +164,7 @@ end
 -- Shadowguard Phasecutter
 
 function mod:ShadowguardPhasecutterEngaged(guid)
-	self:Nameplate(1236256, 7.1, guid) -- Vorpal Cleave
+	self:Nameplate(1236256, 6.8, guid) -- Vorpal Cleave
 end
 
 do
@@ -250,7 +250,7 @@ end
 -- Siphoned Drake
 
 function mod:SiphonedDrakeEngaged(guid)
-	self:Nameplate(1231144, 8.2, guid) -- Null Breath
+	self:Nameplate(1231144, 7.9, guid) -- Null Breath
 end
 
 function mod:NullBreath(args)
