@@ -162,7 +162,6 @@ function mod:OnBossEnable()
 
 	-- Nexus-Princess Ky'veza
 	self:Log("SPELL_CAST_START", "KyvezasGrandEntrance", 1245156)
-	self:Log("SPELL_CAST_SUCCESS", "Reaper", 1245040)
 	self:Log("SPELL_CAST_START", "DarkMassacre", 1245203)
 	self:Log("SPELL_CAST_START", "NexusDaggers", 1245240)
 end
@@ -442,17 +441,28 @@ do
 	local timer
 
 	function mod:KyvezasGrandEntrance(args)
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT") -- Ky'veza engages after this 6s cast
 		-- this is cast by some dummy NPC (248134) so can't use the guid for nameplate timers
 		self:Message(args.spellId, "cyan")
 		self:PlaySound(args.spellId, "warning")
 	end
 
-	function mod:Reaper(args)
-		self:CDBar(1245203, 14.4) -- Dark Massacre
-		self:Nameplate(1245203, 14.4, args.sourceGUID) -- Dark Massacre
-		self:CDBar(1245240, 29.0) -- Nexus Daggers
-		self:Nameplate(1245240, 29.0, args.sourceGUID) -- Nexus Daggers
-		timer = self:ScheduleTimer("KyvezaRetreat", 30, args.sourceGUID)
+	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
+		local _, guid = self:GetBossId(244755)
+		if not timer and guid then -- Nexus-Princess Ky'veza
+			-- Ky'veza engaged
+			self:CDBar(1245203, 15.5) -- Dark Massacre
+			self:Nameplate(1245203, 15.5, guid) -- Dark Massacre
+			self:CDBar(1245240, 30.2) -- Nexus Daggers
+			self:Nameplate(1245240, 30.2, guid) -- Nexus Daggers
+			timer = self:ScheduleTimer("KyvezaRetreat", 30, guid)
+		elseif timer and not guid then -- Nexus-Princess Ky'veza
+			-- Ky'veza disengaged
+			self:UnregisterEvent(event)
+			timer:Invoke()
+			self:CancelTimer(timer)
+			timer = nil
+		end
 	end
 
 	function mod:DarkMassacre(args)
