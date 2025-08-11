@@ -230,14 +230,9 @@ end
 
 -- Voidrazor Sanctuary
 
-L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 8)", "koKR")
-if L then
-	L.nexus_princess_kyveza = "연합공작 카이베자 (8단계)"
-end
-
 L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 11)", "koKR")
 if L then
-	L.nexus_princess_kyveza = "연합공작 카이베자 (11단계)"
+	L.nexus_princess_kyveza = "연합공작 카이베자"
 end
 
 -- Zekvir's Lair

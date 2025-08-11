@@ -2,10 +2,13 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Nexus-Princess Ky'veza (Tier 8)", 2951)
+local mod, CL = BigWigs:NewBoss("Nexus-Princess Ky'veza (Tier 11)", 2951)
 if not mod then return end
-mod:RegisterEnableMob(244752) -- Nexus-Princess Ky'veza (Tier 8)
-mod:SetEncounterID(3326)
+mod:RegisterEnableMob(
+	244752,  -- Nexus-Princess Ky'veza (Tier 8)
+	244753 -- Nexus-Princess Ky'veza (Tier 11)
+)
+mod:SetEncounterID({3326, 3325}) -- Tier 8, Tier 11
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
 
@@ -23,7 +26,7 @@ local invokeTheShadowsCount = 1
 
 local L = mod:GetLocale()
 if L then
-	L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Tier 8)"
+	L.nexus_princess_kyveza = "Nexus-Princess Ky'veza"
 end
 
 --------------------------------------------------------------------------------
@@ -72,7 +75,7 @@ end
 
 function mod:NexusDaggers(args)
 	-- also cast by Nether Phantoms immediately after the boss's cast
-	if self:MobId(args.sourceGUID) == 244752 then -- Nexus-Princess Ky'veza
+	if self:IsEnableMob(self:MobId(args.sourceGUID)) then -- only the boss
 		self:Message(args.spellId, "orange")
 		self:CDBar(args.spellId, 30.0)
 		self:PlaySound(args.spellId, "alarm")
@@ -92,8 +95,14 @@ end
 
 do
 	local phantomCount = 1
+	local maxPhantoms = 6
 	function mod:DarkMassacre(args)
 		phantomCount = 1
+		if self:MobId(args.sourceGUID) == 244753 then -- Ky'veza (Tier 11)
+			maxPhantoms = 6
+		else -- 244752, Ky'veza (Tier 8)
+			maxPhantoms = 3
+		end
 		self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
 		darkMassacreCount = darkMassacreCount + 1
 		if darkMassacreCount % 2 == 0 then
@@ -106,9 +115,9 @@ do
 
 	function mod:DarkMassacrePhantom(args)
 		-- this alerts on SPELL_CAST_SUCCESS, denoting when it's safe to turn away from the active Nether Phantom
-		self:Message(1245203, "yellow", CL.count_amount:format(args.spellName, phantomCount, 3))
+		self:Message(1245203, "yellow", CL.count_amount:format(args.spellName, phantomCount, maxPhantoms))
 		phantomCount = phantomCount + 1
-		if phantomCount <= 3 then
+		if phantomCount <= maxPhantoms then
 			-- don't play a sound after the last cast
 			self:PlaySound(1245203, "alert")
 		end
