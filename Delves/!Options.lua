@@ -146,14 +146,14 @@ BigWigs:AddColors("Xel'anegh The Many", {
 	[1213275] = "green",
 	[1213425] = "red",
 	[1213426] = "orange",
-	[1213804] = "yellow",
+	[1213791] = "yellow",
 	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("Xel'anegh The Many", {
 	[1213425] = "warning",
 	[1213426] = "alarm",
-	[1213804] = "long",
+	[1213791] = "long",
 	["stages"] = "info",
 })
 

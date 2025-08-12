@@ -34,7 +34,7 @@ end
 
 function mod:GetOptions()
 	return {
-		1213804, -- Shadow Barrage
+		1213791, -- Shadow Barrage
 		1213426, -- Tentacle Slam
 		1213425, -- Terrifying Roar
 		"stages",
@@ -45,7 +45,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "ShadowBarrage", 1213804)
+	self:Log("SPELL_AURA_APPLIED", "ShadowBarrage", 1213791) -- SPELL_CAST_SUCCESS on 1213804 no longer logs
 	self:Log("SPELL_CAST_START", "TentacleSlam", 1213426)
 	self:Log("SPELL_CAST_START", "TerrifyingRoar", 1213425)
 	self:Log("SPELL_CAST_SUCCESS", "Wounded", 1213275)
@@ -54,7 +54,7 @@ end
 
 function mod:OnEngage()
 	tentaclesKilled = 0
-	self:CDBar(1213804, 14.2) -- Shadow Barrage
+	self:CDBar(1213791, 14.2) -- Shadow Barrage
 	self:CDBar(1213426, 15.4) -- Tentacle Slam
 	self:CDBar(1213425, 23.9) -- Terrifying Roar
 end
@@ -65,7 +65,7 @@ end
 
 function mod:ShadowBarrage(args)
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 33.9)
+	self:CDBar(args.spellId, 33.5)
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -92,7 +92,7 @@ end
 
 function mod:XelaneghTheManyDeath(args)
 	if args.mobId == 234435 then -- Xel'anegh the Many (Main Boss)
-		self:StopBar(1213804) -- Shadow Barrage
+		self:StopBar(1213791) -- Shadow Barrage
 	elseif args.mobId == 234436 then -- Xel'anegh the Many (Tentacle)
 		self:StopBar(1213425) -- Terrifying Roar
 	elseif args.mobId == 234438 then -- Xel'anegh the Many (Tentacle)
