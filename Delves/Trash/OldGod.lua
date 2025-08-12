@@ -6,6 +6,7 @@ local mod, CL = BigWigs:NewBoss("Old God Delve Trash", {2685, 2815}) -- Skitteri
 if not mod then return end
 mod:RegisterEnableMob(
 	234269, -- Craggle Fritzbrains (Excavation Site 9 gossip NPC)
+	241611, -- Chef Carl (Excavation Site 9 gossip NPC)
 	234553, -- Dark Walker
 	234208, -- Hideous Amalgamation
 	234209, -- Coagulated Mass
@@ -107,6 +108,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(131162) then -- Excavation Site 9, continue Delve (Craggle Fritzbrains)
 			-- 131162:|cFF0000FF(Delve)|r Maybe we should leave before you give in to the whispers of this place.
 			self:SelectGossipID(131162)
+		elseif self:GetGossipID(132946) then -- Excavation Site 9, start Delve (Chef Carl)
+			-- 132946:|cFF0000FF(Delve)|r I guess?
+			self:SelectGossipID(132946)
 		end
 	end
 end
