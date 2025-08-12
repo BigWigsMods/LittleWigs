@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Maulspike", 2664)
+local mod, CL = BigWigs:NewBoss("Maulspike", {2664, 2826}) -- Fungal Folly, Sidestreet Sluice
 if not mod then return end
 mod:RegisterEnableMob(234958) -- Maulspike
 mod:SetEncounterID(3121)
@@ -51,6 +51,12 @@ function mod:OnBossEnable()
 
 	-- Darkfuse Cackler
 	self:Log("SPELL_CAST_START", "HideousCackle", 1214680)
+
+	local _, _, _, _, _, _, _, instanceId = GetInstanceInfo()
+	if instanceId == 2826 then -- no encounter events in Sidestreet Sluice
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+		self:Death("Win", 234958)
+	end
 end
 
 function mod:OnEngage()
