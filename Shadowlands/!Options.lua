@@ -153,7 +153,6 @@ BigWigs:AddSounds("High Adjudicator Aleez", {
 BigWigs:AddColors("Lord Chamberlain", {
 	[323142] = "yellow",
 	[323236] = "orange",
-	[323437] = {"blue","purple"},
 	[328791] = "red",
 	[329104] = "cyan",
 	[1236973] = "red",
@@ -162,7 +161,6 @@ BigWigs:AddColors("Lord Chamberlain", {
 BigWigs:AddSounds("Lord Chamberlain", {
 	[323142] = "alert",
 	[323236] = "alarm",
-	[323437] = "alert",
 	[328791] = "warning",
 	[329104] = "long",
 	[1236973] = "alarm",

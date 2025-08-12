@@ -24,7 +24,6 @@ function mod:GetOptions()
 		328791, -- Ritual of Woe
 		323142, -- Telekinetic Toss
 		323236, -- Unleashed Suffering
-		{323437, "TANK_HEALER"}, -- Stigma of Pride
 		1236973, -- Erupting Torment
 	}
 end
@@ -34,14 +33,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "RitualOfWoe", 323393, 328791) -- Normal/Heroic, Mythic
 	self:Log("SPELL_CAST_SUCCESS", "TelekineticToss", 323142)
 	self:Log("SPELL_CAST_START", "UnleashedSuffering", 323236)
-	self:Log("SPELL_CAST_SUCCESS", "StigmaOfPride", 323437)
-	self:Log("SPELL_AURA_APPLIED", "StigmaOfPrideApplied", 323437)
 	self:Log("SPELL_CAST_START", "EruptingTorment", 1236973)
 end
 
 function mod:OnEngage()
 	doorOfShadowsCount = 1
-	self:CDBar(323437, 7.3) -- Stigma of Pride
 	self:CDBar(323142, 9.5) -- Telekinetic Toss
 	self:CDBar(323236, 15.6) -- Unleashed Suffering
 	self:CDBar(1236973, 25.3) -- Erupting Torment
@@ -59,7 +55,6 @@ function mod:DoorOfShadows(args)
 	self:CDBar(1236973, 24.3) -- Erupting Torment
 	self:CDBar(323142, 30.4) -- Telekinetic Toss
 	self:CDBar(323236, 36.5) -- Unleashed Suffering
-	self:CDBar(323437, 49.8) -- Stigma of Pride
 	self:PlaySound(args.spellId, "long")
 end
 
@@ -79,15 +74,6 @@ function mod:UnleashedSuffering(args)
 	self:Message(args.spellId, "orange")
 	self:CDBar(args.spellId, 22.8)
 	self:PlaySound(args.spellId, "alarm")
-end
-
-function mod:StigmaOfPride(args)
-	self:CDBar(args.spellId, 25.6)
-end
-
-function mod:StigmaOfPrideApplied(args)
-	self:TargetMessage(args.spellId, "purple", args.destName)
-	self:PlaySound(args.spellId, "alert", nil, args.destName)
 end
 
 function mod:EruptingTorment(args)
