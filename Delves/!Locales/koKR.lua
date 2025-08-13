@@ -289,7 +289,7 @@ if L then
 	L.punchy_thug = "주먹패 폭력배"
 	L.flinging_flicker = "반짝임"
 	L.bomb_bot = "폭발로봇"
-	--L.rad_rat = "Rad Rat"
+	L.rad_rat = "끝내주쥐"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "koKR")
