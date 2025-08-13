@@ -113,7 +113,8 @@ if L then
 	L.focused_ritualist = "Focused Ritualist"
 	L.devoted_accomplice = "Devoted Accomplice"
 
-	-- TODO Tidal Burst (1244650) has no icon or description, could copy from 356260
+	L["1244650_icon"] = 356260 -- Tidal Burst has no icon
+	L["1244650_desc"] = 356260 -- Tidal Burst has no description
 end
 
 --------------------------------------------------------------------------------
@@ -1560,7 +1561,7 @@ end
 -- Hourglass Tidesage
 
 function mod:HourglassTidesageEngaged(guid)
-	self:Nameplate(1244650, 8.0, guid) -- Tidal Burst
+	self:Nameplate(1244650, 7.1, guid, 132852) -- Tidal Burst, fileID for L["1244650_icon"]
 end
 
 do
@@ -1570,12 +1571,12 @@ do
 			prevCast = castGUID
 			local sourceGUID = self:UnitGUID(unit)
 			if sourceGUID then
-				self:Nameplate(spellId, 18.2, sourceGUID)
+				self:Nameplate(spellId, 18.2, sourceGUID, 132852) -- fileID for L["1244650_icon"]
 			end
 			local t = GetTime()
 			if t - prev > 2 then
 				prev = t
-				self:Message(spellId, "orange")
+				self:Message(spellId, "orange", nil, L["1244650_icon"])
 				self:PlaySound(spellId, "alarm")
 			end
 		end
