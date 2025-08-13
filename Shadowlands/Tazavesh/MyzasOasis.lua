@@ -47,6 +47,7 @@ end
 function mod:GetOptions()
 	return {
 		"stages",
+		359019, -- Up Tempo
 		-- Unruly Patron
 		356482, -- Rotten Food
 		-- Disruptive Patron
@@ -60,13 +61,13 @@ function mod:GetOptions()
 		350919, -- Crowd Control
 		355438, -- Suppression Spark
 		{359028, "TANK"}, -- Security Slam
-		1241032, -- Final Warning
+		{1241032, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Final Warning
 		-- Hard Mode
 		{357404, "NAMEPLATE"}, -- Dischordant Song
 		{357436, "NAMEPLATE"}, -- Infectious Solo
 		{357542, "NAMEPLATE"}, -- Rip Chord
 	}, {
-		[356482] = -23096, -- Stage One: Unruly Patrons
+		[359019] = -23096, -- Stage One: Unruly Patrons
 		[350919] = -23749, -- Stage Two: Closing Time
 		[357404] = CL.hard,
 	}
@@ -74,10 +75,14 @@ end
 
 function mod:OnBossEnable()
 	-- Staging
-	self:RegisterEvent("ENCOUNTER_START") -- no boss frames until Stage 2
-	self:RegisterEvent("ENCOUNTER_END") -- no boss frames until Stage 2
+	-- manually handle ENCOUNTER_START and ENCOUNTER_END because there are no boss frames until Stage 2
+	self:RegisterEvent("ENCOUNTER_START")
+	self:RegisterEvent("ENCOUNTER_END")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
+
+	-- General
+	self:Log("SPELL_AURA_APPLIED", "UpTempoApplied", 359019)
 
 	-- Unruly Patron
 	self:Log("SPELL_CAST_SUCCESS", "RottenFood", 359222)
@@ -100,6 +105,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CrowdControl", 350919)
 	self:Log("SPELL_CAST_START", "SuppressionSpark", 355438)
 	self:Log("SPELL_CAST_START", "FinalWarning", 1241032)
+	self:Log("SPELL_INTERRUPT", "FinalWarningInterrupt", 1241032)
 
 	-- Hard Mode
 	self:RegisterEngageMob("EvaileEngaged", 180399)
@@ -129,7 +135,8 @@ end
 function mod:ENCOUNTER_END(_, encounterId, _, _, _, status)
 	if encounterId == 2440 then
 		if status == 0 then
-			self:Wipe()
+			-- delay slightly to avoid reregistering ENCOUNTER_END as part of Reboot during this ENCOUNTER_END dispatch
+			self:SimpleTimer(function() self:Wipe() end, 1)
 		else
 			self:Win()
 		end
@@ -166,6 +173,15 @@ function mod:EncounterEvent(args) -- Zo'gron engaged
 		self:CDBar(350919, 18.5) -- Crowd Control
 		self:CDBar(355438, 27.1) -- Suppression Spark
 		self:PlaySound("stages", "long")
+	end
+end
+
+-- General
+
+function mod:UpTempoApplied(args)
+	if self:Me(args.destGUID) then
+		self:Message(args.spellId, "green", CL.you:format(args.spellName))
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
@@ -270,7 +286,14 @@ function mod:FinalWarning(args)
 		self:Message(args.spellId, "yellow", CL.percent:format(35, args.spellName))
 	end
 	finalWarningCount = finalWarningCount + 1
+	self:CastBar(args.spellId, 20)
 	self:PlaySound(args.spellId, "long")
+end
+
+function mod:FinalWarningInterrupt(args)
+	self:StopCastBar(1241032)
+	self:Message(1241032, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+	self:PlaySound(1241032, "info")
 end
 
 -- Hard Mode
