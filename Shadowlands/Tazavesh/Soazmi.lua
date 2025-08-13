@@ -112,7 +112,7 @@ do
 	function mod:DoubleTechniqueInterrupt(args)
 		if count == 2 then
 			-- energy gain resumes, 48s energy gain + delay
-			self:CDBar(args.spellId, 48.1)
+			self:CDBar(1245669, 48.1)
 		end
 	end
 
@@ -145,7 +145,7 @@ do
 	function mod:TripleTechniqueInterrupt(args)
 		if count == 3 then
 			-- energy gain resumes, 48s energy gain + delay
-			self:CDBar(args.spellId, 48.1)
+			self:CDBar(1245752, 48.1)
 		end
 	end
 
