@@ -258,7 +258,7 @@ end
 -- Depraved Collector
 
 function mod:DepravedCollectorEngaged(guid)
-	self:Nameplate(325701, 3.1, guid) -- Siphon Life
+	self:Nameplate(325701, 3.0, guid) -- Siphon Life
 end
 
 function mod:SiphonLife(args)
@@ -307,8 +307,8 @@ end
 -- Shard of Halkias
 
 function mod:ShardOfHalkiasEngaged(guid)
-	self:Nameplate(326409, 8.1, guid) -- Thrash
-	self:Nameplate(326441, 20.6, guid) -- Sin Quake
+	self:Nameplate(326409, 7.9, guid) -- Thrash
+	self:Nameplate(326441, 20.3, guid) -- Sin Quake
 end
 
 function mod:Thrash(args)
