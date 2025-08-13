@@ -38,9 +38,9 @@ end
 
 function mod:OnEngage()
 	doorOfShadowsCount = 1
-	self:CDBar(323142, 9.5) -- Telekinetic Toss
-	self:CDBar(323236, 15.6) -- Unleashed Suffering
-	self:CDBar(1236973, 25.3) -- Erupting Torment
+	self:CDBar(323142, 8.5) -- Telekinetic Toss
+	self:CDBar(323236, 14.6) -- Unleashed Suffering
+	self:CDBar(1236973, 25.1) -- Erupting Torment
 end
 
 --------------------------------------------------------------------------------
@@ -66,7 +66,7 @@ end
 
 function mod:TelekineticToss(args)
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 10.5) -- Telekinetic Toss
+	self:CDBar(args.spellId, 10.5)
 	self:PlaySound(args.spellId, "alert")
 end
 
