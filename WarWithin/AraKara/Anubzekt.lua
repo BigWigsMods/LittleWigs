@@ -41,6 +41,7 @@ function mod:GetOptions()
 		{439506, "SAY"}, -- Burrow Charge
 		{433740, "ME_ONLY", "SAY"}, -- Infestation
 		433766, -- Eye of the Swarm
+		433781, -- Ceaseless Swarm
 		"bloodstained_webmage",
 		-- Bloodstained Web Mage (Mythic)
 		442210, -- Silken Restraints
@@ -57,10 +58,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "BurrowCharge", 439506)
 	self:Log("SPELL_CAST_SUCCESS", "Infestation", 433740)
 	self:Log("SPELL_AURA_APPLIED", "InfestationApplied", 433740)
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Eye of the Swarm
 	self:Log("SPELL_CAST_START", "EyeOfTheSwarm", 433766)
 	self:Log("SPELL_AURA_APPLIED", "EyeOfTheSwarmApplied", 434408)
 	self:Log("SPELL_AURA_REMOVED", "EyeOfTheSwarmOver", 434408)
+	self:Log("SPELL_AURA_APPLIED", "CeaselessSwarmApplied", 433781)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "CeaselessSwarmApplied", 433781)
 
 	-- Bloodstained Webmage (Mythic)
 	self:Log("SPELL_CAST_SUCCESS", "EncounterEvent", 181089) -- Bloodstained Webmage spawning
@@ -209,6 +212,17 @@ function mod:EyeOfTheSwarmOver(args)
 	self:SetStage(1)
 	self:Message(433766, "green", CL.over:format(args.spellName))
 	self:PlaySound(433766, "info")
+end
+
+do
+	local prev = 0
+	function mod:CeaselessSwarmApplied(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then -- 1s application rate, but can apply 1 or 2 stacks at once
+			prev = args.time
+			self:StackMessage(args.spellId, "blue", args.destName, args.amount, 1)
+			self:PlaySound(args.spellId, "underyou", nil, args.destName)
+		end
+	end
 end
 
 -- Bloodstained Webmage (Mythic)

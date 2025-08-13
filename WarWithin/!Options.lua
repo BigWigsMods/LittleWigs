@@ -17,6 +17,7 @@ BigWigs:AddSounds("Avanoxx", {
 BigWigs:AddColors("Anub'zekt", {
 	[433740] = {"blue","yellow"},
 	[433766] = {"cyan","green"},
+	[433781] = "blue",
 	[435012] = "purple",
 	[439506] = {"blue","orange"},
 	[442210] = "red",
@@ -26,6 +27,7 @@ BigWigs:AddColors("Anub'zekt", {
 BigWigs:AddSounds("Anub'zekt", {
 	[433740] = "alert",
 	[433766] = {"info","long"},
+	[433781] = "underyou",
 	[435012] = "alarm",
 	[439506] = "alarm",
 	[442210] = "alert",
