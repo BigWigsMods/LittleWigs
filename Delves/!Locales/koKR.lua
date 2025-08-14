@@ -79,6 +79,11 @@ end
 
 -- Kriegval's Rest
 
+L = BigWigs:NewBossLocale("Faceless One Kriegval's Rest", "koKR")
+if L then
+	L.faceless_one = "얼굴 없는 자"
+end
+
 L = BigWigs:NewBossLocale("Tomb-Raider Drywhisker", "koKR")
 if L then
 	L.tomb_raider_drywhisker = "무덤약탈자 마른수염"

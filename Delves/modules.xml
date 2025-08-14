@@ -19,6 +19,7 @@
 <Script file="FungalFolly\Maulspike.lua"/>
 <Script file="FungalFolly\Spinshroom.lua"/>
 
+<Script file="KriegvalsRest\FacelessOne.lua"/>
 <Script file="KriegvalsRest\TombRaiderDrywhisker.lua"/>
 
 <Script file="MycomancerCavern\Bogpiper.lua"/>
