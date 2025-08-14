@@ -289,7 +289,7 @@ if L then
 	L.punchy_thug = "Schlagfertiger Schläger"
 	L.flinging_flicker = "Schleuderflacker"
 	L.bomb_bot = "Bombenbot"
-	--L.rad_rat = "Rad Rat"
+	L.rad_rat = "Radikale Ratte"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "deDE")

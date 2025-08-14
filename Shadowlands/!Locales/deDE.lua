@@ -208,7 +208,7 @@ if L then
 	L.defective_sorter = "Defekter Sortierer"
 	L.overloaded_mailemental = "Überladener Eilementarl"
 	L.post_worker = "P.O.S.T.-Mitarbeiter"
-	--L.bazaar_overseer = "Bazaar Overseer"
+	L.bazaar_overseer = "Basaraufseher"
 	L.market_peacekeeper = "Friedensbewahrer des Marktes"
 	L.veteran_sparkcaster = "Erfahrener Funkenzauberer"
 	L.commerce_enforcer = "Handelsvollstrecker"
