@@ -2,11 +2,13 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Old God Delve Trash", {2685, 2815}) -- Skittering Breach, Excavation Site 9
+local mod, CL = BigWigs:NewBoss("Old God Delve Trash", {2681, 2685, 2815}) -- Kriegval's Rest, Skittering Breach, Excavation Site 9
 if not mod then return end
 mod:RegisterEnableMob(
+	244117, -- Waxmonger Squick (Kriegval's Rest gossip NPC)
 	234269, -- Craggle Fritzbrains (Excavation Site 9 gossip NPC)
 	241611, -- Chef Carl (Excavation Site 9 gossip NPC)
+	242147, -- Lostalot (Excavation Site 9 gossip NPC)
 	234553, -- Dark Walker
 	234208, -- Hideous Amalgamation
 	234209, -- Coagulated Mass
@@ -102,7 +104,10 @@ end
 
 function mod:GOSSIP_SHOW()
 	if self:GetOption(autotalk) then
-		if self:GetGossipID(131159) then -- Excavation Site 9, start Delve (Craggle Fritzbrains)
+		if self:GetGossipID(133710) then -- Kriegval's Rest, start Delve (Waxmonger Squick)
+			-- 133710:'Funny Candles,' hm? I'll take a look.
+			self:SelectGossipID(133710)
+		elseif self:GetGossipID(131159) then -- Excavation Site 9, start Delve (Craggle Fritzbrains)
 			-- 131159:|cFF0000FF(Delve)|r I'll deploy those drilling units. Let's make lots of money!
 			self:SelectGossipID(131159)
 		elseif self:GetGossipID(131162) then -- Excavation Site 9, continue Delve (Craggle Fritzbrains)
@@ -111,6 +116,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(132946) then -- Excavation Site 9, start Delve (Chef Carl)
 			-- 132946:|cFF0000FF(Delve)|r I guess?
 			self:SelectGossipID(132946)
+		elseif self:GetGossipID(132991) then -- Excavation Site 9, start Delve (Lostalot)
+			-- 132991:|cFF0000FF(Delve)|r For honor!
+			self:SelectGossipID(132991)
 		end
 	end
 end
