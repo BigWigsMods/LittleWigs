@@ -365,19 +365,6 @@ do
 	end
 end
 
--- Rad Rat
-
-do
-	local prev = 0
-	function mod:RadiationPoolDamage(args)
-		if self:Me(args.destGUID) and args.time - prev > 1.5 then -- 2s tick rate
-			prev = args.time
-			self:PersonalMessage(args.spellId, "underyou")
-			self:PlaySound(args.spellId, "underyou")
-		end
-	end
-end
-
 -- Bomb Bot
 
 do
@@ -387,6 +374,19 @@ do
 		if self:Me(args.destGUID) and args.time - prev > 2 then
 			prev = args.time
 			self:PlaySound(args.spellId, "info")
+		end
+	end
+end
+
+-- Rad Rat
+
+do
+	local prev = 0
+	function mod:RadiationPoolDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then -- 2s tick rate
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
 		end
 	end
 end
