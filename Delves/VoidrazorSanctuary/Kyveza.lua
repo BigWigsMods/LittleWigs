@@ -5,7 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Nexus-Princess Ky'veza (Tier 11)", 2951)
 if not mod then return end
 mod:RegisterEnableMob(
-	244752,  -- Nexus-Princess Ky'veza (Tier 8)
+	244752, -- Nexus-Princess Ky'veza (Tier 8)
 	244753 -- Nexus-Princess Ky'veza (Tier 11)
 )
 mod:SetEncounterID({3326, 3325}) -- Tier 8, Tier 11

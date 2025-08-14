@@ -50,10 +50,9 @@ do
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
 		if spellId == 322573 and prevGUID ~= castGUID then -- Coalesce Manifestation
 			prevGUID = castGUID
-
 			self:Message(322574, "yellow") -- Coalesce Manifestation
 			self:PlaySound(322574, "info") -- Coalesce Manifestation
-			self:CDBar(322574, 30)  -- Coalesce Manifestation
+			self:CDBar(322574, 30) -- Coalesce Manifestation
 		end
 	end
 end
