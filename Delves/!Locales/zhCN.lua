@@ -49,6 +49,11 @@ end
 
 -- Excavation Site 9
 
+L = BigWigs:NewBossLocale("Beste Glatisant", "zhCN")
+if L then
+	L.beste_glatisant = "绝凶邪兽"
+end
+
 L = BigWigs:NewBossLocale("Craggle Fritzbrains", "zhCN")
 if L then
 	L.craggle_fritzbrains = "克拉格·弗里茨布兰"

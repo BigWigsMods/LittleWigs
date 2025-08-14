@@ -49,6 +49,11 @@ end
 
 -- Excavation Site 9
 
+L = BigWigs:NewBossLocale("Beste Glatisant", "itIT")
+if L then
+	L.beste_glatisant = "Bestia Ululante"
+end
+
 L = BigWigs:NewBossLocale("Craggle Fritzbrains", "itIT")
 if L then
 	--L.craggle_fritzbrains = "Craggle Fritzbrains"

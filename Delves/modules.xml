@@ -12,6 +12,7 @@
 <Script file="EarthcrawlMines\MaklinDrillstab.lua"/>
 <Script file="EarthcrawlMines\TheBiggestBug.lua"/>
 
+<Script file="ExcavationSite9\BesteGlatisant.lua"/>
 <Script file="ExcavationSite9\CraggleFritzbrains.lua"/>
 <Script file="ExcavationSite9\HarbingerUlthul.lua"/>
 <Script file="ExcavationSite9\XelaneghTheMany.lua"/>

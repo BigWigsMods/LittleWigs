@@ -120,6 +120,20 @@ BigWigs:AddSounds("The Biggest Bug", {
 	[448444] = "alert",
 })
 
+BigWigs:AddColors("Beste Glatisant", {
+	[1245667] = "purple",
+	[1245746] = "blue",
+	[1245765] = "red",
+	[1245784] = "orange",
+})
+
+BigWigs:AddSounds("Beste Glatisant", {
+	[1245667] = "alert",
+	[1245746] = "underyou",
+	[1245765] = "alarm",
+	[1245784] = "alarm",
+})
+
 BigWigs:AddColors("Craggle Fritzbrains", {
 	[1214135] = "yellow",
 	[1214504] = {"orange","red"},
