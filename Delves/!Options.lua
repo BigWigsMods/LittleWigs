@@ -187,6 +187,18 @@ BigWigs:AddSounds("Spinshroom", {
 	[425315] = "alarm",
 })
 
+BigWigs:AddColors("Faceless One Kriegval's Rest", {
+	[1213700] = {"blue","red"},
+	[1213776] = {"blue","orange"},
+	[1213785] = "yellow",
+})
+
+BigWigs:AddSounds("Faceless One Kriegval's Rest", {
+	[1213700] = {"alarm","warning"},
+	[1213776] = {"alert","warning"},
+	[1213785] = "info",
+})
+
 BigWigs:AddColors("Tomb-Raider Drywhisker", {
 	[449242] = {"blue","yellow"},
 	[449295] = "orange",
