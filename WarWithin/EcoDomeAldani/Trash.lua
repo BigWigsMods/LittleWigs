@@ -62,7 +62,7 @@ function mod:GetOptions()
 		{1221152, "NAMEPLATE"}, -- Gorging Smash
 		-- Ravenous Destroyer
 		{1221190, "NAMEPLATE"}, -- Gluttonous Miasma
-		{1226111, "NAMEPLATE"}, -- Volatile Ejection
+		{1226111, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Volatile Ejection
 		-- Overcharged Sentinel
 		{1235368, "NAMEPLATE"}, -- Arcane Slash
 		1231244, -- Unstable Core
@@ -273,7 +273,7 @@ function mod:RavenousDestroyerEngaged(guid)
 end
 
 function mod:GluttonousMiasma(args)
-	self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+	self:Nameplate(args.spellId, 19.4, args.sourceGUID)
 end
 
 function mod:GluttonousMiasmaApplied(args)
@@ -282,15 +282,19 @@ function mod:GluttonousMiasmaApplied(args)
 end
 
 do
-	local function printTarget(self, name)
+	local function printTarget(self, name, guid, elapsed)
 		self:TargetMessage(1226111, "orange", name)
+		if self:Me(guid) then
+			self:Say(1226111, nil, nil, "Volatile Ejection")
+			self:SayCountdown(1226111, 4 - elapsed)
+		end
 		self:PlaySound(1226111, "alarm", nil, name)
 	end
 
 	function mod:VolatileEjection(args)
 		-- target debuff 1226110 is hidden
 		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-		self:Nameplate(args.spellId, 20.6, args.sourceGUID)
+		self:Nameplate(args.spellId, 19.4, args.sourceGUID)
 	end
 end
 
