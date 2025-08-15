@@ -338,6 +338,8 @@ if L then
 	L.pactsworn_arcanist = "서약혈맹 비전술사"
 	L.pactsworn_wildcaller = "서약혈맹 야생소환사"
 	L.nexus_princess_kyveza = "연합공작 카이베자 (랜덤 생성)"
+	L.zekvir = "제크비르"
+	L.the_underpin = "대지주"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "koKR")

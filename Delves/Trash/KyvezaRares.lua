@@ -20,7 +20,9 @@ mod:RegisterEnableMob(
 	248084, -- Pactsworn Sandreaver (summoned)
 	244755, -- Nexus-Princess Ky'veza (Random Spawn)
 	245938, -- Flickergate
-	248481 -- Ky'veza's Shadow Clone
+	248481, -- Ky'veza's Shadow Clone
+	247387, -- Zekvir
+	247390 -- The Underpin
 )
 
 --------------------------------------------------------------------------------
@@ -47,6 +49,8 @@ if L then
 	L.pactsworn_arcanist = "Pactsworn Arcanist"
 	L.pactsworn_wildcaller = "Pactsworn Wildcaller"
 	L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)"
+	L.zekvir = "Zekvir"
+	L.the_underpin = "The Underpin"
 end
 
 --------------------------------------------------------------------------------
@@ -89,6 +93,14 @@ function mod:GetOptions()
 		{1245156, "EMPHASIZE"}, -- Ky'veza's Grand Entrance
 		{1245203, "NAMEPLATE"}, -- Dark Massacre
 		{1245240, "NAMEPLATE"}, -- Nexus Daggers
+		-- Zekvir
+		{450505, "NAMEPLATE"}, -- Enfeebling Spittle
+		{450492, "NAMEPLATE"}, -- Horrendous Roar
+		{450519, "NAMEPLATE"}, -- Angler's Web
+		-- The Underpin
+		{1213852, "NAMEPLATE"}, -- Crush
+		{1217371, "NAMEPLATE"}, -- Flamethrower
+		{1214147, "NAMEPLATE"}, -- Time Bomb Launcher
 	}, {
 		[418295] = L.treasure_wraith,
 		[1238737] = L.invasive_phasecrawler,
@@ -101,6 +113,8 @@ function mod:GetOptions()
 		[1242521] = L.pactsworn_wildcaller,
 		[1244108] = L.pactsworn_sandreaver,
 		[1245156] = L.nexus_princess_kyveza,
+		[450505] = L.zekvir,
+		[1213852] = L.the_underpin,
 	}
 end
 
@@ -170,6 +184,7 @@ function mod:OnBossEnable()
 
 	-- Engage Detection
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT") -- for Nexus-Princess Ky'veza
+	self:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED") -- for Zekvir and The Underpin
 
 	-- Nexus-Princess Ky'veza
 	self:Log("SPELL_CAST_START", "KyvezasGrandEntrance", 1245156)
@@ -180,6 +195,21 @@ function mod:OnBossEnable()
 	-- Ky'veza's Shadow Clone
 	self:RegisterEngageMob("KyvezasShadowCloneEngaged", 248481)
 	self:Death("KyvezasShadowCloneDeath", 248481)
+
+	-- Zekvir
+	self:RegisterEngageMob("ZekvirEngaged", 247387)
+	self:Log("SPELL_CAST_START", "EnfeeblingSpittle", 450505)
+	self:Log("SPELL_INTERRUPT", "EnfeeblingSpittleInterrupt", 450505)
+	self:Log("SPELL_CAST_SUCCESS", "EnfeeblingSpittleSuccess", 450505)
+	self:Log("SPELL_AURA_APPLIED", "EnfeeblingSpittleApplied", 450505)
+	self:Log("SPELL_CAST_START", "HorrendousRoar", 450492)
+	self:Log("SPELL_CAST_START", "AnglersWeb", 450519)
+
+	-- The Underpin
+	self:RegisterEngageMob("TheUnderpinEngaged", 247390)
+	self:Log("SPELL_CAST_START", "Crush", 1213852)
+	self:Log("SPELL_CAST_START", "Flamethrower", 1217371)
+	self:Log("SPELL_CAST_SUCCESS", "TimeBombLauncher", 1214147)
 end
 
 function mod:OnBossDisable()
@@ -468,6 +498,22 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
 	end
 end
 
+do
+	local prevCast = nil
+	function mod:UNIT_SPELLCAST_INTERRUPTED(_, unit, castGUID, spellId)
+		if spellId == 1243416 and castGUID ~= prevCast then -- Teleported (Zekvir and The Underpin retreat)
+			prevCast = castGUID
+			local unitGUID = self:UnitGUID(unit)
+			local mobId = self:MobId(unitGUID)
+			if mobId == 247387 then -- Zekvir
+				self:ZekvirRetreat(unitGUID)
+			elseif mobId == 247390 then -- The Underpin
+				self:TheUnderpinRetreat(unitGUID)
+			end
+		end
+	end
+end
+
 -- Nexus-Princess Ky'veza
 
 do
@@ -562,5 +608,149 @@ do
 
 	function mod:KyvezasShadowCloneDeath(args)
 		self:KyvezaRetreat(args.destGUID)
+	end
+end
+
+-- Zekvir
+
+do
+	local timer
+
+	function mod:ZekvirEngaged(guid)
+		self:CDBar(450505, 4.5) -- Enfeebling Spittle
+		self:Nameplate(450505, 4.5, guid) -- Enfeebling Spittle
+		self:CDBar(450492, 9.1, CL.fear) -- Horrendous Roar
+		self:Nameplate(450492, 9.1, guid) -- Horrendous Roar
+		self:CDBar(450519, 20.0) -- Angler's Web
+		self:Nameplate(450519, 20.0, guid) -- Angler's Web
+		timer = self:ScheduleTimer("ZekvirRetreat", 20, guid)
+	end
+
+	function mod:EnfeeblingSpittle(args)
+		self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
+	end
+
+	function mod:EnfeeblingSpittleInterrupt(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(450505, 15.3)
+		self:Nameplate(450505, 15.3, args.destGUID)
+		timer = self:ScheduleTimer("ZekvirRetreat", 20, args.destGUID)
+	end
+
+	function mod:EnfeeblingSpittleSuccess(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(args.spellId, 15.3)
+		self:Nameplate(args.spellId, 15.3, args.sourceGUID)
+		timer = self:ScheduleTimer("ZekvirRetreat", 20, args.sourceGUID)
+	end
+
+	function mod:EnfeeblingSpittleApplied(args)
+		if self:Me(args.destGUID) then
+			self:PersonalMessage(args.spellId)
+			self:PlaySound(args.spellId, "info", nil, args.destName)
+		end
+	end
+
+	function mod:HorrendousRoar(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "yellow", CL.fear)
+		self:CDBar(args.spellId, 17.9, CL.fear)
+		self:Nameplate(args.spellId, 17.9, args.sourceGUID)
+		timer = self:ScheduleTimer("ZekvirRetreat", 20, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
+	end
+
+	function mod:AnglersWeb(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:CDBar(args.spellId, 21.5)
+		self:Nameplate(args.spellId, 21.5, args.sourceGUID)
+		timer = self:ScheduleTimer("ZekvirRetreat", 20, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
+	end
+
+	function mod:ZekvirRetreat(guid)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(450505) -- Enfeebling Spittle
+		self:StopBar(CL.fear) -- Horrendous Roar
+		self:StopBar(450519) -- Angler's Web
+		if guid then
+			self:ClearNameplate(guid)
+		end
+	end
+end
+
+-- The Underpin
+
+do
+	local timer
+
+	function mod:TheUnderpinEngaged(guid)
+		self:CDBar(1213852, 4.8, CL.leap) -- Crush
+		self:Nameplate(1213852, 4.8, guid) -- Crush
+		self:CDBar(1217371, 9.6, CL.frontal_cone) -- Flamethrower
+		self:Nameplate(1217371, 9.6, guid) -- Flamethrower
+		self:CDBar(1214147, 13.3, CL.bombs) -- Time Bomb Launcher
+		self:Nameplate(1214147, 13.3, guid) -- Time Bomb Launcher
+		timer = self:ScheduleTimer("TheUnderpinRetreat", 20, guid)
+	end
+
+	function mod:Crush(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange", CL.leap)
+		self:CDBar(args.spellId, 20.1, CL.leap)
+		self:Nameplate(args.spellId, 20.1, args.sourceGUID)
+		timer = self:ScheduleTimer("TheUnderpinRetreat", 20, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
+	end
+
+	function mod:Flamethrower(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "red", CL.frontal_cone)
+		self:CDBar(args.spellId, 20.1, CL.frontal_cone)
+		self:Nameplate(args.spellId, 20.1, args.sourceGUID)
+		timer = self:ScheduleTimer("TheUnderpinRetreat", 20, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
+	end
+
+	function mod:TimeBombLauncher(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "yellow", CL.bombs)
+		self:CDBar(args.spellId, 25.1, CL.bombs)
+		self:Nameplate(args.spellId, 25.1, args.sourceGUID)
+		timer = self:ScheduleTimer("TheUnderpinRetreat", 20, args.sourceGUID)
+		self:PlaySound(args.spellId, "info")
+	end
+
+	function mod:TheUnderpinRetreat(guid)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(CL.leap) -- Crush
+		self:StopBar(CL.frontal_cone) -- Flamethrower
+		self:StopBar(CL.bombs) -- Time Bomb Launcher
+		if guid then
+			self:ClearNameplate(guid)
+		end
 	end
 end
