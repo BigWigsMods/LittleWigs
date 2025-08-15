@@ -101,7 +101,7 @@ function mod:GetOptions()
 		{1213852, "NAMEPLATE"}, -- Crush
 		{1217371, "NAMEPLATE"}, -- Flamethrower
 		{1214147, "NAMEPLATE"}, -- Time Bomb Launcher
-	}, {
+	},{
 		[418295] = L.treasure_wraith,
 		[1238737] = L.invasive_phasecrawler,
 		[1237671] = L.drude,
@@ -115,6 +115,11 @@ function mod:GetOptions()
 		[1245156] = L.nexus_princess_kyveza,
 		[450505] = L.zekvir,
 		[1213852] = L.the_underpin,
+	},{
+		[450492] = CL.fear, -- Horrendous Roar (Fear)
+		[1213852] = CL.leap, -- Crush (Leap)
+		[1217371] = CL.frontal_cone, -- Flamethrower (Frontal Cone)
+		[1214147] = CL.bombs, -- Time Bomb Launcher (Bombs)
 	}
 end
 
