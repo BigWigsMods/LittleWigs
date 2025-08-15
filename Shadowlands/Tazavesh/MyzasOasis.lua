@@ -105,7 +105,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CrowdControl", 350919)
 	self:Log("SPELL_CAST_START", "SuppressionSpark", 355438)
 	self:Log("SPELL_CAST_START", "FinalWarning", 1241032)
-	self:Log("SPELL_INTERRUPT", "FinalWarningInterrupt", 1241032)
+	self:Log("SPELL_AURA_REMOVED", "FinalWarningRemoved", 1241023)
 
 	-- Hard Mode
 	self:RegisterEngageMob("EvaileEngaged", 180399)
@@ -279,21 +279,30 @@ function mod:SecuritySlamBoss(args)
 	self:PlaySound(args.spellId, "alert")
 end
 
-function mod:FinalWarning(args)
-	if finalWarningCount == 1 then
-		self:Message(args.spellId, "yellow", CL.percent:format(66, args.spellName))
-	else -- 2nd cast
-		self:Message(args.spellId, "yellow", CL.percent:format(35, args.spellName))
-	end
-	finalWarningCount = finalWarningCount + 1
-	self:CastBar(args.spellId, 20)
-	self:PlaySound(args.spellId, "long")
-end
+do
+	local finalWarningStart = 0
 
-function mod:FinalWarningInterrupt(args)
-	self:StopCastBar(1241032)
-	self:Message(1241032, "green", CL.interrupted_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
-	self:PlaySound(1241032, "info")
+	function mod:FinalWarning(args)
+		finalWarningStart = args.time
+		if finalWarningCount == 1 then
+			self:Message(args.spellId, "yellow", CL.percent:format(65, args.spellName))
+		else -- 2nd cast
+			self:Message(args.spellId, "yellow", CL.percent:format(35, args.spellName))
+		end
+		finalWarningCount = finalWarningCount + 1
+		self:CastBar(args.spellId, 20)
+		self:PlaySound(args.spellId, "long")
+	end
+
+	function mod:FinalWarningRemoved(args)
+		-- the cast now automatically ends when the shield is removed
+		self:StopCastBar(1241032)
+		if args.amount == 0 then -- shield was broken
+			local finalWarningDuration = args.time - finalWarningStart
+			self:Message(1241032, "green", CL.removed_after:format(args.spellName, finalWarningDuration))
+			self:PlaySound(1241032, "info")
+		end
+	end
 end
 
 -- Hard Mode
