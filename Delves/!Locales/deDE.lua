@@ -338,6 +338,8 @@ if L then
 	L.pactsworn_arcanist = "Paktgeschworener Arkanist"
 	L.pactsworn_wildcaller = "Paktgeschworener Wildrufer"
 	L.nexus_princess_kyveza = "Nexusprinzessin Ky'veza (Zufälliges Erscheinen)"
+	L.zekvir = "Zekvir"
+	L.the_underpin = "Der Lorenboss"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "deDE")

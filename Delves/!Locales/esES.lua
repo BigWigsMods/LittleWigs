@@ -338,6 +338,8 @@ if L then
 	--L.pactsworn_arcanist = "Pactsworn Arcanist"
 	--L.pactsworn_wildcaller = "Pactsworn Wildcaller"
 	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)"
+	L.zekvir = "Zekvir"
+	L.the_underpin = "El Pez Hondo"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "esES")

@@ -338,6 +338,8 @@ if L then
 	L.pactsworn_arcanist = "群誓秘法師"
 	L.pactsworn_wildcaller = "群誓喚風者"
 	L.nexus_princess_kyveza = "奥核公主奇維扎（隨機出現）"
+	L.zekvir = "澤克維爾"
+	L.the_underpin = "幽坑霸主"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "zhTW")
