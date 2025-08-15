@@ -755,7 +755,7 @@ BigWigs:AddSounds("Ky'veza Rares", {
 	[1244249] = "alarm",
 	[1244313] = "alarm",
 	[1245156] = "warning",
-	[1245203] = "info",
+	[1245203] = {"alert","long"},
 	[1245240] = "alarm",
 })
 

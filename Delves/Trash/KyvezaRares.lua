@@ -163,6 +163,7 @@ function mod:OnBossEnable()
 	-- Nexus-Princess Ky'veza
 	self:Log("SPELL_CAST_START", "KyvezasGrandEntrance", 1245156)
 	self:Log("SPELL_CAST_START", "DarkMassacre", 1245203)
+	self:Log("SPELL_CAST_SUCCESS", "DarkMassacrePhantom", 1245035)
 	self:Log("SPELL_CAST_START", "NexusDaggers", 1245240)
 end
 
@@ -465,15 +466,29 @@ do
 		end
 	end
 
-	function mod:DarkMassacre(args)
-		if timer then
-			self:CancelTimer(timer)
+	do
+		local phantomCount = 1
+		function mod:DarkMassacre(args)
+			phantomCount = 1
+			if timer then
+				self:CancelTimer(timer)
+			end
+			self:Message(args.spellId, "yellow", CL.incoming:format(args.spellName))
+			self:CDBar(args.spellId, 30.2)
+			self:Nameplate(args.spellId, 30.2, args.sourceGUID)
+			timer = self:ScheduleTimer("KyvezaRetreat", 30, args.sourceGUID)
+			self:PlaySound(args.spellId, "long")
 		end
-		self:Message(args.spellId, "yellow")
-		self:CDBar(args.spellId, 30.2)
-		self:Nameplate(args.spellId, 30.2, args.sourceGUID)
-		timer = self:ScheduleTimer("KyvezaRetreat", 30, args.sourceGUID)
-		self:PlaySound(args.spellId, "info")
+
+		function mod:DarkMassacrePhantom(args)
+			-- this alerts on SPELL_CAST_SUCCESS, denoting when it's safe to turn away from the active Nether Phantom
+			self:Message(1245203, "yellow", CL.count_amount:format(args.spellName, phantomCount, 2))
+			phantomCount = phantomCount + 1
+			if phantomCount <= 2 then
+				-- don't play a sound after the last cast
+				self:PlaySound(1245203, "alert")
+			end
+		end
 	end
 
 	function mod:NexusDaggers(args)
