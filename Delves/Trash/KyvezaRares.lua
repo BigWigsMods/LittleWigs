@@ -18,8 +18,16 @@ mod:RegisterEnableMob(
 	244411, -- Pactsworn Arcanist
 	244418, -- Pactsworn Wildcaller
 	248084, -- Pactsworn Sandreaver (summoned)
-	244755 -- Nexus-Princess Ky'veza (Random Spawn)
+	244755, -- Nexus-Princess Ky'veza (Random Spawn)
+	245938, -- Flickergate
+	248481 -- Ky'veza's Shadow Clone
 )
+
+--------------------------------------------------------------------------------
+-- Locals
+--
+
+local kyvezaEngaged = false
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -160,11 +168,22 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ChargeThrough", 1244249)
 	self:Death("PactswornSandreaver2Death", 248084)
 
+	-- Engage Detection
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT") -- for Nexus-Princess Ky'veza
+
 	-- Nexus-Princess Ky'veza
 	self:Log("SPELL_CAST_START", "KyvezasGrandEntrance", 1245156)
 	self:Log("SPELL_CAST_START", "DarkMassacre", 1245203)
 	self:Log("SPELL_CAST_SUCCESS", "DarkMassacrePhantom", 1245035)
 	self:Log("SPELL_CAST_START", "NexusDaggers", 1245240)
+
+	-- Ky'veza's Shadow Clone
+	self:RegisterEngageMob("KyvezasShadowCloneEngaged", 248481)
+	self:Death("KyvezasShadowCloneDeath", 248481)
+end
+
+function mod:OnBossDisable()
+	kyvezaEngaged = false
 end
 
 --------------------------------------------------------------------------------
@@ -224,7 +243,7 @@ end
 
 function mod:InvasivePhasecrawlerEngaged(guid)
 	self:Nameplate(1238737, 6.2, guid) -- Essence Cleave
-	self:Nameplate(1238713, 10.6, guid) -- Gravity Shatter
+	self:Nameplate(1238713, 9.9, guid) -- Gravity Shatter
 end
 
 function mod:EssenceCleave(args)
@@ -436,30 +455,43 @@ function mod:PactswornSandreaver2Death(args)
 	self:ClearNameplate(args.destGUID)
 end
 
+-- Engage Detection
+
+function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
+	local _, kyvezaGUID = self:GetBossId(244755) -- Nexus-Princess Ky'veza
+	if not kyvezaEngaged and kyvezaGUID then
+		kyvezaEngaged = true
+		self:KyvezaEngaged(kyvezaGUID)
+	elseif kyvezaEngaged and not kyvezaGUID then
+		kyvezaEngaged = false
+		self:KyvezaDisengaged()
+	end
+end
+
 -- Nexus-Princess Ky'veza
 
 do
 	local timer
 
 	function mod:KyvezasGrandEntrance(args)
-		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT") -- Ky'veza engages after this 6s cast
 		-- this is cast by some dummy NPC (248134) so can't use the guid for nameplate timers
 		self:Message(args.spellId, "cyan")
 		self:PlaySound(args.spellId, "warning")
 	end
 
-	function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT(event)
-		local _, guid = self:GetBossId(244755)
-		if not timer and guid then -- Nexus-Princess Ky'veza
-			-- Ky'veza engaged
-			self:CDBar(1245203, 15.5) -- Dark Massacre
-			self:Nameplate(1245203, 15.5, guid) -- Dark Massacre
-			self:CDBar(1245240, 30.2) -- Nexus Daggers
-			self:Nameplate(1245240, 30.2, guid) -- Nexus Daggers
-			timer = self:ScheduleTimer("KyvezaRetreat", 30, guid)
-		elseif timer and not guid then -- Nexus-Princess Ky'veza
-			-- Ky'veza disengaged
-			self:UnregisterEvent(event)
+	function mod:KyvezaEngaged(guid)
+		if timer then -- guard against edge cases
+			self:KyvezaDisengaged()
+		end
+		self:CDBar(1245203, 15.5) -- Dark Massacre
+		self:Nameplate(1245203, 15.5, guid) -- Dark Massacre
+		self:CDBar(1245240, 30.2) -- Nexus Daggers
+		self:Nameplate(1245240, 30.2, guid) -- Nexus Daggers
+		timer = self:ScheduleTimer("KyvezaRetreat", 30, guid)
+	end
+
+	function mod:KyvezaDisengaged()
+		if timer then
 			timer:Invoke()
 			self:CancelTimer(timer)
 			timer = nil
@@ -492,8 +524,9 @@ do
 	end
 
 	function mod:NexusDaggers(args)
-		-- also cast by 2 clones (248193) at 1 and 2 seconds after the main cast
-		if self:MobId(args.sourceGUID) == 244755 then -- Nexus-Princess Ky'veza
+		-- also cast by 2 Nether Phantoms (248193) at 1 and 2 seconds after the main cast
+		local mobId = self:MobId(args.sourceGUID)
+		if mobId == 244755 or mobId == 248481 then -- Nexus-Princess Ky'veza, Ky'veza's Shadow Clone
 			if timer then
 				self:CancelTimer(timer)
 			end
@@ -515,5 +548,19 @@ do
 		if guid then
 			self:ClearNameplate(guid)
 		end
+	end
+
+	-- Ky'veza's Shadow Clone
+
+	function mod:KyvezasShadowCloneEngaged(guid)
+		self:CDBar(1245203, 15.2) -- Dark Massacre
+		self:Nameplate(1245203, 15.2, guid) -- Dark Massacre
+		self:CDBar(1245240, 31.1) -- Nexus Daggers
+		self:Nameplate(1245240, 31.1, guid) -- Nexus Daggers
+		timer = self:ScheduleTimer("KyvezaRetreat", 30, guid)
+	end
+
+	function mod:KyvezasShadowCloneDeath(args)
+		self:KyvezaRetreat(args.destGUID)
 	end
 end
