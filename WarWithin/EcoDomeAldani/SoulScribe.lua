@@ -23,7 +23,7 @@ local ceremonialDaggerCount = 1
 
 function mod:GetOptions()
 	return {
-		1224793, -- Whispers of Fate
+		{1224793, "OFF"}, -- Whispers of Fate
 		1224865, -- Fatebound
 		1226444, -- Wounded Fate
 		1236703, -- Eternal Weave
@@ -59,6 +59,7 @@ end
 --
 
 function mod:WhispersOfFate(args)
+	-- this cast just precedes every Dread of the Unknown and Ceremonial Dagger
 	self:StopBar(CL.count:format(args.spellName, whispersOfFateCount))
 	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, whispersOfFateCount))
 	whispersOfFateCount = whispersOfFateCount + 1
