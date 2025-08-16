@@ -7,7 +7,7 @@ end
 
 L = BigWigs:NewBossLocale("Portalmaster Halsan", "frFR")
 if L then
-	--L.portalmaster_halsan = "Portalmaster Halsan"
+	L.portalmaster_halsan = "Maître des portails Halsan"
 end
 
 L = BigWigs:NewBossLocale("Voidrider Challnax", "frFR")
