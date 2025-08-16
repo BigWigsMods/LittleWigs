@@ -32,7 +32,7 @@ end
 function mod:GetOptions()
 	return {
 		{1213776, "DISPEL"}, -- Hopeless Curse
-		1213785, -- Tear It Down
+		1213785, -- Tear it Down
 		{1213700, "ME_ONLY_EMPHASIZE", "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Unanswered Call
 	},nil,{
 		[1213776] = CL.curse, -- Hopeless Curse (Curse)
@@ -41,9 +41,11 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- this boss likely has the same encounter script as Faceless One from Kriegval's Rest
 	self:Log("SPELL_CAST_START", "HopelessCurse", 1213776)
 	self:Log("SPELL_AURA_APPLIED", "HopelessCurseApplied", 1213776)
 	self:Log("SPELL_CAST_START", "TearItDown", 1213785)
+	self:Log("SPELL_CAST_SUCCESS", "TearItDownSuccess", 1213785)
 	self:Log("SPELL_CAST_START", "UnansweredCall", 1213700)
 	self:Log("SPELL_AURA_APPLIED", "UnansweredCallApplied", 1213838)
 	self:Log("SPELL_AURA_REMOVED", "UnansweredCallRemoved", 1213838)
@@ -51,8 +53,8 @@ end
 
 function mod:OnEngage()
 	self:CDBar(1213776, 4.7, CL.curse) -- Hopeless Curse
-	self:CDBar(1213785, 9.5) -- Tear It Down
-	self:CDBar(1213700, 30.4, CL.fixate) -- Unanswered Call
+	self:CDBar(1213785, 4.5) -- Tear it Down
+	self:CDBar(1213700, 30.0, CL.fixate) -- Unanswered Call
 end
 
 --------------------------------------------------------------------------------
@@ -61,7 +63,7 @@ end
 
 function mod:HopelessCurse(args)
 	self:Message(args.spellId, "orange", CL.casting:format(CL.curse))
-	self:CDBar(args.spellId, 21.1, CL.curse)
+	self:CDBar(args.spellId, 19.4, CL.curse)
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -78,8 +80,11 @@ end
 
 function mod:TearItDown(args)
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 10.9)
 	self:PlaySound(args.spellId, "info")
+end
+
+function mod:TearItDownSuccess(args)
+	self:CDBar(args.spellId, 10.0)
 end
 
 function mod:UnansweredCall(args)
