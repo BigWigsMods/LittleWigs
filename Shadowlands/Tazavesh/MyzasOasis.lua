@@ -61,7 +61,7 @@ function mod:GetOptions()
 		350919, -- Crowd Control
 		355438, -- Suppression Spark
 		{359028, "TANK"}, -- Security Slam
-		{1241032, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Final Warning
+		{1241032, "CASTBAR"}, -- Final Warning
 		-- Hard Mode
 		{357404, "NAMEPLATE"}, -- Dischordant Song
 		{357436, "NAMEPLATE"}, -- Infectious Solo
