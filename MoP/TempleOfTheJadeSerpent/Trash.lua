@@ -95,6 +95,8 @@ else -- Classic Mists through Shadowlands
 		return {
 			-- Minion of Doubt
 			{110125, "DISPEL"}, -- Shattered Resolve
+			110099 --Shadows of Doubt on the ground
+			
 		}, {
 			[110125] = L.minion_of_doubt,
 		}
@@ -145,6 +147,10 @@ function mod:OnBossEnable()
 
 		-- Minion of Doubt
 		self:Log("SPELL_CAST_START", "DarkClaw", 397931)
+	else
+		self:Log("SPELL_DAMAGE", "ShadowsOfDoubt", 110099)
+		self:Log("SPELL_AURA_APPLIED", "ShadowsOfDoubt", 110099)
+
 	end
 	self:Log("SPELL_AURA_APPLIED", "ShatteredResolveApplied", 110125)
 end
@@ -283,6 +289,12 @@ end
 function mod:DarkClaw(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
+end
+function mod:ShadowsOfDoubt(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId, "underyou")
+		self:PlaySound(args.spellId, "underyou")
+	end
 end
 
 function mod:ShatteredResolveApplied(args)
