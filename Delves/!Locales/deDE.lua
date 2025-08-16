@@ -271,6 +271,7 @@ if L then
 	L.shadowguard_soulbreaker = "Seelenbrecher der Schattenwache"
 	L.shadowguard_steelsoul = "Stahlseele der Schattenwache"
 	L.siphoned_drake = "Ausgelaugter Drache"
+	L.steelsoul_arcanoward = "Stahlseelenarkanoschutz"
 end
 
 L = BigWigs:NewBossLocale("Fungarian Delve Trash", "deDE")

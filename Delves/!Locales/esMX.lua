@@ -271,6 +271,7 @@ if L then
 	--L.shadowguard_soulbreaker = "Shadowguard Soulbreaker"
 	--L.shadowguard_steelsoul = "Shadowguard Steelsoul"
 	--L.siphoned_drake = "Siphoned Drake"
+	L.steelsoul_arcanoward = "Guardarcano almaférrea"
 end
 
 L = BigWigs:NewBossLocale("Fungarian Delve Trash", "esMX")

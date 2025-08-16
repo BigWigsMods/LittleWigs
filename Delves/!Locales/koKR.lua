@@ -271,6 +271,7 @@ if L then
 	L.shadowguard_soulbreaker = "어둠수호병 영혼파괴자"
 	L.shadowguard_steelsoul = "어둠수호병 영혼탈취자"
 	L.siphoned_drake = "흡수당한 비룡"
+	L.steelsoul_arcanoward = "강철영혼 비전수호물"
 end
 
 L = BigWigs:NewBossLocale("Fungarian Delve Trash", "koKR")

@@ -271,6 +271,7 @@ if L then
 	L.shadowguard_soulbreaker = "影衛破魂者"
 	L.shadowguard_steelsoul = "影衛鐵魂"
 	L.siphoned_drake = "虹吸飛龍"
+	L.steelsoul_arcanoward = "鐵魂秘法守衛"
 end
 
 L = BigWigs:NewBossLocale("Fungarian Delve Trash", "zhTW")

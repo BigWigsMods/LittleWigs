@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ethereal Trash", {2803}) -- Archival Assault -- TODO all delves?
+local mod, CL = BigWigs:NewBoss("Ethereal Trash", 2803) -- Archival Assault
 if not mod then return end
 mod:RegisterEnableMob(
 	244966, -- Vaultwarden Falnora (Archival Assault gossip NPC)
@@ -19,7 +19,8 @@ mod:RegisterEnableMob(
 	244115, -- Shadowguard Null Bastion
 	244140, -- Shadowguard Steelsoul
 	245098, -- Ethereal Commander
-	245053 -- Siphoned Drake
+	245053, -- Siphoned Drake
+	247624 -- Steelsoul Arcanoward
 )
 
 --------------------------------------------------------------------------------
@@ -36,6 +37,7 @@ if L then
 	L.shadowguard_soulbreaker = "Shadowguard Soulbreaker"
 	L.shadowguard_steelsoul = "Shadowguard Steelsoul"
 	L.siphoned_drake = "Siphoned Drake"
+	L.steelsoul_arcanoward = "Steelsoul Arcanoward"
 end
 
 --------------------------------------------------------------------------------
@@ -62,6 +64,9 @@ function mod:GetOptions()
 		{1236770, "NAMEPLATE"}, -- Arcane Geyser
 		-- Siphoned Drake
 		{1231144, "NAMEPLATE"}, -- Null Breath
+		-- Steelsoul Arcanoward
+		{1230608, "NAMEPLATE"}, -- Dazing Gauntlet
+		{1231893, "NAMEPLATE"}, -- Crushing Stomp
 	}, {
 		[1236428] = L.shadeye_observer,
 		[1236256] = L.shadowguard_phasecutter,
@@ -69,6 +74,7 @@ function mod:GetOptions()
 		[1236354] = L.shadowguard_soulbreaker,
 		[1236770] = L.shadowguard_steelsoul,
 		[1231144] = L.siphoned_drake,
+		[1230608] = L.steelsoul_arcanoward,
 	}
 end
 
@@ -110,6 +116,12 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "NullBreath", 1231144)
 	self:Log("SPELL_CAST_SUCCESS", "NullBreathSuccess", 1231144)
 	self:Death("SiphonedDrakeDeath", 245053)
+
+	-- Steelsoul Arcanoward
+	self:RegisterEngageMob("SteelsoulArcanowardEngaged", 247624)
+	self:Log("SPELL_CAST_START", "DazingGauntlet", 1230608)
+	self:Log("SPELL_CAST_START", "CrushingStomp", 1231893)
+	self:Death("SteelsoulArcanowardDeath", 247624)
 
 	-- also enable the Rares module
 	local raresModule = BigWigs:GetBossModule("Ky'veza Rares", true)
@@ -239,7 +251,11 @@ end
 
 function mod:ArcaneGeyser(args)
 	self:Message(args.spellId, "red")
-	self:Nameplate(args.spellId, 21.9, args.sourceGUID)
+	if self:MobId(args.sourceGUID) == 247624 then -- Steelsoul Arcanoward
+		self:SteelsoulArcanowardArcaneGeyser(args.sourceGUID)
+	else
+		self:Nameplate(args.spellId, 21.9, args.sourceGUID)
+	end
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -265,4 +281,65 @@ end
 
 function mod:SiphonedDrakeDeath(args)
 	self:ClearNameplate(args.destGUID)
+end
+
+-- Steelsoul Arcanoward
+
+do
+	local timer
+
+	function mod:SteelsoulArcanowardEngaged(guid)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(1230608, 6.0) -- Dazing Gauntlet
+		self:Nameplate(1230608, 6.0, guid) -- Dazing Gauntlet
+		self:CDBar(1236770, 8.5) -- Arcane Geyser
+		self:Nameplate(1236770, 8.5, guid) -- Arcane Geyser
+		self:CDBar(1231893, 12.1) -- Crushing Stomp
+		self:Nameplate(1231893, 12.1, guid) -- Crushing Stomp
+		timer = self:ScheduleTimer("SteelsoulArcanowardDeath", 20, nil, guid)
+	end
+
+	function mod:SteelsoulArcanowardArcaneGeyser(guid)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(1236770, 24.3)
+		self:Nameplate(1236770, 24.3, guid)
+		timer = self:ScheduleTimer("SteelsoulArcanowardDeath", 20, nil, guid)
+	end
+
+	function mod:DazingGauntlet(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "purple")
+		self:CDBar(args.spellId, 10.1)
+		self:Nameplate(args.spellId, 10.1, args.sourceGUID)
+		timer = self:ScheduleTimer("SteelsoulArcanowardDeath", 20, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
+	end
+
+	function mod:CrushingStomp(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "yellow")
+		self:CDBar(args.spellId, 20.2)
+		self:Nameplate(args.spellId, 20.2, args.sourceGUID)
+		timer = self:ScheduleTimer("SteelsoulArcanowardDeath", 20, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
+	end
+
+	function mod:SteelsoulArcanowardDeath(args, guidFromTimer)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(1236770) -- Arcane Geyser
+		self:StopBar(1230608) -- Dazing Gauntlet
+		self:StopBar(1231893) -- Crushing Stomp
+		self:ClearNameplate(guidFromTimer or args.destGUID)
+	end
 end
