@@ -214,7 +214,7 @@ if L then
 	L.commerce_enforcer = "Massacreur du marché"
 	L.commander_zofar = "Commandant Zo'far"
 
-	L.tazavesh_soleahs_gambit = "Tazavesh : le stratagème de So’leah"
+	L.tazavesh_soleahs_gambit = "Tazavesh : le stratagème de So’leah"
 	L.murkbrine_scalebinder = "Lieur d'écailles bourbe-sel"
 	L.murkbrine_fishmancer = "Pescomancien bourbe-sel"
 	L.murkbrine_shellcrusher = "Brise-conque bourbe-sel"
