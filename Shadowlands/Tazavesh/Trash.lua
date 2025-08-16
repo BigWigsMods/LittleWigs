@@ -1115,10 +1115,16 @@ function mod:OverloadedMailementalEngaged(guid)
 	self:Nameplate(347775, 13.2, guid) -- Spam Filter
 end
 
-function mod:SpamFilter(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:SpamFilter(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
 function mod:SpamFilterInterrupt(args)
@@ -1321,7 +1327,7 @@ do
 					self:PersonalMessage(355479, false, CL.link_with:format(self:ColorName(args.destName)))
 					self:PlaySound(355479, "warning")
 				elseif #playerList > 1 then
-					self:Message(355479, "red", CL.link_both:format(playerList[1], playerList[2]))
+					self:Message(355479, "red", CL.link_both:format(self:ColorName(playerList[1]), self:ColorName(playerList[2])))
 					self:PlaySound(355479, "alert")
 				end
 			end
@@ -1333,8 +1339,8 @@ do
 			self:CancelTimer(timer)
 		end
 		self:Message(args.spellId, "orange")
-		self:CDBar(args.spellId, 13.3)
-		self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+		self:CDBar(args.spellId, 26.5)
+		self:Nameplate(args.spellId, 26.5, args.sourceGUID)
 		timer = self:ScheduleTimer("CommanderZofarDeath", 30, nil, args.sourceGUID)
 		self:PlaySound(args.spellId, "alarm")
 	end
