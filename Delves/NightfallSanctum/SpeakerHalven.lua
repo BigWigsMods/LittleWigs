@@ -29,20 +29,17 @@ end
 function mod:GetOptions()
 	return {
 		443837, -- Shadow Sweep
-		443908, -- Fire!
 		443840, -- Desolate Surge
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ShadowSweep", 443837)
-	self:Log("SPELL_CAST_START", "Fire", 443908)
 	self:Log("SPELL_CAST_START", "DesolateSurge", 443840)
 end
 
 function mod:OnEngage()
 	self:CDBar(443837, 5.7) -- Shadow Sweep
-	self:CDBar(443908, 9.5) -- Fire!
 	self:CDBar(443840, 20.7) -- Desolate Surge
 end
 
@@ -54,12 +51,6 @@ function mod:ShadowSweep(args)
 	self:Message(args.spellId, "red")
 	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 13.0)
-end
-
-function mod:Fire(args)
-	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
-	self:CDBar(args.spellId, 12.1)
 end
 
 function mod:DesolateSurge(args)
