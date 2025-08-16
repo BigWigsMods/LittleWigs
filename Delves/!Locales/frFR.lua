@@ -12,8 +12,8 @@ end
 
 L = BigWigs:NewBossLocale("Voidrider Challnax", "frFR")
 if L then
-	--L.voidripper = "Voidripper"
-	--L.voidrider_challnax= "Voidrider Challnax"
+	L.voidripper = "Éventreur du Vide"
+	L.voidrider_challnax= "Chevaucheuse du Vide Challnax"
 end
 
 -- Demolition Dome
@@ -51,7 +51,7 @@ end
 
 L = BigWigs:NewBossLocale("Beste Glatisant", "frFR")
 if L then
-	--L.beste_glatisant = "Beste Glatisant"
+	L.beste_glatisant = "Beste Glatissante"
 end
 
 L = BigWigs:NewBossLocale("Craggle Fritzbrains", "frFR")
@@ -263,14 +263,14 @@ end
 
 L = BigWigs:NewBossLocale("Ethereal Trash", "frFR")
 if L then
-	--L.ethereal_trash = "Ethereal Trash"
+	L.ethereal_trash = "Trash Éthérien"
 
-	--L.shadeye_observer = "Shadeye Observer"
-	--L.shadowguard_phasecutter = "Shadowguard Phasecutter"
-	--L.shadowguard_arcanotech = "Shadowguard Arcanotech"
-	--L.shadowguard_soulbreaker = "Shadowguard Soulbreaker"
-	--L.shadowguard_steelsoul = "Shadowguard Steelsoul"
-	--L.siphoned_drake = "Siphoned Drake"
+	L.shadeye_observer = "Observateur ombroeil"
+	L.shadowguard_phasecutter = "Tranche-phase ombre-garde"
+	L.shadowguard_arcanotech = "Arcanotech ombre-garde"
+	L.shadowguard_soulbreaker = "Brise-âme ombre-garde"
+	L.shadowguard_steelsoul = "Ame-d'acier ombre-garde"
+	L.siphoned_drake = "Drake siphonné"
 end
 
 L = BigWigs:NewBossLocale("Fungarian Delve Trash", "frFR")
@@ -299,7 +299,7 @@ if L then
 	L.punchy_thug = "Criminel percutant"
 	L.flinging_flicker = "Ombre frappante"
 	L.bomb_bot = "Robo-bombe"
-	--L.rad_rat = "Rad Rat"
+	L.rad_rat = "Radio Rat"
 end
 
 L = BigWigs:NewBossLocale("Kobold Delve Trash", "frFR")
@@ -326,18 +326,18 @@ end
 
 L = BigWigs:NewBossLocale("Ky'veza Rares", "frFR")
 if L then
-	--L.rares = "Ky'veza Rares"
+	L.rares = "Rares de Ky'veza"
 
 	L.treasure_wraith = "Âme en peine de trésor"
-	--L.invasive_phasecrawler = "Invasive Phasecrawler"
-	--L.drude = "D'rude"
-	--L.great_devourer = "Great Devourer"
-	--L.pactsworn_fraycaller = "Pactsworn Fraycaller"
-	--L.pactsworn_dustblade = "Pactsworn Dustblade"
-	--L.pactsworn_sandreaver = "Pactsworn Sandreaver"
-	--L.pactsworn_arcanist = "Pactsworn Arcanist"
-	--L.pactsworn_wildcaller = "Pactsworn Wildcaller"
-	--L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)"
+	L.invasive_phasecrawler = "Rampeur phasique envahissant"
+	L.drude = "D'rude"
+	L.great_devourer = "Grand dévoreur"
+	L.pactsworn_fraycaller = "Mande-rixe pactisateur"
+	L.pactsworn_dustblade = "Lame de poussière pactisateur"
+	L.pactsworn_sandreaver = "Saccageur des sables pactisateur"
+	L.pactsworn_arcanist = "Arcaniste pactisateur"
+	L.pactsworn_wildcaller = "Mande-nature pactisateur"
+	L.nexus_princess_kyveza = "Princesse-nexus Ky'veza (Apparition aléatoire)"
 	L.zekvir = "Zekvir"
 	L.the_underpin = "Le Père Foreur"
 end

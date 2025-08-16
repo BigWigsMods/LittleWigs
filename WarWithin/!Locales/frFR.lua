@@ -121,19 +121,19 @@ end
 
 L = BigWigs:NewBossLocale("Eco-Dome Al'dani Trash", "frFR")
 if L then
-	--L.terrified_broker = "Terrified Broker"
+	L.terrified_broker = "Négociant terrifié"
 	L.arcane_siphon = "Siphon arcanique"
-	--L.overgorged_mite = "Overgorged Mite"
-	--L.voracious_gorger = "Voracious Gorger"
-	--L.ravenous_destroyer = "Ravenous Destroyer"
-	--L.overcharged_sentinel = "Overcharged Sentinel"
-	--L.wastelander_farstalker = "Wastelander Farstalker"
-	--L.tamed_ruinstalker = "Tamed Ruinstalker"
-	--L.wastelander_ritualist = "Wastelander Ritualist"
-	--L.wastelander_pactspeaker = "Wastelander Pactspeaker"
-	--L.karesh_elemental = "K'aresh Elemental"
-	--L.burrowing_creeper = "Burrowing Creeper"
-	--L.wastes_creeper = "Wastes Creeper"
+	L.overgorged_mite = "Acarus surgavé"
+	L.voracious_gorger = "Goinfre vorace"
+	L.ravenous_destroyer = "Destructeur vorace"
+	L.overcharged_sentinel = "Sentinelle surchargée"
+	L.wastelander_farstalker = "Traque-loin paria du désert"
+	L.tamed_ruinstalker = "Traqueur des ruines apprivoisé"
+	L.wastelander_ritualist = "Ritualiste paria du désert"
+	L.wastelander_pactspeaker = "Pactisatrice paria du désert"
+	L.karesh_elemental = "Elémentaire k'areshi"
+	L.burrowing_creeper = "Rampant fouisseur"
+	L.wastes_creeper = "Rampant du désert"
 
 	--L.taahbat_and_awazj_warmup_trigger = "I have no time for this. Taah'bat! Be certain they follow no further."
 end
