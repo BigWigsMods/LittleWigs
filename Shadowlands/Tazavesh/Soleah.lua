@@ -89,7 +89,7 @@ end
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if spellId == 351104 then -- Phase Transition
 		self:SetStage(2)
-		self:Message("stages", "cyan", CL.stage:format(2), false)
+		self:Message("stages", "cyan", CL.percent:format(40, CL.stage:format(2)), false)
 		self:StopBar(350796) -- Hyperlight Spark
 		self:StopBar(353635) -- Collapsing Star
 		self:StopBar(351124) -- Summon Assassins
