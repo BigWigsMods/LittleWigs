@@ -118,7 +118,7 @@ do
 		self:UnregisterUnitEvent(event, bossUnit)
 		-- the boss immediately targets the true target, then detargets right after, then 1s later targets the true target again.
 		-- if the boss detargets right away without switching targets first, that means it's on the tank (stored in castStartTarget).
-		-- therefore we always know the true target on the first UNIT_TARGET event
+		-- therefore we always know the true target on the first UNIT_TARGET event.
 		local bossTargetUnit = bossUnit.."target"
 		local name = self:UnitName(bossTargetUnit) or castStartTarget
 		local guid = self:UnitGUID(bossTargetUnit) or castStartGUID
