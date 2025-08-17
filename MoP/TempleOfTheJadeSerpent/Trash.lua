@@ -148,7 +148,7 @@ function mod:OnBossEnable()
 		-- Minion of Doubt
 		self:Log("SPELL_CAST_START", "DarkClaw", 397931)
 	else
-		self:Log("SPELL_DAMAGE", "ShadowsOfDoubt", 110099)
+		self:Log("SPELL_PERIODIC_DAMAGE", "ShadowsOfDoubt", 110099)
 		self:Log("SPELL_AURA_APPLIED", "ShadowsOfDoubt", 110099)
 
 	end
@@ -290,10 +290,18 @@ function mod:DarkClaw(args)
 	self:Message(args.spellId, "purple")
 	self:PlaySound(args.spellId, "alert")
 end
-function mod:ShadowsOfDoubt(args)
-	if self:Me(args.destGUID) then
-		self:PersonalMessage(args.spellId, "underyou")
-		self:PlaySound(args.spellId, "underyou")
+
+do
+	local prev = 0
+	function mod:ShadowsOfDoubt(args)
+		if self:Me(args.destGUID) then
+			local t = args.time
+			if t - prev > 1.5 then
+				prev = t
+				self:PersonalMessage(args.spellId, "underyou")
+				self:PlaySound(args.spellId, "underyou")
+			end
+		end
 	end
 end
 
