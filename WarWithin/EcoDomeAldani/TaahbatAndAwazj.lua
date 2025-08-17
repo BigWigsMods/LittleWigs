@@ -111,11 +111,39 @@ do
 	end
 end
 
-function mod:WarpStrikeStage1(args)
-	-- target's aura 1227142 is hidden
-	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 26.7)
-	self:PlaySound(args.spellId, "alarm")
+do
+	local castStartTarget, castStartGUID
+
+	function mod:WarpStrikeTarget(event, bossUnit)
+		self:UnregisterUnitEvent(event, bossUnit)
+		-- the boss immediately targets the true target, then detargets right after, then 1s later targets the true target again.
+		-- if the boss detargets right away without switching targets first, that means it's on the tank (stored in castStartTarget).
+		-- therefore we always know the true target on the first UNIT_TARGET event
+		local bossTargetUnit = bossUnit.."target"
+		local name = self:UnitName(bossTargetUnit) or castStartTarget
+		local guid = self:UnitGUID(bossTargetUnit) or castStartGUID
+		if name then
+			self:TargetMessage(1227918, "orange", name)
+			if self:Me(guid) then
+				self:PlaySound(1227918, "warning", nil, name)
+			else
+				self:PlaySound(1227918, "alarm", nil, name)
+			end
+		else -- fallback, should never occur
+			self:Message(1227918, "orange")
+			self:PlaySound(1227918, "alarm")
+		end
+	end
+
+	function mod:WarpStrikeStage1(args)
+		-- target's aura 1227142 is hidden
+		local bossUnit = self:GetBossId(args.sourceGUID)
+		local bossTargetUnit = bossUnit.."target"
+		castStartTarget = self:UnitName(bossTargetUnit)
+		castStartGUID = self:UnitGUID(bossTargetUnit)
+		self:RegisterUnitEvent("UNIT_TARGET", "WarpStrikeTarget", bossUnit)
+		self:CDBar(args.spellId, 26.7)
+	end
 end
 
 function mod:RiftClaws(args)
