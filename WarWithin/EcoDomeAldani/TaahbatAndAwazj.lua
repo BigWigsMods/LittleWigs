@@ -100,9 +100,14 @@ do
 	end
 
 	function mod:BindingJavelinApplied(args)
-		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(1236130, "red", playerList, 2)
-		self:PlaySound(1236130, "info", nil, playerList)
+		if self:Mythic() then
+			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(1236130, "red", playerList, 2)
+			self:PlaySound(1236130, "info", nil, playerList)
+		else -- Heroic, Normal
+			self:TargetMessage(1236130, "red", args.destName)
+			self:PlaySound(1236130, "info", nil, args.destName)
+		end
 	end
 end
 
@@ -125,6 +130,7 @@ end
 
 function mod:ArcaneBlitz(args)
 	self:StopBar(CL.count:format(self:SpellName(1236130), bindingJavelinCount)) -- Binding Javelin
+	self:StopBar(1227918) -- Warp Strike
 	self:StopBar(CL.count:format(self:SpellName(1219482), riftClawsCount)) -- Rift Claws
 	self:StopBar(CL.count:format(args.spellName, arcaneBlitzCount))
 	self:SetStage(2)
@@ -136,7 +142,9 @@ end
 function mod:IncorporealApplied(args)
 	local amount = args.amount or (self:Mythic() and 6 or 3) -- starting stacks varies by difficulty
 	self:Message(args.spellId, "yellow", CL.stackboss:format(amount, args.spellName))
-	self:PlaySound(args.spellId, "info")
+	if not args.amount then -- initial application
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 function mod:DestabilizedApplied(args)
@@ -149,7 +157,7 @@ function mod:DestabilizedApplied(args)
 		self:CDBar(1236130, 30.3, CL.count:format(self:SpellName(1236130), bindingJavelinCount)) -- Binding Javelin
 		self:CDBar(1227918, 41.2) -- Warp Strike
 		self:CDBar(1219700, 78.9, CL.count:format(self:SpellName(1219700), arcaneBlitzCount)) -- Arcane Blitz
-		self:PlaySound(1219700, "info")
+		self:PlaySound(1219700, "long")
 	end
 end
 
