@@ -34,7 +34,7 @@ function mod:GetOptions()
 		353312, -- Purifying Burst
 		{346116, "TANK"}, -- Shearing Swings
 		347094, -- Titanic Crash
-		{346957, "SAY"}, -- Purged by Fire
+		{346957, "SAY", "ME_ONLY_EMPHASIZE"}, -- Purged by Fire
 		346766, -- Sanitizing Cycle
 		"vault_purifier", -- Vault Purifier (Adds)
 		-- Hard Mode
