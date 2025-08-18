@@ -100,17 +100,50 @@ do
 	end
 
 	function mod:BindingJavelinApplied(args)
-		playerList[#playerList + 1] = args.destName
-		self:TargetsMessage(1236130, "red", playerList, 2)
-		self:PlaySound(1236130, "info", nil, playerList)
+		if self:Mythic() then
+			playerList[#playerList + 1] = args.destName
+			self:TargetsMessage(1236130, "red", playerList, 2)
+			self:PlaySound(1236130, "info", nil, playerList)
+		else -- Heroic, Normal
+			self:TargetMessage(1236130, "red", args.destName)
+			self:PlaySound(1236130, "info", nil, args.destName)
+		end
 	end
 end
 
-function mod:WarpStrikeStage1(args)
-	-- target's aura 1227142 is hidden
-	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 26.7)
-	self:PlaySound(args.spellId, "alarm")
+do
+	local castStartTarget, castStartGUID
+
+	function mod:WarpStrikeTarget(event, bossUnit)
+		self:UnregisterUnitEvent(event, bossUnit)
+		-- the boss immediately targets the true target, then detargets right after, then 1s later targets the true target again.
+		-- if the boss detargets right away without switching targets first, that means it's on the tank (stored in castStartTarget).
+		-- therefore we always know the true target on the first UNIT_TARGET event.
+		local bossTargetUnit = bossUnit.."target"
+		local name = self:UnitName(bossTargetUnit) or castStartTarget
+		local guid = self:UnitGUID(bossTargetUnit) or castStartGUID
+		if name then
+			self:TargetMessage(1227918, "orange", name)
+			if self:Me(guid) then
+				self:PlaySound(1227918, "warning", nil, name)
+			else
+				self:PlaySound(1227918, "alarm", nil, name)
+			end
+		else -- fallback, should never occur
+			self:Message(1227918, "orange")
+			self:PlaySound(1227918, "alarm")
+		end
+	end
+
+	function mod:WarpStrikeStage1(args)
+		-- target's aura 1227142 is hidden
+		local bossUnit = self:GetBossId(args.sourceGUID)
+		local bossTargetUnit = bossUnit.."target"
+		castStartTarget = self:UnitName(bossTargetUnit)
+		castStartGUID = self:UnitGUID(bossTargetUnit)
+		self:RegisterUnitEvent("UNIT_TARGET", "WarpStrikeTarget", bossUnit)
+		self:CDBar(args.spellId, 26.7)
+	end
 end
 
 function mod:RiftClaws(args)
@@ -125,6 +158,7 @@ end
 
 function mod:ArcaneBlitz(args)
 	self:StopBar(CL.count:format(self:SpellName(1236130), bindingJavelinCount)) -- Binding Javelin
+	self:StopBar(1227918) -- Warp Strike
 	self:StopBar(CL.count:format(self:SpellName(1219482), riftClawsCount)) -- Rift Claws
 	self:StopBar(CL.count:format(args.spellName, arcaneBlitzCount))
 	self:SetStage(2)
@@ -136,7 +170,9 @@ end
 function mod:IncorporealApplied(args)
 	local amount = args.amount or (self:Mythic() and 6 or 3) -- starting stacks varies by difficulty
 	self:Message(args.spellId, "yellow", CL.stackboss:format(amount, args.spellName))
-	self:PlaySound(args.spellId, "info")
+	if not args.amount then -- initial application
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
 function mod:DestabilizedApplied(args)
@@ -149,7 +185,7 @@ function mod:DestabilizedApplied(args)
 		self:CDBar(1236130, 30.3, CL.count:format(self:SpellName(1236130), bindingJavelinCount)) -- Binding Javelin
 		self:CDBar(1227918, 41.2) -- Warp Strike
 		self:CDBar(1219700, 78.9, CL.count:format(self:SpellName(1219700), arcaneBlitzCount)) -- Arcane Blitz
-		self:PlaySound(1219700, "info")
+		self:PlaySound(1219700, "long")
 	end
 end
 

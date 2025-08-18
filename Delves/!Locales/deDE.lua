@@ -271,6 +271,7 @@ if L then
 	L.shadowguard_soulbreaker = "Seelenbrecher der Schattenwache"
 	L.shadowguard_steelsoul = "Stahlseele der Schattenwache"
 	L.siphoned_drake = "Ausgelaugter Drache"
+	L.steelsoul_arcanoward = "Stahlseelenarkanoschutz"
 end
 
 L = BigWigs:NewBossLocale("Fungarian Delve Trash", "deDE")
@@ -338,6 +339,8 @@ if L then
 	L.pactsworn_arcanist = "Paktgeschworener Arkanist"
 	L.pactsworn_wildcaller = "Paktgeschworener Wildrufer"
 	L.nexus_princess_kyveza = "Nexusprinzessin Ky'veza (Zufälliges Erscheinen)"
+	L.zekvir = "Zekvir"
+	L.the_underpin = "Der Lorenboss"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "deDE")

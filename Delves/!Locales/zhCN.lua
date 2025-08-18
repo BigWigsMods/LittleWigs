@@ -271,6 +271,7 @@ if L then
 	L.shadowguard_soulbreaker = "影卫碎魂者"
 	L.shadowguard_steelsoul = "影卫钢魂守卫"
 	L.siphoned_drake = "被吸干的幼龙"
+	L.steelsoul_arcanoward = "钢魂奥能守卫"
 end
 
 L = BigWigs:NewBossLocale("Fungarian Delve Trash", "zhCN")
@@ -338,6 +339,8 @@ if L then
 	L.pactsworn_arcanist = "誓约奥术师"
 	L.pactsworn_wildcaller = "誓约唤荒者"
 	L.nexus_princess_kyveza = "节点女亲王凯威扎（随机出现）"
+	L.zekvir = "泽克维尔"
+	L.the_underpin = "幽坑太保"
 end
 
 L = BigWigs:NewBossLocale("Nerubian Delve Trash", "zhCN")

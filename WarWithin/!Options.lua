@@ -457,7 +457,7 @@ BigWigs:AddColors("Taah'bat and A'wazj", {
 BigWigs:AddSounds("Taah'bat and A'wazj", {
 	[1219457] = "info",
 	[1219482] = "alert",
-	[1219700] = {"info","long"},
+	[1219700] = "long",
 	[1227918] = {"alarm","warning"},
 	[1236130] = "info",
 })
