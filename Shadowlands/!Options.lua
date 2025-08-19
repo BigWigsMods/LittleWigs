@@ -136,16 +136,16 @@ BigWigs:AddSounds("Echelon", {
 
 BigWigs:AddColors("High Adjudicator Aleez", {
 	[323538] = "red",
-	[323597] = "cyan",
 	[323650] = {"blue","green","yellow"},
+	[323743] = "cyan",
 	[329340] = "orange",
 	[1236512] = {"blue","orange"},
 })
 
 BigWigs:AddSounds("High Adjudicator Aleez", {
 	[323538] = "alert",
-	[323597] = "long",
 	[323650] = {"info","warning"},
+	[323743] = "long",
 	[329340] = "alarm",
 	[1236512] = "alarm",
 })
