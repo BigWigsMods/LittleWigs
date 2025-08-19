@@ -95,7 +95,7 @@ else -- Classic Mists through Shadowlands
 		return {
 			-- Minion of Doubt
 			{110125, "DISPEL"}, -- Shattered Resolve
-			110099 --Shadows of Doubt on the ground
+			110099 -- Shadows of Doubt
 		}, {
 			[110125] = L.minion_of_doubt,
 		}
