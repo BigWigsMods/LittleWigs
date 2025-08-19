@@ -731,7 +731,7 @@ BigWigs:AddSounds("Myza's Oasis", {
 	[357542] = "alarm",
 	[359019] = "info",
 	[359028] = "alert",
-	[1241032] = {"info","long"},
+	[1241032] = {"info","long","warning"},
 	["stages"] = "long",
 })
 
