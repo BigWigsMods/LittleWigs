@@ -28,6 +28,11 @@ end
 
 -- Halls of Atonement
 
+L = BigWigs:NewBossLocale("High Adjudicator Aleez", "esMX")
+if L then
+	L.empty_anima_vessel = "Vasija de ánima vacía"
+end
+
 L = BigWigs:NewBossLocale("Halls of Atonement Trash", "esMX")
 if L then
 	L.depraved_houndmaster = "Maestra de canes depravada"

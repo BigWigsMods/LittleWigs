@@ -28,6 +28,11 @@ end
 
 -- Halls of Atonement
 
+L = BigWigs:NewBossLocale("High Adjudicator Aleez", "koKR")
+if L then
+	L.empty_anima_vessel = "빈 령 용기"
+end
+
 L = BigWigs:NewBossLocale("Halls of Atonement Trash", "koKR")
 if L then
 	L.depraved_houndmaster = "타락한 사냥개조련사"
