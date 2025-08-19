@@ -95,7 +95,7 @@ else -- Classic Mists through Shadowlands
 		return {
 			-- Minion of Doubt
 			{110125, "DISPEL"}, -- Shattered Resolve
-			110099 -- Shadows of Doubt
+			110099, -- Shadows of Doubt
 		}, {
 			[110125] = L.minion_of_doubt,
 		}
@@ -150,7 +150,6 @@ function mod:OnBossEnable()
 		self:Log("SPELL_PERIODIC_DAMAGE", "ShadowsOfDoubtDamage", 110099)
 		self:Log("SPELL_PERIODIC_MISSED", "ShadowsOfDoubtDamage", 110099)
 		self:Log("SPELL_AURA_APPLIED", "ShadowsOfDoubtDamage", 110099)
-
 	end
 	self:Log("SPELL_AURA_APPLIED", "ShatteredResolveApplied", 110125)
 end
@@ -294,13 +293,10 @@ end
 do
 	local prev = 0
 	function mod:ShadowsOfDoubtDamage(args)
-		if self:Me(args.destGUID) then
-			local t = args.time
-			if t - prev > 1.5 then
-				prev = t
-				self:PersonalMessage(args.spellId, "underyou")
-				self:PlaySound(args.spellId, "underyou")
-			end
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
 		end
 	end
 end
