@@ -165,11 +165,6 @@ if L then
 	L.delivery_portal_desc = "Zeigt einen Timer für die Änderung der Position des Zustellportals."
 end
 
-L = BigWigs:NewBossLocale("Myza's Oasis", "deDE")
-if L then
-	L.add_wave_killed = "Add Welle getötet (%d/%d)"
-end
-
 L = BigWigs:NewBossLocale("So'leah", "deDE")
 if L then
 	L.group = "GRUPPE"

@@ -165,11 +165,6 @@ if L then
 	L.delivery_portal_desc = "Muestra un temporizador cuando Portal de entrega cambie de ubicación."
 end
 
-L = BigWigs:NewBossLocale("Myza's Oasis", "esES")
-if L then
-	L.add_wave_killed = "Oleada de esbirros matados (%d/%d)"
-end
-
 L = BigWigs:NewBossLocale("So'leah", "esES")
 if L then
 	L.group = "GRUPO"

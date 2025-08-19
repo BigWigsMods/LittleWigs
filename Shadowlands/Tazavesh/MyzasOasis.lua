@@ -32,15 +32,6 @@ local addWave = 0
 local finalWarningCount = 1
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.add_wave_killed = "Add wave killed (%d/%d)"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -148,9 +139,9 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE()
 	if self:IsEngaged() then
 		-- [CHAT_MSG_RAID_BOSS_EMOTE] Get to your spotlight and hit notes when they light up!#[DNT] Encounter Controller
 		self:StopBar(353706) -- Rowdy
-		-- There is one performance phase immediately at the start of the fight and then one after each add wave
+		-- There is one performance phase immediately at the start of the fight and then one after the add wave
 		if addWave >= 1 then
-			self:Message("stages", "cyan", L.add_wave_killed:format(addWave, 2), "achievement_dungeon_brokerdungeon")
+			self:Message("stages", "cyan", CL.other:format(CL.killed:format(CL.adds), CL.soon:format(self:SpellName(-23098))), "achievement_dungeon_brokerdungeon") -- Adds killed: Zo'gron soon
 			self:PlaySound("stages", "long")
 		end
 		addWave = addWave + 1

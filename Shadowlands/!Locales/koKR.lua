@@ -165,11 +165,6 @@ if L then
 	L.delivery_portal_desc = "배달 차원문의 위치가 변경될 때의 타이머를 보여줍니다."
 end
 
-L = BigWigs:NewBossLocale("Myza's Oasis", "koKR")
-if L then
-	L.add_wave_killed = "웨이브 (%d/%d)"
-end
-
 L = BigWigs:NewBossLocale("So'leah", "koKR")
 if L then
 	L.group = "그룹"

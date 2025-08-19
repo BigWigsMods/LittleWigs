@@ -165,11 +165,6 @@ if L then
 	L.delivery_portal_desc = "顯示中央郵務傳送門何時改變位置的計時器。"
 end
 
-L = BigWigs:NewBossLocale("Myza's Oasis", "zhTW")
-if L then
-	L.add_wave_killed = "擊退保安 (%d/%d)"
-end
-
 L = BigWigs:NewBossLocale("So'leah", "zhTW")
 if L then
 	--L.group = "GROUP"

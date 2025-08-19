@@ -165,11 +165,6 @@ if L then
 	L.delivery_portal_desc = "Affiche un compte à rebours lorsque le portail de livraison change de place."
 end
 
-L = BigWigs:NewBossLocale("Myza's Oasis", "frFR")
-if L then
-	L.add_wave_killed = "Vague d'adds tuée (%d/%d)"
-end
-
 L = BigWigs:NewBossLocale("So'leah", "frFR")
 if L then
 	L.group = "GROUPE"
