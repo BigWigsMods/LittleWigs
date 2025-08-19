@@ -146,10 +146,10 @@ function mod:OnBossEnable()
 
 		-- Minion of Doubt
 		self:Log("SPELL_CAST_START", "DarkClaw", 397931)
-	else
+	else -- Classic Mists through Shadowlands
+		self:Log("SPELL_AURA_APPLIED", "ShadowsOfDoubtDamage", 110099)
 		self:Log("SPELL_PERIODIC_DAMAGE", "ShadowsOfDoubtDamage", 110099)
 		self:Log("SPELL_PERIODIC_MISSED", "ShadowsOfDoubtDamage", 110099)
-		self:Log("SPELL_AURA_APPLIED", "ShadowsOfDoubtDamage", 110099)
 	end
 	self:Log("SPELL_AURA_APPLIED", "ShatteredResolveApplied", 110125)
 end
@@ -293,7 +293,7 @@ end
 do
 	local prev = 0
 	function mod:ShadowsOfDoubtDamage(args)
-		if self:Me(args.destGUID) and args.time - prev > 1.5 then
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then -- 1s tick rate
 			prev = args.time
 			self:PersonalMessage(args.spellId, "underyou")
 			self:PlaySound(args.spellId, "underyou")
