@@ -147,8 +147,9 @@ function mod:OnBossEnable()
 		-- Minion of Doubt
 		self:Log("SPELL_CAST_START", "DarkClaw", 397931)
 	else
-		self:Log("SPELL_PERIODIC_DAMAGE", "ShadowsOfDoubt", 110099)
-		self:Log("SPELL_AURA_APPLIED", "ShadowsOfDoubt", 110099)
+		self:Log("SPELL_PERIODIC_DAMAGE", "ShadowsOfDoubtDamage", 110099)
+		self:Log("SPELL_PERIODIC_MISSED", "ShadowsOfDoubtDamage", 110099)
+		self:Log("SPELL_AURA_APPLIED", "ShadowsOfDoubtDamage", 110099)
 
 	end
 	self:Log("SPELL_AURA_APPLIED", "ShatteredResolveApplied", 110125)
@@ -292,7 +293,7 @@ end
 
 do
 	local prev = 0
-	function mod:ShadowsOfDoubt(args)
+	function mod:ShadowsOfDoubtDamage(args)
 		if self:Me(args.destGUID) then
 			local t = args.time
 			if t - prev > 1.5 then
