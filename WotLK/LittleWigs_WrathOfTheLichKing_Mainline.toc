@@ -1,4 +1,4 @@
-## Interface: 110105, 110107, 110200
+## Interface: 110205, 110107, 110200
 
 ## Title: LittleWigs [|cffeda55fWrath of the Lich King|r]
 ## Title-deDE: LittleWigs [|cffeda55fWrath of the Lich King|r]

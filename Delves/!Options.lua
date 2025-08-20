@@ -518,7 +518,9 @@ BigWigs:AddSounds("Waxface", {
 })
 
 BigWigs:AddColors("Ethereal Trash", {
+	[1230608] = "purple",
 	[1231144] = "red",
+	[1231893] = "yellow",
 	[1236229] = "yellow",
 	[1236256] = "orange",
 	[1236354] = "red",
@@ -527,7 +529,9 @@ BigWigs:AddColors("Ethereal Trash", {
 })
 
 BigWigs:AddSounds("Ethereal Trash", {
+	[1230608] = "alert",
 	[1231144] = "alarm",
+	[1231893] = "alert",
 	[1236229] = "info",
 	[1236256] = "alarm",
 	[1236354] = "alert",

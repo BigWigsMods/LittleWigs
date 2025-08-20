@@ -28,6 +28,11 @@ end
 
 -- Halls of Atonement
 
+L = BigWigs:NewBossLocale("High Adjudicator Aleez", "zhTW")
+if L then
+	L.empty_anima_vessel = "空的靈魄容器"
+end
+
 L = BigWigs:NewBossLocale("Halls of Atonement Trash", "zhTW")
 if L then
 	L.depraved_houndmaster = "墮落的馴犬者"
@@ -158,11 +163,6 @@ L = BigWigs:NewBossLocale("Mailroom Mayhem", "zhTW")
 if L then
 	L.delivery_portal = "中央郵務傳送門"
 	L.delivery_portal_desc = "顯示中央郵務傳送門何時改變位置的計時器。"
-end
-
-L = BigWigs:NewBossLocale("Myza's Oasis", "zhTW")
-if L then
-	L.add_wave_killed = "擊退保安 (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("So'leah", "zhTW")

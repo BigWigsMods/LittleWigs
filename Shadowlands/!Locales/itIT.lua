@@ -28,6 +28,11 @@ end
 
 -- Halls of Atonement
 
+L = BigWigs:NewBossLocale("High Adjudicator Aleez", "itIT")
+if L then
+	L.empty_anima_vessel = "Ricettacolo d'Animum Vuoto"
+end
+
 L = BigWigs:NewBossLocale("Halls of Atonement Trash", "itIT")
 if L then
 	L.depraved_houndmaster = "Maestra dei Segugi Degenerata"
@@ -158,11 +163,6 @@ L = BigWigs:NewBossLocale("Mailroom Mayhem", "itIT")
 if L then
 	L.delivery_portal = "Portale di Consegna"
 	--L.delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations."
-end
-
-L = BigWigs:NewBossLocale("Myza's Oasis", "itIT")
-if L then
-	--L.add_wave_killed = "Add wave killed (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("So'leah", "itIT")

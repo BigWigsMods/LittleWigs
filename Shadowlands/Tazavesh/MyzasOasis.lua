@@ -32,15 +32,6 @@ local addWave = 0
 local finalWarningCount = 1
 
 --------------------------------------------------------------------------------
--- Localization
---
-
-local L = mod:GetLocale()
-if L then
-	L.add_wave_killed = "Add wave killed (%d/%d)"
-end
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -105,6 +96,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CrowdControl", 350919)
 	self:Log("SPELL_CAST_START", "SuppressionSpark", 355438)
 	self:Log("SPELL_CAST_START", "FinalWarning", 1241032)
+	self:Log("SPELL_CAST_SUCCESS", "FinalWarningSuccess", 1241032)
 	self:Log("SPELL_AURA_REMOVED", "FinalWarningRemoved", 1241023)
 
 	-- Hard Mode
@@ -147,9 +139,9 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE()
 	if self:IsEngaged() then
 		-- [CHAT_MSG_RAID_BOSS_EMOTE] Get to your spotlight and hit notes when they light up!#[DNT] Encounter Controller
 		self:StopBar(353706) -- Rowdy
-		-- There is one performance phase immediately at the start of the fight and then one after each add wave
+		-- There is one performance phase immediately at the start of the fight and then one after the add wave
 		if addWave >= 1 then
-			self:Message("stages", "cyan", L.add_wave_killed:format(addWave, 2), "achievement_dungeon_brokerdungeon")
+			self:Message("stages", "cyan", CL.other:format(CL.killed:format(CL.adds), CL.soon:format(self:SpellName(-23098))), "achievement_dungeon_brokerdungeon") -- Adds killed: Zo'gron soon
 			self:PlaySound("stages", "long")
 		end
 		addWave = addWave + 1
@@ -283,19 +275,27 @@ do
 	local finalWarningStart = 0
 
 	function mod:FinalWarning(args)
+		-- boss gains a shield (1241023) and starts a 20s cast (1241032), at the end of the cast if the shield is still
+		-- up then the boss will start channeling pulsing AOE until the original shield has been broken.
 		finalWarningStart = args.time
 		if finalWarningCount == 1 then
-			self:Message(args.spellId, "yellow", CL.percent:format(65, args.spellName))
+			self:Message(args.spellId, "yellow", CL.percent:format(65, CL.other:format(args.spellName, CL.shield)))
 		else -- 2nd cast
-			self:Message(args.spellId, "yellow", CL.percent:format(35, args.spellName))
+			self:Message(args.spellId, "yellow", CL.percent:format(35, CL.other:format(args.spellName, CL.shield)))
 		end
 		finalWarningCount = finalWarningCount + 1
 		self:CastBar(args.spellId, 20)
 		self:PlaySound(args.spellId, "long")
 	end
 
+	function mod:FinalWarningSuccess(args)
+		-- pulsing AOE channel starts, continues until the shield is broken
+		self:Message(args.spellId, "yellow", CL.other:format(args.spellName, CL.group_damage))
+		self:PlaySound(args.spellId, "warning")
+	end
+
 	function mod:FinalWarningRemoved(args)
-		-- the cast now automatically ends when the shield is removed
+		-- the cast automatically ends when the shield is removed
 		self:StopCastBar(1241032)
 		if args.amount == 0 then -- shield was broken
 			local finalWarningDuration = args.time - finalWarningStart

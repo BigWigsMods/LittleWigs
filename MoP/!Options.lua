@@ -502,6 +502,7 @@ BigWigs:AddSounds("Sha of Doubt", {
 })
 
 BigWigs:AddColors("Temple of the Jade Serpent Trash", {
+	[110099] = "blue",
 	[110125] = {"blue","red"},
 	[114646] = "purple",
 	[395859] = "red",
@@ -521,6 +522,7 @@ BigWigs:AddColors("Temple of the Jade Serpent Trash", {
 })
 
 BigWigs:AddSounds("Temple of the Jade Serpent Trash", {
+	[110099] = "underyou",
 	[110125] = "alert",
 	[114646] = "alert",
 	[395859] = "warning",

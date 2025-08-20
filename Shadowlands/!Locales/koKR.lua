@@ -28,6 +28,11 @@ end
 
 -- Halls of Atonement
 
+L = BigWigs:NewBossLocale("High Adjudicator Aleez", "koKR")
+if L then
+	L.empty_anima_vessel = "빈 령 용기"
+end
+
 L = BigWigs:NewBossLocale("Halls of Atonement Trash", "koKR")
 if L then
 	L.depraved_houndmaster = "타락한 사냥개조련사"
@@ -158,11 +163,6 @@ L = BigWigs:NewBossLocale("Mailroom Mayhem", "koKR")
 if L then
 	L.delivery_portal = "배달 차원문"
 	L.delivery_portal_desc = "배달 차원문의 위치가 변경될 때의 타이머를 보여줍니다."
-end
-
-L = BigWigs:NewBossLocale("Myza's Oasis", "koKR")
-if L then
-	L.add_wave_killed = "웨이브 (%d/%d)"
 end
 
 L = BigWigs:NewBossLocale("So'leah", "koKR")
