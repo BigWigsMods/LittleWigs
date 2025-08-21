@@ -167,8 +167,8 @@ end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "zhCN")
 if L then
-	--L.notes = "Notes"
-	--L.notes_desc = "Show a message when the notes are available. Hit the notes with your instrument's ability to gain 'Jazzy'.\n\n|T237554:16|tJazzy\n{348567}"
+	L.notes = "音符"
+	L.notes_desc = "当音符可用时显示提示信息。使用你的乐器击中音符可获得'爵士乐'增益。\n\n|T237554:16|t爵士乐\n{348567}"
 end
 
 L = BigWigs:NewBossLocale("So'leah", "zhCN")
