@@ -715,6 +715,7 @@ BigWigs:AddColors("Myza's Oasis", {
 	[359019] = "green",
 	[359028] = "purple",
 	[1241032] = {"green","yellow"},
+	["notes"] = "cyan",
 	["stages"] = "cyan",
 })
 
@@ -732,6 +733,7 @@ BigWigs:AddSounds("Myza's Oasis", {
 	[359019] = "info",
 	[359028] = "alert",
 	[1241032] = {"info","long","warning"},
+	["notes"] = "info",
 	["stages"] = "long",
 })
 

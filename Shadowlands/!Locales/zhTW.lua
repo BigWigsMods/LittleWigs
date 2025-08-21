@@ -165,6 +165,12 @@ if L then
 	L.delivery_portal_desc = "顯示中央郵務傳送門何時改變位置的計時器。"
 end
 
+L = BigWigs:NewBossLocale("Myza's Oasis", "zhTW")
+if L then
+	--L.notes = "Notes"
+	--L.notes_desc = "Show a message when the notes are available. Hit the notes with your instrument's ability to gain 'Jazzy'.\n\n|T237554:16|tJazzy\n{348567}"
+end
+
 L = BigWigs:NewBossLocale("So'leah", "zhTW")
 if L then
 	--L.group = "GROUP"
