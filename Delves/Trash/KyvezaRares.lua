@@ -133,12 +133,15 @@ function mod:OnBossEnable()
 	-- Invasive Phasecrawler
 	self:RegisterEngageMob("InvasivePhasecrawlerEngaged", 244448)
 	self:Log("SPELL_CAST_START", "EssenceCleave", 1238737)
+	self:Log("SPELL_CAST_SUCCESS", "EssenceCleaveSuccess", 1238737)
 	self:Log("SPELL_CAST_START", "GravityShatter", 1238713)
+	self:Log("SPELL_CAST_SUCCESS", "GravityShatterSuccess", 1238713)
 	self:Death("InvasivePhasecrawlerDeath", 244448)
 
 	-- D'rude
 	self:RegisterEngageMob("DrudeEngaged", 244453)
 	self:Log("SPELL_CAST_START", "Sandstorm", 1237671)
+	self:Log("SPELL_CAST_SUCCESS", "SandstormSuccess", 1237671)
 	self:Death("DrudeDeath", 244453)
 
 	-- Great Devourer
@@ -283,14 +286,22 @@ end
 
 function mod:EssenceCleave(args)
 	self:Message(args.spellId, "red")
-	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:EssenceCleaveSuccess(args)
+	self:Nameplate(args.spellId, 12.6, args.sourceGUID)
 end
 
 function mod:GravityShatter(args)
 	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 24.3, args.sourceGUID)
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:GravityShatterSuccess(args)
+	self:Nameplate(args.spellId, 20.9, args.sourceGUID)
 end
 
 function mod:InvasivePhasecrawlerDeath(args)
@@ -300,14 +311,17 @@ end
 -- D'rude
 
 function mod:DrudeEngaged(guid)
-	self:Nameplate(1237671, 17.2, guid) -- Sandstorm
+	self:Nameplate(1237671, 15.7, guid) -- Sandstorm
 end
 
 function mod:Sandstorm(args)
 	self:Message(args.spellId, "yellow")
-	-- TODO confirm this is cd on cast start
-	self:Nameplate(args.spellId, 18.1, args.sourceGUID)
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:SandstormSuccess(args)
+	self:Nameplate(args.spellId, 16.1, args.sourceGUID)
 end
 
 function mod:DrudeDeath(args)
@@ -446,7 +460,7 @@ function mod:DuneflyerCall(args)
 end
 
 function mod:DuneflyerCallSuccess(args)
-	self:Nameplate(args.spellId, 26.5, args.sourceGUID)
+	self:Nameplate(args.spellId, 20.4, args.sourceGUID)
 end
 
 function mod:SummonWarpstalker(args)
