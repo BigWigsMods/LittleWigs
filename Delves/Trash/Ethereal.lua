@@ -67,6 +67,7 @@ function mod:GetOptions()
 		-- Steelsoul Arcanoward
 		{1230608, "NAMEPLATE"}, -- Dazing Gauntlet
 		{1231893, "NAMEPLATE"}, -- Crushing Stomp
+		{1231919, "NAMEPLATE"}, -- Corespark Impale
 	}, {
 		[1236428] = L.shadeye_observer,
 		[1236256] = L.shadowguard_phasecutter,
@@ -121,6 +122,7 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("SteelsoulArcanowardEngaged", 247624)
 	self:Log("SPELL_CAST_START", "DazingGauntlet", 1230608)
 	self:Log("SPELL_CAST_START", "CrushingStomp", 1231893)
+	self:Log("SPELL_CAST_SUCCESS", "CoresparkImpale", 1231919)
 	self:Death("SteelsoulArcanowardDeath", 247624)
 
 	-- also enable the Rares module
@@ -332,6 +334,17 @@ do
 		self:PlaySound(args.spellId, "alert")
 	end
 
+	function mod:CoresparkImpale(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "orange")
+		self:CDBar(args.spellId, 19.7)
+		self:Nameplate(args.spellId, 19.7, args.sourceGUID)
+		timer = self:ScheduleTimer("SteelsoulArcanowardDeath", 20, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
+	end
+
 	function mod:SteelsoulArcanowardDeath(args, guidFromTimer)
 		if timer then
 			self:CancelTimer(timer)
@@ -340,6 +353,7 @@ do
 		self:StopBar(1236770) -- Arcane Geyser
 		self:StopBar(1230608) -- Dazing Gauntlet
 		self:StopBar(1231893) -- Crushing Stomp
+		self:StopBar(1231919) -- Corespark Impale
 		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
 end
