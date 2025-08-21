@@ -333,6 +333,7 @@ if L then
 	L.invasive_phasecrawler = "入侵的相位爬行者"
 	L.drude = "德鲁德"
 	L.great_devourer = "大吞噬者"
+	L.mercenary_acquisitionist = "佣兵收购专家"
 	L.pactsworn_fraycaller = "誓约唤荒者"
 	L.pactsworn_dustblade = "誓约沙尘剑士"
 	L.pactsworn_sandreaver = "誓约掠沙者"

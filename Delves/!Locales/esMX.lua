@@ -333,6 +333,7 @@ if L then
 	--L.invasive_phasecrawler = "Invasive Phasecrawler"
 	--L.drude = "D'rude"
 	--L.great_devourer = "Great Devourer"
+	L.mercenary_acquisitionist = "Adquiriente mercenario"
 	--L.pactsworn_fraycaller = "Pactsworn Fraycaller"
 	--L.pactsworn_dustblade = "Pactsworn Dustblade"
 	--L.pactsworn_sandreaver = "Pactsworn Sandreaver"
