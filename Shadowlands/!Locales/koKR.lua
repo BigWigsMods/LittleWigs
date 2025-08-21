@@ -167,8 +167,8 @@ end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "koKR")
 if L then
-	--L.notes = "Notes"
-	--L.notes_desc = "Show a message when the notes are available. Hit the notes with your instrument's ability to gain 'Jazzy'.\n\n|T237554:16|tJazzy\n{348567}"
+	L.notes = "음표"
+	L.notes_desc = "음표를 사용할 수 있을 때 메시지를 표시합니다. 악기의 능력으로 음표를 치면 '신바람' 효과를 얻습니다.\n\n|T237554:16|t신바람\n{348567}"
 end
 
 L = BigWigs:NewBossLocale("So'leah", "koKR")
