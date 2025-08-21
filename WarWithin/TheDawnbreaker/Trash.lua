@@ -96,7 +96,7 @@ function mod:GetOptions()
 		-- Manifested Shadow
 		{432565, "NAMEPLATE"}, -- Black Hail
 		-- Nightfall Dark Architect
-		{431349, "NAMEPLATE"}, -- Tormenting Eruption
+		{431349, "ME_ONLY_EMPHASIZE", "NAMEPLATE"}, -- Tormenting Eruption
 		446615, -- Usher Reinforcements
 	}, {
 		[449042] = L.arathi_lamplighter,
