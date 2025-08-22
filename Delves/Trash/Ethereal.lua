@@ -121,6 +121,7 @@ function mod:OnBossEnable()
 	-- Steelsoul Arcanoward
 	self:RegisterEngageMob("SteelsoulArcanowardEngaged", 247624)
 	self:Log("SPELL_CAST_START", "DazingGauntlet", 1230608)
+	self:Log("SPELL_CAST_SUCCESS", "DazingGauntletSuccess", 1230608)
 	self:Log("SPELL_CAST_START", "CrushingStomp", 1231893)
 	self:Log("SPELL_CAST_SUCCESS", "CoresparkImpale", 1231919)
 	self:Death("SteelsoulArcanowardDeath", 247624)
@@ -294,12 +295,14 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
+		self:CDBar(1236770, 3.6) -- Arcane Geyser
+		self:Nameplate(1236770, 3.6, guid) -- Arcane Geyser
 		self:CDBar(1230608, 6.0) -- Dazing Gauntlet
 		self:Nameplate(1230608, 6.0, guid) -- Dazing Gauntlet
-		self:CDBar(1236770, 8.5) -- Arcane Geyser
-		self:Nameplate(1236770, 8.5, guid) -- Arcane Geyser
-		self:CDBar(1231893, 12.1) -- Crushing Stomp
-		self:Nameplate(1231893, 12.1, guid) -- Crushing Stomp
+		self:CDBar(1231893, 8.4) -- Crushing Stomp
+		self:Nameplate(1231893, 8.4, guid) -- Crushing Stomp
+		self:CDBar(1231919, 15.7) -- Corespark Impale
+		self:Nameplate(1231919, 15.7, guid) -- Corespark Impale
 		timer = self:ScheduleTimer("SteelsoulArcanowardDeath", 20, nil, guid)
 	end
 
@@ -313,14 +316,18 @@ do
 	end
 
 	function mod:DazingGauntlet(args)
+		self:Message(args.spellId, "purple")
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		self:PlaySound(args.spellId, "alert")
+	end
+
+	function mod:DazingGauntletSuccess(args)
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:Message(args.spellId, "purple")
-		self:CDBar(args.spellId, 10.1)
-		self:Nameplate(args.spellId, 10.1, args.sourceGUID)
+		self:CDBar(args.spellId, 8.1)
+		self:Nameplate(args.spellId, 8.1, args.sourceGUID)
 		timer = self:ScheduleTimer("SteelsoulArcanowardDeath", 20, nil, args.sourceGUID)
-		self:PlaySound(args.spellId, "alert")
 	end
 
 	function mod:CrushingStomp(args)
