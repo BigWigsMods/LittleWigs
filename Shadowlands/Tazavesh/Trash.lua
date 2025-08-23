@@ -101,6 +101,9 @@ if L then
 
 	------ So'leah's Gambit ------
 	L.tazavesh_soleahs_gambit = "Tazavesh: So'leah's Gambit"
+	L.portal_open = "Portal opens"
+	L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
+	L.portal_open_icon = "spell_arcane_portalironforge"
 	L.murkbrine_scalebinder = "Murkbrine Scalebinder"
 	L.murkbrine_fishmancer = "Murkbrine Fishmancer"
 	L.murkbrine_shellcrusher = "Murkbrine Shellcrusher"
@@ -189,6 +192,7 @@ function mod:GetOptions()
 		{355473, "NAMEPLATE"}, -- Shock Mines
 		------ So'leah's Gambit ------
 		-- General
+		"portal_open",
 		358443, -- Blood in the Water
 		-- Murkbrine Scalebinder
 		{355132, "NAMEPLATE"}, -- Invigorating Fish Stick
@@ -240,7 +244,7 @@ function mod:GetOptions()
 		[1244443] = L.commerce_enforcer,
 		[355479] = L.commander_zofar,
 		------ So'leah's Gambit ------
-		[358443] = L.tazavesh_soleahs_gambit,
+		["portal_open"] = L.tazavesh_soleahs_gambit,
 		[355132] = L.murkbrine_scalebinder,
 		[355234] = L.murkbrine_fishmancer,
 		[355057] = L.murkbrine_shellcrusher,
@@ -639,7 +643,7 @@ do
 	function mod:HardLightBaton(args)
 		if self:Dispeller("magic", true, args.spellId) then
 			self:Nameplate(args.spellId, 18.1, args.sourceGUID)
-			if args.time - prev > 2 then
+			if args.time - prev > 3 then
 				prev = args.time
 				self:Message(args.spellId, "purple", CL.on:format(args.spellName, args.sourceName))
 				self:PlaySound(args.spellId, "alert")
@@ -1358,6 +1362,22 @@ do
 end
 
 ------ So'leah's Gambit ------
+
+function mod:HylbrandeDefeated()
+	-- 222.90 [ENCOUNTER_END] 2426#Hylbrande
+	-- 223.07 [CHAT_MSG_MONSTER_YELL] That artifact... will... end you all...#Hylbrande
+	-- 232.52 [CHAT_MSG_MONSTER_SAY] So'leah's arrogance will be her downfall.#Al'dalil
+	-- 237.29 [ZONE_CHANGED] Tazavesh, the Veiled Market#Tazavesh, the Veiled Market#Boralus Harbor
+	-- 237.43 [CHAT_MSG_MONSTER_EMOTE] The instance updated the respawn location.#Waystone
+	self:Bar("portal_open", 15.0, L.portal_open, L.portal_open_icon)
+end
+
+function mod:TimecapnHooktailDefeated()
+	-- 27.70 [ENCOUNTER_END] 2419#Timecap'n Hooktail#23#5#1
+	-- 38.71 [CHAT_MSG_MONSTER_SAY] Let us depart before the Kul Tirans ask questions we lack time to answer.#Al'dalil
+	-- 44.01 [ZONE_CHANGED] Tazavesh, the Veiled Market#Tazavesh, the Veiled Market
+	self:Bar("portal_open", 15.0, L.portal_open, L.portal_open_icon)
+end
 
 -- Blood in the Water
 

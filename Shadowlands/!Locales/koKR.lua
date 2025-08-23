@@ -221,6 +221,8 @@ if L then
 	L.commander_zofar = "사령관 조파르"
 
 	L.tazavesh_soleahs_gambit = "타자베쉬: 소레아의 승부수"
+	--L.portal_open = "Portal opens"
+	--L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
 	L.murkbrine_scalebinder = "진흙소금 비늘결속자"
 	L.murkbrine_fishmancer = "진흙소금 생선술사"
 	L.murkbrine_shellcrusher = "진흙소금 껍질분쇄자"

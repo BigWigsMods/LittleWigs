@@ -73,6 +73,14 @@ function mod:OnEngage()
 	self:CDBar(346766, 40.0) -- Sanitizing Cycle
 end
 
+function mod:OnWin()
+	local trashMod = BigWigs:GetBossModule("Tazavesh Trash", true)
+	if trashMod then
+		trashMod:Enable()
+		trashMod:HylbrandeDefeated()
+	end
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --

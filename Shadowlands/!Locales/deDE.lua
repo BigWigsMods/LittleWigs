@@ -221,6 +221,8 @@ if L then
 	L.commander_zofar = "Kommandant Zo'far"
 
 	L.tazavesh_soleahs_gambit = "Tazavesh: So'leahs Schachzug"
+	--L.portal_open = "Portal opens"
+	--L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
 	L.murkbrine_scalebinder = "Schuppenbinder der Finstergischt"
 	L.murkbrine_fishmancer = "Fischomant der Finstergischt"
 	L.murkbrine_shellcrusher = "Panzerbrecher der Finstergischt"

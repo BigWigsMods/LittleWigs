@@ -221,6 +221,8 @@ if L then
 	L.commander_zofar = "指挥官佐·法"
 
 	L.tazavesh_soleahs_gambit = "塔扎维什：索·莉亚的宏图"
+	--L.portal_open = "Portal opens"
+	--L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
 	L.murkbrine_scalebinder = "浊盐缚鳞者"
 	L.murkbrine_fishmancer = "浊盐鱼术师"
 	L.murkbrine_shellcrusher = "浊盐碎壳者"

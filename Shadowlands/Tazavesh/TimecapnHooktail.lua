@@ -44,6 +44,14 @@ function mod:OnEngage()
 	self:CDBar(1240102, 22.0) -- Time Bombs
 end
 
+function mod:OnWin()
+	local trashMod = BigWigs:GetBossModule("Tazavesh Trash", true)
+	if trashMod then
+		trashMod:Enable()
+		trashMod:TimecapnHooktailDefeated()
+	end
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
