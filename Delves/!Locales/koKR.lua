@@ -333,6 +333,7 @@ if L then
 	L.invasive_phasecrawler = "침략하는 위상포복자"
 	L.drude = "드루드"
 	L.great_devourer = "위대한 포식자"
+	L.mercenary_acquisitionist = "용병 수집가"
 	L.pactsworn_fraycaller = "서약혈맹 전투소환사"
 	L.pactsworn_dustblade = "서약혈맹 먼지칼날"
 	L.pactsworn_sandreaver = "서약혈맹 모래약탈자"

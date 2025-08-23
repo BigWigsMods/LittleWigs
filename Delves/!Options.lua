@@ -521,6 +521,7 @@ BigWigs:AddColors("Ethereal Trash", {
 	[1230608] = "purple",
 	[1231144] = "red",
 	[1231893] = "yellow",
+	[1231919] = "orange",
 	[1236229] = "yellow",
 	[1236256] = "orange",
 	[1236354] = "red",
@@ -532,6 +533,7 @@ BigWigs:AddSounds("Ethereal Trash", {
 	[1230608] = "alert",
 	[1231144] = "alarm",
 	[1231893] = "alert",
+	[1231919] = "alarm",
 	[1236229] = "info",
 	[1236256] = "alarm",
 	[1236354] = "alert",
@@ -597,6 +599,7 @@ BigWigs:AddSounds("Goblin Delve Trash", {
 
 BigWigs:AddColors("Kobold Delve Trash", {
 	[445191] = {"blue","red"},
+	[445193] = "blue",
 	[445210] = "orange",
 	[448399] = {"red","yellow"},
 	[448528] = "orange",
@@ -605,6 +608,7 @@ BigWigs:AddColors("Kobold Delve Trash", {
 
 BigWigs:AddSounds("Kobold Delve Trash", {
 	[445191] = {"alert","info"},
+	[445193] = "underyou",
 	[445210] = "alarm",
 	[448399] = {"alert","info"},
 	[448528] = "alarm",
@@ -729,6 +733,8 @@ BigWigs:AddColors("Ky'veza Rares", {
 	[1214147] = "yellow",
 	[1217371] = "red",
 	[1237258] = "blue",
+	[1237294] = {"blue","red"},
+	[1237381] = "yellow",
 	[1237671] = "yellow",
 	[1238713] = "orange",
 	[1238737] = "red",
@@ -756,6 +762,8 @@ BigWigs:AddSounds("Ky'veza Rares", {
 	[1214147] = "info",
 	[1217371] = "alarm",
 	[1237258] = "underyou",
+	[1237294] = "info",
+	[1237381] = "alarm",
 	[1237671] = "alarm",
 	[1238713] = "alarm",
 	[1238737] = "alarm",

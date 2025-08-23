@@ -165,6 +165,12 @@ if L then
 	L.delivery_portal_desc = "배달 차원문의 위치가 변경될 때의 타이머를 보여줍니다."
 end
 
+L = BigWigs:NewBossLocale("Myza's Oasis", "koKR")
+if L then
+	L.notes = "음표"
+	L.notes_desc = "음표를 사용할 수 있을 때 메시지를 표시합니다. 악기의 능력으로 음표를 치면 '신바람' 효과를 얻습니다.\n\n|T237554:16|t신바람\n{348567}"
+end
+
 L = BigWigs:NewBossLocale("So'leah", "koKR")
 if L then
 	L.group = "그룹"

@@ -165,6 +165,12 @@ if L then
 	L.delivery_portal_desc = "显示投递传送门何时更改位置的计时器。"
 end
 
+L = BigWigs:NewBossLocale("Myza's Oasis", "zhCN")
+if L then
+	L.notes = "音符"
+	L.notes_desc = "当音符可用时显示提示信息。使用你的乐器击中音符可获得'爵士乐'增益。\n\n|T237554:16|t爵士乐\n{348567}"
+end
+
 L = BigWigs:NewBossLocale("So'leah", "zhCN")
 if L then
 	L.group = "队伍"

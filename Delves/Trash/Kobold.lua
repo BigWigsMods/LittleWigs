@@ -9,6 +9,8 @@ mod:RegisterEnableMob(
 	213775, -- Dagran Thaurissan II (Kriegval's Rest gossip NPC)
 	214143, -- Foreman Bruknar (The Waterworks gossip NPC)
 	214290, -- Pagsly (The Waterworks gossip NPC)
+	203877, -- Kobold Thwacker
+	203878, -- Kobold Mystic
 	204127, -- Kobold Taskfinder
 	225568, -- Kobold Guardian
 	213577, -- Spitfire Charger
@@ -48,6 +50,7 @@ function mod:GetOptions()
 		448399, -- Battle Cry
 		-- Spitfire Charger
 		445210, -- Fire Charge
+		445193, -- Flame Patch
 		445191, -- Wicklighter Volley
 		-- Spitfire Fusetender
 		448528, -- Throw Dynamite
@@ -73,6 +76,8 @@ function mod:OnBossEnable()
 
 	-- Spitfire Charger
 	self:Log("SPELL_CAST_START", "FireCharge", 445210)
+	self:Log("SPELL_PERIODIC_DAMAGE", "FlamePatchDamage", 445193)
+	self:Log("SPELL_PERIODIC_MISSED", "FlamePatchDamage", 445193)
 	self:Log("SPELL_CAST_START", "WicklighterVolley", 445191)
 	self:Log("SPELL_AURA_APPLIED", "WicklighterVolleyApplied", 445191)
 
@@ -140,6 +145,17 @@ end
 function mod:FireCharge(args)
 	self:Message(args.spellId, "orange", CL.charge)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+do
+	local prev = 0
+	function mod:FlamePatchDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then -- 2s tick rate, but damages instantly
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
+		end
+	end
 end
 
 function mod:WicklighterVolley(args)

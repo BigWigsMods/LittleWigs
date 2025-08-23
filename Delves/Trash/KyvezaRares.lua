@@ -11,6 +11,7 @@ mod:RegisterEnableMob(
 	244448, -- Invasive Phasecrawler
 	244453, -- D'rude
 	244444, -- Great Devourer
+	244442, -- Mercenary Acquisitionist
 	-- TWW Season 3, Ky'veza rares
 	244413, -- Pactsworn Fraycaller
 	244415, -- Pactsworn Dustblade
@@ -43,6 +44,7 @@ if L then
 	L.invasive_phasecrawler = "Invasive Phasecrawler"
 	L.drude = "D'rude"
 	L.great_devourer = "Great Devourer"
+	L.mercenary_acquisitionist = "Mercenary Acquisitionist"
 	L.pactsworn_fraycaller = "Pactsworn Fraycaller"
 	L.pactsworn_dustblade = "Pactsworn Dustblade"
 	L.pactsworn_sandreaver = "Pactsworn Sandreaver"
@@ -73,6 +75,9 @@ function mod:GetOptions()
 		{1237671, "NAMEPLATE"}, -- Sandstorm
 		-- Great Devourer
 		1237258, -- Decroding Puddle
+		-- Mercenary Acquisitionist
+		{1237381, "NAMEPLATE"}, -- Arcanoconstruct Salvo
+		{1237294, "NAMEPLATE"}, -- Borrow Power
 		-- Pactsworn Fraycaller
 		{1242752, "NAMEPLATE"}, -- Unworthy Vessel
 		-- TODO probably Consume too
@@ -106,6 +111,7 @@ function mod:GetOptions()
 		[1238737] = L.invasive_phasecrawler,
 		[1237671] = L.drude,
 		[1237258] = L.great_devourer,
+		[1237381] = L.mercenary_acquisitionist,
 		[1242752] = L.pactsworn_fraycaller,
 		[1243017] = L.pactsworn_dustblade,
 		[1242469] = L.pactsworn_sandreaver,
@@ -133,17 +139,27 @@ function mod:OnBossEnable()
 	-- Invasive Phasecrawler
 	self:RegisterEngageMob("InvasivePhasecrawlerEngaged", 244448)
 	self:Log("SPELL_CAST_START", "EssenceCleave", 1238737)
+	self:Log("SPELL_CAST_SUCCESS", "EssenceCleaveSuccess", 1238737)
 	self:Log("SPELL_CAST_START", "GravityShatter", 1238713)
+	self:Log("SPELL_CAST_SUCCESS", "GravityShatterSuccess", 1238713)
 	self:Death("InvasivePhasecrawlerDeath", 244448)
 
 	-- D'rude
 	self:RegisterEngageMob("DrudeEngaged", 244453)
 	self:Log("SPELL_CAST_START", "Sandstorm", 1237671)
+	self:Log("SPELL_CAST_SUCCESS", "SandstormSuccess", 1237671)
 	self:Death("DrudeDeath", 244453)
 
 	-- Great Devourer
 	self:Log("SPELL_PERIODIC_DAMAGE", "DecrodingPuddleDamage", 1237258)
 	self:Log("SPELL_PERIODIC_MISSED", "DecrodingPuddleDamage", 1237258)
+
+	-- Mercenary Acquisitionist
+	self:RegisterEngageMob("MercenaryAcquisitionistEngaged", 244442)
+	self:Log("SPELL_CAST_START", "ArcanoconstructSalvo", 1237381)
+	self:Log("SPELL_CAST_SUCCESS", "BorrowPower", 1237294)
+	self:Log("SPELL_AURA_APPLIED", "BorrowPowerApplied", 1237293)
+	self:Death("MercenaryAcquisitionistDeath", 244442)
 
 	-- Pactsworn Fraycaller
 	self:RegisterEngageMob("PactswornFraycallerEngaged", 244413)
@@ -283,14 +299,22 @@ end
 
 function mod:EssenceCleave(args)
 	self:Message(args.spellId, "red")
-	self:Nameplate(args.spellId, 14.6, args.sourceGUID)
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:EssenceCleaveSuccess(args)
+	self:Nameplate(args.spellId, 12.6, args.sourceGUID)
 end
 
 function mod:GravityShatter(args)
 	self:Message(args.spellId, "orange")
-	self:Nameplate(args.spellId, 24.3, args.sourceGUID)
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:GravityShatterSuccess(args)
+	self:Nameplate(args.spellId, 20.9, args.sourceGUID)
 end
 
 function mod:InvasivePhasecrawlerDeath(args)
@@ -300,18 +324,73 @@ end
 -- D'rude
 
 function mod:DrudeEngaged(guid)
-	self:Nameplate(1237671, 17.2, guid) -- Sandstorm
+	self:Nameplate(1237671, 15.7, guid) -- Sandstorm
 end
 
 function mod:Sandstorm(args)
 	self:Message(args.spellId, "yellow")
-	-- TODO confirm this is cd on cast start
-	self:Nameplate(args.spellId, 18.1, args.sourceGUID)
+	self:Nameplate(args.spellId, 0, args.sourceGUID)
 	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:SandstormSuccess(args)
+	self:Nameplate(args.spellId, 16.1, args.sourceGUID)
 end
 
 function mod:DrudeDeath(args)
 	self:ClearNameplate(args.destGUID)
+end
+
+-- Mercenary Acquisitionist
+
+do
+	local timer
+
+	function mod:MercenaryAcquisitionistEngaged(guid)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(1237381, 2.4) -- Arcanoconstruct Salvo
+		self:Nameplate(1237381, 2.4, guid) -- Arcanoconstruct Salvo
+		self:CDBar(1237294, 8.5) -- Borrow Power
+		self:Nameplate(1237294, 8.5, guid) -- Borrow Power
+		timer = self:ScheduleTimer("MercenaryAcquisitionistDeath", 20, nil, guid)
+	end
+
+	function mod:ArcanoconstructSalvo(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:Message(args.spellId, "yellow")
+		self:CDBar(args.spellId, 13.4)
+		self:Nameplate(args.spellId, 13.4, args.sourceGUID)
+		timer = self:ScheduleTimer("MercenaryAcquisitionistDeath", 30, nil, args.sourceGUID)
+		self:PlaySound(args.spellId, "alarm")
+	end
+
+	function mod:BorrowPower(args)
+		if timer then
+			self:CancelTimer(timer)
+		end
+		self:CDBar(args.spellId, 18.2)
+		self:Nameplate(args.spellId, 18.2, args.sourceGUID)
+		timer = self:ScheduleTimer("MercenaryAcquisitionistDeath", 30, nil, args.sourceGUID)
+	end
+
+	function mod:BorrowPowerApplied(args)
+		self:TargetMessage(1237294, "red", args.destName)
+		self:PlaySound(1237294, "info", nil, args.destName)
+	end
+
+	function mod:MercenaryAcquisitionistDeath(args, guidFromTimer)
+		if timer then
+			self:CancelTimer(timer)
+			timer = nil
+		end
+		self:StopBar(1237381) -- Arcanoconstruct Salvo
+		self:StopBar(1237294) -- Borrow Power
+		self:ClearNameplate(guidFromTimer or args.destGUID)
+	end
 end
 
 -- Great Devourer
@@ -446,7 +525,7 @@ function mod:DuneflyerCall(args)
 end
 
 function mod:DuneflyerCallSuccess(args)
-	self:Nameplate(args.spellId, 26.5, args.sourceGUID)
+	self:Nameplate(args.spellId, 20.4, args.sourceGUID)
 end
 
 function mod:SummonWarpstalker(args)

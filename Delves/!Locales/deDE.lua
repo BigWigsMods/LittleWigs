@@ -333,6 +333,7 @@ if L then
 	L.invasive_phasecrawler = "Invasiver Phasenkriecher"
 	L.drude = "D'rude"
 	L.great_devourer = "Großer Verschlinger"
+	L.mercenary_acquisitionist = "Söldner-Akquisiteur"
 	L.pactsworn_fraycaller = "Paktgeschworener Getümmelrufer"
 	L.pactsworn_dustblade = "Paktgeschworene Staubklinge"
 	L.pactsworn_sandreaver = "Paktgeschworener Sandjäger"

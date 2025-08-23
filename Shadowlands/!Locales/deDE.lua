@@ -165,6 +165,12 @@ if L then
 	L.delivery_portal_desc = "Zeigt einen Timer für die Änderung der Position des Zustellportals."
 end
 
+L = BigWigs:NewBossLocale("Myza's Oasis", "deDE")
+if L then
+	L.notes = "Noten"
+	L.notes_desc = "Zeigt eine Nachricht an, sobald die Noten verfügbar sind. Noten mit der Instrumentenfähigkeit treffen um 'Jazzig' zu erhalten.\n\n|T237554:16|tJazzig\n{348567}"
+end
+
 L = BigWigs:NewBossLocale("So'leah", "deDE")
 if L then
 	L.group = "GRUPPE"
