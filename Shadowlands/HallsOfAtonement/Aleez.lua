@@ -140,8 +140,6 @@ do
 			if timer then
 				self:CancelTimer(timer)
 			end
-			-- this can spawn on top of one of the initial 4 Empty Anima Vessels, in which case alerting is pointless as both
-			-- will be consumed by a single Ghastly Parishioner. unfortunately we have no way to detect if this has happened.
 			self:Message(323848, "cyan", CL.spawned:format(L.empty_anima_vessel))
 			self:CDBar(323848, 20.7, L.empty_anima_vessel) -- either 20.7 or 21.9
 			timer = self:ScheduleTimer("VesselOfAtonementSkipped", 22.9) -- 1s after latest possible spawn
