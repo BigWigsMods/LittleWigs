@@ -4,7 +4,10 @@
 
 local mod, CL = BigWigs:NewBoss("Maulspike", {2664, 2826}) -- Fungal Folly, Sidestreet Sluice
 if not mod then return end
-mod:RegisterEnableMob(234958) -- Maulspike
+mod:RegisterEnableMob(
+	234958, -- Maulspike
+	247480 -- Maulspike (Ethereal Routing Station)
+)
 mod:SetEncounterID(3121)
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
@@ -56,7 +59,11 @@ function mod:OnBossEnable()
 	if instanceId == 2826 then -- no encounter events in Sidestreet Sluice
 		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 		self:Death("Win", 234958)
+	else
+		-- Ethereal Routing Station
+		self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
 	end
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3") -- Teleported
 end
 
 function mod:OnEngage()
@@ -68,6 +75,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
+	if spellId == 1243416 and self:MobId(self:UnitGUID(unit)) == 247480 then -- Teleported
+		-- check mobId because Ethereal Routing Station can have up to 3 bosses engaged at once
+		self:Win()
+	end
+end
 
 function mod:RipAndTear(args)
 	self:Message(args.spellId, "purple")
