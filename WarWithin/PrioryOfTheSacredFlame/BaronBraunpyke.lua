@@ -13,6 +13,7 @@ mod:SetRespawnTime(30)
 --
 
 local vindictiveWrathActive = false
+local sacrificialPyreActive = false
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -61,6 +62,7 @@ end
 
 function mod:OnEngage()
 	vindictiveWrathActive = false
+	sacrificialPyreActive = false
 	self:StopBar(CL.active)
 	if self:Mythic() then
 		self:CDBar(423062, 7.0) -- Hammer of Purity
@@ -143,7 +145,6 @@ end
 -- Mythic
 
 do
-	local sacrificialPyreActive = false
 	local sacrificialPyreCharges = 0
 	local nextUnleashedPyre = 0
 	local sacrificialPyrePlayersHit = {}
