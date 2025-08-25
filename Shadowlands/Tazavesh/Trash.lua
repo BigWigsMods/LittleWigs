@@ -413,10 +413,10 @@ function mod:OnBossEnable()
 
 	-- Murkbrine Shellcrusher
 	self:RegisterEngageMob("MurkbrineShellcrusherEngaged", 178139)
-	self:Log("SPELL_CAST_START", "CryofMrrggllrrgg", 355057)
-	self:Log("SPELL_INTERRUPT", "CryofMrrggllrrggInterrupt", 355057)
-	self:Log("SPELL_CAST_SUCCESS", "CryofMrrggllrrggSuccess", 355057)
-	self:Log("SPELL_AURA_APPLIED", "CryofMrrggllrrggApplied", 355057)
+	self:Log("SPELL_CAST_START", "CryOfMrrggllrrgg", 355057)
+	self:Log("SPELL_INTERRUPT", "CryOfMrrggllrrggInterrupt", 355057)
+	self:Log("SPELL_CAST_SUCCESS", "CryOfMrrggllrrggSuccess", 355057)
+	self:Log("SPELL_AURA_APPLIED", "CryOfMrrggllrrggApplied", 355057)
 	self:Log("SPELL_CAST_START", "Shellcracker", 355048)
 	self:Log("SPELL_CAST_SUCCESS", "ShellcrackerSuccess", 355048)
 	self:Death("MurkbrineShellcrusherDeath", 178139)
@@ -1411,23 +1411,29 @@ function mod:MurkbrineShellcrusherEngaged(guid)
 	self:Nameplate(355048, 9.6, guid) -- Shellcracker
 end
 
-function mod:CryofMrrggllrrgg(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:CryOfMrrggllrrgg(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
-function mod:CryofMrrggllrrggInterrupt(args)
+function mod:CryOfMrrggllrrggInterrupt(args)
 	self:Nameplate(355057, 30.9, args.destGUID)
 end
 
-function mod:CryofMrrggllrrggSuccess(args)
+function mod:CryOfMrrggllrrggSuccess(args)
 	self:Nameplate(args.spellId, 30.9, args.sourceGUID)
 end
 
 do
 	local prev = 0
-	function mod:CryofMrrggllrrggApplied(args)
+	function mod:CryOfMrrggllrrggApplied(args)
 		if self:Dispeller("enrage", true, args.spellId) and args.time - prev > 2 then
 			prev = args.time
 			self:Message(args.spellId, "yellow", CL.buff_other:format(args.destName, args.spellName))
