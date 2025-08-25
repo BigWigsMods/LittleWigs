@@ -35,6 +35,7 @@ function mod:GetOptions()
 		{346116, "TANK"}, -- Shearing Swings
 		347094, -- Titanic Crash
 		{346957, "SAY", "ME_ONLY_EMPHASIZE"}, -- Purged by Fire
+		346961, -- Purging Field
 		346766, -- Sanitizing Cycle
 		"vault_purifier", -- Vault Purifier (Adds)
 		-- Hard Mode
@@ -54,6 +55,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "PurgedByFire", 346957)
 	self:Log("SPELL_DAMAGE", "PurgedByFireDamage", 346960)
 	self:Log("SPELL_MISSED", "PurgedByFireDamage", 346960)
+	self:Log("SPELL_PERIODIC_DAMAGE", "PurgingFieldDamage", 346961)
+	self:Log("SPELL_PERIODIC_MISSED", "PurgingFieldDamage", 346961)
 	self:Log("SPELL_CAST_START", "SanitizingCycle", 346766)
 	self:Log("SPELL_CAST_SUCCESS", "SanitizingCycleSuccess", 346766)
 	self:Log("SPELL_AURA_REMOVED", "SanitizingCycleRemoved", 346766)
@@ -140,6 +143,17 @@ do
 			prev = args.time
 			self:PersonalMessage(346957, "underyou")
 			self:PlaySound(346957, "underyou")
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:PurgingFieldDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 2 then -- 1.5s tick rate
+			prev = args.time
+			self:PersonalMessage(args.spellId, "underyou")
+			self:PlaySound(args.spellId, "underyou")
 		end
 	end
 end
