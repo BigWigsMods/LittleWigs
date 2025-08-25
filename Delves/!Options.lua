@@ -477,14 +477,12 @@ BigWigs:AddColors("Torque Clankfire and Sprok", {
 	[1215015] = "orange",
 	[1215033] = "yellow",
 	[1215084] = "red",
-	[1215090] = "cyan",
 })
 
 BigWigs:AddSounds("Torque Clankfire and Sprok", {
 	[1215015] = "alarm",
 	[1215033] = "long",
 	[1215084] = "alert",
-	[1215090] = "info",
 })
 
 BigWigs:AddColors("Shroomsprew", {
