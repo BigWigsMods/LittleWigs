@@ -69,6 +69,7 @@ function mod:GetOptions()
 		1222202, -- Arcane Burn
 		-- Wastelander Farstalker
 		{1229510, "NAMEPLATE"}, -- Arcing Zap
+		{1221679, "NAMEPLATE", "OFF"}, -- Farstalker's Leap
 		-- Tamed Ruinstalker
 		{1222356, "NAMEPLATE"}, -- Warp
 		-- Wastelander Ritualist
@@ -146,6 +147,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ArcingZap", 1229510)
 	self:Log("SPELL_INTERRUPT", "ArcingZapInterrupt", 1229510)
 	self:Log("SPELL_CAST_SUCCESS", "ArcingZapSuccess", 1229510)
+	self:Log("SPELL_CAST_SUCCESS", "FarstalkersLeap", 1221679)
 	self:Death("WastelanderFarstalkerDeath", 234962)
 
 	-- Tamed Ruinstalker
@@ -347,6 +349,7 @@ end
 -- Wastelander Farstalker
 
 function mod:WastelanderFarstalkerEngaged(guid)
+	self:Nameplate(1221679, 7.0, guid) -- Farstalker's Leap
 	self:Nameplate(1229510, 9.9, guid) -- Arcing Zap
 end
 
@@ -368,6 +371,12 @@ end
 
 function mod:ArcingZapSuccess(args)
 	self:Nameplate(args.spellId, 23.3, args.sourceGUID)
+end
+
+function mod:FarstalkersLeap(args)
+	self:Message(args.spellId, "cyan")
+	self:Nameplate(args.spellId, 13.3, args.sourceGUID)
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:WastelanderFarstalkerDeath(args)
