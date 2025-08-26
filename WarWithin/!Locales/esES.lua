@@ -131,6 +131,7 @@ if L then
 	L.tamed_ruinstalker = "Acecharruina domesticado"
 	L.wastelander_ritualist = "Ritualista del páramo"
 	L.wastelander_pactspeaker = "Emitepactos del páramo"
+	L.evoked_spirit = "Espíritu evocado"
 	L.karesh_elemental = "Elemental de K'aresh"
 	L.burrowing_creeper = "Trepador excavador"
 	L.wastes_creeper = "Trepador del páramo"

@@ -131,6 +131,7 @@ if L then
 	L.tamed_ruinstalker = "Traqueur des ruines apprivoisé"
 	L.wastelander_ritualist = "Ritualiste paria du désert"
 	L.wastelander_pactspeaker = "Pactisatrice paria du désert"
+	L.evoked_spirit = "Esprit évoqué"
 	L.karesh_elemental = "Elémentaire k'areshi"
 	L.burrowing_creeper = "Rampant fouisseur"
 	L.wastes_creeper = "Rampant du désert"

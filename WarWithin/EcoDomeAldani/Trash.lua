@@ -18,6 +18,7 @@ mod:RegisterEnableMob(
 	234960, -- Tamed Ruinstalker
 	234957, -- Wastelander Ritualist
 	234955, -- Wastelander Pactspeaker
+	240952, -- Evoked Spirit
 	235151, -- K'aresh Elemental
 	245092, -- Burrowing Creeper
 	234918 -- Wastes Creeper
@@ -39,6 +40,7 @@ if L then
 	L.tamed_ruinstalker = "Tamed Ruinstalker"
 	L.wastelander_ritualist = "Wastelander Ritualist"
 	L.wastelander_pactspeaker = "Wastelander Pactspeaker"
+	L.evoked_spirit = "Evoked Spirit"
 	L.karesh_elemental = "K'aresh Elemental"
 	L.burrowing_creeper = "Burrowing Creeper"
 	L.wastes_creeper = "Wastes Creeper"
@@ -50,6 +52,7 @@ end
 -- Initialization
 --
 
+local evokedSpiritMarker = mod:AddMarkerOption(true, "npc", 7, "evoked_spirit", 7)
 function mod:GetOptions()
 	return {
 		-- Terrified Broker
@@ -77,6 +80,7 @@ function mod:GetOptions()
 		-- Wastelander Pactspeaker
 		{1221532, "NAMEPLATE"}, -- Erratic Ritual
 		{1248699, "NAMEPLATE"}, -- Consume Spirit
+		evokedSpiritMarker,
 		1226492, -- Ritual Disrupted
 		-- K'aresh Elemental
 		{1223000, "DISPEL", "NAMEPLATE"}, -- Embrace of K'aresh
@@ -102,6 +106,11 @@ function mod:GetOptions()
 		[1237195] = L.burrowing_creeper,
 		[1223007] = L.wastes_creeper,
 	}
+end
+
+function mod:OnRegister()
+	-- delayed for custom locale
+	evokedSpiritMarker = mod:AddMarkerOption(true, "npc", 7, "evoked_spirit", 7)
 end
 
 function mod:OnBossEnable()
@@ -165,6 +174,7 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("WastelanderPactspeakerEngaged", 234955)
 	self:Log("SPELL_CAST_START", "ErraticRitual", 1221532)
 	self:Log("SPELL_CAST_START", "ConsumeSpirit", 1248699)
+	self:Log("SPELL_SUMMON", "EvokeSpirit", 1248700)
 	self:Log("SPELL_AURA_APPLIED", "RitualDisruptedApplied", 1226492)
 	self:Death("WastelanderPactspeakerDeath", 234955)
 
@@ -349,7 +359,7 @@ end
 -- Wastelander Farstalker
 
 function mod:WastelanderFarstalkerEngaged(guid)
-	self:Nameplate(1221679, 7.0, guid) -- Farstalker's Leap
+	self:Nameplate(1221679, 5.6, guid) -- Farstalker's Leap
 	self:Nameplate(1229510, 9.9, guid) -- Arcing Zap
 end
 
@@ -373,10 +383,16 @@ function mod:ArcingZapSuccess(args)
 	self:Nameplate(args.spellId, 23.3, args.sourceGUID)
 end
 
-function mod:FarstalkersLeap(args)
-	self:Message(args.spellId, "cyan")
-	self:Nameplate(args.spellId, 13.3, args.sourceGUID)
-	self:PlaySound(args.spellId, "info")
+do
+	local prev = 0
+	function mod:FarstalkersLeap(args)
+		self:Nameplate(args.spellId, 12.2, args.sourceGUID)
+		if args.time - prev > 1.5 then
+			prev = args.time
+			self:Message(args.spellId, "cyan")
+			self:PlaySound(args.spellId, "info")
+		end
+	end
 end
 
 function mod:WastelanderFarstalkerDeath(args)
@@ -408,7 +424,7 @@ end
 -- Wastelander Ritualist
 
 function mod:WastelanderRitualistEngaged(guid)
-	self:Nameplate(1221483, 11.9, guid) -- Arcing Energy
+	self:Nameplate(1221483, 11.5, guid) -- Arcing Energy
 end
 
 function mod:ArcingEnergy(args)
@@ -441,6 +457,26 @@ function mod:ConsumeSpirit(args)
 	self:Message(args.spellId, "red")
 	self:Nameplate(args.spellId, 40.1, args.sourceGUID)
 	self:PlaySound(args.spellId, "long")
+end
+
+do
+	local spiritGUID = nil
+
+	function mod:EvokeSpirit(args)
+		-- register events to auto-mark Evoked Spirit (240952)
+		if self:GetOption(evokedSpiritMarker) then
+			spiritGUID = args.destGUID
+			self:RegisterTargetEvents("MarkEvokedSpirit")
+		end
+	end
+
+	function mod:MarkEvokedSpirit(_, unit, guid)
+		if spiritGUID == guid then
+			spiritGUID = nil
+			self:CustomIcon(evokedSpiritMarker, unit, 7)
+			self:UnregisterTargetEvents()
+		end
+	end
 end
 
 function mod:RitualDisruptedApplied(args)

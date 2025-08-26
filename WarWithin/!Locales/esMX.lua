@@ -131,6 +131,7 @@ if L then
 	--L.tamed_ruinstalker = "Tamed Ruinstalker"
 	--L.wastelander_ritualist = "Wastelander Ritualist"
 	--L.wastelander_pactspeaker = "Wastelander Pactspeaker"
+	L.evoked_spirit = "Espíritu invocado"
 	--L.karesh_elemental = "K'aresh Elemental"
 	--L.burrowing_creeper = "Burrowing Creeper"
 	--L.wastes_creeper = "Wastes Creeper"
