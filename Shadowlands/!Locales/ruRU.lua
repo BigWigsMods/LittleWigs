@@ -221,6 +221,7 @@ if L then
 	L.commander_zofar = "Командир Зо'фар"
 
 	L.tazavesh_soleahs_gambit = "Тазавеш: гамбит Со'леи"
+	--L.hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans."
 	--L.portal_open = "Portal opens"
 	--L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
 	L.murkbrine_scalebinder = "Лататель чешуи из племени Соленой Хмари"

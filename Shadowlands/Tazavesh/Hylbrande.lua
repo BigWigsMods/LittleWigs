@@ -21,6 +21,7 @@ local nextSanitizingCycle = 0
 
 local L = mod:GetLocale()
 if L then
+	L.warmup_icon = "achievement_dungeon_brokerdungeon"
 	L.vault_purifier = -23004
 	L.vault_purifier_icon = "achievement_dungeon_ulduarraid_titan_01"
 end
@@ -31,6 +32,7 @@ end
 
 function mod:GetOptions()
 	return {
+		"warmup",
 		353312, -- Purifying Burst
 		{346116, "TANK"}, -- Shearing Swings
 		347094, -- Titanic Crash
@@ -68,11 +70,12 @@ end
 
 function mod:OnEngage()
 	nextSanitizingCycle = GetTime() + 38.0
+	self:StopBar(CL.active)
 	self:CDBar(353312, 5.6) -- Purifying Burst
 	self:CDBar(346116, 8.1) -- Shearing Swings
 	self:CDBar(346957, 10.5) -- Purged by Fire
 	self:CDBar(347094, 15.4) -- Titanic Crash
-	self:CDBar("vault_purifier", 19, CL.adds, L.vault_purifier_icon) -- Vault Purifier
+	self:CDBar("vault_purifier", 18.0, CL.adds, L.vault_purifier_icon) -- Vault Purifier
 	self:CDBar(346766, 40.0) -- Sanitizing Cycle
 end
 
@@ -87,6 +90,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:Warmup() -- called from trash module
+	-- 3.91 [CHAT_MSG_MONSTER_SAY] See how your wisdom fares against the might of the titans.#So'leah
+	-- 13.70 [CHAT_MSG_MONSTER_YELL] You are unworthy to lay claim to these relics!#Hylbrande
+	-- 16.57 [NAME_PLATE_UNIT_ADDED] Hylbrande#Creature-0-3887-2441-18793-175663
+	self:Bar("warmup", 12.6, CL.active, L.warmup_icon)
+end
 
 function mod:PurifyingBurst(args)
 	self:Message(args.spellId, "yellow")

@@ -101,6 +101,7 @@ if L then
 
 	------ So'leah's Gambit ------
 	L.tazavesh_soleahs_gambit = "Tazavesh: So'leah's Gambit"
+	L.hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans."
 	L.portal_open = "Portal opens"
 	L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
 	L.portal_open_icon = "spell_arcane_portalironforge"
@@ -501,6 +502,13 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 		if soazmiModule then
 			soazmiModule:Enable()
 			soazmiModule:Warmup()
+		end
+	elseif msg == L.hylbrande_warmup_trigger then
+		-- Hylbrande warmup
+		local hylbrandeModule = BigWigs:GetBossModule("Hylbrande", true)
+		if hylbrandeModule then
+			hylbrandeModule:Enable()
+			hylbrandeModule:Warmup()
 		end
 	end
 end
