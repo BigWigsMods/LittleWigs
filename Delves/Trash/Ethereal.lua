@@ -297,12 +297,12 @@ do
 		end
 		self:CDBar(1236770, 3.6) -- Arcane Geyser
 		self:Nameplate(1236770, 3.6, guid) -- Arcane Geyser
-		self:CDBar(1230608, 6.0) -- Dazing Gauntlet
-		self:Nameplate(1230608, 6.0, guid) -- Dazing Gauntlet
-		self:CDBar(1231893, 8.4) -- Crushing Stomp
-		self:Nameplate(1231893, 8.4, guid) -- Crushing Stomp
-		self:CDBar(1231919, 15.7) -- Corespark Impale
-		self:Nameplate(1231919, 15.7, guid) -- Corespark Impale
+		self:CDBar(1230608, 5.2) -- Dazing Gauntlet
+		self:Nameplate(1230608, 5.2, guid) -- Dazing Gauntlet
+		self:CDBar(1231893, 7.6) -- Crushing Stomp
+		self:Nameplate(1231893, 7.6, guid) -- Crushing Stomp
+		self:CDBar(1231919, 14.9) -- Corespark Impale
+		self:Nameplate(1231919, 14.9, guid) -- Corespark Impale
 		timer = self:ScheduleTimer("SteelsoulArcanowardDeath", 20, nil, guid)
 	end
 
