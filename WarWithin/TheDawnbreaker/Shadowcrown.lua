@@ -13,6 +13,7 @@ mod:SetRespawnTime(30)
 --
 
 local darknessComesCount = 1
+local nextBurningShadows = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -55,9 +56,10 @@ end
 function mod:OnEngage()
 	darknessComesCount = 1
 	if self:Mythic() then
-		self:CDBar(453212, 7.2) -- Obsidian Beam
-		self:CDBar(426735, 21.2) -- Burning Shadows
-		self:CDBar(453140, 23.4) -- Collapsing Night
+		nextBurningShadows = GetTime() + 24.0
+		self:CDBar(453212, 9.5) -- Obsidian Beam
+		self:CDBar(426735, 24.0) -- Burning Shadows
+		self:CDBar(453140, 25.7) -- Collapsing Night
 	elseif self:Story() then
 		-- Obsidian Blast and Collapsing Darkness are not cast in Follower difficulty
 		self:CDBar(426735, 11.4) -- Burning Shadows
@@ -82,9 +84,10 @@ function mod:DarknessComes(args)
 		darknessComesCount = darknessComesCount + 1
 		self:Message(args.spellId, "cyan", CL.percent:format(50, args.spellName))
 		if self:Mythic() then
-			self:CDBar(453140, 23.8) -- Collapsing Night
-			self:CDBar(426735, 29.2) -- Burning Shadows
-			self:CDBar(453212, 30.9) -- Obsidian Beam
+			nextBurningShadows = GetTime() + 31.7
+			self:CDBar(453140, 23.7) -- Collapsing Night
+			self:CDBar(426735, 31.7) -- Burning Shadows
+			self:CDBar(453212, 32.9) -- Obsidian Beam
 		elseif self:Story() then
 			self:CDBar(426735, 26.3) -- Burning Shadows
 		else -- Normal, Heroic
@@ -108,7 +111,8 @@ function mod:DarknessComes(args)
 end
 
 function mod:BurningShadows()
-	self:CDBar(426735, 15.7)
+	nextBurningShadows = GetTime() + 16.2
+	self:CDBar(426735, 16.2)
 end
 
 function mod:BurningShadowsApplied(args)
@@ -145,13 +149,25 @@ end
 
 function mod:ObsidianBeam(args)
 	self:Message(args.spellId, "purple")
-	self:CDBar(args.spellId, 24.3)
+	-- 13.3 to Burning Shadows
+	local t = GetTime()
+	if nextBurningShadows - t < 13.3 then
+		nextBurningShadows = t + 13.3
+		self:CDBar(426735, {13.3, 16.2}) -- Burning Shadows
+	end
+	self:CDBar(args.spellId, 25.3)
 	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:CollapsingNight(args)
 	self:Message(args.spellId, "orange")
-	self:CDBar(args.spellId, 24.8)
+	-- 8.05 to Burning Shadows
+	local t = GetTime()
+	if nextBurningShadows - t < 8.05 then
+		nextBurningShadows = t + 8.05
+		self:CDBar(426735, {8.05, 16.2}) -- Burning Shadows
+	end
+	self:CDBar(args.spellId, 25.3)
 	self:PlaySound(args.spellId, "long")
 end
 
