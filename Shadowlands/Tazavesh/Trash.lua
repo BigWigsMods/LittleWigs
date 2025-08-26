@@ -738,8 +738,20 @@ end
 
 -- Support Officer
 
-function mod:SupportOfficerEngaged(guid)
-	self:Nameplate(355934, 9.4, guid) -- Hard Light Barrier
+do
+	local prev = 0
+	function mod:SupportOfficerEngaged(guid)
+		self:Nameplate(355934, 9.4, guid) -- Hard Light Barrier
+		local t = GetTime()
+		if self:Dispeller("magic", true, 355980) and t - prev > 2 then -- Refraction Shield
+			prev = t
+			local unit = self:UnitTokenFromGUID(guid)
+			if unit and self:UnitBuff(unit, 355980) then -- Refraction Shield
+				self:Message(355980, "yellow", CL.magic_buff_other:format(self:UnitName(unit), self:SpellName(355980))) -- Refraction Shield
+				self:PlaySound(355980, "info") -- Refraction Shield
+			end
+		end
+	end
 end
 
 do
