@@ -520,9 +520,9 @@ end
 -- Burrowing Creeper
 
 function mod:BurrowingCreeperEngaged(guid)
-	self:Nameplate(1237195, 5.4, guid) -- Burrow Charge
-	self:Nameplate(1237220, 14.0, guid) -- Singing Sandstorm
-	self:Nameplate(1215850, 20.0, guid) -- Earth Crusher
+	self:Nameplate(1237195, 5.2, guid) -- Burrow Charge
+	self:Nameplate(1237220, 13.7, guid) -- Singing Sandstorm
+	self:Nameplate(1215850, 19.8, guid) -- Earthcrusher
 end
 
 do
