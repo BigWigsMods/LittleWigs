@@ -1657,7 +1657,7 @@ do
 		self:Nameplate(args.spellId, 14.5, args.sourceGUID)
 		if args.time - prev > 2 then
 			prev = args.time
-			self:TargetMessage(args.spellId, "yellow", nil, args.destName)
+			self:TargetMessage(args.spellId, "yellow", args.destName)
 			self:PlaySound(args.spellId, "alert", nil, args.destName)
 		end
 	end
