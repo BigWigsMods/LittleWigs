@@ -2,9 +2,10 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Nerubian Delve Trash", {2680, 2684, 2685, 2688}) -- Earthcrawl Mines, The Dread Pit, Skittering Breach, The Spiral Weave
+local mod, CL = BigWigs:NewBoss("Nerubian Delve Trash", {2664, 2680, 2684, 2685, 2688}) -- Fungal Folly, Earthcrawl Mines, The Dread Pit, Skittering Breach, The Spiral Weave
 if not mod then return end
 mod:RegisterEnableMob(
+	239985, -- Engineer Fizzlepickle (Fungal Folly gossip NPC)
 	215685, -- Foreman Pivk (Earthcrawl Mines gossip NPC)
 	216632, -- Lamplighter Rathling (Earthcrawl Mines gossip NPC)
 	219680, -- Vant (The Dread Pit gossip NPC)
@@ -131,7 +132,10 @@ end
 
 function mod:GOSSIP_SHOW()
 	if self:GetOption(autotalk) then
-		if self:GetGossipID(121408) then -- Skittering Breach, start Delve (Lamplighter Havrik Chayvn)
+		if self:GetGossipID(132634) then -- Fungal Folly, start Delve (Engineer Fizzlepickle)
+			-- 132634:|cFF0000FF(Delve)|r I know some of those words.
+			self:SelectGossipID(132634)
+		elseif self:GetGossipID(121408) then -- Skittering Breach, start Delve (Lamplighter Havrik Chayvn)
 			-- 121408:|cFF0000FF(Delve)|r I'll go deeper in and stop the nerubian ritual.
 			self:SelectGossipID(121408)
 		elseif self:GetGossipID(121508) then -- The Dread Pit, start Delve (Vant)
