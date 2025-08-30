@@ -102,19 +102,19 @@ if L then
 	L.corridor_creeper = "Trepador de corredores"
 	L.creaky_mine_cart = "Vagoneta chirriante"
 
-	L.minecart = "Minijuego del Carrito de Mina"
+	L.minecart = "MInijuego de la vagoneta"
 	L.hits = "Aciertos"
-	L.minecart_over = "Ganador: %s (%d hits)"
+	L.minecart_over = "Ganador: %s (%d aciertos)"
 end
 
 L = BigWigs:NewBossLocale("Ol' Waxbeard", "esMX")
 if L then
-	--L.dynamite_mine_cart = "Dynamite Mine Cart"
+	L.dynamite_mine_cart = "Vagoneta con explosivos"
 end
 
 L = BigWigs:NewBossLocale("The Darkness", "esMX")
 if L then
-	--L.wriggling_darkspawn = "Wriggling Darkspawn"
+	L.wriggling_darkspawn = "Engendro de la oscuridad sinuoso"
 end
 
 -- Eco-Dome Al'dani
@@ -129,7 +129,7 @@ if L then
 	L.overcharged_sentinel = "Centinela sobrecargado"
 	L.wastelander_farstalker = "Acechafines trotapáramos"
 	L.tamed_ruinstalker = "Acecharuinas domesticado"
-	L.wastelander_ritualist = "Wastelander Ritualist"
+	L.wastelander_ritualist = "Ritualista trotapáramos"
 	L.wastelander_pactspeaker = "Clamapactos trotapáramos"
 	L.evoked_spirit = "Espíritu invocado"
 	L.karesh_elemental = " Elemental de K'aresh"
@@ -143,8 +143,8 @@ end
 
 L = BigWigs:NewBossLocale("Operation: Floodgate Trash", "esMX")
 if L then
-	--L.weapons_stockpiles_pilfered = "Weapons Stockpiles Pilfered"
-	--L.weapons_stockpiles_pilfered_desc = "Show an alert when a Weapons Stockpile has been pilfered."
+	L.weapons_stockpiles_pilfered = "Reservas de armas saqueada"
+	L.weapons_stockpiles_pilfered_desc = "Muestra una alerta cuando una Reserva de Armas ha sido saqueada."
 
 	L.shreddinator_3000 = "Trituranator 3000"
 	L.mechadrone_sniper = "Francotirador mecadrón"
@@ -158,7 +158,7 @@ if L then
 	L.venture_co_architect = "Arquitecto de Ventura y Cía."
 	L.venture_co_diver = "Buceador de Ventura y Cía."
 	L.disturbed_kelp = "Alga perturbada"
-	--L.bomb_pile = "Bomb Pile"
+	L.bomb_pile = "Pila de Bombas"
 	L.bubbles = "Burbujas"
 	L.venture_co_electrician = "Electricista de Ventura y Cía."
 	L.darkfuse_jumpstarter = "Motorista mechaoscura"
@@ -203,14 +203,14 @@ end
 L = BigWigs:NewBossLocale("Awakening the Machine", "esMX")
 if L then
 	L.awakening_the_machine = "Despertar de la Máquina"
-	--L.stages_desc = "Show an alert when a new wave of enemies spawns."
+	L.stages_desc = "Muestra una alerta cuando una nueva oleada de enemigos aparece."
 
-	--L.corrupted_machinist = "Corrupted Machinist"
-	--L.malfunctioning_pylon = "Malfunctioning Pylon"
-	--L.explosive_bomberbot = "Explosive Bomberbot"
-	--L.automatic_ironstrider = "Automatic Ironstrider"
-	--L.medbot = "Medbot"
-	--L.nullbot = "Nullbot"
+	L.corrupted_machinist = "Maquinista corroído"
+	L.malfunctioning_pylon = "Pilar averiado"
+	L.explosive_bomberbot = "Bombardeabot explosivo"
+	L.automatic_ironstrider = "Pasohierro automático"
+	L.medbot = "Medibot"
+	L.nullbot = "Nulobot"
 	L.awakened_phalanx = "Falange despertada"
 end
 
@@ -249,7 +249,7 @@ if L then
 	L.coalescing_void_diffuser = "Difusor del Vacío aglomerado"
 	L.inflicted_civilian = "Civil afligido"
 	L.void_ascendant = "Ascendiente del Vacío"
-	--L.consuming_voidstone = "Consuming Voidstone"
+	L.consuming_voidstone = "Piedra del Vacío incontenible"
 end
 
 -- The Stonevault
