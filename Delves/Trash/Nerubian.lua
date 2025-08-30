@@ -14,6 +14,7 @@ mod:RegisterEnableMob(
 	220461, -- Weaver's Agent (The Spiral Weave gossip NPC)
 	220462, -- Weaver's Instructions (The Spiral Weave gossip NPC)
 	218103, -- Nerubian Lord
+	242630, -- Crazed Nerubian Lord
 	208242, -- Nerubian Darkcaster
 	220485, -- Peculiar Nerubian
 	216584, -- Nerubian Captain
@@ -135,6 +136,9 @@ function mod:GOSSIP_SHOW()
 		if self:GetGossipID(132634) then -- Fungal Folly, start Delve (Engineer Fizzlepickle)
 			-- 132634:|cFF0000FF(Delve)|r I know some of those words.
 			self:SelectGossipID(132634)
+		elseif self:GetGossipID(133267) then -- Fungal Folly, continue Delve (Engineer Fizzlepickle)
+			-- 133267:Kill the worm, find the gadget, and clear the Black Blood. Got it.
+			self:SelectGossipID(133267)
 		elseif self:GetGossipID(121408) then -- Skittering Breach, start Delve (Lamplighter Havrik Chayvn)
 			-- 121408:|cFF0000FF(Delve)|r I'll go deeper in and stop the nerubian ritual.
 			self:SelectGossipID(121408)
@@ -169,8 +173,9 @@ end
 -- Nerubian Lord
 
 function mod:JaggedBarbs(args)
-	if self:MobId(args.sourceGUID) == 218103 then -- Nerubian Lord
-		self:Message(args.spellId, "orange", CL.frontal_cone)
+	local mobId = self:MobId(args.sourceGUID)
+	if mobId == 218103 or mobId == 242630 then -- Nerubian Lord, Crazed Nerubian Lord
+		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alarm")
 	end
 end
