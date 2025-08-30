@@ -207,6 +207,7 @@ if L then
 	L.tracker_zokorss = "추적자 조코르스"
 	L.ancient_core_hound = "고대의 심장부 사냥개"
 	L.enraged_direhorn = "격노한 공포뿔"
+	L.frenzied_nightclaw = "광포한 밤표범"
 	L.cartel_skulker = "중개단 잠복꾼"
 	L.cartel_wiseguy = "중개단 폭력단원"
 	L.cartel_muscle = "중개단 불한당"

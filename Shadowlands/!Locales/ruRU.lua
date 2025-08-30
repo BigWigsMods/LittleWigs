@@ -207,6 +207,7 @@ if L then
 	L.tracker_zokorss = "Следопыт Зо'корсс"
 	L.ancient_core_hound = "Древняя гончая недр"
 	L.enraged_direhorn = "Разъяренный дикорог"
+	L.frenzied_nightclaw = "Разъяренный коготь ночи"
 	--L.cartel_skulker = "Cartel Skulker"
 	--L.cartel_wiseguy = "Cartel Wiseguy"
 	L.cartel_muscle = "Громила из картеля"

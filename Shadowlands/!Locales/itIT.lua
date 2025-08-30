@@ -207,6 +207,7 @@ if L then
 	L.tracker_zokorss = "Braccatore Zo'korss"
 	L.ancient_core_hound = "Segugio del Nucleo Antico"
 	L.enraged_direhorn = "Cornofurente Rabbioso"
+	L.frenzied_nightclaw = "Zannacupa Frenetica"
 	--L.cartel_skulker = "Cartel Skulker"
 	--L.cartel_wiseguy = "Cartel Wiseguy"
 	L.cartel_muscle = "Forzuto del Cartello"

@@ -207,6 +207,7 @@ if L then
 	L.tracker_zokorss = "Fährtenleser Zo'korss"
 	L.ancient_core_hound = "Uralter Kernhund"
 	L.enraged_direhorn = "Wütendes Terrorhorn"
+	L.frenzied_nightclaw = "Rasende Nachtkralle"
 	L.cartel_skulker = "Kartellschleicher"
 	L.cartel_wiseguy = "Kartellmitglied"
 	L.cartel_muscle = "Kartellkraftprotz"

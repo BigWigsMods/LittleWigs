@@ -16,8 +16,8 @@ mod:RegisterEnableMob(
 	179334, -- Portalmancer Zo'honn
 	179837, -- Tracker Zo'korss
 	180091, -- Ancient Core Hound
-	180567, -- Frenzied Nightclaw
 	180495, -- Enraged Direhorn
+	180567, -- Frenzied Nightclaw
 	179893, -- Cartel Skulker
 	180336, -- Cartel Wiseguy
 	180348, -- Cartel Muscle
@@ -86,6 +86,7 @@ if L then
 	L.tracker_zokorss = "Tracker Zo'korss"
 	L.ancient_core_hound = "Ancient Core Hound"
 	L.enraged_direhorn = "Enraged Direhorn"
+	L.frenzied_nightclaw = "Frenzied Nightclaw"
 	L.cartel_skulker = "Cartel Skulker"
 	L.cartel_wiseguy = "Cartel Wiseguy"
 	L.cartel_muscle = "Cartel Muscle"
@@ -162,6 +163,8 @@ function mod:GetOptions()
 		-- Enraged Direhorn
 		{357512, "SAY", "NAMEPLATE"}, -- Frenzied Charge
 		{357508, "NAMEPLATE"}, -- Wild Thrash
+		-- Frenzied Nightclaw
+		{357828, "NAMEPLATE"}, -- Frantic Leap
 		-- Cartel Skulker
 		{355830, "NAMEPLATE"}, -- Quickblade
 		-- Cartel Wiseguy
@@ -232,6 +235,7 @@ function mod:GetOptions()
 		[356929] = L.tracker_zokorss,
 		[356404] = L.ancient_core_hound,
 		[357512] = L.enraged_direhorn,
+		[357828] = L.frenzied_nightclaw,
 		[355830] = L.cartel_skulker,
 		[357197] = L.cartel_wiseguy,
 		[356967] = L.cartel_muscle,
@@ -328,6 +332,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FrenziedCharge", 357512)
 	self:Log("SPELL_CAST_START", "WildThrash", 357508)
 	self:Death("EnragedDirehornDeath", 180495)
+
+	-- Frenzied Nightclaw
+	self:RegisterEngageMob("FrenziedNightclawEngaged", 180567)
+	self:Death("FrenziedNightclawDeath", 180567)
 
 	-- Cartel Skulker
 	self:RegisterEngageMob("CartelSkulkerEngaged", 179893)
@@ -588,8 +596,8 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:CDBar(352796, 9.6) -- Proxy Strike
-		self:Nameplate(352796, 9.6, guid) -- Proxy Strike
+		self:CDBar(352796, 8.3) -- Proxy Strike
+		self:Nameplate(352796, 8.3, guid) -- Proxy Strike
 		self:CDBar(356548, 13.2) -- Radiant Pulse
 		self:Nameplate(356548, 13.2, guid) -- Radiant Pulse
 		timer = self:ScheduleTimer("GatewardenZomazzDeath", 20, nil, guid)
@@ -1023,6 +1031,16 @@ do
 		self:StopBar(357508) -- Wild Thrash
 		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
+end
+
+-- Frenzied Nightclaw
+
+function mod:FrenziedNightclawEngaged(guid)
+	self:Nameplate(357828, 5.5, guid) -- Frantic Leap
+end
+
+function mod:FrenziedNightclawDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Cartel Skulker
@@ -1636,6 +1654,12 @@ do
 				prev = t
 				self:Message(spellId, "orange", nil, L["1244650_icon"])
 				self:PlaySound(spellId, "alarm")
+			end
+		elseif spellId == 357828 and castGUID ~= prevCast then -- Frantic Leap
+			prevCast = castGUID
+			local sourceGUID = self:UnitGUID(unit)
+			if sourceGUID then
+				self:Nameplate(spellId, 16.2, sourceGUID)
 			end
 		end
 	end

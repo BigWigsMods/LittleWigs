@@ -207,6 +207,7 @@ if L then
 	L.tracker_zokorss = "『追蹤者』佐寇司"
 	L.ancient_core_hound = "上古熔核犬"
 	L.enraged_direhorn = "暴怒的恐角龍"
+	L.frenzied_nightclaw = "狂亂的夜爪豹"
 	L.cartel_skulker = "集團潛藏者"
 	L.cartel_wiseguy = "集團幫派"
 	L.cartel_muscle = "集團警衛"

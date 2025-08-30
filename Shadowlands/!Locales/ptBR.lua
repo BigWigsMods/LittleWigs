@@ -207,6 +207,7 @@ if L then
 	L.tracker_zokorss = "Rastreador Zo'korss"
 	L.ancient_core_hound = "Cão-magma Ancião"
 	L.enraged_direhorn = "Escornante Enfurecido"
+	L.frenzied_nightclaw = "Noctigarra Enfurecido"
 	--L.cartel_skulker = "Cartel Skulker"
 	--L.cartel_wiseguy = "Cartel Wiseguy"
 	L.cartel_muscle = "Jagunço do Cartel"
