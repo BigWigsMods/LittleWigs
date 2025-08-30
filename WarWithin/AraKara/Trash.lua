@@ -64,6 +64,8 @@ function mod:GetOptions()
 		-- Discordant Attendant
 		"custom_on_autotalk",
 		439208, -- Silk Wrap
+		-- Engorged Crawler
+		{438618, "DISPEL", "NAMEPLATE"}, -- Venomous Spit
 		-- Trilling Attendant
 		{434793, "NAMEPLATE"}, -- Resonant Barrage
 		-- Ixin
@@ -92,6 +94,7 @@ function mod:GetOptions()
 	}, {
 		[434830] = L.vile_webbing,
 		["custom_on_autotalk"] = L.discordant_attendant,
+		[438618] = L.engorged_crawler,
 		[434793] = L.trilling_attendant,
 		[434824] = L.ixin,
 		[438877] = L.nakt,
@@ -118,6 +121,13 @@ function mod:OnBossEnable()
 	-- Discordant Attendant
 	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_AURA_APPLIED", "SilkThreadApplied", 439201)
+
+	-- Engorged Crawler
+	self:RegisterEngageMob("EngorgedCrawlerEngaged", 214840)
+	self:Log("SPELL_CAST_SUCCESS", "VenomousSpit", 438618)
+	self:Log("SPELL_AURA_APPLIED", "VenomousSpitApplied", 438618)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "VenomousSpitApplied", 438618)
+	self:Death("EngorgedCrawlerDeath", 214840)
 
 	-- Trilling Attendant
 	self:RegisterEngageMob("TrillingAttendantEngaged", 216293)
@@ -238,6 +248,38 @@ function mod:SilkThreadApplied(args)
 		self:Message(439208, "green", CL.you:format(args.spellName))
 		self:PlaySound(439208, "info")
 	end
+end
+
+-- Engorged Crawler
+
+function mod:EngorgedCrawlerEngaged(guid)
+	if self:Dispeller("poison", nil, 438618) then
+		self:Nameplate(438618, 5.6, guid) -- Venomous Spit
+	end
+end
+
+function mod:VenomousSpit(args)
+	if self:Dispeller("poison", nil, args.spellId) then
+		self:Nameplate(args.spellId, 10.9, args.sourceGUID)
+	end
+end
+
+do
+	local prev = 0
+	function mod:VenomousSpitApplied(args)
+		if self:Dispeller("poison", nil, args.spellId) then
+			local amount = args.amount or 1
+			if amount % 2 == 0 and args.time - prev > 3 then
+				prev = args.time
+				self:StackMessage(args.spellId, "yellow", args.destName, amount, 2)
+				self:PlaySound(args.spellId, "alert", nil, args.destName)
+			end
+		end
+	end
+end
+
+function mod:EngorgedCrawlerDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Trilling Attendant
