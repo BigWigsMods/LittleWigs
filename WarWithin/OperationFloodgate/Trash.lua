@@ -96,6 +96,22 @@ function mod:GetOptions()
 		-- Darkfuse Jumpstarter
 		{465666, "TANK", "NAMEPLATE"}, -- Sparkslam
 	}, {
+		{
+			tabName = self:BossName(2648), -- Big M.O.M.M.A.
+			{"weapons_stockpiles_pilfered", 474337, 465754, 1214468, 465120, 463058, 1216039, 465682, 465827, 462771, 463169},
+		},
+		{
+			tabName = self:BossName(2649), -- Demolition Duo
+			{"weapons_stockpiles_pilfered", 474337, 465754, 465813, 462771, 463169, 465408},
+		},
+		{
+			tabName = self:BossName(2650), -- Swampface
+			{468726, 468631, 471736, 471733, 1214337},
+		},
+		{
+			tabName = self:BossName(2651), -- Geezle Gigazap
+			{465682, 469799, 465408, 465666},
+		},
 		["weapons_stockpiles_pilfered"] = CL.general,
 		[474337] = L.shreddinator_3000,
 		[1214468] = L.mechadrone_sniper,
