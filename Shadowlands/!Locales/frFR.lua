@@ -221,7 +221,6 @@ if L then
 	L.commerce_enforcer = "Massacreur du marché"
 	L.commander_zofar = "Commandant Zo'far"
 
-	L.tazavesh_soleahs_gambit = "Tazavesh : le stratagème de So’leah"
 	--L.hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans."
 	--L.portal_open = "Portal opens"
 	--L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."

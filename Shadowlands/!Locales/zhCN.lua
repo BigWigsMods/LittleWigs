@@ -221,7 +221,6 @@ if L then
 	L.commerce_enforcer = "贸易执行者"
 	L.commander_zofar = "指挥官佐·法"
 
-	L.tazavesh_soleahs_gambit = "塔扎维什：索·莉亚的宏图"
 	L.hylbrande_warmup_trigger = "那就看看你的智慧在泰坦的力量面前，表现如何。"
 	L.portal_open = "开启传送门"
 	L.portal_open_desc = "显示通往下一区域的传送门何时开启的计时条。"
