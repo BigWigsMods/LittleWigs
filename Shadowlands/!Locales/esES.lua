@@ -167,8 +167,8 @@ end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "esES")
 if L then
-	--L.notes = "Notes"
-	--L.notes_desc = "Show a message when the notes are available. Hit the notes with your instrument's ability to gain 'Jazzy'.\n\n|T237554:16|tJazzy\n{348567}"
+	L.notes = "Notas"
+	L.notes_desc = "Muestra un mensaje cuando las notas estén disponibles. Alcanza las notas con la habilidad de tu instrumento para obtener 'Dándolo todo'.\n\n|T237554:16|tJazzy\n{348567}"
 end
 
 L = BigWigs:NewBossLocale("So'leah", "esES")
