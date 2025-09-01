@@ -98,11 +98,11 @@ function mod:GetOptions()
 		},
 		{
 			tabName = self:BossName(2584), -- Anub'zekt
-			{453161, 1241693, 432967, 433002, 448248},
+			{"custom_on_autotalk", 439208, 453161, 1241693, 432967, 433002, 448248},
 		},
 		{
 			tabName = self:BossName(2585), -- Ki'katal the Harvester
-			{433845, 433841, 1241785, 433821},
+			{433845, 433841, 1241785, 433821, 453161, 1241693},
 		},
 		[434830] = L.vile_webbing,
 		["custom_on_autotalk"] = L.discordant_attendant,
