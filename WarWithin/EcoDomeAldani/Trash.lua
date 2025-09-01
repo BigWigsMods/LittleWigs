@@ -92,6 +92,18 @@ function mod:GetOptions()
 		{1223007, "NAMEPLATE"}, -- Burrowing Eruption
 		{1222341, "TANK_HEALER", "NAMEPLATE", "OFF"}, -- Gloom Bite
 	}, {
+		{
+			tabName = self:BossName(2675), -- Azhiccar
+			{1236981, 1239229, 1229474, 1221152, 1221190, 1226111},
+		},
+		{
+			tabName = self:BossName(2676), -- Taah'bat and A'wazj
+			{1235368, 1231244, 1222202, 1229510, 1221679, 1222356, 1221483},
+		},
+		{
+			tabName = self:BossName(2677), -- Soul-Scribe
+			{1221532, 1248699, evokedSpiritMarker, 1226492, 1223000, 1237195, 1237220, 1215850, 1223007, 1222341},
+		},
 		[1236981] = L.terrified_broker,
 		[1239229] = L.arcane_siphon,
 		[1229474] = L.overgorged_mite,
