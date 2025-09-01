@@ -99,6 +99,18 @@ function mod:GetOptions()
 		{431349, "ME_ONLY_EMPHASIZE", "NAMEPLATE"}, -- Tormenting Eruption
 		446615, -- Usher Reinforcements
 	}, {
+		{
+			tabName = self:BossName(2580), -- Speaker Shadowcrown
+			{449042, 1242074, 431309, 432448, 431364, 450756, 431491, 451107, 451091},
+		},
+		{
+			tabName = self:BossName(2581), -- Anub'ikkaj
+			{451102, 451119, 450854, 451117, 451098, 451097, 431494, 451112, 432520, 432565, 1242074, 431309, 432448, 431364, 450756, 431491, 451107},
+		},
+		{
+			tabName = self:BossName(2593), -- Rasha'nan
+			{431349, 446615, 1242074, 431309, 432520},
+		},
 		[449042] = L.arathi_lamplighter,
 		[1242074] = L.nightfall_curseblade,
 		[431309] = L.nightfall_shadowmage,
