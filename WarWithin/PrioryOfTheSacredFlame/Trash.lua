@@ -125,6 +125,18 @@ function mod:GetOptions()
 		-- Sir Braunpyke
 		{435165, "TANK", "NAMEPLATE"}, -- Blazing Strike
 	}, {
+		{
+			tabName = self:BossName(2571), -- Captain Dailcry
+			{"custom_on_autotalk", 435088, 448485, 448492, 427897, 427950, 427900, 428150, 424621, 424423, 424431, 448515, 424462, 427609, 427621, 427342, 453458, 462859, 446776, 427356, 427484, 448787, 427601},
+		},
+		{
+			tabName = self:BossName(2570), -- Baron Braunpyke
+			{424429, 448791, 444728, 427596, 427356, 427484},
+		},
+		{
+			tabName = self:BossName(2573), -- Prioress Murrpray
+			{"custom_on_autotalk", 435088, 424429, 448791, 444728, 427596, 427356, 444743, 448787, 427601, 435165},
+		},
 		["custom_on_autotalk"] = L.sacred_flame,
 		[448485] = L.guard_captain_suleyman,
 		[427897] = L.forge_master_damian,
