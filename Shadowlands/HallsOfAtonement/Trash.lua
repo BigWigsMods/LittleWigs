@@ -74,6 +74,22 @@ function mod:GetOptions()
 		326847, -- Disperse Sin
 		326891, -- Anguish
 	}, {
+		{
+			tabName = self:BossName(2406), -- Halkias, the Sin-Stained Goliath
+			{326450, 1237602, 1235060, 325876, 325701, 326997, 1235326, 1237071, 326409, 326441},
+		},
+		{
+			tabName = self:BossName(2387), -- Echelon
+			{1235762, 1235766, 326638, 1235060, 325876, 326997, 1235326, 1237071},
+		},
+		{
+			tabName = self:BossName(2411), -- High Adjudicator Aleez
+			{1235762, 1235766, 326638, 1235060, 325876, 325701, 326997, 1235326, 1237071},
+		},
+		{
+			tabName = self:BossName(2413), -- Lord Chamberlain
+			{326794, 1236614, 326847, 326891},
+		},
 		[326450] = L.depraved_houndmaster,
 		[1237602] = L.vicious_gargon,
 		[1235060] = L.depraved_darkblade,
