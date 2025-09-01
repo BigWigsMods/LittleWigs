@@ -16,8 +16,8 @@ mod:RegisterEnableMob(
 	179334, -- Portalmancer Zo'honn
 	179837, -- Tracker Zo'korss
 	180091, -- Ancient Core Hound
-	180567, -- Frenzied Nightclaw
 	180495, -- Enraged Direhorn
+	180567, -- Frenzied Nightclaw
 	179893, -- Cartel Skulker
 	180336, -- Cartel Wiseguy
 	180348, -- Cartel Muscle
@@ -86,6 +86,7 @@ if L then
 	L.tracker_zokorss = "Tracker Zo'korss"
 	L.ancient_core_hound = "Ancient Core Hound"
 	L.enraged_direhorn = "Enraged Direhorn"
+	L.frenzied_nightclaw = "Frenzied Nightclaw"
 	L.cartel_skulker = "Cartel Skulker"
 	L.cartel_wiseguy = "Cartel Wiseguy"
 	L.cartel_muscle = "Cartel Muscle"
@@ -101,6 +102,10 @@ if L then
 
 	------ So'leah's Gambit ------
 	L.tazavesh_soleahs_gambit = "Tazavesh: So'leah's Gambit"
+	L.hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans."
+	L.portal_open = "Portal opens"
+	L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
+	L.portal_open_icon = "spell_arcane_portalironforge"
 	L.murkbrine_scalebinder = "Murkbrine Scalebinder"
 	L.murkbrine_fishmancer = "Murkbrine Fishmancer"
 	L.murkbrine_shellcrusher = "Murkbrine Shellcrusher"
@@ -158,6 +163,8 @@ function mod:GetOptions()
 		-- Enraged Direhorn
 		{357512, "SAY", "NAMEPLATE"}, -- Frenzied Charge
 		{357508, "NAMEPLATE"}, -- Wild Thrash
+		-- Frenzied Nightclaw
+		{357828, "NAMEPLATE"}, -- Frantic Leap
 		-- Cartel Skulker
 		{355830, "NAMEPLATE"}, -- Quickblade
 		-- Cartel Wiseguy
@@ -189,6 +196,7 @@ function mod:GetOptions()
 		{355473, "NAMEPLATE"}, -- Shock Mines
 		------ So'leah's Gambit ------
 		-- General
+		"portal_open",
 		358443, -- Blood in the Water
 		-- Murkbrine Scalebinder
 		{355132, "NAMEPLATE"}, -- Invigorating Fish Stick
@@ -227,6 +235,7 @@ function mod:GetOptions()
 		[356929] = L.tracker_zokorss,
 		[356404] = L.ancient_core_hound,
 		[357512] = L.enraged_direhorn,
+		[357828] = L.frenzied_nightclaw,
 		[355830] = L.cartel_skulker,
 		[357197] = L.cartel_wiseguy,
 		[356967] = L.cartel_muscle,
@@ -240,7 +249,7 @@ function mod:GetOptions()
 		[1244443] = L.commerce_enforcer,
 		[355479] = L.commander_zofar,
 		------ So'leah's Gambit ------
-		[358443] = L.tazavesh_soleahs_gambit,
+		["portal_open"] = L.tazavesh_soleahs_gambit,
 		[355132] = L.murkbrine_scalebinder,
 		[355234] = L.murkbrine_fishmancer,
 		[355057] = L.murkbrine_shellcrusher,
@@ -323,6 +332,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "FrenziedCharge", 357512)
 	self:Log("SPELL_CAST_START", "WildThrash", 357508)
 	self:Death("EnragedDirehornDeath", 180495)
+
+	-- Frenzied Nightclaw
+	self:RegisterEngageMob("FrenziedNightclawEngaged", 180567)
+	self:Death("FrenziedNightclawDeath", 180567)
 
 	-- Cartel Skulker
 	self:RegisterEngageMob("CartelSkulkerEngaged", 179893)
@@ -409,10 +422,10 @@ function mod:OnBossEnable()
 
 	-- Murkbrine Shellcrusher
 	self:RegisterEngageMob("MurkbrineShellcrusherEngaged", 178139)
-	self:Log("SPELL_CAST_START", "CryofMrrggllrrgg", 355057)
-	self:Log("SPELL_INTERRUPT", "CryofMrrggllrrggInterrupt", 355057)
-	self:Log("SPELL_CAST_SUCCESS", "CryofMrrggllrrggSuccess", 355057)
-	self:Log("SPELL_AURA_APPLIED", "CryofMrrggllrrggApplied", 355057)
+	self:Log("SPELL_CAST_START", "CryOfMrrggllrrgg", 355057)
+	self:Log("SPELL_INTERRUPT", "CryOfMrrggllrrggInterrupt", 355057)
+	self:Log("SPELL_CAST_SUCCESS", "CryOfMrrggllrrggSuccess", 355057)
+	self:Log("SPELL_AURA_APPLIED", "CryOfMrrggllrrggApplied", 355057)
 	self:Log("SPELL_CAST_START", "Shellcracker", 355048)
 	self:Log("SPELL_CAST_SUCCESS", "ShellcrackerSuccess", 355048)
 	self:Death("MurkbrineShellcrusherDeath", 178139)
@@ -498,6 +511,13 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 			soazmiModule:Enable()
 			soazmiModule:Warmup()
 		end
+	elseif msg == L.hylbrande_warmup_trigger then
+		-- Hylbrande warmup
+		local hylbrandeModule = BigWigs:GetBossModule("Hylbrande", true)
+		if hylbrandeModule then
+			hylbrandeModule:Enable()
+			hylbrandeModule:Warmup()
+		end
 	end
 end
 
@@ -576,8 +596,8 @@ do
 		if timer then
 			self:CancelTimer(timer)
 		end
-		self:CDBar(352796, 9.6) -- Proxy Strike
-		self:Nameplate(352796, 9.6, guid) -- Proxy Strike
+		self:CDBar(352796, 8.3) -- Proxy Strike
+		self:Nameplate(352796, 8.3, guid) -- Proxy Strike
 		self:CDBar(356548, 13.2) -- Radiant Pulse
 		self:Nameplate(356548, 13.2, guid) -- Radiant Pulse
 		timer = self:ScheduleTimer("GatewardenZomazzDeath", 20, nil, guid)
@@ -639,7 +659,7 @@ do
 	function mod:HardLightBaton(args)
 		if self:Dispeller("magic", true, args.spellId) then
 			self:Nameplate(args.spellId, 18.1, args.sourceGUID)
-			if args.time - prev > 2 then
+			if args.time - prev > 3 then
 				prev = args.time
 				self:Message(args.spellId, "purple", CL.on:format(args.spellName, args.sourceName))
 				self:PlaySound(args.spellId, "alert")
@@ -734,8 +754,20 @@ end
 
 -- Support Officer
 
-function mod:SupportOfficerEngaged(guid)
-	self:Nameplate(355934, 9.4, guid) -- Hard Light Barrier
+do
+	local prev = 0
+	function mod:SupportOfficerEngaged(guid)
+		self:Nameplate(355934, 9.4, guid) -- Hard Light Barrier
+		local t = GetTime()
+		if self:Dispeller("magic", true, 355980) and t - prev > 2 then -- Refraction Shield
+			prev = t
+			local unit = self:UnitTokenFromGUID(guid)
+			if unit and self:UnitBuff(unit, 355980) then -- Refraction Shield
+				self:Message(355980, "yellow", CL.magic_buff_other:format(self:UnitName(unit), self:SpellName(355980))) -- Refraction Shield
+				self:PlaySound(355980, "info") -- Refraction Shield
+			end
+		end
+	end
 end
 
 do
@@ -999,6 +1031,16 @@ do
 		self:StopBar(357508) -- Wild Thrash
 		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
+end
+
+-- Frenzied Nightclaw
+
+function mod:FrenziedNightclawEngaged(guid)
+	self:Nameplate(357828, 5.5, guid) -- Frantic Leap
+end
+
+function mod:FrenziedNightclawDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Cartel Skulker
@@ -1359,6 +1401,22 @@ end
 
 ------ So'leah's Gambit ------
 
+function mod:HylbrandeDefeated()
+	-- 222.90 [ENCOUNTER_END] 2426#Hylbrande
+	-- 223.07 [CHAT_MSG_MONSTER_YELL] That artifact... will... end you all...#Hylbrande
+	-- 232.52 [CHAT_MSG_MONSTER_SAY] So'leah's arrogance will be her downfall.#Al'dalil
+	-- 237.29 [ZONE_CHANGED] Tazavesh, the Veiled Market#Tazavesh, the Veiled Market#Boralus Harbor
+	-- 237.43 [CHAT_MSG_MONSTER_EMOTE] The instance updated the respawn location.#Waystone
+	self:Bar("portal_open", 15.0, L.portal_open, L.portal_open_icon)
+end
+
+function mod:TimecapnHooktailDefeated()
+	-- 27.70 [ENCOUNTER_END] 2419#Timecap'n Hooktail#23#5#1
+	-- 38.71 [CHAT_MSG_MONSTER_SAY] Let us depart before the Kul Tirans ask questions we lack time to answer.#Al'dalil
+	-- 44.01 [ZONE_CHANGED] Tazavesh, the Veiled Market#Tazavesh, the Veiled Market
+	self:Bar("portal_open", 15.0, L.portal_open, L.portal_open_icon)
+end
+
 -- Blood in the Water
 
 function mod:CHAT_MSG_RAID_BOSS_WHISPER(event, msg)
@@ -1391,23 +1449,29 @@ function mod:MurkbrineShellcrusherEngaged(guid)
 	self:Nameplate(355048, 9.6, guid) -- Shellcracker
 end
 
-function mod:CryofMrrggllrrgg(args)
-	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:Nameplate(args.spellId, 0, args.sourceGUID)
-	self:PlaySound(args.spellId, "alert")
+do
+	local prev = 0
+	function mod:CryOfMrrggllrrgg(args)
+		self:Nameplate(args.spellId, 0, args.sourceGUID)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
+			self:PlaySound(args.spellId, "alert")
+		end
+	end
 end
 
-function mod:CryofMrrggllrrggInterrupt(args)
+function mod:CryOfMrrggllrrggInterrupt(args)
 	self:Nameplate(355057, 30.9, args.destGUID)
 end
 
-function mod:CryofMrrggllrrggSuccess(args)
+function mod:CryOfMrrggllrrggSuccess(args)
 	self:Nameplate(args.spellId, 30.9, args.sourceGUID)
 end
 
 do
 	local prev = 0
-	function mod:CryofMrrggllrrggApplied(args)
+	function mod:CryOfMrrggllrrggApplied(args)
 		if self:Dispeller("enrage", true, args.spellId) and args.time - prev > 2 then
 			prev = args.time
 			self:Message(args.spellId, "yellow", CL.buff_other:format(args.destName, args.spellName))
@@ -1591,6 +1655,12 @@ do
 				self:Message(spellId, "orange", nil, L["1244650_icon"])
 				self:PlaySound(spellId, "alarm")
 			end
+		elseif spellId == 357828 and castGUID ~= prevCast then -- Frantic Leap
+			prevCast = castGUID
+			local sourceGUID = self:UnitGUID(unit)
+			if sourceGUID then
+				self:Nameplate(spellId, 16.2, sourceGUID)
+			end
 		end
 	end
 end
@@ -1611,7 +1681,7 @@ do
 		self:Nameplate(args.spellId, 14.5, args.sourceGUID)
 		if args.time - prev > 2 then
 			prev = args.time
-			self:TargetMessage(args.spellId, "yellow", nil, args.destName)
+			self:TargetMessage(args.spellId, "yellow", args.destName)
 			self:PlaySound(args.spellId, "alert", nil, args.destName)
 		end
 	end

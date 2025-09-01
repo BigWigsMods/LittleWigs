@@ -207,6 +207,7 @@ if L then
 	L.tracker_zokorss = "추적자 조코르스"
 	L.ancient_core_hound = "고대의 심장부 사냥개"
 	L.enraged_direhorn = "격노한 공포뿔"
+	L.frenzied_nightclaw = "광포한 밤표범"
 	L.cartel_skulker = "중개단 잠복꾼"
 	L.cartel_wiseguy = "중개단 폭력단원"
 	L.cartel_muscle = "중개단 불한당"
@@ -221,6 +222,9 @@ if L then
 	L.commander_zofar = "사령관 조파르"
 
 	L.tazavesh_soleahs_gambit = "타자베쉬: 소레아의 승부수"
+	L.hylbrande_warmup_trigger = "과연 그 지혜가 티탄의 힘을 상대로 얼마나 선전할 수 있을까?"
+	L.portal_open = "차원문 열림"
+	L.portal_open_desc = "다음 지역으로 가는 차원문이 열릴 시점을 표시하는 바를 표시합니다."
 	L.murkbrine_scalebinder = "진흙소금 비늘결속자"
 	L.murkbrine_fishmancer = "진흙소금 생선술사"
 	L.murkbrine_shellcrusher = "진흙소금 껍질분쇄자"

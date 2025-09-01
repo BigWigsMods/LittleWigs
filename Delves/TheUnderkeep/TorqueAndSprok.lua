@@ -39,7 +39,6 @@ function mod:GetOptions()
 	return {
 		-- Torque Clankfire
 		1215033, -- Long Fuse Missiles
-		1215090, -- Evasive Tactics
 		-- Sprok
 		1215084, -- Darkfuse Cocktail
 		1215015, -- This One, Boss?
@@ -55,7 +54,6 @@ end
 function mod:OnBossEnable()
 	-- Torque Clankfire
 	self:Log("SPELL_CAST_START", "LongFuseMissiles", 1215033)
-	self:Log("SPELL_CAST_SUCCESS", "EvasiveTactics", 1215090)
 	self:Death("TorqueClankfireDeath", 237554, 234939)
 
 	-- Sprok
@@ -83,12 +81,6 @@ function mod:LongFuseMissiles(args)
 	self:Message(args.spellId, "yellow")
 	self:CDBar(args.spellId, 28.7)
 	self:PlaySound(args.spellId, "long")
-end
-
-function mod:EvasiveTactics(args)
-	-- only cast if in melee range
-	self:Message(args.spellId, "cyan")
-	self:PlaySound(args.spellId, "info")
 end
 
 function mod:TorqueClankfireDeath()

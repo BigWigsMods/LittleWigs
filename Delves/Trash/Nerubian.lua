@@ -2,9 +2,10 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Nerubian Delve Trash", {2680, 2684, 2685, 2688}) -- Earthcrawl Mines, The Dread Pit, Skittering Breach, The Spiral Weave
+local mod, CL = BigWigs:NewBoss("Nerubian Delve Trash", {2664, 2680, 2684, 2685, 2688}) -- Fungal Folly, Earthcrawl Mines, The Dread Pit, Skittering Breach, The Spiral Weave
 if not mod then return end
 mod:RegisterEnableMob(
+	239985, -- Engineer Fizzlepickle (Fungal Folly gossip NPC)
 	215685, -- Foreman Pivk (Earthcrawl Mines gossip NPC)
 	216632, -- Lamplighter Rathling (Earthcrawl Mines gossip NPC)
 	219680, -- Vant (The Dread Pit gossip NPC)
@@ -13,6 +14,7 @@ mod:RegisterEnableMob(
 	220461, -- Weaver's Agent (The Spiral Weave gossip NPC)
 	220462, -- Weaver's Instructions (The Spiral Weave gossip NPC)
 	218103, -- Nerubian Lord
+	242630, -- Crazed Nerubian Lord
 	208242, -- Nerubian Darkcaster
 	220485, -- Peculiar Nerubian
 	216584, -- Nerubian Captain
@@ -131,7 +133,13 @@ end
 
 function mod:GOSSIP_SHOW()
 	if self:GetOption(autotalk) then
-		if self:GetGossipID(121408) then -- Skittering Breach, start Delve (Lamplighter Havrik Chayvn)
+		if self:GetGossipID(132634) then -- Fungal Folly, start Delve (Engineer Fizzlepickle)
+			-- 132634:|cFF0000FF(Delve)|r I know some of those words.
+			self:SelectGossipID(132634)
+		elseif self:GetGossipID(133267) then -- Fungal Folly, continue Delve (Engineer Fizzlepickle)
+			-- 133267:Kill the worm, find the gadget, and clear the Black Blood. Got it.
+			self:SelectGossipID(133267)
+		elseif self:GetGossipID(121408) then -- Skittering Breach, start Delve (Lamplighter Havrik Chayvn)
 			-- 121408:|cFF0000FF(Delve)|r I'll go deeper in and stop the nerubian ritual.
 			self:SelectGossipID(121408)
 		elseif self:GetGossipID(121508) then -- The Dread Pit, start Delve (Vant)
@@ -165,8 +173,9 @@ end
 -- Nerubian Lord
 
 function mod:JaggedBarbs(args)
-	if self:MobId(args.sourceGUID) == 218103 then -- Nerubian Lord
-		self:Message(args.spellId, "orange", CL.frontal_cone)
+	local mobId = self:MobId(args.sourceGUID)
+	if mobId == 218103 or mobId == 242630 then -- Nerubian Lord, Crazed Nerubian Lord
+		self:Message(args.spellId, "orange")
 		self:PlaySound(args.spellId, "alarm")
 	end
 end

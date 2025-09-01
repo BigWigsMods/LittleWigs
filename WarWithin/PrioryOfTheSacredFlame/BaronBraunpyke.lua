@@ -13,6 +13,7 @@ mod:SetRespawnTime(30)
 --
 
 local vindictiveWrathActive = false
+local sacrificialPyreActive = false
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -61,6 +62,7 @@ end
 
 function mod:OnEngage()
 	vindictiveWrathActive = false
+	sacrificialPyreActive = false
 	self:StopBar(CL.active)
 	if self:Mythic() then
 		self:CDBar(423062, 7.0) -- Hammer of Purity
@@ -143,22 +145,26 @@ end
 -- Mythic
 
 do
-	local unleashedPyreCharges = 0
+	local sacrificialPyreCharges = 0
 	local nextUnleashedPyre = 0
 	local sacrificialPyrePlayersHit = {}
 	local sacrificialPyreDamageCount = 0
 
 	function mod:SacrificialPyre(args)
 		-- 5 charges must be soaked when Vindictive Wrath is active, 3 charges otherwise
-		unleashedPyreCharges = vindictiveWrathActive and 5 or 3
+		sacrificialPyreCharges = vindictiveWrathActive and 5 or 3
 		nextUnleashedPyre = args.time + 30
 		sacrificialPyrePlayersHit = {}
 		sacrificialPyreDamageCount = 0
-		-- count group damage events from soaking as sometimes SPELL_MISSED doesn't log for Sacrificial Flame
-		self:Log("SPELL_DAMAGE", "SacrificialPyreDamage", 1218149)
-		self:Log("SPELL_MISSED", "SacrificialPyreDamage", 1218149)
-		self:Message(args.spellId, "cyan", CL.extra:format(args.spellName, L.charges:format(unleashedPyreCharges)))
-		self:Bar(446525, 30, CL.count:format(self:SpellName(446525), unleashedPyreCharges)) -- Unleashed Pyre
+		-- don't register the damage events again if the previous charges were never fully soaked
+		if not sacrificialPyreActive then
+			sacrificialPyreActive = true
+			-- count group damage events from soaking as sometimes SPELL_MISSED doesn't log for Sacrificial Flame
+			self:Log("SPELL_DAMAGE", "SacrificialPyreDamage", 1218149)
+			self:Log("SPELL_MISSED", "SacrificialPyreDamage", 1218149)
+		end
+		self:Message(args.spellId, "cyan", CL.extra:format(args.spellName, L.charges:format(sacrificialPyreCharges)))
+		self:Bar(446525, 30, CL.count:format(self:SpellName(446525), sacrificialPyreCharges)) -- Unleashed Pyre
 		self:CDBar(args.spellId, 33.6)
 		self:PlaySound(args.spellId, "info")
 	end
@@ -169,13 +175,14 @@ do
 			-- this is the first player affected by a damage event we haven't processed yet
 			sacrificialPyreDamageCount = sacrificialPyreDamageCount + 1
 			sacrificialPyrePlayersHit[args.destGUID] = sacrificialPyreDamageCount
-			local chargesRemaining = unleashedPyreCharges - sacrificialPyreDamageCount
+			local chargesRemaining = sacrificialPyreCharges - sacrificialPyreDamageCount
 			self:StopBar(CL.count:format(self:SpellName(446525), chargesRemaining + 1)) -- Unleashed Pyre
 			if chargesRemaining > 0 then
 				-- update the count in the bar if there are still charges remaining
 				self:Bar(446525, {nextUnleashedPyre - args.time, 30}, CL.count:format(self:SpellName(446525), chargesRemaining)) -- Unleashed Pyre
 			else
 				-- all charges have been soaked
+				sacrificialPyreActive = false
 				self:RemoveLog("SPELL_DAMAGE", args.spellId)
 				self:RemoveLog("SPELL_MISSED", args.spellId)
 				self:Message(446368, "green", CL.over:format(self:SpellName(446368))) -- Sacrificial Pyre

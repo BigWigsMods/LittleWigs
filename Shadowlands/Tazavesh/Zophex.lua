@@ -22,7 +22,7 @@ local containmentCellMarker = mod:AddMarkerOption(true, "npc", 8, 345764, 8) -- 
 function mod:GetOptions()
 	return {
 		"warmup",
-		348350, -- Interrogation
+		{348350, "ME_ONLY_EMPHASIZE"}, -- Interrogation
 		345990, -- Containment Cell
 		containmentCellMarker,
 		345770, -- Impound Contraband

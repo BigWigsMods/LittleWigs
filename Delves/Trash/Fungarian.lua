@@ -12,6 +12,7 @@ mod:RegisterEnableMob(
 	211028, -- Twizzle Runabout (Fungal Folly gossip NPC)
 	211062, -- Bill (Fungal Folly gossip NPC)
 	220293, -- Aliya Hillhelm (Mycomancer Cavern gossip NPC)
+	219872, -- Peculiar Fungi (Mycomancer Cavern gossip NPC)
 	219779, -- Alekk (Mycomancer Cavern gossip NPC)
 	220354, -- Chief Dinaire (Mycomancer Cavern gossip NPC)
 	233985, -- Prospera Cogwail (The Waterworks gossip NPC)
@@ -163,6 +164,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(121536) then -- Mycomancer Cavern, start Delve (Aliya Hillhelm)
 			-- 121536:|cFF0000FF(Delve)|r I'll get your pigs back and make those fungarians pay for this.
 			self:SelectGossipID(121536)
+		elseif self:GetGossipID(121445) then -- Mycomancer Cavern, start Delve (Peculiar Fungi)
+			-- 121445:|cFF0000FF(Delve)|r <Grab the peculiar fungi.>
+			self:SelectGossipID(121445)
 		elseif self:GetGossipID(122875) then -- Mycomancer Cavern, continue Delve (Magni? / Brann)
 			-- 122875:|cFF0000FF(Delve)|r Right. Magni. Let's go save Azeroth after we handle some mushrooms.
 			self:SelectGossipID(122875)

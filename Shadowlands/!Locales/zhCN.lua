@@ -207,6 +207,7 @@ if L then
 	L.tracker_zokorss = "追踪者佐·刻斯"
 	L.ancient_core_hound = "上古熔火恶犬"
 	L.enraged_direhorn = "暴怒的恐角龙"
+	L.frenzied_nightclaw = "狂乱的夜爪豹"
 	L.cartel_skulker = "财团潜伏者"
 	L.cartel_wiseguy = "财团智囊"
 	L.cartel_muscle = "财团打手"
@@ -221,6 +222,9 @@ if L then
 	L.commander_zofar = "指挥官佐·法"
 
 	L.tazavesh_soleahs_gambit = "塔扎维什：索·莉亚的宏图"
+	L.hylbrande_warmup_trigger = "那就看看你的智慧在泰坦的力量面前，表现如何。"
+	L.portal_open = "开启传送门"
+	L.portal_open_desc = "显示通往下一区域的传送门何时开启的计时条。"
 	L.murkbrine_scalebinder = "浊盐缚鳞者"
 	L.murkbrine_fishmancer = "浊盐鱼术师"
 	L.murkbrine_shellcrusher = "浊盐碎壳者"

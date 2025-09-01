@@ -783,12 +783,12 @@ do
 	local timer
 
 	function mod:TheUnderpinEngaged(guid)
-		self:CDBar(1213852, 4.8, CL.leap) -- Crush
-		self:Nameplate(1213852, 4.8, guid) -- Crush
-		self:CDBar(1217371, 9.6, CL.frontal_cone) -- Flamethrower
-		self:Nameplate(1217371, 9.6, guid) -- Flamethrower
-		self:CDBar(1214147, 13.3, CL.bombs) -- Time Bomb Launcher
-		self:Nameplate(1214147, 13.3, guid) -- Time Bomb Launcher
+		self:CDBar(1213852, 4.5, CL.leap) -- Crush
+		self:Nameplate(1213852, 4.5, guid) -- Crush
+		self:CDBar(1217371, 9.4, CL.frontal_cone) -- Flamethrower
+		self:Nameplate(1217371, 9.4, guid) -- Flamethrower
+		self:CDBar(1214147, 13.1, CL.bombs) -- Time Bomb Launcher
+		self:Nameplate(1214147, 13.1, guid) -- Time Bomb Launcher
 		timer = self:ScheduleTimer("TheUnderpinRetreat", 20, guid)
 	end
 

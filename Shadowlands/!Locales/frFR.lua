@@ -207,6 +207,7 @@ if L then
 	L.tracker_zokorss = "Pisteur Zo'korss"
 	L.ancient_core_hound = "Ancien chien du magma"
 	L.enraged_direhorn = "Navrecorne enragé"
+	L.frenzied_nightclaw = "Griffenuit frénétique"
 	L.cartel_skulker = "Furtif du cartel"
 	L.cartel_wiseguy = "Crapule du cartel"
 	L.cartel_muscle = "Gros-bras du cartel"
@@ -221,6 +222,9 @@ if L then
 	L.commander_zofar = "Commandant Zo'far"
 
 	L.tazavesh_soleahs_gambit = "Tazavesh : le stratagème de So’leah"
+	--L.hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans."
+	--L.portal_open = "Portal opens"
+	--L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
 	L.murkbrine_scalebinder = "Lieur d'écailles bourbe-sel"
 	L.murkbrine_fishmancer = "Pescomancien bourbe-sel"
 	L.murkbrine_shellcrusher = "Brise-conque bourbe-sel"

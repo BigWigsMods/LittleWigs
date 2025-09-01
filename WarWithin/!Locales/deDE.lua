@@ -131,6 +131,7 @@ if L then
 	L.tamed_ruinstalker = "Gezähmter Ruinenpirscher"
 	L.wastelander_ritualist = "Ritualist der Ödnisbewohner"
 	L.wastelander_pactspeaker = "Paktsprecherin der Ödnisbewohner"
+	L.evoked_spirit = "Heraufbeschworener Geist"
 	L.karesh_elemental = "Elementar der K'aresh"
 	L.burrowing_creeper = "Grabender Kriecher"
 	L.wastes_creeper = "Ödniskriecher"

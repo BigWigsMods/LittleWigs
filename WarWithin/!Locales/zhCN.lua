@@ -131,6 +131,7 @@ if L then
 	L.tamed_ruinstalker = "驯服的废墟追猎者"
 	L.wastelander_ritualist = "废土遗民祭师"
 	L.wastelander_pactspeaker = "废土遗民诉契者"
+	L.evoked_spirit = "挑衅之灵"
 	L.karesh_elemental = "卡雷什元素"
 	L.burrowing_creeper = "掘地蠕行者"
 	L.wastes_creeper = "废土蠕行者"

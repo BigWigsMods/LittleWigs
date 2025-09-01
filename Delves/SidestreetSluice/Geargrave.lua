@@ -10,7 +10,7 @@ mod:RegisterEnableMob(
 	247481, -- Geargrave (Sidestreet Sluice)
 	249829 -- Geargrave (Sidestreet Sluice)
 )
-mod:SetEncounterID({3020, 3123, 3174, 3352}) -- The Dread Pit, The Spiral Weave, Sidestreet Sluice, Sidestreet Sluice
+mod:SetEncounterID({3120, 3123, 3174, 3352}) -- The Dread Pit, The Spiral Weave, Sidestreet Sluice, Sidestreet Sluice
 --mod:SetRespawnTime(15) resets, doesn't respawn
 mod:SetAllowWin(true)
 

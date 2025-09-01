@@ -10,6 +10,14 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local powerOverwhelmingCount = 1
+local energyFragmentationRemaining = 2
+local hyperlightNovaRemaining = 2
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -74,6 +82,9 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	powerOverwhelmingCount = 1
+	energyFragmentationRemaining = 2
+	hyperlightNovaRemaining = 2
 	self:SetStage(1)
 	self:CDBar(351124, 5.9) -- Summon Assassins
 	self:CDBar(350796, 12.0) -- Hyperlight Spark
@@ -177,6 +188,7 @@ do
 		end
 		hyperlightJoltCount = 1
 		self:Message(args.spellId, "cyan")
+		powerOverwhelmingCount = powerOverwhelmingCount + 1
 		self:StopBar(args.spellId)
 		self:PlaySound(args.spellId, "long")
 	end
@@ -202,10 +214,19 @@ do
 			timer = nil
 		end
 		self:Message(args.spellId, "green", CL.over:format(args.spellName))
-		-- TODO min 8.36 to next cast
-		-- TODO self:CDBar(351096, 100) -- Energy Fragmentation
-		-- TODO self:CDBar(351646, 100) -- Hyperlight Nova
-		self:CDBar(353635, 25.4) -- Collapsing Star
+		if powerOverwhelmingCount % 2 == 0 then
+			energyFragmentationRemaining = 2
+			hyperlightNovaRemaining = 1
+			self:CDBar(351096, 8.3) -- Energy Fragmentation
+			self:CDBar(353635, 25.0) -- Collapsing Star
+			self:CDBar(351646, 28.9) -- Hyperlight Nova
+		else
+			energyFragmentationRemaining = 1
+			hyperlightNovaRemaining = 2
+			self:CDBar(351646, 8.3) -- Hyperlight Nova
+			self:CDBar(353635, 25.0) -- Collapsing Star
+			self:CDBar(351096, 26.6) -- Energy Fragmentation
+		end
 		self:CDBar(args.spellId, 65.5)
 		self:PlaySound(args.spellId, "long")
 	end
@@ -216,7 +237,12 @@ function mod:EnergyFragmentation(args)
 		self:SetStage(2)
 	end
 	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 38.9)
+	energyFragmentationRemaining = energyFragmentationRemaining - 1
+	if energyFragmentationRemaining > 0 then
+		self:CDBar(args.spellId, 38.5)
+	else
+		self:StopBar(args.spellId)
+	end
 	self:PlaySound(args.spellId, "alert")
 end
 
@@ -226,7 +252,12 @@ function mod:HyperlightNova(args)
 			self:SetStage(2)
 		end
 		self:Message(args.spellId, "orange")
-		self:CDBar(args.spellId, 38.9)
+		hyperlightNovaRemaining = hyperlightNovaRemaining - 1
+		if hyperlightNovaRemaining > 0 then
+			self:CDBar(args.spellId, 37.3)
+		else
+			self:StopBar(args.spellId)
+		end
 		self:PlaySound(args.spellId, "alarm")
 	end
 end

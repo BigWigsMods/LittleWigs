@@ -131,6 +131,7 @@ if L then
 	L.tamed_ruinstalker = "길든 폐허 추적자"
 	L.wastelander_ritualist = "황무지인 의식술사"
 	L.wastelander_pactspeaker = "황무지인 서약대변자"
+	L.evoked_spirit = "깨어난 영혼"
 	L.karesh_elemental = "크아레쉬의 정령"
 	L.burrowing_creeper = "잠복하는 살금벌레"
 	L.wastes_creeper = "황원 살금벌레"
