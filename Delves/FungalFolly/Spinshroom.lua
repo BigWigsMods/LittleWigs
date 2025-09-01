@@ -4,7 +4,10 @@
 
 local mod, CL = BigWigs:NewBoss("Spinshroom", 2664)
 if not mod then return end
-mod:RegisterEnableMob(207481) -- Spinshroom
+mod:RegisterEnableMob(
+	207481, -- Spinshroom
+	247498 -- Spinshroom (Ethereal Routing Station)
+)
 mod:SetEncounterID(2831)
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
@@ -48,6 +51,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "GloopyFungusDamage", 415495)
 	self:Log("SPELL_PERIODIC_MISSED", "GloopyFungusDamage", 415495)
 	self:Log("SPELL_CAST_START", "Fungsplosion", 425315)
+
+	-- Ethereal Routing Station
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3") -- Teleported
 end
 
 function mod:OnEngage()
@@ -59,6 +66,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
+	if spellId == 1243416 and self:MobId(self:UnitGUID(unit)) == 247498 then -- Teleported
+		-- check mobId because Ethereal Routing Station can have up to 3 bosses engaged at once
+		self:Win()
+	end
+end
 
 function mod:Fungalstorm(args)
 	self:Message(args.spellId, "yellow")
