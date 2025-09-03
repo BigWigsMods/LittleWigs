@@ -221,7 +221,6 @@ if L then
 	L.commerce_enforcer = "상업구 집행자"
 	L.commander_zofar = "사령관 조파르"
 
-	L.tazavesh_soleahs_gambit = "타자베쉬: 소레아의 승부수"
 	L.hylbrande_warmup_trigger = "과연 그 지혜가 티탄의 힘을 상대로 얼마나 선전할 수 있을까?"
 	L.portal_open = "차원문 열림"
 	L.portal_open_desc = "다음 지역으로 가는 차원문이 열릴 시점을 표시하는 바를 표시합니다."

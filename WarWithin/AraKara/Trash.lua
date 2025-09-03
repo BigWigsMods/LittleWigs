@@ -92,6 +92,18 @@ function mod:GetOptions()
 		-- Winged Carrier
 		{433821, "NAMEPLATE", "OFF"}, -- Dashing Strike
 	}, {
+		{
+			tabName = self:BossName(2583), -- Avanoxx
+			{434830, 436614, "custom_on_autotalk", 439208, 438618, 434793, 434824, 434802, 438877, 438826},
+		},
+		{
+			tabName = self:BossName(2584), -- Anub'zekt
+			{"custom_on_autotalk", 439208, 453161, 1241693, 432967, 433002, 448248},
+		},
+		{
+			tabName = self:BossName(2585), -- Ki'katal the Harvester
+			{433845, 433841, 1241785, 433821, 453161, 1241693},
+		},
 		[434830] = L.vile_webbing,
 		["custom_on_autotalk"] = L.discordant_attendant,
 		[438618] = L.engorged_crawler,
@@ -292,9 +304,8 @@ do
 	local prev = 0
 	function mod:ResonantBarrage(args)
 		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
-		local t = args.time
-		if t - prev > 1.5 then
-			prev = t
+		if args.time - prev > 1.5 then
+			prev = args.time
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
@@ -496,9 +507,8 @@ end
 do
 	local prev = 0
 	function mod:AlarmShrill(args)
-		local t = args.time
-		if t - prev > 3 then
-			prev = t
+		if args.time - prev > 3 then
+			prev = args.time
 			self:Message(args.spellId, "cyan", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "info")
 		end

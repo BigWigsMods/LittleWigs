@@ -101,7 +101,6 @@ if L then
 	L.commander_zofar = "Commander Zo'far"
 
 	------ So'leah's Gambit ------
-	L.tazavesh_soleahs_gambit = "Tazavesh: So'leah's Gambit"
 	L.hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans."
 	L.portal_open = "Portal opens"
 	L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
@@ -223,6 +222,38 @@ function mod:GetOptions()
 		-- Focused Ritualist
 		{357260, "NAMEPLATE"}, -- Unstable Rift
 	}, {
+		{
+			tabName = self:BossName(2437), -- Zo'phex the Sentinel
+			{352796, 356548, 355900, 355888, 355891, 355915, 356001, 355934, 355980, 356537},
+		},
+		{
+			tabName = self:BossName(2454), -- The Grand Menagerie
+			{"custom_on_portal_autotalk", 356929, 356942, 356404, 356407, 357512, 357508, 357828},
+		},
+		{
+			tabName = self:BossName(2436), -- Mailroom Mayhem
+			{"custom_on_portal_autotalk", 347721, 347775, 347716},
+		},
+		{
+			tabName = self:BossName(2452), -- Myza's Oasis
+			{"custom_on_portal_autotalk", "trading_game", "custom_on_trading_game_autotalk", 355830, 357197, 356967, 357229, 357029, 1240821, 1240912},
+		},
+		{
+			tabName = self:BossName(2451), -- So'azmi
+			{355640, 355637, 355642, 1244443, 355477, 355479, 355473},
+		},
+		{
+			tabName = self:BossName(2448), -- Hylbrande
+			{"portal_open", 358443, 355132, 355234, 355057, 355048, 355429, 355464, 355584, 355577},
+		},
+		{
+			tabName = self:BossName(2449), -- Timecap'n Hooktail
+			{"portal_open", 356133, 1244650, 368661},
+		},
+		{
+			tabName = self:BossName(2455), -- So'leah
+			{357226, 357238, 357260},
+		},
 		------ Streets of Wonder ------
 		["custom_on_portal_autotalk"] = L.portal_authority,
 		["trading_game"] = L.trading_game,
@@ -249,7 +280,7 @@ function mod:GetOptions()
 		[1244443] = L.commerce_enforcer,
 		[355479] = L.commander_zofar,
 		------ So'leah's Gambit ------
-		["portal_open"] = L.tazavesh_soleahs_gambit,
+		["portal_open"] = CL.general,
 		[355132] = L.murkbrine_scalebinder,
 		[355234] = L.murkbrine_fishmancer,
 		[355057] = L.murkbrine_shellcrusher,

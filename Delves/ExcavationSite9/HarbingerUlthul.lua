@@ -4,7 +4,10 @@
 
 local mod, CL = BigWigs:NewBoss("Harbinger Ul'thul", 2815)
 if not mod then return end
-mod:RegisterEnableMob(234339) -- Harbinger Ul'thul
+mod:RegisterEnableMob(
+	234339, -- Harbinger Ul'thul
+	247484 -- Harbinger Ul'thul (Ethereal Routing Station)
+)
 mod:SetEncounterID(3096)
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
@@ -49,6 +52,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "UnansweredCall", 1213700)
 	self:Log("SPELL_AURA_APPLIED", "UnansweredCallApplied", 1213838)
 	self:Log("SPELL_AURA_REMOVED", "UnansweredCallRemoved", 1213838)
+
+	-- Ethereal Routing Station
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3") -- Teleported
 end
 
 function mod:OnEngage()
@@ -60,6 +67,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
+	if spellId == 1243416 and self:MobId(self:UnitGUID(unit)) == 247484 then -- Teleported
+		-- check mobId because Ethereal Routing Station can have up to 3 bosses engaged at once
+		self:Win()
+	end
+end
 
 function mod:HopelessCurse(args)
 	self:Message(args.spellId, "orange", CL.casting:format(CL.curse))
