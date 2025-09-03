@@ -221,7 +221,7 @@ if L then
 	L.commerce_enforcer = "Déspota comercial"
 	L.commander_zofar = "Comandante Zo'far"
 
-	--L.hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans."
+	L.hylbrande_warmup_trigger = "A ver cómo le va tu sabiduría contra el poder de los titanes."
 	L.portal_open = "Portal abierto"
 	L.portal_open_desc = "Muestra una barra que indica cuándo se abrirá el portal a la siguiente zona."
 	L.murkbrine_scalebinder = "Sujetascamas Salmuerasucia"
