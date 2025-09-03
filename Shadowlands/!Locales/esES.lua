@@ -222,8 +222,8 @@ if L then
 	L.commander_zofar = "Comandante Zo'far"
 
 	--L.hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans."
-	--L.portal_open = "Portal opens"
-	--L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
+	L.portal_open = "Portal abierto"
+	L.portal_open_desc = "Muestra una barra que indica cuándo se abrirá el portal a la siguiente zona."
 	L.murkbrine_scalebinder = "Sujetascamas Salmuerasucia"
 	L.murkbrine_fishmancer = "Piscimante Salmuerasucia"
 	L.murkbrine_shellcrusher = "Rompeconchas Salmuerasucia"
