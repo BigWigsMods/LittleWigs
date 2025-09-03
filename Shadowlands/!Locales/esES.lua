@@ -168,7 +168,7 @@ end
 L = BigWigs:NewBossLocale("Myza's Oasis", "esES")
 if L then
 	L.notes = "Notas"
-	L.notes_desc = "Muestra un mensaje cuando las notas estén disponibles. Alcanza las notas con la habilidad de tu instrumento para obtener 'Dándolo todo'.\n\n|T237554:16|tJazzy\n{348567}"
+	L.notes_desc = "Muestra un mensaje cuando las notas estén disponibles. Alcanza las notas con la habilidad de tu instrumento para obtener 'Dándolo todo'.\n\n|T237554:16|tDándolo todo\n{348567}"
 end
 
 L = BigWigs:NewBossLocale("So'leah", "esES")
@@ -221,7 +221,7 @@ if L then
 	L.commerce_enforcer = "Déspota comercial"
 	L.commander_zofar = "Comandante Zo'far"
 
-	L.hylbrande_warmup_trigger = "A ver cómo le va tu sabiduría contra el poder de los titanes."
+	L.hylbrande_warmup_trigger = "A ver cómo le va a tu sabiduría contra el poder de los titanes."
 	L.portal_open = "Portal abierto"
 	L.portal_open_desc = "Muestra una barra que indica cuándo se abrirá el portal a la siguiente zona."
 	L.murkbrine_scalebinder = "Sujetascamas Salmuerasucia"
