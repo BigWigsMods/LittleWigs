@@ -4,7 +4,10 @@
 
 local mod, CL = BigWigs:NewBoss("Craggle Fritzbrains", 2815)
 if not mod then return end
-mod:RegisterEnableMob(234291) -- Craggle Fritzbrains
+mod:RegisterEnableMob(
+	234291, -- Craggle Fritzbrains
+	247483 -- Craggle Fritzbrains (Ethereal Routing Station)
+)
 mod:SetEncounterID(3095)
 mod:SetRespawnTime(15)
 mod:SetAllowWin(true)
@@ -37,6 +40,10 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "MakeItRain", 1214135)
 	self:Log("SPELL_CAST_START", "GoblinIngenuity", 1214504)
 	self:Log("SPELL_AURA_APPLIED", "GoblinIngenuityApplied", 1214504)
+
+	-- Ethereal Routing Station
+	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT", "CheckBossStatus")
+	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3") -- Teleported
 end
 
 function mod:OnEngage()
@@ -47,6 +54,13 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
+	if spellId == 1243416 and self:MobId(self:UnitGUID(unit)) == 247483 then -- Teleported
+		-- check mobId because Ethereal Routing Station can have up to 3 bosses engaged at once
+		self:Win()
+	end
+end
 
 function mod:MakeItRain(args)
 	self:Message(args.spellId, "yellow")
