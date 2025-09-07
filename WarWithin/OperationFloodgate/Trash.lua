@@ -205,7 +205,7 @@ function mod:OnBossEnable()
 	-- Venture Co. Architect
 	self:Log("SPELL_AURA_REMOVED", "HighGroundRemoved", 465420)
 	self:Log("SPELL_CAST_START", "RapidConstruction", 465408)
-	self:Death("VentureCoArchitectDeath", 229686)
+	self:Death("VentureCoArchitectDeath", 229251)
 
 	-- Venture Co. Diver
 	self:RegisterEngageMob("VentureCoDiverEngaged", 231496)
