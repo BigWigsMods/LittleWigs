@@ -12,9 +12,12 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
+local castingDevour = false
 local devourCount = 1
 local invadingShriekCount = 1
 local toxicRegurgitationCount = 1
+local frenziedMiteCount = 0
+local frenziedMiteCollector = {}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -25,19 +28,25 @@ function mod:GetOptions()
 		{1217232, "CASTBAR"}, -- Devour
 		1217247, -- Feast
 		1217327, -- Invading Shriek
+		1231811, -- Uncontrolled
 		{1227745, "SAY", "SAY_COUNTDOWN"}, -- Toxic Regurgitation
 		1217446, -- Digestive Spittle
 		1217664, -- Thrash
+	}, nil, {
+		[1231811] = CL.adds, -- Uncontrolled (Adds)
 	}
 end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Devour", 1217232)
 	self:Log("SPELL_CAST_SUCCESS", "DevourSuccess", 1217232)
+	self:Log("SPELL_AURA_REMOVED", "DevourRemoved", 1217232)
 	self:Log("SPELL_AURA_APPLIED", "FeastAppliedBoss", 1217247)
 	self:Log("SPELL_AURA_APPLIED_DOSE", "FeastAppliedBoss", 1217247)
 	self:Log("SPELL_AURA_APPLIED", "FeastAppliedPlayer", 1217241)
 	self:Log("SPELL_CAST_START", "InvadingShriek", 1217327)
+	self:Log("SPELL_AURA_APPLIED", "UncontrolledApplied", 1231811)
+	self:Death("FrenziedMiteDeath", 236190)
 	self:Log("SPELL_CAST_START", "ToxicRegurgitation", 1227745)
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER") -- Toxic Regurgitation
 	self:Log("SPELL_PERIODIC_DAMAGE", "DigestiveSpittleDamage", 1217446)
@@ -46,9 +55,12 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	castingDevour = false
 	devourCount = 1
 	invadingShriekCount = 1
 	toxicRegurgitationCount = 1
+	frenziedMiteCount = 0
+	frenziedMiteCollector = {}
 	self:CDBar(1217327, 5.2, CL.count:format(self:SpellName(1217327), invadingShriekCount)) -- Invading Shriek
 	self:CDBar(1227745, 15.4, CL.count:format(self:SpellName(1227745), toxicRegurgitationCount)) -- Toxic Regurgitation
 	-- cast at 100 energy, 60s energy gain + delay
@@ -60,6 +72,7 @@ end
 --
 
 function mod:Devour(args)
+	castingDevour = true
 	self:StopBar(CL.count:format(args.spellName, devourCount))
 	self:Message(args.spellId, "cyan", CL.count:format(args.spellName, devourCount))
 	devourCount = devourCount + 1
@@ -70,6 +83,10 @@ end
 
 function mod:DevourSuccess(args)
 	self:CastBar(args.spellId, 18) -- 18s channel
+end
+
+function mod:DevourRemoved()
+	castingDevour = false
 end
 
 function mod:FeastAppliedBoss(args)
@@ -96,6 +113,27 @@ function mod:InvadingShriek(args)
 		self:CDBar(args.spellId, 48.5, CL.count:format(args.spellName, invadingShriekCount))
 	end
 	self:PlaySound(args.spellId, "alert")
+end
+
+function mod:UncontrolledApplied(args)
+	-- this is applied on spawn, we only track Frenzied Mites that spawn during Devour.
+	-- Frenzied Mites only spawn during Devour on Mythic.
+	if castingDevour and not frenziedMiteCollector[args.destGUID] then
+		frenziedMiteCount = frenziedMiteCount + 1
+		frenziedMiteCollector[args.destGUID] = true
+	end
+end
+
+function mod:FrenziedMiteDeath(args)
+	if frenziedMiteCollector[args.destGUID] then
+		frenziedMiteCount = frenziedMiteCount - 1
+		frenziedMiteCollector[args.destGUID] = nil
+		if frenziedMiteCount == 0 then
+			-- show a message when the last Devour add is killed
+			self:Message(1231811, "green", CL.killed:format(CL.adds))
+			self:PlaySound(1231811, "info")
+		end
+	end
 end
 
 do

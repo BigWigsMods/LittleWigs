@@ -437,6 +437,7 @@ BigWigs:AddColors("Azhiccar", {
 	[1217446] = "blue",
 	[1217664] = "purple",
 	[1227745] = {"blue","orange"},
+	[1231811] = "green",
 })
 
 BigWigs:AddSounds("Azhiccar", {
@@ -446,6 +447,7 @@ BigWigs:AddSounds("Azhiccar", {
 	[1217446] = "underyou",
 	[1217664] = "warning",
 	[1227745] = "alarm",
+	[1231811] = "info",
 })
 
 BigWigs:AddColors("Taah'bat and A'wazj", {
