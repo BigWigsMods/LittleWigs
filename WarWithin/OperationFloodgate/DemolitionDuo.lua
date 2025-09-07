@@ -27,6 +27,7 @@ function mod:GetOptions()
 		470090, -- Divided Duo
 		-- Keeza Quickfuse
 		460867, -- Big Bada BOOM!
+		461994, -- Deflagration
 		1217653, -- B.B.B.F.G.
 		{473690, "SAY"}, -- Kinetic Explosive Gel (Mythic)
 		{460602, "ME_ONLY", "OFF"}, -- Quick Shot
@@ -36,6 +37,8 @@ function mod:GetOptions()
 	}, {
 		[460867] = -30321, -- Keeza Quickfuse
 		[459779] = -30322, -- Bront
+	}, {
+		[461994] = CL.explosion, -- Deflagration (Explosion)
 	}
 end
 
@@ -44,6 +47,8 @@ function mod:OnBossEnable()
 
 	-- Keeza Quickfuse
 	self:Log("SPELL_CAST_START", "BigBadaBOOM", 460867)
+	self:Log("SPELL_AURA_APPLIED", "BigBadaBOOMApplied", 460781)
+	self:Log("SPELL_AURA_REMOVED", "BigBadaBOOMRemoved", 460781)
 	self:Log("SPELL_CAST_START", "BBBFG", 1217653)
 	self:Log("SPELL_CAST_START", "KineticExplosiveGel", 473690)
 	self:Log("SPELL_AURA_APPLIED", "KineticExplosiveGelApplied", 473713)
@@ -88,10 +93,58 @@ end
 
 -- Keeza Quickfuse
 
-function mod:BigBadaBOOM(args)
-	self:Message(args.spellId, "yellow")
-	self:CDBar(args.spellId, 40.1)
-	self:PlaySound(args.spellId, "long")
+do
+	local bigBadaBOOMCount = 0
+	local bigBadaBOOMCollector = {}
+	local barText
+
+	local function updateDeflagrationBar(currentTime)
+		if bigBadaBOOMCount > 0 then
+			-- calculate duration based on the minimum time until a bomb explodes
+			local duration = 30
+			for _, expirationTime in pairs(bigBadaBOOMCollector) do
+				duration = math.min(expirationTime - currentTime, duration)
+			end
+			-- stop any previous bar
+			if barText then
+				mod:StopBar(barText)
+			end
+			-- show new bar with updated duration
+			barText = CL.count:format(CL.explosion, bigBadaBOOMCount)
+			mod:Bar(461994, {duration, 30}, barText) -- Deflagration
+		else
+			-- the last bomb has been destroyed (or... it exploded)
+			mod:StopBar(barText)
+			barText = nil
+			mod:Message(460867, "green", CL.over:format(mod:SpellName(460867))) -- Big Bada BOOM!
+			mod:PlaySound(460867, "info")
+		end
+	end
+
+	function mod:BigBadaBOOM(args)
+		bigBadaBOOMCount = 0
+		bigBadaBOOMCollector = {}
+		barText = nil
+		self:Message(args.spellId, "yellow")
+		self:CDBar(args.spellId, 40.1)
+		self:PlaySound(args.spellId, "long")
+	end
+
+	function mod:BigBadaBOOMApplied(args)
+		-- this event is fired twice for some reason, don't track duplicates
+		if not bigBadaBOOMCollector[args.sourceGUID] then
+			bigBadaBOOMCount = bigBadaBOOMCount + 1
+			-- Ticking Time Bombs explode after 30 seconds
+			bigBadaBOOMCollector[args.sourceGUID] = args.time + 30
+			updateDeflagrationBar(args.time)
+		end
+	end
+
+	function mod:BigBadaBOOMRemoved(args)
+		bigBadaBOOMCount = bigBadaBOOMCount - 1
+		bigBadaBOOMCollector[args.sourceGUID] = nil
+		updateDeflagrationBar(args.time)
+	end
 end
 
 function mod:BBBFG(args)
