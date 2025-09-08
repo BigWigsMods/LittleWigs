@@ -1,4 +1,4 @@
-## Interface: 50500
+## Interface: 50500, 50501
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
