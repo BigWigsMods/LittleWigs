@@ -75,7 +75,7 @@ function mod:GetOptions()
 		{450756, "DISPEL", "NAMEPLATE"}, -- Abyssal Howl
 		{431491, "TANK", "NAMEPLATE"}, -- Tainted Slash
 		-- Sureki Webmage
-		{451107, "SAY", "NAMEPLATE"}, -- Bursting Cocoon
+		{451107, "SAY", "SAY_COUNTDOWN", "NAMEPLATE"}, -- Bursting Cocoon
 		-- Arathi Bomb
 		451091, -- Plant Arathi Bomb
 		-- Ascendant Vis'coxria
@@ -163,6 +163,7 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("SurekiWebmageEngaged", 225479, 210966) -- on ship, in town
 	self:Log("SPELL_CAST_SUCCESS", "BurstingCocoon", 451107)
 	self:Log("SPELL_AURA_APPLIED", "BurstingCocoonApplied", 451107)
+	self:Log("SPELL_AURA_REMOVED", "BurstingCocoonRemoved", 451107)
 	self:Death("SurekiWebmageDeath", 225479, 210966) -- on ship, in town
 
 	-- Arathi Bomb
@@ -361,8 +362,15 @@ function mod:BurstingCocoonApplied(args)
 	self:TargetMessage(args.spellId, "yellow", args.destName)
 	if self:Me(args.destGUID) then
 		self:Say(args.spellId, nil, nil, "Bursting Cocoon")
+		self:SayCountdown(args.spellId, 6)
 	end
 	self:PlaySound(args.spellId, "alarm", nil, args.destName)
+end
+
+function mod:BurstingCocoonRemoved(args)
+	if self:Me(args.destGUID) then
+		self:CancelSayCountdown(args.spellId)
+	end
 end
 
 function mod:SurekiWebmageDeath(args)
