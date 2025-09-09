@@ -144,6 +144,7 @@ function mod:OnBossEnable()
 	-- Trilling Attendant
 	self:RegisterEngageMob("TrillingAttendantEngaged", 216293)
 	self:Log("SPELL_CAST_SUCCESS", "ResonantBarrage", 434793)
+	self:Log("SPELL_INTERRUPT", "ResonantBarrageInterrupt", 434793)
 	self:Death("TrillingAttendantDeath", 216293)
 
 	-- Ixin, Nakt, Atik
@@ -266,13 +267,13 @@ end
 
 function mod:EngorgedCrawlerEngaged(guid)
 	if self:Dispeller("poison", nil, 438618) then
-		self:Nameplate(438618, 5.6, guid) -- Venomous Spit
+		self:Nameplate(438618, 5.4, guid) -- Venomous Spit
 	end
 end
 
 function mod:VenomousSpit(args)
 	if self:Dispeller("poison", nil, args.spellId) then
-		self:Nameplate(args.spellId, 10.9, args.sourceGUID)
+		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 	end
 end
 
@@ -297,19 +298,23 @@ end
 -- Trilling Attendant
 
 function mod:TrillingAttendantEngaged(guid)
-	self:Nameplate(434793, 2.5, guid) -- Resonant Barrage
+	self:Nameplate(434793, 8.5, guid) -- Resonant Barrage
 end
 
 do
 	local prev = 0
 	function mod:ResonantBarrage(args)
-		self:Nameplate(args.spellId, 17.0, args.sourceGUID)
+		self:Nameplate(args.spellId, 25.3, args.sourceGUID)
 		if args.time - prev > 1.5 then
 			prev = args.time
 			self:Message(args.spellId, "red", CL.casting:format(args.spellName))
 			self:PlaySound(args.spellId, "alert")
 		end
 	end
+end
+
+function mod:ResonantBarrageInterrupt(args)
+	self:Nameplate(434793, 25.3, args.destGUID)
 end
 
 function mod:TrillingAttendantDeath(args)
