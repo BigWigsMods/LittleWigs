@@ -472,11 +472,11 @@ function mod:SandsOfKaresh(args)
 end
 
 function mod:SandsOfKareshInterrupt(args)
-	self:Nameplate(1242469, 17.5, args.destGUID)
+	self:Nameplate(1242469, 17.0, args.destGUID)
 end
 
 function mod:SandsOfKareshSuccess(args)
-	self:Nameplate(args.spellId, 17.5, args.sourceGUID)
+	self:Nameplate(args.spellId, 17.0, args.sourceGUID)
 end
 
 function mod:PactswornSandreaverDeath(args)
@@ -604,7 +604,7 @@ end
 
 function mod:ShriekingQuartz(args)
 	self:Message(args.spellId, "cyan", CL.other:format(self:ColorName(args.sourceName), args.spellName))
-	self:Bar(1245156, 9.1) -- Kyveza's Grand Entrance
+	self:Bar(1245156, 9.1) -- Ky'veza's Grand Entrance
 	self:PlaySound(args.spellId, "info")
 end
 
