@@ -95,6 +95,7 @@ function mod:GetOptions()
 		{1244108, "NAMEPLATE"}, -- Terrifying Screech
 		{1244249, "NAMEPLATE"}, -- Charge Throug
 		-- Nexus-Princess Ky'veza
+		1246124, -- Shrieking Quartz
 		{1245156, "EMPHASIZE"}, -- Ky'veza's Grand Entrance
 		{1245203, "NAMEPLATE"}, -- Dark Massacre
 		{1245240, "NAMEPLATE"}, -- Nexus Daggers
@@ -118,7 +119,7 @@ function mod:GetOptions()
 		[1244313] = L.pactsworn_arcanist,
 		[1242521] = L.pactsworn_wildcaller,
 		[1244108] = L.pactsworn_sandreaver,
-		[1245156] = L.nexus_princess_kyveza,
+		[1246124] = L.nexus_princess_kyveza,
 		[450505] = L.zekvir,
 		[1213852] = L.the_underpin,
 	},{
@@ -208,6 +209,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("UNIT_SPELLCAST_INTERRUPTED") -- for Zekvir and The Underpin
 
 	-- Nexus-Princess Ky'veza
+	self:Log("SPELL_CAST_SUCCESS", "ShriekingQuartz", 1246124)
 	self:Log("SPELL_CAST_START", "KyvezasGrandEntrance", 1245156)
 	self:Log("SPELL_CAST_START", "DarkMassacre", 1245203)
 	self:Log("SPELL_CAST_SUCCESS", "DarkMassacrePhantom", 1245035)
@@ -600,14 +602,21 @@ end
 
 -- Nexus-Princess Ky'veza
 
+function mod:ShriekingQuartz(args)
+	self:Message(args.spellId, "cyan", CL.other:format(self:ColorName(args.sourceName), args.spellName))
+	self:Bar(1245156, 9.1) -- Kyveza's Grand Entrance
+	self:PlaySound(args.spellId, "info")
+end
+
+function mod:KyvezasGrandEntrance(args)
+	-- this is cast by a dummy NPC (248134), can't use its guid for nameplate timers
+	self:StopBar(args.spellId)
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "warning")
+end
+
 do
 	local timer
-
-	function mod:KyvezasGrandEntrance(args)
-		-- this is cast by some dummy NPC (248134) so can't use the guid for nameplate timers
-		self:Message(args.spellId, "cyan")
-		self:PlaySound(args.spellId, "warning")
-	end
 
 	function mod:KyvezaEngaged(guid)
 		if timer then -- guard against edge cases

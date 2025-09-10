@@ -748,6 +748,7 @@ BigWigs:AddColors("Ky'veza Rares", {
 	[1245156] = "cyan",
 	[1245203] = "yellow",
 	[1245240] = "orange",
+	[1246124] = "cyan",
 })
 
 BigWigs:AddSounds("Ky'veza Rares", {
@@ -777,6 +778,7 @@ BigWigs:AddSounds("Ky'veza Rares", {
 	[1245156] = "warning",
 	[1245203] = {"alert","long"},
 	[1245240] = "alarm",
+	[1246124] = "info",
 })
 
 BigWigs:AddColors("Nexus-Princess Ky'veza (Tier 11)", {
