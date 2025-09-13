@@ -131,6 +131,7 @@ local passwordId = nil
 -- Initialization
 --
 
+local wanderingPulsarMarker = mod:AddMarkerOption(true, "npc", 7, 357256, 7) -- Wandering Pulsar
 function mod:GetOptions()
 	return {
 		------ Streets of Wonder ------
@@ -219,6 +220,7 @@ function mod:GetOptions()
 		-- Adorned Starseer
 		{357226, "NAMEPLATE"}, -- Drifting Star
 		{357238, "NAMEPLATE"}, -- Wandering Pulsar
+		wanderingPulsarMarker,
 		-- Focused Ritualist
 		{357260, "NAMEPLATE"}, -- Unstable Rift
 	}, {
@@ -252,7 +254,7 @@ function mod:GetOptions()
 		},
 		{
 			tabName = self:BossName(2455), -- So'leah
-			{357226, 357238, 357260},
+			{357226, 357238, wanderingPulsarMarker, 357260},
 		},
 		------ Streets of Wonder ------
 		["custom_on_portal_autotalk"] = L.portal_authority,
@@ -496,6 +498,7 @@ function mod:OnBossEnable()
 	self:RegisterEngageMob("AdornedStarseerEngaged", 180429)
 	self:Log("SPELL_CAST_START", "DriftingStar", 357226)
 	self:Log("SPELL_CAST_START", "WanderingPulsar", 357238)
+	self:Log("SPELL_SUMMON", "WanderingPulsarSummon", 357256)
 	self:Death("AdornedStarseerDeath", 180429)
 
 	-- Focused Ritualist
@@ -1745,6 +1748,26 @@ function mod:WanderingPulsar(args)
 	self:Message(args.spellId, "cyan", CL.spawning:format(args.spellName))
 	self:Nameplate(args.spellId, 26.6, args.sourceGUID)
 	self:PlaySound(args.spellId, "info")
+end
+
+do
+	local wanderingPulsarGUID = nil
+
+	function mod:WanderingPulsarSummon(args)
+		-- register events to auto-mark Wandering Pulsar
+		if self:GetOption(wanderingPulsarMarker) then
+			wanderingPulsarGUID = args.destGUID
+			self:RegisterTargetEvents("MarkWanderingPulsar")
+		end
+	end
+
+	function mod:MarkWanderingPulsar(_, unit, guid)
+		if wanderingPulsarGUID == guid then
+			wanderingPulsarGUID = nil
+			self:CustomIcon(wanderingPulsarMarker, unit, 7)
+			self:UnregisterTargetEvents()
+		end
+	end
 end
 
 function mod:AdornedStarseerDeath(args)
