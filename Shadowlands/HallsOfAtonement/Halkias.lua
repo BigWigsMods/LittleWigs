@@ -12,6 +12,8 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
+local crumblingSlamRemaining = 2
+local heaveDebrisRemaining = 3
 local nextSinlightVisions = 0
 
 --------------------------------------------------------------------------------
@@ -42,12 +44,16 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "CrumblingSlam", 322936)
 	self:Log("SPELL_CAST_START", "HeaveDebris", 322943)
 	self:Log("SPELL_CAST_START", "RefractedSinlight", 322711)
+	self:Log("SPELL_DAMAGE", "RefractedSinlightDamage", 324044)
+	self:Log("SPELL_MISSED", "RefractedSinlightDamage", 324044)
 	self:Log("SPELL_CAST_START", "SinlightVisions", 322977) -- Heroic/Normal only
 	self:Log("SPELL_AURA_APPLIED", "SinlightVisionsApplied", 339237, 322977) -- Mythic, Heroic/Normal
 end
 
 function mod:OnEngage()
-	self:CDBar(322936, 4.4) -- Crumbling Slam
+	crumblingSlamRemaining = 2
+	heaveDebrisRemaining = 2
+	self:CDBar(322936, 4.3) -- Crumbling Slam
 	self:CDBar(322943, 12.0) -- Heave Debris
 	if self:Mythic() then
 		self:CDBar(322711, 32.8, CL.beams) -- Refracted Sinlight
@@ -75,14 +81,28 @@ end
 
 function mod:CrumblingSlam(args)
 	self:Message(args.spellId, "purple")
-	self:CDBar(args.spellId, 13.3)
+	if self:Mythic() then
+		crumblingSlamRemaining = crumblingSlamRemaining - 1
+		if crumblingSlamRemaining > 0 then
+			self:CDBar(args.spellId, 13.3)
+		else
+			self:StopBar(args.spellId)
+		end
+	else -- Heroic / Normal
+		self:CDBar(args.spellId, 12.2)
+	end
 	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:HeaveDebris(args)
 	self:Message(args.spellId, "yellow")
 	if self:Mythic() then
-		self:CDBar(args.spellId, 13.3)
+		heaveDebrisRemaining = heaveDebrisRemaining - 1
+		if heaveDebrisRemaining > 0 then
+			self:CDBar(args.spellId, 13.3)
+		else
+			self:StopBar(args.spellId)
+		end
 	else -- Heroic / Normal
 		self:CDBar(args.spellId, 11.0)
 	end
@@ -92,9 +112,11 @@ end
 function mod:RefractedSinlight(args)
 	self:Message(args.spellId, "red", CL.beams)
 	if self:Mythic() then
+		crumblingSlamRemaining = 2
+		heaveDebrisRemaining = 3
 		self:CDBar(322943, 15.0) -- Heave Debris
 		self:CDBar(322936, 21.8) -- Crumbling Slam
-		self:CDBar(args.spellId, 49.7, CL.beams)
+		self:CDBar(args.spellId, 49.2, CL.beams)
 	else -- Heroic / Normal
 		self:CDBar(322936, 15.6) -- Crumbling Slam
 		self:CDBar(322943, 15.6) -- Heave Debris
@@ -106,6 +128,17 @@ function mod:RefractedSinlight(args)
 		self:CDBar(args.spellId, 46.4, CL.beams)
 	end
 	self:PlaySound(args.spellId, "warning")
+end
+
+do
+	local prev = 0
+	function mod:RefractedSinlightDamage(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.375 then -- 0.25s tick rate
+			prev = args.time
+			self:PersonalMessage(322711, "near", CL.beams)
+			self:PlaySound(322711, "underyou")
+		end
+	end
 end
 
 function mod:SinlightVisions(args) -- Heroic/Normal only

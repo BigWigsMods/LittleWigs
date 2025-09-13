@@ -105,7 +105,7 @@ BigWigs:AddSounds("De Other Side Trash", {
 })
 
 BigWigs:AddColors("Halkias, the Sin-Stained Goliath", {
-	[322711] = "red",
+	[322711] = {"blue","red"},
 	[322936] = "purple",
 	[322943] = "yellow",
 	[323001] = "blue",
@@ -113,7 +113,7 @@ BigWigs:AddColors("Halkias, the Sin-Stained Goliath", {
 })
 
 BigWigs:AddSounds("Halkias, the Sin-Stained Goliath", {
-	[322711] = "warning",
+	[322711] = {"underyou","warning"},
 	[322936] = "alert",
 	[322943] = "alarm",
 	[323001] = "underyou",
