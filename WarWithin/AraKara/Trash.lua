@@ -88,7 +88,7 @@ function mod:GetOptions()
 		{433845, "NAMEPLATE"}, -- Erupting Webs
 		{433841, "NAMEPLATE"}, -- Venom Volley
 		-- Reinforced Drone
-		{1241785, "DISPEL", "EMPHASIZE"}, -- Tainted Blood
+		{1241785, "DISPEL"}, -- Tainted Blood
 		-- Winged Carrier
 		{433821, "NAMEPLATE", "OFF"}, -- Dashing Strike
 	}, {
@@ -627,10 +627,12 @@ end
 -- Reinforced Drone
 
 function mod:TaintedBloodApplied(args)
-	if (self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId)) and args.amount % 5 == 0 then
+	if (self:Me(args.destGUID) or self:Dispeller("magic", nil, args.spellId) or self:Dispeller("movement", nil, args.spellId)) and args.amount % 5 == 0 and args.amount > 5 then
 		-- 4% movement speed reduction per stack
-		self:StackMessage(args.spellId, "purple", args.destName, args.amount, 10)
-		self:PlaySound(args.spellId, "alert", nil, args.destName)
+		self:StackMessage(args.spellId, "purple", args.destName, args.amount, 20)
+		if args.amount >= 20 then
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
+		end
 	end
 end
 
