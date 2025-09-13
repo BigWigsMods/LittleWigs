@@ -39,6 +39,10 @@ function mod:GetOptions()
 		{346957, "SAY", "ME_ONLY_EMPHASIZE"}, -- Purged by Fire
 		346961, -- Purging Field
 		346766, -- Sanitizing Cycle
+		348450, -- Bypass Code: Fryse
+		348437, -- Bypass Code: Helvete
+		348447, -- Bypass Code: Lys
+		348451, -- Bypass Code: Morke
 		"vault_purifier", -- Vault Purifier (Adds)
 		-- Hard Mode
 		358131, -- Lightning Nova
@@ -62,6 +66,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "SanitizingCycle", 346766)
 	self:Log("SPELL_CAST_SUCCESS", "SanitizingCycleSuccess", 346766)
 	self:Log("SPELL_AURA_REMOVED", "SanitizingCycleRemoved", 346766)
+	self:Log("SPELL_AURA_APPLIED", "BypassCodeApplied", 348450, 348437, 348447, 348451) -- Fryse, Helvete, Lys, Morke
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1") -- Vault Purifier
 
 	-- Hard Mode
@@ -203,6 +208,13 @@ do
 		self:CDBar(347094, 22.8) -- Titanic Crash
 		self:CDBar(args.spellId, 69.4)
 		self:PlaySound(args.spellId, "long")
+	end
+end
+
+function mod:BypassCodeApplied(args)
+	if self:Me(args.destGUID) then
+		self:PersonalMessage(args.spellId)
+		self:PlaySound(args.spellId, "info")
 	end
 end
 
