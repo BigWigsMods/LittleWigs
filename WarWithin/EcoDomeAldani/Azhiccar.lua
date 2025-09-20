@@ -137,10 +137,10 @@ function mod:FrenziedMiteDeath(args)
 end
 
 do
-	local castStartTime = nil
+	local startTime = 0
 
 	function mod:ToxicRegurgitation(args)
-		castStartTime = GetTime()
+		startTime = GetTime()
 		self:StopBar(CL.count:format(args.spellName, toxicRegurgitationCount))
 		self:Message(args.spellId, "orange", CL.count:format(args.spellName, toxicRegurgitationCount))
 		toxicRegurgitationCount = toxicRegurgitationCount + 1
@@ -158,10 +158,10 @@ do
 			-- [CHAT_MSG_RAID_BOSS_WHISPER] |TInterface\\ICONS\\Spell_Fire_BluePyroblast.blp:20|t You have been targeted for |cFFFF0000|Hspell:1227748|h[Toxic Regurgitation]|h|r!
 			self:PersonalMessage(1227745)
 			self:Say(1227745, nil, nil, "Toxic Regurgitation")
-			if castStartTime then
-				local delay = GetTime() - castStartTime
-				castStartTime = nil
-				self:SayCountdown(1227745, 5 - delay)
+			-- guard against a missing startTime or a long delay
+			local timeLeft = 5 + startTime - GetTime()
+			if timeLeft > 3.2 then
+				self:SayCountdown(1227745, timeLeft)
 			end
 		end
 	end
