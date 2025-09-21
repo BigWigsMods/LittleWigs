@@ -52,7 +52,7 @@ end
 -- Initialization
 --
 
-local evokedSpiritMarker = mod:AddMarkerOption(true, "npc", 7, "evoked_spirit", 7)
+local evokedSpiritMarker = mod:AddMarkerOption(true, "npc", 8, "evoked_spirit", 8)
 function mod:GetOptions()
 	return {
 		-- Terrified Broker
@@ -122,7 +122,7 @@ end
 
 function mod:OnRegister()
 	-- delayed for custom locale
-	evokedSpiritMarker = mod:AddMarkerOption(true, "npc", 7, "evoked_spirit", 7)
+	evokedSpiritMarker = mod:AddMarkerOption(true, "npc", 8, "evoked_spirit", 8)
 end
 
 function mod:OnBossEnable()
@@ -485,7 +485,7 @@ do
 	function mod:MarkEvokedSpirit(_, unit, guid)
 		if spiritGUID == guid then
 			spiritGUID = nil
-			self:CustomIcon(evokedSpiritMarker, unit, 7)
+			self:CustomIcon(evokedSpiritMarker, unit, 8)
 			self:UnregisterTargetEvents()
 		end
 	end
