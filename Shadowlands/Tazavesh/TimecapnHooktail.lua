@@ -12,6 +12,7 @@ mod:SetRespawnTime(30)
 -- Locals
 --
 
+local infiniteBreathCount = 1
 local timeBombsCount = 1
 
 --------------------------------------------------------------------------------
@@ -38,10 +39,11 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
+	infiniteBreathCount = 1
 	timeBombsCount = 1
-	self:CDBar(347149, 12.0) -- Infinite Breath
+	self:CDBar(347149, 12.0, CL.count:format(self:SpellName(347149), infiniteBreathCount)) -- Infinite Breath
 	self:CDBar(352345, 15.0) -- Anchor Shot
-	self:CDBar(1240102, 22.0) -- Time Bombs
+	self:CDBar(1240102, 22.0, CL.count:format(self:SpellName(1240102), timeBombsCount)) -- Time Bombs
 end
 
 function mod:OnWin()
@@ -57,15 +59,17 @@ end
 --
 
 function mod:InfiniteBreathApplied(args)
-	self:Message(347149, "purple", CL.incoming:format(args.spellName))
-	self:CDBar(347149, 15.0)
+	self:StopBar(CL.count:format(args.spellName, infiniteBreathCount))
+	self:Message(347149, "purple", CL.count:format(CL.incoming:format(args.spellName), infiniteBreathCount))
+	infiniteBreathCount = infiniteBreathCount + 1
+	self:CDBar(347149, 15.0, CL.count:format(args.spellName, infiniteBreathCount))
 	if self:Tank() then
 		self:PlaySound(347149, "info")
 	end
 end
 
 function mod:InfiniteBreath(args)
-	self:Message(args.spellId, "purple")
+	self:Message(args.spellId, "purple", CL.count:format(args.spellName, infiniteBreathCount))
 	self:PlaySound(args.spellId, "alarm")
 end
 
@@ -92,18 +96,19 @@ do
 	local playerList = {}
 
 	function mod:TimeBombs(args)
+		self:StopBar(CL.count:format(args.spellName, timeBombsCount))
 		playerList = {}
 		timeBombsCount = timeBombsCount + 1
 		if timeBombsCount == 2 then -- 2
-			self:CDBar(args.spellId, 28.1)
+			self:CDBar(args.spellId, 28.1, CL.count:format(args.spellName, timeBombsCount))
 		elseif timeBombsCount == 3 then -- 3
-			self:CDBar(args.spellId, 22.0)
+			self:CDBar(args.spellId, 22.0, CL.count:format(args.spellName, timeBombsCount))
 		elseif timeBombsCount % 3 == 1 then -- 4, 7, 10...
-			self:CDBar(args.spellId, 25.0)
+			self:CDBar(args.spellId, 25.0, CL.count:format(args.spellName, timeBombsCount))
 		elseif timeBombsCount % 3 == 2 then -- 5, 8, 11...
-			self:CDBar(args.spellId, 15.0)
+			self:CDBar(args.spellId, 15.0, CL.count:format(args.spellName, timeBombsCount))
 		else -- 6, 9, 12...
-			self:CDBar(args.spellId, 20.0)
+			self:CDBar(args.spellId, 20.0, CL.count:format(args.spellName, timeBombsCount))
 		end
 	end
 
