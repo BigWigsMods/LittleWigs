@@ -1180,7 +1180,7 @@ end
 -- Cartel Muscle
 
 function mod:CartelMuscleEngaged(guid)
-	self:Nameplate(357229, 9.1, guid) -- Chronolight Enhancer
+	self:Nameplate(357229, 8.1, guid) -- Chronolight Enhancer
 	self:Nameplate(356967, 27.7, guid) -- Hyperlight Backhand
 end
 
