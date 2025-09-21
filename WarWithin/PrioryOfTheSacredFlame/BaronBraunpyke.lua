@@ -215,7 +215,7 @@ do
 	end
 
 	function mod:SacrificialPyreDamage(args)
-		-- this doesn't always log in the case where 2 charges are soaked nearly simulataneously by the same player.
+		-- this doesn't always log in the case where 2 charges are soaked nearly simultaneously by the same player.
 		-- we use this event as a backup to detect soaks because sometimes Sacrificial Flame immunities don't log either.
 		local playerHitCount = sacrificialPyrePlayersHit[args.destGUID] or 0
 		if playerHitCount == sacrificialPyreDamageCount then
@@ -232,7 +232,7 @@ do
 	end
 
 	function mod:SacrificialPyreMissed(args)
-		-- this doesn't always log in the case where 2 charges are soaked nearly simulataneously by the same player.
+		-- this doesn't always log in the case where 2 charges are soaked nearly simultaneously by the same player.
 		-- we use this event as a backup to detect soaks because sometimes Sacrificial Flame immunities don't log either.
 		local playerHitCount = sacrificialPyrePlayersHit[args.destGUID] or 0
 		if playerHitCount == sacrificialPyreDamageCount then
