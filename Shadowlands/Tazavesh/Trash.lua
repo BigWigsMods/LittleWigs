@@ -131,7 +131,7 @@ local passwordId = nil
 -- Initialization
 --
 
-local wanderingPulsarMarker = mod:AddMarkerOption(true, "npc", 7, 357256, 7) -- Wandering Pulsar
+local wanderingPulsarMarker = mod:AddMarkerOption(true, "npc", 8, 357256, 8) -- Wandering Pulsar
 function mod:GetOptions()
 	return {
 		------ Streets of Wonder ------
@@ -1764,7 +1764,7 @@ do
 	function mod:MarkWanderingPulsar(_, unit, guid)
 		if wanderingPulsarGUID == guid then
 			wanderingPulsarGUID = nil
-			self:CustomIcon(wanderingPulsarMarker, unit, 7)
+			self:CustomIcon(wanderingPulsarMarker, unit, 8)
 			self:UnregisterTargetEvents()
 		end
 	end
