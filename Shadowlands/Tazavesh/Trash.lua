@@ -55,11 +55,19 @@ if L then
 	L.zophex_warmup_trigger = "Surrender... all... contraband..."
 	L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
 	L.menagerie_warmup_trigger2 = "Cartel Xy has a profitable venture. Hopefully this inclines them to aid our own."
+	L.mailroom_door_trigger = "A friend here may be of help in acquiring Zo's signature."
+	L.vendor_active_trigger = "Myza's Oasis. The most intoxicating establishment in Tazavesh. Gaining the owner's favor will secure Cartel Au's signature."
 	L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
 	L.portal_authority = "Tazavesh Portal Authority"
 	L.custom_on_portal_autotalk = CL.autotalk
 	L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
 	L.custom_on_portal_autotalk_icon = mod:GetMenuIcon("SAY")
+	L.mailroom_door = CL.door_open
+	L.mailroom_door_desc = "Show a bar indicating when the door to the mailroom will open."
+	L.mailroom_door_icon = "inv_misc_paperpackage01a"
+	L.vendor_active = "Vendor active"
+	L.vendor_active_desc = "Show a bar indicating when the vendor for the Trading Game will be active."
+	L.vendor_active_icon = "inv_misc_coin_04"
 	L.trading_game = "Trading Game"
 	L.trading_game_desc = "Alerts with the right password during the Trading Game."
 	L.trading_game_icon = "achievement_dungeon_brokerdungeon"
@@ -137,6 +145,8 @@ function mod:GetOptions()
 	return {
 		------ Streets of Wonder ------
 		"custom_on_portal_autotalk",
+		"mailroom_door",
+		"vendor_active",
 		"trading_game",
 		"custom_on_trading_game_autotalk",
 		-- Gatewarden Zo'mazz
@@ -235,11 +245,11 @@ function mod:GetOptions()
 		},
 		{
 			tabName = self:BossName(2436), -- Mailroom Mayhem
-			{"custom_on_portal_autotalk", 347721, 347775, 347716},
+			{"custom_on_portal_autotalk", "mailroom_door", 347721, 347775, 347716},
 		},
 		{
 			tabName = self:BossName(2452), -- Myza's Oasis
-			{"custom_on_portal_autotalk", "trading_game", "custom_on_trading_game_autotalk", 355830, 357197, 356967, 357229, 357029, 1240821, 1240912},
+			{"custom_on_portal_autotalk", "vendor_active", "trading_game", "custom_on_trading_game_autotalk", 355830, 357197, 356967, 357229, 357029, 1240821, 1240912},
 		},
 		{
 			tabName = self:BossName(2451), -- So'azmi
@@ -546,6 +556,10 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 			menagerieModule:Enable()
 			menagerieModule:WarmupMythicPlus()
 		end
+	elseif msg == L.mailroom_door_trigger then
+		self:Bar("mailroom_door", 5.4, L.mailroom_door, L.mailroom_door_icon)
+	elseif msg == L.vendor_active_trigger then
+		self:Bar("vendor_active", 26.5, L.vendor_active, L.vendor_active_icon)
 	elseif msg == L.soazmi_warmup_trigger then
 		-- So'azmi warmup
 		local soazmiModule = BigWigs:GetBossModule("So'azmi", true)
