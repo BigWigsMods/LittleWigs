@@ -180,6 +180,7 @@ L = BigWigs:NewBossLocale("Tazavesh Trash", "zhCN")
 if L then
 	L.zophex_warmup_trigger = "上交……所有……违禁品……"
 	L.menagerie_warmup_trigger = "现在是大家期待已久的拍品！传说中被恶魔诅咒的湮灭之刃！"
+	--L.menagerie_warmup_trigger2 = "Cartel Xy has a profitable venture. Hopefully this inclines them to aid our own."
 	L.soazmi_warmup_trigger = "不好意思打扰了，索·莉亚。希望我们没耽误你什么大事。"
 	L.portal_authority = "传送局隧道师"
 	L.custom_on_portal_autotalk_desc = "与传送局 NPC 交谈时立即打开传送门可以在副本内传送。"

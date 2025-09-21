@@ -180,6 +180,7 @@ L = BigWigs:NewBossLocale("Tazavesh Trash", "koKR")
 if L then
 	L.zophex_warmup_trigger = "밀수품을... 전부... 내놓아라..."
 	L.menagerie_warmup_trigger = "여러분 모두가 고대하던 상품 차례입니다! 이른바 악마의 저주를 받은 망각의 서슬도끼입니다!"
+	--L.menagerie_warmup_trigger2 = "Cartel Xy has a profitable venture. Hopefully this inclines them to aid our own."
 	L.soazmi_warmup_trigger = "방해해서 참 미안하게 됐습니다, 소레아. 불편할 때 찾아온 거면 좋겠는데 말이죠."
 	L.portal_authority = "타자베쉬 차원문 관리국"
 	L.custom_on_portal_autotalk_desc = "중개자 NPC와 대화하면 입구로 돌아가는 포털이 즉시 열립니다."

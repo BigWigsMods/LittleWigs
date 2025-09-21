@@ -180,6 +180,7 @@ L = BigWigs:NewBossLocale("Tazavesh Trash", "frFR")
 if L then
 	L.zophex_warmup_trigger = "Toute contrebande… sera saisie…"
 	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
+	--L.menagerie_warmup_trigger2 = "Cartel Xy has a profitable venture. Hopefully this inclines them to aid our own."
 	L.soazmi_warmup_trigger = "Pardonnez notre intrusion, So’leah. J’espère que nous ne vous dérangeons pas."
 	L.portal_authority = "Garde des portails de Tazavesh"
 	L.custom_on_portal_autotalk_desc = "Ouvre les portails de retour vers l'entrée lorsque vous parlez aux négociants."

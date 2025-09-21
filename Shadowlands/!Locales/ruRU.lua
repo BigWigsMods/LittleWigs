@@ -180,6 +180,7 @@ L = BigWigs:NewBossLocale("Tazavesh Trash", "ruRU")
 if L then
 	L.zophex_warmup_trigger = "Сдавайте... контрабанду."
 	L.menagerie_warmup_trigger = "А теперь лот, которого все ждали! Топор, якобы проклятый демонами – Грань Забвения!"
+	--L.menagerie_warmup_trigger2 = "Cartel Xy has a profitable venture. Hopefully this inclines them to aid our own."
 	L.soazmi_warmup_trigger = "Прости нас за вторжение, Со'лея. Кажется, сейчас не самое подходящее время."
 	L.portal_authority = "Служба порталов Тазавеша"
 	--L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."

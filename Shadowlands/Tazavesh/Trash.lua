@@ -54,6 +54,7 @@ if L then
 	------ Streets of Wonder ------
 	L.zophex_warmup_trigger = "Surrender... all... contraband..."
 	L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
+	L.menagerie_warmup_trigger2 = "Cartel Xy has a profitable venture. Hopefully this inclines them to aid our own."
 	L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
 	L.portal_authority = "Tazavesh Portal Authority"
 	L.custom_on_portal_autotalk = CL.autotalk
@@ -532,11 +533,18 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 			self:PlaySound("trading_game", "info")
 		end
 	elseif msg == L.menagerie_warmup_trigger then
-		-- Menagerie warmup
+		-- Menagerie warmup (doesn't occur in Mythic Plus)
 		local menagerieModule = BigWigs:GetBossModule("The Grand Menagerie", true)
 		if menagerieModule then
 			menagerieModule:Enable()
 			menagerieModule:Warmup()
+		end
+	elseif self:MythicPlus() and msg == L.menagerie_warmup_trigger2 then
+		-- Menagerie warmup (Mythic Plus)
+		local menagerieModule = BigWigs:GetBossModule("The Grand Menagerie", true)
+		if menagerieModule then
+			menagerieModule:Enable()
+			menagerieModule:WarmupMythicPlus()
 		end
 	elseif msg == L.soazmi_warmup_trigger then
 		-- So'azmi warmup

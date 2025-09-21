@@ -105,7 +105,17 @@ end
 -- Staging
 
 function mod:Warmup() -- called from trash module
-	self:Bar("warmup", 39, CL.active, L.warmup_icon)
+	-- 7.15 [CHAT_MSG_MONSTER_SAY] Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!#Xy'noc
+	-- 46.16 [CLEU] SPELL_CAST_SUCCESS#Creature-0-4229-2441-10665-176556#Alcruux(100.0%-0.0%)##nil#355981#Earthshaking Leap
+	-- 47.41 [ENCOUNTER_START] 2441#The Grand Menagerie
+	self:Bar("warmup", 39.0, CL.active, L.warmup_icon)
+end
+
+function mod:WarmupMythicPlus() -- called from trash module
+	-- 22.13 [CHAT_MSG_MONSTER_SAY] Cartel Xy has a profitable venture. Hopefully this inclines them to aid our own.#Al'dalil
+	-- 46.16 [CLEU] SPELL_CAST_SUCCESS#Creature-0-4229-2441-10665-176556#Alcruux(100.0%-0.0%)##nil#355981#Earthshaking Leap
+	-- 47.41 [ENCOUNTER_START] 2441#The Grand Menagerie
+	self:Bar("warmup", 24.8, CL.active, L.warmup_icon)
 end
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
