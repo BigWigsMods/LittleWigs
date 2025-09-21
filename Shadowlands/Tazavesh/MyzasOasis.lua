@@ -81,6 +81,7 @@ function mod:OnBossEnable()
 	-- manually handle ENCOUNTER_START and ENCOUNTER_END because there are no boss frames until Stage 2
 	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("ENCOUNTER_END")
+	self:RegisterEvent("ZONE_CHANGED")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
 
@@ -161,6 +162,15 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(event)
 			self:PlaySound("stages", "long")
 		end
 		addWave = addWave + 1
+	end
+end
+
+function mod:ZONE_CHANGED()
+	if BigWigsLoader.GetBestMapForUnit("player") ~= 1992 then -- Myza's Oasis
+		-- this module can get re-enabled if you respawn in Myza's Oasis if someone mouses over an instrument.
+		-- the instruments respawn when you return to Myza's Oasis even if you've killed the boss. so we can just
+		-- disable the module when you leave the room.
+		self:Disable()
 	end
 end
 
