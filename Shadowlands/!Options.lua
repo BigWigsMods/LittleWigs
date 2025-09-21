@@ -872,7 +872,9 @@ BigWigs:AddColors("Tazavesh Trash", {
 	[1240912] = "purple",
 	[1244443] = "yellow",
 	[1244650] = "orange",
+	["tradeable_goods"] = {"blue","cyan"},
 	["trading_game"] = "green",
+	["vendor_autopurchase"] = "cyan",
 })
 
 BigWigs:AddSounds("Tazavesh Trash", {
@@ -923,7 +925,9 @@ BigWigs:AddSounds("Tazavesh Trash", {
 	[1240912] = "alert",
 	[1244443] = "info",
 	[1244650] = "alarm",
+	["tradeable_goods"] = "info",
 	["trading_game"] = "info",
+	["vendor_autopurchase"] = "info",
 })
 
 BigWigs:AddColors("An Affront of Challengers", {
