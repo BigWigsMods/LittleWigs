@@ -601,15 +601,21 @@ function mod:CHAT_MSG_MONSTER_YELL(event, msg)
 	end
 end
 
-function mod:MERCHANT_SHOW(event)
+function mod:MERCHANT_SHOW()
 	if self:GetOption("vendor_autopurchase") then
 		local mobId = self:MobId(self:UnitGUID("npc"))
 		if mobId == 177999 then -- Xy'darid
 			local itemName, _, _, _, numAvailable = GetMerchantItemInfo(1)
 			if numAvailable == 1 then
-				BuyMerchantItem(1, 1)
-				self:Message("vendor_autopurchase", "cyan", L.vendor_autopurchase_message:format(itemName), L.vendor_autopurchase_icon)
-				self:PlaySound("vendor_autopurchase", "info")
+				if itemName then
+					BuyMerchantItem(1, 1)
+					CloseMerchant()
+					self:Message("vendor_autopurchase", "cyan", L.vendor_autopurchase_message:format(itemName), L.vendor_autopurchase_icon)
+					self:PlaySound("vendor_autopurchase", "info")
+				else
+					-- item info wasn't loaded, try again
+					self:SimpleTimer(function() mod:MERCHANT_SHOW() end, 0.1)
+				end
 			end
 		end
 	end
