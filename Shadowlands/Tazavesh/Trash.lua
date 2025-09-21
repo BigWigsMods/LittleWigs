@@ -602,7 +602,7 @@ function mod:CHAT_MSG_MONSTER_YELL(event, msg)
 end
 
 function mod:MERCHANT_SHOW()
-	if self:GetOption("vendor_autopurchase") then
+	if self:GetOption("vendor_autopurchase") > 0 then
 		local mobId = self:MobId(self:UnitGUID("npc"))
 		if mobId == 177999 then -- Xy'darid
 			local itemName, _, _, _, numAvailable = GetMerchantItemInfo(1)
