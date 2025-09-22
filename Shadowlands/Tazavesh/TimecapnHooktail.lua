@@ -69,7 +69,7 @@ function mod:InfiniteBreathApplied(args)
 end
 
 function mod:InfiniteBreath(args)
-	self:Message(args.spellId, "purple", CL.count:format(args.spellName, infiniteBreathCount))
+	self:Message(args.spellId, "purple", CL.count:format(args.spellName, infiniteBreathCount - 1))
 	self:PlaySound(args.spellId, "alarm")
 end
 
