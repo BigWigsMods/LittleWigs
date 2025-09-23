@@ -162,7 +162,7 @@ end
 L = BigWigs:NewBossLocale("Mailroom Mayhem", "zhCN")
 if L then
 	L.delivery_portal = "投递传送门"
-	L.delivery_portal_desc = "显示投递传送门何时更改位置的计时器。"
+	L.delivery_portal_desc = "显示投递传送门何时更改位置的计时条。"
 end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "zhCN")
@@ -180,20 +180,20 @@ L = BigWigs:NewBossLocale("Tazavesh Trash", "zhCN")
 if L then
 	L.zophex_warmup_trigger = "上交……所有……违禁品……"
 	L.menagerie_warmup_trigger = "现在是大家期待已久的拍品！传说中被恶魔诅咒的湮灭之刃！"
-	--L.menagerie_warmup_trigger2 = "Cartel Xy has a profitable venture. Hopefully this inclines them to aid our own."
-	--L.mailroom_door_trigger = "A friend here may be of help in acquiring Zo's signature."
-	--L.vendor_active_trigger = "Myza's Oasis. The most intoxicating establishment in Tazavesh. Gaining the owner's favor will secure Cartel Au's signature."
+	L.menagerie_warmup_trigger2 = "赛财团见钱眼开。希望这样他们就能帮我们。"
+	L.mailroom_door_trigger = "有位朋友也许能帮我们获得佐财团的签名。"
+	L.vendor_active_trigger = "麦扎的绿洲。塔扎维什最令人心驰神往的娱乐场所。只要赢得老板的欢心，我们就能拿到奥财团的签名了。"
 	L.soazmi_warmup_trigger = "不好意思打扰了，索·莉亚。希望我们没耽误你什么大事。"
 	L.portal_authority = "传送局隧道师"
 	L.custom_on_portal_autotalk_desc = "与传送局 NPC 交谈时立即打开传送门可以在副本内传送。"
-	--L.mailroom_door_desc = "Show a bar indicating when the door to the mailroom will open."
-	--L.vendor_active = "Vendor active"
-	--L.vendor_active_desc = "Show a bar indicating when the vendor for the Trading Game will be active."
-	--L.vendor_autopurchase = "Auto-purchase trading game item"
-	--L.vendor_autopurchase_desc = "Automatically purchase the initial trading game item from the vendor."
-	--L.vendor_autopurchase_message = "Purchased %s"
-	--L.tradeable_goods = "Tradeable Goods"
-	--L.tradeable_goods_desc = "Show a message indicating when tradeable goods have been picked up."
+	L.mailroom_door_desc = "显示收发室大门何时开启的计时条。"
+	L.vendor_active = "商人激活"
+	L.vendor_active_desc = "显示交易游戏商人何时激活的计时条。"
+	L.vendor_autopurchase = "自动购买交易游戏物品"
+	L.vendor_autopurchase_desc = "自动从商人处购买初始的交易游戏物品。"
+	L.vendor_autopurchase_message = "已购买 %s"
+	L.tradeable_goods = "可交易的货物"
+	L.tradeable_goods_desc = "当拾取可交易货物时显示提示信息。"
 	L.trading_game = "交易游戏"
 	L.trading_game_desc = "在交易游戏期间使用正确的密码发出警报。"
 	L.custom_on_trading_game_autotalk_desc = "交易游戏结束后，立即选择正确的密码。"
