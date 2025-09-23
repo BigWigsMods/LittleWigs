@@ -1,7 +1,6 @@
 -- Black Temple
 
 local L = BigWigs:NewBossLocale("Kanrethad Ebonlocke", "zhTW")
-if not L then return end
 if L then
 	--L.name = "Kanrethad Ebonlocke"
 
