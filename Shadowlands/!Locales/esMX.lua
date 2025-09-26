@@ -226,6 +226,7 @@ if L then
 	L.defective_sorter = "Clasificador defectuoso"
 	--L.overloaded_mailemental = "Overloaded Mailemental"
 	--L.post_worker = "P.O.S.T. Worker"
+	L.smuggled_creature = "Criatura de contrabando"
 	--L.bazaar_overseer = "Bazaar Overseer"
 	L.market_peacekeeper = "Pacificador del mercado"
 	L.veteran_sparkcaster = "Chispaturgo veterano"

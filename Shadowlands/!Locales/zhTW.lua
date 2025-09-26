@@ -226,6 +226,7 @@ if L then
 	L.defective_sorter = "故障的分類機"
 	L.overloaded_mailemental = "超載的郵件元素"
 	L.post_worker = "郵務工作員"
+	L.smuggled_creature = "走私的生物"
 	L.bazaar_overseer = "市集監督者"
 	L.market_peacekeeper = "市場保安官"
 	L.veteran_sparkcaster = "老練的火花施放者"

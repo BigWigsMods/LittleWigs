@@ -226,6 +226,7 @@ if L then
 	L.defective_sorter = "불량 분류기"
 	L.overloaded_mailemental = "과부하된 우편의 정령"
 	L.post_worker = "우.정.국. 직원"
+	L.smuggled_creature = "밀수된 동물"
 	L.bazaar_overseer = "시장 감독관"
 	L.market_peacekeeper = "시장 평화감시단"
 	L.veteran_sparkcaster = "노련한 불꽃술사"

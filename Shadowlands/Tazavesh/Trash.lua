@@ -25,6 +25,7 @@ mod:RegisterEnableMob(
 	176396, -- Defective Sorter
 	176395, -- Overloaded Mailemental
 	176394, -- P.O.S.T. Worker
+	175677, -- Smuggled Creature
 	177999, -- Xy'darid
 	246285, -- Bazaar Overseer
 	179840, -- Market Peacekeeper
@@ -111,6 +112,7 @@ if L then
 	L.defective_sorter = "Defective Sorter"
 	L.overloaded_mailemental = "Overloaded Mailemental"
 	L.post_worker = "P.O.S.T. Worker"
+	L.smuggled_creature = "Smuggled Creature"
 	L.bazaar_overseer = "Bazaar Overseer"
 	L.market_peacekeeper = "Market Peacekeeper"
 	L.veteran_sparkcaster = "Veteran Sparkcaster"
@@ -201,6 +203,8 @@ function mod:GetOptions()
 		{347775, "NAMEPLATE"}, -- Spam Filter
 		-- P.O.S.T. Worker
 		{347716, "TANK", "NAMEPLATE"}, -- Letter Opener
+		-- Smuggled Creature
+		{347842, "NAMEPLATE"}, -- Pounce
 		-- Bazaar Overseer
 		{1240821, "NAMEPLATE"}, -- Energized Slam
 		{1240912, "NAMEPLATE"}, -- Pierce
@@ -255,7 +259,7 @@ function mod:GetOptions()
 		},
 		{
 			tabName = self:BossName(2436), -- Mailroom Mayhem
-			{"custom_on_portal_autotalk", "mailroom_door", 347721, 347775, 347716},
+			{"custom_on_portal_autotalk", "mailroom_door", 347721, 347775, 347716, 347842},
 		},
 		{
 			tabName = self:BossName(2452), -- Myza's Oasis
@@ -298,6 +302,7 @@ function mod:GetOptions()
 		[347721] = L.defective_sorter,
 		[347775] = L.overloaded_mailemental,
 		[347716] = L.post_worker,
+		[347842] = L.smuggled_creature,
 		[1240821] = L.bazaar_overseer,
 		[355640] = L.market_peacekeeper,
 		[355642] = L.veteran_sparkcaster,
@@ -432,6 +437,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "LetterOpener", 347716)
 	self:Log("SPELL_CAST_SUCCESS", "LetterOpenerSuccess", 347716)
 	self:Death("POSTWorkerDeath", 176394)
+
+	-- Smuggled Creature
+	self:RegisterEngageMob("SmuggledCreatureEngaged", 175677)
+	self:Log("SPELL_CAST_SUCCESS", "Pounce", 347842)
+	self:Death("SmuggledCreatureDeath", 175677)
 
 	-- Bazaar Overseer
 	self:RegisterEngageMob("BazaarOverseerEngaged", 246285)
@@ -1300,6 +1310,22 @@ function mod:LetterOpenerSuccess(args)
 end
 
 function mod:POSTWorkerDeath(args)
+	self:ClearNameplate(args.destGUID)
+end
+
+-- Smuggled Creature
+
+function mod:SmuggledCreatureEngaged(guid)
+	self:Nameplate(347842, 6.5, guid) -- Pounce
+end
+
+function mod:Pounce(args)
+	self:Message(args.spellId, "orange")
+	self:Nameplate(args.spellId, 15.8, args.sourceGUID)
+	self:PlaySound(args.spellId, "alarm")
+end
+
+function mod:SmuggledCreatureDeath(args)
 	self:ClearNameplate(args.destGUID)
 end
 
