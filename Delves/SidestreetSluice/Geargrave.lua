@@ -7,6 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(
 	234949, -- Geargrave (The Dread Pit)
 	236531, -- Geargrave (The Spiral Weave)
+	240380, -- Geargrave (Sidestreet Sluice)
 	247481, -- Geargrave (Sidestreet Sluice)
 	249829 -- Geargrave (Sidestreet Sluice)
 )
