@@ -16,19 +16,26 @@ mod:SetPrivateAuraSounds({
 --
 
 -- rules:
---- Terrifying Slam and Dark Orb always alternate
+--- Terrifying Slam and Dark Orb always alternate (all difficulties)
 --- Shadowy Decay and Animate Shadows always alternate (Mythic)
+--- there must be 1-2 Terrifying Slam, 1-2 Dark Orb between each Shadowy Decay (non-Mythic)
+--- there must be 1-2 Terrifying Slam, 1-2 Dark Orb, and 1 Animate Shadows between each Shadowy Decay (Mythic)
+--- there must be 1-2 Terrifying Slam, 1-2 Dark Orb, and 1 Shadowy Decay between each Animate Shadows (Mythic)
 local nextTerrifyingSlam = 0
 local nextDarkOrb = 0
 local nextShadowyDecay = 0
 local nextAnimateShadows = 0
 local terrifyingSlamLast = false -- vs Dark Orb
-local shadowyDecayLast = false -- vs Animate Shadows
-local slamOrOrbCount = 1 -- currently only used in non-Mythic
 local terrifyingSlamCount = 1
 local darkOrbCount = 1
 local shadowyDecayCount = 1
 local animateShadowsCount = 1
+local terrifyingSlamSinceShadowyDecay = 1
+local darkOrbSinceShadowyDecay = 1
+local animateShadowsSinceShadowyDecay = 1
+local terrifyingSlamSinceAnimateShadows = 1
+local darkOrbSinceAnimateShadows = 1
+local shadowyDecaySinceAnimateShadows = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -63,7 +70,9 @@ function mod:OnEngage()
 	animateShadowsCount = 1
 	local t = GetTime()
 	terrifyingSlamLast = false
-	slamOrOrbCount = 2 -- start at 2 because Shadowy Decay is always the 3rd ability cast
+	terrifyingSlamSinceShadowyDecay = 1
+	darkOrbSinceShadowyDecay = 1
+	animateShadowsSinceShadowyDecay = 1
 	nextDarkOrb = t + 6.0
 	self:CDBar(426860, 6.0, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
 	nextTerrifyingSlam = t + 15.0
@@ -71,7 +80,9 @@ function mod:OnEngage()
 	nextShadowyDecay = t + 22.0
 	self:CDBar(426787, 22.0, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
 	if self:Mythic() then
-		shadowyDecayLast = false
+		terrifyingSlamSinceAnimateShadows = 1
+		darkOrbSinceAnimateShadows = 1
+		shadowyDecaySinceAnimateShadows = 0
 		nextAnimateShadows = t + 33.0
 		self:CDBar(452127, 33.0, CL.count:format(self:SpellName(452127), animateShadowsCount)) -- Animate Shadows
 	end
@@ -87,36 +98,34 @@ function mod:TerrifyingSlam(args)
 	self:Message(args.spellId, "purple", CL.count:format(args.spellName, terrifyingSlamCount))
 	terrifyingSlamLast = true
 	terrifyingSlamCount = terrifyingSlamCount + 1
-	slamOrOrbCount = slamOrOrbCount + 1
+	terrifyingSlamSinceShadowyDecay = terrifyingSlamSinceShadowyDecay + 1
 	-- 7.0 minimum to next ability
 	if self:Mythic() then
-		nextTerrifyingSlam = t + 16.0
-		self:CDBar(args.spellId, 16.0, CL.count:format(args.spellName, terrifyingSlamCount))
-		if nextDarkOrb - t < 7.0 then
-			nextDarkOrb = t + 7.0
-			self:CDBar(426860, {7.0, 16.0}, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
+		terrifyingSlamSinceAnimateShadows = terrifyingSlamSinceAnimateShadows + 1
+		-- there must be no more than 2 Terrifying Slam between Shadowy Decay, and no more than 2 Terrifying Slam between Animate Shadows
+		local minimumTerrifyingSlam = 7.0 + 9.0 + (terrifyingSlamSinceShadowyDecay == 2 and 11.0 or 0) + (terrifyingSlamSinceAnimateShadows == 2 and 7.5 or 0)
+		nextTerrifyingSlam = t + minimumTerrifyingSlam
+		self:CDBar(args.spellId, minimumTerrifyingSlam, CL.count:format(args.spellName, terrifyingSlamCount))
+		-- there must be no more than 2 Dark Orb between Shadowy Decay, and no more than 2 Dark Orb between Animate Shadows
+		local minimumDarkOrb = 7.0 + (darkOrbSinceShadowyDecay == 2 and 11.0 or 0) + (darkOrbSinceAnimateShadows == 2 and 7.5 or 0)
+		if nextDarkOrb - t < minimumDarkOrb then
+			nextDarkOrb = t + minimumDarkOrb
+			self:CDBar(426860, minimumDarkOrb < 16.0 and {minimumDarkOrb, 16.0} or minimumDarkOrb, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
 		end
-		if shadowyDecayLast then
-			if nextAnimateShadows - t < 7.0 then
-				nextAnimateShadows = t + 7.0
-				self:CDBar(452127, {7.0, 34.5}, CL.count:format(self:SpellName(452127), animateShadowsCount)) -- Animate Shadows
-			end
-			if nextShadowyDecay - t < 14.5 then
-				nextShadowyDecay = t + 14.5
-				self:CDBar(426787, {14.5, 34.5}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
-			end
-		else -- Animate Shadows was more recent than Shadowy Decay
-			if nextShadowyDecay - t < 7.0 then
-				nextShadowyDecay = t + 7.0
-				self:CDBar(426787, {7.0, 34.5}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
-			end
-			if nextAnimateShadows - t < 17.0 then
-				nextAnimateShadows = t + 17.0
-				self:CDBar(452127, {17.0, 34.5}, CL.count:format(self:SpellName(452127), animateShadowsCount)) -- Animate Shadows
-			end
+		-- there must be 1-2 Terrifying Slam, 1-2 Dark Orb, and 1 Animate Shadows between each Shadowy Decay
+		local minimumShadowyDecay = 7.0 + (darkOrbSinceShadowyDecay == 0 and 9.0 or 0) + (animateShadowsSinceShadowyDecay == 0 and 7.5 or 0)
+		if nextShadowyDecay - t < minimumShadowyDecay then
+			nextShadowyDecay = t + minimumShadowyDecay
+			self:CDBar(426787, {minimumShadowyDecay, 34.5}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
+		end
+		-- there must be 1-2 Terrifying Slam, 1-2 Dark Orb, and 1 Shadowy Decay between each Animate Shadows
+		local minimumAnimateShadows = 7.0 + (darkOrbSinceAnimateShadows == 0 and 9.0 or 0) + (shadowyDecaySinceAnimateShadows == 0 and 11.0 or 0)
+		if nextAnimateShadows - t < minimumAnimateShadows then
+			nextAnimateShadows = t + minimumAnimateShadows
+			self:CDBar(452127, {minimumAnimateShadows, 34.5}, CL.count:format(self:SpellName(452127), animateShadowsCount)) -- Animate Shadows
 		end
 	else -- Normal / Heroic
-		if slamOrOrbCount == 2 then
+		if terrifyingSlamSinceShadowyDecay + darkOrbSinceShadowyDecay == 2 then
 			-- Terrifying Slam will race Shadowy Decay
 			nextTerrifyingSlam = t + 16.0
 			self:CDBar(args.spellId, 16.0, CL.count:format(args.spellName, terrifyingSlamCount))
@@ -125,9 +134,11 @@ function mod:TerrifyingSlam(args)
 			nextTerrifyingSlam = t + 27.0
 			self:CDBar(args.spellId, 27.0, CL.count:format(args.spellName, terrifyingSlamCount))
 		end
-		if nextShadowyDecay - t < 7.0 then
-			nextShadowyDecay = t + 7.0
-			self:CDBar(426787, {7.0, 26.0}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
+		-- there must be 1-2 Terrifying Slam and 1-2 Dark Orb between each Shadowy Decay
+		local minimumShadowyDecay = 7.0 + (darkOrbSinceShadowyDecay == 0 and 9.0 or 0)
+		if nextShadowyDecay - t < minimumShadowyDecay then
+			nextShadowyDecay = t + minimumShadowyDecay
+			self:CDBar(426787, {minimumShadowyDecay, 26.0}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
 		end
 	end
 	self:PlaySound(args.spellId, "alarm")
@@ -142,36 +153,34 @@ do
 		self:StopBar(CL.count:format(args.spellName, darkOrbCount))
 		terrifyingSlamLast = false
 		darkOrbCount = darkOrbCount + 1
-		slamOrOrbCount = slamOrOrbCount + 1
+		darkOrbSinceShadowyDecay = darkOrbSinceShadowyDecay + 1
 		-- 9.0 minimum to next ability
 		if self:Mythic() then
-			nextDarkOrb = t + 16.0
-			self:CDBar(args.spellId, 16.0, CL.count:format(args.spellName, darkOrbCount))
-			if nextTerrifyingSlam - t < 9.0 then
-				nextTerrifyingSlam = t + 9.0
-				self:CDBar(427001, {9.0, 16.0}, CL.count:format(self:SpellName(427001), terrifyingSlamCount)) -- Terrifying Slam
+			darkOrbSinceAnimateShadows = darkOrbSinceAnimateShadows + 1
+			-- there must be no more than 2 Dark Orb between Shadowy Decay, and no more than 2 Dark Orb between Animate Shadows
+			local minimumDarkOrb = 9.0 + 7.0 + (darkOrbSinceShadowyDecay == 2 and 11.0 or 0) + (darkOrbSinceAnimateShadows == 2 and 7.5 or 0)
+			nextDarkOrb = t + minimumDarkOrb
+			self:CDBar(args.spellId, minimumDarkOrb, CL.count:format(args.spellName, darkOrbCount))
+			-- there must be no more than 2 Terrifying Slam between Shadowy Decay, and no more than 2 Terrifying Slam between Animate Shadows
+			local minimumTerrifyingSlam = 9.0 + (terrifyingSlamSinceShadowyDecay == 2 and 11.0 or 0) + (terrifyingSlamSinceAnimateShadows == 2 and 7.5 or 0)
+			if nextTerrifyingSlam - t < minimumTerrifyingSlam then
+				nextTerrifyingSlam = t + minimumTerrifyingSlam
+				self:CDBar(427001, minimumTerrifyingSlam < 16.0 and {minimumTerrifyingSlam, 16.0} or minimumTerrifyingSlam, CL.count:format(self:SpellName(427001), terrifyingSlamCount)) -- Terrifying Slam
 			end
-			if shadowyDecayLast then
-				if nextAnimateShadows - t < 9.0 then
-					nextAnimateShadows = t + 9.0
-					self:CDBar(452127, {9.0, 34.5}, CL.count:format(self:SpellName(452127), animateShadowsCount)) -- Animate Shadows
-				end
-				if nextShadowyDecay - t < 16.5 then
-					nextShadowyDecay = t + 16.5
-					self:CDBar(426787, {16.5, 34.5}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
-				end
-			else -- Animate Shadows was more recent than Shadowy Decay
-				if nextShadowyDecay - t < 9.0 then
-					nextShadowyDecay = t + 9.0
-					self:CDBar(426787, {9.0, 34.5}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
-				end
-				if nextAnimateShadows - t < 19.0 then
-					nextAnimateShadows = t + 19.0
-					self:CDBar(452127, {19.0, 34.5}, CL.count:format(self:SpellName(452127), animateShadowsCount)) -- Animate Shadows
-				end
+			-- there must be 1-2 Terrifying Slam, 1-2 Dark Orb, and 1 Animate Shadows between each Shadowy Decay
+			local minimumShadowyDecay = 9.0 + (terrifyingSlamSinceShadowyDecay == 0 and 7.0 or 0) + (animateShadowsSinceShadowyDecay == 0 and 7.5 or 0)
+			if nextShadowyDecay - t < minimumShadowyDecay then
+				nextShadowyDecay = t + minimumShadowyDecay
+				self:CDBar(426787, {minimumShadowyDecay, 34.5}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
 			end
-		else
-			if slamOrOrbCount == 2 then
+			-- there must be 1-2 Terrifying Slam, 1-2 Dark Orb, and 1 Shadowy Decay between each Animate Shadows
+			local minimumAnimateShadows = 9.0 + (terrifyingSlamSinceAnimateShadows == 0 and 7.0 or 0) + (shadowyDecaySinceAnimateShadows == 0 and 11.0 or 0)
+			if nextAnimateShadows - t < minimumAnimateShadows then
+				nextAnimateShadows = t + minimumAnimateShadows
+				self:CDBar(452127, {minimumAnimateShadows, 34.5}, CL.count:format(self:SpellName(452127), animateShadowsCount)) -- Animate Shadows
+			end
+		else -- Normal / Heroic
+			if terrifyingSlamSinceShadowyDecay + darkOrbSinceShadowyDecay == 2 then
 				-- Dark Orb will race Shadowy Decay in 16.0
 				nextDarkOrb = t + 16.0
 				self:CDBar(args.spellId, 16.0, CL.count:format(args.spellName, darkOrbCount))
@@ -180,9 +189,11 @@ do
 				nextDarkOrb = t + 27.0
 				self:CDBar(args.spellId, 27.0, CL.count:format(args.spellName, darkOrbCount))
 			end
-			if nextShadowyDecay - t < 9.0 then
-				nextShadowyDecay = t + 9.0
-				self:CDBar(426787, {9.0, 26.0}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
+			-- there must be 1-2 Terrifying Slam and 1-2 Dark Orb between each Shadowy Decay
+			local minimumShadowyDecay = 9.0 + (terrifyingSlamSinceShadowyDecay == 0 and 7.0 or 0)
+			if nextShadowyDecay - t < minimumShadowyDecay then
+				nextShadowyDecay = t + minimumShadowyDecay
+				self:CDBar(426787, {minimumShadowyDecay, 26.0}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
 			end
 		end
 	end
@@ -211,56 +222,36 @@ function mod:ShadowyDecay(args)
 	self:StopBar(CL.count:format(args.spellName, shadowyDecayCount))
 	self:Message(args.spellId, "yellow", CL.count:format(args.spellName, shadowyDecayCount))
 	shadowyDecayCount = shadowyDecayCount + 1
-	slamOrOrbCount = 1
-	shadowyDecayLast = true
+	terrifyingSlamSinceShadowyDecay = 0
+	darkOrbSinceShadowyDecay = 0
 	-- 11.0 minimum to next ability
 	if self:Mythic() then
-		nextShadowyDecay = t + 34.5
+		animateShadowsSinceShadowyDecay = 0
+		shadowyDecaySinceAnimateShadows = shadowyDecaySinceAnimateShadows + 1
+		nextShadowyDecay = t + 34.5 -- 11.0 + 7.0 + 9.0 + 7.5
 		self:CDBar(args.spellId, 34.5, CL.count:format(args.spellName, shadowyDecayCount))
-		if terrifyingSlamLast then
-			if nextDarkOrb - t < 11.0 then
-				nextDarkOrb = t + 11.0
-				self:CDBar(426860, {11.0, 16.0}, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
-			end
-			if nextTerrifyingSlam - t < 20.0 then
-				nextTerrifyingSlam = t + 20.0
-				self:CDBar(427001, {20.0, 26.0}, CL.count:format(self:SpellName(427001), terrifyingSlamCount)) -- Terrifying Slam
-			end
-		else -- Dark Orb was more recent than Terrifying Slam
-			if nextTerrifyingSlam - t < 11.0 then
-				nextTerrifyingSlam = t + 11.0
-				self:CDBar(427001, {11.0, 16.0}, CL.count:format(self:SpellName(427001), terrifyingSlamCount)) -- Terrifying Slam
-			end
-			if nextDarkOrb - t < 18.0 then
-				nextDarkOrb = t + 18.0
-				self:CDBar(426860, {18.0, 26.0}, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
-			end
-		end
-		if nextAnimateShadows - t < 11.0 then
-			nextAnimateShadows = t + 11.0
-			self:CDBar(452127, {11.0, 34.5}, CL.count:format(self:SpellName(452127), animateShadowsCount)) -- Animate Shadows
-		end
-	else
-		nextShadowyDecay = t + 27.0
+	else -- Normal / Heroic
+		nextShadowyDecay = t + 27.0 -- 11.0 + 7.0 + 9.0
 		self:CDBar(args.spellId, 27.0, CL.count:format(args.spellName, shadowyDecayCount))
-		if terrifyingSlamLast then
-			if nextDarkOrb - t < 11.0 then
-				nextDarkOrb = t + 11.0
-				self:CDBar(426860, {11.0, 16.0}, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
-			end
-			if nextTerrifyingSlam - t < 20.0 then
-				nextTerrifyingSlam = t + 20.0
-				self:CDBar(427001, {20.0, 26.0}, CL.count:format(self:SpellName(427001), terrifyingSlamCount)) -- Terrifying Slam
-			end
-		else -- Dark Orb was more recent than Terrifying Slam
-			if nextTerrifyingSlam - t < 11.0 then
-				nextTerrifyingSlam = t + 11.0
-				self:CDBar(427001, {11.0, 16.0}, CL.count:format(self:SpellName(427001), terrifyingSlamCount)) -- Terrifying Slam
-			end
-			if nextDarkOrb - t < 18.0 then
-				nextDarkOrb = t + 18.0
-				self:CDBar(426860, {18.0, 26.0}, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
-			end
+	end
+	-- there must be 1 Dark Orb between each Terrifying Slam, and no more than 2 Terrifying Slam between Animate Shadows
+	local minimumTerrifyingSlam = 11.0 + (terrifyingSlamLast and 9.0 or 0) + (terrifyingSlamSinceAnimateShadows == 2 and 7.5 or 0)
+	if nextTerrifyingSlam - t < minimumTerrifyingSlam then
+		nextTerrifyingSlam = t + minimumTerrifyingSlam
+		self:CDBar(427001, minimumTerrifyingSlam < 16.0 and {minimumTerrifyingSlam, 16.0} or minimumTerrifyingSlam, CL.count:format(self:SpellName(427001), terrifyingSlamCount)) -- Terrifying Slam
+	end
+	-- there must be 1 Terrifying Slam between each Dark Orb, and no more than 2 Dark Orb between Animate Shadows
+	local minimumDarkOrb = 11.0 + (terrifyingSlamLast and 0 or 7.0) + (darkOrbSinceAnimateShadows == 2 and 7.5 or 0)
+	if nextDarkOrb - t < minimumDarkOrb then
+		nextDarkOrb = t + minimumDarkOrb
+		self:CDBar(426860, minimumDarkOrb < 16.0 and {minimumDarkOrb, 16.0} or minimumDarkOrb, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
+	end
+	if self:Mythic() then
+		-- there must be 1 Shadowy Decay, 1-2 Terrifying Slam, and 1-2 Dark Orb between each Animate Shadows
+		local minimumAnimateShadows = 11.0 + (terrifyingSlamSinceAnimateShadows == 0 and 7.0 or 0) + (darkOrbSinceAnimateShadows == 0 and 9.0 or 0)
+		if nextAnimateShadows - t < minimumAnimateShadows then
+			nextAnimateShadows = t + minimumAnimateShadows
+			self:CDBar(452127, {minimumAnimateShadows, 34.5}, CL.count:format(self:SpellName(452127), animateShadowsCount)) -- Animate Shadows
 		end
 	end
 	self:PlaySound(args.spellId, "alert")
@@ -278,34 +269,31 @@ do
 		local t = GetTime()
 		self:StopBar(CL.count:format(args.spellName, animateShadowsCount))
 		animateShadowsCount = animateShadowsCount + 1
-		slamOrOrbCount = 1
-		shadowyDecayLast = false
+		terrifyingSlamSinceAnimateShadows = 0
+		darkOrbSinceAnimateShadows = 0
+		shadowyDecaySinceAnimateShadows = 0
+		animateShadowsSinceShadowyDecay = animateShadowsSinceShadowyDecay + 1
 		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
-		nextAnimateShadows = t + 34.5
-		self:CDBar(args.spellId, 34.5, CL.count:format(args.spellName, animateShadowsCount))
 		-- 7.5 minimum to next ability
-		if terrifyingSlamLast then
-			if nextDarkOrb - t < 7.5 then
-				nextDarkOrb = t + 7.5
-				self:CDBar(426860, {7.5, 16.0}, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
-			end
-			if nextTerrifyingSlam - t < 16.5 then
-				nextTerrifyingSlam = t + 16.5
-				self:CDBar(427001, 16.5, CL.count:format(self:SpellName(427001), terrifyingSlamCount)) -- Terrifying Slam
-			end
-		else -- Dark Orb was more recent than Terrifying Slam
-			if nextTerrifyingSlam - t < 7.5 then
-				nextTerrifyingSlam = t + 7.5
-				self:CDBar(427001, {7.5, 16.0}, CL.count:format(self:SpellName(427001), terrifyingSlamCount)) -- Terrifying Slam
-			end
-			if nextDarkOrb - t < 14.5 then
-				nextDarkOrb = t + 14.5
-				self:CDBar(426860, {14.5, 16.0}, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
-			end
+		nextAnimateShadows = t + 34.5 -- 7.5 + 7.0 + 9.0 + 11.0
+		self:CDBar(args.spellId, 34.5, CL.count:format(args.spellName, animateShadowsCount))
+		-- there must be 1 Dark Orb between each Terrifying Slam, and no more than 2 Terrifying Slam between Shadowy Decay
+		local minimumTerrifyingSlam = 7.5 + (terrifyingSlamLast and 9.0 or 0) + (terrifyingSlamSinceShadowyDecay == 2 and 11.0 or 0)
+		if nextTerrifyingSlam - t < minimumTerrifyingSlam then
+			nextTerrifyingSlam = t + minimumTerrifyingSlam
+			self:CDBar(427001, minimumTerrifyingSlam < 16.0 and {minimumTerrifyingSlam, 16.0} or minimumTerrifyingSlam, CL.count:format(self:SpellName(427001), terrifyingSlamCount)) -- Terrifying Slam
 		end
-		if nextShadowyDecay - t < 7.5 then
-			nextShadowyDecay = t + 7.5
-			self:CDBar(426787, {7.5, 34.5}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
+		-- there must be 1 Terrifying Slam between each Dark Orb, and no more than 2 Dark Orb between Shadowy Decay
+		local minimumDarkOrb = 7.5 + (terrifyingSlamLast and 0 or 7.0) + (darkOrbSinceShadowyDecay == 2 and 11.0 or 0)
+		if nextDarkOrb - t < minimumDarkOrb then
+			nextDarkOrb = t + minimumDarkOrb
+			self:CDBar(426860, minimumDarkOrb < 16.0 and {minimumDarkOrb, 16.0} or minimumDarkOrb, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
+		end
+		-- there must be 1 Animate Shadows, 1-2 Terrifying Slam, and 1-2 Dark Orb between each Shadowy Decay
+		local minimumShadowyDecay = 7.5 + (terrifyingSlamSinceShadowyDecay == 0 and 7.0 or 0) + (darkOrbSinceShadowyDecay == 0 and 9.0 or 0)
+		if nextShadowyDecay - t < minimumShadowyDecay then
+			nextShadowyDecay = t + minimumShadowyDecay
+			self:CDBar(426787, {minimumShadowyDecay, 34.5}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
 		end
 	end
 end
