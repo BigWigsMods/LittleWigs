@@ -36,6 +36,35 @@ local animateShadowsSinceShadowyDecay = 1
 local terrifyingSlamSinceAnimateShadows = 1
 local darkOrbSinceAnimateShadows = 1
 local shadowyDecaySinceAnimateShadows = 1
+local mythicAbilityOrder = {
+	426860, -- 1: Dark Orb
+	427001, -- 2: Terrifying Slam
+	426787, -- 3: Shadowy Decay
+	452127, -- 4: Animate Shadows
+	426860, -- 5: Dark Orb
+	427001, -- 6: Terrifying Slam
+	426787, -- 7: Shadowy Decay
+	426860, -- 8: Dark Orb
+	{[427001] = true, [452127] = true}, -- 9: Terrifying Slam OR Animate Shadows
+	{[427001] = true, [452127] = true}, -- 10: Terrifying Slam OR Animate Shadows
+	426860, -- 11: Dark Orb
+	426787, -- 12: Shadowy Decay
+	427001, -- 13: Terrifying Slam
+	452127, -- 14: Animate Shadows
+	426860, -- 15: Dark Orb
+	427001, -- 16: Terrifying Slam
+	426787, -- 17: Shadowy Decay
+	426860, -- 18: Dark Orb
+	427001, -- 19: Terrifying Slam
+	452127, -- 20: Animate Shadows
+	426787, -- 21: Shadowy Decay
+	426860, -- 22: Dark Orb
+	427001, -- 23: Terrifying Slam
+	{[426860] = true, [452127] = true}, -- 24: Dark Orb OR Animate Shadows
+	{[426860] = true, [452127] = true}, -- 24: Dark Orb OR Animate Shadows
+	426787, -- 25: Shadowy Decay
+	427001, -- 26: Terrifying Slam
+}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -92,6 +121,69 @@ end
 -- Event Handlers
 --
 
+function mod:CheckForRace() -- Mythic only
+	local t = GetTime()
+	local darkOrbNext = nextDarkOrb - nextTerrifyingSlam < 0
+	local shadowyDecayNext = nextShadowyDecay - nextAnimateShadows < 0
+	if darkOrbNext and shadowyDecayNext and math.abs(nextDarkOrb - nextShadowyDecay) < 1.0 then
+		local index = darkOrbCount + terrifyingSlamCount + shadowyDecayCount + animateShadowsCount - 3
+		local predictedAbility = mythicAbilityOrder[index]
+		if predictedAbility then
+			if predictedAbility == 426860 or (type(predictedAbility) == "table" and predictedAbility[426860] and not predictedAbility[426787]) then -- Dark Orb, or Dark Orb and not Shadowy Decay
+				local minimumShadowyDecay = nextShadowyDecay - t + 9.0
+				nextShadowyDecay = t + minimumShadowyDecay
+				self:CDBar(426787, {minimumShadowyDecay, 34.5}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
+			elseif predictedAbility == 426787 or (type(predictedAbility) == "table" and predictedAbility[426787] and not predictedAbility[426860]) then -- Shadowy Decay, or Shadowy Decay and not Dark Orb
+				local minimumDarkOrb = nextDarkOrb - t + 11.0
+				nextDarkOrb = t + minimumDarkOrb
+				self:CDBar(426860, minimumDarkOrb, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
+			end
+		end
+	elseif darkOrbNext and not shadowyDecayNext and math.abs(nextDarkOrb - nextAnimateShadows) < 1.0 then
+		local index = darkOrbCount + terrifyingSlamCount + shadowyDecayCount + animateShadowsCount - 3
+		local predictedAbility = mythicAbilityOrder[index]
+		if predictedAbility then
+			if predictedAbility == 426860 or (type(predictedAbility) == "table" and predictedAbility[426860] and not predictedAbility[452127]) then -- Dark Orb, or Dark Orb and not Animate Shadows
+				local minimumAnimateShadows = nextAnimateShadows - t + 9.0
+				nextAnimateShadows = t + minimumAnimateShadows
+				self:CDBar(452127, {minimumAnimateShadows, 34.5}, CL.count:format(self:SpellName(452127), animateShadowsCount)) -- Animate Shadows
+			elseif predictedAbility == 452127 or (type(predictedAbility) == "table" and predictedAbility[452127] and not predictedAbility[426860]) then -- Animate Shadows, or Animate Shadows and not Dark Orb
+				local minimumDarkOrb = nextDarkOrb - t + 7.5
+				nextDarkOrb = t + minimumDarkOrb
+				self:CDBar(426860, minimumDarkOrb, CL.count:format(self:SpellName(426860), darkOrbCount)) -- Dark Orb
+			end
+		end
+	elseif not darkOrbNext and shadowyDecayNext and math.abs(nextTerrifyingSlam - nextShadowyDecay) < 1.0 then
+		local index = darkOrbCount + terrifyingSlamCount + shadowyDecayCount + animateShadowsCount - 3
+		local predictedAbility = mythicAbilityOrder[index]
+		if predictedAbility then
+			if predictedAbility == 427001 or (type(predictedAbility) == "table" and predictedAbility[427001] and not predictedAbility[426787]) then -- Terrifying Slam, or Terrifying Slam and not Shadowy Decay
+				local minimumShadowyDecay = nextShadowyDecay - t + 7.0
+				nextShadowyDecay = t + minimumShadowyDecay
+				self:CDBar(426787, {minimumShadowyDecay, 34.5}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
+			elseif predictedAbility == 426787 or (type(predictedAbility) == "table" and predictedAbility[426787] and not predictedAbility[427001]) then -- Shadowy Decay, or Shadowy Decay and not Terrifying Slam
+				local minimumTerrifyingSlam = nextTerrifyingSlam - t + 11.0
+				nextTerrifyingSlam = t + minimumTerrifyingSlam
+				self:CDBar(427001, minimumTerrifyingSlam, CL.count:format(self:SpellName(427001), terrifyingSlamCount)) -- Terrifying Slam
+			end
+		end
+	elseif not darkOrbNext and not shadowyDecayNext and math.abs(nextTerrifyingSlam - nextAnimateShadows) < 1.0 then
+		local index = darkOrbCount + terrifyingSlamCount + shadowyDecayCount + animateShadowsCount - 3
+		local predictedAbility = mythicAbilityOrder[index]
+		if predictedAbility then
+			if predictedAbility == 427001 or (type(predictedAbility) == "table" and predictedAbility[427001] and not predictedAbility[452127]) then -- Terrifying Slam, or Terrifying Slam and not Animate Shadows
+				local minimumAnimateShadows = nextAnimateShadows - t + 7.0
+				nextAnimateShadows = t + minimumAnimateShadows
+				self:CDBar(452127, {minimumAnimateShadows, 34.5}, CL.count:format(self:SpellName(452127), animateShadowsCount)) -- Animate Shadows
+			elseif predictedAbility == 452127 or (type(predictedAbility) == "table" and predictedAbility[452127] and not predictedAbility[427001]) then -- Animate Shadows, or Animate Shadows and not Terrifying Slam
+				local minimumTerrifyingSlam = nextTerrifyingSlam - t + 7.5
+				nextTerrifyingSlam = t + minimumTerrifyingSlam
+				self:CDBar(427001, minimumTerrifyingSlam, CL.count:format(self:SpellName(427001), terrifyingSlamCount)) -- Terrifying Slam
+			end
+		end
+	end
+end
+
 function mod:TerrifyingSlam(args)
 	local t = GetTime()
 	self:StopBar(CL.count:format(args.spellName, terrifyingSlamCount))
@@ -140,6 +232,9 @@ function mod:TerrifyingSlam(args)
 			nextShadowyDecay = t + minimumShadowyDecay
 			self:CDBar(426787, {minimumShadowyDecay, 26.0}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
 		end
+	end
+	if self:Mythic() then
+		self:CheckForRace()
 	end
 	self:PlaySound(args.spellId, "alarm")
 end
@@ -195,6 +290,9 @@ do
 				nextShadowyDecay = t + minimumShadowyDecay
 				self:CDBar(426787, {minimumShadowyDecay, 26.0}, CL.count:format(self:SpellName(426787), shadowyDecayCount)) -- Shadowy Decay
 			end
+		end
+		if self:Mythic() then
+			self:CheckForRace()
 		end
 	end
 
@@ -253,6 +351,9 @@ function mod:ShadowyDecay(args)
 			nextAnimateShadows = t + minimumAnimateShadows
 			self:CDBar(452127, {minimumAnimateShadows, 34.5}, CL.count:format(self:SpellName(452127), animateShadowsCount)) -- Animate Shadows
 		end
+	end
+	if self:Mythic() then
+		self:CheckForRace()
 	end
 	self:PlaySound(args.spellId, "alert")
 end
