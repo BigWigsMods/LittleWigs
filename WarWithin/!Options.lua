@@ -871,6 +871,7 @@ BigWigs:AddColors("The Dawnbreaker Trash", {
 	[451112] = "yellow",
 	[451117] = "purple",
 	[451119] = {"blue","red"},
+	[460135] = "blue",
 	[1242074] = "purple",
 })
 
@@ -895,6 +896,7 @@ BigWigs:AddSounds("The Dawnbreaker Trash", {
 	[451112] = "info",
 	[451117] = "alarm",
 	[451119] = {"alarm","alert"},
+	[460135] = "underyou",
 	[1242074] = "info",
 })
 
