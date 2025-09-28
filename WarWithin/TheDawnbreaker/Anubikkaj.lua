@@ -77,6 +77,7 @@ function mod:GetOptions()
 	return {
 		427001, -- Terrifying Slam
 		{426860, "SAY", "SAY_COUNTDOWN", "ME_ONLY_EMPHASIZE", "PRIVATE"}, -- Dark Orb
+		427378, -- Dark Scars
 		426787, -- Shadowy Decay
 		-- Mythic
 		452127, -- Animate Shadows
@@ -88,6 +89,8 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "TerrifyingSlam", 427001)
 	self:Log("SPELL_CAST_START", "DarkOrb", 426860)
+	self:Log("SPELL_AURA_APPLIED", "DarkScarsApplied", 427378)
+	self:Log("SPELL_AURA_APPLIED_DOSE", "DarkScarsApplied", 427378)
 	self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE") -- Dark Orb
 	self:Log("SPELL_CAST_START", "ShadowyDecay", 426787)
 
@@ -190,6 +193,17 @@ do
 			else
 				self:PlaySound(426860, "alarm", nil, destName)
 			end
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:DarkScarsApplied(args)
+		if self:Me(args.destGUID) and args.time - prev > 1.5 then -- 1s stack rate
+			prev = args.time
+			self:StackMessage(args.spellId, "blue", args.destName, args.amount, 1)
+			self:PlaySound(args.spellId, "underyou")
 		end
 	end
 end

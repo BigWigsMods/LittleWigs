@@ -814,6 +814,7 @@ BigWigs:AddColors("Anub'ikkaj", {
 	[426787] = "yellow",
 	[426860] = {"blue","orange"},
 	[427001] = "purple",
+	[427378] = "blue",
 	[452127] = {"blue","cyan"},
 })
 
@@ -821,6 +822,7 @@ BigWigs:AddSounds("Anub'ikkaj", {
 	[426787] = "alert",
 	[426860] = "alarm",
 	[427001] = "alarm",
+	[427378] = "underyou",
 	[452127] = "info",
 })
 
