@@ -119,18 +119,18 @@ local function findNextCast(self, spellId)
 	local abilityOrder = self:Mythic() and mythicAbilityOrder or easyAbilityOrder
 	local tableLength = #abilityOrder
 	local startIndex = darkOrbCount + terrifyingSlamCount + shadowyDecayCount + animateShadowsCount - 3
-	local duration = icdByAbility[spellId]
+	local duration = icdByAbility[spellId] -- start with the ICD of the spell just cast
 	local pairedSpell, icd -- used to delay the second spell in a pair
 	for i = startIndex, startIndex + tableLength do
 		local tableIndex = (i - 1) % tableLength + 1
 		if type(abilityOrder[tableIndex]) == "table" then -- ambiguous (Mythic only)
 			if abilityOrder[tableIndex][spellId] then
-				if i == startIndex then
+				if i == startIndex then -- special case when the first of an ambiguous pair was just cast
 					for j = 1, 2 do
 						if abilityOrder[tableIndex][j] ~= spellId then
-							-- we need to add the ICD of the spell that was not just cast
+							-- we need to add the ICD of the spell that was not just cast, since that spell will always be next
 							duration = duration + icdByAbility[abilityOrder[tableIndex][j]]
-							-- set these so the associated bar can be restarted by the caller
+							-- set these so the bar of the paired spell can be restarted by the caller (since it's now at 0s)
 							pairedSpell = abilityOrder[tableIndex][j]
 							icd = icdByAbility[spellId]
 							break
@@ -140,6 +140,7 @@ local function findNextCast(self, spellId)
 					return duration, pairedSpell, icd
 				end
 			else
+				-- the table doesn't contain our target spell, so just add the ICD of each spell in the table (one at a time)
 				duration = duration + icdByAbility[abilityOrder[tableIndex][tableIndex % 2 + 1]]
 			end
 		else -- unambiguous
@@ -229,7 +230,6 @@ do
 		self:StopBar(CL.count:format(args.spellName, animateShadowsCount))
 		animateShadowsCount = animateShadowsCount + 1
 		self:GetUnitTarget(printTarget, 0.3, args.sourceGUID)
-		-- 7.5 minimum to next ability
 		local duration, pairedSpell, icd = findNextCast(self, args.spellId)
 		self:CDBar(args.spellId, duration, CL.count:format(args.spellName, animateShadowsCount))
 		if pairedSpell == 426860 then -- Dark Orb
