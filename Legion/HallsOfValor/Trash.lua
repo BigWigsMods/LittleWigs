@@ -319,9 +319,15 @@ end
 
 -- Stormforged Sentinel
 
-function mod:ChargedPulse(args)
-	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
+do
+	local prev = 0
+	function mod:ChargedPulse(args)
+		if args.time - prev > 2 then
+			prev = args.time
+			self:Message(args.spellId, "red")
+			self:PlaySound(args.spellId, "alarm")
+		end
+	end
 end
 
 function mod:ProtectiveLight(args)
