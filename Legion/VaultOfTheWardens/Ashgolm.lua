@@ -26,12 +26,12 @@ function mod:GetOptions()
 		192520, -- Volcano
 		192517, -- Brittle
 		192519, -- Lava
-		-12727, -- Countermeasures
+		--1244257, -- Deepfreeze Containment
 	}
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
+	--self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE") -- TODO temporarily disabled
 	self:Log("SPELL_CAST_START", "Fissure", 192522)
 	self:Log("SPELL_CREATE", "Volcano", 192520)
 	self:Log("SPELL_AURA_APPLIED", "Brittle", 192517)
@@ -39,18 +39,19 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	self:CDBar(-12727, 6.8, nil, "ability_monk_counteractmagic") -- Countermeasures
-	self:CDBar(192520, 10) -- Volcano inc
+	--self:CDBar(1244257, 6.8, nil, "ability_monk_counteractmagic") -- Countermeasures
+	self:CDBar(192520, 10) -- Volcano
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
-function mod:CHAT_MSG_MONSTER_EMOTE(_, _, sender)
-	if sender == self:SpellName(-12727) then -- Countermeasures
-		self:MessageOld(-12727, "green", "info", self:SpellName(-12727), false)
-	end
-end
+
+--function mod:CHAT_MSG_MONSTER_EMOTE(_, _, sender) -- TODO check if there is an event for Deepfreeze Containment
+	--if sender == self:SpellName(-12727) then -- Countermeasures
+		--self:MessageOld(1244257, "green", "info", self:SpellName(-12727), false)
+	--end
+--end
 
 function mod:Fissure(args)
 	self:MessageOld(args.spellId, "yellow", "alarm")
@@ -69,9 +70,9 @@ function mod:Brittle(args)
 	if remainingVolcano > 0 then
 		self:Bar(192520, remainingVolcano+20) -- estimated
 	end
-	if self:MythicPlus() then
-		self:CDBar(-12727, 66, nil, "ability_monk_counteractmagic") -- Countermeasures
-	end
+	--if self:MythicPlus() then
+		--self:CDBar(-12727, 66, nil, "ability_monk_counteractmagic") -- Countermeasures
+	--end
 end
 
 function mod:Lava(args)

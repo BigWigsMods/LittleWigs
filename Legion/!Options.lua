@@ -1573,7 +1573,6 @@ BigWigs:AddSounds("Inquisitor Tormentorum", {
 })
 
 BigWigs:AddColors("Ashgolm", {
-	[-12727] = "green",
 	[192517] = "green",
 	[192519] = "blue",
 	[192520] = "red",
@@ -1581,7 +1580,6 @@ BigWigs:AddColors("Ashgolm", {
 })
 
 BigWigs:AddSounds("Ashgolm", {
-	[-12727] = "info",
 	[192517] = "info",
 	[192519] = "alert",
 	[192520] = "long",
