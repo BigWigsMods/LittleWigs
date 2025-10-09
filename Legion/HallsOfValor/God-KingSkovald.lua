@@ -59,7 +59,9 @@ end
 function mod:OnWin()
 	local odynMod = BigWigs:GetBossModule("Odyn", true)
 	if odynMod then
-		odynMod:Enable() -- Making sure to pickup Odyn's yell to start the RP bar
+		-- Make sure to pickup Odyn's yell to start the RP bar.
+		-- delay a frame to avoid registering ENCOUNTER_END during ENCOUNTER_END.
+		self:SimpleTimer(function() odynMod:Enable() end, 0)
 	end
 end
 
