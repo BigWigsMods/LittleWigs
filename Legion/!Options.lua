@@ -798,8 +798,8 @@ BigWigs:AddSounds("Eye of Azshara Trash", {
 	[195129] = {"info","warning"},
 	[195284] = "long",
 	[196027] = "alarm",
-	[196127] = "long",
-	[196870] = "long",
+	[196127] = "alarm",
+	[196870] = "info",
 	[197105] = "info",
 	[225089] = "warning",
 })
