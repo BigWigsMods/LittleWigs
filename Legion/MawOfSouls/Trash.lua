@@ -106,7 +106,6 @@ do
 		if t - (prevTable[args.spellId] or 0) > 1.5 then
 			prevTable[args.spellId] = t
 			self:MessageOld(198405, "yellow", "info", CL.soon:format(self:SpellName(5782))) -- Bone Chilling Scream, 5782 = "Fear"
-			self:CDBar(198405, 6)
 		end
 	end
 
