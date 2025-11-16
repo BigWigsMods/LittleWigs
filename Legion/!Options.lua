@@ -414,16 +414,16 @@ BigWigs:AddSounds("Thrashbite the Scornful", {
 })
 
 BigWigs:AddColors("Domatrax", {
-	[-15076] = "red",
+	[-15076] = "cyan",
 	[234107] = "orange",
 	[236543] = "yellow",
 	[238410] = {"blue","orange"},
 })
 
 BigWigs:AddSounds("Domatrax", {
-	[-15076] = "alarm",
+	[-15076] = "info",
 	[234107] = "warning",
-	[236543] = "alert",
+	[236543] = "alarm",
 	[238410] = {"alert","warning"},
 })
 
