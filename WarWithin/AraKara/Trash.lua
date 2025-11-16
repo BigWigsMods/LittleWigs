@@ -14,6 +14,7 @@ mod:RegisterEnableMob(
 	217531, -- Ixin
 	218324, -- Nakt
 	217533, -- Atik
+	216337, -- Bloodworker
 	216338, -- Hulking Bloodguard
 	228015, -- Hulking Bloodguard (Sentry Stagshell's summon)
 	216340, -- Sentry Stagshell
@@ -37,6 +38,7 @@ if L then
 	L.ixin = "Ixin"
 	L.nakt = "Nakt"
 	L.atik = "Atik"
+	L.bloodworker = "Bloodworker"
 	L.hulking_bloodguard = "Hulking Bloodguard"
 	L.sentry_stagshell = "Sentry Stagshell"
 	L.bloodstained_assistant = "Bloodstained Assistant"
@@ -75,6 +77,8 @@ function mod:GetOptions()
 		{438877, "NAMEPLATE"}, -- Call of the Brood
 		-- Atik
 		{438826, "NAMEPLATE"}, -- Poisonous Cloud
+		-- Bloodworker
+		{453583, "ME_ONLY", "NAMEPLATE", "OFF"}, -- Charge
 		-- Hulking Bloodguard
 		{453161, "NAMEPLATE"}, -- Impale
 		{1241693, "NAMEPLATE"}, -- Locust Swarm
@@ -98,7 +102,7 @@ function mod:GetOptions()
 		},
 		{
 			tabName = self:BossName(2584), -- Anub'zekt
-			{"custom_on_autotalk", 439208, 453161, 1241693, 432967, 433002, 448248},
+			{"custom_on_autotalk", 439208, 453583, 453161, 1241693, 432967, 433002, 448248},
 		},
 		{
 			tabName = self:BossName(2585), -- Ki'katal the Harvester
@@ -111,6 +115,7 @@ function mod:GetOptions()
 		[434824] = L.ixin,
 		[438877] = L.nakt,
 		[438826] = L.atik,
+		[453583] = L.bloodworker,
 		[453161] = L.hulking_bloodguard,
 		[432967] = L.sentry_stagshell,
 		[433002] = L.bloodstained_assistant,
@@ -168,6 +173,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_DAMAGE", "PoisonousCloudDamage", 438825)
 	self:Log("SPELL_PERIODIC_MISSED", "PoisonousCloudDamage", 438825)
 	self:Death("AtikDeath", 217533)
+
+	-- Bloodworker
+	self:RegisterEngageMob("BloodworkerEngaged", 216337)
+	self:Log("SPELL_CAST_SUCCESS", "Charge", 453583)
+	self:Death("BloodworkerDeath", 216337)
 
 	-- Hulking Bloodguard
 	self:RegisterEngageMob("HulkingBloodguardEngaged", 216338, 228015)
@@ -482,6 +492,28 @@ do
 		self:StopBar(438826) -- Poisonous Cloud
 		self:ClearNameplate(guidFromTimer or args.destGUID)
 	end
+end
+
+-- Bloodworker
+
+function mod:BloodworkerEngaged(guid)
+	self:Nameplate(453583, 3.5, guid) -- Charge
+end
+
+do
+	local prev = 0
+	function mod:Charge(args)
+		self:Nameplate(args.spellId, 3.2, args.sourceGUID)
+		if args.time - prev > 3 then
+			prev = args.time
+			self:TargetMessage(args.spellId, "red", args.destName)
+			self:PlaySound(args.spellId, "alert", nil, args.destName)
+		end
+	end
+end
+
+function mod:BloodworkerDeath(args)
+	self:ClearNameplate(args.destGUID)
 end
 
 -- Hulking Bloodguard

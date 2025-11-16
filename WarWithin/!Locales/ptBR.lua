@@ -8,6 +8,7 @@ if L then
 	L.ixin = "Ixin"
 	L.nakt = "Nakt"
 	L.atik = "Atik"
+	L.bloodworker = "Trabalhador Sanguinário"
 	L.hulking_bloodguard = "Guarda-sangue Parrudo"
 	L.sentry_stagshell = "Durapaça Sentinela"
 	L.bloodstained_assistant = "Assistente Manchado de Sangue"

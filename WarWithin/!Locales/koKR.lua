@@ -8,6 +8,7 @@ if L then
 	L.ixin = "이신"
 	L.nakt = "낙트"
 	L.atik = "아틱"
+	L.bloodworker = "핏빛 일꾼"
 	L.hulking_bloodguard = "거구의 혈투사"
 	L.sentry_stagshell = "파수꾼 가지뿔껍질"
 	L.bloodstained_assistant = "피로 물든 조수"

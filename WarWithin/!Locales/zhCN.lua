@@ -8,6 +8,7 @@ if L then
 	L.ixin = "伊克辛"
 	L.nakt = "纳克特"
 	L.atik = "阿提克"
+	L.bloodworker = "血工"
 	L.hulking_bloodguard = "魁梧的血卫"
 	L.sentry_stagshell = "哨兵鹿壳虫"
 	L.bloodstained_assistant = "沾血的助手"
