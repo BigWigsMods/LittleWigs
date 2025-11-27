@@ -215,6 +215,42 @@ if L then
 	L.awakened_phalanx = "깨어난 결사단원"
 end
 
+L = BigWigs:NewBossLocale("Brawler's Guild", "koKR")
+if L then
+	--L.brawlers_guild = "Brawler's Guild"
+	--L.rank = "Rank %d"
+	--L.defeated = "%s defeated"
+
+	--L.sunny = "Sunny"
+	--L.doomflipper = "Doomflipper"
+	--L.goredome = "Goredome"
+	--L.dippy = "Dippy"
+	--L.bruce = "Bruce"
+	--L.bill_the_janitor = "Bill the Janitor"
+	--L.oso = "Oso"
+	--L.the_quacken = "The Quacken"
+	--L.razorgrin = "Razorgrin"
+	--L.blat = "Blat"
+	--L.ooliss = "Ooliss"
+	--L.king_kulaka = "King Kulaka"
+	--L.meatball = "Meatball"
+	--L.ash_katzuum = "Ash'katzuum"
+	--L.crush = "Crush"
+	--L.glorp = "Glorp"
+	--L.klunk = "Klunk"
+	--L.stitches = "Stitches"
+	--L.topps = "Topps"
+	--L.carl = "Carl"
+	--L.leper_gnome_quintet = "Leper Gnome Quintet"
+	--L.mecha_bruce = "Mecha-Bruce"
+	--L.gg_engineering = "GG Engineering"
+	--L.doopy = "Doopy"
+	--L.renegade_swabbie = "Renegade Swabbie"
+	--L.ogrewatch = "Ogrewatch"
+	--L.blingtron_3000 = "Blingtron 3000"
+	--L.epicus_maximus = "Epicus Maximus"
+end
+
 -- The Dawnbreaker
 
 L = BigWigs:NewBossLocale("The Dawnbreaker Trash", "koKR")
