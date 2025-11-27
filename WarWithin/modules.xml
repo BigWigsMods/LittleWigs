@@ -41,6 +41,7 @@
 <Script file="PrioryOfTheSacredFlame\Trash.lua"/>
 
 <Script file="Scenarios\AwakeningTheMachine.lua"/>
+<Script file="Scenarios\BrawlersGuild.lua"/>
 
 <Script file="TheDawnbreaker\Shadowcrown.lua"/>
 <Script file="TheDawnbreaker\Anubikkaj.lua"/>
