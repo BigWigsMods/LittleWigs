@@ -221,7 +221,7 @@ if L then
 	L.rank = "%d 级"
 	L.defeated = "已击败 %s"
 
-	L.sunny = "苏尼" 
+	L.sunny = "苏尼"
 	L.doomflipper = "灾鳍"
 	L.goredome = "血角"
 	L.dippy = "帝皮"
