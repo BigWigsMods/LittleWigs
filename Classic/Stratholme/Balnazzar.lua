@@ -29,18 +29,18 @@ function mod:OnBossEnable()
 	if self:Classic() then
 		self:Log("SPELL_CAST_SUCCESS", "CrusadersHammer", 17286)
 	end
-	if self:Vanilla() then
+	if self:Vanilla() or self:TBC() or self:Wrath() then
 		self:Log("SPELL_CAST_START", "MindBlast", 17287)
-	else -- Cata, Retail
+	else -- Cata+
 		self:Log("SPELL_CAST_START", "MindBlast", 80750)
 	end
-	if self:Retail() then
+	if self:Retail() then -- War Within
 		self:Log("SPELL_CAST_START", "ShadowShock", 452927)
 		self:Log("SPELL_CAST_START", "Domination", 17405)
 		self:Log("SPELL_AURA_APPLIED", "DominationApplied", 17405)
 		self:Log("SPELL_CAST_START", "Sleep", 452928)
 		self:Log("SPELL_AURA_APPLIED", "SleepApplied", 452928)
-	else -- Cata, Classic
+	else -- Vanilla through Dragonflight
 		self:Log("SPELL_CAST_START", "Sleep", 12098)
 		self:Log("SPELL_AURA_APPLIED", "SleepApplied", 12098)
 	end
@@ -64,10 +64,10 @@ function mod:OnEngage()
 end
 
 --------------------------------------------------------------------------------
--- Classic Initialization
+-- Cata+ Initialization
 --
 
-if mod:Classic() and not mod:Vanilla() then
+if mod:Classic() and not (mod:Vanilla() or mod:TBC() or mod:Wrath()) then
 	function mod:GetOptions()
 		return {
 			-- Grand Crusader Dathrohan
@@ -85,10 +85,10 @@ if mod:Classic() and not mod:Vanilla() then
 end
 
 --------------------------------------------------------------------------------
--- Vanilla Initialization
+-- Vanilla / TBC / Wrath Initialization
 --
 
-if mod:Vanilla() then
+if mod:Vanilla() or mod:TBC() or mod:Wrath() then
 	function mod:GetOptions()
 		return {
 			-- Grand Crusader Dathrohan
