@@ -558,6 +558,7 @@ end
 ------ Streets of Wonder ------
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if self:IsSecret(msg) then return end
 	if L.password_triggers[msg] then
 		-- Market Trading Game
 		passwordId = L.password_triggers[msg]
@@ -601,7 +602,7 @@ function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(event, msg)
-	if msg == L.zophex_warmup_trigger then
+	if not self:IsSecret(msg) and msg == L.zophex_warmup_trigger then
 		-- Zo'phex warmup
 		local zophexModule = BigWigs:GetBossModule("Zo'phex the Sentinel", true)
 		if zophexModule then
