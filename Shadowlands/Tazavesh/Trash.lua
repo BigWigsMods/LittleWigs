@@ -520,7 +520,7 @@ function mod:OnBossEnable()
 
 	-- Hourglass Tidesage
 	self:RegisterEngageMob("HourglassTidesageEngaged", 179388)
-	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Tidal Burst
+	--self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Tidal Burst
 	self:Death("HourglassTidesageDeath", 179388)
 
 	-- Corsair Officer
