@@ -9,6 +9,7 @@ mod:SetEncounterID(2838)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
 	426865, -- Dark Orb
+	{427378, sound = "underyou"}, -- Dark Scars
 })
 
 --------------------------------------------------------------------------------
@@ -123,15 +124,16 @@ local function findNextCast(self, spellId)
 	local pairedSpell, icd -- used to delay the second spell in a pair
 	for i = startIndex, startIndex + tableLength do
 		local tableIndex = (i - 1) % tableLength + 1
-		if type(abilityOrder[tableIndex]) == "table" then -- ambiguous (Mythic only)
-			if abilityOrder[tableIndex][spellId] then
+		local ability = abilityOrder[tableIndex]
+		if type(ability) == "table" then -- ambiguous (Mythic only)
+			if ability[spellId] then -- if the table contains the spell just cast
 				if i == startIndex then -- special case when the first of an ambiguous pair was just cast
 					for j = 1, 2 do
-						if abilityOrder[tableIndex][j] ~= spellId then
+						if ability[j] ~= spellId then -- for the paired spell which was not just cast
 							-- we need to add the ICD of the spell that was not just cast, since that spell will always be next
-							duration = duration + icdByAbility[abilityOrder[tableIndex][j]]
+							duration = duration + icdByAbility[ability[j]]
 							-- set these so the bar of the paired spell can be restarted by the caller (since it's now at 0s)
-							pairedSpell = abilityOrder[tableIndex][j]
+							pairedSpell = ability[j]
 							icd = icdByAbility[spellId]
 							break
 						end
@@ -141,13 +143,13 @@ local function findNextCast(self, spellId)
 				end
 			else
 				-- the table doesn't contain our target spell, so just add the ICD of each spell in the table (one at a time)
-				duration = duration + icdByAbility[abilityOrder[tableIndex][tableIndex % 2 + 1]]
+				duration = duration + icdByAbility[ability[tableIndex % 2 + 1]]
 			end
 		else -- unambiguous
-			if abilityOrder[tableIndex] == spellId then
+			if ability == spellId then
 				return duration, pairedSpell, icd
 			else
-				duration = duration + icdByAbility[abilityOrder[tableIndex]]
+				duration = duration + icdByAbility[ability]
 			end
 		end
 	end
