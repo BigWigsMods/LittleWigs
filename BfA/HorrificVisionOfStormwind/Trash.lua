@@ -417,6 +417,7 @@ end
 -- Warmups
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if self:IsSecret(msg) then return end
 	if msg == L.therum_deepforge_warmup_trigger then
 		local therumDeepforgeModule = BigWigs:GetBossModule("Therum Deepforge", true)
 		if therumDeepforgeModule then

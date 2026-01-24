@@ -548,7 +548,7 @@ do
 	end
 
 	function mod:CHAT_MSG_MONSTER_SAY(_, msg, _, _, _, target)
-		if msg:find(L.spyFoundPattern) and self:GetOption("spy_helper") > 0 then
+		if not self:IsSecret(msg) and msg:find(L.spyFoundPattern) and self:GetOption("spy_helper") > 0 then
 			self:Message("spy_helper", "green", L.spyFound:format(self:ColorName(target)), false)
 			self:PlaySound("spy_helper", "info")
 			self:CloseInfo("spy_helper")

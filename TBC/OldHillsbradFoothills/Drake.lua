@@ -42,7 +42,7 @@ end
 --  Event Handlers
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg:find(L.warmup_trigger, nil, true) then
+	if not self:IsSecret(msg) and msg:find(L.warmup_trigger, nil, true) then
 		self:Warmup(3.3)
 	end
 end

@@ -40,7 +40,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source) -- Stage 2
 	-- Vazruden is the target of this BOSS_EMOTE, but his EJ name is "Vazruden the Herald", so checking against self.displayName won't work.
-	if source == self:SpellName(-5072) then -- Nazan
+	if not self:IsSecret(source) and source == self:SpellName(-5072) then -- Nazan
 		self:MessageOld("stages", "cyan", nil, CL.stage:format(2), false)
 	end
 end

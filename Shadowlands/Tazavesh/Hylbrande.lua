@@ -135,7 +135,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
 	-- |TInterface\\ICONS\\Ability_Priest_Flashoflight.blp:20|t %s targets you with |cFFFF0000|Hspell:346959|h[Purged by Fire]|h|r!#Titanic Defense Turret###playerName
-	if msg:find("346959", nil, true) then -- Purged by Fire
+	if not self:IsSecret(msg) and msg:find("346959", nil, true) then -- Purged by Fire
 		self:PersonalMessage(346957)
 		self:Say(346957, nil, nil, "Purged by Fire")
 		self:PlaySound(346957, "warning")

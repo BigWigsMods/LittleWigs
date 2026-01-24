@@ -300,7 +300,7 @@ end
 -- Warmups
 
 function mod:CHAT_MSG_MONSTER_SAY(_, msg)
-	if msg == L.baron_braunpyke_warmup_trigger then
+	if not self:IsSecret(msg) and msg == L.baron_braunpyke_warmup_trigger then
 		-- Baron Braunpyke warmup
 		local baronBraunpykeModule = BigWigs:GetBossModule("Baron Braunpyke", true)
 		if baronBraunpykeModule then

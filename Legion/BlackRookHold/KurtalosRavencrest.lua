@@ -108,7 +108,7 @@ function mod:DarkBlast(args)
 end
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
-	if msg == L.phase_2_trigger then
+	if not self:IsSecret(msg) and msg == L.phase_2_trigger then
 		self:UnregisterEvent(event)
 		self:StopBar(CL.count:format(self:SpellName(198635), unerringShearCount)) -- Unerring Shear
 		self:StopBar(198641) -- Whirling Blade

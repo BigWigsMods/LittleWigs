@@ -53,7 +53,7 @@ end
 --  Event Handlers
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.troll_trigger then
+	if not self:IsSecret(msg) and msg == L.troll_trigger then
 		self:MessageOld("stages", "red", nil, L.troll_message, "achievement_character_troll_male")
 		self:Bar("stages", 30, 7090, "ability_hunter_pet_bear") -- 7090 = Bear Form
 	end

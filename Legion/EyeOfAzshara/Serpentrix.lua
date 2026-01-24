@@ -41,7 +41,7 @@ end
 --
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	if msg:find("191873", nil, true) then
+	if not self:IsSecret(msg) and msg:find("191873", nil, true) then
 		self:MessageOld(191873, "yellow", "long", CL.percent:format(submergeHp, self:SpellName(191873)))
 		submergeHp = submergeHp - 33
 	end

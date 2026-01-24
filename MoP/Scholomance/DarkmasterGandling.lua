@@ -36,7 +36,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
 	-- |TInterface\\Icons\\inv_misc_book_01.blp:20|t%s assigns destName a |cFFFF0000|Hspell:113395|h[Harsh Lesson]|h|r!#Darkmaster Gandling
-	if msg:find("113395", nil, true) then -- Harsh Lesson
+	if not self:IsSecret(msg) and msg:find("113395", nil, true) then -- Harsh Lesson
 		self:TargetMessage(113395, "red", destName)
 		self:PlaySound(113395, "info", nil, destName)
 		self:CDBar(113395, 30.3)

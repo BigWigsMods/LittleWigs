@@ -29,7 +29,9 @@ end
 --
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	self:Message(-6042, "red", msg, false)
+	if not self:IsSecret(msg) then
+		self:Message(-6042, "red", msg, false)
+	end
 end
 
 function mod:BroodPlague(args)

@@ -105,7 +105,7 @@ end
 -- Stage 3: I Can Do So Much More!
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg:find(L.stage3_yell, nil, true) then
+	if not self:IsSecret(msg) and msg:find(L.stage3_yell, nil, true) then
 		self:StopBar(106747) -- Shado-Pan Mirror Image
 		self:SetStage(3)
 		self:Message("stages", "cyan", CL.percent:format(30, CL.stage:format(3)), 118961) -- 118961 = Chase Down

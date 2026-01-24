@@ -148,7 +148,7 @@ end
 -- RP Timers
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
-	if msg == L.stairs_open_trigger then
+	if not self:IsSecret(msg) and msg == L.stairs_open_trigger then
 		self:UnregisterEvent(event)
 		self:Bar("stairs_open", 12.3, L.stairs_open, L.stairs_open_icon)
 	end

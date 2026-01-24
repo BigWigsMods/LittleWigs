@@ -254,7 +254,7 @@ end
 -- Warmups
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
-	if msg == L.geezle_gigazap_warmup then
+	if not self:IsSecret(msg) and msg == L.geezle_gigazap_warmup then
 		self:UnregisterEvent(event)
 		local geezleGigazapModule = BigWigs:GetBossModule("Geezle Gigazap", true)
 		if geezleGigazapModule then

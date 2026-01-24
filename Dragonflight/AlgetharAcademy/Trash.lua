@@ -174,6 +174,7 @@ end
 -- Warmup timers
 
 function mod:CHAT_MSG_MONSTER_SAY(_, msg)
+	if self:IsSecret(msg) then return end
 	if msg:find(L.vexamus_warmup_trigger, nil, true) then
 		-- Vexamus warmup
 		local vexamusModule = BigWigs:GetBossModule("Vexamus", true)

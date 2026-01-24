@@ -70,7 +70,7 @@ function mod:GOSSIP_SHOW()
 end
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
-	if msg == L.warmup_trigger then
+	if not self:IsSecret(msg) and msg == L.warmup_trigger then
 		self:UnregisterEvent(event)
 		self:Message("warmup", "cyan", CL.spawning:format(self.displayName), L.warmup_icon)
 		self:PlaySound("warmup", "info")

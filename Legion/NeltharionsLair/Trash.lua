@@ -177,6 +177,7 @@ end
 -- Warmups
 
 function mod:CHAT_MSG_MONSTER_YELL(event, msg)
+	if self:IsSecret(msg) then return end
 	if msg == L.rokmora_first_warmup_trigger then
 		-- Rokmora 1st line warmup
 		self:UnregisterEvent(event)

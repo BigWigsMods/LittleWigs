@@ -74,7 +74,7 @@ end
 --
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.alleria_gossip_trigger then
+	if not self:IsSecret(msg) and msg == L.alleria_gossip_trigger then
 		self:Bar("warmup", 38, L.gossip_available, L.custom_on_autotalk_icon)
 	end
 end

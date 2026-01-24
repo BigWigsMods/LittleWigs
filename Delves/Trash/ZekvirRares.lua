@@ -582,7 +582,7 @@ do
 	function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 		-- [CHAT_MSG_RAID_BOSS_EMOTE] |TInterface\\ICONS\\INV_Achievement_RaidNerubian_NerubianHulk.BLP:36|t Zekvir has breached the Delve!#Zekvir
 		-- [CHAT_MSG_RAID_BOSS_EMOTE] |TInterface\\ICONS\\INV_Achievement_RaidNerubian_NerubianHulk.BLP:36|t Zekvir burrows into the ground and escapes!#Zekvir
-		if msg:find("INV_Achievement_RaidNerubian_NerubianHulk", nil, true) then
+		if not self:IsSecret(msg) and msg:find("INV_Achievement_RaidNerubian_NerubianHulk", nil, true) then
 			if not zekvirEngaged then
 				zekvirEngaged = true
 				self:Message("zekvir_breach", "cyan", CL.incoming:format(L.zekvir), L.zekvir_breach_icon)

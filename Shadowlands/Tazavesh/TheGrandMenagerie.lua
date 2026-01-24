@@ -119,6 +119,7 @@ function mod:WarmupMythicPlus() -- called from trash module
 end
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	if self:IsSecret(msg) then return end
 	if msg == L.achillite_warmup_trigger then
 		self:Message("warmup", "cyan", CL.incoming:format(self:SpellName(-23231)), L.warmup_icon) -- Achillite
 		self:Bar("warmup", 13.5, CL.count:format(CL.active, 2), L.warmup_icon)

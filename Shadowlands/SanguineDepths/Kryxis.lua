@@ -47,7 +47,7 @@ end
 --
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
-	if msg:find("319713", nil, true) then
+	if not self:IsSecret(msg) and msg:find("319713", nil, true) then
 		self:TargetMessage(319713, "red", destName)
 		self:PlaySound(319713, "alarm", nil, destName)
 		self:Bar(319713, 36.4)

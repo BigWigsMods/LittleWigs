@@ -97,7 +97,7 @@ end
 -- Lish Llrath
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	if msg:find("377182", nil, true) then -- Play Ball
+	if not self:IsSecret(msg) and msg:find("377182", nil, true) then -- Play Ball
 		-- cast at 75% and 45% health
 		local percent = playBallCount == 0 and 75 or 45
 		playBallCount = playBallCount + 1

@@ -65,7 +65,7 @@ do
 	local prev = 0
 
 	function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg, _, _, _, destName) -- Pursuit
-		if msg:find("255421") then -- Devour
+		if not self:IsSecret(msg) and msg:find("255421") then -- Devour
 			-- the whisper for Pursuit contains the target, but only the targeted
 			-- player receives this event. throttle in case the boss target scan is faster
 			-- than the whisper.

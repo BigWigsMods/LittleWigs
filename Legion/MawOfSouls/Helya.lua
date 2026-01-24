@@ -106,7 +106,7 @@ do
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg) -- Destructor Tentacle
-	if msg:find("inv_misc_monsterhorn_03", nil, true) then -- |TInterface\\Icons\\inv_misc_monsterhorn_03.blp:20|t A %s emerges!#Destructor Tentacle###Destructor Tentacle
+	if not self:IsSecret(msg) and msg:find("inv_misc_monsterhorn_03", nil, true) then -- |TInterface\\Icons\\inv_misc_monsterhorn_03.blp:20|t A %s emerges!#Destructor Tentacle###Destructor Tentacle
 		self:MessageOld("destructor_tentacle", "yellow", self:Tank() and "warning", CL.spawned:format(self:SpellName(L.destructor_tentacle)), L.destructor_tentacle_icon)
 		self:CDBar("destructor_tentacle", 26, L.destructor_tentacle, L.destructor_tentacle_icon) -- 25-27, but can be delayed upto 10s by Piercing Tentacle (I think)
 	end

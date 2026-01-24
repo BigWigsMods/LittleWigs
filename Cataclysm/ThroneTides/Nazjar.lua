@@ -112,7 +112,7 @@ end
 -- Lady Naz'jar
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.high_tide_trigger1 or msg == L.high_tide_trigger2 then
+	if not self:IsSecret(msg) and (msg == L.high_tide_trigger1 or msg == L.high_tide_trigger2) then
 		-- we can clean up the bars a bit early based on the yells
 		self:HighTideStarting()
 	end

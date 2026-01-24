@@ -49,7 +49,7 @@ end
 
 -- Timer for the "Glad you could make it, Uther" roleplay
 function mod:CHAT_MSG_MONSTER_SAY(_, msg)
-	if msg == L.gossip_timer_trigger then
+	if not self:IsSecret(msg) and msg == L.gossip_timer_trigger then
 		self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")
 		self:Bar("warmup", 155.6, L.gossip_available, "inv_sword_01")
 	end

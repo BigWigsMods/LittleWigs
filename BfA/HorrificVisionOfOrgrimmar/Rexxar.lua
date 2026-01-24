@@ -55,6 +55,7 @@ end
 do
 	local prev = 0
 	function mod:CHAT_MSG_MONSTER_YELL(event, msg)
+		if self:IsSecret(msg) then return end
 		if msg == L.pet_trigger_1 then
 			-- 85%, Huffer (155657) attacks
 			self:Message("adds", "yellow", CL.percent:format(85, CL.adds_spawned_count:format(1)), L.adds_icon)

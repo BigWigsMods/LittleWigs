@@ -70,7 +70,7 @@ do
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.mech_trigger or msg:find(L.mech_trigger, nil, true) then
+	if not self:IsSecret(msg) and (msg == L.mech_trigger or msg:find(L.mech_trigger, nil, true)) then
 		self:Message("mechanics", "yellow", CL.incoming:format(self:SpellName(-5999)), L.mechanics_icon) -- Steamrigger Mechanics
 	end
 end

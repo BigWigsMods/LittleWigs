@@ -65,7 +65,7 @@ function mod:RaiseDead(args)
 end
 
 function mod:CHAT_MSG_MONSTER_EMOTE(_, msg)
-	if msg:find(L.death_pact_trigger, nil, true) then
+	if not self:IsSecret(msg) and msg:find(L.death_pact_trigger, nil, true) then
 		self:Message(17471, "yellow") -- Death Pact
 		self:StopBar(17471) -- Death Pact
 	end

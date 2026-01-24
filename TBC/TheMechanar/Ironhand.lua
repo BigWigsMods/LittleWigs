@@ -53,7 +53,7 @@ end
 --
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source)
-	if source == self.displayName then
+	if not self:IsSecret(source) and source == self.displayName then
 		self:MessageOld(39194, "yellow", "long", CL.casting:format(self:SpellName(39194)))
 		self:CastBar(39194, 10) -- 3s cast + ~7s channel
 	end

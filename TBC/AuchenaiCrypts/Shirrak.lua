@@ -25,7 +25,7 @@ end
 --  Event Handlers
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source, _, _, target) -- Focus Fire
-	if source == self.displayName then -- this is the only BOSS_EMOTE that appears during this encounter
+	if not self:IsSecret(source) and not self:IsSecret(target) and source == self.displayName then -- this is the only BOSS_EMOTE that appears during this encounter
 		self:TargetMessageOld(-5041, target, "yellow")
 	end
 end

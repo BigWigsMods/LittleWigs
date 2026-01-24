@@ -111,7 +111,7 @@ function mod:Purify(args)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
-	if msg:find("425556", nil, true) then -- Purify
+	if not self:IsSecret(msg) and msg:find("425556", nil, true) then -- Purify
 		-- [CHAT_MSG_RAID_BOSS_WHISPER] |TInterface\\ICONS\\Ability_Paladin_TowerofLight.BLP:20|t %s targets you with |cFFFF0000|Hspell:425556|h[Purifying Light]|h|r!#Eternal Flame
 		self:PersonalMessage(444546)
 		self:Say(444546, nil, nil, "Purify")

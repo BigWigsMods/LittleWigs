@@ -149,7 +149,7 @@ end
 -- Warmups
 
 function mod:CHAT_MSG_MONSTER_SAY(_, msg)
-	if msg == L.ozumat_warmup_trigger then
+	if not self:IsSecret(msg) and msg == L.ozumat_warmup_trigger then
 		-- Ozumat warmup
 		local ozumatModule = BigWigs:GetBossModule("Ozumat", true)
 		if ozumatModule then

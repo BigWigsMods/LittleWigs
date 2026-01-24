@@ -191,7 +191,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg)
 	-- target's aura 1220427 is hidden
-	if msg:find("1227137", nil, true) then -- Warp Strike (Stage 2)
+	if not self:IsSecret(msg) and msg:find("1227137", nil, true) then -- Warp Strike (Stage 2)
 		-- [CHAT_MSG_RAID_BOSS_WHISPER] |TInterface\\ICONS\\Spell_Arcane_Blink.blp:20|t You are targeted for |cFFFF0000|Hspell:1227137|h[Warp Strike]|h|r!#A'wazj
 		self:PersonalMessage(1227918)
 		self:PlaySound(1227918, "warning")

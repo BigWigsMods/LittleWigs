@@ -199,7 +199,7 @@ end
 -- General
 
 function mod:CHAT_MSG_MONSTER_YELL(event, msg)
-	if msg == L.teera_and_maruuk_warmup_trigger then
+	if not self:IsSecret(msg) and msg == L.teera_and_maruuk_warmup_trigger then
 		-- Teera and Maruuk warmup
 		local teeraAndMaruukModule = BigWigs:GetBossModule("Teera and Maruuk", true)
 		if teeraAndMaruukModule then

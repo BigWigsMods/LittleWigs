@@ -234,6 +234,7 @@ end
 do
 	local prev = 0
 	function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg) -- XXX this event may have been removed in 11.2
+		if self:IsSecret(msg) then return end
 		local t = GetTime()
 		if t - prev > 10 and msg:find("449042", nil, true) then -- Radiant Light
 			prev = t

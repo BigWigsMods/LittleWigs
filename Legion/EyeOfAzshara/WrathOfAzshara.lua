@@ -54,7 +54,7 @@ end
 --
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, unit) -- Arcane Bomb
-	if msg:find("192708", nil, true) then -- Fires with _START, target scanning doesn't work.
+	if not self:IsSecret(msg) and msg:find("192708", nil, true) then -- Fires with _START, target scanning doesn't work.
 		self:TargetMessageOld(192706, unit, "red", "alarm")
 		self:CDBar(192706, p2 and 23 or 30) -- pull:23.1, 30.4, 23.1 / hc pull:39.7 / hc pull:26.7, 31.2, 23.1 / m pull:26.4, 30.4, 30.4, 36.5 XXX
 	end

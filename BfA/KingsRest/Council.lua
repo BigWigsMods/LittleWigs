@@ -121,7 +121,7 @@ do
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
-	if msg:find("266951") then -- Barrel Through
+	if not self:IsSecret(msg) and msg:find("266951") then -- Barrel Through
 		self:TargetMessage(266951, "red", destName)
 		self:PlaySound(266951, "warning", nil, destName)
 		local guid = self:UnitGUID(destName)

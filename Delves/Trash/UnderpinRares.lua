@@ -757,7 +757,7 @@ do
 
 	function mod:CHAT_MSG_MONSTER_SAY(_, msg)
 		-- [CHAT_MSG_MONSTER_SAY] People always messin' around on my perfectly legal, deeded land!#The Underpin
-		if msg == L.underpin_retreat_trigger then
+		if not self:IsSecret(msg) and msg == L.underpin_retreat_trigger then
 			self:UnderpinRetreat()
 			self:PlayVictorySound()
 		end

@@ -224,6 +224,7 @@ end
 -- Warmups
 
 function mod:CHAT_MSG_MONSTER_SAY(_, msg)
+	if self:IsSecret(msg) then return end
 	if msg == L.izo_warmup_trigger then
 		-- Izo, the Grand Splicer warmup
 		local izoModule = BigWigs:GetBossModule("Izo, the Grand Splicer", true)
@@ -242,7 +243,7 @@ function mod:CHAT_MSG_MONSTER_SAY(_, msg)
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.xephitik_defeated_trigger then
+	if not self:IsSecret(msg) and msg == L.xephitik_defeated_trigger then
 		-- clean up bars a bit early
 		self:XephitikDefeated()
 	end

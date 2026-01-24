@@ -176,7 +176,7 @@ end
 
 function mod:CHAT_MSG_RAID_BOSS_WHISPER(event, msg)
 	-- [CHAT_MSG_RAID_BOSS_WHISPER] |TInterface\\Icons\\Spell_Shadow_DeathPact.blp:20|t Unruly patrons rush the stage!#Oasis Security
-	if msg:find("Spell_Shadow_DeathPact", nil, true) then
+	if not self:IsSecret(msg) and msg:find("Spell_Shadow_DeathPact", nil, true) then
 		-- only one add wave
 		self:UnregisterEvent(event)
 		self:CDBar(353706, 41.3) -- Rowdy

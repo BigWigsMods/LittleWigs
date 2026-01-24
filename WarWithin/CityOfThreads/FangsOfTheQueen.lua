@@ -157,7 +157,7 @@ do
 	end
 
 	function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-		if msg == L.ice_sickles_trigger then
+		if not self:IsSecret(msg) and msg == L.ice_sickles_trigger then
 			local t = GetTime()
 			if t - prev > 10 then
 				-- the cast event is unreliable, show the alert a bite late using the yell if it didn't log

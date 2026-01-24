@@ -204,7 +204,7 @@ end
 -- Warmups
 
 function mod:CHAT_MSG_MONSTER_SAY(_, msg)
-	if msg == L.edna_warmup_trigger then
+	if not self:IsSecret(msg) and msg == L.edna_warmup_trigger then
 		-- E.D.N.A. warmup
 		local ednaModule = BigWigs:GetBossModule("E.D.N.A.", true)
 		if ednaModule then

@@ -160,7 +160,7 @@ end
 --
 
 function mod:CHAT_MSG_MONSTER_YELL(event, msg)
-	if msg == L.archdruid_glaidalis_warmup_trigger then
+	if not self:IsSecret(msg) and msg == L.archdruid_glaidalis_warmup_trigger then
 		-- Archdruid Glaidalis Warmup
 		local archdruidGlaidalisModule = BigWigs:GetBossModule("Archdruid Glaidalis", true)
 		if archdruidGlaidalisModule then

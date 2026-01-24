@@ -182,7 +182,7 @@ do
 	end
 
 	function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
-		if msg:find("426860", nil, true) then -- Dark Orb
+		if not self:IsSecret(msg) and msg:find("426860", nil, true) then -- Dark Orb
 			-- [CHAT_MSG_RAID_BOSS_EMOTE] |TInterface\\ICONS\\Spell_Shadow_SoulGem.blp:20|t %s begins to cast |cFFFF0000|Hspell:426860|h[Dark Orb]|h|r at destName!#Anub'ikkaj###destName
 			self:TargetMessage(426860, "orange", destName, CL.count:format(self:SpellName(426860), darkOrbCount - 1))
 			if self:Me(self:UnitGUID(destName)) then

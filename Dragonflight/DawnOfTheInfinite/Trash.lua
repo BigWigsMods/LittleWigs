@@ -333,6 +333,7 @@ end
 -- Warmups
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if self:IsSecret(msg) then return end
 	if msg:find(L.iridikron_warmup_trigger, nil, true) then
 		-- Iridikron warmup
 		local iridikronModule = BigWigs:GetBossModule("Iridikron the Stonescaled", true)

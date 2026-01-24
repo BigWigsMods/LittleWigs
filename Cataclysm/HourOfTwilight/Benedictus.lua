@@ -107,7 +107,7 @@ function mod:CorruptingTwilight(args)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	if msg:find("103780", nil, true) then -- Wave of Twilight
+	if not self:IsSecret(msg) and msg:find("103780", nil, true) then -- Wave of Twilight
 		self:Message(103780, "orange")
 		self:PlaySound(103780, "alarm")
 		self:CDBar(103780, 46.1)

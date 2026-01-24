@@ -41,7 +41,7 @@ end
 --
 
 function mod:CHAT_MSG_MONSTER_EMOTE(event, _, source)
-	if source == self.displayName then
+	if not self:IsSecret(source) and source == self.displayName then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 66, CL.active, "spell_fire_lavaspawn")
 	end

@@ -94,7 +94,7 @@ end
 -- Stage 1
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source, _, _, target) -- Crystal Handler spawned
-	if source == self.displayName then -- cross-module safety, this is the only BOSS_EMOTE present in this encounter.
+	if not self:IsSecret(source) and not self:IsSecret(target) and source == self.displayName then -- cross-module safety, this is the only BOSS_EMOTE present in this encounter.
 		self:StopBar(CL.count:format(target, crystalHandlersSpawned))
 		self:Message("adds", "yellow", CL.spawned:format(target), false)
 		self:PlaySound("adds", "info")

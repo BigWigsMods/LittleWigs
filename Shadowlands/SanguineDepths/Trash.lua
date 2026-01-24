@@ -334,12 +334,13 @@ function mod:CHAT_MSG_YELL(_, msg, playerName)
 	-- General Kaal in the gauntlet event is bugged and uses the CHAT_MSG_YELL event for half of her lines and
 	-- the correct CHAT_MSG_MONSTER_YELL for the other half.
 	-- playerName will be an empty string for these bugged lines so pass them through to the MONSTER_YELL handler.
-	if playerName == "" then
+	if not self:IsSecret(playerName) and playerName == "" then
 		self:CHAT_MSG_MONSTER_YELL(nil, msg)
 	end
 end
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if self:IsSecret(msg) then return end
 	if msg == L.kaal_engage_trigger1 or msg == L.kaal_engage_trigger2 or msg == L.kaal_engage_trigger3 then
 		local kaalModule = BigWigs:GetBossModule("General Kaal", true)
 		if kaalModule then

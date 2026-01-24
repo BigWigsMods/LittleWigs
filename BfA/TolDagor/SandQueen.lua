@@ -58,7 +58,7 @@ function mod:Upheaval(args)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg, _, _, _, destName)
-	if msg:find("257617") then -- Upheaval
+	if not self:IsSecret(msg) and msg:find("257617") then -- Upheaval
 		self:TargetMessage(257608, "red", destName)
 		self:PlaySound(257608, "alarm", nil, destName)
 		local guid = self:UnitGUID(destName)

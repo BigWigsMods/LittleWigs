@@ -107,8 +107,8 @@ do
 	end
 end
 
-function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, text, winner, _, _, loser)
-	if text:find("Ability_PVP_GladiatorMedallion") then
+function mod:CHAT_MSG_RAID_BOSS_WHISPER(_, msg, winner, _, _, loser)
+	if not self:IsSecret(msg) and msg:find("Ability_PVP_GladiatorMedallion") then
 		self:Message(320114, "cyan", L.defeated:format(self:ColorName(winner), self:ColorName(loser))) -- Blood and Glory
 		self:PlaySound(320114, "info") -- Blood and Glory
 	end

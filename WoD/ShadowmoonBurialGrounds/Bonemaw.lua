@@ -83,25 +83,16 @@ function mod:InhaleIncUnitEvent(event, unit, _, spellId)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	-- %s's piercing screech attracts nearby Carrion Worms!
-	if msg:find(L.summon_worms_trigger, nil, true) then
+	if self:IsSecret(msg) then return end
+	if msg:find(L.summon_worms_trigger, nil, true) then -- %s's piercing screech attracts nearby Carrion Worms!
 		self:Message("summon_worms", "cyan", CL.adds_spawning, L.summon_worms_icon)
 		self:PlaySound("summon_worms", "info")
-		return
-	end
-
-	-- %s hisses, slinking back into the shadowy depths!
-	if msg:find(L.submerge_trigger, nil, true) then
+	elseif msg:find(L.submerge_trigger, nil, true) then -- %s hisses, slinking back into the shadowy depths!
 		self:Message("submerge", "cyan", L.submerge, L.submerge_icon)
 		self:PlaySound("submerge", "info")
 		self:Bar("submerge", 36, L.submerge, L.submerge_icon)
-		return
-	end
-
-	-- %s begins to |cFFFF0404|Hspell:153804|h[Inhale]|h|r his enemies!
-	if msg:find("153804", nil, true) then -- Inhale
+	elseif msg:find("153804", nil, true) then -- %s begins to |cFFFF0404|Hspell:153804|h[Inhale]|h|r his enemies!
 		self:InhaleInc()
-		return
 	end
 end
 

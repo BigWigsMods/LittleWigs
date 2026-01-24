@@ -76,6 +76,7 @@ end
 --
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+	if self:IsSecret(msg) then return end
 	if msg == L.fail_trigger or msg:find(L.fail_trigger, nil, true) then
 		self:SendMessage("BigWigs_EncounterEnd", self, nil, self.displayName, self:Difficulty(), 5, 0) -- XXX hack to force a respawn timer
 		self:Wipe()

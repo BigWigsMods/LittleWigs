@@ -74,7 +74,7 @@ do
 	local timers = { 30, 25, 22, 20, 18, 16, 14 }
 	function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 		-- |TInterface\\Icons\\ability_warrior_battleshout.blp:20|tArmsmaster Harlan calls on two of his allies to join the fight!
-		if msg:find("ability_warrior_battleshout", nil, true) then -- Call for Help
+		if not self:IsSecret(msg) and msg:find("ability_warrior_battleshout", nil, true) then -- Call for Help
 			self:Message(-5378, "cyan")
 			self:CDBar(-5378, timers[callForHelpCount] or 13)
 			callForHelpCount = callForHelpCount + 1

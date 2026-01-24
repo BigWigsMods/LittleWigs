@@ -82,7 +82,7 @@ end
 -- Stage Two: Your Soul is Mine!
 
 function mod:CHAT_MSG_MONSTER_SAY(_, msg)
-	if msg == L.stage_2_trigger then
+	if not self:IsSecret(msg) and msg == L.stage_2_trigger then
 		-- can clean up bars a little bit early
 		self:StopBar(111570) -- Death's Grasp
 		self:StopBar(111775) -- Shadow Shiv

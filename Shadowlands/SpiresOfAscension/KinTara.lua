@@ -80,7 +80,7 @@ do
 	end
 
 	function mod:CHAT_MSG_MONSTER_YELL(_, _, source, _, _, target)
-		if source == target then -- Intermission (or a wipe, or someone with the same name on koKR where it doesn't have a hyphen)
+		if not self:IsSecret(source) and not self:IsSecret(target) and source == target then -- Intermission (or a wipe, or someone with the same name on koKR where it doesn't have a hyphen)
 			startTimers(self, -0.2)
 			self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1") -- Power resets to 0 at the end of the intermission
 		end
@@ -175,7 +175,9 @@ do
 
 	function mod:CHAT_MSG_RAID_BOSS_EMOTE(event, _, _, _, _, destName)
 		self:UnregisterEvent(event)
-		printTarget(self, destName, -0.2)
+		if not self:IsSecret(destName) then
+			printTarget(self, destName, -0.2)
+		end
 	end
 end
 

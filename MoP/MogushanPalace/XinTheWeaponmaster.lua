@@ -69,6 +69,7 @@ end
 -- Stages
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
+	if self:IsSecret(msg) then return end
 	if msg:find("119374", nil, true) then -- Whirlwind (Whirlwinding Axes)
 		self:SetStage(2)
 		self:Message(-5971, "cyan", CL.percent:format(95, self:SpellName(-5971)))

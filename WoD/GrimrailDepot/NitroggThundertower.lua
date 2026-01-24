@@ -176,7 +176,7 @@ end
 -- Adds
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.add_trigger1 or msg == L.add_trigger2 then
+	if not self:IsSecret(msg) and (msg == L.add_trigger1 or msg == L.add_trigger2) then
 		local waveMessage
 		if waveCount == 0 then
 			waveMessage = L.waves[1] -- first entry in table
