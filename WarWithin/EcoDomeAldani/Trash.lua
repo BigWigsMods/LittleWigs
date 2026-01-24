@@ -218,7 +218,7 @@ end
 -- Warmups
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
-	if msg == L.taahbat_and_awazj_warmup_trigger then
+	if not self:IsSecret(msg) and msg == L.taahbat_and_awazj_warmup_trigger then
 		local taahbatAndAwazjModule = BigWigs:GetBossModule("Taah'bat and A'wazj", true)
 		if taahbatAndAwazjModule then
 			taahbatAndAwazjModule:Enable()
