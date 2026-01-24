@@ -8,6 +8,10 @@ mod:RegisterEnableMob(215405) -- Anub'zekt
 mod:SetEncounterID(2906)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+mod:SetPrivateAuraSounds({
+	{433740, sound = "alert"}, -- Infestation
+	--{433781, sound = "underyou"}, -- Ceaseless Swarm (not private)
+})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -170,7 +174,7 @@ function mod:InfestationApplied(args)
 end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	if msg:find("433779", nil, true) then -- Eye of the Swarm
+	if not self:IsSecret(msg) and msg:find("433779", nil, true) then -- Eye of the Swarm
 		-- [CHAT_MSG_RAID_BOSS_EMOTE] Anub'zekt prepares to trap you within the |TInterface\\ICONS\\Spell_Shadow_UnholyFrenzy.blp:20|t |cFFFF0000|Hspell:433779|h[Eye of the Swarm]|h|r!#Anub'zekt
 		-- boss runs to the center on this emote, these bars will be restarted when the cast begins
 		if self:Healer() then
