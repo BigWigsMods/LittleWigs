@@ -24,6 +24,10 @@ mod:RegisterEnableMob(
 	216363, -- Reinforced Drone
 	216365 -- Winged Carrier
 )
+mod:SetPrivateAuraSounds({
+	{434830, sound = "underyou"}, -- Vile Webbing
+	{436614, sound = "warning"}, -- Web Wrap
+})
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -226,7 +230,7 @@ end
 -- Warmup
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	if msg == L.avanoxx_warmup_trigger then
+	if not self:IsSecret(msg) and msg == L.avanoxx_warmup_trigger then
 		-- Avanoxx warmup
 		local avanoxxModule = BigWigs:GetBossModule("Avanoxx", true)
 		if avanoxxModule then
