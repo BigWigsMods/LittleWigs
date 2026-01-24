@@ -75,7 +75,7 @@ end
 --
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
-	if msg:find("269688", nil, true) then -- Rain of Toads
+	if not self:IsSecret(msg) and msg:find("269688", nil, true) then -- Rain of Toads
 		self:Message(269688, "orange")
 		self:PlaySound(269688, "info")
 	end
