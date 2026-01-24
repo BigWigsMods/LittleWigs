@@ -7,6 +7,11 @@ if not mod then return end
 mod:RegisterEnableMob(215407) -- Ki'katal the Harvester
 mod:SetEncounterID(2901)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{432031, sound = "info"}, -- Grasping Blood
+	{461487, sound = "alarm"}, -- Cultivated Poisons
+	{432119, sound = "warning"}, -- Faded
+})
 
 --------------------------------------------------------------------------------
 -- Locals
