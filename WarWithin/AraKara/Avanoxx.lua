@@ -7,6 +7,9 @@ if not mod then return end
 mod:RegisterEnableMob(213179) -- Avanoxx
 mod:SetEncounterID(2926)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{439200, sound = "alarm"}, -- Voracious Bite
+})
 
 --------------------------------------------------------------------------------
 -- Locals
