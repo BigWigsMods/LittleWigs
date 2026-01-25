@@ -8,6 +8,9 @@ mod:RegisterEnableMob(175663) -- Hylbrande
 mod:SetEncounterID(2426)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+mod:SetPrivateAuraSounds({
+	{352345, sound = "warning"}, -- Anchor Shot
+})
 
 --------------------------------------------------------------------------------
 -- Locals
