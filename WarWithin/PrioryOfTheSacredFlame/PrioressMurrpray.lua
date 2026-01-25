@@ -8,6 +8,10 @@ mod:RegisterEnableMob(207940) -- Prioress Murrpray
 mod:SetEncounterID(2848)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+mod:SetPrivateAuraSounds({
+	{425556, sound = "underyou"}, -- Sanctified Ground
+	{428170, sound = "warning"}, -- Blinding Light
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
