@@ -7,6 +7,9 @@ if not mod then return end
 mod:RegisterEnableMob(234893) -- Azhiccar
 mod:SetEncounterID(3107)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{1217439, sound = "alarm"}, -- Toxic Regurgitation
+})
 
 --------------------------------------------------------------------------------
 -- Locals
