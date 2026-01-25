@@ -7,6 +7,11 @@ if not mod then return end
 mod:RegisterEnableMob(226396) -- Swampface
 mod:SetEncounterID(3053)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{470038, sound = "alert"}, -- Razorchoke Vines
+	{472878, sound = "alarm"}, -- Sludge Claws
+	{473051, sound = "underyou"}, -- Rushing Tide
+})
 
 --------------------------------------------------------------------------------
 -- Localization
