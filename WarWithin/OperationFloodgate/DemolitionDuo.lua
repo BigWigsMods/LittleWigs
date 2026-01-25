@@ -11,6 +11,11 @@ mod:RegisterEnableMob(
 mod:SetEncounterID(3019)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+mod:SetPrivateAuraSounds({
+	{461994, sound = "warning"}, -- Deflagration
+	{470022, sound = "alarm"}, -- Barreling Charge
+	{473713, sound = "warning"}, -- Kinetic Explosive Gel
+})
 
 --------------------------------------------------------------------------------
 -- Locals
