@@ -8,6 +8,10 @@ mod:RegisterEnableMob(226398) -- Big M.O.M.M.A.
 mod:SetEncounterID(3020)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+mod:SetPrivateAuraSounds({
+	{473287, sound = "underyou"}, -- Excessive Electrification
+	{473836, sound = "alarm"}, -- Electrocrush
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
