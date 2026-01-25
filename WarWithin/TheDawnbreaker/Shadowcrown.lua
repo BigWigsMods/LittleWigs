@@ -7,6 +7,10 @@ if not mod then return end
 mod:RegisterEnableMob(211087) -- Speaker Shadowcrown
 mod:SetEncounterID(2837)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{426735, sound = "warning"}, -- Burning Shadows
+	{453173, sound = "underyou"}, -- Collapsing Night
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
