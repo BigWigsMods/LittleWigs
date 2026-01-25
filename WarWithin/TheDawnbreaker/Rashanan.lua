@@ -11,6 +11,8 @@ mod:SetStage(1)
 mod:SetPrivateAuraSounds({
 	434406, -- Rolling Acid
 	434090, -- Spinneret's Strands
+	{434668, sound = "info"}, -- Sparking Arathi Bomb
+	{438957, sound = "underyou"}, -- Acid Pools
 })
 
 --------------------------------------------------------------------------------
