@@ -7,6 +7,9 @@ if not mod then return end
 mod:RegisterEnableMob(165410) -- High Adjudicator Aleez
 mod:SetEncounterID(2403)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{1236513, sound = "alarm"}, -- Unstable Anima
+})
 
 --------------------------------------------------------------------------------
 -- Locals
