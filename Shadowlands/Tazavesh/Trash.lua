@@ -616,12 +616,12 @@ function mod:MERCHANT_SHOW()
 	if self:GetOption("vendor_autopurchase") > 0 then
 		local mobId = self:MobId(self:UnitGUID("npc"))
 		if mobId == 177999 then -- Xy'darid
-			local itemName, _, _, _, numAvailable = GetMerchantItemInfo(1)
-			if numAvailable == 1 then
-				if itemName then
+			local info = C_MerchantFrame.GetItemInfo(1)
+			if info and info.numAvailable == 1 then
+				if info.name then
 					BuyMerchantItem(1, 1)
 					CloseMerchant()
-					self:Message("vendor_autopurchase", "cyan", L.vendor_autopurchase_message:format(itemName), L.vendor_autopurchase_icon)
+					self:Message("vendor_autopurchase", "cyan", L.vendor_autopurchase_message:format(info.name), L.vendor_autopurchase_icon)
 					self:PlaySound("vendor_autopurchase", "info")
 				else
 					-- item info wasn't loaded, try again
