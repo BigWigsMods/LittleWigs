@@ -12,6 +12,10 @@ mod:RegisterEnableMob(
 )
 mod:SetEncounterID(2847)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{447439, sound = "warning"}, -- Savage Mauling
+	{1238782, sound = "underyou"}, -- Earthshattering Spear
+})
 
 --------------------------------------------------------------------------------
 -- Locals
