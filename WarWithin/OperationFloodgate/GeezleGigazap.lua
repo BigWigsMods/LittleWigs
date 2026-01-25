@@ -8,7 +8,9 @@ mod:RegisterEnableMob(226404) -- Geezle Gigazap
 mod:SetEncounterID(3054)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	468811, -- Gigazap
+	{468616, sound = "warning"}, -- Leaping Spark
+	{468723, sound = "underyou"}, -- Shock Water
+	{468811, sound = "info"}, -- Gigazap
 })
 
 --------------------------------------------------------------------------------
