@@ -12,6 +12,11 @@ mod:RegisterEnableMob(
 mod:SetEncounterID(2441)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+mod:SetPrivateAuraSounds({
+	{349627, sound = "info"}, -- Gluttony
+	{349954, sound = "alarm"}, -- Purification Protocol
+	{350101, sound = "warning"}, -- Chains of Damnation
+})
 
 --------------------------------------------------------------------------------
 -- Locals
