@@ -11,6 +11,10 @@ mod:RegisterEnableMob(
 mod:SetEncounterID(3108)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+mod:SetPrivateAuraSounds({
+	{1219535, sound = "alarm"}, -- Rift Claws
+	{1236126, sound = "alarm"}, -- Binding Javelin
+})
 
 --------------------------------------------------------------------------------
 -- Locals
