@@ -7,6 +7,10 @@ if not mod then return end
 mod:RegisterEnableMob(234935) -- Soul-Scribe
 mod:SetEncounterID(3109)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{1225221, sound = "alarm"}, -- Dread of the Unknown
+	{1226444, sound = "warning"}, -- Wounded Fate
+})
 
 --------------------------------------------------------------------------------
 -- Locals
