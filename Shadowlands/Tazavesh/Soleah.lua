@@ -8,6 +8,9 @@ mod:RegisterEnableMob(177269) -- So'leah
 mod:SetEncounterID(2442)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+mod:SetPrivateAuraSounds({
+	{350804, sound = "alert"}, -- Collapsing Energy
+})
 
 --------------------------------------------------------------------------------
 -- Locals
