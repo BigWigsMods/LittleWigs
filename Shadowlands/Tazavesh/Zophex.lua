@@ -7,6 +7,12 @@ if not mod then return end
 mod:RegisterEnableMob(175616) -- Zo'phex the Sentinel
 mod:SetEncounterID(2425)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{345770, sound = "alarm"}, -- Impound Contraband
+	{345990, sound = "info"}, -- Containment Cell
+	{348366, sound = "underyou"}, -- Armed Security
+	{353421, sound = "info"}, -- Vigor
+})
 
 --------------------------------------------------------------------------------
 -- Locals
