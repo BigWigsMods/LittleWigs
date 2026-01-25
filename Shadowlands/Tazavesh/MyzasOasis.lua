@@ -23,6 +23,9 @@ mod:RegisterEnableMob(
 --mod:SetEncounterID(2440) no boss frames in Stage 1
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+mod:SetPrivateAuraSounds({
+	{355439, sound = "alarm"}, -- Suppression Spark
+})
 
 --------------------------------------------------------------------------------
 -- Locals
