@@ -8,6 +8,9 @@ mod:RegisterEnableMob(175806) -- So'azmi
 mod:SetEncounterID(2437)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+mod:SetPrivateAuraSounds({
+	{347481, sound = "warning"}, -- Shuri
+})
 
 --------------------------------------------------------------------------------
 -- Locals
