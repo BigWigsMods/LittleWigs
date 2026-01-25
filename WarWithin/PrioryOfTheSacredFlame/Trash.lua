@@ -27,6 +27,10 @@ mod:RegisterEnableMob(
 	221760, -- Risen Mage
 	217658 -- Sir Braunpyke
 )
+mod:SetPrivateAuraSounds({
+	{424426, sound = "alarm"}, -- Lunging Strike
+	{448515, sound = "alert"}, -- Divine Judgment
+})
 
 --------------------------------------------------------------------------------
 -- Locals
