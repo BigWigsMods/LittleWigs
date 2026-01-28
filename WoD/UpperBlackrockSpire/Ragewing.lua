@@ -58,7 +58,7 @@ function mod:BurningRage(args)
 end
 
 function mod:EngulfingFire(_, _, _, spellId)
-	if spellId == 154996 then -- Engulfing Fire
+	if not self:IsSecret(spellId) and spellId == 154996 then -- Engulfing Fire
 		self:MessageOld(spellId, "yellow", "warning")
 		self:Flash(spellId)
 		self:CDBar(spellId, 24) -- 24-28

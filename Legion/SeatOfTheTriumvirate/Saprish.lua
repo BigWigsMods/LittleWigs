@@ -65,7 +65,7 @@ end
 -- Event Handlers
 --
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 247206 then -- Overload Trap
+	if not self:IsSecret(spellId) and spellId == 247206 then -- Overload Trap
 		self:MessageOld(spellId, "yellow", "alarm")
 		self:Bar(spellId, 20.7)
 	end

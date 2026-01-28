@@ -87,17 +87,17 @@ do
 	local prev, prevGUID = 0, nil
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
 		if unit == "boss1" then
-			if spellId == 197796 then -- Avatar of Vengeance
+			if not self:IsSecret(spellId) and spellId == 197796 then -- Avatar of Vengeance
 				self:MessageOld(spellId, "orange", "long")
 				self:Bar(spellId, 45)
-			elseif spellId == 213583 or spellId == 197578 or spellId == 226312 or spellId == 213576 then -- Deepening Shadows
+			elseif not self:IsSecret(spellId) and (spellId == 213583 or spellId == 197578 or spellId == 226312 or spellId == 213576) then -- Deepening Shadows
 				local t = GetTime()
 				if t-prev > 2 then
 					prev = t
 					self:MessageOld(213583, "yellow", "alarm")
 				end
 			end
-		elseif spellId == 228210 and castGUID ~= prevGUID then -- Elune's Light picked up
+		elseif not self:IsSecret(spellId) and spellId == 228210 and castGUID ~= prevGUID then -- Elune's Light picked up
 			prevGUID = castGUID
 			self:MessageOld(204481, "green", "long", L.light_picked:format(self:ColorName(self:UnitName(unit))))
 		end

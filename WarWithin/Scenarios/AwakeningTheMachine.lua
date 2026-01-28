@@ -156,7 +156,7 @@ do
 
 	local prev
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
-		if spellId == 433923 and castGUID ~= prev then -- [DNT] Kuldas Machine Speaker Ritual - Cosmetic Channel
+		if not self:IsSecret(spellId) and spellId == 433923 and castGUID ~= prev then -- [DNT] Kuldas Machine Speaker Ritual - Cosmetic Channel
 			prev = castGUID
 			eventStart = GetTime()
 			hardMode = false

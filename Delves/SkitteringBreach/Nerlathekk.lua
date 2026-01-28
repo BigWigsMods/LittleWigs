@@ -54,12 +54,12 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
-	if spellId == 458183 and self:MobId(self:UnitGUID(unit)) == 219676 then -- Dark Abatement
+	if not self:IsSecret(spellId) and spellId == 458183 and self:MobId(self:UnitGUID(unit)) == 219676 then -- Dark Abatement
 		-- Dark Abatement only works for the normal version of Nerl'athekk, not the Ethereal Routing Station version
 		self:Message(454762, "red")
 		self:PlaySound(454762, "alert")
 		self:CDBar(454762, 20.1)
-	elseif spellId == 1243416 and self:MobId(self:UnitGUID(unit)) == 247475 then -- Teleported
+	elseif not self:IsSecret(spellId) and spellId == 1243416 and self:MobId(self:UnitGUID(unit)) == 247475 then -- Teleported
 		-- check mobId because Ethereal Routing Station can have up to 3 bosses engaged at once
 		self:Win()
 	end

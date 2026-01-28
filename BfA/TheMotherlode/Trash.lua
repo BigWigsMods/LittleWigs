@@ -315,7 +315,7 @@ end
 do
 	local prev = 0
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
-		if spellId == 267980 then -- Grease Gun
+		if not self:IsSecret(spellId) and spellId == 267980 then -- Grease Gun
 			local sourceGUID = self:UnitGUID(unit)
 			if sourceGUID then
 				self:Nameplate(spellId, 4.8, sourceGUID)

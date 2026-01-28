@@ -111,7 +111,7 @@ function mod:VindictiveWrathRemoved()
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 446645 then -- Castigator's Shield
+	if not self:IsSecret(spellId) and spellId == 446645 then -- Castigator's Shield
 		-- start the timer here because often the actual Castigator's Shield cast will be skipped
 		if self:Mythic() then
 			self:CDBar(423015, 33.6) -- Castigator's Shield

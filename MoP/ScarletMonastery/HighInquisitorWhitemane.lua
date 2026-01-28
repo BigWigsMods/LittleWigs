@@ -77,7 +77,7 @@ function mod:Sleep(args)
 end
 
 function mod:Steel(_, _, _, spellId)
-	if spellId == 115627 then
+	if not self:IsSecret(spellId) and spellId == 115627 then
 		self:MessageOld("steel", "yellow", nil, 115629)
 		self:CDBar("steel", 26, 115629) -- 26.x - 27.x
 	end

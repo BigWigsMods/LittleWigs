@@ -62,7 +62,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
-	if spellId == 1243416 and self:MobId(self:UnitGUID(unit)) == 247477 then -- Teleported
+	if not self:IsSecret(spellId) and spellId == 1243416 and self:MobId(self:UnitGUID(unit)) == 247477 then -- Teleported
 		-- check mobId because Ethereal Routing Station can have up to 3 bosses engaged at once
 		self:Win()
 	end

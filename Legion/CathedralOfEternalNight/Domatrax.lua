@@ -83,7 +83,7 @@ end
 -- Event Handlers
 --
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 235822 or spellId == 235862 then -- Start Wave 1 + 2
+	if not self:IsSecret(spellId) and (spellId == 235822 or spellId == 235862) then -- Start Wave 1 + 2
 		self:MessageOld(-15076, "cyan", "info", CL.incoming:format(self:SpellName(-15076)), false)
 	end
 end

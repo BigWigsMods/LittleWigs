@@ -75,10 +75,10 @@ do
 		self:TargetMessageOld(153954, name, "yellow", "warning", nil, nil, true)
 	end
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
-		if spellId == 153954 then -- Cast Down
+		if not self:IsSecret(spellId) and spellId == 153954 then -- Cast Down
 			self:GetUnitTarget(bossTarget, 0.7, self:UnitGUID(unit))
 			self:CDBar(spellId, 37) -- 37-40
-		elseif spellId == 154049 then -- Call Adds
+		elseif not self:IsSecret(spellId) and spellId == 154049 then -- Call Adds
 			self:MessageOld("adds", "red", "info", CL.add_spawned, L.adds_icon) -- Cog icon
 			self:CDBar("adds", 58, CL.add, L.adds_icon) -- 57-60
 		end

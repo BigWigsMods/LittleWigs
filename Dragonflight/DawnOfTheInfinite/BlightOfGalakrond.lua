@@ -278,7 +278,7 @@ do
 	end
 
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
-		if spellId == 413596 then -- Incinerating Blightbreath
+		if not self:IsSecret(spellId) and spellId == 413596 then -- Incinerating Blightbreath
 			self:GetNextBossTarget(printTarget, self:UnitGUID(unit), 1)
 		end
 	end

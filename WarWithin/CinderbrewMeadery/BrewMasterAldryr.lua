@@ -66,7 +66,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 454459 then -- [DNT] Clear the Bar
+	if not self:IsSecret(spellId) and spellId == 454459 then -- [DNT] Clear the Bar
 		-- this is cast as the boss jumps over the bar before starting Happy Hour
 		self:StopBar(432198) -- Blazing Belch
 		self:StopBar(432179) -- Throw Cinderbrew

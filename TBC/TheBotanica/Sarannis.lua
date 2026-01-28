@@ -77,9 +77,9 @@ end
 
 do
 	local prev
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castId, spellId)
-		if spellId == 34803 and castId ~= prev then -- Summon Reinforcements
-			prev = castId
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
+		if not self:IsSecret(spellId) and spellId == 34803 and castGUID ~= prev then -- Summon Reinforcements
+			prev = castGUID
 			self:MessageOld(-5411, "yellow", "info")
 			if not self:Normal() then
 				self:CDBar(-5411, 60)

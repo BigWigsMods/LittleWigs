@@ -69,7 +69,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 234283 and phase == 2 then -- Expel Shadows
+	if not self:IsSecret(spellId) and spellId == 234283 and phase == 2 then -- Expel Shadows
 		self:MessageOld(233206, "yellow", "warning", 234283)
 		local timeLeft
 		if timeLost == 0 or not self:GetOption("custom_on_time_lost") then

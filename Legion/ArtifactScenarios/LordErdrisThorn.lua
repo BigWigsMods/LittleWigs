@@ -104,7 +104,7 @@ do
 	local prev = 0
 	function mod:UNIT_SPELLCAST_CHANNEL_START(_, _, _, spellId)
 		local t = GetTime()
-		if spellId == 235984 and t-prev > 2 then -- Mana Sting
+		if not self:IsSecret(spellId) and spellId == 235984 and t-prev > 2 then -- Mana Sting
 			prev = t
 			self:CDBar(spellId, 14.6)
 			self:MessageOld(spellId, "red", "alert", CL.casting:format(self:SpellName(spellId)))
@@ -124,7 +124,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
 	if castCollector[castGUID] then return end
-	if spellId == 237191 then -- Fel Stomp
+	if not self:IsSecret(spellId) and spellId == 237191 then -- Fel Stomp
 		castCollector[castGUID] = true
 		self:MessageOld(spellId, "orange", "alarm", CL.incoming:format(self:SpellName(spellId)))
 		self:CDBar(spellId, 11)

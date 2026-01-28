@@ -404,7 +404,7 @@ end
 -- Image of Wrathion
 
 function mod:UNIT_SPELLCAST_START(event, _, _, spellId)
-	if spellId == 311996 then -- Open Vision
+	if not self:IsSecret(spellId) and spellId == 311996 then -- Open Vision
 		self:UnregisterEvent(event)
 		self:Message(spellId, "cyan")
 		self:CastBar(spellId, 10)
@@ -415,7 +415,7 @@ end
 do
 	local prevCast = nil
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
-		if spellId == 314723 and castGUID ~= prevCast then -- War Stomp (Gamon)
+		if not self:IsSecret(spellId) and spellId == 314723 and castGUID ~= prevCast then -- War Stomp (Gamon)
 			prevCast = castGUID
 			self:WarStomp({sourceGUID = self:UnitGUID(unit)})
 		end

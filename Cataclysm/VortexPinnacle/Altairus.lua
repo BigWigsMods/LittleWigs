@@ -170,7 +170,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 88276 then -- Call the Wind
+	if not self:IsSecret(spellId) and spellId == 88276 then -- Call the Wind
 		self:EncounterEvent()
 	end
 end

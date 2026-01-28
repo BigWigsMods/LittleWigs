@@ -92,12 +92,12 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId) -- Conjure Mystery Toxin
 	-- spellIds ruin the mystery :(
-	if spellId == 93695 then -- Toxic Coagulant
+	if not self:IsSecret(spellId) and spellId == 93695 then -- Toxic Coagulant
 		coagulantCastEnds = GetTime() + 11
 		local toxicCoagulant = self:SpellName(93617)
 		self:CastBar(93617, 11)
 		self:MessageOld(93617, "cyan", "info", self:Healer() and L.toxin_healer_message:format(toxicCoagulant) or L.coagulant:format(toxicCoagulant))
-	elseif spellId == 93563 then -- Toxic Catalyst
+	elseif not self:IsSecret(spellId) and spellId == 93563 then -- Toxic Catalyst
 		local toxicCatalyst = self:SpellName(93689)
 		self:CastBar(93689, 11)
 		self:MessageOld(93689, "cyan", "info", self:Healer() and L.toxin_healer_message:format(toxicCatalyst) or L.catalyst:format(toxicCatalyst))

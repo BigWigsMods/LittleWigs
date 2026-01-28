@@ -50,7 +50,7 @@ function mod:SummonVolatileEnergy(args)
 end
 
 function mod:PowerDischarge(_, _, _, spellId)
-	if spellId == 227278 then
+	if not self:IsSecret(spellId) and spellId == 227278 then
 		self:Message(227279, "orange")
 		self:PlaySound(227279, "alert")
 		self:CDBar(227279, 12)

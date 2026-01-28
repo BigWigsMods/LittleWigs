@@ -87,7 +87,7 @@ end
 -- Stage 2: Spiritual Power!
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 110324 then -- Shado-pan Vanish
+	if not self:IsSecret(spellId) and spellId == 110324 then -- Shado-pan Vanish
 		if self:GetStage() == 1 then
 			self:StopBar(106853) -- Fists of Fury
 			self:StopBar(106434) -- Tornado Kick

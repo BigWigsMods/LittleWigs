@@ -666,7 +666,7 @@ do
 	local prev = 0
 	function mod:UNIT_SPELLCAST_CHANNEL_START(_, _, _, spellId)
 		if self:Brawling() then
-			if spellId == 134527 then -- Lumbering Charge
+			if not self:IsSecret(spellId) and spellId == 134527 then -- Lumbering Charge
 				local t = GetTime()
 				if t - prev > 5 then -- castGUID is nil
 					prev = t
@@ -828,7 +828,7 @@ do
 	local prev
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
 		if self:Brawling() then
-			if spellId == 133253 and castGUID ~= prev then -- Charge
+			if not self:IsSecret(spellId) and spellId == 133253 and castGUID ~= prev then -- Charge
 				prev = castGUID
 				self:Message(spellId, "orange")
 				self:CDBar(spellId, 21.8)

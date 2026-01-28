@@ -61,7 +61,7 @@ function mod:Warmup() -- called from trash module
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 305708 then -- Explosive Ordnance
+	if not self:IsSecret(spellId) and spellId == 305708 then -- Explosive Ordnance
 		self:Message(spellId, "orange", nil, L["305708_icon"])
 		self:CDBar(spellId, 12.2, nil, L["305708_icon"])
 		self:PlaySound(spellId, "info")

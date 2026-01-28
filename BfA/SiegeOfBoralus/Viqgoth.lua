@@ -74,7 +74,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 270183 then -- Call of the Deep
+	if not self:IsSecret(spellId) and spellId == 270183 then -- Call of the Deep
 		self:Message(270185, "red")
 		if self:GetStage() == 1 then
 			self:CDBar(270185, 15.8)

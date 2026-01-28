@@ -587,7 +587,7 @@ end
 do
 	local prevCast = nil
 	function mod:UNIT_SPELLCAST_INTERRUPTED(_, unit, castGUID, spellId)
-		if spellId == 1243416 and castGUID ~= prevCast then -- Teleported (Zekvir and The Underpin retreat)
+		if not self:IsSecret(spellId) and spellId == 1243416 and castGUID ~= prevCast then -- Teleported (Zekvir and The Underpin retreat)
 			prevCast = castGUID
 			local unitGUID = self:UnitGUID(unit)
 			local mobId = self:MobId(unitGUID)

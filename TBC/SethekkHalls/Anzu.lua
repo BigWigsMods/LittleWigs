@@ -86,9 +86,9 @@ end
 
 do
 	local prev
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castId, spellId)
-		if spellId == 42354 and castId ~= prev then -- Banish Self
-			prev = castId
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
+		if not self:IsSecret(spellId) and spellId == 42354 and castGUID ~= prev then -- Banish Self
+			prev = castGUID
 			addsAlive = addsAlive + 7
 			self:Bar(-5253, 45, CL.onboss:format(self:SpellName(spellId)), spellId)
 			self:MessageOld(-5253, "orange", nil, CL.incoming:format(self:SpellName(-5253))) -- Brood of Anzu

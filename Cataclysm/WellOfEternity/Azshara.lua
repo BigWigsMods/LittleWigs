@@ -35,7 +35,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 102334 then -- Servant of the Queen
+	if not self:IsSecret(spellId) and spellId == 102334 then -- Servant of the Queen
 		self:MessageOld(-3968, "yellow", "alert")
 	end
 end

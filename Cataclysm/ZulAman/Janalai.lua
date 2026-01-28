@@ -50,10 +50,10 @@ do
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 43962 then -- Summon Amani'shi Hatcher
+	if not self:IsSecret(spellId) and spellId == 43962 then -- Summon Amani'shi Hatcher
 		self:MessageOld(-2625, "yellow", "long", CL.incoming:format(self:SpellName(-2625)), "achievement_character_troll_male")
 		self:CDBar(-2625, 92, nil, "achievement_character_troll_male")
-	elseif spellId == 43098 then -- Teleport to Center (to cast Fire Bombs)
+	elseif not self:IsSecret(spellId) and spellId == 43098 then -- Teleport to Center (to cast Fire Bombs)
 		self:MessageOld(-2622, "orange", "info", CL.incoming:format(self:SpellName(-2622)))
 		self:Bar(-2622, 12)
 	end

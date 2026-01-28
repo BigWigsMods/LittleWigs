@@ -49,13 +49,13 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 333941 or spellId == 322473 then -- Plague Crash
+	if not self:IsSecret(spellId) and (spellId == 333941 or spellId == 322473) then -- Plague Crash
 		self:Message(322475, "green")
 		self:PlaySound(322475, "long")
 		if intermission == false then
 			self:Bar(322475, 20.5)
 		end
-	elseif spellId == 322477 then -- Start Plague Crash Phase // Intermission
+	elseif not self:IsSecret(spellId) and spellId == 322477 then -- Start Plague Crash Phase // Intermission
 		intermission = true
 		intermissionCount = intermissionCount + 1
 		self:Message("stages", "green", CL.count:format(CL.intermission, intermissionCount), false)

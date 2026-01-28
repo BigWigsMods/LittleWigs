@@ -53,7 +53,7 @@ function mod:GroundSlam(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 120109 then -- Summon Staff (Circle of Flame)
+	if not self:IsSecret(spellId) and spellId == 120109 then -- Summon Staff (Circle of Flame)
 		self:Message(-5973, "red")
 		self:PlaySound(-5973, "alert")
 		circleOfFlameCount = circleOfFlameCount + 1

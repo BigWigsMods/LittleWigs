@@ -99,7 +99,7 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	-- Starts by using 196629 then randomly swaps to using 196634
-	if spellId == 196634 or spellId == 196629 then -- Monsoon
+	if not self:IsSecret(spellId) and (spellId == 196634 or spellId == 196629) then -- Monsoon
 		self:Message(196610, "yellow")
 		self:CDBar(196610, 20)
 	end

@@ -90,7 +90,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 227449 then -- Dashing Flame Gale
+	if not self:IsSecret(spellId) and spellId == 227449 then -- Dashing Flame Gale
 		self:Message(227453, "orange")
 		self:PlaySound(227453, "alert")
 		self:Bar(227453, 37.6)

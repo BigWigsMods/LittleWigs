@@ -74,7 +74,7 @@ end
 --
 
 function mod:InhaleIncUnitEvent(event, unit, _, spellId)
-	if spellId == 154868 then
+	if not self:IsSecret(spellId) and spellId == 154868 then
 		-- unit event is 1s faster than emote (and the first emote is 1s late),
 		-- but the unit event only fires for the first Inhale.
 		self:InhaleInc()

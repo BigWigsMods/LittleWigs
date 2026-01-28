@@ -137,7 +137,7 @@ function mod:Warmup(event, msg)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 242015 then -- Blink
+	if not self:IsSecret(spellId) and spellId == 242015 then -- Blink
 		local spellName = self:SpellName(spellId)
 		self:StopBar(blinkSpells[blinkCount] and ("%s (%s)"):format(spellName, self:SpellName(blinkSpells[blinkCount])) or spellName)
 		self:MessageOld(242015, "yellow", nil, blinkSpells[blinkCount] and ("%s (%s)"):format(spellName, self:SpellName(blinkSpells[blinkCount])) or spellName)
@@ -156,7 +156,7 @@ function mod:ArcaneAnnihilation(args)
 end
 
 function mod:UNIT_SPELLCAST_STOP(_, _, _, spellId)
-	if spellId == 234728 then -- Arcane Annihilation
+	if not self:IsSecret(spellId) and spellId == 234728 then -- Arcane Annihilation
 		self:StopBar(CL.cast:format(self:SpellName(spellId)))
 
 		self:MessageOld(spellId, "cyan", nil, CL.over:format(self:SpellName(spellId)))

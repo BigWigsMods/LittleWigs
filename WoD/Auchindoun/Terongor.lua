@@ -135,11 +135,11 @@ function mod:ChaosBolt(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 156863 then -- Affliction Transformation
+	if not self:IsSecret(spellId) and spellId == 156863 then -- Affliction Transformation
 		self:MessageOld("stages", "green", "info", CL.other:format(CL.stage:format(2), L.affliction), "spell_shadow_deathcoil")
-	elseif spellId == 156919 then -- Demonology Transformation
+	elseif not self:IsSecret(spellId) and spellId == 156919 then -- Demonology Transformation
 		self:MessageOld("stages", "green", "info", CL.other:format(CL.stage:format(2), L.demonology), "spell_shadow_metamorphosis")
-	elseif spellId == 156866 then -- Destruction Transformation
+	elseif not self:IsSecret(spellId) and spellId == 156866 then -- Destruction Transformation
 		self:MessageOld("stages", "green", "info", CL.other:format(CL.stage:format(2), L.destruction), "spell_shadow_rainoffire")
 	end
 end

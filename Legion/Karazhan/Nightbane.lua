@@ -92,10 +92,10 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 228806 then -- Charred Earth
+	if not self:IsSecret(spellId) and spellId == 228806 then -- Charred Earth
 		self:MessageOld(228808, "orange", self:Ranged() and "alert")
 		self:CDBar(228808, 20)
-	elseif spellId == 228789 then -- Flowing Power (Stage 3)
+	elseif not self:IsSecret(spellId) and spellId == 228789 then -- Flowing Power (Stage 3)
 		self:Bar(228785, 8.5) -- Cinder Breath
 		self:Bar(228837, 15.5) -- Bellowing Roar
 		self:Bar(228829, 19.5) -- Burning Bones

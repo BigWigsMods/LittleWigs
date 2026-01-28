@@ -58,11 +58,11 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 111209 then -- Frigid Grasp
+	if not self:IsSecret(spellId) and spellId == 111209 then -- Frigid Grasp
 		self:Message(spellId, "orange")
 		self:PlaySound(spellId, "alarm")
 		self:CDBar(spellId, 10.9)
-	elseif spellId == 111441 then -- Fill Phylactery
+	elseif not self:IsSecret(spellId) and spellId == 111441 then -- Fill Phylactery
 		self:StopBar(111610) -- Ice Wrath
 		self:StopBar(111209) -- Frigid Grasp
 		self:SetStage(2)

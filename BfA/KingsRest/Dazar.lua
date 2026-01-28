@@ -182,7 +182,7 @@ function mod:DeathlyRoar(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
-	if spellId == 269377 then -- Spike Pattern Controller
+	if not self:IsSecret(spellId) and spellId == 269377 then -- Spike Pattern Controller
 		self:Message("stages", "yellow", L.spears_active, 268796) -- Impaling Spear
 		self:UnregisterUnitEvent(event, unit)
 	end

@@ -135,10 +135,10 @@ function mod:CHAT_MSG_MONSTER_EMOTE()
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 34098 then -- ClearAllDebuffs
+	if not self:IsSecret(spellId) and spellId == 34098 then -- ClearAllDebuffs
 		self:MessageOld("submerge", "orange", "alarm", L.submerge, L.submerge_icon)
 		self:CDBar("submerge", 60.7, L.submerge, L.submerge_icon)
-	elseif spellId == 241664 then
+	elseif not self:IsSecret(spellId) and spellId == 241664 then
 		self:MessageOld("rupture", "yellow", "alarm", CL.underyou:format("X"), L.rupture_icon)
 		self:CDBar("rupture", 11, "X", L.rupture_icon)
 	end

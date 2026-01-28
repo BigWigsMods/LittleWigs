@@ -46,9 +46,9 @@ end
 
 do
 	local prev = 0
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castId, spellId)
-		if spellId == 43979 and castId ~= prev then -- Full Heal
-			prev = castId
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
+		if not self:IsSecret(spellId) and spellId == 43979 and castGUID ~= prev then -- Full Heal
+			prev = castGUID
 			self:Win()
 		end
 	end

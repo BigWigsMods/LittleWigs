@@ -103,7 +103,7 @@ function mod:UNIT_HEALTH(event, unit)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 69941 then -- Mirror Image
+	if not self:IsSecret(spellId) and spellId == 69941 then -- Mirror Image
 		self:MessageOld(-2556, "cyan", "info")
 	end
 end

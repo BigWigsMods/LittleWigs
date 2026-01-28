@@ -80,14 +80,14 @@ end
 --
 
 function mod:UNIT_SPELLCAST_START(_, _, _, spellId)
-	if spellId == 279761 then -- Heavy Slash
+	if not self:IsSecret(spellId) and spellId == 279761 then -- Heavy Slash
 		self:Message(spellId, "orange")
 		self:PlaySound(spellId, "alert")
 	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 257540 then -- Cannon Barrage
+	if not self:IsSecret(spellId) and spellId == 257540 then -- Cannon Barrage
 		bombsRemaining = 3
 		self:Message(257585, "orange")
 		self:PlaySound(257585, "warning")

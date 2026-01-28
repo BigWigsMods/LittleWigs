@@ -84,7 +84,7 @@ function mod:ShiftingAnomalies(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 439501 then -- Shifting Anomalies (moving)
+	if not self:IsSecret(spellId) and spellId == 439501 then -- Shifting Anomalies (moving)
 		self:Message(439401, "yellow")
 		shiftingAnomaliesCount = shiftingAnomaliesCount + 1
 		if shiftingAnomaliesCount == 2 then -- time until 2nd move

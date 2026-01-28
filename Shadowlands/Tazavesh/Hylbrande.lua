@@ -222,7 +222,7 @@ function mod:BypassCodeApplied(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 346971 then -- [DNT] Summon Vault Defender
+	if not self:IsSecret(spellId) and spellId == 346971 then -- [DNT] Summon Vault Defender
 		self:Message("vault_purifier", "yellow", CL.adds_spawning, L.vault_purifier_icon)
 		if nextSanitizingCycle - GetTime() > 29.8 then
 			self:CDBar("vault_purifier", 27.8, CL.adds, L.vault_purifier_icon)

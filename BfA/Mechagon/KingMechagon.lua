@@ -169,7 +169,7 @@ end
 do
 	local prev = nil
 	function mod:UNIT_SPELLCAST_SUCCEEDED(event, _, castGUID, spellId)
-		if spellId == 296323 and castGUID ~= prev then -- Activate Omega Buster
+		if not self:IsSecret(spellId) and spellId == 296323 and castGUID ~= prev then -- Activate Omega Buster
 			prev = castGUID
 			self:UnregisterUnitEvent(event, "boss1", "boss2", "boss3")
 			self:SetStage(2)
@@ -177,7 +177,7 @@ do
 			self:CDBar(292264, 17.7) -- Mega-Zap (Stage 2)
 			self:CDBar(283551, 36.9) -- Magneto Arm
 			self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- boss frames not guaranteed in time for 302377 which will be cast next
-		elseif spellId == 302377 and castGUID ~= prev then -- Recalibrate (first cast only)
+		elseif not self:IsSecret(spellId) and spellId == 302377 and castGUID ~= prev then -- Recalibrate (first cast only)
 			prev = castGUID
 			self:UnregisterEvent(event)
 			-- the first Recalibrate occurs alongside 302377, after that it's a 8s repeater

@@ -56,9 +56,9 @@ end
 
 do
 	local prev
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castId, spellId)
-		if (spellId == 44322 or spellId == 46154) and castId ~= prev then -- Summon Pure Energy (normal / heroic)
-			prev = castId
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
+		if not self:IsSecret(spellId) and (spellId == 44322 or spellId == 46154) and castGUID ~= prev then -- Summon Pure Energy (normal / heroic)
+			prev = castGUID
 			self:MessageOld(-5085, "red", nil, L.energy_discharged:format(self:SpellName(-5085)), false)
 		end
 	end

@@ -54,7 +54,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 227457 then -- Energy Discharge
+	if not self:IsSecret(spellId) and spellId == 227457 then -- Energy Discharge
 		self:Message(227457, "orange")
 		self:PlaySound(227457, "alarm")
 		self:CDBar(227457, 27.9)

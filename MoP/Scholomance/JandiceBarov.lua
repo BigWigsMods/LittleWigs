@@ -80,7 +80,7 @@ do
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 113808 then -- Whirl of Illusion
+	if not self:IsSecret(spellId) and spellId == 113808 then -- Whirl of Illusion
 		-- this doesn't affect the CD of Wondrous Rapidity like it does for Gravity Flux
 		self:StopBar(114059) -- Gravity Flux
 		self:SetStage(2)
@@ -88,7 +88,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		self:Message(-5535, "cyan", CL.percent:format(percent, self:SpellName(-5535)))
 		self:PlaySound(-5535, "long")
 		whirlOfIllusionCount = whirlOfIllusionCount + 1
-	elseif spellId == 114059 then -- Gravity Flux
+	elseif not self:IsSecret(spellId) and spellId == 114059 then -- Gravity Flux
 		self:Message(spellId, "orange")
 		self:PlaySound(spellId, "alarm")
 		self:CDBar(spellId, 31.5)

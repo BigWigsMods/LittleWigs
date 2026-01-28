@@ -45,7 +45,7 @@ function mod:SapResidue(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 119990 then -- Summon Sappling
+	if not self:IsSecret(spellId) and spellId == 119990 then -- Summon Sappling
 		self:Message(-5958, "yellow", CL.incoming:format(CL.adds))
 		self:PlaySound(-5958, "info")
 		self:CDBar(-5958, 45.0, CL.adds)

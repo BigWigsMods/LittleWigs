@@ -166,7 +166,7 @@ function mod:EncounterEvent(args) -- Retail only
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED_CLASSIC(event, unit, _, spellId) -- Classic only
-	if spellId == 106895 then -- Summon Jade Serpent
+	if not self:IsSecret(spellId) and spellId == 106895 then -- Summon Jade Serpent
 		self:UnregisterUnitEvent(event, unit)
 		self:SetStage(3)
 		self:Message("stages", "cyan", CL.percent:format(30, CL.stage:format(3)), false)
@@ -260,7 +260,7 @@ function mod:JadeFireBreath(args) -- Retail only
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId) -- Retail only
-	if spellId == 107045 then -- Jade Fire
+	if not self:IsSecret(spellId) and spellId == 107045 then -- Jade Fire
 		self:Message(spellId, "orange")
 		self:CDBar(spellId, 12.1)
 		self:PlaySound(spellId, "alarm")

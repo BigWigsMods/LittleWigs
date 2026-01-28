@@ -114,7 +114,7 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE()
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 96280 then -- Vanessa Cosmetic Bomb State
+	if not self:IsSecret(spellId) and spellId == 96280 then -- Vanessa Cosmetic Bomb State
 		powderExplosionNext = true
 		self:StopBar(92614) -- Deflection
 		self:Message(-2065, "orange", CL.percent:format(1, self:SpellName(-2065))) -- Powder Explosion

@@ -64,7 +64,7 @@ function mod:VanCleefsAllies(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 450564 then -- Shadowstep
+	if not self:IsSecret(spellId) and spellId == 450564 then -- Shadowstep
 		self:Message(spellId, "yellow")
 		self:CDBar(spellId, 9.7)
 		self:PlaySound(spellId, "info")

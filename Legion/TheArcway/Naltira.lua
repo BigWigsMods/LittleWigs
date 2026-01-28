@@ -69,10 +69,10 @@ end
 --
 
 function mod:BlinkStrikes(_, _, _, spellId)
-	if spellId == 199809 then -- UNIT_SPELLCAST_SUCCEEDED
+	if not self:IsSecret(spellId) and spellId == 199809 then -- UNIT_SPELLCAST_SUCCEEDED
 		blinkCount = 1
 		self:Bar(-12687, 30)
-	elseif spellId == 199811 then -- UNIT_SPELLCAST_CHANNEL_START
+	elseif not self:IsSecret(spellId) and spellId == 199811 then -- UNIT_SPELLCAST_CHANNEL_START
 		local target = self:UnitName("boss1target")
 		self:TargetMessageOld(-12687, target, "orange", "alarm", CL.count:format(self:SpellName(spellId), blinkCount))
 		blinkCount = blinkCount + 1

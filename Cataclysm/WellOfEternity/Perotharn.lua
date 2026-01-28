@@ -60,7 +60,7 @@ function mod:Enfeebled(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 105341 then -- Camouflage
+	if not self:IsSecret(spellId) and spellId == 105341 then -- Camouflage
 		self:DelayedMessage("eyes", 8, "green", L.eyes, L.eyes_icon, "info")
 		self:Bar("eyes", 8, L.eyes, L.eyes_icon)
 		self:CDBar(105442, 48) -- Enfeebled

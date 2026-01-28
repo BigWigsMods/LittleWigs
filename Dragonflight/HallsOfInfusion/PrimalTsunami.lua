@@ -74,7 +74,7 @@ end
 -- Stages
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
-	if spellId == 388420 then -- Cast Away
+	if not self:IsSecret(spellId) and spellId == 388420 then -- Cast Away
 		-- we can clean up bars a second early, this always precedes submerge
 		self:StopBar(387559) -- Infused Globules
 		self:StopBar(CL.count:format(self:SpellName(388424), tempestsFuryCount)) -- Tempest's Fury

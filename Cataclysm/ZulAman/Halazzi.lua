@@ -77,10 +77,10 @@ end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	-- All spells used are called "Halazzi Transform"
-	if spellId == 43143 then -- Spirit Phase
+	if not self:IsSecret(spellId) and spellId == 43143 then -- Spirit Phase
 		self:MessageOld("stages", "green", nil, CL.percent:format(30 * spiritPhasesLeft, L.spirit_message), "ability_hunter_pet_cat")
 		spiritPhasesLeft = spiritPhasesLeft - 1
-	elseif spellId == 43145 or spellId == 43271 then -- Normal Phase
+	elseif not self:IsSecret(spellId) and (spellId == 43145 or spellId == 43271) then -- Normal Phase
 		self:MessageOld("stages", "green", nil, L.normal_message, "achievement_character_troll_male")
 	end
 end

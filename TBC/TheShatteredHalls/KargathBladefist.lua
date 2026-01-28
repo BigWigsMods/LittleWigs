@@ -33,9 +33,9 @@ end
 
 do
 	local prev
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castId, spellId)
-		if spellId == 30738 and castId ~= prev then -- Blade Dance Targeting
-			prev = castId
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
+		if not self:IsSecret(spellId) and spellId == 30738 and castGUID ~= prev then -- Blade Dance Targeting
+			prev = castGUID
 			self:MessageOld(-5899, "yellow", "warning")
 			self:CDBar(-5899, 30)
 		end

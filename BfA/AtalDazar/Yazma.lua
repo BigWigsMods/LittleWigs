@@ -60,7 +60,7 @@ end
 do
 	local prev = 0
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-		if spellId == 259186 then -- Soulrend
+		if not self:IsSecret(spellId) and spellId == 259186 then -- Soulrend
 			-- use this event instead of SPELL_CAST_START for timer adjustments. if the tank is the only
 			-- one alive Yazma will still attempt to cast Soulrend with this spell ID and the other spells
 			-- will be delayed even in the absense of the usual SPELL_CAST_START for Soulrend.

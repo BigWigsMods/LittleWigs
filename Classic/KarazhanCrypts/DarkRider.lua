@@ -58,17 +58,17 @@ end
 do
 	local prev
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
-		if spellId == 1220904 and castGUID ~= prev then -- Grab Torch
+		if not self:IsSecret(spellId) and spellId == 1220904 and castGUID ~= prev then -- Grab Torch
 			prev = castGUID
 			self:StopBar(1219814) -- Grasping Spirits
 			self:StopBar(1223264) -- Rushing Dark Riders
 			self:Message(1220939, "cyan", CL.soon:format(self:SpellName(1220939))) -- Ethereal Charge
-		elseif spellId == 1219814 and castGUID ~= prev then -- Grasping Spirits
+		elseif not self:IsSecret(spellId) and spellId == 1219814 and castGUID ~= prev then -- Grasping Spirits
 			prev = castGUID
 			self:Message(spellId, "yellow")
 			self:CDBar(spellId, 10.2)
 			self:PlaySound(spellId, "info")
-		elseif spellId == 1223264 and castGUID ~= prev then -- Rushing Dark Riders
+		elseif not self:IsSecret(spellId) and spellId == 1223264 and castGUID ~= prev then -- Rushing Dark Riders
 			prev = castGUID
 			self:Message(spellId, "red")
 			self:CDBar(spellId, 11.3)

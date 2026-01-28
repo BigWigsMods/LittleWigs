@@ -143,7 +143,7 @@ function mod:BloodOfTheFatherApplied(args)
 end
 
 function mod:UNIT_SPELLCAST_INTERRUPTED(_, _, _, spellId)
-	if spellId == 237945 then -- Blood of the Father
+	if not self:IsSecret(spellId) and spellId == 237945 then -- Blood of the Father
 		self:StopBar(CL.cast:format(self:SpellName(spellId)))
 		self:MessageOld(spellId, "green", "info", CL.interrupted:format(self:SpellName(spellId)))
 	end
@@ -222,7 +222,7 @@ do
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 237914 then -- Runic Detonation
+	if not self:IsSecret(spellId) and spellId == 237914 then -- Runic Detonation
 		self:MessageOld(spellId, "red", "warning")
 		runeCount = runeCount + 1
 		local cd = runeTimers[runeCount]

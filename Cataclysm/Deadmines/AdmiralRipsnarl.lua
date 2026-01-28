@@ -59,7 +59,7 @@ end
 -- Admiral Ripsnarl
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 88840 then -- Vanish
+	if not self:IsSecret(spellId) and spellId == 88840 then -- Vanish
 		-- cast at 75%, 50%, 25%
 		self:Message(spellId, "cyan", CL.percent:format(100 - 25 * vanishCount, self:SpellName(spellId)))
 		self:PlaySound(spellId, "long")

@@ -60,7 +60,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 309035 then -- Entropic Missiles
+	if not self:IsSecret(spellId) and spellId == 309035 then -- Entropic Missiles
 		-- UNIT_SPELLCAST_SUCCEEDED 309035 fires when the channel starts.
 		-- SPELL_CAST_SUCCESS 309373 fires for every tick of the channel.
 		self:Message(309373, "orange", CL.casting:format(self:SpellName(309373)))

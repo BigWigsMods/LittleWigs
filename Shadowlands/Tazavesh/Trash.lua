@@ -1766,7 +1766,7 @@ end
 do
 	local prevCast, prev = nil, 0
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
-		if spellId == 1244650 and castGUID ~= prevCast then -- Tidal Burst
+		if not self:IsSecret(spellId) and spellId == 1244650 and castGUID ~= prevCast then -- Tidal Burst
 			prevCast = castGUID
 			local sourceGUID = self:UnitGUID(unit)
 			if sourceGUID then
@@ -1778,7 +1778,7 @@ do
 				self:Message(spellId, "orange", nil, L["1244650_icon"])
 				self:PlaySound(spellId, "alarm")
 			end
-		elseif spellId == 357828 and castGUID ~= prevCast then -- Frantic Leap
+		elseif not self:IsSecret(spellId) and spellId == 357828 and castGUID ~= prevCast then -- Frantic Leap
 			prevCast = castGUID
 			local sourceGUID = self:UnitGUID(unit)
 			if sourceGUID then

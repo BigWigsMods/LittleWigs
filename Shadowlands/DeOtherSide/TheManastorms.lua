@@ -71,7 +71,7 @@ end
 -- Stage Changes
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 326920 then -- Teleport (Stage 1 start)
+	if not self:IsSecret(spellId) and spellId == 326920 then -- Teleport (Stage 1 start)
 		-- stop stage 2
 		self:StopBar(320823) -- Experimental Squirrel Bomb
 		if self:Mythic() then
@@ -91,7 +91,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 			end
 			self:Bar(320141, 45.6) -- Diabolical Dooooooom!
 		end
-	elseif spellId == 326804 then -- Rocket Jump (Stage 2 start)
+	elseif not self:IsSecret(spellId) and spellId == 326804 then -- Rocket Jump (Stage 2 start)
 		-- stop stage 1
 		self:StopBar(320787) -- Summon Power Crystal
 		if self:Mythic() then

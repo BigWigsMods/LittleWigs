@@ -63,7 +63,7 @@ function mod:Activate(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
-	if spellId == 330433 then -- Shut Down
+	if not self:IsSecret(spellId) and spellId == 330433 then -- Shut Down
 		self:UnregisterUnitEvent(event, unit)
 		runThroughCount = 1
 		lostConfidenceCount = 1

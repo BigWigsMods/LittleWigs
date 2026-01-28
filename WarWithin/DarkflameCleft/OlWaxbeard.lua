@@ -86,11 +86,11 @@ do
 	end
 
 	function mod:UNIT_SPELLCAST_START(_, unit, _, spellId)
-		if spellId == 422116 then -- Reckless Charge
+		if not self:IsSecret(spellId) and spellId == 422116 then -- Reckless Charge
 			-- there is an emote for this with a target, but the emote often lists the wrong player
 			self:GetUnitTarget(printTarget, 0.1, self:UnitGUID(unit))
 			self:CDBar(spellId, 35.2)
-		elseif spellId == 422163 then -- Luring Candleflame
+		elseif not self:IsSecret(spellId) and spellId == 422163 then -- Luring Candleflame
 			self:CDBar(spellId, 38.4)
 		end
 	end

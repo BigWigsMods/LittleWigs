@@ -75,7 +75,7 @@ do
 	end
 
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-		if spellId == 1242877 then -- Activated Portal
+		if not self:IsSecret(spellId) and spellId == 1242877 then -- Activated Portal
 			-- portal spawns 5 seconds after this cast, then lasts for 30 seconds
 			self:CDBar("delivery_portal", {5, 49.4}, L.delivery_portal, L.delivery_portal_icon)
 			self:ScheduleTimer(deliveryPortalSpawned, 5)

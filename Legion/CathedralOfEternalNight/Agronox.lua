@@ -70,14 +70,14 @@ end
 -- Event Handlers
 --
 function mod:RAID_BOSS_WHISPER(_, msg)
-	if msg:find("238674", nil, true) then -- Fixates
+	if not self:IsSecret(msg) and msg:find("238674", nil, true) then -- Fixates
 		self:MessageOld(238674, "blue", "alarm", CL.you:format(self:SpellName(238674)))
 		self:Flash(238674)
 	end
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 236650 then -- Choking Vines
+	if not self:IsSecret(spellId) and spellId == 236650 then -- Choking Vines
 		self:MessageOld(236650, "yellow", "alert", spellId, 236650)
 		self:Bar(236650, 40.1)
 	end

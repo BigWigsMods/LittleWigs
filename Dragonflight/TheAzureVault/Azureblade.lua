@@ -58,7 +58,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 378734 then -- Draconic Ritual
+	if not self:IsSecret(spellId) and spellId == 378734 then -- Draconic Ritual
 		-- this is cast when the boss runs to the center, we can clean up extra
 		-- timers for skipped abilities a little early
 		self:StopBar(384223) -- Summon Draconic Image

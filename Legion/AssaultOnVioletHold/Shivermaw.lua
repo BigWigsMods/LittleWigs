@@ -58,7 +58,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 201355 then -- Wing Buffet
+	if not self:IsSecret(spellId) and spellId == 201355 then -- Wing Buffet
 		self:MessageOld(spellId, "orange", "alert")
 		buffetCount = buffetCount + 1
 		self:Bar(spellId, buffetCount % 2 == 0 and 18 or 43)

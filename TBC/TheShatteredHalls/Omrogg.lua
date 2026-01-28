@@ -41,9 +41,9 @@ do
 	end
 
 	local prev
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castId, spellId)
-		if spellId == 30618 and castId ~= prev then -- Beatdown
-			prev = castId
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
+		if not self:IsSecret(spellId) and spellId == 30618 and castGUID ~= prev then -- Beatdown
+			prev = castGUID
 			self:GetUnitTarget(announce, 0.4, self:UnitGUID(unit))
 		end
 	end

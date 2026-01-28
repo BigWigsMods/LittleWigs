@@ -130,7 +130,7 @@ end
 -- Fallen Servants: Therum Deepforge
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 312260 then -- Explosive Ordnance
+	if not self:IsSecret(spellId) and spellId == 312260 then -- Explosive Ordnance
 		self:Message(spellId, "orange", nil, L["312260_icon"])
 		self:CDBar(spellId, 20.7, nil, L["312260_icon"])
 		self:PlaySound(spellId, "info")

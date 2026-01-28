@@ -248,7 +248,7 @@ function mod:Translocate(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
-	if spellId == 242987 then -- Translocate
+	if not self:IsSecret(spellId) and spellId == 242987 then -- Translocate
 		if phase == 1 then
 			phase = 2
 			self:MessageOld(242989, "cyan", nil, CL.percent:format(50, self:SpellName(spellId)), false)

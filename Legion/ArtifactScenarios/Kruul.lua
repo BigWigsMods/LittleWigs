@@ -114,29 +114,29 @@ function mod:SayTriggers(_, msg)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 234428 then -- Summon Tormenting Eye
+	if not self:IsSecret(spellId) and spellId == 234428 then -- Summon Tormenting Eye
 		self:Message(spellId, "yellow")
 		self:CDBar(spellId, 17)
 		self:PlaySound(spellId, "info")
-	elseif spellId == 235110 then -- Nether Aberration
+	elseif not self:IsSecret(spellId) and spellId == 235110 then -- Nether Aberration
 		self:StopBar(CL.count:format(self:SpellName(spellId), aberrationCounter))
 		self:Message("nether_aberration", "cyan", CL.count:format(CL.incoming:format(self:SpellName(spellId)), aberrationCounter), L.nether_aberration_icon)
 		aberrationCounter = aberrationCounter + 1
 		self:CDBar("nether_aberration", 35, CL.count:format(self:SpellName(spellId), aberrationCounter), L.nether_aberration_icon)
 		self:PlaySound("nether_aberration", "info")
-	elseif spellId == 235112 then -- Smoldering Infernal Summon
+	elseif not self:IsSecret(spellId) and spellId == 235112 then -- Smoldering Infernal Summon
 		self:Message("smoldering_infernal", "yellow", CL.incoming:format(L.smoldering_infernal), L.smoldering_infernal_icon)
 		self:CDBar("smoldering_infernal", 65, L.smoldering_infernal, L.smoldering_infernal_icon)
 		self:PlaySound("smoldering_infernal", "info")
-	elseif spellId == 234920 then -- Shadow Sweep
+	elseif not self:IsSecret(spellId) and spellId == 234920 then -- Shadow Sweep
 		self:Message(spellId, "yellow", CL.incoming:format(self:SpellName(spellId)))
 		self:Bar(spellId, 20.7)
 		self:PlaySound(spellId, "info")
-	elseif spellId == 234673 then -- Netherstomp
+	elseif not self:IsSecret(spellId) and spellId == 234673 then -- Netherstomp
 		self:Message(spellId, "orange")
 		self:Bar(spellId, 15.8)
 		self:PlaySound(spellId, "alert")
-	elseif spellId == 233458 then -- Gift of Sargeras
+	elseif not self:IsSecret(spellId) and spellId == 233458 then -- Gift of Sargeras
 		-- Spoiler: HE EXPLODES!
 		self:Win()
 	end

@@ -210,7 +210,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 96260 then -- Summon Skyfall Star
+	if not self:IsSecret(spellId) and spellId == 96260 then -- Summon Skyfall Star
 		self:Message(96260, "cyan")
 		self:PlaySound(96260, "alert")
 		self:CDBar(96260, 12.1)

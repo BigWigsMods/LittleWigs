@@ -48,15 +48,15 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 178126 then -- Breakout (Rylak Skyterror)
+	if not self:IsSecret(spellId) and spellId == 178126 then -- Breakout (Rylak Skyterror)
 		self:Message(178124, "yellow", CL.other:format(self:SpellName(178124), L.rylak)) -- Breakout: Rylak
 		self:PlaySound(178124, "alert")
 		self:CDBar(178124, 40, CL.other:format(self:SpellName(178124), L.wolves)) -- Breakout: Wolves
-	elseif spellId == 178128 then -- Breakout (Ravenous Wolf)
+	elseif not self:IsSecret(spellId) and spellId == 178128 then -- Breakout (Ravenous Wolf)
 		self:Message(178124, "yellow", CL.other:format(self:SpellName(178124), L.wolves)) -- Breakout: Wolves
 		self:PlaySound(178124, "alert")
 		self:CDBar(178124, 40, CL.other:format(self:SpellName(178124), L.rylak)) -- Breakout: Rylak
-	elseif spellId == 162769 then -- Hamstring Backflip
+	elseif not self:IsSecret(spellId) and spellId == 162769 then -- Hamstring Backflip
 		self:Message(161256, "orange") -- Primal Assault
 		self:PlaySound(161256, "alarm")
 		self:CDBar(161256, 26.8)

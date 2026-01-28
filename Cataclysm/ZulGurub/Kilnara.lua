@@ -89,7 +89,7 @@ function mod:UNIT_HEALTH(event, unit)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)
-	if spellId == 97380 then -- Cave In
+	if not self:IsSecret(spellId) and spellId == 97380 then -- Cave In
 		self:UnregisterUnitEvent(event, unit)
 		self:MessageOld("stages", "yellow", "info", CL.stage:format(2), false)
 	end

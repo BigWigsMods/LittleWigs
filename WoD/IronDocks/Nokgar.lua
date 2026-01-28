@@ -142,7 +142,7 @@ function mod:SavageMaulingRemoved(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 164730 then
+	if not self:IsSecret(spellId) and spellId == 164730 then
 		self:Message(164734, "yellow")
 		self:PlaySound(164734, "alarm")
 		self:CDBar(164734, 17)

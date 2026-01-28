@@ -49,9 +49,9 @@ do
 	end
 
 	local prev
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castId, spellId)
-		if spellId == 36038 and castId ~= prev then -- Charge Targeting
-			prev = castId
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, castGUID, spellId)
+		if not self:IsSecret(spellId) and spellId == 36038 and castGUID ~= prev then -- Charge Targeting
+			prev = castGUID
 			self:GetUnitTarget(printTarget, 0.4, self:UnitGUID(unit))
 		end
 	end

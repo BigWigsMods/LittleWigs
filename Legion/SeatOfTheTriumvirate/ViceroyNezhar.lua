@@ -80,7 +80,7 @@ end
 -- Event Handlers
 --
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 249336 then -- Summon Ethereal Guards
+	if not self:IsSecret(spellId) and spellId == 249336 then -- Summon Ethereal Guards
 		self:MessageOld(248804, "yellow", "info", CL.spawned:format(L.guards))
 	end
 end

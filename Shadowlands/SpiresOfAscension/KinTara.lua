@@ -158,7 +158,7 @@ do
 	end
 
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
-		if spellId == 321088 then -- Charged Spear (targetting)
+		if not self:IsSecret(spellId) and spellId == 321088 then -- Charged Spear (targetting)
 			local unitToken = unit.."target"
 			local destName = self:UnitName(unitToken)
 			if destName and not self:Tanking(unit, unitToken) then
@@ -166,9 +166,9 @@ do
 			else
 				self:RegisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
 			end
-		elseif spellId == 321009 then -- Charged Spear (thrown)
+		elseif not self:IsSecret(spellId) and spellId == 321009 then -- Charged Spear (thrown)
 			self:UnregisterEvent("CHAT_MSG_RAID_BOSS_EMOTE")
-		elseif spellId == 324662 then -- Ionized Plasma (Charged Spear landed)
+		elseif not self:IsSecret(spellId) and spellId == 324662 then -- Ionized Plasma (Charged Spear landed)
 			self:PrimaryIcon(321009)
 		end
 	end

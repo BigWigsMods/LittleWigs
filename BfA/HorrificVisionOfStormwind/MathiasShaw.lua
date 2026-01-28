@@ -61,7 +61,7 @@ end
 --
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 308681 then -- Summon Eye of Chaos
+	if not self:IsSecret(spellId) and spellId == 308681 then -- Summon Eye of Chaos
 		if summonEyeOfChaosCount == 1 then
 			self:Message(spellId, "cyan", CL.percent:format(70, self:SpellName(spellId)))
 		else
@@ -69,7 +69,7 @@ function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 		end
 		summonEyeOfChaosCount = summonEyeOfChaosCount + 1
 		self:PlaySound(spellId, "info")
-	elseif spellId == 311530 then -- Seek And Destroy
+	elseif not self:IsSecret(spellId) and spellId == 311530 then -- Seek And Destroy
 		self:Message(spellId, "yellow", nil, L["311530_icon"])
 		self:CDBar(spellId, 20.7, nil, L["311530_icon"])
 		self:PlaySound(spellId, "long")

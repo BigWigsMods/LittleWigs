@@ -121,9 +121,9 @@ end
 
 do
 	local prev
-	function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, castId, spellId)
-		if (spellId == 36931 or spellId == 36932) and castId ~= prev then -- 66% / 33% illusions
-			prev = castId
+	function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, castGUID, spellId)
+		if not self:IsSecret(spellId) and (spellId == 36931 or spellId == 36932) and castGUID ~= prev then -- 66% / 33% illusions
+			prev = castGUID
 			if spellId == 36932 then
 				if self:Classic() then
 					self:UnregisterEvent(event)

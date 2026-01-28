@@ -59,9 +59,9 @@ end
 
 do
 	local prev
-	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castId, spellId)
-		if spellId == 34741 and castId ~= prev then -- Summon Saplings
-			prev = castId
+	function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
+		if not self:IsSecret(spellId) and spellId == 34741 and castGUID ~= prev then -- Summon Saplings
+			prev = castGUID
 			addsAlive = 6 -- when they despawn to heal him, they don't fire any events; fortunately, no 2 waves can be alive at the same time
 			self:MessageOld(-5478, "red", "alarm")
 			self:Bar(-5478, 25, CL.onboss:format(self:SpellName(12039)), 38658) -- text is "Heal on BOSS", icon is that of druids' Healing Touch

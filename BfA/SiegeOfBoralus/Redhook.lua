@@ -183,7 +183,7 @@ do
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 257540 then -- Cannon Barrage
+	if not self:IsSecret(spellId) and spellId == 257540 then -- Cannon Barrage
 		--ordnanceRemaining = 3 -- was 3, 3, 4, 6, 5, 7, 6, 3...
 		ordnanceCollector = {}
 		--ordnanceExplosionTime = GetTime() + 52.5

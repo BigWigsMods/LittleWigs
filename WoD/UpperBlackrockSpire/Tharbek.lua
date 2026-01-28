@@ -56,10 +56,10 @@ function mod:ImbuedIronAxe(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 161989 then -- Iron Reaver
+	if not self:IsSecret(spellId) and spellId == 161989 then -- Iron Reaver
 		self:Message(spellId, "red", CL.charge)
 		self:CDBar(spellId, 19, CL.charge) -- 19.4-22.7s
-	elseif spellId == 161882 then -- Incinerating Breath
+	elseif not self:IsSecret(spellId) and spellId == 161882 then -- Incinerating Breath
 		self:Message(spellId, "orange", CL.incoming:format(self:SpellName(spellId)))
 		self:CDBar(spellId, 20)
 		self:PlaySound(spellId, "long")

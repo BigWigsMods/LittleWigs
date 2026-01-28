@@ -60,7 +60,7 @@ function mod:CurseOfAgony(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 448348 then -- Burning Cart
+	if not self:IsSecret(spellId) and spellId == 448348 then -- Burning Cart
 		self:Message(448412, "yellow")
 		self:PlaySound(448412, "long")
 		self:CDBar(448412, 35.6)

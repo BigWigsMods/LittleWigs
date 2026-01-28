@@ -98,7 +98,7 @@ function mod:SpiritWarriorsGazeRemoved()
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
-	if spellId == 98861 then -- Spirit World
+	if not self:IsSecret(spellId) and spellId == 98861 then -- Spirit World
 		barriersLeft = 3
 		self:MessageOld("stages", "red", "long", CL.other:format(CL.stage:format(2), self:SpellName(spellId)), false)
 		self:StopBar(97172) -- Shadows of Hakkar
