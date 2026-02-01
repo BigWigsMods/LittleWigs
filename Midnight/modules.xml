@@ -1,0 +1,45 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
+..\FrameXML\UI.xsd">
+
+<Script file="DenOfNalorakk\TheHoardmonger.lua"/>
+<Script file="DenOfNalorakk\SentinelOfWinter.lua"/>
+<Script file="DenOfNalorakk\Nalorakk.lua"/>
+<Script file="DenOfNalorakk\Trash.lua"/>
+
+<Script file="MagistersTerrace\ArcanotronCustos.lua"/>
+<Script file="MagistersTerrace\SeranelSunlash.lua"/>
+<Script file="MagistersTerrace\Gemellus.lua"/>
+<Script file="MagistersTerrace\Degentrius.lua"/>
+
+<Script file="MaisaraCaverns\MurojinAndNekraxx.lua"/>
+<Script file="MaisaraCaverns\Vordaza.lua"/>
+<Script file="MaisaraCaverns\Raktul.lua"/>
+<Script file="MaisaraCaverns\Trash.lua"/>
+
+<Script file="MurderRow\KystiaManaheart.lua"/>
+<Script file="MurderRow\ZaenBladesorrow.lua"/>
+<Script file="MurderRow\XathuuxTheAnnihilator.lua"/>
+<Script file="MurderRow\LithielCinderfury.lua"/>
+<Script file="MurderRow\Trash.lua"/>
+
+<Script file="NexusPointXenas\Kasreth.lua"/>
+<Script file="NexusPointXenas\Nysarra.lua"/>
+<Script file="NexusPointXenas\Lothraxion.lua"/>
+
+<Script file="TheBlindingVale\LightblossomTrinity.lua"/>
+<Script file="TheBlindingVale\IkuzzTheLightHunter.lua"/>
+<Script file="TheBlindingVale\LightwardenRuia.lua"/>
+<Script file="TheBlindingVale\Ziekket.lua"/>
+
+<Script file="VoidscarArena\TazRah.lua"/>
+<Script file="VoidscarArena\Atroxus.lua"/>
+<Script file="VoidscarArena\Charonus.lua"/>
+
+<Script file="WindrunnerSpire\Emberdawn.lua"/>
+<Script file="WindrunnerSpire\DerelictDuo.lua"/>
+<Script file="WindrunnerSpire\CommanderKroluk.lua"/>
+<Script file="WindrunnerSpire\RestlessHeart.lua"/>
+
+<Script file="!Options.lua"/>
+
+</Ui>
