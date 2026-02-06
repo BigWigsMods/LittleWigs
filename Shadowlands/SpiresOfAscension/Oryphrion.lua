@@ -49,12 +49,11 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "EmpyrealOrdnance", 324427)
 	self:Log("SPELL_CAST_START", "PurifyingBlast", 334053)
 	self:Log("SPELL_CAST_START", "ChargedStomp", 324608)
-
-	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1")
 end
 
 function mod:OnEngage()
 	prevEnergy = 100
+	self:RegisterUnitEvent("UNIT_POWER_FREQUENT", nil, "boss1")
 
 	self:Bar(334053, 8.5) -- Purifying Blast
 	self:Bar(324427, 17) -- Empyreal Ordnance
