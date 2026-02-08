@@ -24,6 +24,80 @@
 <Script file="DarkflameCleft\TheDarkness.lua"/>
 <Script file="DarkflameCleft\Trash.lua"/>
 
+<Script file="Delves\ArchivalAssault\CaptainNilhitan.lua"/>
+<Script file="Delves\ArchivalAssault\PortalmasterHalsan.lua"/>
+<Script file="Delves\ArchivalAssault\VoidriderChallnax.lua"/>
+
+<Script file="Delves\DemolitionDome\Underpin.lua"/>
+<Script file="Delves\DemolitionDome\Underpin2.lua"/>
+
+<Script file="Delves\EarthcrawlMines\Abenar.lua"/>
+<Script file="Delves\EarthcrawlMines\MaklinDrillstab.lua"/>
+<Script file="Delves\EarthcrawlMines\TheBiggestBug.lua"/>
+
+<Script file="Delves\ExcavationSite9\BesteGlatisant.lua"/>
+<Script file="Delves\ExcavationSite9\CraggleFritzbrains.lua"/>
+<Script file="Delves\ExcavationSite9\HarbingerUlthul.lua"/>
+<Script file="Delves\ExcavationSite9\XelaneghTheMany.lua"/>
+
+<Script file="Delves\FungalFolly\Maulspike.lua"/>
+<Script file="Delves\FungalFolly\Spinshroom.lua"/>
+
+<Script file="Delves\KriegvalsRest\FacelessOne.lua"/>
+<Script file="Delves\KriegvalsRest\TombRaiderDrywhisker.lua"/>
+
+<Script file="Delves\MycomancerCavern\Bogpiper.lua"/>
+
+<Script file="Delves\NightfallSanctum\SpeakerDavenruth.lua"/>
+<Script file="Delves\NightfallSanctum\SpeakerWicke.lua"/>
+<Script file="Delves\NightfallSanctum\SpeakerHalven.lua"/>
+<Script file="Delves\NightfallSanctum\CultLeaders.lua"/>
+
+<Script file="Delves\SidestreetSluice\Geargrave.lua"/>
+<Script file="Delves\SidestreetSluice\GoldElemental.lua"/>
+<Script file="Delves\SidestreetSluice\VindleSnapcrank.lua"/>
+
+<Script file="Delves\SkitteringBreach\FacelessOne.lua"/>
+<Script file="Delves\SkitteringBreach\Nerlathekk.lua"/>
+<Script file="Delves\SkitteringBreach\SpeakerXanventh.lua"/>
+
+<Script file="Delves\TekRethanAbyss\UnderseaAbomination.lua"/>
+
+<Script file="Delves\TheDreadPit\UnderLordViktis.lua"/>
+
+<Script file="Delves\TheSinkhole\Cragpie.lua"/>
+<Script file="Delves\TheSinkhole\LeviathanCaller.lua"/>
+<Script file="Delves\TheSinkhole\Murkna.lua"/>
+
+<Script file="Delves\TheSpiralWeave\OverseerKaskel.lua"/>
+<Script file="Delves\TheSpiralWeave\ThePuppetmaster.lua"/>
+
+<Script file="Delves\TheUnderkeep\ResearcherVenkex.lua"/>
+<Script file="Delves\TheUnderkeep\ResearcherXikvik.lua"/>
+<Script file="Delves\TheUnderkeep\TorqueAndSprok.lua"/>
+
+<Script file="Delves\TheWaterworks\Shroomsprew.lua"/>
+<Script file="Delves\TheWaterworks\Waxface.lua"/>
+
+<Script file="Delves\Trash\Ethereal.lua"/>
+<Script file="Delves\Trash\Fungarian.lua"/>
+<Script file="Delves\Trash\Goblin.lua"/>
+<Script file="Delves\Trash\Kobold.lua"/>
+<Script file="Delves\Trash\Kobyss.lua"/>
+<Script file="Delves\Trash\Nerubian.lua"/>
+<Script file="Delves\Trash\Nightfall.lua"/>
+<Script file="Delves\Trash\OldGod.lua"/>
+<Script file="Delves\Trash\Underkeep.lua"/>
+<!--<Script file="Delves\Trash\ZekvirRares.lua"/>-->
+<!--<Script file="Delves\Trash\UnderpinRares.lua"/>-->
+<Script file="Delves\Trash\KyvezaRares.lua"/>
+<!--<Script file="Delves\Trash\Overcharged.lua"/>-->
+
+<Script file="Delves\VoidrazorSanctuary\Kyveza.lua"/>
+
+<Script file="Delves\ZekvirsLair\Zekvir.lua"/>
+<Script file="Delves\ZekvirsLair\Zekvir2.lua"/>
+
 <Script file="EcoDomeAldani\Azhiccar.lua"/>
 <Script file="EcoDomeAldani\TaahbatAndAwazj.lua"/>
 <Script file="EcoDomeAldani\SoulScribe.lua"/>
