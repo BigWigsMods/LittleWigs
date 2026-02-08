@@ -56,6 +56,5 @@ Dragonflight\!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, fr
 
 WarWithin\modules.xml
 WarWithin\!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
-WarWithin\!Locales\[TextLocale]_Delves.lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 Midnight\modules.xml
 Midnight\!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
