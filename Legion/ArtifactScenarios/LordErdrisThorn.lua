@@ -93,6 +93,7 @@ end
 --
 
 function mod:Warmup(_, msg)
+	if self:IsSecret(msg) then return end
 	if msg:find(L.warmup_trigger, nil, true) then -- Start
 		self:Bar("warmup", 29, CL.active, "spell_mage_focusingcrystal")
 	elseif msg:find(L.warmup_trigger2, nil, true) then -- Stage 5

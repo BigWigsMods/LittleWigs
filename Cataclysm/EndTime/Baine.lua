@@ -44,7 +44,7 @@ end
 --
 
 function mod:Blitz(_, msg, _, _, _, player)
-	if msg:find(self:SpellName(-4140)) then
+	if not self:IsSecret(msg) and msg:find(self:SpellName(-4140)) then
 		if player then
 			self:TargetMessageOld(-4140, player, "red", "alert")
 			self:PrimaryIcon(-4140, player)

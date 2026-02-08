@@ -62,7 +62,7 @@ end
 --
 
 function mod:Warmup(event, msg)
-	if msg == L.warmup_trigger then
+	if not self:IsSecret(msg) and msg == L.warmup_trigger then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 8, CL.active, "achievement_dungeon_vaultofthewardens")
 	end

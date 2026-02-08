@@ -176,6 +176,7 @@ function mod:ChaosBolt(args)
 end
 
 function mod:WinCheck(_, msg)
+	if self:IsSecret(msg) then return end
 	if msg:find(L["win_say"], nil, true) then
 		self:Win()
 	elseif msg:find(L["start_say"], nil, true) then
