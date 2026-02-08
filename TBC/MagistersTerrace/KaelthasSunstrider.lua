@@ -70,7 +70,7 @@ end
 --
 
 function mod:Warmup(event, msg)
-	if msg:find(L.warmup_trigger, nil, true) then
+	if not self:IsSecret(msg) and msg:find(L.warmup_trigger, nil, true) then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 36.2, CL.active, "achievement_boss_kael'thassunstrider_01")
 	end

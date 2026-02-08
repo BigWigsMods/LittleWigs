@@ -46,7 +46,7 @@ end
 --
 
 function mod:Warmup(event, msg)
-	if msg:find(L.warmup_trigger, nil, true) then
+	if not self:IsSecret(msg) and msg:find(L.warmup_trigger, nil, true) then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 19.2, CL.active, "inv_sword_01")
 	end

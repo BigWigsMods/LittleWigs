@@ -70,6 +70,7 @@ end
 --
 
 function mod:Warmup(event, msg)
+	if self:IsSecret(msg) then return end
 	if msg == L.warmup_trigger then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 20, L.warmup_text, "achievement_dungeon_hallsofvalor")

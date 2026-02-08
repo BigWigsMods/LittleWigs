@@ -71,6 +71,7 @@ end
 --
 
 function mod:Warmup(event, msg)
+	if self:IsSecret(msg) then return end
 	if msg:find(L.first_cell_trigger, nil, true) then
 		self:Bar("warmup", 37.7, CL.count:format(L.prison_cell, 1), "achievement_boss_harbinger_skyriss")
 	elseif msg:find(L.second_and_third_cells_trigger, nil, true) then

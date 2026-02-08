@@ -91,6 +91,7 @@ end
 --
 
 function mod:Warmup(_, msg)
+	if self:IsSecret(msg) then return end
 	if msg == L.warmup_trigger then
 		self:Bar("warmup", 45.7, L.warmup_text, 202081)
 	elseif msg == L.warmup_trigger2 then

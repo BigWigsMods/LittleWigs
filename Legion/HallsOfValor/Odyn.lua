@@ -80,7 +80,7 @@ end
 --
 
 function mod:Warmup(event, msg)
-	if msg == L.gossip_trigger then
+	if not self:IsSecret(msg) and msg == L.gossip_trigger then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 28.2, L.gossip_available, "achievement_boss_odyn")
 	end

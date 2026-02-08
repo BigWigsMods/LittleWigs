@@ -105,7 +105,7 @@ end
 --
 
 function mod:Warmup(event, msg)
-	if msg == L.warmup_trigger then
+	if not self:IsSecret(msg) and msg == L.warmup_trigger then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 23, CL.active, "inv_engineering_autohammer")
 	end

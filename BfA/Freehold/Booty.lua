@@ -121,6 +121,7 @@ end
 -- Lightning
 
 function mod:Warmup(_, msg)
+	if self:IsSecret(msg) then return end
 	if msg:find(L.lightning_warmup, nil, true) then
 		self:UnregisterEvent("CHAT_MSG_MONSTER_YELL")
 		self:UnregisterEvent("CHAT_MSG_MONSTER_SAY")

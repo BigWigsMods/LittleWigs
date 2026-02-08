@@ -110,6 +110,7 @@ end
 --
 
 function mod:Warmup(event, msg)
+	if self:IsSecret(msg) then return end
 	if msg:find(L.yaungol_warmup_trigger, nil, true) then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 16.7, CL.active, "achievement_jadeserpent")

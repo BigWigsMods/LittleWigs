@@ -61,6 +61,7 @@ end
 --
 
 function mod:Warmup(event, msg)
+	if self:IsSecret(msg) then return end
 	if msg == L.warmup_trigger_horde then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 19, CL.active, "achievement_dungeon_shrineofthestorm")

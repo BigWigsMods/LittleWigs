@@ -127,6 +127,7 @@ end
 -- Archmage Xylem
 
 function mod:Warmup(event, msg)
+	if self:IsSecret(msg) then return end
 	if msg:find(L.warmup_trigger1, nil, true) then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 27.6, CL.active, "spell_mage_focusingcrystal")

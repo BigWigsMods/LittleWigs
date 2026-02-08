@@ -180,6 +180,7 @@ end
 
 function mod:Warmup(event, msg)
 	self:UnregisterEvent(event)
+	if self:IsSecret(msg) then return end
 	if msg:find(L.warmup_trigger1, nil, true) or msg:find(L.levia, nil, true) then
 		self:Bar("warmup", 35, CL.active, "sha_spell_shaman_lavaburst_nightborne")
 	elseif msg:find(L.warmup_trigger2, nil, true) then
