@@ -11,6 +11,7 @@ mod:SetPrivateAuraSounds({
 	{1243590, sound = "alarm"}, -- Overwhelming Onslaught
 	{1255577, sound = "warning"}, -- Spectral Slash
 	{1262253, sound = "info"}, -- Demoralizing Scream
+	{1261781, sound = "info"}, -- Defensive Stance
 })
 
 --------------------------------------------------------------------------------
@@ -23,5 +24,6 @@ function mod:GetOptions()
         {1243590, "PRIVATE"}, -- Overwhelming Onslaught
         {1255577, "PRIVATE"}, -- Spectral Slash
         {1262253, "PRIVATE"}, -- Demoralizing Scream
+		{1261781, "PRIVATE"}, -- Defensive Stance
     }
 end
