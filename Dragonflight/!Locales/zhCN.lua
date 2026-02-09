@@ -32,7 +32,7 @@ L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "zhCN")
 if L then
 	L.custom_on_cauldron_autotalk_desc = "[炼金术] 使用腐蚀坩埚获得可以移除疾病的特殊技能。"
 	L.captive_tuskarr_freed = "解救海象人俘虏"
-	L.captive_tuskarr_freed_desc = "当海象人俘虏被解救时显示警报。"
+	L.captive_tuskarr_freed_desc = "当海象人俘虏被解救时显示警告。"
 
 	L.decaying_cauldron = "腐朽坩埚"
 	L.captive_tuskarr = "海象人俘虏"
