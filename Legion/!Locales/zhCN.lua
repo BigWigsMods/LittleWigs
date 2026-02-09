@@ -139,7 +139,7 @@ L = BigWigs:NewBossLocale("Mephistroth", "zhCN")
 if L then
 	L.custom_on_time_lost = "暗影消退计时"
 	L.custom_on_time_lost_desc = "显示暗影消退为|cffff0000红色|r计时条。"
-	--L.time_lost = "%s |cffff0000(+%ds)|r"
+	L.time_lost = "%s |cffff0000(+%ds)|r"
 end
 
 L = BigWigs:NewBossLocale("Domatrax", "zhCN")
@@ -367,7 +367,7 @@ end
 L = BigWigs:NewBossLocale("Moroes", "zhCN")
 if L then
 	L.cc = "群体控制"
-	L.cc_desc = "群体控制晚餐客人的计时器和警报。"
+	L.cc_desc = "群体控制晚餐客人的计时器和警告。"
 end
 
 L = BigWigs:NewBossLocale("Nightbane", "zhCN")
