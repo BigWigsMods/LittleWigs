@@ -195,7 +195,7 @@ if L then
 	L.tradeable_goods = "可交易的货物"
 	L.tradeable_goods_desc = "当拾取可交易货物时显示提示信息。"
 	L.trading_game = "交易游戏"
-	L.trading_game_desc = "在交易游戏期间使用正确的密码发出警报。"
+	L.trading_game_desc = "在交易游戏期间使用正确的密码发出警告。"
 	L.custom_on_trading_game_autotalk_desc = "交易游戏结束后，立即选择正确的密码。"
 	L.password_triggers = {
 		["乳白贝壳？"] = 53259,
