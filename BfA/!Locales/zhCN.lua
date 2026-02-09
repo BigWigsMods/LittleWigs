@@ -282,7 +282,7 @@ end
 
 L = BigWigs:NewBossLocale("King Mechagon", "zhCN")
 if L then
-	L.hardmode_desc = "当歼敌机器人5000型开始显示按钮顺序时发出警报。"
+	L.hardmode_desc = "当歼敌机器人5000型开始显示按钮顺序时发出警告。"
 
 	L.button = "按钮"
 	L.button_desc = "当有人点击按钮时显示警报。"
