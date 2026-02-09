@@ -12,7 +12,7 @@ mod:SetPrivateAuraSounds({
 	{470966, sound = "warning"}, -- Bladestorm
 	{468924, sound = "underyou"}, -- Bladestorm
 	{1283247, sound = "alarm"}, -- Reckless Leap
-	--{472054, sound = "alarm"}, -- Reckless Leap
+	{472054, sound = "none"}, -- Reckless Leap
 	{1253030, sound = "warning"}, -- Intimidating Shout
 })
 
@@ -27,7 +27,7 @@ function mod:GetOptions()
 		{470966, "PRIVATE"}, -- Bladestorm
 		{468924, "PRIVATE"}, -- Bladestorm
 		{1283247, "PRIVATE"}, -- Reckless Leap
-		--{472054, "PRIVATE"}, -- Reckless Leap
+		{472054, "PRIVATE"}, -- Reckless Leap
 		{1253030, "PRIVATE"}, -- Intimidating Shout
 	}
 end
