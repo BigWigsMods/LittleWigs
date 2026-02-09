@@ -8,6 +8,7 @@ mod:SetEncounterID(3332)
 --mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
 	{1247975, sound = "info"}, -- Lightscar Flare
+	{1271433, sound = "none"}, -- Lightscar Flare
 	{1249020, sound = "alarm"}, -- Eclipsing Step
 	{1252828, sound = "alarm"}, -- Void Gash
 })
@@ -19,6 +20,7 @@ mod:SetPrivateAuraSounds({
 function mod:GetOptions()
 	return {
 		{1247975, "PRIVATE"}, -- Lightscar Flare
+		{1271433, "PRIVATE"}, -- Lightscar Flare
 		{1249020, "PRIVATE"}, -- Eclipsing Step
 		{1252828, "PRIVATE"}, -- Void Gash
 	}
