@@ -10,6 +10,8 @@ mod:SetPrivateAuraSounds({
 	{1224104, sound = "underyou"}, -- Void Secretions
 	{1224401, sound = "alarm"}, -- Cosmic Radiation
 	{1284958, sound = "alert"}, -- Cosmic Sting
+	{1224299, sound = "warning"}, -- Astral Grasp
+	{1253709, sound = "info"}, -- Neural Link
 })
 
 --------------------------------------------------------------------------------
@@ -21,5 +23,7 @@ function mod:GetOptions()
 		{1224104, "PRIVATE"}, -- Void Secretions
 		{1224401, "PRIVATE"}, -- Cosmic Radiation
 		{1284958, "PRIVATE"}, -- Cosmic Sting
+		{1224299, "PRIVATE"}, -- Astral Grasp
+		{1253709, "PRIVATE"}, -- Neural Link
 	}
 end
