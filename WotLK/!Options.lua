@@ -298,6 +298,14 @@ BigWigs:AddSounds("Scourgelord Tyrannus", {
 	[69275] = "alarm",
 })
 
+BigWigs:AddColors("Pit of Saron Trash", {
+	["quarry_camps_liberated"] = "green",
+})
+
+BigWigs:AddSounds("Pit of Saron Trash", {
+	["quarry_camps_liberated"] = "info",
+})
+
 BigWigs:AddColors("Meathook", {
 	[52696] = {"blue","red"},
 })
