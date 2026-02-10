@@ -6,6 +6,14 @@ local mod, CL = BigWigs:NewBoss("Ick & Krick", 658, 609)
 if not mod then return end
 mod:RegisterEnableMob(36476, 36477)
 mod:SetEncounterID(mod:Classic() and 835 or 2001)
+if mod:Retail() then -- Midnight+
+	mod:SetPrivateAuraSounds({
+		{1264186, sound = "alert"}, -- Shadowbind
+		{1264246, sound = "long"}, -- Shade Shift
+		{1264299, sound = "underyou"}, -- Blight
+		{1264453, sound = "warning"}, -- Lumbering Fixation
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -38,6 +46,24 @@ end
 
 function mod:OnEngage()
 	barrage = nil
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if mod:Retail() then -- Midnight+
+	function mod:GetOptions()
+		return {
+			{1264186, "PRIVATE"}, -- Shadowbind
+			{1264246, "PRIVATE"}, -- Shade Shift
+			{1264299, "PRIVATE"}, -- Blight
+			{1264453, "PRIVATE"}, -- Lumbering Fixation
+		}
+	end
+
+	function mod:OnBossEnable()
+	end
 end
 
 --------------------------------------------------------------------------------
