@@ -40,7 +40,7 @@ function mod:OnBossEnable()
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
 
-	-- Snitches Interrogated
+	-- Quarry Camps Liberated
 	self:RegisterWidgetEvent(7520, "QuarryCampsLiberated", true)
 end
 
