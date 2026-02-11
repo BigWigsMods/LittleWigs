@@ -9,12 +9,6 @@ mod:RegisterEnableMob(19219)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
--- Locals
---
-
-local playerCollector = {}
-
---------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -52,43 +46,49 @@ end
 --
 
 function mod:ReflectiveShield(args)
-	self:MessageOld(args.spellId, "orange")
+	self:Message(args.spellId, "orange")
 	self:Bar(args.spellId, 10)
 end
 
 function mod:ReflectiveShieldRemoved(args)
-	self:MessageOld(args.spellId, "green", nil, CL.removed:format(args.spellName))
+	self:Message(args.spellId, "green", CL.removed:format(args.spellName))
 end
 
 function mod:PolarityShift(args)
-	self:MessageOld(args.spellId, "orange", nil, CL.casting:format(args.spellName))
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
 	self:CastBar(args.spellId, 3)
 end
 
 do
-	local function fillTheTable(self, unit, spellId)
-		local guid = self:UnitGUID(unit)
-		if not playerCollector[guid] then
-			playerCollector[guid] = true
-			if self:Me(guid) then
-				-- Cyan for Positive, Red for Negative
-				self:MessageOld(39096, spellId == 39088 and "cyan" or "red", "info", CL.you:format(self:SpellName(spellId)), spellId)
+	local playerCollector = {}
+	do
+		local function fillTheTable(self, unit, spellId)
+			local guid = self:UnitGUID(unit)
+			if not playerCollector[guid] then
+				playerCollector[guid] = true
+				if self:Me(guid) then
+					self:PersonalMessage(39096, nil, self:SpellName(spellId), spellId)
+					self:PlaySound(39096, "info")
+				end
+			end
+		end
+
+		-- no SPELL_AURA_APPLIED events
+		function mod:UNIT_AURA(event, unit)
+			if self:GetUnitAura(unit, 39088) then -- Positive Charge
+				self:UnregisterUnitEvent(event, unit)
+				fillTheTable(self, unit, 39088)
+			elseif self:GetUnitAura(unit, 39091) then -- Negative Charge
+				self:UnregisterUnitEvent(event, unit)
+				fillTheTable(self, unit, 39091)
 			end
 		end
 	end
 
-	-- no SPELL_AURA_APPLIED events
-	function mod:UNIT_AURA(_, unit)
-		if self:UnitDebuff(unit, 39088) then -- Positive Charge
-			fillTheTable(self, unit, 39088)
-		elseif self:UnitDebuff(unit, 39091) then -- Negative Charge
-			fillTheTable(self, unit, 39091)
-		end
-	end
-
+	local function StopListening() mod:UnregisterUnitEvent("UNIT_AURA", "player", "party1", "party2", "party3", "party4") end
 	function mod:PolarityShiftSuccess()
 		playerCollector = {}
 		self:RegisterUnitEvent("UNIT_AURA", nil, "player", "party1", "party2", "party3", "party4")
-		self:ScheduleTimer("UnregisterUnitEvent", 3, "UNIT_AURA", "player", "party1", "party2", "party3", "party4")
+		self:SimpleTimer(StopListening, 3)
 	end
 end
