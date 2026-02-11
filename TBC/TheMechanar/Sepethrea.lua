@@ -58,16 +58,16 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "Inferno", 35268, 39346) -- normal, heroic
 
 	-- Fixate
-	self:RegisterTargetEvents("RagingFlamesFinder")
-	self:Log("SWING_DAMAGE", "RagingFlamesSwing", "*") -- just in case the player somehow bodypulls the boss without activating the module (thus missing "NAME_PLATE_UNIT_ADDED" events)
-	self:Log("SWING_MISSED", "RagingFlamesSwing", "*")
-	self:Log("PARTY_KILL", "RagingFlamesDeath", "*") -- UNIT_DIED (which is what self:Death() is using) doesn't provide a sourceGUID, and both adds fire that event (triggering unregisterGUIDFindingEvents) if you wipe with them alive
 	self:Log("SPELL_AURA_REMOVED", "InfernoEnded", 35268, 39346) -- normal, heroic
 end
 
 function mod:OnEngage()
 	mobsFound = 0
 	mobCollector = {}
+	self:RegisterTargetEvents("RagingFlamesFinder")
+	self:Log("SWING_DAMAGE", "RagingFlamesSwing", "*") -- just in case the player somehow bodypulls the boss without activating the module (thus missing "NAME_PLATE_UNIT_ADDED" events)
+	self:Log("SWING_MISSED", "RagingFlamesSwing", "*")
+	self:Log("PARTY_KILL", "RagingFlamesDeath", "*") -- UNIT_DIED (which is what self:Death() is using) doesn't provide a sourceGUID, and both adds fire that event (triggering unregisterGUIDFindingEvents) if you wipe with them alive
 end
 
 mod.OnBossDisable = mod.OnEngage
