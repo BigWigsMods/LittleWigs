@@ -7,6 +7,11 @@ if not mod then return end
 mod:RegisterEnableMob(196482) -- Overgrown Ancient
 mod:SetEncounterID(2563)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{388544, sound = "alarm"}, -- Barkbreaker
+	{389033, sound = "none"}, -- Lasher Toxin
+	{396716, sound = "long"}, -- Splinterbark
+})
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -77,6 +82,24 @@ function mod:OnEngage()
 		self:CDBar(388623, 30.4) -- Branch Out
 	end
 	self:CDBar(388923, 56.4, CL.count:format(self:SpellName(388923), 1)) -- Burst Forth (1)
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if mod:Retail() then -- Midnight+
+	function mod:GetOptions()
+		return {
+			"warmup",
+			{388544, "PRIVATE"}, -- Barkbreaker
+			{389033, "PRIVATE"}, -- Lasher Toxin
+			{396716, "PRIVATE"}, -- Splinterbark
+		}
+	end
+
+	function mod:OnBossEnable()
+	end
 end
 
 --------------------------------------------------------------------------------
