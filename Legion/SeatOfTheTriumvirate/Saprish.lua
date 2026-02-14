@@ -1,9 +1,3 @@
-
---------------------------------------------------------------------------------
--- TODO:
--- -- Ravaging Darkness Target?
--- -- Dread Screech warnings for interupters only?
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -11,7 +5,13 @@
 local mod, CL = BigWigs:NewBoss("Saprish", 1753, 1980)
 if not mod then return end
 mod:RegisterEnableMob(122316, 122319, 125340) -- Saprish, Darkfang, Duskwing
-mod.engageId = 2066
+mod:SetEncounterID(2066)
+mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{245742, sound = "alert"}, -- Shadow Pounce
+	{246026, sound = "alarm"}, -- Void Bomb
+	{1263523, sound = "info"}, -- Overload
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -23,10 +23,8 @@ function mod:GetOptions()
 		245873, -- Void Trap
 		247206, -- Overload Trap
 		{247245, "SAY"}, -- Umbral Flanking
-
 		--[[ Darkfang ]]--
 		245802, -- Ravaging Darkness
-
 		--[[ Duskwing (Mythic) ]]--
 		248831, -- Dread Screech
 	},{
@@ -62,18 +60,37 @@ function mod:OnEngage()
 end
 
 --------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if mod:Retail() then -- Midnight+
+	function mod:GetOptions()
+		return {
+			{245742, "PRIVATE"}, -- Shadow Pounce
+			{246026, "PRIVATE"}, -- Void Bomb
+			{1263523, "PRIVATE"}, -- Overload
+		}
+	end
+
+	function mod:OnBossEnable()
+	end
+end
+
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, _, spellId)
 	if not self:IsSecret(spellId) and spellId == 247206 then -- Overload Trap
-		self:MessageOld(spellId, "yellow", "alarm")
+		self:Message(spellId, "yellow")
 		self:Bar(spellId, 20.7)
+		self:PlaySound(spellId, "alarm")
 	end
 end
 
 function mod:VoidTrap()
-	self:MessageOld(245873, "cyan", "info")
+	self:Message(245873, "cyan")
 	self:Bar(245873, 15.8)
+	self:PlaySound(245873, "info")
 end
 
 function mod:UmbralFlanking(args)
@@ -81,7 +98,7 @@ function mod:UmbralFlanking(args)
 end
 
 do
-	local list = mod:NewTargetList()
+	local list = {}
 	function mod:UmbralFlankingApplied(args)
 		list[#list+1] = args.destName
 		if #list == 1 then
@@ -94,24 +111,26 @@ do
 end
 
 function mod:RavagingDarkness(args)
-	self:MessageOld(args.spellId, "yellow", "long")
+	self:Message(args.spellId, "yellow")
 	self:Bar(args.spellId, 9.7)
+	self:PlaySound(args.spellId, "long")
 end
 
 do
 	local prev = 0
 	function mod:RavagingDarknessDamage(args)
 		if self:Me(args.destGUID) then
-			local t = GetTime()
-			if t-prev > 1.5 then
-				prev = t
-				self:MessageOld(245802, "blue", "alert", CL.underyou:format(args.spellName))
+			if args.time - prev > 1.5 then
+				prev = args.time
+				self:PersonalMessage(245802, "underyou")
+				self:PlaySound(245802, "underyou")
 			end
 		end
 	end
 end
 
 function mod:DreadScreech(args)
-	self:MessageOld(args.spellId, "red", "warning")
+	self:Message(args.spellId, "red")
 	self:CDBar(args.spellId, 15)
+	self:PlaySound(args.spellId, "warning")
 end

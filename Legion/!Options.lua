@@ -1386,7 +1386,7 @@ BigWigs:AddColors("Saprish", {
 })
 
 BigWigs:AddSounds("Saprish", {
-	[245802] = {"alert","long"},
+	[245802] = {"long","underyou"},
 	[245873] = "info",
 	[247206] = "alarm",
 	[247245] = "alert",
