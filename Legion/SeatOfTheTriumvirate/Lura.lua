@@ -1,9 +1,3 @@
-
---------------------------------------------------------------------------------
--- TODO:
--- -- Improve timers, especially initial timers when entering last phase (after Naaru's Lament)
--- -- Check if any (important) abilities are missing
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -11,7 +5,12 @@
 local mod, CL = BigWigs:NewBoss("L'ura", 1753, 1982)
 if not mod then return end
 mod:RegisterEnableMob(124729) -- L'ura
-mod.engageId = 2068
+mod:SetEncounterID(2068)
+mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{1265426, sound = "alarm"}, -- Discordant Beam
+	{1265650, sound = "alert"}, -- Anguish
+})
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -43,7 +42,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_SAY", "Warmup")
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 	self:Log("SPELL_CAST_START", "CalltotheVoid", 247795)
 	self:Log("SPELL_AURA_APPLIED", "NaarusLament", 248535)
 	self:Log("SPELL_CAST_SUCCESS", "UmbralCadence", 247930)
@@ -54,15 +53,30 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "GrandShift", 249009)
 end
 
-function mod:OnEngage()
-	-- Nothing?
+--------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if mod:Retail() then -- Midnight+
+	function mod:GetOptions()
+		return {
+			{1265426, "PRIVATE"}, -- Discordant Beam
+			{1265650, "PRIVATE"}, -- Anguish
+		}
+	end
+
+	function mod:OnBossEnable()
+		self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:Warmup(event, msg)
+function mod:CHAT_MSG_MONSTER_SAY(event, msg)
+	-- TODO move to trash module, this won't be enabled in time in 12.0+
+	if self:IsSecret(msg) then return end
 	if msg == L.warmup_trigger then
 		self:UnregisterEvent(event)
 		self:Bar("warmup", 30.2, L.warmup_text, "spell_priest_divinestar_shadow")
@@ -73,29 +87,35 @@ function mod:Warmup(event, msg)
 end
 
 function mod:CalltotheVoid(args)
-	self:MessageOld(args.spellId, "red", "warning")
+	self:Message(args.spellId, "red")
 	self:CDBar(245164, 11) -- Fragment of Despair
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:NaarusLament(args)
-	self:MessageOld(args.spellId, "cyan", "info")
+	self:Message(args.spellId, "cyan")
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:UmbralCadence(args)
-	self:MessageOld(args.spellId, "yellow", "alert")
+	self:Message(args.spellId, "yellow")
 	self:CDBar(args.spellId, 10.5)
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:FragmentofDespair(args)
-	self:MessageOld(args.spellId, "red", "warning", CL.incoming:format(args.spellName))
+	self:Message(args.spellId, "red", CL.incoming:format(args.spellName))
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:Backlash(args)
-	self:MessageOld(args.spellId, "green", "long")
+	self:Message(args.spellId, "green")
 	self:Bar(args.spellId, 12.5)
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:GrandShift(args)
-	self:MessageOld(args.spellId, "orange", "alarm")
+	self:Message(args.spellId, "orange")
 	self:Bar(args.spellId, 14.5)
+	self:PlaySound(args.spellId, "alarm")
 end
