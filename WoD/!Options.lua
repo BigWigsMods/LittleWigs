@@ -437,17 +437,17 @@ BigWigs:AddSounds("Araknath", {
 })
 
 BigWigs:AddColors("Rukhran", {
-	[153794] = "yellow",
+	[153794] = "purple",
 	[153810] = "red",
 	[159382] = {"green","orange"},
 	[167757] = "blue",
 })
 
 BigWigs:AddSounds("Rukhran", {
-	[153794] = "warning",
+	[153794] = "alarm",
 	[153810] = "info",
 	[159382] = "long",
-	[167757] = "alarm",
+	[167757] = "warning",
 })
 
 BigWigs:AddColors("High Sage Viryx", {
