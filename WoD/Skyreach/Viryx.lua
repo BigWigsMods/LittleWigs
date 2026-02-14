@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,13 @@
 local mod, CL = BigWigs:NewBoss("High Sage Viryx", 1209, 968)
 if not mod then return end
 mod:RegisterEnableMob(76266)
-mod.engageId = 1701
-mod.respawnTime = 15
+mod:SetEncounterID(1701)
+mod:SetRespawnTime(15)
+mod:SetPrivateAuraSounds({
+	{153954, sound = "info"}, -- Cast Down
+	{1253541, sound = "alert"}, -- Scorching Ray
+	{1253543, sound = "none"}, -- Scorching Ray
+})
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -54,6 +58,23 @@ function mod:OnEngage()
 end
 
 --------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if mod:Retail() then -- Midnight+
+	function mod:GetOptions()
+		return {
+			{153954, "PRIVATE"}, -- Cast Down
+			{1253541, "PRIVATE"}, -- Scorching Ray
+			{1253543, "PRIVATE"}, -- Scorching Ray
+		}
+	end
+
+	function mod:OnBossEnable()
+	end
+end
+
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 
@@ -72,19 +93,23 @@ end
 
 do
 	local function bossTarget(self, name)
-		self:TargetMessageOld(153954, name, "yellow", "warning", nil, nil, true)
+		self:TargetMessage(153954, "yellow", name)
+		self:PlaySound(153954, "warning", nil, name)
 	end
+
 	function mod:UNIT_SPELLCAST_SUCCEEDED(_, unit, _, spellId)
 		if not self:IsSecret(spellId) and spellId == 153954 then -- Cast Down
 			self:GetUnitTarget(bossTarget, 0.7, self:UnitGUID(unit))
 			self:CDBar(spellId, 37) -- 37-40
 		elseif not self:IsSecret(spellId) and spellId == 154049 then -- Call Adds
-			self:MessageOld("adds", "red", "info", CL.add_spawned, L.adds_icon) -- Cog icon
+			self:Message("adds", "red", CL.add_spawned, L.adds_icon) -- Cog icon
 			self:CDBar("adds", 58, CL.add, L.adds_icon) -- 57-60
+			self:PlaySound("adds", "info")
 		end
 	end
 end
 
 function mod:Shielding(args)
-	self:MessageOld(args.spellId, "orange", "long")
+	self:Message(args.spellId, "orange")
+	self:PlaySound(args.spellId, "long")
 end
