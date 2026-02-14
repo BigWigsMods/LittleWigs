@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,12 @@
 local mod, CL = BigWigs:NewBoss("Ranjit", 1209, 965)
 if not mod then return end
 mod:RegisterEnableMob(75964)
-mod.engageId = 1698
-mod.respawnTime = 15
+mod:SetEncounterID(1698)
+mod:SetRespawnTime(15)
+mod:SetPrivateAuraSounds({
+	{153757, sound = "alert"}, -- Fan of Blades
+	{1252733, sound = "none"}, -- Gale Surge
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -32,18 +35,36 @@ function mod:OnEngage()
 end
 
 --------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if mod:Retail() then -- Midnight+
+	function mod:GetOptions()
+		return {
+			{153757, "PRIVATE"}, -- Fan of Blades
+			{1252733, "PRIVATE"}, -- Gale Surge
+		}
+	end
+
+	function mod:OnBossEnable()
+	end
+end
+
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 
 function mod:FourWinds(args)
-	self:MessageOld(args.spellId, "orange", "warning")
+	self:Message(args.spellId, "orange")
 	self:Bar(args.spellId, 36)
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:Windwall(args)
-	self:MessageOld(args.spellId, "red")
+	self:Message(args.spellId, "red")
 end
 
 function mod:PiercingRush(args)
-	self:TargetMessageOld(args.spellId, args.destName, "yellow", "alarm")
+	self:TargetMessage(args.spellId, "yellow", args.destName)
+	self:PlaySound(args.spellId, "alarm", nil, args.destName)
 end
