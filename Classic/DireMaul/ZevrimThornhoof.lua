@@ -22,6 +22,7 @@ end
 
 function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "IntensePain", 22478)
+	self:Log("SPELL_CAST_START", "Sacrifice", 22651)
 	self:Log("SPELL_CAST_SUCCESS", "Sacrifice", 22651)
 	self:Log("SPELL_AURA_APPLIED", "SacrificeApplied", 22651)
 	self:Log("SPELL_CAST_START", "ShadowBoltVolley", 17228)
@@ -48,6 +49,8 @@ function mod:IntensePain(args)
 end
 
 function mod:Sacrifice(args)
+	self:Message(args.spellId, "orange", CL.casting:format(args.spellName))
+    self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 17.0)
 end
 
