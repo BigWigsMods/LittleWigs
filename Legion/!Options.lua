@@ -1405,7 +1405,7 @@ BigWigs:AddColors("Viceroy Nezhar", {
 BigWigs:AddSounds("Viceroy Nezhar", {
 	[-15926] = "info",
 	[244751] = "alarm",
-	[244906] = "alert",
+	[244906] = "underyou",
 	[246324] = "long",
 	[248736] = "long",
 	[248804] = "info",
