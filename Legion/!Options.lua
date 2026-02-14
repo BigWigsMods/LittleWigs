@@ -1360,11 +1360,11 @@ BigWigs:AddSounds("Neltharions Lair Trash", {
 })
 
 BigWigs:AddColors("Zuraal", {
-	[244433] = "blue",
+	[244433] = {"blue","yellow"},
 	[244579] = "orange",
 	[244602] = "yellow",
 	[244621] = {"cyan","green"},
-	[244653] = "blue",
+	[244653] = {"blue","red"},
 	[246134] = "red",
 })
 
