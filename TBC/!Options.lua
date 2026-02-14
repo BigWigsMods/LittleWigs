@@ -410,7 +410,7 @@ BigWigs:AddSounds("Warp Splinter", {
 BigWigs:AddColors("Mechano-Lord Capacitus", {
 	[35158] = {"green","orange"},
 	[35159] = {"green","orange"},
-	[39096] = {"cyan","orange","red"},
+	[39096] = {"blue","orange"},
 })
 
 BigWigs:AddSounds("Mechano-Lord Capacitus", {
