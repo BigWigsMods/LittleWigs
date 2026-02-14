@@ -1434,6 +1434,7 @@ BigWigs:AddColors("Seat of the Triumvirate Trash", {
 	[248227] = "red",
 	[249078] = "yellow",
 	[249081] = "blue",
+	["void_rifts_closed"] = "green",
 })
 
 BigWigs:AddSounds("Seat of the Triumvirate Trash", {
@@ -1441,6 +1442,7 @@ BigWigs:AddSounds("Seat of the Triumvirate Trash", {
 	[248227] = "warning",
 	[249078] = "info",
 	[249081] = "alarm",
+	["void_rifts_closed"] = "info",
 })
 
 BigWigs:AddColors("Ivanyr", {

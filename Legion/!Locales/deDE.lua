@@ -433,6 +433,7 @@ end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "deDE")
 if L then
+	-- Pre-Midnight
 	L.custom_on_autotalk_desc = "Wählt direkt Alleria Windläufers Dialogoption."
 	L.gossip_available = "Dialog verfügbar"
 	L.alleria_gossip_trigger = "Folgt mir!" -- Allerias yell after the first boss is defeated
@@ -442,6 +443,10 @@ if L then
 	L.voidbender = "Leerenformer der Schattenwache"
 	L.conjurer = "Beschwörer der Schattenwache"
 	L.weaver = "Großschattenwirker"
+
+	-- Midnight+
+	--L.void_rifts_closed = "Void Rifts Closed"
+	--L.void_rifts_closed_desc = "Show an alert when a Void Rift has been closed."
 end
 
 -- The Arcway

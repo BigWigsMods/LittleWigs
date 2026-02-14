@@ -433,6 +433,7 @@ end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "zhCN")
 if L then
+	-- Pre-Midnight
 	L.custom_on_autotalk_desc = "立即选择奥蕾莉亚·风行者对话选项。"
 	L.gossip_available = "可对话"
 	L.alleria_gossip_trigger = "跟我走！" -- Allerias yell after the first boss is defeated
@@ -442,6 +443,10 @@ if L then
 	L.voidbender = "影卫缚灵师"
 	L.conjurer = "影卫召唤师"
 	L.weaver = "大织影者"
+
+	-- Midnight+
+	--L.void_rifts_closed = "Void Rifts Closed"
+	--L.void_rifts_closed_desc = "Show an alert when a Void Rift has been closed."
 end
 
 -- The Arcway

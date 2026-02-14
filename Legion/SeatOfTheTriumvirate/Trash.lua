@@ -14,11 +14,18 @@ mod:RegisterEnableMob(
 )
 
 --------------------------------------------------------------------------------
+-- Locals
+--
+
+local lastText
+
+--------------------------------------------------------------------------------
 -- Localization
 --
 
 local L = mod:GetLocale()
 if L then
+	-- Pre-Midnight
 	L.custom_on_autotalk = CL.autotalk
 	L.custom_on_autotalk_desc = "Instantly selects Alleria Winrunner's gossip option."
 	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
@@ -30,6 +37,11 @@ if L then
 	L.voidbender = "Shadowguard Voidbender"
 	L.conjurer = "Shadowguard Conjurer"
 	L.weaver = "Grand Shadow-Weaver"
+
+	-- Midnight+
+	L.void_rifts_closed = "Void Rifts Closed"
+	L.void_rifts_closed_desc = "Show an alert when a Void Rift has been closed."
+	L.void_rifts_closed_icon = "inv12_apextalent_priest_voidshield"
 end
 
 --------------------------------------------------------------------------------
@@ -56,26 +68,52 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterMessage("BigWigs_OnBossEngage", "Disable")
-
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	self:RegisterEvent("GOSSIP_SHOW")
 
 	self:Log("SPELL_AURA_APPLIED", "SuppressionFieldApplied", 249081)
 	self:Log("SPELL_AURA_APPLIED", "CorruptingVoidApplied", 245510)
 	self:Log("SPELL_CAST_START", "VoidDiffusionCast", 249078)
 	self:Log("SPELL_CAST_START", "DarkMatterCast", 248227)
 	self:Log("SPELL_CAST_START", "CollapseCast", 248228)
+end
 
-	self:RegisterEvent("GOSSIP_SHOW")
+--------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if mod:Retail() then -- Midnight+
+	function mod:GetOptions()
+		return {
+			"void_rifts_closed",
+		}
+	end
+
+	function mod:OnBossEnable()
+		-- Void Rifts Closed
+		self:RegisterWidgetEvent(7577, "VoidRiftsClosed", true)
+	end
+
+	function mod:OnBossDisable()
+		lastText = nil
+	end
 end
 
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
 
-function mod:CHAT_MSG_MONSTER_YELL(_, msg)
+function mod:CHAT_MSG_MONSTER_YELL(_, msg) -- Pre-Midnight only, gossip removed in Midnight
 	if not self:IsSecret(msg) and msg == L.alleria_gossip_trigger then
 		self:Bar("warmup", 38, L.gossip_available, L.custom_on_autotalk_icon)
+	end
+end
+
+function mod:GOSSIP_SHOW() -- Pre-Midnight only, gossip removed in Midnight
+	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 125836 then
+		if self:GetGossipOptions() then
+			self:SelectGossipOption(1)
+		end
 	end
 end
 
@@ -115,10 +153,11 @@ function mod:CollapseCast(args)
 	self:CastBar(248227, 4.9, args.spellId)
 end
 
-function mod:GOSSIP_SHOW()
-	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 125836 then
-		if self:GetGossipOptions() then
-			self:SelectGossipOption(1)
-		end
-	end
+function mod:VoidRiftsClosed(_, text)
+    -- [UPDATE_UI_WIDGET] widgetID:7577, widgetType:8, shownState:1, text:Void Rifts Closed: 0/4
+    if text ~= lastText then
+        lastText = text
+        self:Message("void_rifts_closed", "green", text, false)
+        self:PlaySound("void_rifts_closed", "info")
+    end
 end
