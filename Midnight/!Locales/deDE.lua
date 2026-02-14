@@ -2,22 +2,22 @@
 
 local L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "deDE")
 if L then
-    --L.offerings_acquired = "Offerings Acquired"
-	--L.offerings_acquired_desc = "Show an alert when an offering has been acquired."
+    L.offerings_acquired = "Gaben erhalten"
+	L.offerings_acquired_desc = "Zeigt einen Alarm, wenn eine Gabe erhalten wurde."
 end
 
 -- Maisara Caverns
 
 L = BigWigs:NewBossLocale("Maisara Caverns Trash", "deDE")
 if L then
-	--L.prisoners_freed = "Prisoners Freed"
-	--L.prisoners_freed_desc = "Show an alert when a prisoner has been freed."
+	L.prisoners_freed = "Gefangene befreit"
+	L.prisoners_freed_desc = "Zeigt einen Alarm, wenn ein Gefangener befreit wurde."
 end
 
 -- Murder Row
 
 L = BigWigs:NewBossLocale("Murder Row Trash", "deDE")
 if L then
-	--L.snitches_interrogated = "Snitches Interrogated"
-	--L.snitches_interrogated_desc = "Show an alert when a snitch has been interrogated."
+	L.snitches_interrogated = "Spitzel verhört"
+	L.snitches_interrogated_desc = "Zeigt einen Alarm, wenn ein Spitzel verhört wurde."
 end
