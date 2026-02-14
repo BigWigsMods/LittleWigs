@@ -124,8 +124,7 @@ function mod:ArcaneBlitz(args)
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(_, _, castGUID, spellId)
-	if castCollector[castGUID] then return end
-	if not self:IsSecret(spellId) and spellId == 237191 then -- Fel Stomp
+	if not self:IsSecret(spellId) and spellId == 237191 and not castCollector[castGUID] then -- Fel Stomp
 		castCollector[castGUID] = true
 		self:MessageOld(spellId, "orange", "alarm", CL.incoming:format(self:SpellName(spellId)))
 		self:CDBar(spellId, 11)
