@@ -10,6 +10,11 @@ mod:RegisterEnableMob(
 )
 mod:SetEncounterID(2564)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{376760, sound = "info"}, -- Gale Force
+	{376997, sound = "alert"}, -- Savage Peck
+	{377009, sound = "alarm"}, -- Deafening Screech
+})
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -84,6 +89,32 @@ function mod:OnEngage()
 end
 
 --------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if mod:Retail() then -- Midnight+
+	function mod:GetOptions()
+		return {
+			"warmup",
+			{376760, "PRIVATE"}, -- Gale Force
+			{376997, "PRIVATE"}, -- Savage Peck
+			{377009, "PRIVATE"}, -- Deafening Screech
+		}
+	end
+
+	function mod:OnBossEnable()
+		-- Lish Llrath
+		self:RegisterWidgetEvent(4183, "GoalOfTheSearingBlaze")
+		self:RegisterWidgetEvent(4184, "GoalOfTheRushingWinds")
+	end
+
+	function mod:OnEncounterStart()
+		searingBlazeGoals = 0
+		rushingWindsGoals = 0
+	end
+end
+
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 
@@ -106,21 +137,23 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	end
 end
 
--- [UPDATE_UI_WIDGET] widgetID:4183, shownState:1, text:Goal of the Searing Blaze, barValue:0
 function mod:GoalOfTheSearingBlaze(_, _, info)
+	-- [UPDATE_UI_WIDGET] widgetID:4183, shownState:1, text:Goal of the Searing Blaze, barValue:0
 	local shownState = info.shownState
 	local barValue = info.barValue
 	if shownState == 1 and barValue == 3 then
-		if self:Mythic() then
-			-- reset the count in the Deafening Screech bar back to 1
-			local oldBarText = CL.count:format(self:SpellName(377004), sonicVulnerabilityStacks + 1) -- Deafening Screech (n)
-			local barTimeLeft = self:BarTimeLeft(oldBarText)
-			if barTimeLeft > .1 then
-				self:StopBar(oldBarText)
-				self:CDBar(377004, {barTimeLeft, 22.7}, CL.count:format(self:SpellName(377004), 1)) -- Deafening Screech (1)
+		if not self:Retail() then -- Pre-Midnight
+			if self:Mythic() then
+				-- reset the count in the Deafening Screech bar back to 1
+				local oldBarText = CL.count:format(self:SpellName(377004), sonicVulnerabilityStacks + 1) -- Deafening Screech (n)
+				local barTimeLeft = self:BarTimeLeft(oldBarText)
+				if barTimeLeft > .1 then
+					self:StopBar(oldBarText)
+					self:CDBar(377004, {barTimeLeft, 22.7}, CL.count:format(self:SpellName(377004), 1)) -- Deafening Screech (1)
+				end
 			end
+			sonicVulnerabilityStacks = 0
 		end
-		sonicVulnerabilityStacks = 0
 		searingBlazeGoals = barValue
 		self:Message(376448, "red") -- Firestorm
 		self:PlaySound(376448, "long")
@@ -139,21 +172,23 @@ function mod:FirestormApplied(args)
 	self:PlaySound(376448, "info")
 end
 
--- [UPDATE_UI_WIDGET] widgetID:4184, shownState:1, text:Goal of the Rushing Winds, barValue:0
 function mod:GoalOfTheRushingWinds(_, _, info)
+	-- [UPDATE_UI_WIDGET] widgetID:4184, shownState:1, text:Goal of the Rushing Winds, barValue:0
 	local shownState = info.shownState
 	local barValue = info.barValue
 	if shownState == 1 and barValue == 3 then
-		if self:Mythic() then
-			-- reset the count in the Deafening Screech bar back to 1
-			local oldBarText = CL.count:format(self:SpellName(377004), sonicVulnerabilityStacks + 1) -- Deafening Screech (n)
-			local barTimeLeft = self:BarTimeLeft(oldBarText)
-			if barTimeLeft > .1 then
-				self:StopBar(oldBarText)
-				self:CDBar(377004, {barTimeLeft, 22.7}, CL.count:format(self:SpellName(377004), 1)) -- Deafening Screech (1)
+		if not self:Retail() then -- Pre-Midnight
+			if self:Mythic() then
+				-- reset the count in the Deafening Screech bar back to 1
+				local oldBarText = CL.count:format(self:SpellName(377004), sonicVulnerabilityStacks + 1) -- Deafening Screech (n)
+				local barTimeLeft = self:BarTimeLeft(oldBarText)
+				if barTimeLeft > .1 then
+					self:StopBar(oldBarText)
+					self:CDBar(377004, {barTimeLeft, 22.7}, CL.count:format(self:SpellName(377004), 1)) -- Deafening Screech (1)
+				end
 			end
+			sonicVulnerabilityStacks = 0
 		end
-		sonicVulnerabilityStacks = 0
 		rushingWindsGoals = barValue
 		self:Message(376467, "red") -- Gale Force
 		self:PlaySound(376467, "long")
@@ -178,8 +213,8 @@ end
 
 function mod:OverpoweringGust(args)
 	self:Message(args.spellId, "orange")
-	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 28.6)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:DeafeningScreech(args)
@@ -198,6 +233,6 @@ end
 
 function mod:SavagePeck(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
 	self:CDBar(args.spellId, 14.6)
+	self:PlaySound(args.spellId, "alert")
 end
