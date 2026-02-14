@@ -7,6 +7,10 @@ if not mod then return end
 mod:RegisterEnableMob(194181) -- Vexamus
 mod:SetEncounterID(2562)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{386201, sound = "underyou"}, -- Corrupted Mana
+	{391977, sound = "alert"}, -- Oversurge
+})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -60,6 +64,23 @@ function mod:OnEngage()
 	self:CDBar(385958, 12.1) -- Arcane Expulsion
 	self:CDBar(386173, 22.1) -- Mana Bombs
 	self:CDBar(388537, 40.9, CL.count:format(self:SpellName(388537), 1)) -- Arcane Fissure (1)
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if mod:Retail() then -- Midnight+
+	function mod:GetOptions()
+		return {
+			"warmup",
+			{386201, "PRIVATE"}, -- Corrupted Mana
+			{391977, "PRIVATE"}, -- Oversurge
+		}
+	end
+
+	function mod:OnBossEnable()
+	end
 end
 
 --------------------------------------------------------------------------------
