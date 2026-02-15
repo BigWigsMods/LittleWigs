@@ -17,5 +17,5 @@ end
 
 L = BigWigs:NewBossLocale("Pyroguard Emberseer", "esES")
 if L then
-	L.pyroguard_emberseer = "Piroguardia Brasadivino"
+	L.pyroguard_emberseer = "Piroguardián Brasadivino"
 end
