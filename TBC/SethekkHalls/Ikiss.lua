@@ -32,7 +32,7 @@ function mod:OnBossEnable()
 	else
 		self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 	end
-	self:Log("SPELL_CAST_SUCCESS", "ArcaneExplosion", 38197, 40425) -- normal, heroic
+	self:Log("SPELL_CAST_START", "ArcaneExplosion", 38197, 40425) -- normal, heroic
 	self:Log("SPELL_AURA_APPLIED", "Polymorph", 38245, 43309) -- normal, heroic
 	self:Log("SPELL_AURA_REMOVED", "PolymorphRemoved", 38245, 43309)
 	self:Log("SPELL_CAST_SUCCESS", "SlowCast", 35032)
@@ -52,12 +52,13 @@ end
 --
 
 function mod:ArcaneExplosion(args)
-	self:MessageOld(38197, "orange", "warning", CL.casting:format(args.spellName))
+	self:Message(38197, "orange", CL.casting:format(args.spellName))
 	self:CastBar(38197, 5)
+	self:PlaySound(38197, "warning")
 end
 
 function mod:Polymorph(args)
-	self:TargetMessageOld(38245, args.destName, "yellow")
+	self:TargetMessage(38245, "yellow", args.destName)
 	self:TargetBar(38245, 6, args.destName)
 end
 
@@ -109,7 +110,7 @@ do
 			local hp = self:GetHealth(unit)
 			if hp < warnAt[explosionWarnings] then
 				explosionWarnings = explosionWarnings + 1
-				self:MessageOld(38197, "orange", nil, CL.soon:format(self:SpellName(38197))) -- Arcane Explosion
+				self:Message(38197, "orange", CL.soon:format(self:SpellName(38197))) -- Arcane Explosion
 
 				while explosionWarnings <= #warnAt and hp < warnAt[explosionWarnings] do
 					-- account for high-level characters hitting multiple thresholds
