@@ -3,7 +3,7 @@
 local L = BigWigs:NewBossLocale("Lethtendris", "zhTW")
 if not L then return end
 if L then
-	L.pimgib = "Pimgib"
+	L.pimgib = "匹姆吉布"
 end
 
 -- Stratholme
@@ -17,5 +17,5 @@ end
 
 L = BigWigs:NewBossLocale("Pyroguard Emberseer", "zhTW")
 if L then
-	--L.pyroguard_emberseer = "Pyroguard Emberseer"
+	L.pyroguard_emberseer = "烈焰衛士艾博希爾"
 end
