@@ -445,8 +445,8 @@ if L then
 	L.weaver = "Großschattenwirker"
 
 	-- Midnight+
-	--L.void_rifts_closed = "Void Rifts Closed"
-	--L.void_rifts_closed_desc = "Show an alert when a Void Rift has been closed."
+	L.void_rifts_closed = "Leerenrisse geschlossen"
+	L.void_rifts_closed_desc = "Zeigt einen Alarm, wenn ein Leerenriss geschlossen wurde."
 end
 
 -- The Arcway
