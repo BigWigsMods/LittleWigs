@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod = BigWigs:NewBoss("Spinshroom Midnight", 2963)
+local mod = BigWigs:NewBoss("Gyrospore", 2963)
 if not mod then return end
 mod:SetEncounterID(3363)
 mod:SetAllowWin(true)
@@ -13,7 +13,7 @@ mod:SetAllowWin(true)
 
 local L = mod:GetLocale()
 if L then
-	L.spinshroom = "Spinshroom"
+	L.gyrospore = "Gyrospore"
 end
 
 --------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ end
 --
 
 function mod:OnRegister()
-	self.displayName = L.spinshroom
+	self.displayName = L.gyrospore
 end
 
 function mod:GetOptions()

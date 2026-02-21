@@ -57,14 +57,14 @@ if L then
 	L.brightthorn = "Cornobrillo"
 end
 
+L = BigWigs:NewBossLocale("Gyrospore", "esMX")
+if L then
+	--L.gyrospore = "Gyrospore"
+end
+
 L = BigWigs:NewBossLocale("Mycomight", "esMX")
 if L then
 	L.mycomight = "Micosupremo"
-end
-
-L = BigWigs:NewBossLocale("Spinshroom", "esMX")
-if L then
-	L.spinshroom = "Champizote"
 end
 
 -- Delves: The Gulf of Memory

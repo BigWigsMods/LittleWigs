@@ -10,8 +10,8 @@
 <Script file="Delves\SunkillerSanctum\Esuritus.lua"/>
 <Script file="Delves\TheDarkway\InfiltratorGulkat.lua"/>
 <Script file="Delves\TheGrudgePit\Brightthorn.lua"/>
+<Script file="Delves\TheGrudgePit\Gyrospore.lua"/>
 <Script file="Delves\TheGrudgePit\Mycomight.lua"/>
-<Script file="Delves\TheGrudgePit\Spinshroom.lua"/>
 <Script file="Delves\TheGulfOfMemory\Lumenia.lua"/>
 <Script file="Delves\TheGulfOfMemory\Multhaul.lua"/>
 <Script file="Delves\TheShadowEnclave\Antenorian.lua"/>

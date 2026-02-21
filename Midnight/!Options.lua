@@ -54,16 +54,16 @@ BigWigs:AddColors("Brightthorn", {
 BigWigs:AddSounds("Brightthorn", {
 })
 
+BigWigs:AddColors("Gyrospore", {
+})
+
+BigWigs:AddSounds("Gyrospore", {
+})
+
 BigWigs:AddColors("Mycomight", {
 })
 
 BigWigs:AddSounds("Mycomight", {
-})
-
-BigWigs:AddColors("Spinshroom Midnight", {
-})
-
-BigWigs:AddSounds("Spinshroom Midnight", {
 })
 
 BigWigs:AddColors("Lumenia", {
