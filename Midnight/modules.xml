@@ -1,6 +1,24 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
+<Script file="Delves\AtalAman\SpiritflayerJinma.lua"/>
+<Script file="Delves\CollegiateCalamity\Hydrangea.lua"/>
+<Script file="Delves\CollegiateCalamity\InfiltratorGarand.lua"/>
+<Script file="Delves\CollegiateCalamity\VoidscornedVagrant.lua"/>
+<Script file="Delves\ParhelionPlaza\GladiusSlaurna.lua"/>
+<Script file="Delves\ShadowguardPoint\ChiefArcanistPatram.lua"/>
+<Script file="Delves\SunkillerSanctum\Esuritus.lua"/>
+<Script file="Delves\TheDarkway\InfiltratorGulkat.lua"/>
+<Script file="Delves\TheGrudgePit\Brightthorn.lua"/>
+<Script file="Delves\TheGrudgePit\Gyrospore.lua"/>
+<Script file="Delves\TheGrudgePit\Mycomight.lua"/>
+<Script file="Delves\TheGulfOfMemory\Lumenia.lua"/>
+<Script file="Delves\TheGulfOfMemory\Multhaul.lua"/>
+<Script file="Delves\TheShadowEnclave\Antenorian.lua"/>
+<Script file="Delves\TormentsRise\Nullaeus.lua"/>
+<Script file="Delves\TwilightCrypts\BlademasterDarza.lua"/>
+<Script file="Delves\Trash.lua"/>
+
 <Script file="DenOfNalorakk\TheHoardmonger.lua"/>
 <Script file="DenOfNalorakk\SentinelOfWinter.lua"/>
 <Script file="DenOfNalorakk\Nalorakk.lua"/>
