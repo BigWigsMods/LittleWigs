@@ -100,6 +100,13 @@ if L then
 	L.blademaster_darza = "Maestra del acero Darza"
 end
 
+-- Delves: Trash
+
+L = BigWigs:NewBossLocale("Midnight Delve Trash", "esES")
+if L then
+	L.nullaeus = "Anulleus"
+end
+
 -- Den of Nalorakk
 
 L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "esES")

@@ -6,6 +6,7 @@ local mod = BigWigs:NewBoss("Nullaeus", 2966)
 if not mod then return end
 mod:SetEncounterID({3372, 3430})
 mod:SetAllowWin(true)
+-- TODO private auras, EncounterEvents
 
 --------------------------------------------------------------------------------
 -- Localization
