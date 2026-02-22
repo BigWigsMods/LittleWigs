@@ -1,0 +1,23 @@
+## Interface: 120001, 110207, 120000
+
+## Title: LittleWigs [|cffeda55fThe War Within|r]
+## Title-zhCN: LittleWigs [|cffeda55f地心之战|r]
+## Title-zhTW: LittleWigs [|cffeda55f地心之戰|r]
+## Title-deDE: LittleWigs [|cffeda55fThe War Within|r]
+## Title-frFR: LittleWigs [|cffeda55fThe War Within|r]
+## Title-itIT: LittleWigs [|cffeda55fThe War Within|r]
+## Title-koKR: LittleWigs [|cffeda55fThe War Within|r]
+## Title-ruRU: LittleWigs [|cffeda55fThe War Within|r]
+## Title-ptBR: LittleWigs [|cffeda55fThe War Within|r]
+## Title-esES: LittleWigs [|cffeda55fThe War Within|r]
+## Title-esMX: LittleWigs [|cffeda55fThe War Within|r]
+## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-LoadOn-InstanceId: 2648,2649,2651,2652,2660,2661,2662,2669,2773,2830, 2710,369,1043, 2664,2679,2680,2681,2682,2683,2684,2685,2686,2687,2688,2689,2690,2803,2815,2826,2831,2951
+
+modules.xml
+!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
