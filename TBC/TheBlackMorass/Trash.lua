@@ -44,7 +44,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterWidgetEvent(527, "UpdateWaveTimers")
+	self:RegisterWidgetEvent(self:Classic() and 3120 or 527, "UpdateWaveTimers")
 
 	self:Death("BossDeath", 17879, 17880) -- Chrono Lord Deja, Temporus
 	self:Death("Disable", 17881) -- Aeonus
