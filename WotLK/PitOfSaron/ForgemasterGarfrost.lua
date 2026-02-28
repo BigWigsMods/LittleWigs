@@ -29,7 +29,7 @@ end
 function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "DeepFreeze", 70381)
 	self:Log("SPELL_AURA_REMOVED", "DeepFreezeRemoved", 70381)
-	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER")
+	self:RegisterEvent("CHAT_MSG_RAID_BOSS_WHISPER") -- Throw Saronite
 end
 
 --------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ end
 --
 
 function mod:DeepFreeze(args)
-	self:TargetMessage(args.spellId, "yellow", args.destName, "yellow")
+	self:TargetMessage(args.spellId, "yellow", args.destName)
 	self:TargetBar(args.spellId, 14, args.destName)
 	self:PrimaryIcon(args.spellId, args.destName)
 	self:PlaySound(args.spellId, "alert")
@@ -66,7 +66,7 @@ function mod:DeepFreezeRemoved(args)
 	self:PrimaryIcon(args.spellId)
 end
 
-function mod:CHAT_MSG_RAID_BOSS_WHISPER()
+function mod:CHAT_MSG_RAID_BOSS_WHISPER() -- Throw Saronite
 	self:Message(68789, "red", CL.incoming:format(self:SpellName(68789)))
 	self:PlaySound(68789, "alarm")
 end
