@@ -96,6 +96,10 @@ if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			"warmup",
+			389481, -- Goal of the Searing Blaze
+			376448, -- Firestorm
+			389483, -- Goal of the Rushing Winds
+			376467, -- Gale Force
 			{376760, "PRIVATE"}, -- Gale Force
 			{376997, "PRIVATE"}, -- Savage Peck
 			{377009, "PRIVATE"}, -- Deafening Screech
