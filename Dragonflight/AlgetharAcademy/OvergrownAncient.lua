@@ -7,11 +7,13 @@ if not mod then return end
 mod:RegisterEnableMob(196482) -- Overgrown Ancient
 mod:SetEncounterID(2563)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{388544, sound = "alarm"}, -- Barkbreaker
-	{389033, sound = "none"}, -- Lasher Toxin
-	{396716, sound = "long"}, -- Splinterbark
-})
+if mod:Retail() then -- Midnight+
+	mod:SetPrivateAuraSounds({
+		{388544, sound = "alarm"}, -- Barkbreaker
+		{389033, sound = "none"}, -- Lasher Toxin
+		{396716, sound = "long"}, -- Splinterbark
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -26,9 +28,10 @@ end
 -- Locals
 --
 
-local germinateCount = 0
-local burstForthCount = 0
-local barkbreakerCount = 0
+local germinateCount = 1
+local burstForthCount = 1
+local branchOutCount = 1
+local barkbreakerCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -72,17 +75,24 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	germinateCount = 0
-	burstForthCount = 0
-	barkbreakerCount = 0
+	germinateCount = 1
+	burstForthCount = 1
+	branchOutCount = 1
+	barkbreakerCount = 1
 	self:StopBar(CL.active) -- Warmup
 	self:CDBar(388544, 9.7) -- Barkbreaker
 	self:CDBar(388796, 18.2) -- Germinate
 	if not self:Normal() then
 		self:CDBar(388623, 30.4) -- Branch Out
 	end
-	self:CDBar(388923, 56.4, CL.count:format(self:SpellName(388923), 1)) -- Burst Forth (1)
+	self:CDBar(388923, 56.4, CL.count:format(self:SpellName(388923), burstForthCount)) -- Burst Forth
 end
+
+--------------------------------------------------------------------------------
+-- Midnight Locals
+--
+
+local activeBars = {}
 
 --------------------------------------------------------------------------------
 -- Midnight Initialization
@@ -92,7 +102,10 @@ if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			"warmup",
-			{388544, "PRIVATE"}, -- Barkbreaker
+			388796, -- Germinate
+			388923, -- Burst Forth
+			388623, -- Branch Out
+			{388544, "TANK_HEALER"}, -- Barkbreaker
 			{389033, "PRIVATE"}, -- Lasher Toxin
 			{396716, "PRIVATE"}, -- Splinterbark
 		}
@@ -100,6 +113,137 @@ if mod:Retail() then -- Midnight+
 
 	function mod:OnBossEnable()
 	end
+
+	mod:UseCustomTimers(true)
+	function mod:OnEncounterStart()
+		germinateCount = 1
+		burstForthCount = 1
+		branchOutCount = 1
+		barkbreakerCount = 1
+		activeBars = {}
+		if self:ShouldShowBars() then
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+		end
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Event Handlers
+--
+
+function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
+	local duration = math.floor(eventInfo.duration + 0.5)
+	local barInfo
+	if duration == 9 or duration == 28 or duration == 29 then -- Barkbreaker
+		barInfo = self:BarkbreakerTimeline(eventInfo)
+	elseif duration == 18 or duration == 33 then -- Germinate
+		barInfo = self:GerminateTimeline(eventInfo)
+	elseif not self:IsWiping() and duration == 30 then -- Branch Out
+		barInfo = self:BranchOutTimeline(eventInfo)
+	elseif duration == 54 then -- Burst Forth
+		barInfo = self:BurstForthTimeline(eventInfo)
+	elseif not self:IsWiping() then
+		self:ErrorForTimelineEvent(eventInfo)
+	end
+	if barInfo then
+		activeBars[eventInfo.id] = barInfo
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		local state = C_EncounterTimeline.GetEventState(eventID)
+		if state == 0 then -- Active
+			self:ResumeBar(barInfo.key, barInfo.msg)
+		elseif state == 1 then -- Paused
+			self:PauseBar(barInfo.key, barInfo.msg)
+		elseif state == 2 then -- Finished
+			self:StopBar(barInfo.msg)
+			if barInfo.callback then
+				-- we need a special check for Germinate/Barkbreaker because in Normal random bars are started and finished after a few seconds
+				if (barInfo.key ~= 388796 and barInfo.key ~= 388544) or GetTime() - barInfo.time > 6 then
+					barInfo.callback()
+				end
+			end
+			activeBars[eventID] = nil
+		elseif state == 3 then -- Canceled
+			self:StopBar(barInfo.msg)
+			activeBars[eventID] = nil
+		end
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		self:StopBar(barInfo.msg)
+		activeBars[eventID] = nil
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Event Handlers
+--
+
+function mod:GerminateTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(388796), germinateCount)
+	self:CDBar(388796, eventInfo.duration, barText, nil, eventInfo.id)
+	germinateCount = germinateCount + 1
+	return {
+		msg = barText,
+		key = 388796,
+		time = GetTime(),
+		callback = function()
+			self:Message(388796, "yellow", barText)
+			self:PlaySound(388796, "long")
+		end
+	}
+end
+
+function mod:BurstForthTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(388923), burstForthCount)
+	self:CDBar(388923, eventInfo.duration, barText, nil, eventInfo.id)
+	burstForthCount = burstForthCount + 1
+	return {
+		msg = barText,
+		key = 388923,
+		callback = function()
+			self:Message(388923, "orange", barText)
+			self:PlaySound(388923, "long")
+		end
+	}
+end
+
+function mod:BranchOutTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(388623), branchOutCount)
+	self:CDBar(388623, eventInfo.duration, barText, nil, eventInfo.id)
+	branchOutCount = branchOutCount + 1
+	return {
+		msg = barText,
+		key = 388623,
+		callback = function()
+			self:Message(388623, "red", barText)
+			self:PlaySound(388623, "alarm")
+		end
+	}
+end
+
+function mod:BarkbreakerTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(388544), barkbreakerCount)
+	self:CDBar(388544, eventInfo.duration, barText, nil, eventInfo.id)
+	barkbreakerCount = barkbreakerCount + 1
+	return {
+		msg = barText,
+		key = 388544,
+		time = GetTime(),
+		callback = function()
+			self:Message(388544, "purple", barText)
+			self:PlaySound(388544, "alert")
+		end
+	}
 end
 
 --------------------------------------------------------------------------------
@@ -115,35 +259,35 @@ end
 -- Overgrown Ancient
 
 function mod:Germinate(args)
-	germinateCount = germinateCount + 1
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
+	germinateCount = germinateCount + 1
 	-- 18.3, 34.0, 25.5, 34.0, 25.5 pattern
-	self:CDBar(args.spellId, germinateCount % 2 == 0 and 25.5 or 34)
+	self:CDBar(args.spellId, germinateCount % 2 == 0 and 34.0 or 25.5)
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:BurstForth(args)
-	burstForthCount = burstForthCount + 1
 	local burstForthMessage = CL.count:format(args.spellName, burstForthCount)
 	self:StopBar(burstForthMessage)
 	self:Message(args.spellId, "orange", burstForthMessage)
-	self:PlaySound(args.spellId, "long")
+	burstForthCount = burstForthCount + 1
 	-- cast at 100 energy, 2s cast + 54s energy gain + delay
-	self:CDBar(args.spellId, 59.5, CL.count:format(args.spellName, burstForthCount + 1))
+	self:CDBar(args.spellId, 59.5, CL.count:format(args.spellName, burstForthCount))
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:BranchOut(args)
 	self:Message(args.spellId, "red")
-	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 59.5)
+	self:PlaySound(args.spellId, "alarm")
 end
 
 function mod:Barkbreaker(args)
-	barkbreakerCount = barkbreakerCount + 1
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alert")
+	barkbreakerCount = barkbreakerCount + 1
 	-- 10.7, 29.1, 30.4, 29.1, 30.4, 29.1
-	self:CDBar(args.spellId, barkbreakerCount % 2 == 0 and 30.4 or 29.1)
+	self:CDBar(args.spellId, barkbreakerCount % 2 == 0 and 29.1 or 30.4)
+	self:PlaySound(args.spellId, "alert")
 end
 
 -- Hungry Lasher
@@ -173,7 +317,7 @@ end
 function mod:AncientBranchDeath(args)
 	if self:Mythic() then
 		self:Message(396721, "green") -- Abundance
-		self:PlaySound(396721, "info")
 		self:CastBar(396721, 3.5)
+		self:PlaySound(396721, "info")
 	end
 end
