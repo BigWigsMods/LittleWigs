@@ -7,17 +7,22 @@ if not mod then return end
 mod:RegisterEnableMob(194181) -- Vexamus
 mod:SetEncounterID(2562)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{386201, sound = "underyou"}, -- Corrupted Mana
-	{391977, sound = "alert"}, -- Oversurge
-})
+if mod:Retail() then -- Midnight+
+	mod:SetPrivateAuraSounds({
+		{386201, sound = "underyou"}, -- Corrupted Mana
+		{391977, sound = "alert"}, -- Oversurge
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local arcaneFissureTime = 0
-local arcaneFissureCount = 0
+local arcaneOrbsCount = 1
+local arcaneFissureCount = 1
+local manaBombsCount = 1
+local arcaneExpulsionCount = 1
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -57,7 +62,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	arcaneFissureCount = 0
+	arcaneFissureCount = 1
 	-- 40 second energy gain + ~.9 seconds until energy gain is initially turned on
 	arcaneFissureTime = GetTime() + 40.9
 	self:CDBar(386544, 4.1) -- Arcane Orbs
@@ -67,6 +72,13 @@ function mod:OnEngage()
 end
 
 --------------------------------------------------------------------------------
+-- Midnight Locals
+--
+
+local count18 = 1
+local activeBars = {}
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
@@ -74,6 +86,10 @@ if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			"warmup",
+			386544, -- Arcane Orbs
+			388537, -- Arcane Fissure
+			386173, -- Mana Bombs
+			385958, -- Arcane Expulsion
 			{386201, "PRIVATE"}, -- Corrupted Mana
 			{391977, "PRIVATE"}, -- Oversurge
 		}
@@ -81,6 +97,136 @@ if mod:Retail() then -- Midnight+
 
 	function mod:OnBossEnable()
 	end
+
+	mod:UseCustomTimers(true)
+	function mod:OnEncounterStart()
+		arcaneOrbsCount = 1
+		arcaneExpulsionCount = 1
+		manaBombsCount = 1
+		arcaneFissureCount = 1
+		count18 = 1
+		activeBars = {}
+		if self:ShouldShowBars() then
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+		end
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Event Handlers
+--
+
+function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
+	local duration = math.floor(eventInfo.duration + 0.5)
+	local barInfo
+	if duration == 2 or (duration == 18 and count18 % 3 == 1) then -- Arcane Orbs
+		barInfo = self:ArcaneOrbsTimeline(eventInfo)
+	elseif duration == 5 or (duration == 18 and count18 % 3 == 2) then -- Arcane Expulsion
+		barInfo = self:ArcaneExpulsionTimeline(eventInfo)
+	elseif duration == 15 or (duration == 18 and count18 % 3 == 0) then -- Mana Bombs
+		barInfo = self:ManaBombsTimeline(eventInfo)
+	elseif duration == 40 then -- Arcane Fissure
+		barInfo = self:ArcaneFissureTimeline(eventInfo)
+	elseif not self:IsWiping() then
+		self:ErrorForTimelineEvent(eventInfo)
+	end
+	if duration == 18 then
+		count18 = count18 + 1
+	end
+	if barInfo then
+		activeBars[eventInfo.id] = barInfo
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		local state = C_EncounterTimeline.GetEventState(eventID)
+		if state == 0 then -- Active
+			self:ResumeBar(barInfo.key, barInfo.msg)
+		elseif state == 1 then -- Paused
+			self:PauseBar(barInfo.key,barInfo.msg)
+		elseif state == 2 then -- Finished
+			self:StopBar(barInfo.msg)
+			if barInfo.callback then
+				barInfo.callback()
+			end
+			activeBars[eventID] = nil
+		elseif state == 3 then -- Canceled
+			self:StopBar(barInfo.msg)
+			activeBars[eventID] = nil
+		end
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		self:StopBar(barInfo.msg)
+		activeBars[eventID] = nil
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Event Handlers
+--
+
+function mod:ArcaneOrbsTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(386544), arcaneOrbsCount)
+	self:CDBar(386544, eventInfo.duration, barText, nil, eventInfo.id)
+	arcaneOrbsCount = arcaneOrbsCount + 1
+	return {
+		msg = barText,
+		key = 386544,
+		callback = function()
+			self:Message(386544, "yellow", barText)
+			self:PlaySound(386544, "long")
+		end
+	}
+end
+
+function mod:ArcaneExpulsionTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(385958), arcaneExpulsionCount)
+	self:CDBar(385958, eventInfo.duration, barText, nil, eventInfo.id)
+	arcaneExpulsionCount = arcaneExpulsionCount + 1
+	return {
+		msg = barText,
+		key = 385958,
+		callback = function()
+			self:Message(385958, "purple", barText)
+			self:PlaySound(385958, "alarm")
+		end
+	}
+end
+
+function mod:ManaBombsTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(386173), manaBombsCount)
+	self:CDBar(386173, eventInfo.duration, barText, nil, eventInfo.id)
+	manaBombsCount = manaBombsCount + 1
+	return {
+		msg = barText,
+		key = 386173,
+		callback = function()
+			self:Message(386173, "yellow", barText)
+			self:PlaySound(386173, "alarm")
+		end
+	}
+end
+
+function mod:ArcaneFissureTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(388537), arcaneFissureCount)
+	self:CDBar(388537, eventInfo.duration, barText, nil, eventInfo.id)
+	arcaneFissureCount = arcaneFissureCount + 1
+	return {
+		msg = barText,
+		key = 388537,
+		callback = function()
+			self:Message(388537, "red", barText)
+			self:PlaySound(388537, "alert")
+		end
+	}
 end
 
 --------------------------------------------------------------------------------
@@ -97,9 +243,9 @@ end
 
 function mod:ArcaneOrbs(args)
 	self:Message(args.spellId, "yellow")
-	self:PlaySound(args.spellId, "long")
 	-- minimum CD is 20.7, but for each Arcane Fissure cast 3.6 seconds is added
 	self:CDBar(args.spellId, 20.7)
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:OversurgeApplied(args)
@@ -112,10 +258,9 @@ end
 -- Vexamus
 
 function mod:ArcaneFissure(args)
-	arcaneFissureCount = arcaneFissureCount + 1
 	self:StopBar(CL.count:format(args.spellName, arcaneFissureCount))
 	self:Message(args.spellId, "red", CL.count:format(args.spellName, arcaneFissureCount))
-	self:PlaySound(args.spellId, "alert")
+	arcaneFissureCount = arcaneFissureCount + 1
 	-- Arcane Fissure adds 3.6 seconds to all other timers
 	local arcaneExpulsionTimeLeft = self:BarTimeLeft(385958)
 	if arcaneExpulsionTimeLeft > .1 then
@@ -129,11 +274,12 @@ function mod:ArcaneFissure(args)
 	if arcaneOrbsTimeLeft > .1 then
 		self:CDBar(386544, {arcaneOrbsTimeLeft + 3.6, 20.7})
 	end
+	self:PlaySound(args.spellId, "alert")
 end
 
 function mod:ArcaneFissureSuccess(args)
 	-- cast at 100 energy, gains 2.5 energy per second
-	self:CDBar(args.spellId, 40.7, CL.count:format(self:SpellName(388537), arcaneFissureCount + 1))
+	self:CDBar(args.spellId, 40.7, CL.count:format(self:SpellName(388537), arcaneFissureCount))
 	arcaneFissureTime = GetTime() + 40.7
 end
 
@@ -142,9 +288,9 @@ function mod:ArcaneOrbAbsorbed(args)
 	arcaneFissureTime = arcaneFissureTime - 8
 	local timeLeft = arcaneFissureTime - GetTime()
 	if timeLeft > 0 then
-		self:CDBar(388537, {timeLeft, 40.7}, CL.count:format(self:SpellName(388537), arcaneFissureCount + 1)) -- Arcane Fissure
+		self:CDBar(388537, {timeLeft, 40.7}, CL.count:format(self:SpellName(388537), arcaneFissureCount)) -- Arcane Fissure
 	else
-		self:StopBar(CL.count:format(self:SpellName(388537), arcaneFissureCount + 1)) -- Arcane Fissure
+		self:StopBar(CL.count:format(self:SpellName(388537), arcaneFissureCount)) -- Arcane Fissure
 	end
 end
 
@@ -160,11 +306,11 @@ do
 	function mod:ManaBombApplied(args)
 		playerList[#playerList + 1] = args.destName
 		self:TargetsMessage(386173, "yellow", playerList, 3)
-		self:PlaySound(386173, "alarm", nil, playerList)
 		if self:Me(args.destGUID) then
 			self:Say(386173, args.spellName, nil, "Mana Bomb")
 			self:SayCountdown(386173, 4)
 		end
+		self:PlaySound(386173, "alarm", nil, playerList)
 	end
 
 	function mod:ManaBombRemoved(args)
@@ -176,7 +322,7 @@ end
 
 function mod:ArcaneExpulsion(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
 	-- minimum CD is 23.1, but for each Arcane Fissure cast 3.6 seconds is added
 	self:CDBar(args.spellId, 23.1)
+	self:PlaySound(args.spellId, "alarm")
 end
