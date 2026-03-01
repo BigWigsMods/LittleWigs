@@ -307,11 +307,23 @@ BigWigs:AddColors("Scourgelord Tyrannus", {
 	[69167] = "red",
 	[69172] = {"blue","yellow"},
 	[69275] = {"blue","red"},
+	[1262582] = "yellow",
+	[1262745] = "orange",
+	[1263406] = "cyan",
+	[1263756] = "red",
+	[1276648] = "cyan",
+	[1276948] = "red",
 })
 
 BigWigs:AddSounds("Scourgelord Tyrannus", {
 	[69172] = "alert",
 	[69275] = "alarm",
+	[1262582] = "alert",
+	[1262745] = "alarm",
+	[1263406] = "long",
+	[1263756] = "alarm",
+	[1276648] = "long",
+	[1276948] = "alarm",
 })
 
 BigWigs:AddColors("Pit of Saron Trash", {
