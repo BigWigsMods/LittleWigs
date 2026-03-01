@@ -459,14 +459,19 @@ BigWigs:AddSounds("Rukhran", {
 })
 
 BigWigs:AddColors("High Sage Viryx", {
-	[153954] = {"blue","yellow"},
+	[153954] = {"blue","cyan"},
 	[154055] = "orange",
+	[154396] = "red",
+	[1253538] = "yellow",
+	[1253840] = "orange",
 	["adds"] = "red",
 })
 
 BigWigs:AddSounds("High Sage Viryx", {
 	[153954] = "warning",
 	[154055] = "long",
+	[154396] = "alert",
+	[1253840] = "alarm",
 	["adds"] = "info",
 })
 

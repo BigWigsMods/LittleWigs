@@ -7,11 +7,14 @@ if not mod then return end
 mod:RegisterEnableMob(76266)
 mod:SetEncounterID(1701)
 mod:SetRespawnTime(15)
-mod:SetPrivateAuraSounds({
-	{153954, sound = "info"}, -- Cast Down
-	{1253541, sound = "alert"}, -- Scorching Ray
-	{1253543, sound = "none"}, -- Scorching Ray
-})
+if mod:Retail() then
+	mod:SetPrivateAuraSounds({
+		{153954, sound = "info"}, -- Cast Down
+		{1253541, sound = "alert"}, -- Scorching Ray
+		{1253543, sound = "none"}, -- Scorching Ray
+		--{1253531, sound = "alarm"}, -- Lens Flare (doesn't work)
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -58,20 +61,168 @@ function mod:OnEngage()
 end
 
 --------------------------------------------------------------------------------
+-- Midnight Locals
+--
+
+local scorchingRayCount = 1
+local solarBlastCount = 1
+local castDownCount = 1
+local lensFlareCount = 1
+local count12 = 1
+local activeBars = {}
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
 if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
-			{153954, "PRIVATE"}, -- Cast Down
+			1253538, -- Scorching Ray
+			154396, -- Solar Blast
+			153954, -- Cast Down
+			1253840, -- Lens Flare
+			--{153954, "PRIVATE"}, -- Cast Down
 			{1253541, "PRIVATE"}, -- Scorching Ray
 			{1253543, "PRIVATE"}, -- Scorching Ray
 		}
 	end
 
+	function mod:OnRegister()
+	end
+
 	function mod:OnBossEnable()
 	end
+
+	mod:UseCustomTimers(true)
+	function mod:OnEncounterStart()
+		scorchingRayCount = 1
+		solarBlastCount = 1
+		castDownCount = 1
+		lensFlareCount = 1
+		count12 = 1
+		activeBars = {}
+		if self:ShouldShowBars() then
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+		end
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Event Handlers
+--
+
+function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
+	local duration = math.floor(eventInfo.duration + 0.5)
+	local barInfo
+	if duration == 5 or duration == 10 then -- Scorching Ray
+		barInfo = self:ScorchingRayTimeline(eventInfo)
+	elseif duration == 8 or (duration == 12 and count12 % 2 == 0) then -- Solar Blast
+		barInfo = self:SolarBlastTimeline(eventInfo)
+	elseif (duration == 12 and count12 % 2 == 1) then -- Cast Down
+		barInfo = self:CastDownTimeline(eventInfo)
+	elseif duration == 30 then -- Lens Flare
+		barInfo = self:LensFlareTimeline(eventInfo)
+	elseif not self:IsWiping() then
+		self:ErrorForTimelineEvent(eventInfo)
+	end
+	if duration == 12 then
+		count12 = count12 + 1
+	end
+	if barInfo then
+		activeBars[eventInfo.id] = barInfo
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		local state = C_EncounterTimeline.GetEventState(eventID)
+		if state == 0 then -- Active
+			self:ResumeBar(barInfo.key, barInfo.msg)
+		elseif state == 1 then -- Paused
+			self:PauseBar(barInfo.key, barInfo.msg)
+		elseif state == 2 then -- Finished
+			self:StopBar(barInfo.msg)
+			if barInfo.callback then
+				barInfo.callback()
+			end
+			activeBars[eventID] = nil
+		elseif state == 3 then -- Canceled
+			self:StopBar(barInfo.msg)
+			activeBars[eventID] = nil
+		end
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		self:StopBar(barInfo.msg)
+		activeBars[eventID] = nil
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Ability Handlers
+--
+
+function mod:ScorchingRayTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(1253538), scorchingRayCount)
+	self:CDBar(1253538, eventInfo.duration, barText, nil, eventInfo.id)
+	scorchingRayCount = scorchingRayCount + 1
+	return {
+		msg = barText,
+		key = 1253538,
+		callback = function()
+			self:Message(1253538, "yellow", barText)
+			--self:PlaySound(1253538, "alert") Private Aura sound
+		end
+	}
+end
+
+function mod:SolarBlastTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(154396), solarBlastCount)
+	self:CDBar(154396, eventInfo.duration, barText, nil, eventInfo.id)
+	solarBlastCount = solarBlastCount + 1
+	return {
+		msg = barText,
+		key = 154396,
+		callback = function()
+			self:Message(154396, "red", CL.casting:format(barText))
+			self:PlaySound(154396, "alert")
+		end
+	}
+end
+
+function mod:CastDownTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(153954), castDownCount)
+	self:CDBar(153954, eventInfo.duration, barText, nil, eventInfo.id)
+	castDownCount = castDownCount + 1
+	return {
+		msg = barText,
+		key = 153954,
+		callback = function()
+			self:Message(153954, "cyan", barText)
+			self:PlaySound(153954, "warning")
+		end
+	}
+end
+
+function mod:LensFlareTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(1253840), lensFlareCount)
+	self:CDBar(1253840, eventInfo.duration, barText, nil, eventInfo.id)
+	lensFlareCount = lensFlareCount + 1
+	return {
+		msg = barText,
+		key = 1253840,
+		callback = function()
+			self:Message(1253840, "orange", barText)
+			self:PlaySound(1253840, "alarm")
+		end
+	}
 end
 
 --------------------------------------------------------------------------------
@@ -93,7 +244,7 @@ end
 
 do
 	local function bossTarget(self, name)
-		self:TargetMessage(153954, "yellow", name)
+		self:TargetMessage(153954, "cyan", name)
 		self:PlaySound(153954, "warning", nil, name)
 	end
 
