@@ -38,6 +38,9 @@ end
 
 function mod:PrisonersFreed(_, text)
 	-- [UPDATE_UI_WIDGET] widgetID:7550, widgetType:8, text:Prisoners Freed: 2/8
-	self:Message("prisoners_freed", "green", text, L.prisoners_freed_icon)
-	self:PlaySound("prisoners_freed", "info")
+	local freed, total = text:match("(%d+)/(%d+)")
+	if freed and total and tonumber(freed) <= tonumber(total) then
+		self:Message("prisoners_freed", "green", text, L.prisoners_freed_icon)
+		self:PlaySound("prisoners_freed", "info")
+	end
 end
