@@ -445,6 +445,8 @@ BigWigs:AddColors("Rukhran", {
 	[153810] = "red",
 	[159382] = {"green","orange"},
 	[167757] = "blue",
+	[1253510] = "cyan",
+	[1253519] = "purple",
 })
 
 BigWigs:AddSounds("Rukhran", {
@@ -452,6 +454,8 @@ BigWigs:AddSounds("Rukhran", {
 	[153810] = "info",
 	[159382] = "long",
 	[167757] = "warning",
+	[1253510] = "info",
+	[1253519] = {"alarm","alert"},
 })
 
 BigWigs:AddColors("High Sage Viryx", {
