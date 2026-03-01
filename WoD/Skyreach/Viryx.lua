@@ -12,7 +12,7 @@ if mod:Retail() then
 		{153954, sound = "info"}, -- Cast Down
 		{1253541, sound = "alert"}, -- Scorching Ray
 		{1253543, sound = "none"}, -- Scorching Ray
-		--{1253531, sound = "alarm"}, -- Lens Flare (doesn't work)
+		{1253531, sound = "alarm"}, -- Lens Flare
 	})
 end
 
