@@ -122,7 +122,6 @@ function mod:BlazingBelch(args)
 	self:PlaySound(args.spellId, "alarm")
 end
 
-
 do
 	local playerList = {}
 
