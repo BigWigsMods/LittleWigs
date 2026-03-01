@@ -268,11 +268,19 @@ BigWigs:AddSounds("Sjonnir The Ironshaper", {
 BigWigs:AddColors("Forgemaster Garfrost", {
 	[68789] = "red",
 	[70381] = {"blue","yellow"},
+	[1261299] = "red",
+	[1261546] = "purple",
+	[1261847] = "orange",
+	[1262029] = "yellow",
 })
 
 BigWigs:AddSounds("Forgemaster Garfrost", {
 	[68789] = "alarm",
 	[70381] = "alert",
+	[1261299] = "alarm",
+	[1261546] = {"info","warning"},
+	[1261847] = "alert",
+	[1262029] = "warning",
 })
 
 BigWigs:AddColors("Ick & Krick", {
