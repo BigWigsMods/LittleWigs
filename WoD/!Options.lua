@@ -429,13 +429,13 @@ BigWigs:AddSounds("Ranjit", {
 })
 
 BigWigs:AddColors("Araknath", {
-	[154110] = "orange",
+	[154110] = {"orange","yellow"},
 	[154135] = "red",
 	[154159] = "yellow",
 })
 
 BigWigs:AddSounds("Araknath", {
-	[154110] = "warning",
+	[154110] = {"alarm","warning"},
 	[154135] = "info",
 	[154159] = "long",
 })
