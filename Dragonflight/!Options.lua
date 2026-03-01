@@ -59,21 +59,27 @@ BigWigs:AddSounds("Crawth", {
 })
 
 BigWigs:AddColors("Echo of Doragosa", {
+	[373326] = "orange",
+	[374343] = "yellow",
 	[374352] = {"blue","yellow"},
 	[374361] = "orange",
 	[388822] = "red",
 	[388901] = "blue",
 	[389011] = "blue",
 	[439488] = "cyan",
+	[1282251] = "purple",
 })
 
 BigWigs:AddSounds("Echo of Doragosa", {
+	[373326] = "info",
+	[374343] = "alert",
 	[374352] = "alert",
 	[374361] = "alarm",
 	[388822] = "alarm",
 	[388901] = "underyou",
 	[389011] = "info",
 	[439488] = "info",
+	[1282251] = "alarm",
 })
 
 BigWigs:AddColors("Algeth'ar Academy Trash", {
