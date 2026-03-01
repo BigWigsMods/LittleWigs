@@ -288,11 +288,19 @@ BigWigs:AddColors("Ick & Krick", {
 	[68989] = "orange",
 	[69263] = "red",
 	[70274] = "blue",
+	[1264027] = "cyan",
+	[1264287] = "purple",
+	[1264336] = "orange",
+	[1264363] = "red",
 })
 
 BigWigs:AddSounds("Ick & Krick", {
 	[68987] = "alert",
 	[70274] = "underyou",
+	[1264027] = "long",
+	[1264287] = {"alarm","info"},
+	[1264336] = "alarm",
+	[1264363] = "alert",
 })
 
 BigWigs:AddColors("Scourgelord Tyrannus", {
