@@ -415,13 +415,17 @@ BigWigs:AddSounds("Shadowmoon Burial Grounds Trash", {
 
 BigWigs:AddColors("Ranjit", {
 	[153315] = "red",
+	[153757] = "yellow",
 	[156793] = "orange",
 	[165731] = {"blue","yellow"},
+	[1258152] = "red",
 })
 
 BigWigs:AddSounds("Ranjit", {
+	[153757] = "alert",
 	[156793] = "warning",
 	[165731] = "alarm",
+	[1258152] = "alarm",
 })
 
 BigWigs:AddColors("Araknath", {
