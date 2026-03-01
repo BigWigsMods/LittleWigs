@@ -10,11 +10,13 @@ mod:RegisterEnableMob(
 )
 mod:SetEncounterID(2564)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{376760, sound = "info"}, -- Gale Force
-	{376997, sound = "alert"}, -- Savage Peck
-	{377009, sound = "alarm"}, -- Deafening Screech
-})
+if mod:Retail() then -- Midnight+
+	mod:SetPrivateAuraSounds({
+		{376760, sound = "info"}, -- Gale Force
+		{376997, sound = "alert"}, -- Savage Peck
+		{377009, sound = "alarm"}, -- Deafening Screech
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -89,6 +91,15 @@ function mod:OnEngage()
 end
 
 --------------------------------------------------------------------------------
+-- Midnight Locals
+--
+
+local savagePeckCount = 1
+local deafeningScreechCount = 1
+local overpoweringGustCount = 1
+local activeBars = {}
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
@@ -100,6 +111,8 @@ if mod:Retail() then -- Midnight+
 			376448, -- Firestorm
 			389483, -- Goal of the Rushing Winds
 			376467, -- Gale Force
+			377004, -- Deafening Screech
+			377034, -- Overpowering Gust
 			{376760, "PRIVATE"}, -- Gale Force
 			{376997, "PRIVATE"}, -- Savage Peck
 			{377009, "PRIVATE"}, -- Deafening Screech
@@ -112,10 +125,116 @@ if mod:Retail() then -- Midnight+
 		self:RegisterWidgetEvent(4184, "GoalOfTheRushingWinds")
 	end
 
+	mod:UseCustomTimers(true)
 	function mod:OnEncounterStart()
 		searingBlazeGoals = 0
 		rushingWindsGoals = 0
+		savagePeckCount = 1
+		deafeningScreechCount = 1
+		overpoweringGustCount = 1
+		activeBars = {}
+		if self:ShouldShowBars() then
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+		end
 	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Event Handlers
+--
+
+function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
+	local duration = math.floor(eventInfo.duration + 0.5)
+	local barInfo
+	if duration == 5 then -- Savage Peck
+		barInfo = self:SavagePeckTimeline(eventInfo)
+	elseif duration == 14 then -- Deafening Screech
+		barInfo = self:DeafeningScreechTimeline(eventInfo)
+	elseif duration == 20 then -- Overpowering Gust
+		barInfo = self:OverpoweringGustTimeline(eventInfo)
+	elseif not self:IsWiping() then
+		self:ErrorForTimelineEvent(eventInfo)
+	end
+	if barInfo then
+		activeBars[eventInfo.id] = barInfo
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		local state = C_EncounterTimeline.GetEventState(eventID)
+		if state == 0 then -- Active
+			self:ResumeBar(barInfo.key, barInfo.msg)
+		elseif state == 1 then -- Paused
+			self:PauseBar(barInfo.key, barInfo.msg)
+		elseif state == 2 then -- Finished
+			self:StopBar(barInfo.msg)
+			if barInfo.callback then
+				barInfo.callback()
+			end
+			activeBars[eventID] = nil
+		elseif state == 3 then -- Canceled
+			self:StopBar(barInfo.msg)
+			activeBars[eventID] = nil
+		end
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		self:StopBar(barInfo.msg)
+		activeBars[eventID] = nil
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Ability Handlers
+--
+
+function mod:SavagePeckTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(376997), savagePeckCount)
+	self:CDBar(376997, eventInfo.duration, barText, nil, eventInfo.id)
+	savagePeckCount = savagePeckCount + 1
+	return {
+		msg = barText,
+		key = 376997,
+		callback = function()
+			self:Message(376997, "purple", barText)
+			self:PlaySound(376997, "alert")
+		end
+	}
+end
+
+function mod:DeafeningScreechTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(377004), deafeningScreechCount)
+	self:CDBar(377004, eventInfo.duration, barText, nil, eventInfo.id)
+	deafeningScreechCount = deafeningScreechCount + 1
+	return {
+		msg = barText,
+		key = 377004,
+		callback = function()
+			self:Message(377004, "yellow", barText)
+			self:PlaySound(377004, "warning")
+		end
+	}
+end
+
+function mod:OverpoweringGustTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(377034), overpoweringGustCount)
+	self:CDBar(377034, eventInfo.duration, barText, nil, eventInfo.id)
+	overpoweringGustCount = overpoweringGustCount + 1
+	return {
+		msg = barText,
+		key = 377034,
+		callback = function()
+			self:Message(377034, "orange", barText)
+			self:PlaySound(377034, "alarm")
+		end
+	}
 end
 
 --------------------------------------------------------------------------------
