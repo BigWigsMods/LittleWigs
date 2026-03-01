@@ -539,6 +539,7 @@ BigWigs:AddSounds("Quagmirran", {
 
 BigWigs:AddColors("The Slave Pens Trash", {
 	[15655] = {"blue","red"},
+	[30923] = {"blue","orange"},
 	[31554] = {"blue","yellow"},
 	[32173] = {"blue","orange"},
 	[33787] = {"blue","yellow"},
@@ -548,6 +549,7 @@ BigWigs:AddColors("The Slave Pens Trash", {
 
 BigWigs:AddSounds("The Slave Pens Trash", {
 	[15655] = "alarm",
+	[30923] = "alert",
 	[31554] = "long",
 	[32173] = "info",
 	[33787] = "info",
