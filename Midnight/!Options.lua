@@ -297,9 +297,17 @@ BigWigs:AddSounds("Derelict Duo", {
 })
 
 BigWigs:AddColors("Commander Kroluk", {
+	[472053] = "orange",
+	[1250851] = "cyan",
+	[1253272] = "red",
+	[1283335] = "purple",
 })
 
 BigWigs:AddSounds("Commander Kroluk", {
+	[472053] = "alarm",
+	[1250851] = "long",
+	[1253272] = "warning",
+	[1283335] = "alert",
 })
 
 BigWigs:AddColors("Restless Heart", {
