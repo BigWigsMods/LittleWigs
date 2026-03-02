@@ -41,6 +41,7 @@ BigWigs:AddColors("Vazruden", {
 })
 
 BigWigs:AddSounds("Vazruden", {
+	["stages"] = "info",
 })
 
 BigWigs:AddColors("Selin Fireheart", {
