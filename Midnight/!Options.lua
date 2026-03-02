@@ -183,9 +183,15 @@ BigWigs:AddSounds("Vordaza", {
 })
 
 BigWigs:AddColors("Rak'tul, Vessel of Souls", {
+	[1251023] = "purple",
+	[1252676] = "orange",
+	[1253788] = "yellow",
 })
 
 BigWigs:AddSounds("Rak'tul, Vessel of Souls", {
+	[1251023] = "alert",
+	[1252676] = "alarm",
+	[1253788] = "long",
 })
 
 BigWigs:AddColors("Maisara Caverns Trash", {
