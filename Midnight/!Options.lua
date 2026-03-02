@@ -169,9 +169,17 @@ BigWigs:AddSounds("Muro'jin and Nekraxx", {
 })
 
 BigWigs:AddColors("Vordaza", {
+	[1250708] = "yellow",
+	[1251204] = "cyan",
+	[1251554] = "purple",
+	[1252054] = "orange",
 })
 
 BigWigs:AddSounds("Vordaza", {
+	[1250708] = "long",
+	[1251204] = "info",
+	[1251554] = "alert",
+	[1252054] = "alarm",
 })
 
 BigWigs:AddColors("Rak'tul, Vessel of Souls", {
