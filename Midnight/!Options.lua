@@ -283,9 +283,17 @@ BigWigs:AddSounds("Emberdawn", {
 })
 
 BigWigs:AddColors("Derelict Duo", {
+	[472736] = "yellow",
+	[472745] = "orange",
+	[472888] = "purple",
+	[474105] = "red",
 })
 
 BigWigs:AddSounds("Derelict Duo", {
+	[472736] = "long",
+	[472745] = "alarm",
+	[472888] = "alarm",
+	[474105] = "alert",
 })
 
 BigWigs:AddColors("Commander Kroluk", {
