@@ -141,7 +141,7 @@ function mod:RampageTimeline(eventInfo)
 end
 
 do
-	local prevShieldWall, prevBladestorm = 0
+	local prevShieldWall, prevBladestorm = 0, 0
 	function mod:BladestormTimeline(eventInfo)
 		if eventInfo.duration == 0.001 and GetTime() - prevShieldWall > 2 then -- happeans 3x in a row on stage change
 			prevShieldWall = GetTime()
