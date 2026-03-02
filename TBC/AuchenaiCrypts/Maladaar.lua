@@ -44,11 +44,12 @@ end
 --  Event Handlers
 
 function mod:StolenSoul(args)
-	self:TargetMessageOld(args.spellId, args.destName, "orange")
+	self:TargetMessage(args.spellId, "orange", args.destName)
 end
 
 function mod:SummonAvatar(args)
-	self:MessageOld("avatar", "red", "info", CL.spawned:format(self:SpellName(L.avatar)), args.spellId)
+	self:Message("avatar", "red", CL.spawned:format(self:SpellName(L.avatar)), args.spellId)
+	self:PlaySound("avatar", "info")
 end
 
 function mod:UNIT_HEALTH(event, unit)

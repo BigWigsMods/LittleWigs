@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Vazruden", 543, 529)
 if not mod then return end
-mod:RegisterEnableMob(17537, 17536) -- Vazruden, Nazan <Vazruden's Mount>
+mod:RegisterEnableMob(17537, 17536, 17307) -- Vazruden, Nazan <Vazruden's Mount> (unused?), Vazruden the Herald (Flying prior to engage, converts into Nazan on engage)
 --mod:SetEncounterID(1892) -- no boss frames
 --mod:SetRespawnTime(34) -- since his wipe-yell
 
@@ -32,7 +32,7 @@ function mod:OnBossEnable()
 	self:RegisterEvent("RAID_BOSS_EMOTE")
 	self:RegisterEvent("ENCOUNTER_START")
 	self:RegisterEvent("ENCOUNTER_END")
-	self:Death("Deaths", 17537, 17536) -- Vazruden, Nazan <Vazruden's Mount>
+	self:Death("Deaths", 17537, 17307) -- Vazruden, Nazan
 end
 
 function mod:OnEngage()
@@ -63,8 +63,8 @@ function mod:ENCOUNTER_END(_, encounterId, _, _, _, status)
 	if encounterId == 1892 then
 		if status == 0 then
 			-- Delay slightly to avoid re-registering ENCOUNTER_END as part of :Reboot() during this ENCOUNTER_END dispatch
-			self:SimpleTimer(function() self:Wipe() end, 2)
-		elseif self:Retail() then -- No CLEU
+			self:SimpleTimer(function() self:Wipe() end, 1)
+		elseif self:Retail() then -- No CLEU to count deaths
 			self:Win()
 		end
 	end

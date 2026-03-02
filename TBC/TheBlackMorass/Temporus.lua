@@ -20,9 +20,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Hasten", 31458)
-	self:Log("SPELL_AURA_REMOVED", "HastenRemoved", 31458)
-	self:Log("SPELL_AURA_APPLIED", "SpellReflection", 38592)
+	self:Log("SPELL_AURA_APPLIED", "HastenApplied", 31458)
+	self:Log("SPELL_DISPEL", "HastenDispelled", "*")
+	self:Log("SPELL_AURA_APPLIED", "SpellReflectionApplied", 38592)
+	self:Log("SPELL_AURA_REMOVED", "SpellReflectionRemoved", 38592)
 
 	self:Death("Win", 17880)
 end
@@ -31,18 +32,28 @@ end
 -- Event Handlers
 --
 
-function mod:Hasten(args)
-	if self:MobId(args.destGUID) ~= 17880 then return end -- mages can spellsteal it
-	self:MessageOld(args.spellId, "red", self:Dispeller("magic", true) and "warning")
-	self:Bar(args.spellId, 10)
+function mod:HastenApplied(args)
+	if self:MobId(args.destGUID) == 17880 then -- Mages can spellsteal it
+		self:Message(args.spellId, "yellow", CL.magic_buff_boss:format(args.spellName))
+		self:TargetBar(args.spellId, 10, args.destName)
+		self:PlaySound(args.spellId, "info")
+	end
 end
 
-function mod:HastenRemoved(args)
-	if self:MobId(args.destGUID) ~= 17880 then return end -- mages can spellsteal it
-	self:StopBar(args.spellName)
+function mod:HastenDispelled(args)
+	if self:MobId(args.destGUID) == 17880 and args.extraSpellName == self:SpellName(31458) then
+		self:StopBar(args.extraSpellName, args.destName)
+		self:Message(31458, "green", CL.removed_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+	end
 end
 
-function mod:SpellReflection(args)
-	self:MessageOld(args.spellId, "orange")
-	self:Bar(args.spellId, 6)
+function mod:SpellReflectionApplied(args)
+	self:Message(args.spellId, "red")
+	self:Bar(args.spellId, self:Classic() and 8 or 6)
+	self:PlaySound(args.spellId, "warning")
+end
+
+function mod:SpellReflectionRemoved(args)
+	self:Message(args.spellId, "green", CL.over:format(args.spellName))
+	self:PlaySound(args.spellId, "long")
 end

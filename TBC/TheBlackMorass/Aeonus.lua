@@ -22,13 +22,13 @@ end
 
 function mod:GetOptions()
 	return {
-		37605, -- Enrage
+		37605, -- Enrage / Frenzy (different name on classic)
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_AURA_APPLIED", "Enrage", 37605)
-	self:Log("SPELL_AURA_REMOVED", "EnrageRemoved", 37605)
+	self:Log("SPELL_AURA_APPLIED", "EnrageFrenzyApplied", 37605)
+	self:Log("SPELL_DISPEL", "EnrageFrenzyDispelled", "*")
 
 	self:Death("Win", 17881)
 end
@@ -37,11 +37,14 @@ end
 -- Event Handlers
 --
 
-function mod:Enrage(args)
-	self:MessageOld(args.spellId, "orange")
-	self:Bar(args.spellId, 8)
+function mod:EnrageFrenzyApplied(args)
+	self:Message(args.spellId, "orange")
+	self:TargetBar(args.spellId, 8, args.destName)
 end
 
-function mod:EnrageRemoved(args)
-	self:StopBar(args.spellName)
+function mod:EnrageFrenzyDispelled(args)
+	if args.extraSpellName == self:SpellName(37605) then
+		self:StopBar(args.extraSpellName, args.destName)
+		self:Message(37605, "green", CL.removed_by:format(args.extraSpellName, self:ColorName(args.sourceName)))
+	end
 end

@@ -26,7 +26,7 @@ end
 --  Event Handlers
 
 function mod:Domination(args)
-	self:TargetMessageOld(args.spellId, args.destName, "red")
+	self:TargetMessage(args.spellId, "red", args.destName)
 	self:TargetBar(args.spellId, 10, args.destName)
 end
 
