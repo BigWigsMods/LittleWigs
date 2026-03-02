@@ -311,7 +311,15 @@ BigWigs:AddSounds("Commander Kroluk", {
 })
 
 BigWigs:AddColors("Restless Heart", {
+	[472556] = "cyan",
+	[472662] = "purple",
+	[474528] = "yellow",
+	[1253986] = "red",
 })
 
 BigWigs:AddSounds("Restless Heart", {
+	[472556] = "info",
+	[472662] = "alert",
+	[474528] = "long",
+	[1253986] = "alarm",
 })
