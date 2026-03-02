@@ -271,9 +271,15 @@ BigWigs:AddSounds("Charonus", {
 })
 
 BigWigs:AddColors("Emberdawn", {
+	[465904] = "yellow",
+	[466064] = "purple",
+	[466556] = "orange",
 })
 
 BigWigs:AddSounds("Emberdawn", {
+	[465904] = "long",
+	[466064] = "alert",
+	[466556] = "alarm",
 })
 
 BigWigs:AddColors("Derelict Duo", {
