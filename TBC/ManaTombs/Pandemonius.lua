@@ -16,11 +16,14 @@ mod:RegisterEnableMob(18341)
 function mod:GetOptions()
 	return {
 		38759, -- Dark Shell
+	},nil,{
+		[38759] = CL.spell_reflection, -- Dark Shell (Spell Reflection)
 	}
 end
 
 function mod:OnBossEnable()
-	self:Log("SPELL_CAST_START", "DarkShell", 32358, 38759) -- normal, heroic
+	self:Log("SPELL_AURA_APPLIED", "DarkShellApplied", 32358, 38759) -- normal, heroic
+	self:Log("SPELL_AURA_REMOVED", "DarkShellRemoved", 32358, 38759)
 
 	self:Death("Win", 18341)
 end
@@ -29,7 +32,13 @@ end
 -- Event Handlers
 --
 
-function mod:DarkShell(args)
-	self:MessageOld(38759, "yellow", nil, CL.casting:format(args.spellName))
-	self:Bar(38759, 6)
+function mod:DarkShellApplied(args)
+	self:Message(38759, "yellow", CL.spell_reflection)
+	self:Bar(38759, self:Classic() and 8 or 6, CL.spell_reflection)
+	self:PlaySound(38759, "warning")
+end
+
+function mod:DarkShellRemoved(args)
+	self:Message(38759, "green", CL.over:format(CL.spell_reflection))
+	self:PlaySound(38759, "info")
 end
