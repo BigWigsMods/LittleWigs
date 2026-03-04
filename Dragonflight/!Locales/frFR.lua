@@ -2,16 +2,16 @@
 
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "frFR")
 if L then
-	--L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
+	L.custom_on_recruiter_autotalk_desc = "S'engage automatiquement en parlant à un recruteur de Vol draconique pour recevoir un buff."
 	L.critical_strike = "+5% Coup critique"
 	L.haste = "+5% Hâte"
 	L.mastery = "+Maîtrise"
 	L.versatility = "+5% Polyvalence"
 	L.healing_taken = "+10% Soins reçus"
 
-	--L.vexamus_warmup_trigger = "created a powerful construct named Vexamus"
-	--L.overgrown_ancient_warmup_trigger = "Ichistrasz! There is too much life magic"
-	--L.crawth_warmup_trigger = "At least we know that works. Watch yourselves."
+	L.vexamus_warmup_trigger = "créé un puissant assemblage nommé Vexamus, qui a vite semé le chaos !"
+	L.overgrown_ancient_warmup_trigger = "La concentration de magie est trop élevée !"
+	L.crawth_warmup_trigger = "Au moins, nous savons que ça fonctionne. Attention à vous."
 
 	L.corrupted_manafiend = "Manafiel corrompu"
 	L.spellbound_battleaxe = "Hache d’armes envoûtée"
