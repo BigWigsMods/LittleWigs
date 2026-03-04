@@ -45,8 +45,8 @@ end
 
 L = BigWigs:NewBossLocale("Pit of Saron Trash", "frFR")
 if L then
-	--L.quarry_camps_liberated = "Quarry Camps Liberated"
-	--L.quarry_camps_liberated_desc = "Show an alert when a quarry camp has been liberated."
+	L.quarry_camps_liberated = "Carrières libérées"
+	L.quarry_camps_liberated_desc = "Affiche une alerte lorsqu'une carrière a été libérée."
 end
 
 -- The Culling of Stratholme
