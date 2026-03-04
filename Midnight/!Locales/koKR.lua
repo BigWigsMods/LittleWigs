@@ -59,7 +59,7 @@ end
 
 L = BigWigs:NewBossLocale("Gyrospore", "koKR")
 if L then
-	--L.gyrospore = "Gyrospore"
+	L.gyrospore = "빙글 포자"
 end
 
 L = BigWigs:NewBossLocale("Mycomight", "koKR")
