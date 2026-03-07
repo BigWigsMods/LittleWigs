@@ -148,9 +148,9 @@ do
 			bladestormCount = 1
 			self:SetStage(2)
 			if shieldWallCount == 1 then
-				self:Message(1250851, "cyan", CL.percent:format(self:SpellName(1250851), 66)) -- Shield Wall
+				self:Message(1250851, "cyan", CL.percent:format(66, self:SpellName(1250851))) -- Shield Wall
 			else
-				self:Message(1250851, "cyan", CL.percent:format(self:SpellName(1250851), 33)) -- Shield Wall
+				self:Message(1250851, "cyan", CL.percent:format(33, self:SpellName(1250851))) -- Shield Wall
 			end
 			shieldWallCount = shieldWallCount + 1
 			self:PlaySound(1250851, "long") -- Shield Wall
