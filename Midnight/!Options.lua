@@ -241,9 +241,17 @@ BigWigs:AddSounds("Chief Corewright Kasreth", {
 })
 
 BigWigs:AddColors("Corewarden Nysarra", {
+	[1247937] = "purple",
+	[1249014] = "orange",
+	[1252703] = "cyan",
+	[1264439] = "yellow",
 })
 
 BigWigs:AddSounds("Corewarden Nysarra", {
+	[1247937] = "alert",
+	[1249014] = "alert",
+	[1252703] = "info",
+	[1264439] = "long",
 })
 
 BigWigs:AddColors("Lothraxion", {
