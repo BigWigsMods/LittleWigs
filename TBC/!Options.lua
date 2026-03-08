@@ -5,6 +5,7 @@ BigWigs:AddColors("Shirrak the Dead Watcher", {
 })
 
 BigWigs:AddSounds("Shirrak the Dead Watcher", {
+	[-5041] = "warning",
 })
 
 BigWigs:AddColors("Exarch Maladaar", {
@@ -98,10 +99,11 @@ BigWigs:AddSounds("Magisters' Terrace Trash", {
 })
 
 BigWigs:AddColors("Pandemonius", {
-	[38759] = "yellow",
+	[38759] = {"green","yellow"},
 })
 
 BigWigs:AddSounds("Pandemonius", {
+	[38759] = {"info","warning"},
 })
 
 BigWigs:AddColors("Tavarok", {
@@ -314,16 +316,17 @@ BigWigs:AddSounds("Chrono Lord Deja", {
 })
 
 BigWigs:AddColors("Temporus", {
-	[31458] = "red",
-	[38592] = "orange",
+	[31458] = {"green","yellow"},
+	[38592] = {"green","red"},
 })
 
 BigWigs:AddSounds("Temporus", {
-	[31458] = "warning",
+	[31458] = "info",
+	[38592] = {"long","warning"},
 })
 
 BigWigs:AddColors("Aeonus", {
-	[37605] = "orange",
+	[37605] = {"green","orange"},
 })
 
 BigWigs:AddSounds("Aeonus", {
