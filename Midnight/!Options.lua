@@ -169,9 +169,13 @@ BigWigs:AddSounds("Gemellus", {
 })
 
 BigWigs:AddColors("Degentrius", {
+	[1215897] = "yellow",
+	[1280113] = "purple",
 })
 
 BigWigs:AddSounds("Degentrius", {
+	[1215897] = "alert",
+	[1280113] = "alarm",
 })
 
 BigWigs:AddColors("Muro'jin and Nekraxx", {
