@@ -255,9 +255,17 @@ BigWigs:AddSounds("Corewarden Nysarra", {
 })
 
 BigWigs:AddColors("Lothraxion", {
+	[1253855] = "yellow",
+	[1253950] = "purple",
+	[1255531] = "orange",
+	[1257595] = "cyan",
 })
 
 BigWigs:AddSounds("Lothraxion", {
+	[1253855] = "alarm",
+	[1253950] = "alert",
+	[1255531] = "alarm",
+	[1257595] = "long",
 })
 
 BigWigs:AddColors("Lightblossom Trinity", {
