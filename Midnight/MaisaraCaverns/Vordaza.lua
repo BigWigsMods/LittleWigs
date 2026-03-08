@@ -71,6 +71,7 @@ end
 --
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
+	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = math.floor(eventInfo.duration * 100.0 + 0.5) / 100.0
 	local barInfo
 	if duration == 3 or (duration == 33.5 and count33_5 % 3 == 1) then -- Drain Soul

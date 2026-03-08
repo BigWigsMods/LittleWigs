@@ -102,6 +102,7 @@ end
 --
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
+	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = math.floor(eventInfo.duration* 100.0 + 0.5) / 100.0
 	local barInfo
 	if duration == 11 or (duration == 19 and count19 % 2 == 1) then -- Blight Smash

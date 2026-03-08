@@ -115,6 +115,7 @@ end
 --
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
+	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = math.floor(eventInfo.duration + 0.5)
 	local barInfo
 	if duration == 5 or duration == 10 then -- Scorching Ray

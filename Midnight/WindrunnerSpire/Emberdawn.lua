@@ -90,6 +90,7 @@ function mod:CancelBarForSpell(spellId)
 end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
+	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	if C_EncounterTimeline.GetEventState(eventInfo.id) == 1 then -- Paused
 		return -- ignore paused bars when added, they are always canceled some time later
 	end
