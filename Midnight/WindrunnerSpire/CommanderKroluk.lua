@@ -10,11 +10,11 @@ mod:SetStage(1)
 mod:SetPrivateAuraSounds({
 	{467620, sound = "none"}, -- Rampage
 	{468659, sound = "alert"}, -- Throw Axe
-	{470966, sound = "warning"}, -- Bladestorm
-	{468924, sound = "underyou"}, -- Bladestorm
 	{1283247, sound = "none"}, -- Reckless Leap
 	{472054, sound = "none"}, -- Reckless Leap
 	{1253030, sound = "warning"}, -- Intimidating Shout
+	{470966, sound = "warning"}, -- Bladestorm
+	{468924, sound = "underyou"}, -- Bladestorm
 })
 
 --------------------------------------------------------------------------------
@@ -27,6 +27,7 @@ local bladestormCount = 1
 local recklessLeapCount = 1
 local intimidatingShoutCount = 1
 local activeBars = {}
+local activeBarBySpellId = {}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,17 +36,17 @@ local activeBars = {}
 function mod:GetOptions()
 	return {
 		1250851, -- Shield Wall
-		{1283335, "TANK_HEALER"}, -- Rampage
-		1271676, -- Bladestorm
-		472053, -- Reckless Leap
+		{467620, "TANK_HEALER"}, -- Rampage
+		472081, -- Reckless Leap
 		1253272, -- Intimidating Shout
-		{467620, "PRIVATE"}, -- Rampage
+		470963, -- Bladestorm
+		--{467620, "PRIVATE"}, -- Rampage
 		{468659, "PRIVATE"}, -- Throw Axe
-		{470966, "PRIVATE"}, -- Bladestorm
-		{468924, "PRIVATE"}, -- Bladestorm
-		{1283247, "PRIVATE"}, -- Reckless Leap
-		{472054, "PRIVATE"}, -- Reckless Leap
-		{1253030, "PRIVATE"}, -- Intimidating Shout
+		--{1283247, "PRIVATE"}, -- Reckless Leap
+		--{472054, "PRIVATE"}, -- Reckless Leap
+		--{1253030, "PRIVATE"}, -- Intimidating Shout
+		--{470966, "PRIVATE"}, -- Bladestorm
+		--{468924, "PRIVATE"}, -- Bladestorm
 	}
 end
 
@@ -57,6 +58,7 @@ function mod:OnEncounterStart()
 	recklessLeapCount = 1
 	intimidatingShoutCount = 1
 	activeBars = {}
+	activeBarBySpellId = {}
 	self:SetStage(1)
 	if self:ShouldShowBars() then
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
@@ -69,6 +71,27 @@ end
 -- Timeline Event Handlers
 --
 
+function mod:CancelBarForSpell(spellId)
+	local priorEventID = activeBarBySpellId[spellId]
+	if priorEventID then
+		local barInfo = activeBars[priorEventID]
+		if barInfo and barInfo.createdAt and (GetTime() - barInfo.createdAt) < 3 then
+			self:StopBar(barInfo.msg)
+			activeBars[priorEventID] = nil
+			activeBarBySpellId[spellId] = nil
+			if spellId == 467620 then -- Rampage
+				rampageCount = rampageCount - 1
+			elseif spellId == 472081 then -- Reckless Leap
+				recklessLeapCount = recklessLeapCount - 1
+			elseif spellId == 470963 then -- Bladestorm
+				bladestormCount = bladestormCount - 1
+			elseif spellId == 1253272 then -- Intimidating Shout
+				intimidatingShoutCount = intimidatingShoutCount - 1
+			end
+		end
+	end
+end
+
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	if C_EncounterTimeline.GetEventState(eventInfo.id) == 1 then -- Paused
@@ -78,18 +101,24 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local barInfo
 	if duration > 120 then return end -- filter placeholder bars
 	if duration == 3 or (not self:IsWiping() and duration == 30) then -- Rampage
+		self:CancelBarForSpell(467620)
 		barInfo = self:RampageTimeline(eventInfo)
 	elseif duration == 8 or duration == 0 then -- Bladestorm
+		self:CancelBarForSpell(470963)
 		barInfo = self:BladestormTimeline(eventInfo)
 	elseif duration == 10 or duration == 37 then -- Reckless Leap
+		self:CancelBarForSpell(472081)
 		barInfo = self:RecklessLeapTimeline(eventInfo)
 	elseif duration == 18 or duration == 45 then -- Intimidating Shout
+		self:CancelBarForSpell(1253272)
 		barInfo = self:IntimidatingShoutTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
 	end
 	if barInfo then
+		barInfo.createdAt = GetTime()
 		activeBars[eventInfo.id] = barInfo
+		activeBarBySpellId[barInfo.key] = eventInfo.id
 	end
 end
 
@@ -107,9 +136,15 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 				barInfo.callback()
 			end
 			activeBars[eventID] = nil
+			if activeBarBySpellId[barInfo.key] == eventID then
+				activeBarBySpellId[barInfo.key] = nil
+			end
 		elseif state == 3 then -- Canceled
 			self:StopBar(barInfo.msg)
 			activeBars[eventID] = nil
+			if activeBarBySpellId[barInfo.key] == eventID then
+				activeBarBySpellId[barInfo.key] = nil
+			end
 		end
 	end
 end
@@ -119,6 +154,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
 	if barInfo then
 		self:StopBar(barInfo.msg)
 		activeBars[eventID] = nil
+		if activeBarBySpellId[barInfo.key] == eventID then
+			activeBarBySpellId[barInfo.key] = nil
+		end
 	end
 end
 
@@ -127,22 +165,26 @@ end
 --
 
 function mod:RampageTimeline(eventInfo)
+	if self:GetStage() == 2 then
 	self:SetStage(1)
-	local barText = CL.count:format(self:SpellName(1283335), rampageCount)
-	self:CDBar(1283335, eventInfo.duration, barText, nil, eventInfo.id)
+		self:Message(1250851, "green", CL.over:format(self:SpellName(1250851))) -- Shield Wall
+		self:PlaySound(1250851, "info")
+	end
+	local barText = CL.count:format(self:SpellName(467620), rampageCount)
+	self:CDBar(467620, eventInfo.duration, barText, nil, eventInfo.id)
 	rampageCount = rampageCount + 1
 	return {
 		msg = barText,
-		key = 1283335,
+		key = 467620,
 		callback = function()
-			self:Message(1283335, "purple", barText)
-			self:PlaySound(1283335, "alert")
+			self:Message(467620, "purple", barText)
+			self:PlaySound(467620, "alert")
 		end
 	}
 end
 
 do
-	local prevShieldWall, prevBladestorm = 0, 0
+	local prevShieldWall = 0
 	function mod:BladestormTimeline(eventInfo)
 		if eventInfo.duration == 0.001 and GetTime() - prevShieldWall > 2 then -- happeans 3x in a row on stage change
 			prevShieldWall = GetTime()
@@ -155,29 +197,28 @@ do
 			end
 			shieldWallCount = shieldWallCount + 1
 			self:PlaySound(1250851, "long") -- Shield Wall
-		elseif eventInfo.duration == 8 and GetTime() - prevBladestorm > 2 then -- happens 3x in a row on stage change
-			prevBladestorm = GetTime()
-			local barText = CL.count:format(self:SpellName(1271676), bladestormCount)
-			self:CDBar(1271676, eventInfo.duration, barText, nil, eventInfo.id)
+		elseif eventInfo.duration == 8 then
+			local barText = CL.count:format(self:SpellName(470963), bladestormCount)
+			self:CDBar(470963, eventInfo.duration, barText, nil, eventInfo.id)
 			bladestormCount = bladestormCount + 1
 			return {
 				msg = barText,
-				key = 1271676,
+				key = 470963,
 			}
 		end
 	end
 end
 
 function mod:RecklessLeapTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(472053), recklessLeapCount)
-	self:CDBar(472053, eventInfo.duration, barText, nil, eventInfo.id)
+	local barText = CL.count:format(self:SpellName(472081), recklessLeapCount)
+	self:CDBar(472081, eventInfo.duration, barText, nil, eventInfo.id)
 	recklessLeapCount = recklessLeapCount + 1
 	return {
 		msg = barText,
-		key = 472053,
+		key = 472081,
 		callback = function()
-			self:Message(472053, "orange", barText)
-			self:PlaySound(472053, "alarm")
+			self:Message(472081, "orange", barText)
+			self:PlaySound(472081, "alarm")
 		end
 	}
 end
