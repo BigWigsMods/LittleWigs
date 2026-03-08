@@ -143,9 +143,15 @@ BigWigs:AddSounds("Arcanotron Custos", {
 })
 
 BigWigs:AddColors("Seranel Sunlash", {
+	[1224903] = "orange",
+	[1225787] = "yellow",
+	[1248689] = "purple",
 })
 
 BigWigs:AddSounds("Seranel Sunlash", {
+	[1224903] = "alarm",
+	[1225787] = "alert",
+	[1248689] = "info",
 })
 
 BigWigs:AddColors("Gemellus", {
