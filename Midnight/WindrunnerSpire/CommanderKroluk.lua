@@ -166,7 +166,7 @@ end
 
 function mod:RampageTimeline(eventInfo)
 	if self:GetStage() == 2 then
-	self:SetStage(1)
+		self:SetStage(1)
 		self:Message(1250851, "green", CL.over:format(self:SpellName(1250851))) -- Shield Wall
 		self:PlaySound(1250851, "info")
 	end
@@ -186,7 +186,7 @@ end
 do
 	local prevShieldWall = 0
 	function mod:BladestormTimeline(eventInfo)
-		if eventInfo.duration == 0.001 and GetTime() - prevShieldWall > 2 then -- happeans 3x in a row on stage change
+		if eventInfo.duration == 0.001 and GetTime() - prevShieldWall > 2 then -- 3x in a row on stage change
 			prevShieldWall = GetTime()
 			bladestormCount = 1
 			self:SetStage(2)
