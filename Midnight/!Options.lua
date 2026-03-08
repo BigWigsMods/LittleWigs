@@ -129,9 +129,17 @@ BigWigs:AddSounds("Den of Nalorakk Trash", {
 })
 
 BigWigs:AddColors("Arcanotron Custos", {
+	[474345] = "cyan",
+	[474496] = "purple",
+	[1214032] = "yellow",
+	[1214081] = "orange",
 })
 
 BigWigs:AddSounds("Arcanotron Custos", {
+	[474345] = {"info","long"},
+	[474496] = "alert",
+	[1214032] = "info",
+	[1214081] = "alarm",
 })
 
 BigWigs:AddColors("Seranel Sunlash", {
