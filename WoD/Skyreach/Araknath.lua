@@ -97,9 +97,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local barInfo
 	if duration == 5 or duration == 10 or duration == 15 then -- Fiery Smash
 		barInfo = self:FierySmashTimeline(eventInfo)
-	elseif duration == 6 or duration == 22 then -- Energize
+	elseif duration == 6 or duration == 24 then -- Energize
 		barInfo = self:EnergizeTimeline(eventInfo)
-	elseif duration == 46 then -- Supernova
+	elseif duration == 50 then -- Supernova
 		barInfo = self:SupernovaTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
