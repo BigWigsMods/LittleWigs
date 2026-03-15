@@ -82,20 +82,185 @@ function mod:OnEngage()
 end
 
 --------------------------------------------------------------------------------
+-- Midnight Locals
+--
+
+local mindBlastCount = 1
+local gatesOfTheAbyssCount = 1
+local massVoidInfusionCount = 1
+local umbralTentaclesCount = 1
+local repulseCount = 1
+local count12 = 1
+local activeBars = {}
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
 if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
+			244750, -- Mind Blast
+			1277358, -- Gates of the Abyss
+			1263542, -- Mass Void Infusion
+			1263538, -- Umbral Tentacles
+			1263528, -- Repulse
 			{1263532, "PRIVATE"}, -- Void Storm
-			{1263542, "PRIVATE"}, -- Mass Void Infusion
+			--{1263542, "PRIVATE"}, -- Mass Void Infusion
 			{1268733, "PRIVATE"}, -- Mind Flay
 		}
 	end
 
 	function mod:OnBossEnable()
 	end
+
+	mod:UseCustomTimers(true)
+	function mod:OnEncounterStart()
+		mindBlastCount = 1
+		gatesOfTheAbyssCount = 1
+		massVoidInfusionCount = 1
+		umbralTentaclesCount = 1
+		repulseCount = 1
+		count12 = 1
+		activeBars = {}
+		if self:ShouldShowBars() then
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+		end
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Event Handlers
+--
+
+function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
+	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
+	local duration = math.floor(eventInfo.duration + 0.5)
+	local barInfo
+	if duration == 2 or duration == 4 or duration == 6 or (duration == 12 and count12 % 2 == 0) or duration == 14 then -- Mind Blast
+		barInfo = self:MindBlastTimeline(eventInfo)
+	elseif duration == 6 or duration == 18 then -- Gates of the Abyss
+		barInfo = self:GatesOfTheAbyssTimeline(eventInfo)
+	elseif duration == 12 and count12 % 2 == 1 then -- Mass Void Infusion
+		barInfo = self:MassVoidInfusionTimeline(eventInfo)
+	elseif duration == 26 then -- Umbral Tentacles
+		barInfo = self:UmbralTentaclesTimeline(eventInfo)
+	elseif duration == 45 then -- Repulse
+		barInfo = self:RepulseTimeline(eventInfo)
+	elseif not self:IsWiping() then
+		self:ErrorForTimelineEvent(eventInfo)
+	end
+	if duration == 12 then
+		count12 = count12 + 1
+	end
+	if barInfo then
+		activeBars[eventInfo.id] = barInfo
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		local state = C_EncounterTimeline.GetEventState(eventID)
+		if state == 0 then -- Active
+			self:ResumeBar(barInfo.key, barInfo.msg)
+		elseif state == 1 then -- Paused
+			self:PauseBar(barInfo.key, barInfo.msg)
+		elseif state == 2 then -- Finished
+			self:StopBar(barInfo.msg)
+			if barInfo.callback then
+				barInfo.callback()
+			end
+			activeBars[eventID] = nil
+		elseif state == 3 then -- Canceled
+			self:StopBar(barInfo.msg)
+			activeBars[eventID] = nil
+		end
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		self:StopBar(barInfo.msg)
+		activeBars[eventID] = nil
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Ability Handlers
+--
+
+function mod:MindBlastTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(244750), mindBlastCount)
+	self:CDBar(244750, eventInfo.duration, barText, nil, eventInfo.id)
+	mindBlastCount = mindBlastCount + 1
+	return {
+		msg = barText,
+		key = 244750,
+		callback = function()
+			self:Message(244750, "red", CL.casting:format(barText))
+			self:PlaySound(244750, "alert")
+		end
+	}
+end
+
+function mod:GatesOfTheAbyssTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(1277358), gatesOfTheAbyssCount)
+	self:CDBar(1277358, eventInfo.duration, barText, nil, eventInfo.id)
+	gatesOfTheAbyssCount = gatesOfTheAbyssCount + 1
+	return {
+		msg = barText,
+		key = 1277358,
+		callback = function()
+			self:Message(1277358, "orange", barText)
+			self:PlaySound(1277358, "alarm")
+		end
+	}
+end
+
+function mod:MassVoidInfusionTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(1263542), massVoidInfusionCount)
+	self:CDBar(1263542, eventInfo.duration, barText, nil, eventInfo.id)
+	massVoidInfusionCount = massVoidInfusionCount + 1
+	return {
+		msg = barText,
+		key = 1263542,
+		callback = function()
+			self:Message(1263542, "yellow", barText)
+			self:PlaySound(1263542, "info")
+		end
+	}
+end
+
+function mod:UmbralTentaclesTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(1263538), umbralTentaclesCount)
+	self:CDBar(1263538, eventInfo.duration, barText, nil, eventInfo.id)
+	umbralTentaclesCount = umbralTentaclesCount + 1
+	return {
+		msg = barText,
+		key = 1263538,
+		callback = function()
+			self:Message(1263538, "cyan", barText)
+			self:PlaySound(1263538, "info")
+		end
+	}
+end
+
+function mod:RepulseTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(1263528), repulseCount)
+	self:CDBar(1263528, eventInfo.duration, barText, nil, eventInfo.id)
+	repulseCount = repulseCount + 1
+	return {
+		msg = barText,
+		key = 1263528,
+		callback = function()
+			self:Message(1263528, "yellow", barText)
+			self:PlaySound(1263528, "alarm")
+		end
+	}
 end
 
 --------------------------------------------------------------------------------
