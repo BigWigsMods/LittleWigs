@@ -89,6 +89,10 @@ if mod:Retail() then -- Midnight+
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
 		end
 	end
+
+	function mod:OnWin()
+		activeBars = {}
+	end
 end
 
 --------------------------------------------------------------------------------
