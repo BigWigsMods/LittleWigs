@@ -1388,19 +1388,27 @@ BigWigs:AddSounds("Zuraal", {
 })
 
 BigWigs:AddColors("Saprish", {
+	[245742] = "red",
 	[245802] = {"blue","yellow"},
 	[245873] = "cyan",
 	[247206] = "yellow",
 	[247245] = {"blue","orange"},
 	[248831] = "red",
+	[1248219] = "cyan",
+	[1263523] = "yellow",
+	[1280065] = "orange",
 })
 
 BigWigs:AddSounds("Saprish", {
+	[245742] = "alert",
 	[245802] = {"long","underyou"},
 	[245873] = "info",
 	[247206] = "alarm",
 	[247245] = "alert",
 	[248831] = "warning",
+	[1248219] = "info",
+	[1263523] = "long",
+	[1280065] = "alarm",
 })
 
 BigWigs:AddColors("Viceroy Nezhar", {
