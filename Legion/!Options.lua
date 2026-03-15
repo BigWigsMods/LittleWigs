@@ -1446,6 +1446,12 @@ BigWigs:AddColors("L'ura", {
 	[247930] = "yellow",
 	[248535] = "cyan",
 	[249009] = "orange",
+	[1264196] = "yellow",
+	[1265421] = "red",
+	[1265463] = "purple",
+	[1265689] = "red",
+	[1266001] = "green",
+	[1266003] = "yellow",
 })
 
 BigWigs:AddSounds("L'ura", {
@@ -1455,6 +1461,12 @@ BigWigs:AddSounds("L'ura", {
 	[247930] = "alert",
 	[248535] = "info",
 	[249009] = "alarm",
+	[1264196] = "alert",
+	[1265421] = "warning",
+	[1265463] = "alarm",
+	[1265689] = "warning",
+	[1266001] = "long",
+	[1266003] = "info",
 })
 
 BigWigs:AddColors("Seat of the Triumvirate Trash", {
