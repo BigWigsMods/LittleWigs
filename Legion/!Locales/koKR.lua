@@ -445,8 +445,8 @@ if L then
 	L.weaver = "대흑마술사"
 
 	-- Midnight+
-	--L.void_rifts_closed = "Void Rifts Closed"
-	--L.void_rifts_closed_desc = "Show an alert when a Void Rift has been closed."
+	L.void_rifts_closed = "공허의 균열 닫힘"
+	L.void_rifts_closed_desc = "공허의 균열이 닫혔을 때 알림을 표시합니다."
 end
 
 -- The Arcway
