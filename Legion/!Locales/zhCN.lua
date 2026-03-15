@@ -445,8 +445,8 @@ if L then
 	L.weaver = "大织影者"
 
 	-- Midnight+
-	--L.void_rifts_closed = "Void Rifts Closed"
-	--L.void_rifts_closed_desc = "Show an alert when a Void Rift has been closed."
+	L.void_rifts_closed = "关闭虚空裂隙"
+	L.void_rifts_closed_desc = "当关闭虚空裂隙时显示警告。"
 end
 
 -- The Arcway
