@@ -1366,6 +1366,11 @@ BigWigs:AddColors("Zuraal", {
 	[244621] = {"cyan","green"},
 	[244653] = {"blue","red"},
 	[246134] = "red",
+	[1263282] = "red",
+	[1263297] = "yellow",
+	[1263399] = "yellow",
+	[1263440] = "purple",
+	[1268916] = "orange",
 })
 
 BigWigs:AddSounds("Zuraal", {
@@ -1375,6 +1380,11 @@ BigWigs:AddSounds("Zuraal", {
 	[244621] = {"info","long"},
 	[244653] = "warning",
 	[246134] = "alarm",
+	[1263282] = "alarm",
+	[1263297] = "alert",
+	[1263399] = "info",
+	[1263440] = "alert",
+	[1268916] = "alarm",
 })
 
 BigWigs:AddColors("Saprish", {
