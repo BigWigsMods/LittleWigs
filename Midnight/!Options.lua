@@ -312,10 +312,10 @@ BigWigs:AddColors("Lightwarden Ruia", {
 BigWigs:AddSounds("Lightwarden Ruia", {
 })
 
-BigWigs:AddColors("Ziekett", {
+BigWigs:AddColors("Ziekket", {
 })
 
-BigWigs:AddSounds("Ziekett", {
+BigWigs:AddSounds("Ziekket", {
 })
 
 BigWigs:AddColors("Taz'Rah", {

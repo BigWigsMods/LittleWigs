@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Ziekett", 2859, 2772)
+local mod, CL = BigWigs:NewBoss("Ziekket", 2859, 2772)
 if not mod then return end
 mod:SetEncounterID(3202)
 --mod:SetRespawnTime(30)
