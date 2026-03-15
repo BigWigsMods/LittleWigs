@@ -427,8 +427,6 @@ end
 L = BigWigs:NewBossLocale("L'ura", "koKR")
 if L then
 	L.warmup_text = "르우라 활성화"
-	L.warmup_trigger = "이 혼돈... 이 고통. 이런 건 느낀 적이 없어."
-	L.warmup_trigger_2 = "허나 사색은 미뤄두지. 이 존재는 죽어야 한다."
 end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "koKR")
@@ -437,6 +435,8 @@ if L then
 	L.custom_on_autotalk_desc = "알레리아 윈드러너의 대화 선택지를 즉시 고릅니다."
 	L.gossip_available = "대화 가능"
 	L.alleria_gossip_trigger = "따라오세요!" -- Allerias yell after the first boss is defeated
+	L.lura_warmup_trigger = "이 혼돈... 이 고통. 이런 건 느낀 적이 없어."
+	L.lura_warmup_trigger_2 = "허나 사색은 미뤄두지. 이 존재는 죽어야 한다."
 
 	L.alleria = "알레리아 윈드러너"
 	L.subjugator = "어둠수호병 정복자"

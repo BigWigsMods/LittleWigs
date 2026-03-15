@@ -31,6 +31,8 @@ if L then
 	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
 	L.gossip_available = "Gossip available"
 	L.alleria_gossip_trigger = "Follow me!" -- Allerias yell after the first boss is defeated
+	L.lura_warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
+	L.lura_warmup_trigger_2 = "Such musings can wait, though. This entity must die."
 
 	L.alleria = "Alleria Windrunner"
 	L.subjugator = "Shadowguard Subjugator"
@@ -68,8 +70,10 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	-- Warmups
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
 	self:RegisterEvent("GOSSIP_SHOW")
+	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 
 	self:Log("SPELL_AURA_APPLIED", "SuppressionFieldApplied", 249081)
 	self:Log("SPELL_AURA_APPLIED", "CorruptingVoidApplied", 245510)
@@ -90,6 +94,9 @@ if mod:Retail() then -- Midnight+
 	end
 
 	function mod:OnBossEnable()
+		-- Warmup
+		self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
+
 		-- Void Rifts Closed
 		self:RegisterWidgetEvent(7577, "VoidRiftsClosed", true)
 	end
@@ -113,6 +120,27 @@ function mod:GOSSIP_SHOW() -- Pre-Midnight only, gossip removed in Midnight
 	if self:GetOption("custom_on_autotalk") and self:MobId(self:UnitGUID("npc")) == 125836 then
 		if self:GetGossipOptions() then
 			self:SelectGossipOption(1)
+		end
+	end
+end
+
+do
+	local prev = 0
+	function mod:CHAT_MSG_MONSTER_SAY(_, msg)
+		if self:IsSecret(msg) then return end
+		if msg == L.lura_warmup_trigger then
+			prev = GetTime()
+			local luraModule = BigWigs:GetBossModule("L'ura", true)
+			if luraModule then
+				luraModule:Enable()
+				luraModule:WarmupEarly()
+			end
+		elseif GetTime() - prev > 30 and msg == L.lura_warmup_trigger_2 then
+			local luraModule = BigWigs:GetBossModule("L'ura", true)
+			if luraModule then
+				luraModule:Enable()
+				luraModule:WarmupLate()
+			end
 		end
 	end
 end

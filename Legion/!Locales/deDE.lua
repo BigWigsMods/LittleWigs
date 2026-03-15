@@ -427,8 +427,6 @@ end
 L = BigWigs:NewBossLocale("L'ura", "deDE")
 if L then
 	L.warmup_text = "L'ura aktiv"
-	L.warmup_trigger = "Dieses Chaos... diese Qualen. Etwas Derartiges habe ich noch nie gespürt."
-	L.warmup_trigger_2 = "Derlei Gedanken können jetzt warten. Dieses Wesen muss sterben."
 end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "deDE")
@@ -437,6 +435,8 @@ if L then
 	L.custom_on_autotalk_desc = "Wählt direkt Alleria Windläufers Dialogoption."
 	L.gossip_available = "Dialog verfügbar"
 	L.alleria_gossip_trigger = "Folgt mir!" -- Allerias yell after the first boss is defeated
+	L.lura_warmup_trigger = "Dieses Chaos... diese Qualen. Etwas Derartiges habe ich noch nie gespürt."
+	L.lura_warmup_trigger_2 = "Derlei Gedanken können jetzt warten. Dieses Wesen muss sterben."
 
 	L.alleria = "Alleria Windläufer"
 	L.subjugator = "Unterwerfer der Schattenwache"

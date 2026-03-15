@@ -19,8 +19,6 @@ mod:SetPrivateAuraSounds({
 local L = mod:GetLocale()
 if L then
 	L.warmup_text = "L'ura Active"
-	L.warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
-	L.warmup_trigger_2 = "Such musings can wait, though. This entity must die."
 end
 
 --------------------------------------------------------------------------------
@@ -42,7 +40,6 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
-	self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 	self:Log("SPELL_CAST_START", "CalltotheVoid", 247795)
 	self:Log("SPELL_AURA_APPLIED", "NaarusLament", 248535)
 	self:Log("SPELL_CAST_SUCCESS", "UmbralCadence", 247930)
@@ -60,13 +57,13 @@ end
 if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
+			"warmup",
 			{1265426, "PRIVATE"}, -- Discordant Beam
 			{1265650, "PRIVATE"}, -- Anguish
 		}
 	end
 
 	function mod:OnBossEnable()
-		self:RegisterEvent("CHAT_MSG_MONSTER_SAY")
 	end
 end
 
@@ -74,16 +71,12 @@ end
 -- Event Handlers
 --
 
-function mod:CHAT_MSG_MONSTER_SAY(event, msg)
-	-- TODO move to trash module, this won't be enabled in time in 12.0+
-	if self:IsSecret(msg) then return end
-	if msg == L.warmup_trigger then
-		self:UnregisterEvent(event)
-		self:Bar("warmup", 30.2, L.warmup_text, "spell_priest_divinestar_shadow")
-	elseif msg == L.warmup_trigger_2 then
-		self:UnregisterEvent(event)
-		self:Bar("warmup", 8.47, L.warmup_text, "spell_priest_divinestar_shadow")
-	end
+function mod:WarmupEarly() -- Called from trash module
+	self:Bar("warmup", 30.2, L.warmup_text, "spell_priest_divinestar_shadow")
+end
+
+function mod:WarmupLate() -- Called from trash module
+	self:Bar("warmup", 8.47, L.warmup_text, "spell_priest_divinestar_shadow")
 end
 
 function mod:CalltotheVoid(args)
