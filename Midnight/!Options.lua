@@ -127,9 +127,15 @@ BigWigs:AddSounds("Sentinel of Winter", {
 })
 
 BigWigs:AddColors("Nalorakk Den", {
+	[1242860] = "red",
+	[1243569] = "purple",
+	[1255385] = "orange",
 })
 
 BigWigs:AddSounds("Nalorakk Den", {
+	[1242860] = "info",
+	[1243569] = "alert",
+	[1255385] = "alarm",
 })
 
 BigWigs:AddColors("Den of Nalorakk Trash", {
