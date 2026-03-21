@@ -223,9 +223,11 @@ BigWigs:AddSounds("Talon King Ikiss", {
 })
 
 BigWigs:AddColors("Ambassador Hellmaw", {
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Ambassador Hellmaw", {
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Blackheart the Inciter", {
@@ -415,10 +417,12 @@ BigWigs:AddColors("Mechano-Lord Capacitus", {
 	[35158] = {"green","orange"},
 	[35159] = {"green","orange"},
 	[39096] = {"blue","orange"},
+	["berserk"] = {"orange","red","yellow"},
 })
 
 BigWigs:AddSounds("Mechano-Lord Capacitus", {
 	[39096] = "info",
+	["berserk"] = "alarm",
 })
 
 BigWigs:AddColors("Gatewatcher Iron-Hand", {

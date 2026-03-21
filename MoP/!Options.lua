@@ -12,6 +12,7 @@ BigWigs:AddSounds("Essence of Order", {
 
 BigWigs:AddColors("Kanrethad Ebonlocke", {
 	[1098] = "cyan",
+	[138558] = {"orange","red"},
 	[138559] = "orange",
 	[138560] = {"blue","green"},
 	[138561] = "blue",
@@ -24,6 +25,7 @@ BigWigs:AddColors("Kanrethad Ebonlocke", {
 })
 
 BigWigs:AddSounds("Kanrethad Ebonlocke", {
+	[138558] = "alarm",
 	[138559] = "long",
 	[138560] = "alarm",
 	[138561] = "alert",
