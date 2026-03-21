@@ -132,6 +132,9 @@ function mod:RepulsingSlamTimeline(eventInfo)
 		callback = function()
 			self:Message(474496, "purple", barText)
 			self:PlaySound(474496, "alert")
+		end,
+		cancelCallback = function()
+			repulsingSlamCount = repulsingSlamCount - 1
 		end
 	}
 end
@@ -146,6 +149,9 @@ function mod:ArcaneExpulsionTimeline(eventInfo)
 		callback = function()
 			self:Message(1214081, "orange", barText)
 			self:PlaySound(1214081, "alarm")
+		end,
+		cancelCallback = function()
+			arcaneExpulsionCount = arcaneExpulsionCount - 1
 		end
 	}
 end
@@ -160,6 +166,9 @@ function mod:EtherealShacklesTimeline(eventInfo)
 		callback = function()
 			self:Message(1214032, "yellow", barText)
 			self:PlaySound(1214032, "info")
+		end,
+		cancelCallback = function()
+			etherealShacklesCount = etherealShacklesCount - 1
 		end
 	}
 end
