@@ -103,9 +103,15 @@ BigWigs:AddSounds("Midnight Delve Trash", {
 })
 
 BigWigs:AddColors("The Hoardmonger", {
+	[1234233] = "yellow",
+	[1235118] = "red",
+	[1253268] = "orange",
 })
 
 BigWigs:AddSounds("The Hoardmonger", {
+	[1234233] = "long",
+	[1235118] = "alert",
+	[1253268] = "alarm",
 })
 
 BigWigs:AddColors("Sentinel of Winter", {
