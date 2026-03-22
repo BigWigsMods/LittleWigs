@@ -100,8 +100,6 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		self:CancelBarForSpell(1243011)
 		barInfo = self:FuryOfTheWarGodTimeline(eventInfo)
 	elseif not self:IsWiping() then
-					local state = C_EncounterTimeline.GetEventState(eventInfo.id)
-					print("state? "..state)
 		self:ErrorForTimelineEvent(eventInfo)
 	end
 	if barInfo then

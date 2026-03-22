@@ -61,7 +61,6 @@ end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
-	print("Timeline event:", eventInfo.spellName, eventInfo.spellID, eventInfo.duration, C_EncounterTimeline.GetEventState(eventInfo.id))
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if duration == 8 then -- Killing Spree
