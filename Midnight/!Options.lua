@@ -253,9 +253,17 @@ BigWigs:AddSounds("Kystia Manaheart", {
 })
 
 BigWigs:AddColors("Zaen Bladesorrow", {
+	[474478] = "red",
+	[474765] = "yellow",
+	[1214357] = "orange",
+	[1222795] = "purple",
 })
 
 BigWigs:AddSounds("Zaen Bladesorrow", {
+	[474478] = "info",
+	[474765] = "alert",
+	[1214357] = "alarm",
+	[1222795] = "alert",
 })
 
 BigWigs:AddColors("Xathuux the Annihilator", {
