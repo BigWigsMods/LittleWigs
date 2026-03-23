@@ -34,7 +34,7 @@ function mod:GetOptions()
 		1225787, -- Runic Mark
 		1224903, -- Suppression Zone
 		1248689, -- Hastening Ward
-		1225193, -- Wave of Silence
+		{1225193, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Wave of Silence
 		{1225015, "PRIVATE"}, -- Suppression Zone
 		{1225205, "PRIVATE"}, -- Wave of Silence
 		--{1225792, "PRIVATE"}, -- Runic Mark
@@ -94,7 +94,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	elseif duration == 26 then -- Hastening Ward
 		barInfo = self:HasteningWardTimeline(eventInfo)
 	elseif duration == 51 then -- Wave of Silence
-		barInfo = self:WaveofSilenceTimeline(eventInfo)
+		barInfo = self:WaveOfSilenceTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
 	end
@@ -189,16 +189,18 @@ function mod:HasteningWardTimeline(eventInfo)
 	}
 end
 
-function mod:WaveofSilenceTimeline(eventInfo)
+function mod:WaveOfSilenceTimeline(eventInfo)
 	local barText = CL.count:format(self:SpellName(1225193), waveofSilenceCount)
 	self:CDBar(1225193, eventInfo.duration, barText, nil, eventInfo.id)
 	waveofSilenceCount = waveofSilenceCount + 1
 	return {
 		msg = barText,
 		key = 1225193,
-		--callback = function() -- has Blizzard alert
+		callback = function()
+			-- has Blizzard alert
 			--self:Message(1225193, "red", barText)
 			--self:PlaySound(1225193, "warning")
-		--end
+			self:CastBar(1225193, 5)
+		end
 	}
 end
