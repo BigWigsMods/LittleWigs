@@ -90,6 +90,7 @@ local gatesOfTheAbyssCount = 1
 local massVoidInfusionCount = 1
 local umbralTentaclesCount = 1
 local repulseCount = 1
+local count6 = 1
 local count12 = 1
 local activeBars = {}
 
@@ -121,6 +122,7 @@ if mod:Retail() then -- Midnight+
 		massVoidInfusionCount = 1
 		umbralTentaclesCount = 1
 		repulseCount = 1
+		count6 = 1
 		count12 = 1
 		activeBars = {}
 		if self:ShouldShowBars() then
@@ -139,9 +141,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = math.floor(eventInfo.duration + 0.5)
 	local barInfo
-	if duration == 2 or duration == 4 or duration == 6 or (duration == 12 and count12 % 2 == 0) or duration == 14 then -- Mind Blast
+	if duration == 2 or duration == 4 or (duration == 6 and count6 % 3 ~= 1) or (duration == 12 and count12 % 2 == 0) or duration == 14 then -- Mind Blast
 		barInfo = self:MindBlastTimeline(eventInfo)
-	elseif duration == 6 or duration == 18 then -- Gates of the Abyss
+	elseif (duration == 6 and count6 % 3 == 1) or duration == 18 then -- Gates of the Abyss
 		barInfo = self:GatesOfTheAbyssTimeline(eventInfo)
 	elseif duration == 12 and count12 % 2 == 1 then -- Mass Void Infusion
 		barInfo = self:MassVoidInfusionTimeline(eventInfo)
@@ -151,6 +153,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		barInfo = self:RepulseTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
+	end
+	if duration == 6 then
+		count6 = count6 + 1
 	end
 	if duration == 12 then
 		count12 = count12 + 1
