@@ -52,6 +52,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(136385) then -- Atal'Aman, start Delve (Kasha)
 			-- 136385:|cFF0000FF(Delve)|r I'll break the hexes and set your kin free.
 			self:SelectGossipID(136385)
+		elseif self:GetGossipID(136317) then -- Atal'Aman, start Delve (Torundo The Grizzled)
+			-- 136317:|cFF0000FF(Delve)|r I'll get rid of these totems!
+			self:SelectGossipID(136317)
 		elseif self:GetGossipID(135708) then -- Collegiate Calamity, start Delve (Bloomkeeper Thornflare)
 			-- 135708:|cFF0000FF(Delve)|r I'll get rid of these weeds!
 			self:SelectGossipID(135708)
@@ -76,6 +79,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(137248) then -- The Gulf of Memory, start Delve (Ashayo)
 			-- 137248:Release the moths near Lightbloom patches on the ground and they'll eat it. Seems easy enough.
 			self:SelectGossipID(137248)
+		elseif self:GetGossipID(137389) then -- The Gulf of Memory, start Delve (Ashayo)
+			-- 137389:Deal with the big ones. Got it.
+			self:SelectGossipID(137389)
 		elseif self:GetGossipID(137619) then -- The Shadow Enclave, start Delve (Doleana Silverstalk)
 			-- 137619:Looting and killing, understood!
 			self:SelectGossipID(137619)
