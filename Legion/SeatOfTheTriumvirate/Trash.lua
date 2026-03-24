@@ -183,7 +183,8 @@ end
 
 function mod:VoidRiftsClosed(_, text)
     -- [UPDATE_UI_WIDGET] widgetID:7577, widgetType:8, shownState:1, text:Void Rifts Closed: 0/4
-    if text ~= lastText then
+	local closed = text:match("(%d+)/%d+")
+    if closed and tonumber(closed) > 0 and text ~= lastText then
         lastText = text
         self:Message("void_rifts_closed", "green", text, false)
         self:PlaySound("void_rifts_closed", "info")
