@@ -143,7 +143,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		barInfo = self:GerminateTimeline(eventInfo)
 	elseif not self:IsWiping() and duration == 30 then -- Branch Out
 		barInfo = self:BranchOutTimeline(eventInfo)
-	elseif duration == 54 then -- Burst Forth
+	elseif duration == 54 or duration == 55 then -- Burst Forth
 		barInfo = self:BurstForthTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
