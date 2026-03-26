@@ -3,11 +3,11 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "zhTW")
 if L then
 	L.custom_on_recruiter_autotalk_desc = "與招募員對話時自動確認選項，獲取增益。"
-	L.critical_strike = "+5% 致命一擊"
-	L.haste = "+5% 加速"
-	L.mastery = "+精通"
-	L.versatility = "+5% 臨機應變"
-	L.healing_taken = "+10% 受到治療"
+	L.critical_strike = "致命一擊"
+	L.haste = "加速"
+	L.mastery = "精通"
+	L.versatility = "臨機應變"
+	L.healing_taken = "受到治療"
 
 	--L.vexamus_warmup_trigger = "created a powerful construct named Vexamus"
 	--L.overgrown_ancient_warmup_trigger = "Ichistrasz! There is too much life magic"

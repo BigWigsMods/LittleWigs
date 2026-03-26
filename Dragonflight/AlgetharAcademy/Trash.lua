@@ -33,11 +33,11 @@ if L then
 	L.custom_on_recruiter_autotalk = CL.autotalk
 	L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
 	L.custom_on_recruiter_autotalk_icon = mod:GetMenuIcon("SAY")
-	L.critical_strike = "+5% Critical Strike"
-	L.haste = "+5% Haste"
-	L.mastery = "+Mastery"
-	L.versatility = "+5% Versatility"
-	L.healing_taken = "+10% Healing taken"
+	L.critical_strike = "Critical Strike"
+	L.haste = "Haste"
+	L.mastery = "Mastery"
+	L.versatility = "Versatility"
+	L.healing_taken = "Healing taken"
 
 	-- Ah! Here we are! Ahem--long ago, members of the blue dragonflight accidentally overloaded an arcane elemental and created a powerful construct named Vexamus that quickly started to wreak havoc!
 	L.vexamus_warmup_trigger = "created a powerful construct named Vexamus"

@@ -3,11 +3,11 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "ruRU")
 if L then
 	L.custom_on_recruiter_autotalk_desc = "Автоматически говорить с драконами-вербовщиками для получения бафа."
-	L.critical_strike = "+5% Критический удар"
-	L.haste = "+5% Скорость"
-	L.mastery = "+Искусность"
-	L.versatility = "+5% Универсальность"
-	L.healing_taken = "+10% Получаемое исцеление"
+	L.critical_strike = "Критический удар"
+	L.haste = "Скорость"
+	L.mastery = "Искусность"
+	L.versatility = "Универсальность"
+	L.healing_taken = "Получаемое исцеление"
 
 	L.vexamus_warmup_trigger = "создав могучего Вексама"
 	L.overgrown_ancient_warmup_trigger = "Ихистраз! Магии жизни слишком много!"

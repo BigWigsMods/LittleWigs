@@ -3,11 +3,11 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "koKR")
 if L then
 	L.custom_on_recruiter_autotalk_desc = "즉시 용군단 징집관에게 서약하여 강화 효과를 받습니다."
-	L.critical_strike = "+5% 치명타 및 극대화"
-	L.haste = "+5% 가속"
-	L.mastery = "+특화"
-	L.versatility = "+5% 유연성"
-	L.healing_taken = "+10% 받는 치유 효과"
+	L.critical_strike = "치명타 및 극대화"
+	L.haste = "가속"
+	L.mastery = "특화"
+	L.versatility = "유연성"
+	L.healing_taken = "받는 치유 효과"
 
 	L.vexamus_warmup_trigger = "백사무스라는 강력한 피조물이 탄생해"
 	L.overgrown_ancient_warmup_trigger = "이치스트라즈 님! 생명 마법이 너무 과하잖아요!"

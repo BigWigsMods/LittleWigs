@@ -3,11 +3,11 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "ptBR")
 if L then
 	--L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
-	L.critical_strike = "+5% Acerto Crítico"
-	L.haste = "+5% Aceleração"
-	L.mastery = "+Maestria"
-	L.versatility = "+5% Versatilidade"
-	L.healing_taken = "+10% Cura recebida"
+	L.critical_strike = "Acerto Crítico"
+	L.haste = "Aceleração"
+	L.mastery = "Maestria"
+	L.versatility = "Versatilidade"
+	L.healing_taken = "Cura recebida"
 
 	--L.vexamus_warmup_trigger = "created a powerful construct named Vexamus"
 	--L.overgrown_ancient_warmup_trigger = "Ichistrasz! There is too much life magic"

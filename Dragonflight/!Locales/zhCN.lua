@@ -3,11 +3,11 @@
 local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "zhCN")
 if L then
 	L.custom_on_recruiter_autotalk_desc = "在与你选择的巨龙招募人员对话时自动确认选项，获取增益。"
-	L.critical_strike = "+5% 爆击"
-	L.haste = "+5% 急速"
-	L.mastery = "+精通"
-	L.versatility = "+5% 全能"
-	L.healing_taken = "+10% 治疗效果"
+	L.critical_strike = "爆击"
+	L.haste = "急速"
+	L.mastery = "精通"
+	L.versatility = "全能"
+	L.healing_taken = "治疗效果"
 
 	L.vexamus_warmup_trigger = "意外创造出了一具强大的造物，名为维克萨姆斯"
 	L.overgrown_ancient_warmup_trigger = "艾基斯塔兹！生命法术太浓了"
