@@ -85,9 +85,17 @@ BigWigs:AddSounds("Antenorian", {
 })
 
 BigWigs:AddColors("Nullaeus", {
+	[1280086] = "red",
+	[1280087] = "orange",
+	[1280088] = "yellow",
+	["adds"] = "cyan",
 })
 
 BigWigs:AddSounds("Nullaeus", {
+	[1280086] = "warning",
+	[1280087] = "alarm",
+	[1280088] = "info",
+	["adds"] = "long",
 })
 
 BigWigs:AddColors("Blademaster Darza", {
