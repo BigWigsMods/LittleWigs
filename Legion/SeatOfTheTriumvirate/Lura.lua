@@ -182,7 +182,7 @@ function mod:DirgeOfDespairTimeline(eventInfo)
 		key = 1265421,
 		callback = function()
 			self:Message(1265421, "red", barText)
-			self:PlaySound(1265421, "warning")
+			self:PlaySound(1265421, "info")
 		end
 	}
 end
@@ -222,7 +222,7 @@ function mod:GrimChorusTimeline(eventInfo)
 	return {
 		msg = barText,
 		key = 1265689,
-		cancelCallback = function()
+		callback = function()
 			self:Message(1265689, "red", barText)
 			self:PlaySound(1265689, "warning")
 		end

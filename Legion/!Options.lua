@@ -1462,7 +1462,7 @@ BigWigs:AddSounds("L'ura", {
 	[248535] = "info",
 	[249009] = "alarm",
 	[1264196] = "alert",
-	[1265421] = "warning",
+	[1265421] = "info",
 	[1265463] = "alarm",
 	[1265689] = "warning",
 	[1266001] = "long",
