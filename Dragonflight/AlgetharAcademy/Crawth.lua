@@ -31,7 +31,7 @@ end
 -- Locals
 --
 
-local playBallCount = 0
+local playBallCount = 1
 local searingBlazeGoals = 0
 local rushingWindsGoals = 0
 local sonicVulnerabilityStacks = 0
@@ -76,7 +76,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnEngage()
-	playBallCount = 0
+	playBallCount = 1
 	searingBlazeGoals = 0
 	rushingWindsGoals = 0
 	sonicVulnerabilityStacks = 0
@@ -107,6 +107,7 @@ if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			"warmup",
+			377182, -- Play Ball
 			389481, -- Goal of the Searing Blaze
 			376448, -- Firestorm
 			389483, -- Goal of the Rushing Winds
@@ -127,6 +128,7 @@ if mod:Retail() then -- Midnight+
 
 	mod:UseCustomTimers(true)
 	function mod:OnEncounterStart()
+		playBallCount = 1
 		searingBlazeGoals = 0
 		rushingWindsGoals = 0
 		savagePeckCount = 1
@@ -180,6 +182,10 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 		elseif state == 3 then -- Canceled
 			self:StopBar(barInfo.msg)
 			activeBars[eventID] = nil
+			-- when all bars are canceled it's because Play Ball is starting
+			if not self:IsWiping() then
+				self:PlayBall()
+			end
 		end
 	end
 end
@@ -238,6 +244,20 @@ function mod:OverpoweringGustTimeline(eventInfo)
 	}
 end
 
+do
+	local prev = 0
+	function mod:PlayBall()
+		if GetTime() - prev > 2 and playBallCount < 3 then
+			prev = GetTime()
+			-- cast at 75% and 45% health
+			local percent = playBallCount == 1 and 75 or 45
+			playBallCount = playBallCount + 1
+			self:Message(377182, "cyan", CL.percent:format(percent, self:SpellName(377182)))
+			self:PlaySound(377182, "long")
+		end
+	end
+end
+
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
@@ -254,7 +274,7 @@ end
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if not self:IsSecret(msg) and msg:find("377182", nil, true) then -- Play Ball
 		-- cast at 75% and 45% health
-		local percent = playBallCount == 0 and 75 or 45
+		local percent = playBallCount == 1 and 75 or 45
 		playBallCount = playBallCount + 1
 		self:Message(377182, "cyan", CL.percent:format(percent, self:SpellName(377182)))
 		self:PlaySound(377182, "long")
