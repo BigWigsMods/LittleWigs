@@ -12,6 +12,7 @@ mod:SetPrivateAuraSounds({
 	{1249020, sound = "alarm"}, -- Eclipsing Step
 	{1252828, sound = "alarm"}, -- Void Gash
 })
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -21,6 +22,7 @@ local umbralLashCount = 1
 local eclipsingStepCount = 1
 local nullVanguardCount = 1
 local lightscarFlareCount = 1
+local devourTheUnworthyCount = 1
 local count61 = 1
 local activeBars = {}
 local activeBarBySpellId = {}
@@ -35,6 +37,7 @@ function mod:GetOptions()
 		1249014, -- Eclipsing Step
 		1252703, -- Null Vanguard
 		1264439, -- Lightscar Flare
+		1271684, -- Devour the Unworthy
 		--{1247975, "PRIVATE"}, -- Lightscar Flare
 		--{1271433, "PRIVATE"}, -- Lightscar Flare
 		--{1249020, "PRIVATE"}, -- Eclipsing Step
@@ -48,9 +51,11 @@ function mod:OnEncounterStart()
 	eclipsingStepCount = 1
 	nullVanguardCount = 1
 	lightscarFlareCount = 1
+	devourTheUnworthyCount = 1
 	count61 = 1
 	activeBars = {}
 	activeBarBySpellId = {}
+	self:SetStage(1)
 	if self:ShouldShowBars() then
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
@@ -89,18 +94,21 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	end
 	local duration = math.floor(eventInfo.duration * 100.0 + 0.5) / 100.0
 	local barInfo
+	if duration > 100 then return end -- filter fake Devour the Unworthy (102.4)
 	if duration == 3 or duration == 16.85 then -- Umbral Lash
 		self:CancelBarForSpell(1247937)
 		barInfo = self:UmbralLashTimeline(eventInfo)
 	elseif duration == 5 or duration == 18 then -- Eclipsing Step
 		self:CancelBarForSpell(1249014)
 		barInfo = self:EclipsingStepTimeline(eventInfo)
-	elseif duration == 15 or (duration == 61 and count61 % 2 == 1) then -- Null Vanguard
+	elseif self:GetStage() == 1 and (duration == 15 or (duration == 61 and count61 % 2 == 1)) then -- Null Vanguard
 		self:CancelBarForSpell(1252703)
 		barInfo = self:NullVanguardTimeline(eventInfo)
 	elseif duration == 28 or (duration == 61 and count61 % 2 == 0) then -- Lightscar Flare
 		self:CancelBarForSpell(1264439)
 		barInfo = self:LightscarFlareTimeline(eventInfo)
+	elseif self:GetStage() == 2 and duration == 15 then -- Devour the Unworthy
+		barInfo = self:DevourTheUnworthyTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
 	end
@@ -218,11 +226,56 @@ function mod:LightscarFlareTimeline(eventInfo)
 		msg = barText,
 		key = 1264439,
 		callback = function()
-			self:Message(1264439, "yellow", barText)
-			self:PlaySound(1264439, "long")
+			-- in ~9 seconds this cast will finish
+			self:ScheduleTimer(function()
+				self:SetStage(2)
+				self:ScheduleTimer(function()
+					-- 18s cast
+					self:SetStage(1)
+				end, 18)
+				self:Message(1264439, "yellow", barText)
+				self:PlaySound(1264439, "long")
+			end, 9)
 		end,
 		cancelCallback = function()
-			lightscarFlareCount = lightscarFlareCount - 1
+			local priorEventID = activeBarBySpellId[1264439]
+			if priorEventID then
+				local barInfo = activeBars[priorEventID]
+				if barInfo and barInfo.createdAt and (GetTime() - barInfo.createdAt) > 10 then
+					-- in ~9 seconds this cast will finish
+					self:ScheduleTimer(function()
+						self:SetStage(2)
+						self:ScheduleTimer(function()
+							-- 18s cast
+							self:SetStage(1)
+						end, 18)
+						self:Message(1264439, "yellow", barText)
+						self:PlaySound(1264439, "long")
+					end, 9)
+				else
+					lightscarFlareCount = lightscarFlareCount - 1
+				end
+			end
+		end
+	}
+end
+
+function mod:DevourTheUnworthyTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(1271684), devourTheUnworthyCount)
+	self:CDBar(1271684, eventInfo.duration, barText, nil, eventInfo.id)
+	devourTheUnworthyCount = devourTheUnworthyCount + 1
+	return {
+		msg = barText,
+		key = 1271684,
+		callback = function() -- not sure if this can actually happen
+			if self:GetStage() == 2 then
+				self:SetStage(1)
+			end
+		end,
+		cancelCallback = function()
+			if self:GetStage() == 2 then
+				self:SetStage(1)
+			end
 		end
 	}
 end
