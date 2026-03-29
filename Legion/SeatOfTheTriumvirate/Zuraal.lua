@@ -54,6 +54,7 @@ local nullPalmCount = 1
 local oozingSlamCount = 1
 local crashingVoidCount = 1
 local activeBars = {}
+local activeBarBySpellId = {}
 
 --------------------------------------------------------------------------------
 -- Midnight Initialization
@@ -83,6 +84,7 @@ if mod:Retail() then -- Midnight+
 		oozingSlamCount = 1
 		crashingVoidCount = 1
 		activeBars = {}
+		activeBarBySpellId = {}
 		if self:ShouldShowBars() then
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
@@ -92,12 +94,28 @@ if mod:Retail() then -- Midnight+
 
 	function mod:OnWin()
 		activeBars = {}
+		activeBarBySpellId = {}
 	end
 end
 
 --------------------------------------------------------------------------------
 -- Timeline Event Handlers
 --
+
+function mod:CancelBarForSpell(spellId)
+	local priorEventID = activeBarBySpellId[spellId]
+	if priorEventID then
+		local barInfo = activeBars[priorEventID]
+		if barInfo and barInfo.createdAt and (GetTime() - barInfo.createdAt) < 2 then
+			self:StopBar(barInfo.msg)
+			if barInfo.cancelCallback then
+				barInfo.cancelCallback()
+			end
+			activeBars[priorEventID] = nil
+			activeBarBySpellId[spellId] = nil
+		end
+	end
+end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
@@ -106,20 +124,31 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local barInfo
 	if duration > 60 then return end -- always canceled
 	if duration == 4 or duration == 40 then -- Void Slash
-		barInfo = self:VoidSlashTimeline(eventInfo)
+		if crashingVoidCount == 1 or (voidSlashCount - 1 < (crashingVoidCount - 1) * 2) then
+			self:CancelBarForSpell(1263440)
+			barInfo = self:VoidSlashTimeline(eventInfo)
+		end
 	elseif duration == 7 or duration == 28 then -- Decimate
-		barInfo = self:DecimateTimeline(eventInfo)
+		if crashingVoidCount == 1 or (decimateCount - 1 < (crashingVoidCount - 1) * 2) then
+			self:CancelBarForSpell(1263282)
+			barInfo = self:DecimateTimeline(eventInfo)
+		end
 	elseif duration == 16 then -- Null Palm
+		self:CancelBarForSpell(1268916)
 		barInfo = self:NullPalmTimeline(eventInfo)
 	elseif duration == 22 then -- Oozing Slam
+		self:CancelBarForSpell(1263399)
 		barInfo = self:OozingSlamTimeline(eventInfo)
 	elseif duration == 50 then -- Crashing Void
+		self:CancelBarForSpell(1263297)
 		barInfo = self:CrashingVoidTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
 	end
 	if barInfo then
+		barInfo.createdAt = GetTime()
 		activeBars[eventInfo.id] = barInfo
+		activeBarBySpellId[barInfo.key] = eventInfo.id
 	end
 end
 
@@ -137,12 +166,18 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 				barInfo.callback()
 			end
 			activeBars[eventID] = nil
+			if activeBarBySpellId[barInfo.key] == eventID then
+				activeBarBySpellId[barInfo.key] = nil
+			end
 		elseif state == 3 then -- Canceled
 			self:StopBar(barInfo.msg)
 			if not self:IsWiping() and barInfo.cancelCallback then
 				barInfo.cancelCallback()
 			end
 			activeBars[eventID] = nil
+			if activeBarBySpellId[barInfo.key] == eventID then
+				activeBarBySpellId[barInfo.key] = nil
+			end
 		end
 	end
 end
@@ -152,6 +187,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
 	if barInfo then
 		self:StopBar(barInfo.msg)
 		activeBars[eventID] = nil
+		if activeBarBySpellId[barInfo.key] == eventID then
+			activeBarBySpellId[barInfo.key] = nil
+		end
 	end
 end
 
@@ -169,6 +207,9 @@ function mod:VoidSlashTimeline(eventInfo)
 		callback = function()
 			self:Message(1263440, "purple", barText)
 			self:PlaySound(1263440, "alert")
+		end,
+		cancelCallback = function ()
+			voidSlashCount = voidSlashCount - 1
 		end
 	}
 end
@@ -183,6 +224,9 @@ function mod:DecimateTimeline(eventInfo)
 		callback = function()
 			self:Message(1263282, "red", barText)
 			self:PlaySound(1263282, "alarm")
+		end,
+		cancelCallback = function ()
+			decimateCount = decimateCount - 1
 		end
 	}
 end
@@ -197,6 +241,9 @@ function mod:NullPalmTimeline(eventInfo)
 		callback = function()
 			self:Message(1268916, "orange", barText)
 			self:PlaySound(1268916, "alarm")
+		end,
+		cancelCallback = function ()
+			nullPalmCount = nullPalmCount - 1
 		end
 	}
 end
@@ -209,13 +256,18 @@ function mod:OozingSlamTimeline(eventInfo)
 		msg = barText,
 		key = 1263399,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(1263399, "yellow", barText)
 			self:PlaySound(1263399, "info")
+		end,
+		cancelCallback = function ()
+			oozingSlamCount = oozingSlamCount - 1
 		end
 	}
 end
 
 function mod:CrashingVoidTimeline(eventInfo)
+	local createdAt = GetTime()
 	local barText = CL.count:format(self:SpellName(1263297), crashingVoidCount)
 	self:CDBar(1263297, eventInfo.duration, barText, nil, eventInfo.id)
 	crashingVoidCount = crashingVoidCount + 1
@@ -223,8 +275,12 @@ function mod:CrashingVoidTimeline(eventInfo)
 		msg = barText,
 		key = 1263297,
 		cancelCallback = function()
-			self:Message(1263297, "yellow", barText)
-			self:PlaySound(1263297, "alert")
+			if GetTime() - createdAt > 10 then
+				self:Message(1263297, "yellow", barText)
+				self:PlaySound(1263297, "alert")
+			else
+				crashingVoidCount = crashingVoidCount - 1
+			end
 		end
 	}
 end
@@ -279,9 +335,9 @@ end
 
 function mod:VoidTearRemoved(args)
 	self:Message(args.spellId, "cyan", CL.removed:format(args.spellName))
-	self:CDBar(246134, 10.5) -- Null Palm _start
-	self:CDBar(244579, 18) -- Decimate _start
-	self:CDBar(244602, 20) -- Coalesced Void _success
-	self:CDBar(244433, 41) -- Umbra Shift _success
+	self:CDBar(246134, 10.5) -- Null Palm
+	self:CDBar(244579, 18) -- Decimate
+	self:CDBar(244602, 20) -- Coalesced Void
+	self:CDBar(244433, 41) -- Umbra Shift
 	self:PlaySound(args.spellId, "info")
 end
