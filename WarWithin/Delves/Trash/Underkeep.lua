@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Underkeep Trash", 2690)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	220132, -- Weaver's Agent (The Underkeep gossip NPC)
 	220133, -- Weaver's Instructions (The Underkeep gossip NPC)

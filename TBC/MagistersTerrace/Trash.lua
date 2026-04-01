@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Magisters' Terrace Trash", 585)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	24683, -- Sunblade Mage Guard
 	24685, -- Sunblade Magister

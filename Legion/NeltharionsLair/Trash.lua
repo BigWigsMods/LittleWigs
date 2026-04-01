@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Neltharions Lair Trash", 1458)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	96247,  -- Vileshard Crawler
 	91001,  -- Tarspitter Lurker

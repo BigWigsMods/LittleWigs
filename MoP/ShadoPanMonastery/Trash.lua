@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Shado-Pan Monastery Trash", 959)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	56765, -- Destroying Sha
 	58803, -- Residual Hatred

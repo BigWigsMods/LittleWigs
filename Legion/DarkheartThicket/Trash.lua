@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Darkheart Thicket Trash", 1466)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	95769,  -- Mindshattered Screecher
 	95771,  -- Dreadsoul Ruiner

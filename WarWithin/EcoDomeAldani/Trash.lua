@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Eco-Dome Al'dani Trash", 2830)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	244927, -- Terrified Broker
 	247244, -- Arcane Siphon

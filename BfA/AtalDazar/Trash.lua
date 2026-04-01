@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Atal'Dazar Trash", 1763)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	128434, -- Feasting Skyscreamer
 	128455, -- T'lonja

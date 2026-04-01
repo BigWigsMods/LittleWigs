@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Nokhud Offensive Trash", 2516)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	191847, -- Nokhud Plainstomper
 	192800, -- Nokhud Lancemaster

@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Ahn'kahet Trash", 619)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	30278, -- Ahn'kahar Spell Flinger
 	30285, -- Eye of Taldaram

@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Temple of the Jade Serpent Trash", 960)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	59873,  -- Corrupt Living Water
 	200126, -- Fallen Waterspeaker

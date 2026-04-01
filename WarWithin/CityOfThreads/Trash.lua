@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("City of Threads Trash", 2669)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	223254, -- Queen Ansurek / The Vizier (gossip NPC)
 	220196, -- Herald of Ansurek

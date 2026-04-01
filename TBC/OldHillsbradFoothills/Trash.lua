@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Old Hillsbrad Foothills Trash", 560)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	18723, -- Erozion
 	17876, -- Thrall

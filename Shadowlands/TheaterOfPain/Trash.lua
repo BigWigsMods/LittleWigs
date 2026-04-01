@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Theater Of Pain Trash", 2293)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	170838, -- Unyielding Contender
 	174197, -- Battlefield Ritualist

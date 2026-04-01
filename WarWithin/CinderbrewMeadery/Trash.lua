@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Cinderbrew Meadery Trash", 2661)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	218671, -- Venture Co. Pyromaniac
 	214668, -- Venture Co. Patron

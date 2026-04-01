@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The MOTHERLODE!! Trash", 1594)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	130436, -- Off-Duty Laborer
 	136470, -- Refreshment Vendor

@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Uldaman: Legacy of Tyr Trash", 2451)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	184134, -- Scavenging Leaper
 	184020, -- Hulking Berserker

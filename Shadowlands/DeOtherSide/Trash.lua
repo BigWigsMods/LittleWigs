@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("De Other Side Trash", 2291)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	-- [[ The ring ]] --
 	168992, -- Risen Cultist

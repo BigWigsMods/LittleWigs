@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("Tol Dagor Trash", 1771)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	127482, -- Sewer Vicejaw
 	130025, -- Irontide Thug

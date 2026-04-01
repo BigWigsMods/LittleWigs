@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Priory of the Sacred Flame Trash", 2649)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	212826, -- Guard Captain Suleyman
 	212831, -- Forge Master Damian

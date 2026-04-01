@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Brackenhide Hollow Trash", 2520)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	194675, -- Decaying Cauldron
 	186766, -- Captive Tuskarr

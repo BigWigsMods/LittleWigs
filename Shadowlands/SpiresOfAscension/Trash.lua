@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Spires of Ascension Trash", 2285)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	163503, -- Etherdiver
 	163458, -- Forsworn Castigator

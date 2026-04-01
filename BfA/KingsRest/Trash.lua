@@ -12,7 +12,7 @@
 
 local mod, CL = BigWigs:NewBoss("King's Rest Trash", 1762)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	133935, -- Animated Guardian
 	133943, -- Minion of Zul

@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Midnight Delve Trash", {2933, 2952, 2953, 2961, 2962, 2963, 2964, 2965, 2979, 3003}) -- All Midnight Delves (except Torment's Rise)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:SetPrivateAuraSounds({
 	{1256045, sound = "underyou"}, -- Null Zone
 })

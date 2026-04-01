@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Utgarde Pinnacle Trash", 575)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	26696 -- Ymirjar Berserker
 )

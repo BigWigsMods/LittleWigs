@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("Maw of Souls Trash", 1492)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	99188, -- Waterlogged Soul Guard
 	97097, -- Helarjar Champion

@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Darkflame Cleft Trash", 2651)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	210810, -- Menial Laborer
 	211121, -- Rank Overseer

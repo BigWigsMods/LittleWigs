@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Hour of Twilight Trash", 940)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	54548, -- Thrall (before first boss trash)
 	55779, -- Thrall (first boss arena)

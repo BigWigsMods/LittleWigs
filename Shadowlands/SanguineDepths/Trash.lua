@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Sanguine Depths Trash", 2284)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	174001, -- Anima Collector
 	162057, -- Chamber Sentinel

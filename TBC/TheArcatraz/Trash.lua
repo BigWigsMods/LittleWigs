@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Arcatraz Trash", 552)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	20868, -- Entropic Eye
 	21346, -- Sightless Eye

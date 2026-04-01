@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("Vault of the Wardens Trash", 1493)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	96587, -- Felsworn Infester
 	98954, -- Felsworn Myrmidon

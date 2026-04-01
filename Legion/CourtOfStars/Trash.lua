@@ -6,7 +6,7 @@
 
 local mod, CL = BigWigs:NewBoss("Court of Stars Trash", 1571)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	104251, -- Duskwatch Sentry
 	107073, -- Duskwatch Reinforcement

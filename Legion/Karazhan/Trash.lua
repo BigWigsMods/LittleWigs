@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Karazhan Trash", 1651)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	-- Return to Karazhan: Lower
 	114544, -- Skeletal Usher

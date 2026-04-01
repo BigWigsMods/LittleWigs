@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Shattered Halls Trash", 540)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	16700, -- Shattered Hand Legionnaire
 	16593, -- Shattered Hand Brawler

@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Slave Pens Trash", 547)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	17958, -- Coilfang Defender
 	17961, -- Coilfang Enchantress

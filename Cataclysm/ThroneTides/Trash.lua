@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Throne of the Tides Trash", 643)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	41096,  -- Naz'jar Oracle
 	41139,  -- Naz'jar Spiritmender

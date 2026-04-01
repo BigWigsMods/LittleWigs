@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Iron Docks Trash", 1195)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	83025, -- Grom'kar Battlemaster
 	81279, -- Grom'kar Flameslinger

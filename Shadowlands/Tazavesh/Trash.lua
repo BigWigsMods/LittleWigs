@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Tazavesh Trash", 2441)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	------ Streets of Wonder ------
 	179799, -- Portal Authority Tunnelmancer

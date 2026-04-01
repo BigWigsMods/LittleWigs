@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Culling of Stratholme Trash", 595)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	26527, 27915, -- Chromie
 	26499, -- Arthas

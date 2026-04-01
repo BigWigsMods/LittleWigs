@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Ara-Kara, City of Echoes Trash", 2660)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	219420, -- Discordant Attendant (gossip NPC)
 	216336, -- Ravenous Crawler

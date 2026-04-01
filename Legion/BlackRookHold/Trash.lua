@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Black Rook Hold Trash", 1501)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	98366, -- Ghostly Retainer
 	98368, -- Ghostly Protector

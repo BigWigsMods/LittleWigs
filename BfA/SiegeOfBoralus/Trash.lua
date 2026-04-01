@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Siege of Boralus Trash", 1822)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	129374, -- Scrimshaw Enforcer (Alliance)
 	141283, -- Kul Tiran Halberd (Horde)

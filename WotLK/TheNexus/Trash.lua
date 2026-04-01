@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Nexus Trash", 576)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	26730, -- Mage Slayer
 	26729 -- Steward

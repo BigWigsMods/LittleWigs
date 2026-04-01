@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Dire Maul Trash", 429)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	11491 -- Ironbark the Redeemed (gossip NPC)
 )

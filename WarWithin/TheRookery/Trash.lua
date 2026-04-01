@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Rookery Trash", 2648)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	207197, -- Cursed Rookguard
 	207198, -- Cursed Thunderer

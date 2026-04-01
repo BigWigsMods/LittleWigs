@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Azure Vault Trash", 2515)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	194602, -- Book of Translocation (Proceed to Upper Chambers)
 	194618, -- Book of Translocation (Return from Upper Chambers)

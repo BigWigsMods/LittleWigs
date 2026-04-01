@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Waycrest Manor Trash", 1862)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	131677, -- Heartsbane Runeweaver
 	131587, -- Bewitched Captain

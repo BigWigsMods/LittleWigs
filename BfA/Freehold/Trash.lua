@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Freehold Trash", 1754)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	129743, -- Sharkbait
 	129602, -- Irontide Enforcer

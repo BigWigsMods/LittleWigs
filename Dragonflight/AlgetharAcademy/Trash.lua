@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Algeth'ar Academy Trash", 2526)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	196974, -- Black Dragonflight Recruiter
 	196977, -- Bronze Dragonflight Recruiter

@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Shrine of the Storm Trash", 1864)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	134139, -- Shrine Templar
 	136186, -- Tidesage Spiritualist

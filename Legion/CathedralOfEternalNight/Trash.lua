@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("Cathedral of Eternal Night Trash", 1677)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	118704, -- Dul'zak
 	118690, -- Wrathguard Invader

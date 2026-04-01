@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Mana-Tombs Trash", 557)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	18309, -- Ethereal Scavenger
 	18317, -- Ethereal Priest

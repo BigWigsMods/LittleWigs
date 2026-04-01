@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Dawnbreaker Trash", 2662)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	223660, -- Arathi Lamplighter
 	213894, -- Nightfall Curseblade

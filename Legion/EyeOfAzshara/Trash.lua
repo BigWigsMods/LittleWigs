@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Eye of Azshara Trash", 1456)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	100216, -- Hatecoil Wrangler
 	91783, -- Hatecoil Stormweaver

@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Mists of Tirna Scithe Trash", 2290)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	164929, -- Tirnenn Villager
 	164921, -- Drust Harvester

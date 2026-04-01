@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Halls of Lightning Trash", 602)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	28836, -- Stormforged Runeshaper
 	28837 -- Stormforged Sentinel

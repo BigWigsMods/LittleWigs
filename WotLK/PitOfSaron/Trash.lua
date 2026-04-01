@@ -5,7 +5,7 @@ if not BigWigsLoader.isRetail then return end -- Midnight+
 
 local mod, CL = BigWigs:NewBoss("Pit of Saron Trash", 658)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 
 --------------------------------------------------------------------------------
 -- Localization

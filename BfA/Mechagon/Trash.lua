@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Operation: Mechagon Trash", 2097)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	------ Junkyard ------
 	150146, -- Scrapbone Shaman

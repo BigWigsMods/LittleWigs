@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Murder Row Trash", 2813)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 
 --------------------------------------------------------------------------------
 -- Localization

@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Shadowmoon Burial Grounds Trash", 1176)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	75713, -- Shadowmoon Bone-Mender
 	75715, -- Reanimated Ritual Bones

@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Ruby Life Pools Trash", 2521)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	188244, -- Primal Juggernaut
 	187969, -- Flashfrost Earthshaper

@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Arcway Trash", 1516)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	98756, -- Arcane Anomaly
 	106059, -- Warp Shade

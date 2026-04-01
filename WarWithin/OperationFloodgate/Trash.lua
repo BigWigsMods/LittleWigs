@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Operation: Floodgate Trash", 2773)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	230740, -- Shreddinator 3000
 	229069, -- Mechadrone Sniper

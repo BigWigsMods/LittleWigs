@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Necrotic Wake Trash", 2286)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	166302, -- Corpse Harvester
 	163121, -- Stitched Vanguard

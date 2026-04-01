@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Black Morass Trash", 269)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	20201, -- Sa'at
 	15608, -- Medivh

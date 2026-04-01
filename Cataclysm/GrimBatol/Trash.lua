@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Grim Batol Trash", 670)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	224219, -- Twilight Earthcaller
 	224152, -- Twilight Brute

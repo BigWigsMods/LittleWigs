@@ -5,7 +5,7 @@
 
 local mod, CL = BigWigs:NewBoss("The Violet Hold Trash", 608)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	30658, -- Lieutenant Sinclari
 	-- Bosses

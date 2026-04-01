@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Halls of Infusion Trash", 2527)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	190348, -- Primalist Ravager
 	190345, -- Primalist Geomancer

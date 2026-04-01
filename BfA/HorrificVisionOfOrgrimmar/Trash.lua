@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Horrific Vision of Orgrimmar Trash", 2212)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	155604, -- Image of Wrathion
 	233236, -- Image of Wrathion (Revisited only)

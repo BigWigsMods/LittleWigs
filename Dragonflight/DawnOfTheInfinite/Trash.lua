@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Dawn of the Infinite Trash", 2579)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	------ Galakrond's Fall ------
 	205384, -- Infinite Chronoweaver

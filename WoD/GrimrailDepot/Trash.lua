@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Grimrail Depot Trash", 1208)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	81236,  -- Grimrail Technician
 	164168, -- Grimrail Overseer

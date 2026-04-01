@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Neltharus Trash", 2519)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	189342, -- Burning Chain
 	193293, -- Qalashi Warden

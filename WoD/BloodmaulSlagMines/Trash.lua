@@ -4,7 +4,7 @@
 
 local mod, CL = BigWigs:NewBoss("Bloodmaul Slag Mines Trash", 1175)
 if not mod then return end
-mod.displayName = CL.trash
+mod:SetTrashModule(true)
 mod:RegisterEnableMob(
 	84978, -- Bloodmaul Enforcer
 	75426, -- Bloodmaul Overseer
