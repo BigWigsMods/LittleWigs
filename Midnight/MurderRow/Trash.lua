@@ -39,7 +39,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnBossDisable()
-    lastText = nil
+	lastText = nil
 end
 
 --------------------------------------------------------------------------------
@@ -47,11 +47,11 @@ end
 --
 
 function mod:SnitchesInterrogated(_, text)
-    -- [UPDATE_UI_WIDGET] widgetID:7571, widgetType:8, text:|TInterface\\ICONS\\UI_Chat.BLP:20|t Snitches interrogated: 1/4
+	-- [UPDATE_UI_WIDGET] widgetID:7571, widgetType:8, text:|TInterface\\ICONS\\UI_Chat.BLP:20|t Snitches interrogated: 1/4
 	local acquired = text:match("(%d+)/%d+")
-    if acquired and tonumber(acquired) > 0 and text ~= lastText then
-        lastText = text
-        self:Message("snitches_interrogated", "green", text, false)
-        self:PlaySound("snitches_interrogated", "info")
-    end
+	if acquired and tonumber(acquired) > 0 and text ~= lastText then
+		lastText = text
+		self:Message("snitches_interrogated", "green", text, false)
+		self:PlaySound("snitches_interrogated", "info")
+	end
 end

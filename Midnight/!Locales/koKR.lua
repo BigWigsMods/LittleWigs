@@ -111,7 +111,7 @@ end
 
 L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "koKR")
 if L then
-    L.offerings_acquired = "획득한 제물"
+	L.offerings_acquired = "획득한 제물"
 	L.offerings_acquired_desc = "제물이 획득되었을 때 알림을 표시합니다."
 end
 

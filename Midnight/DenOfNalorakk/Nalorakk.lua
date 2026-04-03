@@ -30,17 +30,17 @@ local activeBarBySpellId = {}
 --
 
 function mod:GetOptions()
-    return {
+	return {
 		1242860, -- Echoing Maul
 		1243569, -- Overwhelming Onslaught
 		1255385, -- Forceful Roar
 		1243011, -- Fury of the War God
-        --{1242869, "PRIVATE"}, -- Echoing Maul
-        --{1243590, "PRIVATE"}, -- Overwhelming Onslaught
-        {1255577, "PRIVATE"}, -- Spectral Slash
-        {1262253, "PRIVATE"}, -- Demoralizing Scream
+		--{1242869, "PRIVATE"}, -- Echoing Maul
+		--{1243590, "PRIVATE"}, -- Overwhelming Onslaught
+		{1255577, "PRIVATE"}, -- Spectral Slash
+		{1262253, "PRIVATE"}, -- Demoralizing Scream
 		{1261781, "PRIVATE"}, -- Defensive Stance
-    }
+	}
 end
 
 mod:UseCustomTimers(true)

@@ -111,7 +111,7 @@ end
 
 L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "deDE")
 if L then
-    L.offerings_acquired = "Gaben erhalten"
+	L.offerings_acquired = "Gaben erhalten"
 	L.offerings_acquired_desc = "Zeigt einen Alarm, wenn eine Gabe erhalten wurde."
 end
 

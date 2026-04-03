@@ -26,13 +26,13 @@ local activeBarBySpellId = {}
 --
 
 function mod:GetOptions()
-    return {
+	return {
 		1253268, -- Earthshatter Slam
 		1235118, -- Ravenous Bellow
 		1234233, -- Spoiled Supplies
-        {1234846, "PRIVATE"}, -- Toxic Spores
-        {1235125, "PRIVATE"}, -- Hearty Bellow
-    }
+		{1234846, "PRIVATE"}, -- Toxic Spores
+		{1235125, "PRIVATE"}, -- Hearty Bellow
+	}
 end
 
 mod:UseCustomTimers(true)

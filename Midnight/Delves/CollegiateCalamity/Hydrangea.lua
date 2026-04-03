@@ -26,5 +26,5 @@ end
 
 function mod:GetOptions()
 	return {
-    }
+	}
 end

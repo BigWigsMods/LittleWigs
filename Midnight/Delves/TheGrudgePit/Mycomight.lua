@@ -25,6 +25,6 @@ function mod:OnRegister()
 end
 
 function mod:GetOptions()
-    return {
-    }
+	return {
+	}
 end

@@ -30,17 +30,17 @@ local activeBarBySpellId = {}
 --
 
 function mod:GetOptions()
-    return {
+	return {
 		1235783, -- Shattering Frostspike
 		1235548, -- Glacial Torment
 		1235623, -- Raging Squall
 		1235656, -- Eternal Winter
-        --{1235549, "PRIVATE"}, -- Glacial Torment
-        {1235829, "PRIVATE"}, -- Winter's Shroud
-        {1235841, "PRIVATE"}, -- Snowdrift
+		--{1235549, "PRIVATE"}, -- Glacial Torment
+		{1235829, "PRIVATE"}, -- Winter's Shroud
+		{1235841, "PRIVATE"}, -- Snowdrift
 		--{1235641, "PRIVATE"}, -- Raging Squall
 		{1236289, "PRIVATE"}, -- Blizzard's Wrath
-    }
+	}
 end
 
 mod:UseCustomTimers(true)

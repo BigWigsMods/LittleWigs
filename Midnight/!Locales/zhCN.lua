@@ -111,7 +111,7 @@ end
 
 L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "zhCN")
 if L then
-    L.offerings_acquired = "获得的供品"
+	L.offerings_acquired = "获得的供品"
 	L.offerings_acquired_desc = "当收集到获得的供品时显示警告。"
 end
 

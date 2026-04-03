@@ -111,7 +111,7 @@ end
 
 L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "zhTW")
 if L then
-    --L.offerings_acquired = "Offerings Acquired"
+	--L.offerings_acquired = "Offerings Acquired"
 	--L.offerings_acquired_desc = "Show an alert when an offering has been acquired."
 end
 

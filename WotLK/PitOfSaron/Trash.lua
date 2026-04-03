@@ -45,7 +45,7 @@ function mod:OnBossEnable()
 end
 
 function mod:OnBossDisable()
-    lastText = nil
+	lastText = nil
 end
 
 --------------------------------------------------------------------------------
@@ -77,10 +77,10 @@ function mod:GOSSIP_SHOW()
 end
 
 function mod:QuarryCampsLiberated(_, text)
-    -- [UPDATE_UI_WIDGET] widgetID:7520, widgetType:8, widgetSetID:1, text:Quarry Camps Liberated: 1/6, tooltip:Save captive soldiers before confronting Scourgelord Tyrannus.
-    if text ~= lastText then
-        lastText = text
-        self:Message("quarry_camps_liberated", "green", text, L.quarry_camps_liberated_icon)
-        self:PlaySound("quarry_camps_liberated", "info")
-    end
+	-- [UPDATE_UI_WIDGET] widgetID:7520, widgetType:8, widgetSetID:1, text:Quarry Camps Liberated: 1/6, tooltip:Save captive soldiers before confronting Scourgelord Tyrannus.
+	if text ~= lastText then
+		lastText = text
+		self:Message("quarry_camps_liberated", "green", text, L.quarry_camps_liberated_icon)
+		self:PlaySound("quarry_camps_liberated", "info")
+	end
 end
