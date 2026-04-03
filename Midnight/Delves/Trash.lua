@@ -67,6 +67,12 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(136477) then -- Parhelion Plaza, start Delve (Grand Artificer Romuul)
 			-- 136477:|cFF0000FF(Delve)|r I will break that shield and eliminate the units inside.
 			self:SelectGossipID(136477)
+		elseif self:GetGossipID(136446) then -- Parhelion Plaza, start Delve (Vindicator Xayann)
+			-- 136446:|cFF0000FF(Delve)|r I'll drive back the attackers.
+			self:SelectGossipID(136446)
+		elseif self:GetGossipID(134949) then -- Shadowguard Point, start Delve (Lysikas)
+			-- 134949:|cFF0000FF(Delve)|r Sounds like a plan.
+			self:SelectGossipID(134949)
 		elseif self:GetGossipID(136275) then -- Sunkiller Sanctum, start Delve (Riftblade Maella)
 			-- 136275:|cFF0000FF(Delve)|r I'll deal with this mess!
 			self:SelectGossipID(136275)
@@ -76,6 +82,12 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(138009) then -- The Darkway, start Delve (Technician Mireille)
 			-- 138009:I will re-align the conduits and restore the energy.
 			self:SelectGossipID(138009)
+		elseif self:GetGossipID(138317) then -- The Darkway, start Delve (Technician Mireille)
+			-- 138317:Deal with the big ogre. On it!
+			self:SelectGossipID(138317)
+		elseif self:GetGossipID(136141) then -- The Darkway, start Delve (Technician Mireille)
+			-- 136141:I'll help you restore the ley lines... and show these cultists a thing or two!
+			self:SelectGossipID(136141)
 		elseif self:GetGossipID(137248) then -- The Gulf of Memory, start Delve (Ashayo)
 			-- 137248:Release the moths near Lightbloom patches on the ground and they'll eat it. Seems easy enough.
 			self:SelectGossipID(137248)
@@ -88,6 +100,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(137580) then -- The Shadow Enclave, start Delve (Gabby Flashwiks)
 			-- 137580:Use the mirrors to spread the light. Got it.
 			self:SelectGossipID(137580)
+		elseif self:GetGossipID(135239) then -- Twilight Crypts, start Delve (Dulgor Legstuck)
+			-- 135239:Alright... pardon! I'll just step around you...
+			self:SelectGossipID(135239)
 		elseif self:GetGossipID(135634) then -- Twilight Crypts, start Delve (Twilight Hostage)
 			-- 135634:I'll take care of it!
 			self:SelectGossipID(135634)
