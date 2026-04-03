@@ -89,19 +89,17 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 1)
 	local barInfo
-	if duration == 7 or duration == 21 or duration == 21.3 then -- Emptiness of the Void
+	if duration == 7 or duration == 21 or duration == 21.3 or duration == 21.8 or duration == 36 then -- Emptiness of the Void
 		barInfo = self:EmptinessOfTheVoidTimeline(eventInfo)
-	elseif duration == 12 or duration == 15.5 or duration == 15.8 then -- Imploding Strike
+	elseif duration == 12 or duration == 15.5 or duration == 15.8 or duration == 16.1 then -- Imploding Strike
 		-- this is only cast if a tank is the leader
 		barInfo = self:ImplodingStrikeTimeline(eventInfo)
-	elseif duration == 16 or duration == 18.5 or duration == 18.8 then -- Devouring Essence
+	elseif duration == 16 or duration == 18.5 or duration == 18.8 or duration == 19.1 then -- Devouring Essence
 		barInfo = self:DevouringEssenceTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
-
 		backupBars[eventInfo.id] = true
 		self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
-
 		local state = C_EncounterTimeline.GetEventState(eventInfo.id)
 		if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
 			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
