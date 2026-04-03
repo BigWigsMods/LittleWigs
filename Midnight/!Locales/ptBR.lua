@@ -121,6 +121,11 @@ L = BigWigs:NewBossLocale("Maisara Caverns Trash", "ptBR")
 if L then
 	--L.prisoners_freed = "Prisoners Freed"
 	--L.prisoners_freed_desc = "Show an alert when a prisoner has been freed."
+	--L.custom_on_cooking_pot_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Hearty Vilebranch Stew' buff.\n\n|T4659336:16|tHearty Vilebranch Stew\n{1269056}"
+	--L.custom_on_ritual_cauldron_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Ritual Concoction' buff.\n\n|T236271:16|tRitual Concoction\n{1271300}"
+
+	--L.cooking_pot = "Cooking Pot"
+	--L.ritual_cauldron = "Ritual Cauldron"
 end
 
 -- Murder Row
