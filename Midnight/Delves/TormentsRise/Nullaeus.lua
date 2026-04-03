@@ -89,7 +89,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 1)
 	local barInfo
-	if duration == 7 or duration == 21 or duration == 21.3 then -- Emptiness of the Void
+	if duration == 7 or duration == 36 then -- Emptiness of the Void
 		barInfo = self:EmptinessOfTheVoidTimeline(eventInfo)
 	elseif duration == 12 or duration == 15.5 or duration == 15.8 then -- Imploding Strike
 		-- this is only cast if a tank is the leader
