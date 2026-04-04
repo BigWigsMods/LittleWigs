@@ -135,3 +135,12 @@ if L then
 	L.snitches_interrogated = "끄나풀 심문"
 	L.snitches_interrogated_desc = "끄나풀이 심문되었을 때 알림을 표시합니다."
 end
+
+-- Nexus-Point Xenas
+
+L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "koKR")
+if L then
+	--L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Engineering.|r Automatically select the NPC dialog option to disable the Arcane Tripwire."
+
+	--L.arcane_tripwire = "Arcane Tripwire"
+end

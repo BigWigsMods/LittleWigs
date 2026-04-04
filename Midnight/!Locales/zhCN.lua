@@ -135,3 +135,12 @@ if L then
 	L.snitches_interrogated = "讯问扒手"
 	L.snitches_interrogated_desc = "当讯问扒手时显示警告。"
 end
+
+-- Nexus-Point Xenas
+
+L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "zhCN")
+if L then
+	--L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Engineering.|r Automatically select the NPC dialog option to disable the Arcane Tripwire."
+
+	--L.arcane_tripwire = "Arcane Tripwire"
+end

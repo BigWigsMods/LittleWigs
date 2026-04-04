@@ -43,6 +43,7 @@
 <Script file="NexusPointXenas\Kasreth.lua"/>
 <Script file="NexusPointXenas\Nysarra.lua"/>
 <Script file="NexusPointXenas\Lothraxion.lua"/>
+<Script file="NexusPointXenas\Trash.lua"/>
 
 <Script file="TheBlindingVale\LightblossomTrinity.lua"/>
 <Script file="TheBlindingVale\IkuzzTheLightHunter.lua"/>

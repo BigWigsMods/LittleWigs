@@ -135,3 +135,12 @@ if L then
 	L.snitches_interrogated = "Spitzel verhört"
 	L.snitches_interrogated_desc = "Zeigt einen Alarm, wenn ein Spitzel verhört wurde."
 end
+
+-- Nexus-Point Xenas
+
+L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "deDE")
+if L then
+	--L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Engineering.|r Automatically select the NPC dialog option to disable the Arcane Tripwire."
+
+	--L.arcane_tripwire = "Arcane Tripwire"
+end

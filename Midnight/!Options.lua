@@ -328,6 +328,12 @@ BigWigs:AddSounds("Lothraxion", {
 	[1257595] = "long",
 })
 
+BigWigs:AddColors("Nexus-Point Xenas Trash", {
+})
+
+BigWigs:AddSounds("Nexus-Point Xenas Trash", {
+})
+
 BigWigs:AddColors("Lightblossom Trinity", {
 })
 
