@@ -295,9 +295,16 @@ BigWigs:AddSounds("Murder Row Trash", {
 })
 
 BigWigs:AddColors("Chief Corewright Kasreth", {
+	[1251579] = "yellow",
+	[1257509] = "cyan",
+	[1264048] = "orange",
 })
 
 BigWigs:AddSounds("Chief Corewright Kasreth", {
+	[1251579] = "alert",
+	[1251772] = "info",
+	[1257509] = "long",
+	[1264048] = "alarm",
 })
 
 BigWigs:AddColors("Corewarden Nysarra", {
