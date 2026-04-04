@@ -121,11 +121,11 @@ L = BigWigs:NewBossLocale("Maisara Caverns Trash", "deDE")
 if L then
 	L.prisoners_freed = "Gefangene befreit"
 	L.prisoners_freed_desc = "Zeigt einen Alarm, wenn ein Gefangener befreit wurde."
-	--L.custom_on_cooking_pot_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Hearty Vilebranch Stew' buff.\n\n|T4659336:16|tHearty Vilebranch Stew\n{1269056}"
-	--L.custom_on_ritual_cauldron_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Ritual Concoction' buff.\n\n|T236271:16|tRitual Concoction\n{1271300}"
+	L.custom_on_cooking_pot_autotalk_desc = "Wählt automatisch die NSC Dialogoption zur Gewährung des Buffs 'Herzhafter Eintopf der Blutfratzen'.\n\n|T4659336:16|tHerzhafter Eintopf der Blutfratzen\n{1269056}"
+	L.custom_on_ritual_cauldron_autotalk_desc = "Wählt automatisch die NSC Dialogoption zur Gewährung des Buffs 'Ritualgemisch'.\n\n|T236271:16|tRitualgemisch\n{1271300}"
 
-	--L.cooking_pot = "Cooking Pot"
-	--L.ritual_cauldron = "Ritual Cauldron"
+	L.cooking_pot = "Kochtopf"
+	L.ritual_cauldron = "Ritualkessel"
 end
 
 -- Murder Row
