@@ -108,7 +108,7 @@ end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
-	local duration = math.floor(eventInfo.duration + 0.5)
+	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if duration ~= 38 and resuming > 0 then -- previously canceled timers resume after Corespark Detonation cast
 		-- use full precision durations in this block to avoid false positives

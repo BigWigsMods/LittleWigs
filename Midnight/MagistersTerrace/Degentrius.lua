@@ -59,7 +59,7 @@ end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
-	local duration = math.floor(eventInfo.duration + 0.5)
+	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if self:Mythic() then
 		if duration == 3 or (duration == 22 and count22 % 3 == 1) then -- Hulking Fragment

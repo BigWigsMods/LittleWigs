@@ -72,7 +72,7 @@ end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
-	local duration = math.floor(eventInfo.duration * 100.0 + 0.5) / 100.0
+	local duration = self:RoundNumber(eventInfo.duration, 2)
 	local barInfo
 	if duration == 8 or duration == 27.33 then -- Splattering Spew
 		barInfo = self:SplatteringSpewTimeline(eventInfo)

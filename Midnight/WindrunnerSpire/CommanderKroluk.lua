@@ -97,7 +97,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if C_EncounterTimeline.GetEventState(eventInfo.id) == 1 then -- Paused
 		return -- ignore paused bars when added, they are always canceled immediately
 	end
-	local duration = math.floor(eventInfo.duration + 0.5)
+	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if duration > 120 then return end -- filter placeholder bars
 	if duration == 3 or (not self:IsWiping() and duration == 30) then -- Rampage
