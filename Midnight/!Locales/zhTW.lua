@@ -111,36 +111,36 @@ end
 
 L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "zhTW")
 if L then
-	--L.offerings_acquired = "Offerings Acquired"
-	--L.offerings_acquired_desc = "Show an alert when an offering has been acquired."
+	L.offerings_acquired = "獲得的供品"
+	L.offerings_acquired_desc = "當收集到獲得的供品時顯示警告。"
 end
 
 -- Maisara Caverns
 
 L = BigWigs:NewBossLocale("Maisara Caverns Trash", "zhTW")
 if L then
-	--L.prisoners_freed = "Prisoners Freed"
-	--L.prisoners_freed_desc = "Show an alert when a prisoner has been freed."
-	--L.custom_on_cooking_pot_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Hearty Vilebranch Stew' buff.\n\n|T4659336:16|tHearty Vilebranch Stew\n{1269056}"
-	--L.custom_on_ritual_cauldron_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Ritual Concoction' buff.\n\n|T236271:16|tRitual Concoction\n{1271300}"
+	L.prisoners_freed = "解救囚犯"
+	L.prisoners_freed_desc = "當解救囚犯時顯示警告。"
+	L.custom_on_cooking_pot_autotalk_desc = "自動選擇NPC的對話選項，獲取“澎湃邪枝燉肉”增益。\n\n|T4659336:16|t澎湃邪枝燉肉\n{1269056}"
+	L.custom_on_ritual_cauldron_autotalk_desc = "自動選擇NPC的對話選項，獲取“儀式混合物”增益。\n\n|T236271:16|t儀式混合物\n{1271300}"
 
-	--L.cooking_pot = "Cooking Pot"
-	--L.ritual_cauldron = "Ritual Cauldron"
+	L.cooking_pot = "煮菜鍋"
+	L.ritual_cauldron = "儀式大鍋"
 end
 
 -- Murder Row
 
 L = BigWigs:NewBossLocale("Murder Row Trash", "zhTW")
 if L then
-	--L.snitches_interrogated = "Snitches Interrogated"
-	--L.snitches_interrogated_desc = "Show an alert when a snitch has been interrogated."
+	L.snitches_interrogated = "審問告密者"
+	L.snitches_interrogated_desc = "當審問告密者時顯示警告。"
 end
 
 -- Nexus-Point Xenas
 
 L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "zhTW")
 if L then
-	--L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Engineering.|r Automatically select the NPC dialog option to disable the Arcane Tripwire."
+	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000需要 25點 至暗之夜的工程學技能。|r 自動選擇NPC對話選項以停用秘法引線。"
 
-	--L.arcane_tripwire = "Arcane Tripwire"
+	L.arcane_tripwire = "秘法引線"
 end
