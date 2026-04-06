@@ -121,11 +121,11 @@ L = BigWigs:NewBossLocale("Maisara Caverns Trash", "koKR")
 if L then
 	L.prisoners_freed = "포로 해방"
 	L.prisoners_freed_desc = "포로가 해방되었을 때 알림을 표시합니다."
-	--L.custom_on_cooking_pot_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Hearty Vilebranch Stew' buff.\n\n|T4659336:16|tHearty Vilebranch Stew\n{1269056}"
-	--L.custom_on_ritual_cauldron_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Ritual Concoction' buff.\n\n|T236271:16|tRitual Concoction\n{1271300}"
+	L.custom_on_cooking_pot_autotalk_desc = "NPC 대화에서 '든든한 썩은가지 스튜' 버프를 부여하는 항목을 자동으로 선택합니다.\n\n|T4659336:16|t든든한 썩은가지 스튜\n{1269056}"
+	L.custom_on_ritual_cauldron_autotalk_desc = "NPC 대화에서 '의식 혼합물' 버프를 부여하는 항목을 자동으로 선택합니다.\n\n|T236271:16|t의식 혼합물\n{1271300}"
 
-	--L.cooking_pot = "Cooking Pot"
-	--L.ritual_cauldron = "Ritual Cauldron"
+	L.cooking_pot = "요리 냄비"
+	L.ritual_cauldron = "의식용 가마솥"
 end
 
 -- Murder Row
@@ -140,7 +140,7 @@ end
 
 L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "koKR")
 if L then
-	--L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Engineering.|r Automatically select the NPC dialog option to disable the Arcane Tripwire."
+	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000한밤 기계공학 25 필요.|r NPC 대화에서 비전 철사덫을 비활성화하는 옵션을 자동으로 선택합니다."
 
-	--L.arcane_tripwire = "Arcane Tripwire"
+	L.arcane_tripwire = "비전 철사덫"
 end
