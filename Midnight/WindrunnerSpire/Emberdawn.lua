@@ -94,7 +94,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if C_EncounterTimeline.GetEventState(eventInfo.id) == 1 then -- Paused
 		return -- ignore paused bars when added, they are always canceled some time later
 	end
-	local duration = math.floor(eventInfo.duration * 10.0 + 0.5) / 10.0
+	local duration = self:RoundNumber(eventInfo.duration, 1)
 	local barInfo
 	if duration == 6 or duration == 15.5 then -- Flaming Updraft
 		self:CancelBarForSpell(466556)
@@ -194,7 +194,9 @@ end
 
 function mod:BurningGaleTimeline(eventInfo)
 	self:StopCastBar(465904)
-	self:SetStage(1)
+	if self:GetStage() == 2 then
+		self:SetStage(1)
+	end
 	local barText = CL.count:format(self:SpellName(465904), burningGaleCount)
 	self:CDBar(465904, eventInfo.duration, barText, nil, eventInfo.id)
 	burningGaleCount = burningGaleCount + 1

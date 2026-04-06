@@ -67,7 +67,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if C_EncounterTimeline.GetEventState(eventInfo.id) == 1 then -- Paused
 		return -- ignore paused bars when added, they are always canceled some time later
 	end
-	local duration = math.floor(eventInfo.duration * 10.0 + 0.5) / 10.0
+	local duration = self:RoundNumber(eventInfo.duration, 1)
 	local barInfo
 	if duration > 45 then return end -- filter placeholder bars
 	if duration == 5 or duration == 22.5 then -- Repulsing Slam

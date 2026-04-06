@@ -207,6 +207,7 @@ BigWigs:AddSounds("Degentrius", {
 BigWigs:AddColors("Muro'jin and Nekraxx", {
 	[1243900] = "red",
 	[1246666] = "yellow",
+	[1249947] = "cyan",
 	[1260643] = "yellow",
 	[1260731] = "orange",
 	[1266480] = "purple",
@@ -215,6 +216,7 @@ BigWigs:AddColors("Muro'jin and Nekraxx", {
 BigWigs:AddSounds("Muro'jin and Nekraxx", {
 	[1243900] = "alarm",
 	[1246666] = "alert",
+	[1249947] = "long",
 	[1260643] = "info",
 	[1260731] = "alarm",
 	[1266480] = "alert",
