@@ -20,7 +20,7 @@ mod:SetPrivateAuraSounds({
 local hulkingFragmentCount = 1
 local devouringEntropyCount = 1
 local unstableVoidEssenceCount = 1
-local count22 = 1
+local count24 = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
@@ -44,7 +44,7 @@ function mod:OnEncounterStart()
 	hulkingFragmentCount = 1
 	devouringEntropyCount = 1
 	unstableVoidEssenceCount = 1
-	count22 = 1
+	count24 = 1
 	activeBars = {}
 	if self:ShouldShowBars() then
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
@@ -62,17 +62,18 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if self:Mythic() then
-		if duration == 3 or (duration == 22 and count22 % 3 == 1) then -- Hulking Fragment
+		if duration == 3 or ((duration == 24 or duration == 22) and count24 % 3 == 1) then -- Hulking Fragment
 			barInfo = self:HulkingFragmentTimeline(eventInfo)
-		elseif duration == 9 or (duration == 22 and count22 % 3 == 2) then -- Devouring Entropy
+		elseif duration == 9 or ((duration == 24 or duration == 22) and count24 % 3 == 2) then -- Devouring Entropy
 			barInfo = self:DevouringEntropyTimeline(eventInfo)
-		elseif duration == 15 or (duration == 22 and count22 % 3 == 0) then -- Unstable Void Essence
+		elseif duration == 15 or ((duration == 24 or duration == 22) and count24 % 3 == 0) then -- Unstable Void Essence
 			barInfo = self:UnstableVoidEssenceTimeline(eventInfo)
 		elseif not self:IsWiping() then
 			self:ErrorForTimelineEvent(eventInfo)
 		end
-		if duration == 22 then
-			count22 = count22 + 1
+		-- TODO presumed hotfix 22 -> 24, confirm and clean up old timer
+		if duration == 24 or duration == 22 then
+			count24 = count24 + 1
 		end
 	else -- Normal
 		if duration == 7 or duration == 15 then -- Hulking Fragment
