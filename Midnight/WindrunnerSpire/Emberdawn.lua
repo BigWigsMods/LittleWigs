@@ -122,7 +122,10 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 		if state == 0 then -- Active
 			self:ResumeBar(barInfo.key, barInfo.msg)
 		elseif state == 1 then -- Paused
-			self:PauseBar(barInfo.key, barInfo.msg)
+			if not self:Mythic() then
+				-- ignore bar pausing in Mythic, we use a paused Burning Gale bar as the cast bar.
+				self:PauseBar(barInfo.key, barInfo.msg)
+			end
 		elseif state == 2 then -- Finished
 			self:StopBar(barInfo.msg)
 			if barInfo.callback then
@@ -193,23 +196,57 @@ function mod:SearingBeakTimeline(eventInfo)
 end
 
 function mod:BurningGaleTimeline(eventInfo)
-	self:StopCastBar(465904)
-	if self:GetStage() == 2 then
-		self:SetStage(1)
-	end
-	local barText = CL.count:format(self:SpellName(465904), burningGaleCount)
-	self:CDBar(465904, eventInfo.duration, barText, nil, eventInfo.id)
-	burningGaleCount = burningGaleCount + 1
-	return {
-		msg = barText,
-		key = 465904,
-		cancelCallback = function()
-			flamingUpdraftRemaining = 2
-			searingBeakRemaining = 2
-			self:SetStage(2)
-			self:Message(465904, "yellow", barText)
-			self:CastBar(465904, 20.5) -- 3s cast + 18s channel - some delay
-			self:PlaySound(465904, "long")
+	if self:Mythic() then
+		if burningGaleCount % 2 == 1 then
+			local barText = CL.count:format(self:SpellName(465904), (burningGaleCount + 1) / 2)
+			self:CDBar(465904, eventInfo.duration, barText, nil, eventInfo.id)
+			burningGaleCount = burningGaleCount + 1
+			return {
+				msg = barText,
+				key = 465904,
+				callback = function()
+					flamingUpdraftRemaining = 2
+					searingBeakRemaining = 2
+					self:StopBlizzMessages(1)
+					self:SetStage(2)
+					self:Message(465904, "yellow", barText)
+					self:PlaySound(465904, "long")
+				end
+			}
+		else
+			local text = CL.count:format(self:SpellName(465904), burningGaleCount / 2)
+			self:CastBar(465904, 21, nil, nil, eventInfo.id) -- 3s cast + 18s channel
+			burningGaleCount = burningGaleCount + 1
+			return {
+				msg = CL.cast:format(self:SpellName(465904)),
+				key = 465904,
+				cancelCallback = function()
+					self:SetStage(1)
+					self:Message(465904, "green", CL.over:format(text))
+					self:PlaySound(465904, "info")
+				end
+			}
 		end
-	}
+	else -- Normal / Heroic
+		if self:GetStage() == 2 then
+			self:SetStage(1)
+			self:StopCastBar(465904)
+		end
+		local barText = CL.count:format(self:SpellName(465904), burningGaleCount)
+		self:CDBar(465904, eventInfo.duration, barText, nil, eventInfo.id)
+		burningGaleCount = burningGaleCount + 1
+		return {
+			msg = barText,
+			key = 465904,
+			cancelCallback = function()
+				flamingUpdraftRemaining = 2
+				searingBeakRemaining = 2
+				self:StopBlizzMessages(1)
+				self:SetStage(2)
+				self:Message(465904, "yellow", barText)
+				self:CastBar(465904, 20.5) -- 3s cast + 18s channel - some delay
+				self:PlaySound(465904, "long")
+			end
+		}
+	end
 end
