@@ -262,6 +262,9 @@ function mod:RepulseTimeline(eventInfo)
 		msg = barText,
 		key = 1263528,
 		callback = function()
+			-- ability cadence resets after each Repulse
+			count6 = 1
+			count12 = 1
 			self:Message(1263528, "yellow", barText)
 			self:PlaySound(1263528, "alarm")
 		end
