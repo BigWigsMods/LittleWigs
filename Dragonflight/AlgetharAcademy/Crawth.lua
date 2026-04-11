@@ -141,6 +141,10 @@ if mod:Retail() then -- Midnight+
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
 		end
 	end
+
+	function mod:OnWin()
+		activeBars = {}
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -224,6 +228,7 @@ function mod:DeafeningScreechTimeline(eventInfo)
 		msg = barText,
 		key = 377004,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(377004, "yellow", barText)
 			self:PlaySound(377004, "warning")
 		end
@@ -252,6 +257,7 @@ do
 			-- cast at 75% and 45% health
 			local percent = playBallCount == 1 and 75 or 45
 			playBallCount = playBallCount + 1
+			self:StopBlizzMessages(1)
 			self:Message(377182, "cyan", CL.percent:format(percent, self:SpellName(377182)))
 			self:PlaySound(377182, "long")
 		end
