@@ -212,6 +212,7 @@ function mod:BurstForthTimeline(eventInfo)
 		msg = barText,
 		key = 388923,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(388923, "orange", barText)
 			self:PlaySound(388923, "long")
 		end
@@ -232,19 +233,26 @@ function mod:BranchOutTimeline(eventInfo)
 	}
 end
 
-function mod:BarkbreakerTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(388544), barkbreakerCount)
-	self:CDBar(388544, eventInfo.duration, barText, nil, eventInfo.id)
-	barkbreakerCount = barkbreakerCount + 1
-	return {
-		msg = barText,
-		key = 388544,
-		time = GetTime(),
-		callback = function()
-			self:Message(388544, "purple", barText)
-			self:PlaySound(388544, "alert")
-		end
-	}
+do
+	local prev = 0
+	function mod:BarkbreakerTimeline(eventInfo)
+		local barText = CL.count:format(self:SpellName(388544), barkbreakerCount)
+		self:CDBar(388544, eventInfo.duration, barText, nil, eventInfo.id)
+		barkbreakerCount = barkbreakerCount + 1
+		return {
+			msg = barText,
+			key = 388544,
+			time = GetTime(),
+			callback = function()
+				-- sometimes Blizzard likes to start 2 bars for this ability at the same time with the same duration
+				if GetTime() - prev > 2 then
+					prev = GetTime()
+					self:Message(388544, "purple", barText)
+					self:PlaySound(388544, "alert")
+				end
+			end
+		}
+	end
 end
 
 --------------------------------------------------------------------------------
