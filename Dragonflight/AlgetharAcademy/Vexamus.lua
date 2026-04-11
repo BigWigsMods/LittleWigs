@@ -182,6 +182,7 @@ function mod:ArcaneOrbsTimeline(eventInfo)
 		msg = barText,
 		key = 386544,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(386544, "yellow", barText)
 			self:PlaySound(386544, "long")
 		end
