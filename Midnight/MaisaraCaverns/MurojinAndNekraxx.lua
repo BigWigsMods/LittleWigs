@@ -351,10 +351,10 @@ function mod:CarrionSwoopTimeline(eventInfo)
 	return {
 		msg = barText,
 		key = 1249479,
-		--callback = function() -- has Blizzard message
-			--self:Message(1249479, "fixme", barText)
-			--self:PlaySound(1249479, "fixme")
-		--end,
+		callback = function()
+			self:TargetMessageFromBlizzMessage(1, 1249479, "red")
+			self:PlaySound(1249479, "alert")
+		end,
 		cancelCallback = function()
 			carrionSwoopCount = carrionSwoopCount - 1
 		end
