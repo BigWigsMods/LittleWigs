@@ -213,6 +213,7 @@ function mod:PowerVacuumTimeline(eventInfo)
 		msg = barText,
 		key = 388822,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(388822, "red", barText)
 			self:PlaySound(388822, "alarm")
 		end
