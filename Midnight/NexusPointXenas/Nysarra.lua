@@ -209,6 +209,7 @@ function mod:NullVanguardTimeline(eventInfo)
 		msg = barText,
 		key = 1252703,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(1252703, "cyan", barText)
 			self:PlaySound(1252703, "info")
 		end,
