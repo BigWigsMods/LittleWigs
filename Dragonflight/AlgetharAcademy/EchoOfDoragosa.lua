@@ -69,6 +69,7 @@ local arcaneMissilesCount = 1
 local astralBlastCount = 1
 local energyBombCount = 1
 local powerVacuumCount = 1
+local count7 = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
@@ -96,6 +97,7 @@ if mod:Retail() then -- Midnight+
 		astralBlastCount = 1
 		energyBombCount = 1
 		powerVacuumCount = 1
+		count7 = 1
 		activeBars = {}
 		if self:ShouldShowBars() then
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
@@ -113,17 +115,21 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
-	if duration == 7 or duration == 10 then -- Arcane Missiles
-		if duration == 10 then return end -- not actually cast
+	if (duration == 7 and count7 % 2 == 1) or duration == 10 then -- Arcane Missiles
 		barInfo = self:ArcaneMissilesTimeline(eventInfo)
-	elseif duration == 9 or duration == 12 then -- Astral Blast
-		barInfo = self:AstralBlastTimeline(eventInfo)
+	elseif (duration == 7 and count7 % 2 == 0) or duration == 9 or duration == 12 then -- Astral Blast
+		if duration ~= 7 then -- 7s duration Astral Blasts are always canceled by Power Vacuum
+			barInfo = self:AstralBlastTimeline(eventInfo)
+		end
 	elseif duration == 14 then -- Energy Bomb
 		barInfo = self:EnergyBombTimeline(eventInfo)
 	elseif duration == 28 then -- Power Vacuum
 		barInfo = self:PowerVacuumTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
+	end
+	if duration == 7 then
+		count7 = count7 + 1
 	end
 	if barInfo then
 		activeBars[eventInfo.id] = barInfo
