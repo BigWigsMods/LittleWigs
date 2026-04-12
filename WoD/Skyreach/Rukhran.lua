@@ -186,8 +186,9 @@ function mod:SearingQuillsTimeline(eventInfo)
 	return {
 		msg = barText,
 		key = 159382,
-		callback = function() -- has Blizzard message but shouldPlaySound=false
-			--self:Message(159382, "orange", barText)
+		callback = function()
+			self:StopBlizzMessages(1)
+			self:Message(159382, "orange", barText)
 			self:PlaySound(159382, "long")
 		end
 	}
