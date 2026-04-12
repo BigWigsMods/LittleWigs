@@ -186,10 +186,11 @@ function mod:ChakramVortexTimeline(eventInfo)
 	return {
 		msg = barText,
 		key = 156793,
-		--callback = function() -- has Blizzard message
-			--self:Message(156793, "orange", barText)
-			--self:PlaySound(156793, "warning")
-		--end
+		callback = function()
+			self:StopBlizzMessages(1)
+			self:Message(156793, "orange", barText)
+			self:PlaySound(156793, "long")
+		end
 	}
 end
 
@@ -200,7 +201,7 @@ end
 function mod:FourWinds(args)
 	self:Message(args.spellId, "orange")
 	self:Bar(args.spellId, 36)
-	self:PlaySound(args.spellId, "warning")
+	self:PlaySound(args.spellId, "long")
 end
 
 function mod:Windwall(args)

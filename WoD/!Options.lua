@@ -423,7 +423,7 @@ BigWigs:AddColors("Ranjit", {
 
 BigWigs:AddSounds("Ranjit", {
 	[153757] = "alert",
-	[156793] = "warning",
+	[156793] = "long",
 	[165731] = "alarm",
 	[1258152] = "alarm",
 })
