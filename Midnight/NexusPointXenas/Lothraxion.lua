@@ -159,6 +159,7 @@ function mod:DivineGuileTimeline(eventInfo)
 		msg = barText,
 		key = 1257595,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(1257595, "cyan", barText)
 			self:PlaySound(1257595, "long")
 		end
