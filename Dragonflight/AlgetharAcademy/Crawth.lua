@@ -186,10 +186,6 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 		elseif state == 3 then -- Canceled
 			self:StopBar(barInfo.msg)
 			activeBars[eventID] = nil
-			-- when all bars are canceled it's because Play Ball is starting
-			if not self:IsWiping() then
-				self:PlayBall()
-			end
 		end
 	end
 end
@@ -311,6 +307,9 @@ function mod:GoalOfTheSearingBlaze(_, _, info)
 		searingBlazeGoals = barValue
 		self:Message(389481, "cyan", CL.count_amount:format(info.text, barValue, 3)) -- Goal of the Searing Blaze (n/3)
 		self:PlaySound(389481, "info")
+	elseif self:Retail() and shownState == 1 and barValue == 0 and searingBlazeGoals ~= 3 then
+		searingBlazeGoals = barValue
+		self:PlayBall()
 	else
 		searingBlazeGoals = barValue
 	end
@@ -346,6 +345,9 @@ function mod:GoalOfTheRushingWinds(_, _, info)
 		rushingWindsGoals = barValue
 		self:Message(389483, "cyan", CL.count_amount:format(info.text, barValue, 3)) -- Goal of the Rushing Winds (n/3)
 		self:PlaySound(389483, "info")
+	elseif self:Retail() and shownState == 1 and barValue == 0 and rushingWindsGoals ~= 3 then
+		rushingWindsGoals = barValue
+		self:PlayBall()
 	else
 		rushingWindsGoals = barValue
 	end
