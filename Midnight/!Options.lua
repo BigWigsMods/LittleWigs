@@ -155,7 +155,7 @@ BigWigs:AddSounds("Den of Nalorakk Trash", {
 })
 
 BigWigs:AddColors("Arcanotron Custos", {
-	[474345] = "cyan",
+	[474345] = {"cyan","green"},
 	[474496] = "purple",
 	[1214032] = "yellow",
 	[1214081] = "orange",

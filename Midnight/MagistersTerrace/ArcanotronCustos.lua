@@ -32,7 +32,7 @@ function mod:GetOptions()
 		474496, -- Repulsing Slam
 		1214081, -- Arcane Expulsion
 		1214032, -- Ethereal Shackles
-		474345, -- Refueling Protocol
+		{474345, "CASTBAR"}, -- Refueling Protocol
 		--{1214038, "PRIVATE"}, -- Ethereal Shackles
 		{1214089, "PRIVATE"}, -- Arcane Residue
 		{1243905, "PRIVATE"}, -- Unstable Energy
@@ -69,14 +69,20 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	end
 	local duration = self:RoundNumber(eventInfo.duration, 1)
 	local barInfo
-	if duration > 45 then return end -- filter placeholder bars
+	if duration > 50 then return end -- filter placeholder bars
 	if duration == 5 or duration == 22.5 then -- Repulsing Slam
+		if duration == 22.5 and repulsingSlamCount > refuelingProtocolCount * 2 then
+			return -- prevent bars that are always canceled by Refueling Protocol
+		end
 		barInfo = self:RepulsingSlamTimeline(eventInfo)
 	elseif duration == 15 or duration == 23 then -- Arcane Expulsion
+		if duration == 23 and arcaneExpulsionCount > refuelingProtocolCount * 2 then
+			return -- prevent bars that are always canceled by Refueling Protocol
+		end
 		barInfo = self:ArcaneExpulsionTimeline(eventInfo)
 	elseif duration == 22 then -- Ethereal Shackles
 		barInfo = self:EtherealShacklesTimeline(eventInfo)
-	elseif duration == 45 then -- Refueling Protocol
+	elseif duration == 45 or duration == 48 then -- Refueling Protocol
 		barInfo = self:RefuelingProtocolTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
@@ -93,7 +99,8 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 		if state == 0 then -- Active
 			self:ResumeBar(barInfo.key, barInfo.msg)
 		elseif state == 1 then -- Paused
-			self:PauseBar(barInfo.key, barInfo.msg)
+			-- ignore bar pausing, we re-use a bar that pauses as the Refueling Protocol castbar
+			return
 		elseif state == 2 then -- Finished
 			self:StopBar(barInfo.msg)
 			if barInfo.callback then
@@ -174,21 +181,26 @@ function mod:EtherealShacklesTimeline(eventInfo)
 end
 
 function mod:RefuelingProtocolTimeline(eventInfo)
-	if self:GetStage() == 2 then
-		self:SetStage(1)
-		self:Message(474345, "cyan", CL.over:format(self:SpellName(474345)))
-		self:PlaySound(474345, "info")
+	local barText
+	if eventInfo.duration == 45 then
+		if self:GetStage() == 2 then
+			self:SetStage(1)
+			self:Message(474345, "cyan", CL.over:format(self:SpellName(474345)))
+			self:PlaySound(474345, "info")
+		end
+		barText = CL.count:format(self:SpellName(474345), refuelingProtocolCount)
+		self:CDBar(474345, eventInfo.duration, barText, nil, eventInfo.id)
+	elseif eventInfo.duration == 48 then
+		-- we re-purpose this Refueling Protocol bar with a bogus duration as the 23s castbar
+		self:SetStage(2)
+		self:Message(474345, "green", CL.count:format(self:SpellName(474345), refuelingProtocolCount))
+		refuelingProtocolCount = refuelingProtocolCount + 1
+		barText = CL.cast:format(self:SpellName(474345))
+		self:CastBar(474345, 23)
+		self:PlaySound(474345, "long")
 	end
-	local barText = CL.count:format(self:SpellName(474345), refuelingProtocolCount)
-	self:CDBar(474345, eventInfo.duration, barText, nil, eventInfo.id)
-	refuelingProtocolCount = refuelingProtocolCount + 1
 	return {
 		msg = barText,
 		key = 474345,
-		cancelCallback = function()
-			self:SetStage(2)
-			self:Message(474345, "cyan", barText)
-			self:PlaySound(474345, "long")
-		end
 	}
 end
