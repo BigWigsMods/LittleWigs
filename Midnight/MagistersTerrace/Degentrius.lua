@@ -159,9 +159,10 @@ function mod:UnstableVoidEssenceTimeline(eventInfo)
 	return {
 		msg = barText,
 		key = 1215087,
-		--callback = function() has Blizzard alert
-			--self:Message(1215087, "red", barText)
-			--self:PlaySound(1215087, "info")
-		--end
+		callback = function()
+			self:StopBlizzMessages(1)
+			self:Message(1215087, "red", barText)
+			self:PlaySound(1215087, "info")
+		end
 	}
 end

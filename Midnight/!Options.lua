@@ -195,11 +195,13 @@ BigWigs:AddSounds("Gemellus", {
 })
 
 BigWigs:AddColors("Degentrius", {
+	[1215087] = "red",
 	[1215897] = "yellow",
 	[1280113] = "purple",
 })
 
 BigWigs:AddSounds("Degentrius", {
+	[1215087] = "info",
 	[1215897] = "alert",
 	[1280113] = "alarm",
 })
