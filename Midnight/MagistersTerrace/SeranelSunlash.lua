@@ -197,10 +197,10 @@ function mod:WaveOfSilenceTimeline(eventInfo)
 		msg = barText,
 		key = 1225193,
 		callback = function()
-			-- has Blizzard alert
-			--self:Message(1225193, "red", barText)
-			--self:PlaySound(1225193, "warning")
+			self:StopBlizzMessages(1)
+			self:Message(1225193, "red", barText)
 			self:CastBar(1225193, 5)
+			self:PlaySound(1225193, "warning")
 		end
 	}
 end
