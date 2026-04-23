@@ -76,16 +76,17 @@ end
 
 function mod:OnBossEnable()
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL", "Warmup")
-	self:RegisterEvent("ENCOUNTER_START")
 
 	-- [[ The Trial of the Yaungol ]] --
-	self:RegisterUnitEvent("UNIT_AURA", nil, "boss1", "boss2")
 	self:Log("SPELL_AURA_APPLIED", "UltimatePower", 113309)
 	if self:Retail() then -- Dragonflight+
 		self:Log("SPELL_AURA_APPLIED", "FeelingOfSuperiorityApplied", 396150)
 		self:Log("SPELL_AURA_APPLIED_DOSE", "FeelingOfSuperiorityAppliedDose", 396150)
 		self:Log("SPELL_AURA_APPLIED", "FeelingOfInferiorityApplied", 396152)
 		self:Log("SPELL_AURA_REMOVED", "FeelingOfInferiorityRemoved", 396152)
+	else
+		self:RegisterEvent("ENCOUNTER_START")
+		self:RegisterUnitEvent("UNIT_AURA", nil, "boss1", "boss2")
 	end
 
 	-- [[ The Champion of the Five Suns ]] --
