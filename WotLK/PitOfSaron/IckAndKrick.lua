@@ -211,6 +211,7 @@ function mod:GetEmIckTimeline(eventInfo)
 		msg = barText,
 		key = 1264363,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(1264363, "red", barText)
 			self:PlaySound(1264363, "alert")
 		end
