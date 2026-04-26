@@ -30,25 +30,7 @@
 ## X-LittleWigs-Repo: 1
 ## X-BigWigs-LoadOn-InstanceId: 36,209,229,329,429, 269,540,542,543,545,546,547,552,553,554,555,556,557,558,560,585
 Classic\modules_TBC.xml
-Classic\!Locales\deDE.lua
-Classic\!Locales\esES.lua
-Classic\!Locales\esMX.lua
-Classic\!Locales\frFR.lua
-Classic\!Locales\itIT.lua
-Classic\!Locales\koKR.lua
-Classic\!Locales\ptBR.lua
-Classic\!Locales\ruRU.lua
-Classic\!Locales\zhCN.lua
-Classic\!Locales\zhTW.lua
+Classic\!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 TBC\modules.xml
-TBC\!Locales\deDE.lua
-TBC\!Locales\esES.lua
-TBC\!Locales\esMX.lua
-TBC\!Locales\frFR.lua
-TBC\!Locales\itIT.lua
-TBC\!Locales\koKR.lua
-TBC\!Locales\ptBR.lua
-TBC\!Locales\ruRU.lua
-TBC\!Locales\zhCN.lua
-TBC\!Locales\zhTW.lua
+TBC\!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 #@end-do-not-package@
