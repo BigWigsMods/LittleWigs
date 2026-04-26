@@ -418,6 +418,7 @@ BigWigs:AddColors("Ranjit", {
 	[153757] = "yellow",
 	[156793] = "orange",
 	[165731] = {"blue","yellow"},
+	[1252690] = "red",
 	[1258152] = "red",
 })
 
@@ -425,6 +426,7 @@ BigWigs:AddSounds("Ranjit", {
 	[153757] = "alert",
 	[156793] = "long",
 	[165731] = "alarm",
+	[1252690] = "alarm",
 	[1258152] = "alarm",
 })
 

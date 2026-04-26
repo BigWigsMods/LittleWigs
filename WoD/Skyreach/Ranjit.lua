@@ -41,7 +41,7 @@ end
 --
 
 local galeSurgeCount = 1
-local fanofBladesCount = 1
+local fanOfBladesCount = 1
 local windChakramCount = 1
 local chakramVortexCount = 1
 local activeBars = {}
@@ -68,7 +68,7 @@ if mod:Retail() then -- Midnight+
 	mod:UseCustomTimers(true)
 	function mod:OnEncounterStart()
 		galeSurgeCount = 1
-		fanofBladesCount = 1
+		fanOfBladesCount = 1
 		windChakramCount = 1
 		chakramVortexCount = 1
 		activeBars = {}
@@ -91,7 +91,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if duration == 5 then -- Gale Surge
 		barInfo = self:GaleSurgeTimeline(eventInfo)
 	elseif duration == 12 or duration == 20 then -- Fan of Blades
-		barInfo = self:FanofBladesTimeline(eventInfo)
+		barInfo = self:FanOfBladesTimeline(eventInfo)
 	elseif duration == 10 or duration == 18 then -- Wind Chakram
 		barInfo = self:WindChakramTimeline(eventInfo)
 	elseif duration == 35 then -- Chakram Vortex
@@ -144,17 +144,18 @@ function mod:GaleSurgeTimeline(eventInfo)
 	return {
 		msg = barText,
 		key = 1252690,
-		--callback = function() -- has Blizzard message
-			--self:Message(1252690, "red", barText)
-			--self:PlaySound(1252690, "alarm")
-		--end
+		callback = function()
+			self:TargetMessageFromBlizzMessage(1, 1252690, "blue")
+			self:Message(1252690, "red", barText)
+			self:PlaySound(1252690, "alarm")
+		end
 	}
 end
 
-function mod:FanofBladesTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(153757), fanofBladesCount)
+function mod:FanOfBladesTimeline(eventInfo)
+	local barText = CL.count:format(self:SpellName(153757), fanOfBladesCount)
 	self:CDBar(153757, eventInfo.duration, barText, nil, eventInfo.id)
-	fanofBladesCount = fanofBladesCount + 1
+	fanOfBladesCount = fanOfBladesCount + 1
 	return {
 		msg = barText,
 		key = 153757,
