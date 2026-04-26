@@ -465,7 +465,6 @@ BigWigs:AddColors("High Sage Viryx", {
 	[154055] = "orange",
 	[154396] = "red",
 	[1253538] = "yellow",
-	[1253840] = "orange",
 	["adds"] = "red",
 })
 
