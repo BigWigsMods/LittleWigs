@@ -79,6 +79,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(136279) then -- Sunkiller Sanctum, start Delve (Darkmender Deremius Duskwalk)
 			-- 136279:|cFF0000FF(Delve)|r I'll take care of this!
 			self:SelectGossipID(136279)
+		elseif self:GetGossipID(136086) then -- Sunkiller Sanctum, start Delve (Null-Theorist Selune)
+			-- 136086:|cFF0000FF(Delve)|r I'll take care of this!
+			self:SelectGossipID(136086)
 		elseif self:GetGossipID(138009) then -- The Darkway, start Delve (Technician Mireille)
 			-- 138009:I will re-align the conduits and restore the energy.
 			self:SelectGossipID(138009)
@@ -94,6 +97,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(137389) then -- The Gulf of Memory, start Delve (Ashayo)
 			-- 137389:Deal with the big ones. Got it.
 			self:SelectGossipID(137389)
+		elseif self:GetGossipID(134668) then -- The Grudge Pit, start Delve (Boletus)
+			-- 134668:|cFF0000FF(Delve)|r I can play the villain.
+			self:SelectGossipID(134668)
 		elseif self:GetGossipID(137619) then -- The Shadow Enclave, start Delve (Doleana Silverstalk)
 			-- 137619:Looting and killing, understood!
 			self:SelectGossipID(137619)
