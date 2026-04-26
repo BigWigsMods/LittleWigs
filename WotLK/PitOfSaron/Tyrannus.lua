@@ -229,6 +229,7 @@ function mod:ArmyoftheDeadTimeline(eventInfo)
 		key = 1263406,
 		callback = function()
 			self:SetStage(2)
+			self:StopBlizzMessages(2)
 			self:Message(1263406, "cyan", barText)
 			self:PlaySound(1263406, "long")
 		end
