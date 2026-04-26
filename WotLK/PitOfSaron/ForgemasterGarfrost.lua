@@ -159,6 +159,7 @@ function mod:OrebreakerTimeline(eventInfo)
 		msg = barText,
 		key = 1261546,
 		callback = function()
+			self:TargetMessageFromBlizzMessage(1, 1261546, "blue")
 			self:Message(1261546, "purple", barText)
 			if self:Tank() then
 				self:PlaySound(1261546, "warning")
