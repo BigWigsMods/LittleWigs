@@ -158,6 +158,7 @@ function mod:GustShotTimeline(eventInfo)
 		msg = barText,
 		key = 1253986,
 		callback = function()
+			self:TargetMessageFromBlizzMessage(1, 1253986, "blue")
 			self:Message(1253986, "red", barText)
 			self:PlaySound(1253986, "alarm")
 		end
@@ -171,10 +172,11 @@ function mod:BullseyeWindblastTimeline(eventInfo)
 	return {
 		msg = barText,
 		key = 468429,
-		--callback = function() -- has Blizzard message
-			--self:Message(468429, "yellow", barText)
-			--self:PlaySound(468429, "warning")
-		--end
+		callback = function()
+			self:StopBlizzMessages(1)
+			self:Message(468429, "yellow", barText)
+			self:PlaySound(468429, "warning")
+		end
 	}
 end
 
