@@ -225,6 +225,7 @@ function mod:RecklessLeapTimeline(eventInfo)
 		msg = barText,
 		key = 472081,
 		callback = function()
+			self:TargetMessageFromBlizzMessage(5, 472081, "blue") -- cast twice
 			self:Message(472081, "orange", barText)
 			self:PlaySound(472081, "alarm")
 		end
@@ -239,6 +240,7 @@ function mod:IntimidatingShoutTimeline(eventInfo)
 		msg = barText,
 		key = 1253272,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(1253272, "red", barText)
 			self:PlaySound(1253272, "warning")
 		end
