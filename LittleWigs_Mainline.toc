@@ -1,4 +1,4 @@
-## Interface: 120001, 120005, 120000
+## Interface: 120001, 120005, 120007
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
