@@ -67,6 +67,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(136477) then -- Parhelion Plaza, start Delve (Grand Artificer Romuul)
 			-- 136477:|cFF0000FF(Delve)|r I will break that shield and eliminate the units inside.
 			self:SelectGossipID(136477)
+		elseif self:GetGossipID(134669) then -- Parhelion Plaza, start Delve (Grand Artificer Romuul)
+			-- 134669:I'll take the devices into the portal and shut them down!
+			self:SelectGossipID(134669)
 		elseif self:GetGossipID(136446) then -- Parhelion Plaza, start Delve (Vindicator Xayann)
 			-- 136446:|cFF0000FF(Delve)|r I'll drive back the attackers.
 			self:SelectGossipID(136446)
