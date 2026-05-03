@@ -303,6 +303,7 @@ BigWigs:AddSounds("Murder Row Trash", {
 
 BigWigs:AddColors("Chief Corewright Kasreth", {
 	[1251579] = "yellow",
+	[1251772] = "red",
 	[1257509] = "cyan",
 	[1264048] = "orange",
 })

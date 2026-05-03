@@ -224,7 +224,8 @@ function mod:RefluxChargeTimeline(eventInfo)
 		msg = barText,
 		key = 1251772,
 		callback = function()
-			self:TargetMessageFromBlizzMessage(1, 1251772, "red", barText)
+			self:Message(1251772, "red", barText)
+			self:PersonalMessageFromBlizzMessage(1, 1251772)
 			self:PlaySound(1251772, "info")
 		end
 	}
