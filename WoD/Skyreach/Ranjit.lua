@@ -145,7 +145,7 @@ function mod:GaleSurgeTimeline(eventInfo)
 		msg = barText,
 		key = 1252690,
 		callback = function()
-			self:TargetMessageFromBlizzMessage(1, 1252690, "blue")
+			self:PersonalMessageFromBlizzMessage(1, 1252690)
 			self:Message(1252690, "red", barText)
 			self:PlaySound(1252690, "alarm")
 		end
