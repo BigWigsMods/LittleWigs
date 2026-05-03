@@ -225,7 +225,7 @@ function mod:RecklessLeapTimeline(eventInfo)
 		msg = barText,
 		key = 472081,
 		callback = function()
-			self:TargetMessageFromBlizzMessage(5, 472081, "blue") -- cast twice
+			self:PersonalMessageFromBlizzMessage(5, 472081) -- cast twice
 			self:Message(472081, "orange", barText)
 			self:PlaySound(472081, "alarm")
 		end
