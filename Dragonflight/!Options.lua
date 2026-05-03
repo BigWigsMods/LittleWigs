@@ -60,7 +60,7 @@ BigWigs:AddSounds("Crawth", {
 
 BigWigs:AddColors("Echo of Doragosa", {
 	[373326] = "orange",
-	[374343] = "yellow",
+	[374343] = {"blue","yellow"},
 	[374352] = {"blue","yellow"},
 	[374361] = "orange",
 	[388822] = "red",

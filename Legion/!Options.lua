@@ -1366,7 +1366,7 @@ BigWigs:AddColors("Zuraal", {
 	[244621] = {"cyan","green"},
 	[244653] = {"blue","red"},
 	[246134] = "red",
-	[1263282] = "red",
+	[1263282] = {"blue","red"},
 	[1263297] = "yellow",
 	[1263399] = "yellow",
 	[1263440] = "purple",

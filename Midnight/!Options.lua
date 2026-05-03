@@ -211,6 +211,7 @@ BigWigs:AddSounds("Degentrius", {
 BigWigs:AddColors("Muro'jin and Nekraxx", {
 	[1243900] = "red",
 	[1246666] = "yellow",
+	[1249479] = "red",
 	[1249947] = "cyan",
 	[1260643] = "yellow",
 	[1260731] = "orange",
@@ -303,7 +304,7 @@ BigWigs:AddSounds("Murder Row Trash", {
 
 BigWigs:AddColors("Chief Corewright Kasreth", {
 	[1251579] = "yellow",
-	[1251772] = "red",
+	[1251772] = {"blue","red"},
 	[1257509] = "cyan",
 	[1264048] = "orange",
 })
@@ -330,7 +331,7 @@ BigWigs:AddSounds("Corewarden Nysarra", {
 })
 
 BigWigs:AddColors("Lothraxion", {
-	[1253855] = "yellow",
+	[1253855] = {"blue","yellow"},
 	[1253950] = "purple",
 	[1255531] = "orange",
 	[1257595] = "cyan",
@@ -405,7 +406,8 @@ BigWigs:AddSounds("Emberdawn", {
 
 BigWigs:AddColors("Derelict Duo", {
 	[472736] = "yellow",
-	[472745] = "orange",
+	[472745] = {"blue","orange"},
+	[472793] = "blue",
 	[472888] = "purple",
 	[474105] = "red",
 })
@@ -419,7 +421,7 @@ BigWigs:AddSounds("Derelict Duo", {
 
 BigWigs:AddColors("Commander Kroluk", {
 	[467620] = "purple",
-	[472081] = "orange",
+	[472081] = {"blue","orange"},
 	[1250851] = {"cyan","green"},
 	[1253272] = "red",
 })
@@ -436,7 +438,7 @@ BigWigs:AddColors("Restless Heart", {
 	[472556] = "cyan",
 	[472662] = "purple",
 	[474528] = "yellow",
-	[1253986] = "red",
+	[1253986] = {"blue","red"},
 })
 
 BigWigs:AddSounds("Restless Heart", {

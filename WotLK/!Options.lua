@@ -269,7 +269,7 @@ BigWigs:AddColors("Forgemaster Garfrost", {
 	[68789] = "red",
 	[70381] = {"blue","yellow"},
 	[1261299] = "red",
-	[1261546] = "purple",
+	[1261546] = {"blue","purple"},
 	[1261847] = "orange",
 	[1262029] = "yellow",
 })
