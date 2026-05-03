@@ -134,7 +134,7 @@ function mod:SplatteringSpewTimeline(eventInfo)
 		msg = barText,
 		key = 472745,
 		callback = function()
-			self:TargetMessageFromBlizzMessage(1, 472745, "blue")
+			self:PersonalMessageFromBlizzMessage(1, 472745)
 			self:Message(472745, "orange", barText)
 			self:PlaySound(472745, "alarm")
 		end
@@ -177,7 +177,7 @@ function mod:DebilitatingShriekTimeline(eventInfo)
 		msg = barText,
 		key = 472736,
 		cancelCallback = function()
-			self:TargetMessageFromBlizzMessage(1, 472793, "blue") -- Heaving Yank
+			self:PersonalMessageFromBlizzMessage(1, 472793) -- Heaving Yank
 			self:Message(472736, "yellow", barText)
 			self:PlaySound(472736, "long")
 		end
