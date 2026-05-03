@@ -208,7 +208,6 @@ function mod:EnergyBombTimeline(eventInfo)
 end
 
 function mod:PowerVacuumTimeline(eventInfo)
-	blah()
 	local barText = CL.count:format(self:SpellName(388822), powerVacuumCount)
 	self:CDBar(388822, eventInfo.duration, barText, nil, eventInfo.id)
 	powerVacuumCount = powerVacuumCount + 1
