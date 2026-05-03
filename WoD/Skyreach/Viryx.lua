@@ -220,8 +220,7 @@ function mod:LensFlareTimeline(eventInfo)
 		msg = barText,
 		key = 1253840,
 		callback = function()
-			self:TargetMessageFromBlizzMessage(1, 1253840, "blue")
-			self:Message(1253840, "orange")
+			self:TargetMessageFromBlizzMessage(1, 1253840, "orange")
 			self:PlaySound(1253840, "alarm")
 		end
 	}
