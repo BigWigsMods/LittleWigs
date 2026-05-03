@@ -352,7 +352,7 @@ function mod:CarrionSwoopTimeline(eventInfo)
 		msg = barText,
 		key = 1249479,
 		callback = function()
-			self:TargetMessageFromBlizzMessage(1, 1249479, "red")
+			self:TargetMessageFromBlizzMessage(1249479, 1, "red")
 			self:PlaySound(1249479, "alert")
 		end,
 		cancelCallback = function()

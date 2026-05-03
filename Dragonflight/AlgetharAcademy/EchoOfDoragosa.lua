@@ -200,7 +200,7 @@ function mod:EnergyBombTimeline(eventInfo)
 		msg = barText,
 		key = 374343,
 		callback = function()
-			self:TargetMessageFromBlizzMessage(1, 374343, "blue")
+			self:PersonalMessageFromBlizzMessage(374343, 1)
 			self:Message(374343, "yellow", barText)
 			self:PlaySound(374343, "alert")
 		end

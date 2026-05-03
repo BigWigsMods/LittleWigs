@@ -222,7 +222,7 @@ function mod:DecimateTimeline(eventInfo)
 		msg = barText,
 		key = 1263282,
 		callback = function()
-			self:TargetMessageFromBlizzMessage(1, 1263282, "blue")
+			self:PersonalMessageFromBlizzMessage(1263282, 1)
 			self:Message(1263282, "red", barText)
 			self:PlaySound(1263282, "alarm")
 		end,

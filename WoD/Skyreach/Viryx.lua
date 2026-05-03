@@ -206,7 +206,7 @@ function mod:CastDownTimeline(eventInfo)
 		msg = barText,
 		key = 153954,
 		callback = function()
-			self:TargetMessageFromBlizzMessage(1, 153954, "cyan")
+			self:TargetMessageFromBlizzMessage(153954, 1, "cyan")
 			self:PlaySound(153954, "warning")
 		end
 	}
@@ -220,7 +220,7 @@ function mod:LensFlareTimeline(eventInfo)
 		msg = barText,
 		key = 1253840,
 		callback = function()
-			self:TargetMessageFromBlizzMessage(1, 1253840, "orange")
+			self:TargetMessageFromBlizzMessage(1253840, 1, "orange")
 			self:PlaySound(1253840, "alarm")
 		end
 	}

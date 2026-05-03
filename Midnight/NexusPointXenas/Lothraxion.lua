@@ -132,7 +132,7 @@ function mod:BrilliantDispersionTimeline(eventInfo)
 		key = 1253855,
 		callback = function()
 			self:Message(1253855, "yellow", barText)
-			self:PersonalMessageFromBlizzMessage(1, 1253855)
+			self:PersonalMessageFromBlizzMessage(1253855, 1)
 			self:PlaySound(1253855, "alarm")
 		end
 	}
