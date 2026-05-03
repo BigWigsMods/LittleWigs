@@ -158,7 +158,7 @@ function mod:GustShotTimeline(eventInfo)
 		msg = barText,
 		key = 1253986,
 		callback = function()
-			self:TargetMessageFromBlizzMessage(1, 1253986, "blue")
+			self:PersonalMessageFromBlizzMessage(1, 1253986)
 			self:Message(1253986, "red", barText)
 			self:PlaySound(1253986, "alarm")
 		end
