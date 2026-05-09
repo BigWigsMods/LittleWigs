@@ -112,7 +112,7 @@ if mod:Retail() then -- Midnight+
 			376448, -- Firestorm
 			389483, -- Goal of the Rushing Winds
 			376467, -- Gale Force
-			377004, -- Deafening Screech
+			{377004, "CASTBAR"}, -- Deafening Screech
 			377034, -- Overpowering Gust
 			{376760, "PRIVATE"}, -- Gale Force
 			{376997, "PRIVATE"}, -- Savage Peck
@@ -226,6 +226,7 @@ function mod:DeafeningScreechTimeline(eventInfo)
 		callback = function()
 			self:StopBlizzMessages(1)
 			self:Message(377004, "yellow", barText)
+			self:CastBar(377004, 2.5)
 			self:PlaySound(377004, "warning")
 		end
 	}
