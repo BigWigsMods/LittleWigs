@@ -172,7 +172,9 @@ function mod:UnmakeTimeline(eventInfo)
 end
 
 function mod:NecroticConvergenceTimeline(eventInfo)
-	self:SetStage(1)
+	if self:GetStage() ~= 1 then
+		self:SetStage(1)
+	end
 	local barText = CL.count:format(self:SpellName(1250708), necroticConvergenceCount)
 	self:CDBar(1250708, eventInfo.duration, barText, nil, eventInfo.id)
 	necroticConvergenceCount = necroticConvergenceCount + 1
