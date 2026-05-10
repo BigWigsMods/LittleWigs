@@ -178,6 +178,7 @@ function mod:GlacialOverloadTimeline(eventInfo)
 		msg = barText,
 		key = 1262029,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(1262029, "yellow", barText)
 			self:PlaySound(1262029, "warning")
 		end
