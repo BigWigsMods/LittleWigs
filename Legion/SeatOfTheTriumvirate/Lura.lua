@@ -8,7 +8,7 @@ mod:RegisterEnableMob(124729) -- L'ura
 mod:SetEncounterID(2068)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1265426, sound = "alarm"}, -- Discordant Beam
+	{1265426, sound = "warning"}, -- Discordant Beam
 	{1265650, sound = "alert"}, -- Anguish
 })
 
@@ -211,8 +211,8 @@ function mod:DiscordantBeamTimeline(eventInfo)
 		key = 1265463,
 		callback = function()
 			self:PersonalMessageFromBlizzMessage(1265463, 1)
-			--self:Message(1265463, "purple", barText)
-			self:PlaySound(1265463, "alarm")
+			self:Message(1265463, "orange", barText)
+			--self:PlaySound(1265463, "warning") -- Sound is played via PA when it's on you
 		end
 	}
 end
