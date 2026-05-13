@@ -9,7 +9,7 @@
 ## Notes-itIT: Avvisi per i boss delle spedizioni & scenari
 ## Notes-koKR: 5인 던전 & 시나리오의 우두머리 경보입니다.
 ## Notes-ptBR: Boss warnings for 5-man dungeons & scenarios.
-## Notes-ruRU: Boss warnings for 5-man dungeons & scenarios.
+## Notes-ruRU: Предупреждения о боссах для подземелий на 5 игроков и сценариев.
 ## Notes-zhCN: 5人地下城和场景战役首领警报。
 ## Notes-zhTW: 5人地城和情境地圖首領警報。
 ## Author: Funkeh, Delk

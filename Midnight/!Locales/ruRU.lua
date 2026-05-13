@@ -59,7 +59,7 @@ end
 
 L = BigWigs:NewBossLocale("Gyrospore", "ruRU")
 if L then
-	--L.gyrospore = "Gyrospore"
+	L.gyrospore = "Гироспор"
 end
 
 L = BigWigs:NewBossLocale("Mycomight", "ruRU")
@@ -111,36 +111,36 @@ end
 
 L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "ruRU")
 if L then
-	--L.offerings_acquired = "Offerings Acquired"
-	--L.offerings_acquired_desc = "Show an alert when an offering has been acquired."
+	L.offerings_acquired = "Подношения получены"
+	L.offerings_acquired_desc = "Показывать оповещение, когда подношение получено."
 end
 
 -- Maisara Caverns
 
 L = BigWigs:NewBossLocale("Maisara Caverns Trash", "ruRU")
 if L then
-	--L.prisoners_freed = "Prisoners Freed"
-	--L.prisoners_freed_desc = "Show an alert when a prisoner has been freed."
-	--L.custom_on_cooking_pot_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Hearty Vilebranch Stew' buff.\n\n|T4659336:16|tHearty Vilebranch Stew\n{1269056}"
-	--L.custom_on_ritual_cauldron_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Ritual Concoction' buff.\n\n|T236271:16|tRitual Concoction\n{1271300}"
+	L.prisoners_freed = "Узники освобождены"
+	L.prisoners_freed_desc = "Показывать оповещение, когда узник освобождён."
+	L.custom_on_cooking_pot_autotalk_desc = "Автоматически выбирать вариант диалога с NPC, чтобы получить эффект 'Сытная похлебка племени Порочной Ветви'.\n\n|T4659336:16|tСытная похлебка племени Порочной Ветви\n{1269056}"
+	L.custom_on_ritual_cauldron_autotalk_desc = "Автоматически выбирать вариант диалога с NPC, чтобы получить эффект 'Ритуальное снадобье'.\n\n|T236271:16|tРитуальное снадобье\n{1271300}"
 
-	--L.cooking_pot = "Cooking Pot"
-	--L.ritual_cauldron = "Ritual Cauldron"
+	L.cooking_pot = "Котелок"
+	L.ritual_cauldron = "Ритуальный котёл"
 end
 
 -- Murder Row
 
 L = BigWigs:NewBossLocale("Murder Row Trash", "ruRU")
 if L then
-	--L.snitches_interrogated = "Snitches Interrogated"
-	--L.snitches_interrogated_desc = "Show an alert when a snitch has been interrogated."
+	L.snitches_interrogated = "Осведомители допрошены"
+	L.snitches_interrogated_desc = "Показывать оповещение, когда осведомитель допрошен."
 end
 
 -- Nexus-Point Xenas
 
 L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "ruRU")
 if L then
-	--L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Engineering.|r Automatically select the NPC dialog option to disable the Arcane Tripwire."
+	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Требуется навык инженерного дела Midnight 25.|r Автоматически выбирать вариант диалога с NPC, чтобы отключить чародейскую растяжку."
 
-	--L.arcane_tripwire = "Arcane Tripwire"
+	L.arcane_tripwire = "Чародейская растяжка"
 end
