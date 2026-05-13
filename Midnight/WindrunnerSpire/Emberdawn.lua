@@ -32,7 +32,7 @@ local activeBarBySpellId = {}
 
 function mod:GetOptions()
 	return {
-		466556, -- Flaming Updraft
+		{466556, "ME_ONLY_EMPHASIZE"}, -- Flaming Updraft
 		{466064, "TANK_HEALER"}, -- Searing Beak
 		{465904, "CASTBAR"}, -- Burning Gale
 		{466091, "PRIVATE"}, -- Searing Beak
@@ -173,6 +173,7 @@ function mod:FlamingUpdraftTimeline(eventInfo)
 		msg = barText,
 		key = 466556,
 		callback = function()
+			self:PersonalMessageFromBlizzMessage(466556, 2) -- Applies debuffs at the end of the 1.5s cast
 			self:Message(466556, "orange", barText)
 			self:PlaySound(466556, "alarm")
 		end
