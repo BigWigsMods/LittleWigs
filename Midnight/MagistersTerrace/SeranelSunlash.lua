@@ -155,6 +155,7 @@ function mod:RunicMarkTimeline(eventInfo)
 		msg = barText,
 		key = 1225787,
 		callback = function()
+			self:PersonalMessageFromBlizzMessage(1225787, 1)
 			self:Message(1225787, "yellow", barText)
 			self:PlaySound(1225787, "alert")
 		end
