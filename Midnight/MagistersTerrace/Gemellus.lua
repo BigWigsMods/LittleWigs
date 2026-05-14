@@ -127,6 +127,7 @@ function mod:TriplicateTimeline(eventInfo)
 		msg = barText,
 		key = 1223847,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(1223847, "cyan", barText)
 			self:PlaySound(1223847, "info")
 		end
@@ -155,6 +156,7 @@ function mod:NeuralLinkTimeline(eventInfo)
 		msg = barText,
 		key = 1253709,
 		callback = function()
+			self:PersonalMessageFromBlizzMessage(1253709, 1)
 			self:Message(1253709, "red", barText)
 			self:PlaySound(1253709, "info")
 		end
@@ -169,6 +171,7 @@ function mod:AstralGraspTimeline(eventInfo)
 		msg = barText,
 		key = 1224299,
 		callback = function()
+			self:PersonalMessageFromBlizzMessage(1224299, 1)
 			self:Message(1224299, "orange", barText)
 			self:PlaySound(1224299, "alert")
 		end

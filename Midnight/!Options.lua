@@ -184,8 +184,8 @@ BigWigs:AddSounds("Seranel Sunlash", {
 
 BigWigs:AddColors("Gemellus", {
 	[1223847] = "cyan",
-	[1224299] = "orange",
-	[1253709] = "red",
+	[1224299] = {"blue","orange"},
+	[1253709] = {"blue","red"},
 	[1284954] = "yellow",
 })
 
