@@ -395,7 +395,7 @@ BigWigs:AddSounds("Charonus", {
 BigWigs:AddColors("Emberdawn", {
 	[465904] = {"green","yellow"},
 	[466064] = "purple",
-	[466556] = "orange",
+	[466556] = {"blue","orange"},
 })
 
 BigWigs:AddSounds("Emberdawn", {
