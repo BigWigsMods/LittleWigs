@@ -27,6 +27,16 @@ local activeBars = {}
 local activeBarBySpellId = {}
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[466556] = {CL.fire_debuffs, CL.you:format(CL.fire), notes = {CL.generalNote, CL.messageOnYouNote}}, -- Flaming Updraft (Fire Debuffs)
+	[466064] = {CL.tank_hit}, -- Searing Beak (Tank Hit)
+	[465904] = {465904, CL.cast:format(mod:SpellName(465904)), CL.over:format(mod:SpellName(465904)), notes = {CL.generalNote, CL.castTimerNote, CL.messageCastOverNote}}, -- Burning Gale
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -35,10 +45,6 @@ function mod:GetOptions()
 		{466556, "ME_ONLY_EMPHASIZE"}, -- Flaming Updraft
 		{466064, "TANK_HEALER"}, -- Searing Beak
 		{465904, "CASTBAR"}, -- Burning Gale
-		{466091, "PRIVATE"}, -- Searing Beak
-		{466559, "PRIVATE"}, -- Flaming Updraft
-		{470212, "PRIVATE"}, -- Flaming Twisters
-		{472118, "PRIVATE"}, -- Ignited Embers
 	}
 end
 
@@ -166,14 +172,14 @@ end
 function mod:FlamingUpdraftTimeline(eventInfo)
 	if flamingUpdraftRemaining == 0 then return end
 	flamingUpdraftRemaining = flamingUpdraftRemaining - 1
-	local barText = CL.count:format(self:SpellName(466556), flamingUpdraftCount)
+	local barText = CL.count:format(self:GetRename(466556), flamingUpdraftCount)
 	self:CDBar(466556, eventInfo.duration, barText, nil, eventInfo.id)
 	flamingUpdraftCount = flamingUpdraftCount + 1
 	return {
 		msg = barText,
 		key = 466556,
 		callback = function()
-			self:PersonalMessageFromBlizzMessage(466556, 2) -- Applies debuffs at the end of the 1.5s cast
+			self:PersonalMessageFromBlizzMessage(466556, 2, false, self:GetRename(466556, 2)) -- Applies debuffs at the end of the 1.5s cast
 			self:Message(466556, "orange", barText)
 			self:PlaySound(466556, "alarm")
 		end
@@ -183,7 +189,7 @@ end
 function mod:SearingBeakTimeline(eventInfo)
 	if searingBeakRemaining == 0 then return end
 	searingBeakRemaining = searingBeakRemaining - 1
-	local barText = CL.count:format(self:SpellName(466064), searingBeakCount)
+	local barText = CL.count:format(self:GetRename(466064), searingBeakCount)
 	self:CDBar(466064, eventInfo.duration, barText, nil, eventInfo.id)
 	searingBeakCount = searingBeakCount + 1
 	return {
@@ -199,7 +205,7 @@ end
 function mod:BurningGaleTimeline(eventInfo)
 	if self:Mythic() then
 		if burningGaleCount % 2 == 1 then
-			local barText = CL.count:format(self:SpellName(465904), (burningGaleCount + 1) / 2)
+			local barText = CL.count:format(self:GetRename(465904), (burningGaleCount + 1) / 2)
 			self:CDBar(465904, eventInfo.duration, barText, nil, eventInfo.id)
 			burningGaleCount = burningGaleCount + 1
 			return {
@@ -215,15 +221,14 @@ function mod:BurningGaleTimeline(eventInfo)
 				end
 			}
 		else
-			local text = CL.count:format(self:SpellName(465904), burningGaleCount / 2)
-			self:CastBar(465904, 21, nil, nil, eventInfo.id) -- 3s cast + 18s channel
+			self:CastBar(465904, 21, 2, nil, eventInfo.id) -- 3s cast + 18s channel
 			burningGaleCount = burningGaleCount + 1
 			return {
-				msg = CL.cast:format(self:SpellName(465904)),
+				msg = self:GetRename(465904, 2),
 				key = 465904,
 				cancelCallback = function()
 					self:SetStage(1)
-					self:Message(465904, "green", CL.over:format(text))
+					self:Message(465904, "green", self:GetRename(465904, 3))
 					self:PlaySound(465904, "info")
 				end
 			}
@@ -231,9 +236,9 @@ function mod:BurningGaleTimeline(eventInfo)
 	else -- Normal / Heroic
 		if self:GetStage() == 2 then
 			self:SetStage(1)
-			self:StopCastBar(465904)
+			self:StopBar(self:GetRename(465904, 2))
 		end
-		local barText = CL.count:format(self:SpellName(465904), burningGaleCount)
+		local barText = CL.count:format(self:GetRename(465904), burningGaleCount)
 		self:CDBar(465904, eventInfo.duration, barText, nil, eventInfo.id)
 		burningGaleCount = burningGaleCount + 1
 		return {
@@ -245,7 +250,7 @@ function mod:BurningGaleTimeline(eventInfo)
 				self:StopBlizzMessages(1)
 				self:SetStage(2)
 				self:Message(465904, "yellow", barText)
-				self:CastBar(465904, 20.5) -- 3s cast + 18s channel - some delay
+				self:CastBar(465904, 20.5, 2) -- 3s cast + 18s channel - some delay
 				self:PlaySound(465904, "long")
 			end
 		}

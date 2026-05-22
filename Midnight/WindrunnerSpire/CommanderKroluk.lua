@@ -30,23 +30,28 @@ local activeBars = {}
 local activeBarBySpellId = {}
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[1250851] = {1250851, CL.over:format(mod:SpellName(1250851)), notes = {CL.generalNote, CL.messageCastOverNote}}, -- Shield Wall
+	[467620] = {CL.tank_hit, CL.cast:format(CL.tank_hit), notes = {CL.generalNote, CL.castTimerNote}}, -- Rampage (Tank Hit)
+	[472081] = {CL.leap, CL.you:format(CL.leap), notes = {CL.generalNote, CL.messageOnYouNote}}, -- Reckless Leap (Leap)
+	[1253272] = {CL.soak}, -- Intimidating Shout (Soak)
+	[470963] = {470963}, -- Bladestorm
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
 		1250851, -- Shield Wall
-		{467620, "TANK_HEALER"}, -- Rampage
-		472081, -- Reckless Leap
+		{467620, "TANK_HEALER", "CASTBAR"}, -- Rampage
+		{472081, "ME_ONLY_EMPHASIZE"}, -- Reckless Leap
 		1253272, -- Intimidating Shout
 		470963, -- Bladestorm
-		--{467620, "PRIVATE"}, -- Rampage
-		{468659, "PRIVATE"}, -- Throw Axe
-		--{1283247, "PRIVATE"}, -- Reckless Leap
-		--{472054, "PRIVATE"}, -- Reckless Leap
-		--{1253030, "PRIVATE"}, -- Intimidating Shout
-		--{470966, "PRIVATE"}, -- Bladestorm
-		--{468924, "PRIVATE"}, -- Bladestorm
 	}
 end
 
@@ -175,10 +180,10 @@ end
 function mod:RampageTimeline(eventInfo)
 	if self:GetStage() == 2 then
 		self:SetStage(1)
-		self:Message(1250851, "green", CL.over:format(self:SpellName(1250851))) -- Shield Wall
+		self:Message(1250851, "green", self:GetRename(1250851, 2)) -- Shield Wall
 		self:PlaySound(1250851, "info")
 	end
-	local barText = CL.count:format(self:SpellName(467620), rampageCount)
+	local barText = CL.count:format(self:GetRename(467620), rampageCount)
 	self:CDBar(467620, eventInfo.duration, barText, nil, eventInfo.id)
 	rampageCount = rampageCount + 1
 	return {
@@ -186,6 +191,7 @@ function mod:RampageTimeline(eventInfo)
 		key = 467620,
 		callback = function()
 			self:Message(467620, "purple", barText)
+			self:CastBar(467620, 7, 2, nil, eventInfo.id) -- 2s cast + 5s channel
 			self:PlaySound(467620, "alert")
 		end
 	}
@@ -199,14 +205,14 @@ do
 			bladestormCount = 1
 			self:SetStage(2)
 			if shieldWallCount == 1 then
-				self:Message(1250851, "cyan", CL.percent:format(66, self:SpellName(1250851))) -- Shield Wall
+				self:Message(1250851, "cyan", CL.percent:format(66, self:GetRename(1250851))) -- Shield Wall
 			else
-				self:Message(1250851, "cyan", CL.percent:format(33, self:SpellName(1250851))) -- Shield Wall
+				self:Message(1250851, "cyan", CL.percent:format(33, self:GetRename(1250851))) -- Shield Wall
 			end
 			shieldWallCount = shieldWallCount + 1
 			self:PlaySound(1250851, "long") -- Shield Wall
 		elseif eventInfo.duration == 8 then
-			local barText = CL.count:format(self:SpellName(470963), bladestormCount)
+			local barText = CL.count:format(self:GetRename(470963), bladestormCount)
 			self:CDBar(470963, eventInfo.duration, barText, nil, eventInfo.id)
 			bladestormCount = bladestormCount + 1
 			return {
@@ -218,14 +224,14 @@ do
 end
 
 function mod:RecklessLeapTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(472081), recklessLeapCount)
+	local barText = CL.count:format(self:GetRename(472081), recklessLeapCount)
 	self:CDBar(472081, eventInfo.duration, barText, nil, eventInfo.id)
 	recklessLeapCount = recklessLeapCount + 1
 	return {
 		msg = barText,
 		key = 472081,
 		callback = function()
-			self:PersonalMessageFromBlizzMessage(472081, 5) -- cast twice
+			self:PersonalMessageFromBlizzMessage(472081, 5, false, self:GetRename(472081, 2)) -- cast twice
 			self:Message(472081, "orange", barText)
 			self:PlaySound(472081, "alarm")
 		end
@@ -233,7 +239,7 @@ function mod:RecklessLeapTimeline(eventInfo)
 end
 
 function mod:IntimidatingShoutTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1253272), intimidatingShoutCount)
+	local barText = CL.count:format(self:GetRename(1253272), intimidatingShoutCount)
 	self:CDBar(1253272, eventInfo.duration, barText, nil, eventInfo.id)
 	intimidatingShoutCount = intimidatingShoutCount + 1
 	return {
