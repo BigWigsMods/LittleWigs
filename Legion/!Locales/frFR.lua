@@ -367,7 +367,7 @@ end
 L = BigWigs:NewBossLocale("Moroes", "frFR")
 if L then
 	L.cc = "Contrôle des foules"
-	--L.cc_desc = "Timers and alerts for crowd control on the dinner guests."
+	L.cc_desc = "CàR et alertes pour les contrôles de foule sur les invités."
 end
 
 L = BigWigs:NewBossLocale("Nightbane", "frFR")
@@ -413,20 +413,20 @@ end
 
 L = BigWigs:NewBossLocale("Ularogg Cragshaper", "frFR")
 if L then
-	--L.hands = "Hands" -- Short for "Stone Hands"
+	L.hands = "Mains" -- Short for "Stone Hands"
 end
 
 -- Seat of the Triumvirate
 
 L = BigWigs:NewBossLocale("Viceroy Nezhar", "frFR")
 if L then
-	--L.guards = "Guards"
-	--L.interrupted = "%s interrupted %s (%.1fs left)!"
+	L.guards = "Gardes"
+	L.interrupted = "%s a interrompu %s (%.1fs restant) !"
 end
 
 L = BigWigs:NewBossLocale("L'ura", "frFR")
 if L then
-	--L.warmup_text = "L'ura Active"
+	L.warmup_text = "L'ura actif"
 end
 
 L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "frFR")
@@ -438,15 +438,15 @@ if L then
 	--L.lura_warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
 	--L.lura_warmup_trigger_2 = "Such musings can wait, though. This entity must die."
 
-	--L.alleria = "Alleria Windrunner"
-	--L.subjugator = "Shadowguard Subjugator"
-	--L.voidbender = "Shadowguard Voidbender"
-	--L.conjurer = "Shadowguard Conjurer"
-	--L.weaver = "Grand Shadow-Weaver"
+	L.alleria = "Alleria Coursevent"
+	L.subjugator = "Subjugateur ombre-garde"
+	L.voidbender = "Arqueur du Vide ombre-garde"
+	L.conjurer = "Adjuratrice ombre-garde"
+	L.weaver = "Grand tisseur d'ombre"
 
 	-- Midnight+
-	--L.void_rifts_closed = "Void Rifts Closed"
-	--L.void_rifts_closed_desc = "Show an alert when a Void Rift has been closed."
+	L.void_rifts_closed = "Faille du Vide fermée"
+	L.void_rifts_closed_desc = "Affiche une alerte lorsqu'une faille du Vide est fermée."
 end
 
 -- The Arcway
@@ -464,10 +464,10 @@ end
 
 L = BigWigs:NewBossLocale("Cordana Felsong", "frFR")
 if L then
-	--L.kick_combo = "Kick Combo"
+	L.kick_combo = "Kick Combo"
 
-	--L.light_dropped = "%s dropped the Light."
-	--L.light_picked = "%s picked up the Light."
+	L.light_dropped = "%s a laissé tomber la Lumière."
+	L.light_picked = "%s a ramassé la Lumière."
 
 	--L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
 	--L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
