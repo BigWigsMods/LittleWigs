@@ -9,8 +9,8 @@ mod:SetEncounterID(1698)
 mod:SetRespawnTime(15)
 if mod:Retail() then
 	mod:SetPrivateAuraSounds({
-		{153757, sound = "alert"}, -- Fan of Blades
-		{1252733, sound = "none"}, -- Gale Surge
+		{153757, sound = "alert", note = CL.bleed}, -- Fan of Blades
+		{1252733, sound = "warning", note = CL.knockback}, -- Gale Surge
 	})
 end
 
@@ -47,18 +47,29 @@ local chakramVortexCount = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({
+		[1252690] = {CL.knockbacks, CL.you:format(CL.knockback), notes = {CL.generalNote, CL.messageOnYouNote}}, -- Gale Surge (Knockbacks)
+		[153757] = {CL.bleeds}, -- Fan of Blades (Bleeds)
+		[1258152] = {CL.chakram}, -- Wind Chakram (Chakram)
+		[156793] = {CL.tornadoes}, -- Chakram Vortex (Tornadoes)
+	})
+end
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
 if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
-			1252690, -- Gale Surge
+			{1252690, "ME_ONLY_EMPHASIZE"}, -- Gale Surge
 			153757, -- Fan of Blades
 			1258152, -- Wind Chakram
 			156793, -- Chakram Vortex
-			--{153757, "PRIVATE"}, -- Fan of Blades
-			{1252733, "PRIVATE"}, -- Gale Surge
 		}
 	end
 
@@ -137,23 +148,22 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:GaleSurgeTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1252690), galeSurgeCount)
+function mod:GaleSurgeTimeline(eventInfo) -- Knockbacks
+	local barText = CL.count:format(self:GetRename(1252690), galeSurgeCount)
 	self:CDBar(1252690, eventInfo.duration, barText, nil, eventInfo.id)
 	galeSurgeCount = galeSurgeCount + 1
 	return {
 		msg = barText,
 		key = 1252690,
 		callback = function()
-			self:PersonalMessageFromBlizzMessage(1252690, 1)
-			self:Message(1252690, "red", barText)
-			self:PlaySound(1252690, "alarm")
+			self:PersonalMessageFromBlizzMessage(1252690, 1, false, self:GetRename(1252690, 2))
+			--self:PlaySound(1252690, "warning") -- PA sound
 		end
 	}
 end
 
-function mod:FanOfBladesTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(153757), fanOfBladesCount)
+function mod:FanOfBladesTimeline(eventInfo) -- Bleeds
+	local barText = CL.count:format(self:GetRename(153757), fanOfBladesCount)
 	self:CDBar(153757, eventInfo.duration, barText, nil, eventInfo.id)
 	fanOfBladesCount = fanOfBladesCount + 1
 	return {
@@ -166,8 +176,8 @@ function mod:FanOfBladesTimeline(eventInfo)
 	}
 end
 
-function mod:WindChakramTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1258152), windChakramCount)
+function mod:WindChakramTimeline(eventInfo) -- Chakram / Frontal / Line
+	local barText = CL.count:format(self:GetRename(1258152), windChakramCount)
 	self:CDBar(1258152, eventInfo.duration, barText, nil, eventInfo.id)
 	windChakramCount = windChakramCount + 1
 	return {
@@ -180,8 +190,8 @@ function mod:WindChakramTimeline(eventInfo)
 	}
 end
 
-function mod:ChakramVortexTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(156793), chakramVortexCount)
+function mod:ChakramVortexTimeline(eventInfo) -- Tornadoes
+	local barText = CL.count:format(self:GetRename(156793), chakramVortexCount)
 	self:CDBar(156793, eventInfo.duration, barText, nil, eventInfo.id)
 	chakramVortexCount = chakramVortexCount + 1
 	return {

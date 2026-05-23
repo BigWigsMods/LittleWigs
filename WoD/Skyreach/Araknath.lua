@@ -9,9 +9,9 @@ mod:SetEncounterID(1699)
 mod:SetRespawnTime(23) -- respawns 11s after, unattackable for a while
 if mod:Retail() then
 	mod:SetPrivateAuraSounds({
-		{154150, sound = "alert"}, -- Light Ray
+		{154150, sound = "alert", note = CL.beam}, -- Light Ray
 		{1279002, sound = "warning"}, -- Blast Wave
-		{154132, sound = "warning"}, -- Fiery Smash
+		{154132, sound = "warning", note = CL.other:format(CL.tank_frontal, CL.debuffFailureNote)}, -- Fiery Smash
 	})
 end
 
@@ -55,6 +55,18 @@ local supernovaCount = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({
+		[154110] = {CL.tank_frontal}, -- Fiery Smash (Tank Frontal)
+		[154162] = {CL.beams, CL.incoming:format(CL.beams), CL.cast:format(CL.beams), notes = {CL.generalNote, CL.messageCastStartNote, CL.castTimerNote}}, -- Energize (Beams)
+		[154135] = {154135}, -- Supernova
+	})
+end
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
@@ -62,11 +74,8 @@ if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			154110, -- Fiery Smash
-			154162, -- Defensive Protocol
+			{154162, "CASTBAR"}, -- Energize
 			154135, -- Supernova
-			{154150, "PRIVATE"}, -- Light Ray
-			{1279002, "PRIVATE"}, -- Blast Wave
-			{154132, "PRIVATE"}, -- Fiery Smash
 		}
 	end
 
@@ -142,8 +151,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:FierySmashTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(154110), fierySmashCount)
+function mod:FierySmashTimeline(eventInfo) -- Tank Frontal
+	local barText = CL.count:format(self:GetRename(154110), fierySmashCount)
 	self:CDBar(154110, eventInfo.duration, barText, nil, eventInfo.id)
 	fierySmashCount = fierySmashCount + 1
 	return {
@@ -156,23 +165,27 @@ function mod:FierySmashTimeline(eventInfo)
 	}
 end
 
-function mod:EnergizeTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(154162), energizeCount)
+function mod:EnergizeTimeline(eventInfo) -- Beams
+	local barText = CL.count:format(self:GetRename(154162), energizeCount)
 	self:CDBar(154162, eventInfo.duration, barText, nil, eventInfo.id)
 	energizeCount = energizeCount + 1
 	return {
 		msg = barText,
 		key = 154162,
 		callback = function()
+			self:ScheduleTimer(function()
+				self:Message(154162, "yellow", barText)
+			end, 8)
 			self:StopBlizzMessages(1)
-			self:Message(154162, "yellow", barText)
+			self:CastBar(154162, 8, 3, nil, eventInfo.id)
+			self:Message(154162, "yellow", self:GetRename(154162, 2))
 			self:PlaySound(154162, "info")
 		end
 	}
 end
 
-function mod:SupernovaTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(154135), supernovaCount)
+function mod:SupernovaTimeline(eventInfo) -- Supernova / Cones
+	local barText = CL.count:format(self:GetRename(154135), supernovaCount)
 	self:CDBar(154135, eventInfo.duration, barText, nil, eventInfo.id)
 	supernovaCount = supernovaCount + 1
 	return {

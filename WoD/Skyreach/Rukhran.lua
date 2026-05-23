@@ -9,8 +9,8 @@ mod:SetEncounterID(1700)
 mod:SetRespawnTime(15)
 if mod:Retail() then
 	mod:SetPrivateAuraSounds({
-		{1253511, sound = "info"}, -- Burning Pursuit
-		{1253520, sound = "alarm"}, -- Burning Claws
+		{1253511, sound = "info", note = CL.fixate}, -- Burning Pursuit
+		{1253520, sound = "alarm", note = CL.tank_hit}, -- Burning Claws
 	})
 end
 
@@ -57,6 +57,18 @@ local count12 = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({
+		[1253519] = {CL.tank_hit}, -- Burning Claws (Tank Hit)
+		[1253510] = {CL.add}, -- Sunbreak (Add)
+		[159382] = {CL.quills, CL.cast:format(CL.quills), notes = {CL.generalNote, CL.castTimerNote}}, -- Searing Quills
+	})
+end
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
@@ -65,9 +77,7 @@ if mod:Retail() then -- Midnight+
 		return {
 			{1253519, "TANK_HEALER"}, -- Burning Claws
 			1253510, -- Sunbreak
-			159382, -- Searing Quills
-			{1253511, "PRIVATE"}, -- Burning Pursuit
-			{1253520, "PRIVATE"}, -- Burning Claws
+			{159382, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Searing Quills
 		}
 	end
 
@@ -147,8 +157,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:BurningClawsTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1253519), burningClawsCount)
+function mod:BurningClawsTimeline(eventInfo) -- Tank Hit
+	local barText = CL.count:format(self:GetRename(1253519), burningClawsCount)
 	self:CDBar(1253519, eventInfo.duration, barText, nil, eventInfo.id)
 	burningClawsCount = burningClawsCount + 1
 	return {
@@ -156,7 +166,7 @@ function mod:BurningClawsTimeline(eventInfo)
 		key = 1253519,
 		callback = function()
 			self:Message(1253519, "purple", barText)
-			if self:Tank() then
+			if not self:Tank() then
 				self:PlaySound(1253519, "alarm")
 			else
 				self:PlaySound(1253519, "alert")
@@ -165,8 +175,8 @@ function mod:BurningClawsTimeline(eventInfo)
 	}
 end
 
-function mod:SunbreakTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1253510), sunbreakCount)
+function mod:SunbreakTimeline(eventInfo) -- Add
+	local barText = CL.count:format(self:GetRename(1253510), sunbreakCount)
 	self:CDBar(1253510, eventInfo.duration, barText, nil, eventInfo.id)
 	sunbreakCount = sunbreakCount + 1
 	return {
@@ -179,14 +189,22 @@ function mod:SunbreakTimeline(eventInfo)
 	}
 end
 
-function mod:SearingQuillsTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(159382), searingQuillsCount)
+function mod:UNIT_SPELLCAST_START(event, unit)
+	self:UnregisterUnitEvent(event, unit)
+	if self:ShouldShowBars() then
+		self:CastBar(159382, 8, 2) -- 5s cast + 3s channel
+	end
+end
+
+function mod:SearingQuillsTimeline(eventInfo) -- Quills / Intermission / AoE / Hide
+	local barText = CL.count:format(self:GetRename(159382), searingQuillsCount)
 	self:CDBar(159382, eventInfo.duration, barText, nil, eventInfo.id)
 	searingQuillsCount = searingQuillsCount + 1
 	return {
 		msg = barText,
 		key = 159382,
 		callback = function()
+			self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss1")
 			self:StopBlizzMessages(1)
 			self:Message(159382, "orange", barText)
 			self:PlaySound(159382, "long")
