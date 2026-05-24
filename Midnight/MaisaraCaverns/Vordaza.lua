@@ -37,8 +37,8 @@ function mod:GetOptions()
 		1251204, -- Wrest Phantoms
 		1252054, -- Unmake
 		1250708, -- Necrotic Convergence
+		1251775, -- Final Pursuit
 		{1251568, "PRIVATE"}, -- Drain Soul
-		{1251775, "PRIVATE"}, -- Final Pursuit
 		{1251813, "PRIVATE"}, -- Lingering Dread
 		{1251833, "PRIVATE"}, -- Soulrot
 		{1252130, "PRIVATE"}, -- Unmake
@@ -151,6 +151,7 @@ function mod:WrestPhantomsTimeline(eventInfo)
 		msg = barText,
 		key = 1251204,
 		callback = function()
+			self:PersonalMessageFromBlizzMessage(1251775, 6) -- Final Pursuit
 			self:Message(1251204, "cyan", barText)
 			self:PlaySound(1251204, "info")
 		end

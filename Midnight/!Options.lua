@@ -232,6 +232,7 @@ BigWigs:AddColors("Vordaza", {
 	[1250708] = "yellow",
 	[1251204] = "cyan",
 	[1251554] = "purple",
+	[1251775] = "blue",
 	[1252054] = "orange",
 })
 
