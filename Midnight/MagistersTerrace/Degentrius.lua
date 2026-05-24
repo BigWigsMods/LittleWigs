@@ -34,7 +34,6 @@ function mod:GetOptions()
 		1215087, -- Unstable Void Essence
 		{1215157, "PRIVATE"}, -- Unstable Void Essence
 		{1215161, "PRIVATE"}, -- Void Destruction
-		--{1215897, "PRIVATE"}, -- Devouring Entropy
 		{1269631, "PRIVATE"}, -- Entropy Orb
 	}
 end
@@ -146,6 +145,7 @@ function mod:DevouringEntropyTimeline(eventInfo)
 		msg = barText,
 		key = 1215897,
 		callback = function()
+			self:PersonalMessageFromBlizzMessage(1215897, 2)
 			self:Message(1215897, "yellow", barText)
 			self:PlaySound(1215897, "alert")
 		end
