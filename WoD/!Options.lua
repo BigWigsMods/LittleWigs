@@ -418,7 +418,7 @@ BigWigs:AddColors("Ranjit", {
 	[153757] = "yellow",
 	[156793] = "orange",
 	[165731] = {"blue","yellow"},
-	[1252690] = {"blue","red"},
+	[1252690] = "blue",
 	[1258152] = "red",
 })
 
@@ -426,7 +426,6 @@ BigWigs:AddSounds("Ranjit", {
 	[153757] = "alert",
 	[156793] = "long",
 	[165731] = "alarm",
-	[1252690] = "alarm",
 	[1258152] = "alarm",
 })
 
@@ -467,15 +466,15 @@ BigWigs:AddColors("High Sage Viryx", {
 	[154055] = "orange",
 	[154396] = "red",
 	[1253538] = "yellow",
-	[1253840] = "orange",
+	[1253840] = "blue",
 	["adds"] = "red",
 })
 
 BigWigs:AddSounds("High Sage Viryx", {
-	[153954] = "warning",
+	[153954] = {"long","warning"},
 	[154055] = "long",
-	[154396] = "alert",
-	[1253840] = "alarm",
+	[154396] = "info",
+	[1253840] = "warning",
 	["adds"] = "info",
 })
 

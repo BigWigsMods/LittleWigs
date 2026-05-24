@@ -407,15 +407,14 @@ BigWigs:AddSounds("Emberdawn", {
 
 BigWigs:AddColors("Derelict Duo", {
 	[472736] = "yellow",
-	[472745] = {"blue","orange"},
+	[472745] = "orange",
 	[472793] = "blue",
 	[472888] = "purple",
-	[474105] = "red",
+	[474105] = {"blue","red"},
 })
 
 BigWigs:AddSounds("Derelict Duo", {
 	[472736] = "long",
-	[472745] = "alarm",
 	[472888] = "alarm",
 	[474105] = "alert",
 })
@@ -438,14 +437,12 @@ BigWigs:AddColors("Restless Heart", {
 	[468429] = "yellow",
 	[472556] = "cyan",
 	[472662] = "purple",
-	[474528] = "yellow",
-	[1253986] = {"blue","red"},
+	[474528] = {"blue","red"},
+	[1253986] = "orange",
 })
 
 BigWigs:AddSounds("Restless Heart", {
-	[468429] = "warning",
+	[468429] = "long",
 	[472556] = "info",
 	[472662] = "alert",
-	[474528] = "long",
-	[1253986] = "alarm",
 })
