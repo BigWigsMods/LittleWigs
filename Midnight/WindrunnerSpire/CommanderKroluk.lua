@@ -8,13 +8,13 @@ mod:SetEncounterID(3058)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
 mod:SetPrivateAuraSounds({
-	{467620, sound = "none"}, -- Rampage
-	{468659, sound = "alert"}, -- Throw Axe
-	{1283247, sound = "none"}, -- Reckless Leap
-	{472054, sound = "none"}, -- Reckless Leap
-	{1253030, sound = "warning"}, -- Intimidating Shout
-	{470966, sound = "warning"}, -- Bladestorm
-	{468924, sound = "underyou"}, -- Bladestorm
+	{467620, sound = "none", note = CL.tank_hit}, -- Rampage
+	{468659, sound = "alert", note = CL.bleed}, -- Throw Axe
+	{1283247, sound = "none", note = CL.preDebuffNote}, -- Reckless Leap
+	{472054, sound = "none", note = CL.mainDebuffNote}, -- Reckless Leap
+	{1253030, sound = "warning", note = CL.soak}, -- Intimidating Shout
+	{470966, sound = "warning", note = CL.fixate}, -- Bladestorm
+	{468924, sound = "underyou", note = CL.debuffUnderYouNote}, -- Bladestorm
 })
 
 --------------------------------------------------------------------------------
@@ -34,9 +34,9 @@ local activeBarBySpellId = {}
 --
 
 mod:SetRenames({
-	[1250851] = {1250851, CL.over:format(mod:SpellName(1250851)), notes = {CL.generalNote, CL.messageCastOverNote}}, -- Shield Wall
-	[467620] = {CL.tank_hit, CL.cast:format(CL.tank_hit), notes = {CL.generalNote, CL.castTimerNote}}, -- Rampage (Tank Hit)
-	[472081] = {CL.leap, CL.you:format(CL.leap), notes = {CL.generalNote, CL.messageOnYouNote}}, -- Reckless Leap (Leap)
+	[1250851] = {1250851, CL.over:format(mod:SpellName(1250851)), notes = {CL.generalNote, CL.messageCastOverNote}, original = false}, -- Shield Wall
+	[467620] = {CL.tank_hit, CL.cast:format(CL.tank_hit), notes = {CL.generalNote, CL.castTimerNote}, original = {467620, CL.cast:format(mod:SpellName(467620))}}, -- Rampage (Tank Hit)
+	[472081] = {CL.leap, CL.you:format(CL.leap), notes = {CL.generalNote, CL.messageOnYouNote}, original = {472081, CL.you:format(mod:SpellName(472081))}}, -- Reckless Leap (Leap)
 	[1253272] = {CL.soak}, -- Intimidating Shout (Soak)
 	[470963] = {470963}, -- Bladestorm
 })
@@ -177,7 +177,7 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:RampageTimeline(eventInfo)
+function mod:RampageTimeline(eventInfo) -- Tank Hit
 	if self:GetStage() == 2 then
 		self:SetStage(1)
 		self:Message(1250851, "green", self:GetRename(1250851, 2)) -- Shield Wall
@@ -199,7 +199,7 @@ end
 
 do
 	local prevShieldWall = 0
-	function mod:BladestormTimeline(eventInfo)
+	function mod:BladestormTimeline(eventInfo) -- Bladestorm / Fixate
 		if eventInfo.duration == 0.001 and GetTime() - prevShieldWall > 2 then -- 3x in a row on stage change
 			prevShieldWall = GetTime()
 			bladestormCount = 1
@@ -223,7 +223,7 @@ do
 	end
 end
 
-function mod:RecklessLeapTimeline(eventInfo)
+function mod:RecklessLeapTimeline(eventInfo) -- Leap
 	local barText = CL.count:format(self:GetRename(472081), recklessLeapCount)
 	self:CDBar(472081, eventInfo.duration, barText, nil, eventInfo.id)
 	recklessLeapCount = recklessLeapCount + 1
@@ -238,7 +238,7 @@ function mod:RecklessLeapTimeline(eventInfo)
 	}
 end
 
-function mod:IntimidatingShoutTimeline(eventInfo)
+function mod:IntimidatingShoutTimeline(eventInfo) -- Soak
 	local barText = CL.count:format(self:GetRename(1253272), intimidatingShoutCount)
 	self:CDBar(1253272, eventInfo.duration, barText, nil, eventInfo.id)
 	intimidatingShoutCount = intimidatingShoutCount + 1

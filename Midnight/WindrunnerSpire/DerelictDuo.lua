@@ -7,14 +7,13 @@ if not mod then return end
 mod:SetEncounterID(3057)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{472777, sound = "underyou"}, -- Gunk Splatter
+	{472777, sound = "underyou", note = CL.debuffUnderYouNote}, -- Gunk Splatter
 	{472793, sound = "warning"}, -- Heaving Yank
-	{472888, sound = "none"}, -- Bone Hack
-	{474129, sound = "alarm"}, -- Splattering Spew
-	{1253834, sound = "info"}, -- Curse of Darkness
-	{1215803, sound = "alarm"}, -- Curse of Darkness
-	{1219491, sound = "long"}, -- Debilitating Shriek
-	{1282272, sound = "alert"}, -- Splattered
+	{472888, sound = "none", note = CL.tank_hit}, -- Bone Hack
+	{474129, sound = "alarm", note = CL.spread}, -- Splattering Spew
+	{1253834, sound = "info", note = CL.preDebuffNote}, -- Curse of Darkness
+	{1215803, sound = "alarm", note = CL.mainDebuffNote}, -- Curse of Darkness
+	{1282272, sound = "none", note = CL.postDebuffNote:format(CL.extra:format(mod:SpellName(474129), CL.spread))}, -- Splattered
 })
 
 --------------------------------------------------------------------------------
@@ -34,9 +33,9 @@ local activeBars = {}
 mod:SetRenames({
 	[472745] = {CL.spread}, -- Splattering Spew (Spread)
 	[472888] = {CL.tank_hit}, -- Bone Hack (Tank Hit)
-	[474105] = {CL.curse, CL.you:format(CL.curse), notes = {CL.generalNote, CL.messageOnYouNote}}, -- Curse of Darkness (Curse)
+	[474105] = {CL.curse, CL.you:format(CL.curse), notes = {CL.generalNote, CL.messageOnYouNote}, original = {474105, CL.you:format(mod:SpellName(474105))}}, -- Curse of Darkness (Curse)
 	[472736] = {CL.group_damage}, -- Debilitating Shriek (Group Damage)
-	[472793] = {CL.you:format(mod:SpellName(472793)), notes = {CL.messageOnYouNote}}, -- Heaving Yank
+	[472793] = {CL.you:format(mod:SpellName(472793)), notes = {CL.messageOnYouNote}, original = CL.you:format(mod:SpellName(472793))}, -- Heaving Yank
 })
 
 --------------------------------------------------------------------------------
@@ -131,7 +130,7 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:SplatteringSpewTimeline(eventInfo)
+function mod:SplatteringSpewTimeline(eventInfo) -- Spread
 	local barText = CL.count:format(self:GetRename(472745), splatteringSpewCount)
 	self:CDBar(472745, eventInfo.duration, barText, nil, eventInfo.id)
 	splatteringSpewCount = splatteringSpewCount + 1
@@ -146,7 +145,7 @@ function mod:SplatteringSpewTimeline(eventInfo)
 	}
 end
 
-function mod:BoneHackTimeline(eventInfo)
+function mod:BoneHackTimeline(eventInfo) -- Tank Hit
 	local barText = CL.count:format(self:GetRename(472888), boneHackCount)
 	self:CDBar(472888, eventInfo.duration, barText, nil, eventInfo.id)
 	boneHackCount = boneHackCount + 1
@@ -160,7 +159,7 @@ function mod:BoneHackTimeline(eventInfo)
 	}
 end
 
-function mod:CurseofDarknessTimeline(eventInfo)
+function mod:CurseofDarknessTimeline(eventInfo) -- Curse
 	local barText = CL.count:format(self:GetRename(474105), curseofDarknessCount)
 	self:CDBar(474105, eventInfo.duration, barText, nil, eventInfo.id)
 	curseofDarknessCount = curseofDarknessCount + 1
@@ -175,7 +174,7 @@ function mod:CurseofDarknessTimeline(eventInfo)
 	}
 end
 
-function mod:DebilitatingShriekTimeline(eventInfo)
+function mod:DebilitatingShriekTimeline(eventInfo) -- Group Damage
 	local barText = CL.count:format(self:GetRename(472736), debilitatingShriekCount)
 	self:CDBar(472736, eventInfo.duration, barText, nil, eventInfo.id)
 	debilitatingShriekCount = debilitatingShriekCount + 1

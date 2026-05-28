@@ -7,13 +7,13 @@ if not mod then return end
 mod:SetEncounterID(3059)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{468442, sound = "warning"}, -- Billowing Wind
-	{472662, sound = "alarm"}, -- Tempest Slash
-	{474528, sound = "warning"}, -- Bolt Gale
-	{1282911, sound = "warning"}, -- Bolt Gale
+	{468442, sound = "warning", note = CL.other:format(CL.leap, CL.debuffFailureNote)}, -- Billowing Wind
+	{472662, sound = "alarm", note = CL.tank_knockback}, -- Tempest Slash
+	{474528, sound = "warning", note = CL.other:format(CL.frontal_cone, CL.mainDebuffNote)}, -- Bolt Gale
+	{1282911, sound = "warning", note = CL.other:format(CL.frontal_cone, CL.preDebuffNote)}, -- Bolt Gale
 	{1216042, sound = "alert"}, -- Squall Leap
-	{1253979, sound = "warning"}, -- Gust Shot
-	{1282955, sound = "underyou"}, -- Storming Soulfont
+	{1253979, sound = "warning", note = CL.clear_pools}, -- Gust Shot
+	{1282955, sound = "underyou", note = CL.debuffUnderYouNote}, -- Storming Soulfont
 })
 
 --------------------------------------------------------------------------------
@@ -34,9 +34,9 @@ local activeBars = {}
 mod:SetRenames({
 	[472556] = {472556}, -- Arrow Rain
 	[472662] = {CL.tank_knockback}, -- Tempest Slash (Tank Knockback)
-	[1253986] = {CL.spread}, -- Gust Shot
+	[1253986] = {CL.clear_pools}, -- Gust Shot
 	[468429] = {CL.leap}, -- Bullseye Windblast
-	[474528] = {CL.frontal_cone, CL.you:format(CL.frontal_cone), notes = {CL.generalNote, CL.messageOnYouNote}}, -- Bolt Gale (Frontal Cone)
+	[474528] = {CL.frontal_cone, CL.you:format(CL.frontal_cone), notes = {CL.generalNote, CL.messageOnYouNote}, original = {474528, CL.you:format(mod:SpellName(474528))}}, -- Bolt Gale (Frontal Cone)
 })
 
 --------------------------------------------------------------------------------
@@ -127,7 +127,7 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:ArrowRainTimeline(eventInfo)
+function mod:ArrowRainTimeline(eventInfo) -- Arrow Rain / Arrows
 	local barText = CL.count:format(self:GetRename(472556), arrowRainCount)
 	self:CDBar(472556, eventInfo.duration, barText, nil, eventInfo.id)
 	arrowRainCount = arrowRainCount + 1
@@ -141,7 +141,7 @@ function mod:ArrowRainTimeline(eventInfo)
 	}
 end
 
-function mod:TempestSlashTimeline(eventInfo)
+function mod:TempestSlashTimeline(eventInfo) -- Tank Knockback
 	local barText = CL.count:format(self:GetRename(472662), tempestSlashCount)
 	self:CDBar(472662, eventInfo.duration, barText, nil, eventInfo.id)
 	tempestSlashCount = tempestSlashCount + 1
@@ -155,7 +155,7 @@ function mod:TempestSlashTimeline(eventInfo)
 	}
 end
 
-function mod:GustShotTimeline(eventInfo)
+function mod:GustShotTimeline(eventInfo) -- Spread / Clear floor patches
 	local barText = CL.count:format(self:GetRename(1253986), gustShotCount)
 	self:CDBar(1253986, eventInfo.duration, barText, nil, eventInfo.id)
 	gustShotCount = gustShotCount + 1
@@ -163,14 +163,14 @@ function mod:GustShotTimeline(eventInfo)
 		msg = barText,
 		key = 1253986,
 		callback = function()
-			self:StopBlizzMessages(1)
+			self:StopBlizzMessages(1.2) -- Has some travel time
 			self:Message(1253986, "orange", barText)
 			--self:PlaySound(1253986, "warning") -- PA sound
 		end
 	}
 end
 
-function mod:BullseyeWindblastTimeline(eventInfo)
+function mod:BullseyeWindblastTimeline(eventInfo) -- Leap / Incoming wave
 	local barText = CL.count:format(self:GetRename(468429), bullseyeWindblastCount)
 	self:CDBar(468429, eventInfo.duration, barText, nil, eventInfo.id)
 	bullseyeWindblastCount = bullseyeWindblastCount + 1
@@ -185,7 +185,7 @@ function mod:BullseyeWindblastTimeline(eventInfo)
 	}
 end
 
-function mod:BoltGaleTimeline(eventInfo)
+function mod:BoltGaleTimeline(eventInfo) -- Frontal Cone / Pushback
 	local barText = CL.count:format(self:GetRename(474528), boltGaleCount)
 	self:CDBar(474528, eventInfo.duration, barText, nil, eventInfo.id)
 	boltGaleCount = boltGaleCount + 1

@@ -8,10 +8,10 @@ mod:SetEncounterID(3056)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
 mod:SetPrivateAuraSounds({
-	{466091, sound = "alarm"}, -- Searing Beak
-	{466559, sound = "warning"}, -- Flaming Updraft
+	{466091, sound = "alarm", note = CL.tank_hit}, -- Searing Beak
+	{466559, sound = "warning", note = CL.fire_debuffs}, -- Flaming Updraft
 	{470212, sound = "warning"}, -- Flaming Twisters
-	{472118, sound = "underyou"}, -- Ignited Embers
+	{472118, sound = "underyou", note = CL.debuffUnderYouNote}, -- Ignited Embers
 })
 
 --------------------------------------------------------------------------------
@@ -31,9 +31,9 @@ local activeBarBySpellId = {}
 --
 
 mod:SetRenames({
-	[466556] = {CL.fire_debuffs, CL.you:format(CL.fire), notes = {CL.generalNote, CL.messageOnYouNote}}, -- Flaming Updraft (Fire Debuffs)
+	[466556] = {CL.fire_debuffs, CL.you:format(CL.fire), notes = {CL.generalNote, CL.messageOnYouNote}, original = {466556, CL.you:format(mod:SpellName(466556))}}, -- Flaming Updraft (Fire Debuffs)
 	[466064] = {CL.tank_hit}, -- Searing Beak (Tank Hit)
-	[465904] = {465904, CL.cast:format(mod:SpellName(465904)), CL.over:format(mod:SpellName(465904)), notes = {CL.generalNote, CL.castTimerNote, CL.messageCastOverNote}}, -- Burning Gale
+	[465904] = {465904, CL.cast:format(mod:SpellName(465904)), CL.over:format(mod:SpellName(465904)), notes = {CL.generalNote, CL.castTimerNote, CL.messageCastOverNote}, original = false}, -- Burning Gale
 })
 
 --------------------------------------------------------------------------------
@@ -169,7 +169,7 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:FlamingUpdraftTimeline(eventInfo)
+function mod:FlamingUpdraftTimeline(eventInfo) -- Fire Debuffs
 	if flamingUpdraftRemaining == 0 then return end
 	flamingUpdraftRemaining = flamingUpdraftRemaining - 1
 	local barText = CL.count:format(self:GetRename(466556), flamingUpdraftCount)
@@ -186,7 +186,7 @@ function mod:FlamingUpdraftTimeline(eventInfo)
 	}
 end
 
-function mod:SearingBeakTimeline(eventInfo)
+function mod:SearingBeakTimeline(eventInfo) -- Tank Hit
 	if searingBeakRemaining == 0 then return end
 	searingBeakRemaining = searingBeakRemaining - 1
 	local barText = CL.count:format(self:GetRename(466064), searingBeakCount)
@@ -202,7 +202,7 @@ function mod:SearingBeakTimeline(eventInfo)
 	}
 end
 
-function mod:BurningGaleTimeline(eventInfo)
+function mod:BurningGaleTimeline(eventInfo) -- Burning Gale / AoE / Intermission
 	if self:Mythic() then
 		if burningGaleCount % 2 == 1 then
 			local barText = CL.count:format(self:GetRename(465904), (burningGaleCount + 1) / 2)
