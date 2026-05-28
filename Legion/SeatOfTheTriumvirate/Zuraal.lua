@@ -8,8 +8,8 @@ mod:RegisterEnableMob(122313) -- Zuraal the Ascended
 mod:SetEncounterID(2065)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{244588, sound = "underyou"}, -- Void Sludge
-	{244599, sound = "warning"}, -- Dark Expulsion
+	{244588, sound = "underyou", note = CL.debuffUnderYouNote}, -- Void Sludge
+	{244599, sound = "warning", note = CL.other:format(CL.adds, CL.debuffFailureMoveFromExplosionNote)}, -- Dark Expulsion
 })
 
 --------------------------------------------------------------------------------
@@ -57,6 +57,20 @@ local activeBars = {}
 local activeBarBySpellId = {}
 
 --------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({
+		[1263440] = {CL.tank_hit}, -- Void Slash (Tank Hit)
+		[1263282] = {CL.leap, CL.you:format(CL.leap), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1263282, CL.you:format(mod:SpellName(1263282))}}, -- Decimate (Leap)
+		[1268916] = {CL.frontal_cone}, -- Null Palm (Frontal Cone)
+		[1263399] = {CL.adds}, -- Oozing Slam (Adds)
+		[1263297] = {CL.pull_in}, -- Crashing Void (Pull In)
+	})
+end
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
@@ -64,12 +78,10 @@ if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			{1263440, "TANK_HEALER"}, -- Void Slash
-			1263282, -- Decimate
+			{1263282, "ME_ONLY_EMPHASIZE"}, -- Decimate
 			1268916, -- Null Palm
 			1263399, -- Oozing Slam
 			1263297, -- Crashing Void
-			{244588, "PRIVATE"}, -- Void Sludge
-			--{244599, "PRIVATE"}, -- Dark Expulsion
 		}
 	end
 
@@ -197,8 +209,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:VoidSlashTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1263440), voidSlashCount)
+function mod:VoidSlashTimeline(eventInfo) -- Tank Hit
+	local barText = CL.count:format(self:GetRename(1263440), voidSlashCount)
 	self:CDBar(1263440, eventInfo.duration, barText, nil, eventInfo.id)
 	voidSlashCount = voidSlashCount + 1
 	return {
@@ -214,15 +226,15 @@ function mod:VoidSlashTimeline(eventInfo)
 	}
 end
 
-function mod:DecimateTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1263282), decimateCount)
+function mod:DecimateTimeline(eventInfo) -- Leap
+	local barText = CL.count:format(self:GetRename(1263282), decimateCount)
 	self:CDBar(1263282, eventInfo.duration, barText, nil, eventInfo.id)
 	decimateCount = decimateCount + 1
 	return {
 		msg = barText,
 		key = 1263282,
 		callback = function()
-			self:PersonalMessageFromBlizzMessage(1263282, 1)
+			self:PersonalMessageFromBlizzMessage(1263282, 1, false, self:GetRename(1263282, 2))
 			self:Message(1263282, "red", barText)
 			self:PlaySound(1263282, "alarm")
 		end,
@@ -232,8 +244,8 @@ function mod:DecimateTimeline(eventInfo)
 	}
 end
 
-function mod:NullPalmTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1268916), nullPalmCount)
+function mod:NullPalmTimeline(eventInfo) -- Frontal Cone
+	local barText = CL.count:format(self:GetRename(1268916), nullPalmCount)
 	self:CDBar(1268916, eventInfo.duration, barText, nil, eventInfo.id)
 	nullPalmCount = nullPalmCount + 1
 	return {
@@ -249,8 +261,8 @@ function mod:NullPalmTimeline(eventInfo)
 	}
 end
 
-function mod:OozingSlamTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1263399), oozingSlamCount)
+function mod:OozingSlamTimeline(eventInfo) -- Adds
+	local barText = CL.count:format(self:GetRename(1263399), oozingSlamCount)
 	self:CDBar(1263399, eventInfo.duration, barText, nil, eventInfo.id)
 	oozingSlamCount = oozingSlamCount + 1
 	return {
@@ -267,9 +279,9 @@ function mod:OozingSlamTimeline(eventInfo)
 	}
 end
 
-function mod:CrashingVoidTimeline(eventInfo)
+function mod:CrashingVoidTimeline(eventInfo) -- Pull In
 	local createdAt = GetTime()
-	local barText = CL.count:format(self:SpellName(1263297), crashingVoidCount)
+	local barText = CL.count:format(self:GetRename(1263297), crashingVoidCount)
 	self:CDBar(1263297, eventInfo.duration, barText, nil, eventInfo.id)
 	crashingVoidCount = crashingVoidCount + 1
 	return {

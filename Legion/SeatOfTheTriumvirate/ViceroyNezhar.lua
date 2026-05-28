@@ -8,9 +8,9 @@ mod:RegisterEnableMob(122056) -- Viceroy Nezhar
 mod:SetEncounterID(2067)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1263532, sound = "underyou"}, -- Void Storm
-	{1263542, sound = "alert"}, -- Mass Void Infusion
-	{1268733, sound = "alert"}, -- Mind Flay
+	{1263532, sound = "underyou", note = CL.debuffUnderYouNote}, -- Void Storm
+	{1263542, sound = "none", note = CL.group_damage}, -- Mass Void Infusion
+	{1268733, sound = "none", note = CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(1263538), CL.adds))}, -- Mind Flay
 })
 
 --------------------------------------------------------------------------------
@@ -95,6 +95,20 @@ local count12 = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({
+		[244750] = {CL.kick}, -- Mind Blast (Kick)
+		[1277358] = {CL.orbs}, -- Gates of the Abyss (Orbs)
+		[1263542] = {CL.group_damage}, -- Mass Void Infusion (Group Damage)
+		[1263538] = {CL.adds}, -- Umbral Tentacles (Adds)
+		[1263528] = {CL.knockback}, -- Repulse (Knockback)
+	})
+end
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
@@ -106,9 +120,6 @@ if mod:Retail() then -- Midnight+
 			1263542, -- Mass Void Infusion
 			1263538, -- Umbral Tentacles
 			1263528, -- Repulse
-			{1263532, "PRIVATE"}, -- Void Storm
-			--{1263542, "PRIVATE"}, -- Mass Void Infusion
-			{1268733, "PRIVATE"}, -- Mind Flay
 		}
 	end
 
@@ -198,22 +209,22 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:MindBlastTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(244750), mindBlastCount)
+function mod:MindBlastTimeline(eventInfo) -- Kick
+	local barText = CL.count:format(self:GetRename(244750), mindBlastCount)
 	self:CDBar(244750, eventInfo.duration, barText, nil, eventInfo.id)
 	mindBlastCount = mindBlastCount + 1
 	return {
 		msg = barText,
 		key = 244750,
 		callback = function()
-			self:Message(244750, "red", CL.casting:format(barText))
+			self:Message(244750, "red", barText)
 			self:PlaySound(244750, "alert")
 		end
 	}
 end
 
-function mod:GatesOfTheAbyssTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1277358), gatesOfTheAbyssCount)
+function mod:GatesOfTheAbyssTimeline(eventInfo) -- Orbs
+	local barText = CL.count:format(self:GetRename(1277358), gatesOfTheAbyssCount)
 	self:CDBar(1277358, eventInfo.duration, barText, nil, eventInfo.id)
 	gatesOfTheAbyssCount = gatesOfTheAbyssCount + 1
 	return {
@@ -226,8 +237,8 @@ function mod:GatesOfTheAbyssTimeline(eventInfo)
 	}
 end
 
-function mod:MassVoidInfusionTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1263542), massVoidInfusionCount)
+function mod:MassVoidInfusionTimeline(eventInfo) -- Group Damage
+	local barText = CL.count:format(self:GetRename(1263542), massVoidInfusionCount)
 	self:CDBar(1263542, eventInfo.duration, barText, nil, eventInfo.id)
 	massVoidInfusionCount = massVoidInfusionCount + 1
 	return {
@@ -240,8 +251,8 @@ function mod:MassVoidInfusionTimeline(eventInfo)
 	}
 end
 
-function mod:UmbralTentaclesTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1263538), umbralTentaclesCount)
+function mod:UmbralTentaclesTimeline(eventInfo) -- Adds
+	local barText = CL.count:format(self:GetRename(1263538), umbralTentaclesCount)
 	self:CDBar(1263538, eventInfo.duration, barText, nil, eventInfo.id)
 	umbralTentaclesCount = umbralTentaclesCount + 1
 	return {
@@ -254,8 +265,8 @@ function mod:UmbralTentaclesTimeline(eventInfo)
 	}
 end
 
-function mod:RepulseTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1263528), repulseCount)
+function mod:RepulseTimeline(eventInfo) -- Knockback / Full Energy / AoE
+	local barText = CL.count:format(self:GetRename(1263528), repulseCount)
 	self:CDBar(1263528, eventInfo.duration, barText, nil, eventInfo.id)
 	repulseCount = repulseCount + 1
 	return {
@@ -265,6 +276,7 @@ function mod:RepulseTimeline(eventInfo)
 			-- ability cadence resets after each Repulse
 			count6 = 1
 			count12 = 1
+			mindBlastCount = 1
 			self:Message(1263528, "yellow", barText)
 			self:PlaySound(1263528, "alarm")
 		end

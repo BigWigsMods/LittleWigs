@@ -8,9 +8,9 @@ mod:RegisterEnableMob(122316, 122319, 125340) -- Saprish, Darkfang, Duskwing
 mod:SetEncounterID(2066)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{245742, sound = "alert"}, -- Shadow Pounce
-	{246026, sound = "alarm"}, -- Void Bomb
-	{1263523, sound = "info"}, -- Overload
+	{245742, sound = "alert", note = CL.bleed}, -- Shadow Pounce
+	{246026, sound = "alarm", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(246026))}, -- Void Bomb
+	{1263523, sound = "info", note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1263523), CL.explosion))}, -- Overload
 })
 
 --------------------------------------------------------------------------------
@@ -63,11 +63,26 @@ end
 -- Midnight Locals
 --
 
+local dreadScreechCount = 1
 local shadowPounceCount = 1
 local voidBombCount = 1
 local phaseDashCount = 1
 local overloadCount = 1
 local activeBars = {}
+
+--------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({
+		[248831] = {CL.kick}, -- Dread Screech (Kick)
+		[245742] = {CL.bleed}, -- Shadow Pounce (Bleed)
+		[1248219] = {CL.bombs}, -- Void Bomb (Bombs)
+		[1280065] = {CL.clear_bombs}, -- Phase Dash (Clear Bombs)
+		[1263523] = {CL.explosion}, -- Overload (Explosion)
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Midnight Initialization
@@ -76,13 +91,14 @@ local activeBars = {}
 if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
+			-- Shadewing
+			248831, -- Dread Screech
+			-- Darkfang
 			245742, -- Shadow Pounce
+			-- Saprish
 			1248219, -- Void Bomb
 			1280065, -- Phase Dash
 			1263523, -- Overload
-			--{245742, "PRIVATE"}, -- Shadow Pounce
-			--{246026, "PRIVATE"}, -- Void Bomb
-			--{1263523, "PRIVATE"}, -- Overload
 		}
 	end
 
@@ -91,6 +107,7 @@ if mod:Retail() then -- Midnight+
 
 	mod:UseCustomTimers(true)
 	function mod:OnEncounterStart()
+		dreadScreechCount = 1
 		shadowPounceCount = 1
 		voidBombCount = 1
 		phaseDashCount = 1
@@ -100,11 +117,18 @@ if mod:Retail() then -- Midnight+
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+			self:SendMessage("BigWigs_BlockBlizzMessages")
+			self:RegisterEvent("ENCOUNTER_WARNING")
+			self:CDBar(248831, 5.2, CL.count:format(self:GetRename(248831), dreadScreechCount))
 		end
 	end
 
 	function mod:OnWin()
 		activeBars = {}
+	end
+
+	function mod:OnBossDisable()
+		self:SendMessage("BigWigs_AllowBlizzMessages")
 	end
 end
 
@@ -168,8 +192,19 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:ShadowPounceTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(245742), shadowPounceCount)
+function mod:ENCOUNTER_WARNING(_, info) -- Kick
+	if info.severity == 1 then -- Dread Screech
+		local msg = CL.count:format(self:GetRename(248831))
+		self:StopBar(msg)
+		self:Message(248831, "red", msg, dreadScreechCount)
+		dreadScreechCount = dreadScreechCount + 1
+		self:CDBar(248831, 15.7, CL.count:format(self:GetRename(248831), dreadScreechCount))
+		self:PlaySound(248831, "alarm")
+	end
+end
+
+function mod:ShadowPounceTimeline(eventInfo) -- Bleed / Leap
+	local barText = CL.count:format(self:GetRename(245742), shadowPounceCount)
 	self:CDBar(245742, eventInfo.duration, barText, nil, eventInfo.id)
 	shadowPounceCount = shadowPounceCount + 1
 	return {
@@ -182,10 +217,11 @@ function mod:ShadowPounceTimeline(eventInfo)
 	}
 end
 
-function mod:VoidBombTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1248219), voidBombCount)
+function mod:VoidBombTimeline(eventInfo) -- Bombs
+	local barText = CL.count_amount:format(self:GetRename(1248219), voidBombCount, 2)
 	self:CDBar(1248219, eventInfo.duration, barText, nil, eventInfo.id)
 	voidBombCount = voidBombCount + 1
+	if voidBombCount == 3 then voidBombCount = 1 end
 	return {
 		msg = barText,
 		key = 1248219,
@@ -196,22 +232,26 @@ function mod:VoidBombTimeline(eventInfo)
 	}
 end
 
-function mod:PhaseDashTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1280065), phaseDashCount)
+function mod:PhaseDashTimeline(eventInfo) -- Clear Bombs / Spread
+	local barText = CL.count:format(self:GetRename(1280065), phaseDashCount)
 	self:CDBar(1280065, eventInfo.duration, barText, nil, eventInfo.id)
 	phaseDashCount = phaseDashCount + 1
+	self:ScheduleTimer(function()
+		self:StopBar(barText)
+		self:Message(1280065, "orange", barText)
+		self:PlaySound(1280065, "warning")
+	end, eventInfo.duration)
 	return {
 		msg = barText,
 		key = 1280065,
 		callback = function()
-			self:Message(1280065, "orange", barText)
-			self:PlaySound(1280065, "alarm")
+			self:Error("Phase Dash now has a callback")
 		end
 	}
 end
 
-function mod:OverloadTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1263523), overloadCount)
+function mod:OverloadTimeline(eventInfo) -- Explosion
+	local barText = CL.count:format(self:GetRename(1263523), overloadCount)
 	self:CDBar(1263523, eventInfo.duration, barText, nil, eventInfo.id)
 	overloadCount = overloadCount + 1
 	return {
@@ -220,6 +260,9 @@ function mod:OverloadTimeline(eventInfo)
 		cancelCallback = function()
 			self:Message(1263523, "yellow", barText)
 			self:PlaySound(1263523, "long")
+		end,
+		callback = function()
+			self:Error("Overload now has a callback")
 		end
 	}
 end

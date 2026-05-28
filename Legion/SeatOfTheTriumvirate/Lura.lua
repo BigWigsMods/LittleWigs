@@ -8,8 +8,7 @@ mod:RegisterEnableMob(124729) -- L'ura
 mod:SetEncounterID(2068)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1265426, sound = "warning"}, -- Discordant Beam
-	{1265650, sound = "alert"}, -- Anguish
+	{1265426, sound = "warning", note = CL.beam}, -- Discordant Beam
 })
 
 --------------------------------------------------------------------------------
@@ -58,9 +57,27 @@ local disintegrateCount = 1
 local discordantBeamCount = 1
 local grimChorusCount = 1
 local symphonyOfTheEternalNightCount = 1
-local backlashCount = 1
 local count1_5 = 1
 local activeBars = {}
+
+--------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({
+		[1265421] = {1265421}, -- Dirge of Despair
+		[1264196] = {1264196, CL.cast:format(mod:SpellName(1264196)), notes = {CL.generalNote, CL.castTimerNote}, original = false}, -- Disintegrate
+		[1265463] = { -- Discordant Beam (Beams)
+			CL.beams, CL.you:format(CL.beam), CL.cast:format(CL.beam),
+			notes = {CL.generalNote, CL.messageOnYouNote, CL.castTimerNote},
+			original = {1265463, CL.you:format(mod:SpellName(1265463)), CL.cast:format(mod:SpellName(1265463))},
+		},
+		[1265689] = {CL.explosions}, -- Grim Chorus (Explosions)
+		[1266003] = {CL.intermission}, -- Symphony of the Eternal Night (Intermission)
+		[1265999] = {CL.weakened}, -- Siphon Void (Weakened)
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Midnight Initialization
@@ -71,13 +88,11 @@ if mod:Retail() then -- Midnight+
 		return {
 			"warmup",
 			1265421, -- Dirge of Despair
-			1264196, -- Disintegrate
-			{1265463, "ME_ONLY_EMPHASIZE"}, -- Discordant Beam
+			{1264196, "CASTBAR"}, -- Disintegrate
+			{1265463, "CASTBAR", "ME_ONLY_EMPHASIZE"}, -- Discordant Beam
 			1265689, -- Grim Chorus
-			1266003, -- Symphony of the Eternal Night
-			1266001, -- Backlash
-			--{1265426, "PRIVATE"}, -- Discordant Beam
-			{1265650, "PRIVATE"}, -- Anguish
+			{1266003, "COUNTDOWN"}, -- Symphony of the Eternal Night
+			{1265999, "EMPHASIZE", "COUNTDOWN"}, -- Siphon Void
 		}
 	end
 
@@ -91,7 +106,6 @@ if mod:Retail() then -- Midnight+
 		discordantBeamCount = 1
 		grimChorusCount = 1
 		symphonyOfTheEternalNightCount = 1
-		backlashCount = 1
 		count1_5 = 1
 		activeBars = {}
 		if self:ShouldShowBars() then
@@ -173,8 +187,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:DirgeOfDespairTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1265421), dirgeOfDespairCount)
+function mod:DirgeOfDespairTimeline(eventInfo) -- Dirge of Despair / Group Damage
+	local barText = CL.count:format(self:GetRename(1265421), dirgeOfDespairCount)
 	self:CDBar(1265421, eventInfo.duration, barText, nil, eventInfo.id)
 	dirgeOfDespairCount = dirgeOfDespairCount + 1
 	return {
@@ -187,10 +201,11 @@ function mod:DirgeOfDespairTimeline(eventInfo)
 	}
 end
 
-function mod:DisintegrateTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1264196), disintegrateCount)
+function mod:DisintegrateTimeline(eventInfo) -- Disintegrate / Dodge
+	local barText = CL.count:format(self:GetRename(1264196), disintegrateCount)
 	self:CDBar(1264196, eventInfo.duration, barText, nil, eventInfo.id)
 	disintegrateCount = disintegrateCount + 1
+	self:CastBar(1264196, 8, 2) -- 3s cast + 5s channel
 	return {
 		msg = barText,
 		key = 1264196,
@@ -202,23 +217,24 @@ function mod:DisintegrateTimeline(eventInfo)
 	}
 end
 
-function mod:DiscordantBeamTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1265463), discordantBeamCount)
+function mod:DiscordantBeamTimeline(eventInfo) -- Beams
+	local barText = CL.count:format(self:GetRename(1265463), discordantBeamCount)
 	self:CDBar(1265463, eventInfo.duration, barText, nil, eventInfo.id)
 	discordantBeamCount = discordantBeamCount + 1
+	self:CastBar(1265463, 7, 2) -- 7s cast
 	return {
 		msg = barText,
 		key = 1265463,
 		callback = function()
-			self:PersonalMessageFromBlizzMessage(1265463, 1)
+			self:PersonalMessageFromBlizzMessage(1265463, 1, false, self:GetRename(1265463, 2))
 			self:Message(1265463, "orange", barText)
-			--self:PlaySound(1265463, "warning") -- Sound is played via PA when it's on you
+			--self:PlaySound(1265463, "warning") -- PA sound
 		end
 	}
 end
 
-function mod:GrimChorusTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1265689), grimChorusCount)
+function mod:GrimChorusTimeline(eventInfo) -- Explosions
+	local barText = CL.count:format(self:GetRename(1265689), grimChorusCount)
 	self:CDBar(1265689, eventInfo.duration, barText, nil, eventInfo.id)
 	grimChorusCount = grimChorusCount + 1
 	return {
@@ -231,30 +247,27 @@ function mod:GrimChorusTimeline(eventInfo)
 	}
 end
 
-function mod:SymphonyOfTheEternalNightTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1266003), symphonyOfTheEternalNightCount)
-	self:CDBar(1266003, eventInfo.duration, barText, nil, eventInfo.id)
+function mod:SymphonyOfTheEternalNightTimeline(eventInfo) -- Intermission
+	local barText = CL.count:format(self:GetRename(1266003), symphonyOfTheEternalNightCount)
+	--self:CDBar(1266003, eventInfo.duration, barText, nil, eventInfo.id) -- Somewhat pointless 1 second "about to begin the cast" timer
 	symphonyOfTheEternalNightCount = symphonyOfTheEternalNightCount + 1
 	return {
 		msg = barText,
 		key = 1266003,
 		callback = function()
-			self:Message(1266003, "yellow", barText)
+			self:Message(1266003, "cyan", barText)
+			self:Bar(1266003, 10.5, barText, nil, eventInfo.id) -- Actual timer until weakened begins (if you didn't fail)
 			self:PlaySound(1266003, "info")
 		end
 	}
 end
 
-function mod:BacklashTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1266001), backlashCount)
-	self:Message(1266001, "green", barText)
-	self:Bar(1266001, eventInfo.duration, barText, nil, eventInfo.id)
-	backlashCount = backlashCount + 1
-	self:PlaySound(1266001, "long")
-	return {
-		msg = barText,
-		key = 1266001,
-	}
+function mod:BacklashTimeline(eventInfo) -- Weakened
+	-- We convert the Backlash timer (the knockback at the end of the 20s) into a Siphon Void timer (the weakened debuff Alleria applies to L'ura for 20s)
+	self:Bar(1265999, eventInfo.duration) -- Siphon Void (Weakened)
+	self:Message(1265999, "green")
+	self:PlaySound(1265999, "long")
+	return false
 end
 
 --------------------------------------------------------------------------------
