@@ -64,7 +64,7 @@ if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[1253519] = {CL.tank_hit}, -- Burning Claws (Tank Hit)
 		[1253510] = {CL.add}, -- Sunbreak (Add)
-		[159382] = {CL.quills, CL.cast:format(CL.quills), notes = {CL.generalNote, CL.castTimerNote}}, -- Searing Quills
+		[159382] = {CL.quills, CL.cast:format(CL.quills), notes = {CL.generalNote, CL.castTimerNote}, original = {159382, CL.cast:format(mod:SpellName(159382))}}, -- Searing Quills (Quills)
 	})
 end
 

@@ -80,7 +80,7 @@ if mod:Retail() then -- Midnight+
 		[1253538] = {CL.fire_debuffs}, -- Scorching Ray (Fire Debuffs)
 		[154396] = {CL.kick}, -- Solar Blast (Kick)
 		[153954] = {CL.add}, -- Cast Down (Add)
-		[1253840] = {CL.beam, CL.you:format(CL.beam), notes = {CL.generalNote, CL.messageOnYouNote}}, -- Lens Flare (Beam)
+		[1253840] = {CL.beam, CL.you:format(CL.beam), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1253840, CL.you:format(mod:SpellName(1253840))}}, -- Lens Flare (Beam)
 	})
 end
 

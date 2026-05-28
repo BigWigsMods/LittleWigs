@@ -52,7 +52,7 @@ local activeBars = {}
 
 if mod:Retail() then -- Midnight+
 	mod:SetRenames({
-		[1252690] = {CL.knockbacks, CL.you:format(CL.knockback), notes = {CL.generalNote, CL.messageOnYouNote}}, -- Gale Surge (Knockbacks)
+		[1252690] = {CL.knockbacks, CL.you:format(CL.knockback), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1252690, CL.you:format(mod:SpellName(1252690))}}, -- Gale Surge (Knockbacks)
 		[153757] = {CL.bleeds}, -- Fan of Blades (Bleeds)
 		[1258152] = {CL.chakram}, -- Wind Chakram (Chakram)
 		[156793] = {CL.tornadoes}, -- Chakram Vortex (Tornadoes)

@@ -61,7 +61,11 @@ local activeBars = {}
 if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[154110] = {CL.tank_frontal}, -- Fiery Smash (Tank Frontal)
-		[154162] = {CL.beams, CL.incoming:format(CL.beams), CL.cast:format(CL.beams), notes = {CL.generalNote, CL.messageCastStartNote, CL.castTimerNote}}, -- Energize (Beams)
+		[154162] = { -- Energize (Beams)
+			CL.beams, CL.incoming:format(CL.beams), CL.cast:format(CL.beams),
+			notes = {CL.generalNote, CL.messageCastStartNote, CL.castTimerNote},
+			original = {154162, CL.incoming:format(mod:SpellName(154162)), CL.cast:format(mod:SpellName(154162))},
+		},
 		[154135] = {154135}, -- Supernova
 	})
 end
