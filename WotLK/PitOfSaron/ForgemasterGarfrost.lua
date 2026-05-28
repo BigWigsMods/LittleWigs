@@ -12,7 +12,7 @@ if mod:Retail() then -- Midnight+
 		{1261286, sound = "warning"}, -- Throw Saronite
 		{1261540, sound = "warning", note = CL.tank_hit}, -- Orebreaker
 		{1261799, sound = "underyou", note = CL.debuffUnderYouNote}, -- Saronite Sludge
-		{1261921, sound = "alert"}, -- Cryoshards
+		{1261921, sound = "alert", note = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1261847), CL.stomp))}, -- Cryoshards
 	})
 end
 
@@ -154,7 +154,7 @@ function mod:ThrowSaroniteTimeline(eventInfo) -- Throw Saronite / Place Rocks
 		msg = barText,
 		key = 1261299,
 		callback = function()
-			self:PersonalMessageFromBlizzMessage(1261299, 5, false, self:GetRename(1261299, 2)) -- Takes about 4s between first application and second application
+			self:PersonalMessageFromBlizzMessage(1261299, 5, false, self:GetRename(1261299, 2)) -- Takes about 3s between first application and second application
 			self:Message(1261299, "yellow", barText)
 			--self:PlaySound(1261299, "warning") -- PA sound
 		end

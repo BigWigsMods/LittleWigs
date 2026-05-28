@@ -13,7 +13,7 @@ if mod:Retail() then -- Midnight+
 		{1264246, sound = "none", note = CL.debuffDotAfterCastNote:format(mod:SpellName(1264027))}, -- Shade Shift
 		{1264299, sound = "underyou", note = CL.debuffUnderYouNote}, -- Blight
 		{1280616, sound = "warning", note = CL.other:format(CL.fixate, CL.preDebuffNote)}, -- Lumbering Fixation
-		{1264453, sound = "warning", note = CL.other:format(CL.fixate, CL.mainDebuffNote)}, -- Lumbering Fixation
+		{1264453, sound = "none", note = CL.other:format(CL.fixate, CL.mainDebuffNote)}, -- Lumbering Fixation
 	})
 end
 

@@ -13,7 +13,7 @@ if mod:Retail() then -- Midnight+
 		{1262596, sound = "none", note = CL.tank_knockback}, -- Scourgelord's Brand
 		{1262772, sound = "warning"}, -- Rime Blast
 		{1263716, sound = "none", note = CL.postDebuffNote:format(mod:SpellName(1262772))}, -- Frostbite
-		{1276648, sound = "alarm", note = CL.debuffDotAfterCastNote:format(mod:SpellName(1276648))}, -- Bone Infusion
+		{1276648, sound = "none", note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1276648), CL.group_damage))}, -- Bone Infusion
 	})
 end
 
@@ -99,6 +99,8 @@ if mod:Retail() then -- Midnight+
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+			self:Message(1276648, "yellow", CL.count:format(self:GetRename(1276648), boneInfusionCount)) -- Bone Infusion (Group Damage)
+			self:PlaySound(1276648, "long")
 		end
 	end
 end
@@ -228,7 +230,7 @@ function mod:ArmyoftheDeadTimeline(eventInfo) -- Adds
 	-- there's no Finished for Bone Infusion so alert when the next Army of the Dead bar is added
 	if armyOfTheDeadCount > 1 then
 		self:SetStage(1)
-		self:Message(1276648, "cyan", CL.count:format(self:GetRename(1276648), boneInfusionCount - 1)) -- Bone Infusion (Group Damage)
+		self:Message(1276648, "yellow", CL.count:format(self:GetRename(1276648), boneInfusionCount - 1)) -- Bone Infusion (Group Damage)
 		self:PlaySound(1276648, "long")
 	end
 	local barText = CL.count:format(self:GetRename(1263406), armyOfTheDeadCount)
