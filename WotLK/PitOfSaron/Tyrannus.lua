@@ -10,11 +10,10 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 if mod:Retail() then -- Midnight+
 	mod:SetPrivateAuraSounds({
-		{1262596, sound = "alarm"}, -- Scourgelord's Brand
-		{1262772, sound = "alert"}, -- Rime Blast
-		{1262930, sound = "none"}, -- Rotting Strikes
-		{1263716, sound = "info"}, -- Frostbite
-		{1276648, sound = "alarm"}, -- Bone Infusion
+		{1262596, sound = "none", note = CL.tank_knockback}, -- Scourgelord's Brand
+		{1262772, sound = "warning"}, -- Rime Blast
+		{1263716, sound = "none", note = CL.postDebuffNote:format(mod:SpellName(1262772))}, -- Frostbite
+		{1276648, sound = "alarm", note = CL.debuffDotAfterCastNote:format(mod:SpellName(1276648))}, -- Bone Infusion
 	})
 end
 
@@ -52,23 +51,33 @@ local count28 = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({
+		[1262745] = {1262745, CL.you:format(mod:SpellName(1262745)), notes = {CL.generalNote, CL.messageOnYouNote}, original = false}, -- Rime Blast
+		[1262582] = {CL.tank_knockback}, -- Scourgelord's Brand (Tank Knockback)
+		[1263756] = {CL.dodge}, -- Death's Grasp (Dodge)
+		[1263406] = {CL.adds}, -- Army of the Dead
+		[1276948] = {CL.dodge}, -- Ice Barrage (Dodge)
+		[1276648] = {CL.group_damage}, -- Bone Infusion (Group Damage)
+	})
+end
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
 if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
-			1262745, -- Rime Blast
+			{1262745, "ME_ONLY_EMPHASIZE"}, -- Rime Blast
 			1262582, -- Scourgelord's Brand
 			1263756, -- Death's Grasp
 			1263406, -- Army of the Dead
 			1276948, -- Ice Barrage
 			1276648, -- Bone Infusion
-			{1262596, "PRIVATE"}, -- Scourgelord's Brand
-			{1262772, "PRIVATE"}, -- Rime Blast
-			{1262930, "PRIVATE"}, -- Rotting Strikes
-			{1263716, "PRIVATE"}, -- Frostbite
-			--{1276648, "PRIVATE"}, -- Bone Infusion
 		}
 	end
 
@@ -158,22 +167,23 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:RimeBlastTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1262745), rimeBlastCount)
+function mod:RimeBlastTimeline(eventInfo) -- Rime Blast / Clear Pools / Ice Debuffs
+	local barText = CL.count:format(self:GetRename(1262745), rimeBlastCount)
 	self:CDBar(1262745, eventInfo.duration, barText, nil, eventInfo.id)
 	rimeBlastCount = rimeBlastCount + 1
 	return {
 		msg = barText,
 		key = 1262745,
 		callback = function()
+			self:PersonalMessageFromBlizzMessage(1262745, 1, false, self:GetRename(1262745, 2))
 			self:Message(1262745, "orange", barText)
-			self:PlaySound(1262745, "alarm")
+			--self:PlaySound(1262745, "warning") -- PA sound
 		end
 	}
 end
 
-function mod:IceBarrageTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1276948), iceBarrageCount)
+function mod:IceBarrageTimeline(eventInfo) -- Dodge
+	local barText = CL.count:format(self:GetRename(1276948), iceBarrageCount)
 	self:CDBar(1276948, eventInfo.duration, barText, nil, eventInfo.id)
 	iceBarrageCount = iceBarrageCount + 1
 	return {
@@ -186,22 +196,22 @@ function mod:IceBarrageTimeline(eventInfo)
 	}
 end
 
-function mod:ScourgelordsBrandTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1262582), scourgelordsBrandCount)
+function mod:ScourgelordsBrandTimeline(eventInfo) -- Tank Knockback
+	local barText = CL.count:format(self:GetRename(1262582), scourgelordsBrandCount)
 	self:CDBar(1262582, eventInfo.duration, barText, nil, eventInfo.id)
 	scourgelordsBrandCount = scourgelordsBrandCount + 1
 	return {
 		msg = barText,
 		key = 1262582,
 		callback = function()
-			self:Message(1262582, "yellow", barText)
+			self:Message(1262582, "purple", barText)
 			self:PlaySound(1262582, "alert")
 		end
 	}
 end
 
-function mod:DeathsGraspTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1263756), deathsGraspCount)
+function mod:DeathsGraspTimeline(eventInfo) -- Dodge
+	local barText = CL.count:format(self:GetRename(1263756), deathsGraspCount)
 	self:CDBar(1263756, eventInfo.duration, barText, nil, eventInfo.id)
 	deathsGraspCount = deathsGraspCount + 1
 	return {
@@ -214,14 +224,14 @@ function mod:DeathsGraspTimeline(eventInfo)
 	}
 end
 
-function mod:ArmyoftheDeadTimeline(eventInfo)
+function mod:ArmyoftheDeadTimeline(eventInfo) -- Adds
 	-- there's no Finished for Bone Infusion so alert when the next Army of the Dead bar is added
 	if armyOfTheDeadCount > 1 then
 		self:SetStage(1)
-		self:Message(1276648, "cyan", CL.count:format(self:SpellName(1276648), boneInfusionCount - 1)) -- Bone Infusion
+		self:Message(1276648, "cyan", CL.count:format(self:GetRename(1276648), boneInfusionCount - 1)) -- Bone Infusion (Group Damage)
 		self:PlaySound(1276648, "long")
 	end
-	local barText = CL.count:format(self:SpellName(1263406), armyOfTheDeadCount)
+	local barText = CL.count:format(self:GetRename(1263406), armyOfTheDeadCount)
 	self:CDBar(1263406, eventInfo.duration, barText, nil, eventInfo.id)
 	armyOfTheDeadCount = armyOfTheDeadCount + 1
 	return {
@@ -236,8 +246,8 @@ function mod:ArmyoftheDeadTimeline(eventInfo)
 	}
 end
 
-function mod:BoneInfusionTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1276648), boneInfusionCount)
+function mod:BoneInfusionTimeline(eventInfo) -- Group Damage
+	local barText = CL.count:format(self:GetRename(1276648), boneInfusionCount)
 	self:CDBar(1276648, eventInfo.duration, barText, nil, eventInfo.id)
 	boneInfusionCount = boneInfusionCount + 1
 	return {

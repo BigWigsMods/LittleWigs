@@ -9,10 +9,11 @@ mod:SetEncounterID(mod:Classic() and 835 or 2001)
 mod:SetRespawnTime(30)
 if mod:Retail() then -- Midnight+
 	mod:SetPrivateAuraSounds({
-		{1264186, sound = "alert"}, -- Shadowbind
-		{1264246, sound = "none"}, -- Shade Shift
-		{1264299, sound = "underyou"}, -- Blight
-		{1264453, sound = "warning"}, -- Lumbering Fixation
+		{1264186, sound = "alert", note = CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(1264259), CL.adds))}, -- Shadowbind
+		{1264246, sound = "none", note = CL.debuffDotAfterCastNote:format(mod:SpellName(1264027))}, -- Shade Shift
+		{1264299, sound = "underyou", note = CL.debuffUnderYouNote}, -- Blight
+		{1280616, sound = "warning", note = CL.other:format(CL.fixate, CL.preDebuffNote)}, -- Lumbering Fixation
+		{1264453, sound = "warning", note = CL.other:format(CL.fixate, CL.mainDebuffNote)}, -- Lumbering Fixation
 	})
 end
 
@@ -61,6 +62,20 @@ local count19 = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({
+		[1264287] = {CL.tank_hit}, -- Blight Smash (Tank Hit)
+		[1264336] = {CL.group_damage}, -- Plague Expulsion (Group Damage)
+		[1264027] = {CL.adds, CL.spawning:format(mod:SpellName(1264259)), notes = {CL.timerNote, CL.messageNote}, original = {1264027, CL.casting:format(mod:SpellName(1264027))}}, -- Shade Shift (Adds)
+		[1264363] = {CL.fixates}, -- Get 'Em, Ick! (Fixates)
+		[1264453] = {CL.you:format(CL.fixate), notes = {CL.messageOnYouNote}, original = {CL.you:format(mod:SpellName(1264453))}}, -- Lumbering Fixation (Fixate)
+	})
+end
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
@@ -71,10 +86,7 @@ if mod:Retail() then -- Midnight+
 			1264336, -- Plague Expulsion
 			1264027, -- Shade Shift
 			1264363, -- Get 'Em, Ick!
-			{1264186, "PRIVATE"}, -- Shadowbind
-			{1264246, "PRIVATE"}, -- Shade Shift
-			{1264299, "PRIVATE"}, -- Blight
-			{1264453, "PRIVATE"}, -- Lumbering Fixation
+			{1264453, "ME_ONLY_EMPHASIZE"}, -- Lumbering Fixation
 		}
 	end
 
@@ -93,6 +105,8 @@ if mod:Retail() then -- Midnight+
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+			self:Message(1264027, "cyan", self:GetRename(1264027, 2))
+			self:PlaySound(1264027, "long")
 		end
 	end
 end
@@ -140,6 +154,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 			activeBars[eventID] = nil
 		elseif state == 3 then -- Canceled
 			self:StopBar(barInfo.msg)
+			if not self:IsWiping() and barInfo.cancelCallback then
+				barInfo.cancelCallback()
+			end
 			activeBars[eventID] = nil
 		end
 	end
@@ -157,8 +174,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:BlightSmashTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1264287), blightSmashCount)
+function mod:BlightSmashTimeline(eventInfo) -- Tank Hit
+	local barText = CL.count:format(self:GetRename(1264287), blightSmashCount)
 	self:CDBar(1264287, eventInfo.duration, barText, nil, eventInfo.id)
 	blightSmashCount = blightSmashCount + 1
 	return {
@@ -167,7 +184,7 @@ function mod:BlightSmashTimeline(eventInfo)
 		callback = function()
 			self:Message(1264287, "purple", barText)
 			if self:Tank() then
-				self:PlaySound(1264287, "alarm")
+				self:PlaySound(1264287, "warning")
 			else
 				self:PlaySound(1264287, "info")
 			end
@@ -175,8 +192,8 @@ function mod:BlightSmashTimeline(eventInfo)
 	}
 end
 
-function mod:PlagueExpulsionTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1264336), plagueExpulsionCount)
+function mod:PlagueExpulsionTimeline(eventInfo) -- Group Damage
+	local barText = CL.count:format(self:GetRename(1264336), plagueExpulsionCount)
 	self:CDBar(1264336, eventInfo.duration, barText, nil, eventInfo.id)
 	plagueExpulsionCount = plagueExpulsionCount + 1
 	return {
@@ -189,22 +206,26 @@ function mod:PlagueExpulsionTimeline(eventInfo)
 	}
 end
 
-function mod:ShadeShiftTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1264027), shadeShiftCount)
+function mod:ShadeShiftTimeline(eventInfo) -- Adds / Shades of Krick
+	local barText = CL.count:format(self:GetRename(1264027), shadeShiftCount)
 	self:CDBar(1264027, eventInfo.duration, barText, nil, eventInfo.id)
+	self:PersonalMessageFromBlizzMessage(1264453, eventInfo.duration, false, self:GetRename(1264453)) -- Lumbering Fixation
 	shadeShiftCount = shadeShiftCount + 1
 	return {
 		msg = barText,
 		key = 1264027,
-		callback = function()
-			self:Message(1264027, "cyan", barText)
+		cancelCallback = function()
+			self:Message(1264027, "cyan", self:GetRename(1264027, 2))
 			self:PlaySound(1264027, "long")
+		end,
+		callback = function()
+			self:Error("Shade Shift now has a callback")
 		end
 	}
 end
 
-function mod:GetEmIckTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1264363), getEmIckCount)
+function mod:GetEmIckTimeline(eventInfo) -- Fixates
+	local barText = CL.count:format(self:GetRename(1264363), getEmIckCount)
 	self:CDBar(1264363, eventInfo.duration, barText, nil, eventInfo.id)
 	getEmIckCount = getEmIckCount + 1
 	return {
@@ -212,7 +233,7 @@ function mod:GetEmIckTimeline(eventInfo)
 		key = 1264363,
 		callback = function()
 			self:StopBlizzMessages(1)
-			self:Message(1264363, "red", barText)
+			self:Message(1264363, "yellow", barText)
 			self:PlaySound(1264363, "alert")
 		end
 	}
