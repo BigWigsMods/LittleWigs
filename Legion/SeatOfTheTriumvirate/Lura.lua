@@ -205,13 +205,13 @@ function mod:DisintegrateTimeline(eventInfo) -- Disintegrate / Dodge
 	local barText = CL.count:format(self:GetRename(1264196), disintegrateCount)
 	self:CDBar(1264196, eventInfo.duration, barText, nil, eventInfo.id)
 	disintegrateCount = disintegrateCount + 1
-	self:CastBar(1264196, 8, 2) -- 3s cast + 5s channel
 	return {
 		msg = barText,
 		key = 1264196,
 		callback = function()
 			self:StopBlizzMessages(1)
 			self:Message(1264196, "yellow", barText)
+			self:CastBar(1264196, 8, 2) -- 3s cast + 5s channel
 			self:PlaySound(1264196, "alert")
 		end
 	}
@@ -221,13 +221,13 @@ function mod:DiscordantBeamTimeline(eventInfo) -- Beams
 	local barText = CL.count:format(self:GetRename(1265463), discordantBeamCount)
 	self:CDBar(1265463, eventInfo.duration, barText, nil, eventInfo.id)
 	discordantBeamCount = discordantBeamCount + 1
-	self:CastBar(1265463, 7, 2) -- 7s cast
 	return {
 		msg = barText,
 		key = 1265463,
 		callback = function()
 			self:PersonalMessageFromBlizzMessage(1265463, 1, false, self:GetRename(1265463, 2))
 			self:Message(1265463, "orange", barText)
+			self:CastBar(1265463, 7, 3) -- 7s cast
 			--self:PlaySound(1265463, "warning") -- PA sound
 		end
 	}
