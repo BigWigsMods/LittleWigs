@@ -194,9 +194,9 @@ end
 
 function mod:ENCOUNTER_WARNING(_, info) -- Kick
 	if info.severity == 1 then -- Dread Screech
-		local msg = CL.count:format(self:GetRename(248831))
+		local msg = CL.count:format(self:GetRename(248831), dreadScreechCount)
 		self:StopBar(msg)
-		self:Message(248831, "red", msg, dreadScreechCount)
+		self:Message(248831, "red", msg)
 		dreadScreechCount = dreadScreechCount + 1
 		self:CDBar(248831, 15.7, CL.count:format(self:GetRename(248831), dreadScreechCount))
 		self:PlaySound(248831, "alarm")
