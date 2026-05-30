@@ -9,6 +9,7 @@ mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
 	{1255310, sound = "underyou", note = CL.debuffUnderYouNote}, -- Radiant Scar
 	{1255335, sound = "alert", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1255335), CL.tank_hit))}, -- Searing Rend
+	-- Add the Brilliant Dispersion pre-debuff if one is ever added
 	--{1255503, sound = "none", note = CL.bomb}, -- Brilliant Dispersion (This is the post debuff, no pre debuff exists...)
 })
 
@@ -30,7 +31,7 @@ mod:SetRenames({
 	[1253950] = {CL.tank_hit}, -- Searing Rend (Tank Hit)
 	[1253855] = {CL.bombs, CL.you:format(CL.bomb), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1253855, CL.you:format(mod:SpellName(1253855))}}, -- Brilliant Dispersion (Bombs)
 	[1255531] = {CL.charge}, -- Flicker (Charge)
-	[1257595] = {CL.full_energy}, -- Divine Guile
+	[1257595] = {CL.full_energy}, -- Divine Guile (Full Energy)
 })
 
 --------------------------------------------------------------------------------
@@ -139,7 +140,7 @@ end
 
 do
 	local function IfOnMe(self)
-		self:PlaySound(1253855, "warning", nil, self:UnitName("player")) -- The PA sound wont currently work since it's no longer a PA
+		self:PlaySound(1253855, "warning", nil, self:UnitName("player")) -- No PA exists for the pre debuff for us to play a sound
 	end
 	function mod:BrilliantDispersionTimeline(eventInfo) -- Bombs
 		local barText = CL.count:format(self:GetRename(1253855), brilliantDispersionCount)
@@ -154,7 +155,7 @@ do
 			callback = function()
 				self:Message(1253855, "yellow", barText)
 				self:PersonalMessageFromBlizzMessage(1253855, 1, false, self:GetRename(1253855, 2), nil, nil, IfOnMe)
-				--self:PlaySound(1253855, "warning") -- PA sound
+				--self:PlaySound(1253855, "warning") -- PA sound (If one actually existed)
 			end
 		}
 	end
