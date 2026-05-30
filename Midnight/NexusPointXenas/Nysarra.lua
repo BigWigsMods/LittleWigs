@@ -34,9 +34,9 @@ mod:SetRenames({
 	[1249014] = {CL.bombs, CL.you:format(CL.bomb), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1249014, CL.you:format(mod:SpellName(1249014))}}, -- Eclipsing Step (Bombs)
 	[1252703] = {CL.adds}, -- Null Vanguard (Adds)
 	[1264439] = { -- Lightscar Flare (Weakened)
-		CL.weakened, CL.soon:format(CL.weakened), CL.cast:format(CL.weakened),
-		notes = {CL.generalNote, CL.messageNote, CL.castTimerNote},
-		original = {1264439, CL.soon:format(mod:SpellName(1264439)), CL.cast:format(mod:SpellName(1264439))}},
+		CL.weakened, CL.cast:format(CL.weakened), CL.weakened, CL.soon:format(CL.weakened),
+		notes = {CL.timerNote, CL.castTimerNote, CL.messageNote, CL.messageNote},
+		original = {1264439, CL.cast:format(mod:SpellName(1264439)), 1264439, CL.soon:format(mod:SpellName(1264439))}},
 	[1271684] = {CL.eat_adds}, -- Devour the Unworthy (Eat Adds)
 })
 
@@ -49,7 +49,7 @@ function mod:GetOptions()
 		{1247937, "TANK_HEALER"}, -- Umbral Lash
 		{1249014, "ME_ONLY_EMPHASIZE"}, -- Eclipsing Step
 		1252703, -- Null Vanguard
-		{1264439, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Lightscar Flare
+		{1264439, "CASTBAR", "CASTBAR_COUNTDOWN", "EMPHASIZE"}, -- Lightscar Flare
 		1271684, -- Devour the Unworthy
 	}
 end
@@ -242,7 +242,7 @@ function mod:LightscarFlareTimeline(eventInfo) -- Weakened
 		key = 1264439,
 		callback = function()
 			self:StopBlizzMessages(2)
-			self:Message(1264439, "yellow", self:GetRename(1264439, 2))
+			self:Message(1264439, "yellow", self:GetRename(1264439, 4), nil, true)
 		end,
 		cancelCallback = function()
 			local priorEventID = activeBarBySpellId[1264439]
@@ -250,12 +250,12 @@ function mod:LightscarFlareTimeline(eventInfo) -- Weakened
 				local barInfo = activeBars[priorEventID]
 				if barInfo and barInfo.createdAt and (GetTime() - barInfo.createdAt) > 10 then
 					self:StopBlizzMessages(2)
-					self:Message(1264439, "yellow", self:GetRename(1264439, 2))
+					self:Message(1264439, "yellow", self:GetRename(1264439, 4), nil, true)
 				else
 					lightscarFlareCount = lightscarFlareCount - 1
 					self:SetStage(2)
-					self:Message(1264439, "yellow")
-					self:CastBar(1264439, 18, 3)
+					self:Message(1264439, "yellow", self:GetRename(1264439, 3))
+					self:CastBar(1264439, 18, 2)
 					self:ScheduleTimer(function() self:SetStage(1) end, 18) -- 18s cast
 					self:PlaySound(1264439, "long")
 				end
