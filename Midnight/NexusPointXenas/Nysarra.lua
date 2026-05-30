@@ -35,7 +35,7 @@ mod:SetRenames({
 	[1252703] = {CL.adds}, -- Null Vanguard (Adds)
 	[1264439] = { -- Lightscar Flare (Weakened)
 		CL.weakened, CL.cast:format(CL.weakened), CL.weakened, CL.soon:format(CL.weakened),
-		notes = {CL.timerNote, CL.castTimerNote, CL.messageNote, CL.messageNote},
+		notes = {CL.timerNote, CL.castTimerNote, CL.messageNote, CL.messageBeforeCastStartNote},
 		original = {1264439, CL.cast:format(mod:SpellName(1264439)), 1264439, CL.soon:format(mod:SpellName(1264439))}},
 	[1271684] = {CL.eat_adds}, -- Devour the Unworthy (Eat Adds)
 })
