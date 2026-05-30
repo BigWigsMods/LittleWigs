@@ -7,9 +7,9 @@ if not mod then return end
 mod:SetEncounterID(3333)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1255310, sound = "underyou"}, -- Radiant Scar
-	{1255335, sound = "alarm"}, -- Searing Rend
-	{1255503, sound = "alert"}, -- Brilliant Dispersion
+	{1255310, sound = "underyou", note = CL.debuffUnderYouNote}, -- Radiant Scar
+	{1255335, sound = "alert", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1255335), CL.tank_hit))}, -- Searing Rend
+	--{1255503, sound = "none", note = CL.bomb}, -- Brilliant Dispersion (This is the post debuff, no pre debuff exists...)
 })
 
 --------------------------------------------------------------------------------
@@ -23,18 +23,26 @@ local divineGuileCount = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[1253950] = {CL.tank_hit}, -- Searing Rend (Tank Hit)
+	[1253855] = {CL.bombs, CL.you:format(CL.bomb), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1253855, CL.you:format(mod:SpellName(1253855))}}, -- Brilliant Dispersion (Bombs)
+	[1255531] = {CL.charge}, -- Flicker (Charge)
+	[1257595] = {CL.full_energy}, -- Divine Guile
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
 		1253950, -- Searing Rend
-		1253855, -- Brilliant Dispersion
+		{1253855, "ME_ONLY_EMPHASIZE"}, -- Brilliant Dispersion
 		1255531, -- Flicker
 		1257595, -- Divine Guile
-		{1255310, "PRIVATE"}, -- Radiant Scar
-		{1255335, "PRIVATE"}, -- Searing Rend
-		{1255503, "PRIVATE"}, -- Brilliant Dispersion
 	}
 end
 
@@ -92,6 +100,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 			activeBars[eventID] = nil
 		elseif state == 3 then -- Canceled
 			self:StopBar(barInfo.msg)
+			if not self:IsWiping() and barInfo.cancelCallback then
+				barInfo.cancelCallback()
+			end
 			activeBars[eventID] = nil
 		end
 	end
@@ -109,13 +120,16 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:SearingRendTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1253950), searingRendCount)
+function mod:SearingRendTimeline(eventInfo) -- Tank Hit
+	local barText = CL.count:format(self:GetRename(1253950), searingRendCount)
 	self:CDBar(1253950, eventInfo.duration, barText, nil, eventInfo.id)
 	searingRendCount = searingRendCount + 1
 	return {
 		msg = barText,
 		key = 1253950,
+		cancelCallback = function()
+			searingRendCount = searingRendCount - 1
+		end,
 		callback = function()
 			self:Message(1253950, "purple", barText)
 			self:PlaySound(1253950, "alert")
@@ -123,37 +137,48 @@ function mod:SearingRendTimeline(eventInfo)
 	}
 end
 
-function mod:BrilliantDispersionTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1253855), brilliantDispersionCount)
-	self:CDBar(1253855, eventInfo.duration, barText, nil, eventInfo.id)
-	brilliantDispersionCount = brilliantDispersionCount + 1
-	return {
-		msg = barText,
-		key = 1253855,
-		callback = function()
-			self:Message(1253855, "yellow", barText)
-			self:PersonalMessageFromBlizzMessage(1253855, 1)
-			self:PlaySound(1253855, "alarm")
-		end
-	}
+do
+	local function IfOnMe(self)
+		self:PlaySound(1253855, "warning", nil, self:UnitName("player")) -- The PA sound wont currently work since it's no longer a PA
+	end
+	function mod:BrilliantDispersionTimeline(eventInfo) -- Bombs
+		local barText = CL.count:format(self:GetRename(1253855), brilliantDispersionCount)
+		self:CDBar(1253855, eventInfo.duration, barText, nil, eventInfo.id)
+		brilliantDispersionCount = brilliantDispersionCount + 1
+		return {
+			msg = barText,
+			key = 1253855,
+			cancelCallback = function()
+				brilliantDispersionCount = brilliantDispersionCount - 1
+			end,
+			callback = function()
+				self:Message(1253855, "yellow", barText)
+				self:PersonalMessageFromBlizzMessage(1253855, 1, false, self:GetRename(1253855, 2), nil, nil, IfOnMe)
+				--self:PlaySound(1253855, "warning") -- PA sound
+			end
+		}
+	end
 end
 
-function mod:FlickerTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1255531), flickerCount)
+function mod:FlickerTimeline(eventInfo) -- Charge
+	local barText = CL.count:format(self:GetRename(1255531), flickerCount)
 	self:CDBar(1255531, eventInfo.duration, barText, nil, eventInfo.id)
 	flickerCount = flickerCount + 1
 	return {
 		msg = barText,
 		key = 1255531,
+		cancelCallback = function()
+			flickerCount = flickerCount - 1
+		end,
 		callback = function()
-			self:Message(1255531, "orange", barText)
+			self:Message(1255531, "red", barText)
 			self:PlaySound(1255531, "alarm")
 		end
 	}
 end
 
-function mod:DivineGuileTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1257595), divineGuileCount)
+function mod:DivineGuileTimeline(eventInfo) -- Full Energy
+	local barText = CL.count:format(self:GetRename(1257595), divineGuileCount)
 	self:CDBar(1257595, eventInfo.duration, barText, nil, eventInfo.id)
 	divineGuileCount = divineGuileCount + 1
 	return {
@@ -162,6 +187,16 @@ function mod:DivineGuileTimeline(eventInfo)
 		callback = function()
 			self:StopBlizzMessages(1)
 			self:Message(1257595, "cyan", barText)
+			for eventID, barInfo in next, activeBars do
+				if barInfo.key ~= 1257595 then
+					self:StopBar(barInfo.msg)
+					-- Bars are cancelled by Blizz on cast end instead of cast start, and not all bars are cancelled, so we do it instead
+					if not self:IsWiping() and barInfo.cancelCallback then
+						barInfo.cancelCallback()
+					end
+					activeBars[eventID] = nil
+				end
+			end
 			self:PlaySound(1257595, "long")
 		end
 	}

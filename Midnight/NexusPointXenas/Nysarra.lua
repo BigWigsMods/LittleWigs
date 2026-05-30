@@ -7,10 +7,8 @@ if not mod then return end
 mod:SetEncounterID(3332)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1247975, sound = "info"}, -- Lightscar Flare
-	{1271433, sound = "none"}, -- Lightscar Flare
-	{1249020, sound = "alarm"}, -- Eclipsing Step
-	{1252828, sound = "alarm"}, -- Void Gash
+	{1249020, sound = "warning", note = CL.bomb}, -- Eclipsing Step
+	{1252828, sound = "alarm", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1247937), CL.tank_hit))}, -- Void Gash
 })
 mod:SetStage(1)
 
@@ -28,20 +26,31 @@ local activeBars = {}
 local activeBarBySpellId = {}
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[1247937] = {CL.tank_hit}, -- Umbral Lash (Tank Hit)
+	[1249014] = {CL.bombs, CL.you:format(CL.bomb), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1249014, CL.you:format(mod:SpellName(1249014))}}, -- Eclipsing Step (Bombs)
+	[1252703] = {CL.adds}, -- Null Vanguard (Adds)
+	[1264439] = { -- Lightscar Flare (Weakened)
+		CL.weakened, CL.soon:format(CL.weakened), CL.cast:format(CL.weakened),
+		notes = {CL.generalNote, CL.messageNote, CL.castTimerNote},
+		original = {1264439, CL.soon:format(mod:SpellName(1264439)), CL.cast:format(mod:SpellName(1264439))}},
+	[1271684] = {CL.eat_adds}, -- Devour the Unworthy (Eat Adds)
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
 		{1247937, "TANK_HEALER"}, -- Umbral Lash
-		1249014, -- Eclipsing Step
+		{1249014, "ME_ONLY_EMPHASIZE"}, -- Eclipsing Step
 		1252703, -- Null Vanguard
-		1264439, -- Lightscar Flare
+		{1264439, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Lightscar Flare
 		1271684, -- Devour the Unworthy
-		--{1247975, "PRIVATE"}, -- Lightscar Flare
-		--{1271433, "PRIVATE"}, -- Lightscar Flare
-		--{1249020, "PRIVATE"}, -- Eclipsing Step
-		{1252828, "PRIVATE"}, -- Void Gash
 	}
 end
 
@@ -156,6 +165,10 @@ function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
 	local barInfo = activeBars[eventID]
 	if barInfo then
 		self:StopBar(barInfo.msg)
+		if not self:IsWiping() and barInfo.cancelCallback then
+			barInfo.cancelCallback()
+			self:Error(barInfo.msg .. " was removed early")
+		end
 		activeBars[eventID] = nil
 		if activeBarBySpellId[barInfo.key] == eventID then
 			activeBarBySpellId[barInfo.key] = nil
@@ -167,8 +180,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:UmbralLashTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1247937), umbralLashCount)
+function mod:UmbralLashTimeline(eventInfo) -- Tank Hit
+	local barText = CL.count:format(self:GetRename(1247937), umbralLashCount)
 	self:CDBar(1247937, eventInfo.duration, barText, nil, eventInfo.id)
 	umbralLashCount = umbralLashCount + 1
 	return {
@@ -176,7 +189,7 @@ function mod:UmbralLashTimeline(eventInfo)
 		key = 1247937,
 		callback = function()
 			self:Message(1247937, "purple", barText)
-			self:PlaySound(1247937, "alert")
+			self:PlaySound(1247937, "alarm")
 		end,
 		cancelCallback = function()
 			umbralLashCount = umbralLashCount - 1
@@ -184,8 +197,8 @@ function mod:UmbralLashTimeline(eventInfo)
 	}
 end
 
-function mod:EclipsingStepTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1249014), eclipsingStepCount)
+function mod:EclipsingStepTimeline(eventInfo) -- Bombs
+	local barText = CL.count:format(self:GetRename(1249014), eclipsingStepCount)
 	self:CDBar(1249014, eventInfo.duration, barText, nil, eventInfo.id)
 	eclipsingStepCount = eclipsingStepCount + 1
 	return {
@@ -193,7 +206,8 @@ function mod:EclipsingStepTimeline(eventInfo)
 		key = 1249014,
 		callback = function()
 			self:Message(1249014, "orange", barText)
-			self:PlaySound(1249014, "alert")
+			self:PersonalMessageFromBlizzMessage(1249014, 1, false, self:GetRename(1249014, 2))
+			--self:PlaySound(1249014, "warning") -- PA sound
 		end,
 		cancelCallback = function()
 			eclipsingStepCount = eclipsingStepCount - 1
@@ -201,8 +215,8 @@ function mod:EclipsingStepTimeline(eventInfo)
 	}
 end
 
-function mod:NullVanguardTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1252703), nullVanguardCount)
+function mod:NullVanguardTimeline(eventInfo) -- Adds
+	local barText = CL.count:format(self:GetRename(1252703), nullVanguardCount)
 	self:CDBar(1252703, eventInfo.duration, barText, nil, eventInfo.id)
 	nullVanguardCount = nullVanguardCount + 1
 	return {
@@ -219,64 +233,43 @@ function mod:NullVanguardTimeline(eventInfo)
 	}
 end
 
-function mod:LightscarFlareTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1264439), lightscarFlareCount)
+function mod:LightscarFlareTimeline(eventInfo) -- Weakened
+	local barText = CL.count:format(self:GetRename(1264439), lightscarFlareCount)
 	self:CDBar(1264439, eventInfo.duration, barText, nil, eventInfo.id)
 	lightscarFlareCount = lightscarFlareCount + 1
 	return {
 		msg = barText,
 		key = 1264439,
 		callback = function()
-			-- in ~9 seconds this cast will finish
-			self:ScheduleTimer(function()
-				self:SetStage(2)
-				self:ScheduleTimer(function()
-					-- 18s cast
-					self:SetStage(1)
-				end, 18)
-				self:Message(1264439, "yellow", barText)
-				self:PlaySound(1264439, "long")
-			end, 9)
+			self:StopBlizzMessages(2)
+			self:Message(1264439, "yellow", self:GetRename(1264439, 2))
 		end,
 		cancelCallback = function()
 			local priorEventID = activeBarBySpellId[1264439]
 			if priorEventID then
 				local barInfo = activeBars[priorEventID]
 				if barInfo and barInfo.createdAt and (GetTime() - barInfo.createdAt) > 10 then
-					-- in ~9 seconds this cast will finish
-					self:ScheduleTimer(function()
-						self:SetStage(2)
-						self:ScheduleTimer(function()
-							-- 18s cast
-							self:SetStage(1)
-						end, 18)
-						self:Message(1264439, "yellow", barText)
-						self:PlaySound(1264439, "long")
-					end, 9)
+					self:StopBlizzMessages(2)
+					self:Message(1264439, "yellow", self:GetRename(1264439, 2))
 				else
 					lightscarFlareCount = lightscarFlareCount - 1
+					self:SetStage(2)
+					self:Message(1264439, "yellow")
+					self:CastBar(1264439, 18, 3)
+					self:ScheduleTimer(function() self:SetStage(1) end, 18) -- 18s cast
+					self:PlaySound(1264439, "long")
 				end
 			end
 		end
 	}
 end
 
-function mod:DevourTheUnworthyTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1271684), devourTheUnworthyCount)
+function mod:DevourTheUnworthyTimeline(eventInfo) -- Eat Adds
+	local barText = CL.count:format(self:GetRename(1271684), devourTheUnworthyCount)
 	self:CDBar(1271684, eventInfo.duration, barText, nil, eventInfo.id)
 	devourTheUnworthyCount = devourTheUnworthyCount + 1
 	return {
 		msg = barText,
 		key = 1271684,
-		callback = function() -- not sure if this can actually happen
-			if self:GetStage() == 2 then
-				self:SetStage(1)
-			end
-		end,
-		cancelCallback = function()
-			if self:GetStage() == 2 then
-				self:SetStage(1)
-			end
-		end
 	}
 end
