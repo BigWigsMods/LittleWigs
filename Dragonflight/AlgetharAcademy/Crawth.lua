@@ -134,7 +134,7 @@ if mod:Retail() then -- Midnight+
 			{376781, "EMPHASIZE", "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Firestorm (weakened debuff on boss)
 			389483, -- Goal of the Rushing Winds
 			376467, -- Gale Force
-			{377004, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Deafening Screech
+			{377004, "CASTBAR"}, -- Deafening Screech
 			377034, -- Overpowering Gust
 			376997, -- Savage Peck
 		},nil,{
