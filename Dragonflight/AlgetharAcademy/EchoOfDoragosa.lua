@@ -9,8 +9,9 @@ mod:SetEncounterID(2565)
 mod:SetRespawnTime(30)
 if mod:Retail() then -- Midnight+
 	mod:SetPrivateAuraSounds({
-		{389007, sound = "underyou"}, -- Wild Energy
-		{389011, sound = "info"}, -- Overwhelming Power
+		{389007, sound = "underyou", note = CL.debuffUnderYouNote}, -- Wild Energy
+		{389011, sound = "none"}, -- Overwhelming Power
+		{374350, sound = "warning", note = CL.bomb}, -- Energy Bomb
 	})
 end
 
@@ -72,6 +73,19 @@ local powerVacuumCount = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({
+		[373326] = {CL.missiles}, -- Arcane Missiles (Missiles)
+		[1282251] = {CL.tank_hit}, -- Astral Blast (Tank Hit)
+		[374343] = {CL.bombs, CL.you:format(CL.bomb), notes = {CL.generalNote, CL.messageOnYouNote}, original = {374343, CL.you:format(mod:SpellName(374343))}}, -- Energy Bomb (Bombs)
+		[388822] = {CL.pull_in}, -- Power Vacuum (Pull In)
+	})
+end
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
@@ -80,10 +94,8 @@ if mod:Retail() then -- Midnight+
 		return {
 			373326, -- Arcane Missiles
 			{1282251, "TANK_HEALER"}, -- Astral Blast
-			374343, -- Energy Bomb
+			{374343, "ME_ONLY_EMPHASIZE"}, -- Energy Bomb
 			388822, -- Power Vacuum
-			{389007, "PRIVATE"}, -- Wild Energy
-			{389011, "PRIVATE"}, -- Overwhelming Power
 		}
 	end
 
@@ -164,8 +176,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:ArcaneMissilesTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(373326), arcaneMissilesCount)
+function mod:ArcaneMissilesTimeline(eventInfo) -- Missiles
+	local barText = CL.count:format(self:GetRename(373326), arcaneMissilesCount)
 	self:CDBar(373326, eventInfo.duration, barText, nil, eventInfo.id)
 	arcaneMissilesCount = arcaneMissilesCount + 1
 	return {
@@ -178,8 +190,8 @@ function mod:ArcaneMissilesTimeline(eventInfo)
 	}
 end
 
-function mod:AstralBlastTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1282251), astralBlastCount)
+function mod:AstralBlastTimeline(eventInfo) -- Tank Hit
+	local barText = CL.count:format(self:GetRename(1282251), astralBlastCount)
 	self:CDBar(1282251, eventInfo.duration, barText, nil, eventInfo.id)
 	astralBlastCount = astralBlastCount + 1
 	return {
@@ -192,23 +204,28 @@ function mod:AstralBlastTimeline(eventInfo)
 	}
 end
 
-function mod:EnergyBombTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(374343), energyBombCount)
-	self:CDBar(374343, eventInfo.duration, barText, nil, eventInfo.id)
-	energyBombCount = energyBombCount + 1
-	return {
-		msg = barText,
-		key = 374343,
-		callback = function()
-			self:PersonalMessageFromBlizzMessage(374343, 1)
-			self:Message(374343, "yellow", barText)
-			self:PlaySound(374343, "alert")
-		end
-	}
+do
+	local function IfOnMe(self)
+		self:PlaySound(374343, "warning", nil, self:UnitName("player")) -- Debuff was demoted from being a PA
+	end
+	function mod:EnergyBombTimeline(eventInfo) -- Bombs
+		local barText = CL.count:format(self:GetRename(374343), energyBombCount)
+		self:CDBar(374343, eventInfo.duration, barText, nil, eventInfo.id)
+		energyBombCount = energyBombCount + 1
+		return {
+			msg = barText,
+			key = 374343,
+			callback = function()
+				self:PersonalMessageFromBlizzMessage(374343, 1, false, self:GetRename(374343, 2), nil, nil, IfOnMe)
+				self:Message(374343, "yellow", barText)
+				--self:PlaySound(374343, "warning") -- PA sound
+			end
+		}
+	end
 end
 
-function mod:PowerVacuumTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(388822), powerVacuumCount)
+function mod:PowerVacuumTimeline(eventInfo) -- Pull In
+	local barText = CL.count:format(self:GetRename(388822), powerVacuumCount)
 	self:CDBar(388822, eventInfo.duration, barText, nil, eventInfo.id)
 	powerVacuumCount = powerVacuumCount + 1
 	return {
@@ -217,7 +234,7 @@ function mod:PowerVacuumTimeline(eventInfo)
 		callback = function()
 			self:StopBlizzMessages(1)
 			self:Message(388822, "red", barText)
-			self:PlaySound(388822, "alarm")
+			self:PlaySound(388822, "alert")
 		end
 	}
 end

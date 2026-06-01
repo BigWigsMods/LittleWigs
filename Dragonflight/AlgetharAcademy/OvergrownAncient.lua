@@ -9,9 +9,8 @@ mod:SetEncounterID(2563)
 mod:SetRespawnTime(30)
 if mod:Retail() then -- Midnight+
 	mod:SetPrivateAuraSounds({
-		{388544, sound = "alarm"}, -- Barkbreaker
-		{389033, sound = "none"}, -- Lasher Toxin
-		{396716, sound = "long"}, -- Splinterbark
+		{388544, sound = "none", note = CL.debuffTankAfterCastNote:format(mod:SpellName(388544))}, -- Barkbreaker
+		{396716, sound = "none", note = CL.debuffDotAfterCastNote:format(mod:SpellName(388623))}, -- Splinterbark
 	})
 end
 
@@ -95,6 +94,19 @@ end
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({
+		[388796] = {CL.small_adds}, -- Germinate (Small Adds)
+		[388923] = {CL.full_energy}, -- Burst Forth (Full Energy)
+		[388623] = {CL.big_add}, -- Branch Out (Big Add)
+		[388544] = {CL.tank_hit}, -- Barkbreaker (Tank Hit)
+	})
+end
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
@@ -106,8 +118,6 @@ if mod:Retail() then -- Midnight+
 			388923, -- Burst Forth
 			388623, -- Branch Out
 			{388544, "TANK_HEALER"}, -- Barkbreaker
-			{389033, "PRIVATE"}, -- Lasher Toxin
-			{396716, "PRIVATE"}, -- Splinterbark
 		}
 	end
 
@@ -189,8 +199,8 @@ end
 -- Timeline Event Handlers
 --
 
-function mod:GerminateTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(388796), germinateCount)
+function mod:GerminateTimeline(eventInfo) -- Small Adds / Dodge
+	local barText = CL.count:format(self:GetRename(388796), germinateCount)
 	self:CDBar(388796, eventInfo.duration, barText, nil, eventInfo.id)
 	germinateCount = germinateCount + 1
 	return {
@@ -199,13 +209,13 @@ function mod:GerminateTimeline(eventInfo)
 		time = GetTime(),
 		callback = function()
 			self:Message(388796, "yellow", barText)
-			self:PlaySound(388796, "long")
+			self:PlaySound(388796, "warning")
 		end
 	}
 end
 
-function mod:BurstForthTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(388923), burstForthCount)
+function mod:BurstForthTimeline(eventInfo) -- Full Energy
+	local barText = CL.count:format(self:GetRename(388923), burstForthCount)
 	self:CDBar(388923, eventInfo.duration, barText, nil, eventInfo.id)
 	burstForthCount = burstForthCount + 1
 	return {
@@ -219,8 +229,8 @@ function mod:BurstForthTimeline(eventInfo)
 	}
 end
 
-function mod:BranchOutTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(388623), branchOutCount)
+function mod:BranchOutTimeline(eventInfo) -- Big Add
+	local barText = CL.count:format(self:GetRename(388623), branchOutCount)
 	self:CDBar(388623, eventInfo.duration, barText, nil, eventInfo.id)
 	branchOutCount = branchOutCount + 1
 	return {
@@ -235,8 +245,8 @@ end
 
 do
 	local prev = 0
-	function mod:BarkbreakerTimeline(eventInfo)
-		local barText = CL.count:format(self:SpellName(388544), barkbreakerCount)
+	function mod:BarkbreakerTimeline(eventInfo) -- Tank Hit
+		local barText = CL.count:format(self:GetRename(388544), barkbreakerCount)
 		self:CDBar(388544, eventInfo.duration, barText, nil, eventInfo.id)
 		barkbreakerCount = barkbreakerCount + 1
 		return {

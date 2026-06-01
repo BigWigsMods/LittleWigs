@@ -12,9 +12,9 @@ mod:SetEncounterID(2564)
 mod:SetRespawnTime(30)
 if mod:Retail() then -- Midnight+
 	mod:SetPrivateAuraSounds({
-		{376760, sound = "info"}, -- Gale Force
-		{376997, sound = "alert"}, -- Savage Peck
-		{377009, sound = "alarm"}, -- Deafening Screech
+		{376760, sound = "info", note = CL.debuffWalkIntoObjectNote:format(CL.orb)}, -- Gale Force
+		{376997, sound = "none", note = CL.debuffTankAfterCastNote:format(mod:SpellName(376997))}, -- Savage Peck
+		{377009, sound = "none", note = CL.debuffDotAfterCastNote:format(mod:SpellName(377009))}, -- Deafening Screech
 	})
 end
 
@@ -100,6 +100,27 @@ local overpoweringGustCount = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({ -- Play Ball
+		[377182] = {
+			CL.percent:format(75, mod:SpellName(377182)), CL.percent:format(45, mod:SpellName(377182)),
+			notes = {CL.messageSpecificHealth:format(75), CL.messageSpecificHealth:format(45)}, original = false
+		},
+		[389481] = {389481}, -- Goal of the Searing Blaze
+		[376448] = {376448}, -- Firestorm
+		[376781] = {CL.weakened}, -- Firestorm (Weakened)
+		[389483] = {389483}, -- Goal of the Rushing Winds
+		[376467] = {376467}, -- Gale Force
+		[377004] = {CL.silence, CL.cast:format(CL.silence), notes = {CL.generalNote, CL.castTimerNote}, original = {377004, CL.cast:format(mod:SpellName(377004))}}, -- Deafening Screech
+		[377034] = {CL.frontal}, -- Overpowering Gust
+		[376997] = {CL.tank_hit}, -- Savage Peck
+	})
+end
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
@@ -110,13 +131,14 @@ if mod:Retail() then -- Midnight+
 			377182, -- Play Ball
 			389481, -- Goal of the Searing Blaze
 			376448, -- Firestorm
+			{376781, "EMPHASIZE", "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Firestorm (weakened debuff on boss)
 			389483, -- Goal of the Rushing Winds
 			376467, -- Gale Force
-			{377004, "CASTBAR"}, -- Deafening Screech
+			{377004, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Deafening Screech
 			377034, -- Overpowering Gust
-			{376760, "PRIVATE"}, -- Gale Force
-			{376997, "PRIVATE"}, -- Savage Peck
-			{377009, "PRIVATE"}, -- Deafening Screech
+			376997, -- Savage Peck
+		},nil,{
+			[376781] = CL.weakened,
 		}
 	end
 
@@ -202,8 +224,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:SavagePeckTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(376997), savagePeckCount)
+function mod:SavagePeckTimeline(eventInfo) -- Tank Hit
+	local barText = CL.count:format(self:GetRename(376997), savagePeckCount)
 	self:CDBar(376997, eventInfo.duration, barText, nil, eventInfo.id)
 	savagePeckCount = savagePeckCount + 1
 	return {
@@ -216,8 +238,8 @@ function mod:SavagePeckTimeline(eventInfo)
 	}
 end
 
-function mod:DeafeningScreechTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(377004), deafeningScreechCount)
+function mod:DeafeningScreechTimeline(eventInfo) -- Silence
+	local barText = CL.count:format(self:GetRename(377004), deafeningScreechCount)
 	self:CDBar(377004, eventInfo.duration, barText, nil, eventInfo.id)
 	deafeningScreechCount = deafeningScreechCount + 1
 	return {
@@ -226,14 +248,14 @@ function mod:DeafeningScreechTimeline(eventInfo)
 		callback = function()
 			self:StopBlizzMessages(1)
 			self:Message(377004, "yellow", barText)
-			self:CastBar(377004, 2.5)
+			self:CastBar(377004, 2.5, 2)
 			self:PlaySound(377004, "warning")
 		end
 	}
 end
 
-function mod:OverpoweringGustTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(377034), overpoweringGustCount)
+function mod:OverpoweringGustTimeline(eventInfo) -- Frontal
+	local barText = CL.count:format(self:GetRename(377034), overpoweringGustCount)
 	self:CDBar(377034, eventInfo.duration, barText, nil, eventInfo.id)
 	overpoweringGustCount = overpoweringGustCount + 1
 	return {
@@ -248,14 +270,13 @@ end
 
 do
 	local prev = 0
-	function mod:PlayBall()
+	function mod:PlayBall() -- Play Ball / Intermission
 		if GetTime() - prev > 2 and playBallCount < 3 then
 			prev = GetTime()
 			-- cast at 75% and 45% health
-			local percent = playBallCount == 1 and 75 or 45
-			playBallCount = playBallCount + 1
 			self:StopBlizzMessages(1)
-			self:Message(377182, "cyan", CL.percent:format(percent, self:SpellName(377182)))
+			self:Message(377182, "cyan", self:GetRename(377182, playBallCount))
+			playBallCount = playBallCount + 1
 			self:PlaySound(377182, "long")
 		end
 	end
@@ -284,6 +305,15 @@ function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	end
 end
 
+function mod:UNIT_SPELLCAST_INTERRUPTED(event, unit)
+	self:UnregisterUnitEvent(event, unit)
+	if self:ShouldShowBars() then
+		self:CastBar(376781, 12, 1) -- Firestorm (Weakened)
+		self:Message(376781, "green")
+		self:PlaySound(376781, "long")
+	end
+end
+
 function mod:GoalOfTheSearingBlaze(_, _, info)
 	-- [UPDATE_UI_WIDGET] widgetID:4183, shownState:1, text:Goal of the Searing Blaze, barValue:0
 	local shownState = info.shownState
@@ -300,13 +330,14 @@ function mod:GoalOfTheSearingBlaze(_, _, info)
 				end
 			end
 			sonicVulnerabilityStacks = 0
+		else
+			self:RegisterUnitEvent("UNIT_SPELLCAST_INTERRUPTED", nil, "boss1")
 		end
 		searingBlazeGoals = barValue
 		self:Message(376448, "red") -- Firestorm
-		self:PlaySound(376448, "long")
 	elseif shownState == 1 and barValue > 0 and barValue ~= searingBlazeGoals then
 		searingBlazeGoals = barValue
-		self:Message(389481, "cyan", CL.count_amount:format(info.text, barValue, 3)) -- Goal of the Searing Blaze (n/3)
+		self:Message(389481, "cyan", CL.count_amount:format(self:GetRename(389481), barValue, 3)) -- Goal of the Searing Blaze (n/3)
 		self:PlaySound(389481, "info")
 	elseif self:Retail() and shownState == 1 and barValue == 0 and searingBlazeGoals ~= 3 then
 		searingBlazeGoals = barValue
@@ -344,7 +375,7 @@ function mod:GoalOfTheRushingWinds(_, _, info)
 		self:PlaySound(376467, "long")
 	elseif shownState == 1 and barValue > 0 and barValue ~= rushingWindsGoals then
 		rushingWindsGoals = barValue
-		self:Message(389483, "cyan", CL.count_amount:format(info.text, barValue, 3)) -- Goal of the Rushing Winds (n/3)
+		self:Message(389483, "cyan", CL.count_amount:format(self:GetRename(389483), barValue, 3)) -- Goal of the Rushing Winds (n/3)
 		self:PlaySound(389483, "info")
 	elseif self:Retail() and shownState == 1 and barValue == 0 and rushingWindsGoals ~= 3 then
 		rushingWindsGoals = barValue

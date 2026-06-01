@@ -9,8 +9,9 @@ mod:SetEncounterID(2562)
 mod:SetRespawnTime(30)
 if mod:Retail() then -- Midnight+
 	mod:SetPrivateAuraSounds({
-		{386201, sound = "underyou"}, -- Corrupted Mana
-		{391977, sound = "alert"}, -- Oversurge
+		{386181, sound = "warning", note = CL.bomb}, -- Mana Bomb
+		{386201, sound = "underyou", note = CL.debuffUnderYouNote}, -- Corrupted Mana
+		{391977, sound = "none", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(386544))}, -- Oversurge
 	})
 end
 
@@ -79,6 +80,19 @@ local count18 = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetRenames({
+		[386544] = {CL.orbs}, -- Arcane Orbs (Orbs)
+		[388537] = {CL.full_energy}, -- Arcane Fissure (Full Energy)
+		[386173] = {CL.bombs}, -- Mana Bombs (Bombs)
+		[385958] = {CL.tank_frontal}, -- Arcane Expulsion (Tank Frontal)
+	})
+end
+
+--------------------------------------------------------------------------------
 -- Midnight Initialization
 --
 
@@ -90,8 +104,6 @@ if mod:Retail() then -- Midnight+
 			388537, -- Arcane Fissure
 			386173, -- Mana Bombs
 			385958, -- Arcane Expulsion
-			{386201, "PRIVATE"}, -- Corrupted Mana
-			{391977, "PRIVATE"}, -- Oversurge
 		}
 	end
 
@@ -174,8 +186,8 @@ end
 -- Timeline Event Handlers
 --
 
-function mod:ArcaneOrbsTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(386544), arcaneOrbsCount)
+function mod:ArcaneOrbsTimeline(eventInfo) -- Orbs
+	local barText = CL.count:format(self:GetRename(386544), arcaneOrbsCount)
 	self:CDBar(386544, eventInfo.duration, barText, nil, eventInfo.id)
 	arcaneOrbsCount = arcaneOrbsCount + 1
 	return {
@@ -183,14 +195,14 @@ function mod:ArcaneOrbsTimeline(eventInfo)
 		key = 386544,
 		callback = function()
 			self:StopBlizzMessages(1)
-			self:Message(386544, "yellow", barText)
-			self:PlaySound(386544, "long")
+			self:Message(386544, "orange", barText)
+			self:PlaySound(386544, "info")
 		end
 	}
 end
 
-function mod:ArcaneExpulsionTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(385958), arcaneExpulsionCount)
+function mod:ArcaneExpulsionTimeline(eventInfo) -- Tank Frontal
+	local barText = CL.count:format(self:GetRename(385958), arcaneExpulsionCount)
 	self:CDBar(385958, eventInfo.duration, barText, nil, eventInfo.id)
 	arcaneExpulsionCount = arcaneExpulsionCount + 1
 	return {
@@ -203,8 +215,8 @@ function mod:ArcaneExpulsionTimeline(eventInfo)
 	}
 end
 
-function mod:ManaBombsTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(386173), manaBombsCount)
+function mod:ManaBombsTimeline(eventInfo) -- Bombs
+	local barText = CL.count:format(self:GetRename(386173), manaBombsCount)
 	self:CDBar(386173, eventInfo.duration, barText, nil, eventInfo.id)
 	manaBombsCount = manaBombsCount + 1
 	return {
@@ -212,13 +224,15 @@ function mod:ManaBombsTimeline(eventInfo)
 		key = 386173,
 		callback = function()
 			self:Message(386173, "yellow", barText)
-			self:PlaySound(386173, "alarm")
+			--self:PlaySound(386173, "warning") -- PA sound
+			-- PA was downgraded and there's no message sent to the player, remove below if either is ever fixed...
+			self:PlaySound(386173, "warning")
 		end
 	}
 end
 
-function mod:ArcaneFissureTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(388537), arcaneFissureCount)
+function mod:ArcaneFissureTimeline(eventInfo) -- Full Energy
+	local barText = CL.count:format(self:GetRename(388537), arcaneFissureCount)
 	self:CDBar(388537, eventInfo.duration, barText, nil, eventInfo.id)
 	arcaneFissureCount = arcaneFissureCount + 1
 	return {
@@ -226,7 +240,7 @@ function mod:ArcaneFissureTimeline(eventInfo)
 		key = 388537,
 		callback = function()
 			self:Message(388537, "red", barText)
-			self:PlaySound(388537, "alert")
+			self:PlaySound(388537, "long")
 		end
 	}
 end
