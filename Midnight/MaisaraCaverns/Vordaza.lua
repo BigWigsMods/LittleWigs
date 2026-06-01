@@ -34,7 +34,7 @@ mod:SetRenames({
 	[1251554] = {CL.tank_hit}, -- Drain Soul (Tank Hit)
 	[1251204] = {CL.adds}, -- Wrest Phantoms (Adds)
 	[1252054] = {CL.frontal}, -- Unmake (Frontal)
-	[1250708] = {CL.shield, CL.onboss:format(CL.shield), notes = {CL.timerNote, CL.messageNote}, original = {1250708, CL.onboss:format(mod:SpellName(1250708))}}, -- Necrotic Convergence
+	[1250708] = {CL.shield, CL.onboss:format(CL.shield), notes = {CL.timerNote, CL.messageNote}, original = {1250708, CL.onboss:format(mod:SpellName(1250708))}}, -- Necrotic Convergence (Shield)
 	[1251775] = {CL.you:format(CL.fixate), notes = {CL.messageOnYouNote}, original = {CL.you:format(mod:SpellName(1251775))}}, -- Final Pursuit (Fixate)
 })
 
@@ -183,6 +183,7 @@ function mod:NecroticConvergenceTimeline(eventInfo) -- Shield
 		self:SetStage(1)
 	end
 	local barText = CL.count:format(self:GetRename(1250708), necroticConvergenceCount)
+	local messageText = CL.count:format(self:GetRename(1250708, 2), necroticConvergenceCount)
 	self:CDBar(1250708, eventInfo.duration, barText, nil, eventInfo.id)
 	necroticConvergenceCount = necroticConvergenceCount + 1
 	return {
@@ -190,7 +191,7 @@ function mod:NecroticConvergenceTimeline(eventInfo) -- Shield
 		key = 1250708,
 		cancelCallback = function()
 			self:SetStage(2)
-			self:Message(1250708, "yellow", barText)
+			self:Message(1250708, "yellow", messageText)
 			self:PlaySound(1250708, "long")
 		end
 	}
