@@ -164,7 +164,7 @@ function mod:RunicMarkTimeline(eventInfo) -- Marks
 		callback = function()
 			self:PersonalMessageFromBlizzMessage(1225787, 1, false, self:GetRename(1225787, 2))
 			self:Message(1225787, "yellow", barText)
-			--self:PlaySound(1225787, "warning") -- PA sound
+			--self:PlaySound(1225787, "warning") -- PA sound (Note, the message shows on cast start, the debuff applies on cast end)
 		end
 	}
 end

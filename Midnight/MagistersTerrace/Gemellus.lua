@@ -161,23 +161,18 @@ function mod:CosmicStingTimeline(eventInfo) -- Pools
 	}
 end
 
-do
-	local function IfOnMe(self)
-		self:PlaySound(1253709, "warning", nil, self:UnitName("player")) -- Debuff was demoted from being a PA
-	end
-	function mod:NeuralLinkTimeline(eventInfo) -- Break Shields
-		local barText = CL.count:format(self:GetRename(1253709), neuralLinkCount)
-		self:CDBar(1253709, eventInfo.duration, barText, nil, eventInfo.id)
-		neuralLinkCount = neuralLinkCount + 1
-		return {
-			msg = barText,
-			key = 1253709,
-			callback = function()
-				self:PersonalMessageFromBlizzMessage(1253709, 1, false, self:GetRename(1253709, 2), nil, nil, IfOnMe)
-				--self:PlaySound(1253709, "warning") -- PA sound
-			end
-		}
-	end
+function mod:NeuralLinkTimeline(eventInfo) -- Break Shields
+	local barText = CL.count:format(self:GetRename(1253709), neuralLinkCount)
+	self:CDBar(1253709, eventInfo.duration, barText, nil, eventInfo.id)
+	neuralLinkCount = neuralLinkCount + 1
+	return {
+		msg = barText,
+		key = 1253709,
+		callback = function()
+			self:PersonalMessageFromBlizzMessage(1253709, 1, false, self:GetRename(1253709, 2))
+			--self:PlaySound(1253709, "warning") -- PA sound (Note, the message shows on cast start, the debuff applies on cast end)
+		end
+	}
 end
 
 do
