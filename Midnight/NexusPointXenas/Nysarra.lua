@@ -36,7 +36,8 @@ mod:SetRenames({
 	[1264439] = { -- Lightscar Flare (Weakened)
 		CL.weakened, CL.cast:format(CL.weakened), CL.weakened, CL.soon:format(CL.weakened),
 		notes = {CL.timerNote, CL.castTimerNote, CL.messageNote, CL.messageBeforeCastStartNote},
-		original = {1264439, CL.cast:format(mod:SpellName(1264439)), 1264439, CL.soon:format(mod:SpellName(1264439))}},
+		original = {1264439, CL.cast:format(mod:SpellName(1264439)), 1264439, CL.soon:format(mod:SpellName(1264439))},
+	},
 	[1271684] = {CL.eat_adds}, -- Devour the Unworthy (Eat Adds)
 })
 
@@ -233,35 +234,42 @@ function mod:NullVanguardTimeline(eventInfo) -- Adds
 	}
 end
 
-function mod:LightscarFlareTimeline(eventInfo) -- Weakened
-	local barText = CL.count:format(self:GetRename(1264439), lightscarFlareCount)
-	self:CDBar(1264439, eventInfo.duration, barText, nil, eventInfo.id)
-	lightscarFlareCount = lightscarFlareCount + 1
-	return {
-		msg = barText,
-		key = 1264439,
-		callback = function()
-			self:StopBlizzMessages(2)
-			self:Message(1264439, "yellow", self:GetRename(1264439, 4), nil, true)
-		end,
-		cancelCallback = function()
-			local priorEventID = activeBarBySpellId[1264439]
-			if priorEventID then
-				local barInfo = activeBars[priorEventID]
-				if barInfo and barInfo.createdAt and (GetTime() - barInfo.createdAt) > 10 then
-					self:StopBlizzMessages(2)
-					self:Message(1264439, "yellow", self:GetRename(1264439, 4), nil, true)
-				else
-					lightscarFlareCount = lightscarFlareCount - 1
-					self:SetStage(2)
-					self:Message(1264439, "yellow", self:GetRename(1264439, 3))
-					self:CastBar(1264439, 18, 2)
-					self:ScheduleTimer(function() self:SetStage(1) end, 18) -- 18s cast
-					self:PlaySound(1264439, "long")
+do
+	local prevStageChange = 0
+	function mod:LightscarFlareTimeline(eventInfo) -- Weakened
+		local barText = CL.count:format(self:GetRename(1264439), lightscarFlareCount)
+		self:CDBar(1264439, eventInfo.duration, barText, nil, eventInfo.id)
+		lightscarFlareCount = lightscarFlareCount + 1
+		return {
+			msg = barText,
+			key = 1264439,
+			callback = function()
+				self:StopBlizzMessages(2)
+				self:Message(1264439, "yellow", self:GetRename(1264439, 4), nil, true)
+			end,
+			cancelCallback = function()
+				local priorEventID = activeBarBySpellId[1264439]
+				if priorEventID then
+					local barInfo = activeBars[priorEventID]
+					local t = GetTime()
+					if barInfo and barInfo.createdAt and (t - barInfo.createdAt) > 10 then
+						self:StopBlizzMessages(2)
+						self:Message(1264439, "yellow", self:GetRename(1264439, 4), nil, true)
+					else
+						lightscarFlareCount = lightscarFlareCount - 1
+						if t - prevStageChange > 20 then -- At the end of the weakened cast, new timers are started, then cancelled, then started again with the exact same durations
+							prevStageChange = t
+							self:SetStage(2)
+							self:Message(1264439, "yellow", self:GetRename(1264439, 3))
+							self:CastBar(1264439, 18, 2)
+							self:ScheduleTimer(function() self:SetStage(1) end, 18) -- 18s cast
+							self:PlaySound(1264439, "long")
+						end
+					end
 				end
 			end
-		end
-	}
+		}
+	end
 end
 
 function mod:DevourTheUnworthyTimeline(eventInfo) -- Eat Adds
