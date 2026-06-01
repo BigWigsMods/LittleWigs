@@ -7,10 +7,11 @@ if not mod then return end
 mod:SetEncounterID(3074)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1215157, sound = "alarm"}, -- Unstable Void Essence
-	{1215161, sound = "alert"}, -- Void Destruction
-	{1215897, sound = "warning"}, -- Devouring Entropy
-	{1269631, sound = "alert"}, -- Entropy Orb
+	{1215161, sound = "none", CL.other:format(CL.bouncing_ball , CL.debuffFailureNote)}, -- Void Destruction
+	{1215897, sound = "warning", note = CL.orbs}, -- Devouring Entropy
+	{1269631, sound = "none", note = CL.other:format(CL.orbs , CL.debuffFailureNote)}, -- Entropy Orb
+	{1284627, sound = "none", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1280113), CL.tank_debuff))}, -- Umbral Splinters
+	{1284633, sound = "underyou", note = CL.debuffUnderYouNote}, -- Stygian Ichor
 })
 
 --------------------------------------------------------------------------------
@@ -24,17 +25,32 @@ local count24 = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[1280113] = {CL.tank_debuff}, -- Hulking Fragment (Tank Debuff)
+	[1215897] = { -- Devouring Entropy (Debuffs (Orbs))
+		CL.extra:format(CL.debuffs, CL.orbs), CL.you:format(CL.orbs),
+		notes = {CL.generalNote, CL.messageOnYouNote},
+		original = {1215897, CL.you:format(mod:SpellName(1215897))}
+	},
+	[1215087] = { -- Unstable Void Essence (Bouncing Ball)
+		CL.bouncing_ball, CL.incoming:format(CL.bouncing_ball),
+		notes = {CL.generalNote, CL.messageCastStartNote},
+		original = {1215087, CL.incoming:format(mod:SpellName(1215087))}
+	},
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
 		1280113, -- Hulking Fragment
-		1215897, -- Devouring Entropy
+		{1215897, "ME_ONLY_EMPHASIZE"}, -- Devouring Entropy
 		1215087, -- Unstable Void Essence
-		{1215157, "PRIVATE"}, -- Unstable Void Essence
-		{1215161, "PRIVATE"}, -- Void Destruction
-		{1269631, "PRIVATE"}, -- Entropy Orb
 	}
 end
 
@@ -123,8 +139,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:HulkingFragmentTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1280113), hulkingFragmentCount)
+function mod:HulkingFragmentTimeline(eventInfo) -- Tank Debuff
+	local barText = CL.count:format(self:GetRename(1280113), hulkingFragmentCount)
 	self:CDBar(1280113, eventInfo.duration, barText, nil, eventInfo.id)
 	hulkingFragmentCount = hulkingFragmentCount + 1
 	return {
@@ -137,23 +153,28 @@ function mod:HulkingFragmentTimeline(eventInfo)
 	}
 end
 
-function mod:DevouringEntropyTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1215897), devouringEntropyCount)
-	self:CDBar(1215897, eventInfo.duration, barText, nil, eventInfo.id)
-	devouringEntropyCount = devouringEntropyCount + 1
-	return {
-		msg = barText,
-		key = 1215897,
-		callback = function()
-			self:PersonalMessageFromBlizzMessage(1215897, 2)
-			self:Message(1215897, "yellow", barText)
-			self:PlaySound(1215897, "alert")
-		end
-	}
+do
+	local function IfOnMe(self)
+		self:PlaySound(1215897, "warning", nil, self:UnitName("player")) -- Debuff was demoted from being a PA
+	end
+	function mod:DevouringEntropyTimeline(eventInfo) -- Orbs
+		local barText = CL.count:format(self:GetRename(1215897), devouringEntropyCount)
+		self:CDBar(1215897, eventInfo.duration, barText, nil, eventInfo.id)
+		devouringEntropyCount = devouringEntropyCount + 1
+		return {
+			msg = barText,
+			key = 1215897,
+			callback = function()
+				self:PersonalMessageFromBlizzMessage(1215897, 2, false, self:GetRename(1215897, 2), nil, nil, IfOnMe)
+				--self:PlaySound(1215897, "warning") -- PA sound
+			end
+		}
+	end
 end
 
-function mod:UnstableVoidEssenceTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1215087), unstableVoidEssenceCount)
+function mod:UnstableVoidEssenceTimeline(eventInfo) -- Bouncing Ball
+	local barText = CL.count:format(self:GetRename(1215087), unstableVoidEssenceCount)
+	local messageText = CL.count:format(self:GetRename(1215087, 2), unstableVoidEssenceCount)
 	self:CDBar(1215087, eventInfo.duration, barText, nil, eventInfo.id)
 	unstableVoidEssenceCount = unstableVoidEssenceCount + 1
 	return {
@@ -161,7 +182,7 @@ function mod:UnstableVoidEssenceTimeline(eventInfo)
 		key = 1215087,
 		callback = function()
 			self:StopBlizzMessages(1)
-			self:Message(1215087, "red", barText)
+			self:Message(1215087, "red", messageText)
 			self:PlaySound(1215087, "info")
 		end
 	}

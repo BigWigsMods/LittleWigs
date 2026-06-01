@@ -8,9 +8,8 @@ mod:SetEncounterID(3071)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
 mod:SetPrivateAuraSounds({
-	{1214038, sound = "alarm"}, -- Ethereal Shackles
-	{1214089, sound = "underyou"}, -- Arcane Residue
-	{1243905, sound = "warning"}, -- Unstable Energy
+	{1214038, sound = "none", note = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1214032), CL.dispels))}, -- Ethereal Shackles
+	{1214089, sound = "underyou", note = CL.debuffUnderYouNote}, -- Arcane Residue
 })
 
 --------------------------------------------------------------------------------
@@ -24,6 +23,17 @@ local refuelingProtocolCount = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[474496] = {CL.tank_knockback}, -- Repulsing Slam (Tank Knockback)
+	[1214081] = {CL.group_damage}, -- Arcane Expulsion (Group Damage)
+	[1214032] = {CL.dispels}, -- Ethereal Shackles (Dispels)
+	[474345] = {CL.intermission, CL.intermission_over, notes = {CL.generalNote, CL.messageCastOverNote}, original = {474345, CL.over:format(mod:SpellName(474345))}}, -- Refueling Protocol (Intermission)
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -33,9 +43,6 @@ function mod:GetOptions()
 		1214081, -- Arcane Expulsion
 		1214032, -- Ethereal Shackles
 		{474345, "CASTBAR"}, -- Refueling Protocol
-		--{1214038, "PRIVATE"}, -- Ethereal Shackles
-		{1214089, "PRIVATE"}, -- Arcane Residue
-		{1243905, "PRIVATE"}, -- Unstable Energy
 	}
 end
 
@@ -129,8 +136,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:RepulsingSlamTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(474496), repulsingSlamCount)
+function mod:RepulsingSlamTimeline(eventInfo) -- Tank Knockback
+	local barText = CL.count:format(self:GetRename(474496), repulsingSlamCount)
 	self:CDBar(474496, eventInfo.duration, barText, nil, eventInfo.id)
 	repulsingSlamCount = repulsingSlamCount + 1
 	return {
@@ -146,8 +153,8 @@ function mod:RepulsingSlamTimeline(eventInfo)
 	}
 end
 
-function mod:ArcaneExpulsionTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1214081), arcaneExpulsionCount)
+function mod:ArcaneExpulsionTimeline(eventInfo) -- Group Damage
+	local barText = CL.count:format(self:GetRename(1214081), arcaneExpulsionCount)
 	self:CDBar(1214081, eventInfo.duration, barText, nil, eventInfo.id)
 	arcaneExpulsionCount = arcaneExpulsionCount + 1
 	return {
@@ -163,8 +170,8 @@ function mod:ArcaneExpulsionTimeline(eventInfo)
 	}
 end
 
-function mod:EtherealShacklesTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1214032), etherealShacklesCount)
+function mod:EtherealShacklesTimeline(eventInfo) -- Dispels
+	local barText = CL.count:format(self:GetRename(1214032), etherealShacklesCount)
 	self:CDBar(1214032, eventInfo.duration, barText, nil, eventInfo.id)
 	etherealShacklesCount = etherealShacklesCount + 1
 	return {
@@ -180,23 +187,24 @@ function mod:EtherealShacklesTimeline(eventInfo)
 	}
 end
 
-function mod:RefuelingProtocolTimeline(eventInfo)
+function mod:RefuelingProtocolTimeline(eventInfo) -- Intermission
 	local barText
 	if eventInfo.duration == 45 then
 		if self:GetStage() == 2 then
 			self:SetStage(1)
-			self:Message(474345, "cyan", CL.over:format(self:SpellName(474345)))
+			self:Message(474345, "cyan", self:GetRename(474345, 2))
 			self:PlaySound(474345, "info")
 		end
-		barText = CL.count:format(self:SpellName(474345), refuelingProtocolCount)
+		barText = CL.count:format(self:GetRename(474345), refuelingProtocolCount)
 		self:CDBar(474345, eventInfo.duration, barText, nil, eventInfo.id)
 	elseif eventInfo.duration == 48 then
 		-- we re-purpose this Refueling Protocol bar with a bogus duration as the 23s castbar
 		self:SetStage(2)
-		self:Message(474345, "green", CL.count:format(self:SpellName(474345), refuelingProtocolCount))
+		self:StopBlizzMessages(1)
+		self:Message(474345, "cyan", CL.count:format(self:GetRename(474345), refuelingProtocolCount))
 		refuelingProtocolCount = refuelingProtocolCount + 1
-		barText = CL.cast:format(self:SpellName(474345))
-		self:CastBar(474345, 23)
+		barText = self:GetRename(474345, 2)
+		self:CastBar(474345, 23, 2)
 		self:PlaySound(474345, "long")
 	end
 	return {

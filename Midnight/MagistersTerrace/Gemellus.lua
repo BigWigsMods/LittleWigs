@@ -7,11 +7,11 @@ if not mod then return end
 mod:SetEncounterID(3073)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1224104, sound = "underyou"}, -- Void Secretions
-	{1224401, sound = "alarm"}, -- Cosmic Radiation
-	{1284958, sound = "alert"}, -- Cosmic Sting
-	{1224299, sound = "warning"}, -- Astral Grasp
-	{1253709, sound = "info"}, -- Neural Link
+	{1224401, sound = "underyou", note = CL.debuffUnderYouNote}, -- Cosmic Radiation
+	{1284958, sound = "alert", note = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1284954), CL.pools))}, -- Cosmic Sting
+	{1224104, sound = "underyou", note = CL.debuffUnderYouNote}, -- Void Secretions
+	{1224299, sound = "warning", note = CL.grip}, -- Astral Grasp
+	{1253709, sound = "warning", note = CL.break_shield}, -- Neural Link
 })
 
 --------------------------------------------------------------------------------
@@ -26,6 +26,17 @@ local count5 = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[1223847] = {1223847, CL.percent:format(50, mod:SpellName(1223847)), notes = {CL.generalNote, CL.messageNote}, original = false}, -- Triplicate
+	[1284954] = {CL.pools}, -- Cosmic Sting (Pools)
+	[1253709] = {CL.break_shields, CL.you:format(CL.break_shield), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1253709, CL.you:format(mod:SpellName(1253709))}}, -- Neural Link (Break Shields)
+	[1224299] = {CL.grips, CL.you:format(CL.grip), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1224299, CL.you:format(mod:SpellName(1224299))}}, -- Astral Grasp (Grips)
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -33,13 +44,8 @@ function mod:GetOptions()
 	return {
 		1223847, -- Triplicate
 		1284954, -- Cosmic Sting
-		1253709, -- Neural Link
-		1224299, -- Astral Grasp
-		{1224104, "PRIVATE"}, -- Void Secretions
-		{1224401, "PRIVATE"}, -- Cosmic Radiation
-		--{1284958, "PRIVATE"}, -- Cosmic Sting
-		--{1224299, "PRIVATE"}, -- Astral Grasp
-		--{1253709, "PRIVATE"}, -- Neural Link
+		{1253709, "ME_ONLY_EMPHASIZE"}, -- Neural Link
+		{1224299, "ME_ONLY_EMPHASIZE"}, -- Astral Grasp
 	}
 end
 
@@ -87,9 +93,16 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
+	local state = C_EncounterTimeline.GetEventState(eventID)
+	if state == 1 and triplicateCount == 2 then -- Timers should only pause at 50%
+		triplicateCount = 3
+		self:StopBlizzMessages(1)
+		self:Message(1223847, "cyan", self:GetRename(1223847, 2)) -- 50% - Triplicate
+		self:PlaySound(1223847, "info")
+	end
+
 	local barInfo = activeBars[eventID]
 	if barInfo then
-		local state = C_EncounterTimeline.GetEventState(eventID)
 		if state == 0 then -- Active
 			self:ResumeBar(barInfo.key, barInfo.msg)
 		elseif state == 1 then -- Paused
@@ -119,8 +132,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:TriplicateTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1223847), triplicateCount)
+function mod:TriplicateTimeline(eventInfo) -- Triplicate / Split / Adds
+	local barText = self:GetRename(1223847)
 	self:CDBar(1223847, eventInfo.duration, barText, nil, eventInfo.id)
 	triplicateCount = triplicateCount + 1
 	return {
@@ -134,8 +147,8 @@ function mod:TriplicateTimeline(eventInfo)
 	}
 end
 
-function mod:CosmicStingTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1284954), cosmicStingCount)
+function mod:CosmicStingTimeline(eventInfo) -- Pools
+	local barText = CL.count:format(self:GetRename(1284954), cosmicStingCount)
 	self:CDBar(1284954, eventInfo.duration, barText, nil, eventInfo.id)
 	cosmicStingCount = cosmicStingCount + 1
 	return {
@@ -148,32 +161,40 @@ function mod:CosmicStingTimeline(eventInfo)
 	}
 end
 
-function mod:NeuralLinkTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1253709), neuralLinkCount)
-	self:CDBar(1253709, eventInfo.duration, barText, nil, eventInfo.id)
-	neuralLinkCount = neuralLinkCount + 1
-	return {
-		msg = barText,
-		key = 1253709,
-		callback = function()
-			self:PersonalMessageFromBlizzMessage(1253709, 1)
-			self:Message(1253709, "red", barText)
-			self:PlaySound(1253709, "info")
-		end
-	}
+do
+	local function IfOnMe(self)
+		self:PlaySound(1253709, "warning", nil, self:UnitName("player")) -- Debuff was demoted from being a PA
+	end
+	function mod:NeuralLinkTimeline(eventInfo) -- Break Shields
+		local barText = CL.count:format(self:GetRename(1253709), neuralLinkCount)
+		self:CDBar(1253709, eventInfo.duration, barText, nil, eventInfo.id)
+		neuralLinkCount = neuralLinkCount + 1
+		return {
+			msg = barText,
+			key = 1253709,
+			callback = function()
+				self:PersonalMessageFromBlizzMessage(1253709, 1, false, self:GetRename(1253709, 2), nil, nil, IfOnMe)
+				--self:PlaySound(1253709, "warning") -- PA sound
+			end
+		}
+	end
 end
 
-function mod:AstralGraspTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1224299), astralGraspCount)
-	self:CDBar(1224299, eventInfo.duration, barText, nil, eventInfo.id)
-	astralGraspCount = astralGraspCount + 1
-	return {
-		msg = barText,
-		key = 1224299,
-		callback = function()
-			self:PersonalMessageFromBlizzMessage(1224299, 1)
-			self:Message(1224299, "orange", barText)
-			self:PlaySound(1224299, "alert")
-		end
-	}
+do
+	local function IfOnMe(self)
+		self:PlaySound(1224299, "warning", nil, self:UnitName("player")) -- Debuff was demoted from being a PA
+	end
+	function mod:AstralGraspTimeline(eventInfo) -- Grips
+		local barText = CL.count:format(self:GetRename(1224299), astralGraspCount)
+		self:CDBar(1224299, eventInfo.duration, barText, nil, eventInfo.id)
+		astralGraspCount = astralGraspCount + 1
+		return {
+			msg = barText,
+			key = 1224299,
+			callback = function()
+				self:PersonalMessageFromBlizzMessage(1224299, 1, false, self:GetRename(1224299, 2), nil, nil, IfOnMe)
+				--self:PlaySound(1224299, "warning") -- PA sound
+			end
+		}
+	end
 end

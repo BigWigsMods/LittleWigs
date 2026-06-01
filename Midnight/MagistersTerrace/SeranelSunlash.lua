@@ -7,10 +7,10 @@ if not mod then return end
 mod:SetEncounterID(3072)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1225015, sound = "info"}, -- Suppression Zone
-	{1225205, sound = "warning"}, -- Wave of Silence
-	{1225792, sound = "alert"}, -- Runic Mark
-	{1246446, sound = "alarm"}, -- Null Reaction
+	{1225015, sound = "none", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Suppression Zone
+	{1225205, sound = "none", note = CL.debuffFailureNote}, -- Wave of Silence
+	{1225792, sound = "warning", note = CL.mark}, -- Runic Mark
+	{1246446, sound = "alarm", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Null Reaction
 })
 
 --------------------------------------------------------------------------------
@@ -26,19 +26,26 @@ local activeBars = {}
 local activeBarBySpellId = {}
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[1225787] = {CL.marks, CL.you:format(CL.mark), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1225787, CL.you:format(mod:SpellName(1225787))}}, -- Runic Mark (Mark)
+	[1224903] = {1224903}, -- Suppression Zone
+	[1248689] = {CL.dispel_boss, CL.magic_buff_boss:format(mod:SpellName(1248689)), notes = {CL.generalNote, CL.messageNote}, original = {1248689, false}}, -- Hastening Ward (Dispel Boss)
+	[1225193] = {1225193, CL.cast:format(mod:SpellName(1225193)), notes = {CL.generalNote, CL.castTimerNote}, original = false}, -- Wave of Silence
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
-		1225787, -- Runic Mark
+		{1225787, "ME_ONLY_EMPHASIZE"}, -- Runic Mark
 		1224903, -- Suppression Zone
 		1248689, -- Hastening Ward
 		{1225193, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Wave of Silence
-		{1225015, "PRIVATE"}, -- Suppression Zone
-		{1225205, "PRIVATE"}, -- Wave of Silence
-		--{1225792, "PRIVATE"}, -- Runic Mark
-		{1246446, "PRIVATE"}, -- Null Reaction
 	}
 end
 
@@ -147,23 +154,23 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:RunicMarkTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1225787), runicMarkCount)
+function mod:RunicMarkTimeline(eventInfo) -- Marks
+	local barText = CL.count:format(self:GetRename(1225787), runicMarkCount)
 	self:CDBar(1225787, eventInfo.duration, barText, nil, eventInfo.id)
 	runicMarkCount = runicMarkCount + 1
 	return {
 		msg = barText,
 		key = 1225787,
 		callback = function()
-			self:PersonalMessageFromBlizzMessage(1225787, 1)
+			self:PersonalMessageFromBlizzMessage(1225787, 1, false, self:GetRename(1225787, 2))
 			self:Message(1225787, "yellow", barText)
-			self:PlaySound(1225787, "alert")
+			--self:PlaySound(1225787, "warning") -- PA sound
 		end
 	}
 end
 
-function mod:SuppressionZoneTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1224903), suppressionZoneCount)
+function mod:SuppressionZoneTimeline(eventInfo) -- Suppression Zone / Bubble
+	local barText = CL.count:format(self:GetRename(1224903), suppressionZoneCount)
 	self:CDBar(1224903, eventInfo.duration, barText, nil, eventInfo.id)
 	suppressionZoneCount = suppressionZoneCount + 1
 	return {
@@ -176,22 +183,23 @@ function mod:SuppressionZoneTimeline(eventInfo)
 	}
 end
 
-function mod:HasteningWardTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1248689), hasteningWardCount)
+function mod:HasteningWardTimeline(eventInfo) -- Dispel Boss - Magic Buff on BOSS
+	local barText = CL.count:format(self:GetRename(1248689), hasteningWardCount)
 	self:CDBar(1248689, eventInfo.duration, barText, nil, eventInfo.id)
+	local messageTxt = CL.count:format(self:GetRename(1248689, 2), hasteningWardCount)
 	hasteningWardCount = hasteningWardCount + 1
 	return {
 		msg = barText,
 		key = 1248689,
 		callback = function()
-			self:Message(1248689, "purple", barText)
+			self:Message(1248689, "purple", messageTxt)
 			self:PlaySound(1248689, "info")
 		end
 	}
 end
 
-function mod:WaveOfSilenceTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1225193), waveofSilenceCount)
+function mod:WaveOfSilenceTimeline(eventInfo) -- Wave of Silence / Group Damage
+	local barText = CL.count:format(self:GetRename(1225193), waveofSilenceCount)
 	self:CDBar(1225193, eventInfo.duration, barText, nil, eventInfo.id)
 	waveofSilenceCount = waveofSilenceCount + 1
 	return {
@@ -200,7 +208,7 @@ function mod:WaveOfSilenceTimeline(eventInfo)
 		callback = function()
 			self:StopBlizzMessages(1)
 			self:Message(1225193, "red", barText)
-			self:CastBar(1225193, 5)
+			self:CastBar(1225193, 5, 2)
 			self:PlaySound(1225193, "warning")
 		end
 	}
