@@ -41,7 +41,7 @@ local backupBars = {}
 mod:SetRenames({
 	-- Muro'jin
 	[1260731] = {CL.traps}, -- Freezing Trap (Traps)
-	[1260643] = {1260643}, -- Barrage
+	[1260643] = {1260643, CL.you:format(mod:SpellName(1260643)), notes = {CL.generalNote, CL.messageOnYouNote}, original = false}, -- Barrage
 	[1266480] = {CL.tank_knockback}, -- Flanking Spear (Tank Knockback)
 	-- Nekraxx
 	[1249479] = {CL.charge}, -- Carrion Swoop (Charge)
