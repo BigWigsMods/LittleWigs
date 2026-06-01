@@ -1,9 +1,9 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/
 ..\FrameXML\UI.xsd">
 
-<Script file="AlgetharAcademy\Vexamus.lua"/>
 <Script file="AlgetharAcademy\OvergrownAncient.lua"/>
 <Script file="AlgetharAcademy\Crawth.lua"/>
+<Script file="AlgetharAcademy\Vexamus.lua"/>
 <Script file="AlgetharAcademy\EchoOfDoragosa.lua"/>
 <Script file="AlgetharAcademy\Trash.lua"/>
 
