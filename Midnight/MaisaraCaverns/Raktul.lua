@@ -7,16 +7,10 @@ if not mod then return end
 mod:SetEncounterID(3214)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1251023, sound = "alarm"}, -- Spiritbreaker
-	{1252675, sound = "alarm"}, -- Crush Souls
-	{1252777, sound = "alert"}, -- Soulbind
-	{1252816, sound = "underyou"}, -- Chill of Death
-	{1253779, sound = "underyou"}, -- Spectral Decay
-	{1253844, sound = "info"}, -- Withering Soul
-	{1254043, sound = "alarm"}, -- Eternal Suffering
-	{1254175, sound = "alarm"}, -- Cries of the Fallen
-	{1255629, sound = "info"}, -- Spectral Residue
-	{1266188, sound = "alarm"}, -- Shadow Realm
+	{1252675, sound = "warning", note = CL.leap}, -- Crush Souls
+	{1252777, sound = "none", note = CL.debuffAddsCast:format(mod:SpellName(-33914))}, -- Soulbind
+	{1252816, sound = "underyou", note = CL.debuffUnderYouNote}, -- Chill of Death
+	{1253779, sound = "underyou", note = CL.debuffUnderYouNote}, -- Spectral Decay
 })
 
 --------------------------------------------------------------------------------
@@ -30,6 +24,20 @@ local count26_4 = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[1251023] = {CL.tank_hit}, -- Spiritbreaker (Tank Hit)
+	[1252676] = { -- Crush Souls (Totems / Leap)
+		CL.totems, CL.incoming:format(CL.totems), CL.you:format(CL.leap),
+		notes = {CL.timerNote, CL.messageCastStartNote, CL.messageOnYouNote},
+		original = {1252676, CL.incoming:format(mod:SpellName(1252676)), CL.you:format(mod:SpellName(1252676))}
+	},
+	[1253788] = {CL.intermission}, -- Soulrending Roar (Intermission)
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -38,16 +46,6 @@ function mod:GetOptions()
 		1251023, -- Spiritbreaker
 		1252676, -- Crush Souls
 		1253788, -- Soulrending Roar
-		--{1251023, "PRIVATE"}, -- Spiritbreaker
-		{1252675, "PRIVATE"}, -- Crush Souls
-		{1252777, "PRIVATE"}, -- Soulbind
-		{1252816, "PRIVATE"}, -- Chill of Death
-		{1253779, "PRIVATE"}, -- Spectral Decay
-		{1253844, "PRIVATE"}, -- Withering Soul
-		{1254043, "PRIVATE"}, -- Eternal Suffering
-		{1254175, "PRIVATE"}, -- Cries of the Fallen
-		{1255629, "PRIVATE"}, -- Spectral Residue
-		{1266188, "PRIVATE"}, -- Shadow Realm
 	}
 end
 
@@ -130,8 +128,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:SpiritbreakerTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1251023), spiritbreakerCount)
+function mod:SpiritbreakerTimeline(eventInfo) -- Tank Hit
+	local barText = CL.count:format(self:GetRename(1251023), spiritbreakerCount)
 	self:CDBar(1251023, eventInfo.duration, barText, nil, eventInfo.id)
 	spiritbreakerCount = spiritbreakerCount + 1
 	return {
@@ -144,29 +142,31 @@ function mod:SpiritbreakerTimeline(eventInfo)
 	}
 end
 
-function mod:CrushSoulsTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1252676), crushSoulsCount)
+function mod:CrushSoulsTimeline(eventInfo) -- Totems / Leap
+	local barText = CL.count:format(self:GetRename(1252676), crushSoulsCount)
 	self:CDBar(1252676, eventInfo.duration, barText, nil, eventInfo.id)
+	local msgText = CL.count:format(self:GetRename(1252676, 2), crushSoulsCount)
 	crushSoulsCount = crushSoulsCount + 1
 	return {
 		msg = barText,
 		key = 1252676,
 		callback = function()
-			self:Message(1252676, "orange", barText)
+			self:PersonalMessageFromBlizzMessage(1252676, 4.5, false, self:GetRename(1252676, 3))
+			self:Message(1252676, "orange", msgText)
 			self:PlaySound(1252676, "alarm")
 		end
 	}
 end
 
-function mod:SoulrendingRoarTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1253788), soulrendingRoarCount)
+function mod:SoulrendingRoarTimeline(eventInfo) -- Intermission
+	local barText = CL.count:format(self:GetRename(1253788), soulrendingRoarCount)
 	self:CDBar(1253788, eventInfo.duration, barText, nil, eventInfo.id)
 	soulrendingRoarCount = soulrendingRoarCount + 1
 	return {
 		msg = barText,
 		key = 1253788,
 		cancelCallback = function()
-			self:Message(1253788, "yellow", barText)
+			self:Message(1253788, "cyan", barText)
 			self:PlaySound(1253788, "long")
 		end
 	}

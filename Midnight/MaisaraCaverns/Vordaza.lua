@@ -9,11 +9,10 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 mod:SetPrivateAuraSounds({
 	{1251568, sound = "none"}, -- Drain Soul
-	{1251775, sound = "warning"}, -- Final Pursuit
-	{1251813, sound = "info"}, -- Lingering Dread
-	{1251833, sound = "underyou"}, -- Soulrot
-	{1252130, sound = "alarm"}, -- Unmake
-	{1266706, sound = "info"}, -- Haunting Remains
+	{1251775, sound = "warning", note = CL.other:format(CL.fixate, CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(-33734), CL.add)))}, -- Final Pursuit
+	{1251833, sound = "underyou", note = CL.debuffUnderYouNote}, -- Soulrot
+	{1252130, sound = "underyou", note = CL.debuffUnderYouNote}, -- Unmake
+	{1266706, sound = "warning", note = CL.debuffWalkIntoObjectNote:format(CL.extra:format(mod:SpellName(-33734), CL.add))}, -- Haunting Remains
 })
 
 --------------------------------------------------------------------------------
@@ -28,6 +27,18 @@ local count33_5 = 1
 local activeBars = {}
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[1251554] = {CL.tank_hit}, -- Drain Soul (Tank Hit)
+	[1251204] = {CL.adds}, -- Wrest Phantoms (Adds)
+	[1252054] = {CL.frontal}, -- Unmake (Frontal)
+	[1250708] = {CL.shield, CL.onboss:format(CL.shield), notes = {CL.timerNote, CL.messageNote}, original = {1250708, CL.onboss:format(mod:SpellName(1250708))}}, -- Necrotic Convergence
+	[1251775] = {CL.you:format(CL.fixate), notes = {CL.messageOnYouNote}, original = {CL.you:format(mod:SpellName(1251775))}}, -- Final Pursuit (Fixate)
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -37,12 +48,7 @@ function mod:GetOptions()
 		1251204, -- Wrest Phantoms
 		1252054, -- Unmake
 		1250708, -- Necrotic Convergence
-		1251775, -- Final Pursuit
-		{1251568, "PRIVATE"}, -- Drain Soul
-		{1251813, "PRIVATE"}, -- Lingering Dread
-		{1251833, "PRIVATE"}, -- Soulrot
-		{1252130, "PRIVATE"}, -- Unmake
-		{1266706, "PRIVATE"}, -- Haunting Remains
+		{1251775, "ME_ONLY_EMPHASIZE"}, -- Final Pursuit
 	}
 end
 
@@ -129,8 +135,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:DrainSoulTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1251554), drainSoulCount)
+function mod:DrainSoulTimeline(eventInfo) -- Tank Hit
+	local barText = CL.count:format(self:GetRename(1251554), drainSoulCount)
 	self:CDBar(1251554, eventInfo.duration, barText, nil, eventInfo.id)
 	drainSoulCount = drainSoulCount + 1
 	return {
@@ -143,23 +149,23 @@ function mod:DrainSoulTimeline(eventInfo)
 	}
 end
 
-function mod:WrestPhantomsTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1251204), wrestPhantomsCount)
+function mod:WrestPhantomsTimeline(eventInfo) -- Adds
+	local barText = CL.count:format(self:GetRename(1251204), wrestPhantomsCount)
 	self:CDBar(1251204, eventInfo.duration, barText, nil, eventInfo.id)
 	wrestPhantomsCount = wrestPhantomsCount + 1
 	return {
 		msg = barText,
 		key = 1251204,
 		callback = function()
-			self:PersonalMessageFromBlizzMessage(1251775, 6) -- Final Pursuit
+			self:PersonalMessageFromBlizzMessage(1251775, 8, false, self:GetRename(1251204)) -- Final Pursuit (Fixate)
 			self:Message(1251204, "cyan", barText)
 			self:PlaySound(1251204, "info")
 		end
 	}
 end
 
-function mod:UnmakeTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1252054), unmakeCount)
+function mod:UnmakeTimeline(eventInfo) -- Frontal
+	local barText = CL.count:format(self:GetRename(1252054), unmakeCount)
 	self:CDBar(1252054, eventInfo.duration, barText, nil, eventInfo.id)
 	unmakeCount = unmakeCount + 1
 	return {
@@ -172,11 +178,11 @@ function mod:UnmakeTimeline(eventInfo)
 	}
 end
 
-function mod:NecroticConvergenceTimeline(eventInfo)
+function mod:NecroticConvergenceTimeline(eventInfo) -- Shield
 	if self:GetStage() ~= 1 then
 		self:SetStage(1)
 	end
-	local barText = CL.count:format(self:SpellName(1250708), necroticConvergenceCount)
+	local barText = CL.count:format(self:GetRename(1250708), necroticConvergenceCount)
 	self:CDBar(1250708, eventInfo.duration, barText, nil, eventInfo.id)
 	necroticConvergenceCount = necroticConvergenceCount + 1
 	return {

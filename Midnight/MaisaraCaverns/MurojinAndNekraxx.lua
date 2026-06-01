@@ -7,13 +7,12 @@ if not mod then return end
 mod:SetEncounterID(3212)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1243741, sound = "warning"}, -- Freezing Trap
-	{1243752, sound = "underyou"}, -- Icy Slick
-	{1246666, sound = "alert"}, -- Infected Pinions
-	{1249478, sound = "warning"}, -- Carrion Swoop
-	{1260643, sound = "alarm"}, -- Barrage
-	{1260709, sound = "alert"}, -- Vilebranch Sting
-	{1266488, sound = "alarm"}, -- Open Wound
+	{1243741, sound = "none", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1266480))}, -- Freezing Trap
+	{1243752, sound = "underyou", note = CL.debuffUnderYouNote}, -- Icy Slick
+	{1246666, sound = "none", note = CL.disease}, -- Infected Pinions
+	{1249478, sound = "warning", note = CL.charge}, -- Carrion Swoop
+	{1260643, sound = "warning"}, -- Barrage
+	{1266488, sound = "alert", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1266480), CL.tank_knockback))}, -- Open Wound
 })
 
 --------------------------------------------------------------------------------
@@ -36,25 +35,39 @@ local canceledBarsCount = 0
 local backupBars = {}
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	-- Muro'jin
+	[1260731] = {CL.traps}, -- Freezing Trap (Traps)
+	[1260643] = {1260643}, -- Barrage
+	[1266480] = {CL.tank_knockback}, -- Flanking Spear (Tank Knockback)
+	-- Nekraxx
+	[1249479] = {CL.charge}, -- Carrion Swoop (Charge)
+	[1243900] = {CL.dodge}, -- Fetid Quillstorm (Dodge)
+	[1246666] = {CL.disease}, -- Infected Pinions (Disease)
+	[1249947] = {1249947}, -- Bestial Wrath
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
 function mod:GetOptions()
 	return {
-		1266480, -- Flanking Spear
-		1246666, -- Infected Pinions
+		-- Muro'jin
 		1260731, -- Freezing Trap
-		1243900, -- Fetid Quillstorm
-		1260643, -- Barrage
+		{1260643, "ME_ONLY_EMPHASIZE"}, -- Barrage
+		1266480, -- Flanking Spear
+		-- Nekraxx
 		1249479, -- Carrion Swoop
+		1243900, -- Fetid Quillstorm
+		1246666, -- Infected Pinions
 		1249947, -- Bestial Wrath
-		{1243741, "PRIVATE"}, -- Freezing Trap
-		{1243752, "PRIVATE"}, -- Icy Slick
-		--{1246666, "PRIVATE"}, -- Infected Pinions
-		{1249478, "PRIVATE"}, -- Carrion Swoop
-		--{1260643, "PRIVATE"}, -- Barrage
-		{1260709, "PRIVATE"}, -- Vilebranch Sting
-		{1266488, "PRIVATE"}, -- Open Wound
+	},{
+		[1260731] = -33932, -- Muro'jin
+		[1249479] = -33935, -- Nekraxx
 	}
 end
 
@@ -102,19 +115,19 @@ end
 
 function mod:GetClosestSpell(duration)
 	local closestKey = nil
-    local minDiff = math.huge
+	local minDiff = math.huge
 	local threshold = 1 -- only match if within 1 second of expected duration (usually within 0.03)
-    for key, originalExpirationTime in pairs(canceledBars) do
-        local diff = math.abs(originalExpirationTime - lastCanceledTime - duration + 3) -- Blizz adds 3s
-        if diff < minDiff and diff <= threshold then
-            minDiff = diff
-            closestKey = key
-        end
-    end
+	for key, originalExpirationTime in pairs(canceledBars) do
+		local diff = math.abs(originalExpirationTime - lastCanceledTime - duration + 3) -- Blizz adds 3s
+		if diff < minDiff and diff <= threshold then
+			minDiff = diff
+			closestKey = key
+		end
+	end
 	if closestKey then
-        canceledBars[closestKey] = nil
-    end
-    return closestKey
+		canceledBars[closestKey] = nil
+	end
+	return closestKey
 end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
@@ -259,8 +272,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:FlankingSpearTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1266480), flankingSpearCount)
+function mod:FlankingSpearTimeline(eventInfo) -- Tank Knockback
+	local barText = CL.count:format(self:GetRename(1266480), flankingSpearCount)
 	self:CDBar(1266480, eventInfo.duration, barText, nil, eventInfo.id)
 	flankingSpearCount = flankingSpearCount + 1
 	return {
@@ -276,8 +289,8 @@ function mod:FlankingSpearTimeline(eventInfo)
 	}
 end
 
-function mod:InfectedPinionsTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1246666), infectedPinionsCount)
+function mod:InfectedPinionsTimeline(eventInfo) -- Disease
+	local barText = CL.count:format(self:GetRename(1246666), infectedPinionsCount)
 	self:CDBar(1246666, eventInfo.duration, barText, nil, eventInfo.id)
 	infectedPinionsCount = infectedPinionsCount + 1
 	return {
@@ -293,8 +306,8 @@ function mod:InfectedPinionsTimeline(eventInfo)
 	}
 end
 
-function mod:FreezingTrapTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1260731), freezingTrapCount)
+function mod:FreezingTrapTimeline(eventInfo) -- Traps
+	local barText = CL.count:format(self:GetRename(1260731), freezingTrapCount)
 	self:CDBar(1260731, eventInfo.duration, barText, nil, eventInfo.id)
 	freezingTrapCount = freezingTrapCount + 1
 	return {
@@ -310,16 +323,16 @@ function mod:FreezingTrapTimeline(eventInfo)
 	}
 end
 
-function mod:FetidQuillstormTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1243900), fetidQuillstormCount)
+function mod:FetidQuillstormTimeline(eventInfo) -- Dodge
+	local barText = CL.count:format(self:GetRename(1243900), fetidQuillstormCount)
 	self:CDBar(1243900, eventInfo.duration, barText, nil, eventInfo.id)
 	fetidQuillstormCount = fetidQuillstormCount + 1
 	return {
 		msg = barText,
 		key = 1243900,
 		callback = function()
-			self:Message(1243900, "red", barText)
-			self:PlaySound(1243900, "alarm")
+			self:Message(1243900, "yellow", barText)
+			self:PlaySound(1243900, "long")
 		end,
 		cancelCallback = function()
 			fetidQuillstormCount = fetidQuillstormCount - 1
@@ -327,16 +340,17 @@ function mod:FetidQuillstormTimeline(eventInfo)
 	}
 end
 
-function mod:BarrageTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1260643), barrageCount)
+function mod:BarrageTimeline(eventInfo) -- Barrage / Frontal Cone
+	local barText = CL.count:format(self:GetRename(1260643), barrageCount)
 	self:CDBar(1260643, eventInfo.duration, barText, nil, eventInfo.id)
 	barrageCount = barrageCount + 1
 	return {
 		msg = barText,
 		key = 1260643,
 		callback = function()
+			self:PersonalMessageFromBlizzMessage(1260643, 1, false, self:GetRename(1260643, 2))
 			self:Message(1260643, "yellow", barText)
-			self:PlaySound(1260643, "info")
+			--self:PlaySound(1260643, "warning") -- PA sound
 		end,
 		cancelCallback = function()
 			barrageCount = barrageCount - 1
@@ -344,8 +358,8 @@ function mod:BarrageTimeline(eventInfo)
 	}
 end
 
-function mod:CarrionSwoopTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1249479), carrionSwoopCount)
+function mod:CarrionSwoopTimeline(eventInfo) -- Charge
+	local barText = CL.count:format(self:GetRename(1249479), carrionSwoopCount)
 	self:CDBar(1249479, eventInfo.duration, barText, nil, eventInfo.id)
 	carrionSwoopCount = carrionSwoopCount + 1
 	return {
@@ -353,7 +367,7 @@ function mod:CarrionSwoopTimeline(eventInfo)
 		key = 1249479,
 		callback = function()
 			self:TargetMessageFromBlizzMessage(1249479, 1, "red")
-			self:PlaySound(1249479, "alert")
+			--self:PlaySound(1249479, "warning") -- PA sound
 		end,
 		cancelCallback = function()
 			carrionSwoopCount = carrionSwoopCount - 1
@@ -361,7 +375,7 @@ function mod:CarrionSwoopTimeline(eventInfo)
 	}
 end
 
-function mod:BestialWrath()
+function mod:BestialWrath() -- Bestial Wrath / Enrage
 	self:Message(1249947, "cyan")
 	self:PlaySound(1249947, "long")
 end
