@@ -157,7 +157,7 @@ function mod:WrestPhantomsTimeline(eventInfo) -- Adds
 		msg = barText,
 		key = 1251204,
 		callback = function()
-			self:PersonalMessageFromBlizzMessage(1251775, 8, false, self:GetRename(1251775)) -- Final Pursuit (Fixate)
+			self:PersonalMessageFromBlizzMessage(1251775, 9, false, self:GetRename(1251775)) -- Final Pursuit (Fixate)
 			self:Message(1251204, "cyan", barText)
 			self:PlaySound(1251204, "info")
 		end
