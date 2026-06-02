@@ -44,7 +44,7 @@ mod:SetRenames({
 function mod:GetOptions()
 	return {
 		1251023, -- Spiritbreaker
-		1252676, -- Crush Souls
+		{1252676, "ME_ONLY_EMPHASIZE"}, -- Crush Souls
 		1253788, -- Soulrending Roar
 	}
 end
