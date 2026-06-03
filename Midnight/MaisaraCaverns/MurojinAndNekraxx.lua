@@ -362,6 +362,8 @@ function mod:CarrionSwoopTimeline(eventInfo) -- Charge
 	local barText = CL.count:format(self:GetRename(1249479), carrionSwoopCount)
 	self:CDBar(1249479, eventInfo.duration, barText, nil, eventInfo.id)
 	carrionSwoopCount = carrionSwoopCount + 1
+	-- Blizz message can sometimes happen prior to the callback triggering
+	local timer = self:ScheduleTimer(function() self:TargetMessageFromBlizzMessage(1249479, 3, "red") end, eventInfo.duration-1)
 	return {
 		msg = barText,
 		key = 1249479,
@@ -371,6 +373,7 @@ function mod:CarrionSwoopTimeline(eventInfo) -- Charge
 		end,
 		cancelCallback = function()
 			carrionSwoopCount = carrionSwoopCount - 1
+			self:CancelTimer(timer)
 		end
 	}
 end
