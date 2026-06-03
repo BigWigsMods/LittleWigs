@@ -245,7 +245,7 @@ function mod:PhaseDashTimeline(eventInfo) -- Clear Bombs / Spread
 		msg = barText,
 		key = 1280065,
 		callback = function()
-			self:Error("Phase Dash now has a callback")
+			--self:Error("Phase Dash now has a callback")
 		end
 	}
 end

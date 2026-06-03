@@ -219,7 +219,7 @@ function mod:ShadeShiftTimeline(eventInfo) -- Adds / Shades of Krick
 			self:PlaySound(1264027, "long")
 		end,
 		callback = function()
-			self:Error("Shade Shift now has a callback")
+			--self:Error("Shade Shift now has a callback")
 		end
 	}
 end
