@@ -218,22 +218,27 @@ function mod:LeylineArrayTimeline(eventInfo) -- Beams
 	}
 end
 
-function mod:RefluxChargeTimeline(eventInfo) -- Reflux Charge / Bomb
-	expiringBars[1251772] = GetTime() + eventInfo.duration
-	if refluxChargeRemaining == 0 then return end
-	refluxChargeRemaining = refluxChargeRemaining - 1
-	local barText = CL.count:format(self:GetRename(1251772), refluxChargeCount)
-	self:CDBar(1251772, eventInfo.duration, barText, nil, eventInfo.id)
-	refluxChargeCount = refluxChargeCount + 1
-	return {
-		msg = barText,
-		key = 1251772,
-		callback = function()
-			self:Message(1251772, "red", barText)
-			self:PersonalMessageFromBlizzMessage(1251772, 1, false, self:GetRename(1251772, 2))
-			--self:PlaySound(1251772, "warning") -- PA sound
-		end
-	}
+do
+	local function IfOnMe(self)
+		self:PlaySound(1251772, "warning", nil, self:UnitName("player")) -- PA exists, but doesn't currently play a sound? Aura seems to apply to you with 5 invisible stacks according to WCL, maybe related.
+	end
+	function mod:RefluxChargeTimeline(eventInfo) -- Reflux Charge / Bomb
+		expiringBars[1251772] = GetTime() + eventInfo.duration
+		if refluxChargeRemaining == 0 then return end
+		refluxChargeRemaining = refluxChargeRemaining - 1
+		local barText = CL.count:format(self:GetRename(1251772), refluxChargeCount)
+		self:CDBar(1251772, eventInfo.duration, barText, nil, eventInfo.id)
+		refluxChargeCount = refluxChargeCount + 1
+		return {
+			msg = barText,
+			key = 1251772,
+			callback = function()
+				self:Message(1251772, "red", barText)
+				self:PersonalMessageFromBlizzMessage(1251772, 1, false, self:GetRename(1251772, 2), nil, nil, IfOnMe)
+				--self:PlaySound(1251772, "warning") -- PA sound
+			end
+		}
+	end
 end
 
 function mod:FluxCollapseTimeline(eventInfo) -- Dodge
