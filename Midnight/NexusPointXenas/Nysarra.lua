@@ -166,8 +166,10 @@ function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
 	local barInfo = activeBars[eventID]
 	if barInfo then
 		self:StopBar(barInfo.msg)
-		if not self:IsWiping() and barInfo.cancelCallback then
-			barInfo.cancelCallback()
+		-- Adds + Weakened | Sometimes these timers last beyond the 6 second max queue, treat them as successful casts
+		if barInfo.key == 1252703 or barInfo.key == 1264439 then
+			barInfo.callback()
+		else
 			self:Error(barInfo.msg .. " was removed early")
 		end
 		activeBars[eventID] = nil
