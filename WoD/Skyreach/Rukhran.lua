@@ -192,7 +192,7 @@ end
 function mod:UNIT_SPELLCAST_START(event, unit)
 	self:UnregisterUnitEvent(event, unit)
 	if self:ShouldShowBars() then
-		self:CastBar(159382, 8, 2) -- 5s cast + 3s channel
+		self:CastBar(159382, 5, 2) -- 5s cast, into a 3s channel
 	end
 end
 
