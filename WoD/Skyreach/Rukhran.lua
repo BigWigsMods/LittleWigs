@@ -64,7 +64,11 @@ if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[1253519] = {CL.tank_hit}, -- Burning Claws (Tank Hit)
 		[1253510] = {CL.add}, -- Sunbreak (Add)
-		[159382] = {CL.quills, CL.cast:format(CL.quills), notes = {CL.generalNote, CL.castTimerNote}, original = {159382, CL.cast:format(mod:SpellName(159382))}}, -- Searing Quills (Quills)
+		[159382] = { -- Searing Quills (Quills)
+			CL.quills, CL.cast:format(CL.quills), CL.quills,
+			notes = {CL.generalNote, CL.castTimerNote, CL.messageDuringCastNote},
+			original = {159382, CL.cast:format(mod:SpellName(159382)), 159382}
+		},
 	})
 end
 
@@ -189,8 +193,19 @@ function mod:SunbreakTimeline(eventInfo) -- Add
 	}
 end
 
+function mod:UNIT_SPELLCAST_CHANNEL_START(event, unit)
+	self:UnregisterUnitEvent(event, unit)
+	if self:ShouldShowBars() then
+		self:ScheduleTimer(function() self:Message(159382, "orange", CL.count_amount:format(self:GetRename(159382, 3), 1, 4)) end, 0.5)
+		self:ScheduleTimer(function() self:Message(159382, "orange", CL.count_amount:format(self:GetRename(159382, 3), 2, 4)) end, 1.5)
+		self:ScheduleTimer(function() self:Message(159382, "orange", CL.count_amount:format(self:GetRename(159382, 3), 3, 4)) end, 2.5)
+		self:ScheduleTimer(function() self:Message(159382, "orange", CL.count_amount:format(self:GetRename(159382, 3), 4, 4)) end, 3.5)
+	end
+end
+
 function mod:UNIT_SPELLCAST_START(event, unit)
 	self:UnregisterUnitEvent(event, unit)
+	self:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", nil, unit)
 	if self:ShouldShowBars() then
 		self:CastBar(159382, 5, 2) -- 5s cast, into a 3s channel
 	end
