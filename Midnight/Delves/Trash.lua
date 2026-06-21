@@ -55,6 +55,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(136317) then -- Atal'Aman, start Delve (Torundo The Grizzled)
 			-- 136317:|cFF0000FF(Delve)|r I'll get rid of these totems!
 			self:SelectGossipID(136317)
+		elseif self:GetGossipID(138496) then -- Atal'Aman, teleport to boss (Mojo)
+			-- 138496:Help me reach Spiritflayer Jin'Ma.
+			self:SelectGossipID(138496)
 		elseif self:GetGossipID(135708) then -- Collegiate Calamity, start Delve (Bloomkeeper Thornflare)
 			-- 135708:|cFF0000FF(Delve)|r I'll get rid of these weeds!
 			self:SelectGossipID(135708)
