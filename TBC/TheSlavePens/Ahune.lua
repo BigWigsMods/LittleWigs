@@ -11,6 +11,9 @@ mod:RegisterEnableMob(
 	25697 -- Luma Skymother
 )
 mod:SetStage(1)
+if mod:Retail() then
+	mod:SetEncounterID(3317)
+end
 mod:SetAllowWin(true)
 
 --------------------------------------------------------------------------------
@@ -63,9 +66,14 @@ end
 --
 
 function mod:GOSSIP_SHOW()
-	if self:GetOption(autotalk) and self:GetGossipID(36888) then
-		-- 36888:Disturb the stone and summon Lord Ahune.
-		self:SelectGossipID(36888)
+	if self:GetOption(autotalk) then
+		if self:GetGossipID(36888) then -- Classic
+			-- 36888:Disturb the stone and summon Lord Ahune.
+			self:SelectGossipID(36888)
+		elseif self:GetGossipID(135555) then -- Retail
+			-- 135555:Disturb the stone and summon Lord Ahune.
+			self:SelectGossipID(135555)
+		end
 	end
 end
 
