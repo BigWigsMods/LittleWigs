@@ -1405,10 +1405,10 @@ BigWigs:AddSounds("Saprish", {
 	[245873] = "info",
 	[247206] = "alarm",
 	[247245] = "alert",
-	[248831] = "warning",
+	[248831] = {"alarm","warning"},
 	[1248219] = "info",
 	[1263523] = "long",
-	[1280065] = "alarm",
+	[1280065] = "warning",
 })
 
 BigWigs:AddColors("Viceroy Nezhar", {
@@ -1450,8 +1450,8 @@ BigWigs:AddColors("L'ura", {
 	[1265421] = "red",
 	[1265463] = {"blue","orange"},
 	[1265689] = "red",
-	[1266001] = "green",
-	[1266003] = "yellow",
+	[1265999] = "green",
+	[1266003] = "cyan",
 })
 
 BigWigs:AddSounds("L'ura", {
@@ -1464,7 +1464,7 @@ BigWigs:AddSounds("L'ura", {
 	[1264196] = "alert",
 	[1265421] = "info",
 	[1265689] = "warning",
-	[1266001] = "long",
+	[1265999] = "long",
 	[1266003] = "info",
 })
 

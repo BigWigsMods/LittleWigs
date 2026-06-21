@@ -268,19 +268,18 @@ BigWigs:AddSounds("Sjonnir The Ironshaper", {
 BigWigs:AddColors("Forgemaster Garfrost", {
 	[68789] = "red",
 	[70381] = {"blue","yellow"},
-	[1261299] = "red",
+	[1261299] = {"blue","yellow"},
 	[1261546] = {"blue","purple"},
 	[1261847] = "orange",
-	[1262029] = "yellow",
+	[1262029] = "red",
 })
 
 BigWigs:AddSounds("Forgemaster Garfrost", {
 	[68789] = "alarm",
 	[70381] = "alert",
-	[1261299] = "alarm",
-	[1261546] = {"info","warning"},
+	[1261546] = "info",
 	[1261847] = "alert",
-	[1262029] = "warning",
+	[1262029] = "long",
 })
 
 BigWigs:AddColors("Ick & Krick", {
@@ -291,14 +290,15 @@ BigWigs:AddColors("Ick & Krick", {
 	[1264027] = "cyan",
 	[1264287] = "purple",
 	[1264336] = "orange",
-	[1264363] = "red",
+	[1264363] = "yellow",
+	[1264453] = "blue",
 })
 
 BigWigs:AddSounds("Ick & Krick", {
 	[68987] = "alert",
 	[70274] = "underyou",
 	[1264027] = "long",
-	[1264287] = {"alarm","info"},
+	[1264287] = {"info","warning"},
 	[1264336] = "alarm",
 	[1264363] = "alert",
 })
@@ -307,11 +307,11 @@ BigWigs:AddColors("Scourgelord Tyrannus", {
 	[69167] = "red",
 	[69172] = {"blue","yellow"},
 	[69275] = {"blue","red"},
-	[1262582] = "yellow",
-	[1262745] = "orange",
+	[1262582] = "purple",
+	[1262745] = {"blue","orange"},
 	[1263406] = "cyan",
 	[1263756] = "red",
-	[1276648] = "cyan",
+	[1276648] = "yellow",
 	[1276948] = "red",
 })
 
@@ -319,7 +319,6 @@ BigWigs:AddSounds("Scourgelord Tyrannus", {
 	[69172] = "alert",
 	[69275] = "alarm",
 	[1262582] = "alert",
-	[1262745] = "alarm",
 	[1263406] = "long",
 	[1263756] = "alarm",
 	[1276648] = "long",

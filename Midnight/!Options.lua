@@ -155,7 +155,7 @@ BigWigs:AddSounds("Den of Nalorakk Trash", {
 })
 
 BigWigs:AddColors("Arcanotron Custos", {
-	[474345] = {"cyan","green"},
+	[474345] = "cyan",
 	[474496] = "purple",
 	[1214032] = "yellow",
 	[1214081] = "orange",
@@ -178,52 +178,48 @@ BigWigs:AddColors("Seranel Sunlash", {
 BigWigs:AddSounds("Seranel Sunlash", {
 	[1224903] = "alarm",
 	[1225193] = "warning",
-	[1225787] = "alert",
 	[1248689] = "info",
 })
 
 BigWigs:AddColors("Gemellus", {
 	[1223847] = "cyan",
-	[1224299] = {"blue","orange"},
-	[1253709] = {"blue","red"},
+	[1224299] = "blue",
+	[1253709] = "blue",
 	[1284954] = "yellow",
 })
 
 BigWigs:AddSounds("Gemellus", {
 	[1223847] = "info",
-	[1224299] = "alert",
-	[1253709] = "info",
+	[1224299] = "warning",
 	[1284954] = "alert",
 })
 
 BigWigs:AddColors("Degentrius", {
 	[1215087] = "red",
-	[1215897] = {"blue","yellow"},
+	[1215897] = "blue",
 	[1280113] = "purple",
 })
 
 BigWigs:AddSounds("Degentrius", {
 	[1215087] = "info",
-	[1215897] = "alert",
+	[1215897] = "warning",
 	[1280113] = "alarm",
 })
 
 BigWigs:AddColors("Muro'jin and Nekraxx", {
-	[1243900] = "red",
+	[1243900] = "yellow",
 	[1246666] = "yellow",
 	[1249479] = "red",
 	[1249947] = "cyan",
-	[1260643] = "yellow",
+	[1260643] = {"blue","yellow"},
 	[1260731] = "orange",
 	[1266480] = "purple",
 })
 
 BigWigs:AddSounds("Muro'jin and Nekraxx", {
-	[1243900] = "alarm",
+	[1243900] = "long",
 	[1246666] = "alert",
-	[1249479] = "alert",
 	[1249947] = "long",
-	[1260643] = "info",
 	[1260731] = "alarm",
 	[1266480] = "alert",
 })
@@ -245,8 +241,8 @@ BigWigs:AddSounds("Vordaza", {
 
 BigWigs:AddColors("Rak'tul, Vessel of Souls", {
 	[1251023] = "purple",
-	[1252676] = "orange",
-	[1253788] = "yellow",
+	[1252676] = {"blue","orange"},
+	[1253788] = "cyan",
 })
 
 BigWigs:AddSounds("Rak'tul, Vessel of Souls", {
@@ -311,22 +307,21 @@ BigWigs:AddColors("Chief Corewright Kasreth", {
 })
 
 BigWigs:AddSounds("Chief Corewright Kasreth", {
-	[1251579] = "alert",
-	[1251772] = "info",
+	[1251579] = "info",
+	[1251772] = "warning",
 	[1257509] = "long",
 	[1264048] = "alarm",
 })
 
 BigWigs:AddColors("Corewarden Nysarra", {
 	[1247937] = "purple",
-	[1249014] = "orange",
+	[1249014] = {"blue","orange"},
 	[1252703] = "cyan",
 	[1264439] = "yellow",
 })
 
 BigWigs:AddSounds("Corewarden Nysarra", {
-	[1247937] = "alert",
-	[1249014] = "alert",
+	[1247937] = "alarm",
 	[1252703] = "info",
 	[1264439] = "long",
 })
@@ -334,12 +329,12 @@ BigWigs:AddSounds("Corewarden Nysarra", {
 BigWigs:AddColors("Lothraxion", {
 	[1253855] = {"blue","yellow"},
 	[1253950] = "purple",
-	[1255531] = "orange",
+	[1255531] = "red",
 	[1257595] = "cyan",
 })
 
 BigWigs:AddSounds("Lothraxion", {
-	[1253855] = "alarm",
+	[1253855] = "warning",
 	[1253950] = "alert",
 	[1255531] = "alarm",
 	[1257595] = "long",
