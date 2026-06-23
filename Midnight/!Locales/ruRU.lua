@@ -2,7 +2,7 @@
 
 local L = BigWigs:NewBossLocale("Spiritflayer Jin'ma", "ruRU")
 if L then
-	L.spiritflayer_jinma = "Spiritflayer Jin'ma"
+	L.spiritflayer_jinma = "Свежеватель духов Джин'Ма"
 end
 
 -- Delves: Collegiate Calamity
