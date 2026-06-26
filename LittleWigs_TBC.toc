@@ -1,4 +1,4 @@
-## Interface: 20505
+## Interface: 20505, 20506
 
 ## Title: LittleWigs
 ## Notes: Boss warnings for 5-man dungeons & scenarios.
