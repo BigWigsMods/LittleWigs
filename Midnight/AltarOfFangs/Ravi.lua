@@ -15,6 +15,7 @@ mod:SetStage(1)
 --
 
 local tripleShotCount = 1
+local freshMeatCount = 1
 local ssscavengingCount = 1
 --local feedingFrenzyCount = 1
 local regurgitateCount = 1
@@ -29,6 +30,7 @@ local backupBars = {}
 
 mod:SetRenames({
 	[1296220] = {1296220}, -- Triple Shot
+	[1307703] = {1307703}, -- Fresh Meat
 	[1296216] = {1296216}, -- Ssscavenging
 	--[1307765] = {1307765}, -- Feeding Frenzy
 	[1296050] = {1296050}, -- Regurgitate
@@ -42,6 +44,7 @@ mod:SetRenames({
 function mod:GetOptions()
 	return {
 		1296220, -- Triple Shot
+		1307703, -- Fresh Meat
 		1296216, -- Ssscavenging
 		--1307765, -- Feeding Frenzy
 		1296050, -- Regurgitate
@@ -52,6 +55,7 @@ end
 mod:UseCustomTimers(true)
 function mod:OnEncounterStart()
 	tripleShotCount = 1
+	freshMeatCount = 1
 	ssscavengingCount = 1
 	--feedingFrenzyCount = 1
 	regurgitateCount = 1
@@ -64,10 +68,13 @@ function mod:OnEncounterStart()
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+		self:SendMessage("BigWigs_BlockBlizzMessages")
+		self:RegisterEvent("ENCOUNTER_WARNING")
 	end
 end
 
 function mod:OnBossDisable()
+	self:SendMessage("BigWigs_AllowBlizzMessages")
 	for eventID in next, backupBars do
 		self:SendMessage("BigWigs_StopBar", nil, nil, eventID)
 	end
@@ -154,6 +161,12 @@ end
 -- Timeline Ability Handlers
 --
 
+function mod:ENCOUNTER_WARNING() -- Fresh Meat
+	self:Message(1307703, "purple", CL.count:format(self:GetRename(1307703), freshMeatCount))
+	freshMeatCount = freshMeatCount + 1
+	self:PlaySound(1307703, "info")
+end
+
 function mod:TripleShotTimeline(eventInfo) -- Triple Shot
 	if self:GetStage() == 2 then
 		self:SetStage(1)
@@ -190,8 +203,10 @@ do
 			self:SetStage(2)
 			self:Message(1296216, "cyan", barText)
 			-- if there's a CHAT_MSG_MONSTER_EMOTE within a few seconds, it means the mechanic was (probably) failed.
-			-- TODO should be ENCOUNTER_WARNING?
+			-- this should probably be ENCOUNTER_WARNING. (if it's changed, our Fresh Meat handler will need to be adjusted)
 			--self:RegisterEvent("CHAT_MSG_MONSTER_EMOTE")
+			-- to make this reliable enough maybe we could look for a Ssscavenging (here) -> UNIT_SPELLCAST_CHANNEL_START[boss1] -> CHAT_MSG_MONSTER_EMOTE combo
+			-- in the non-fail case the only thing missing is the CHAT_MSG_MONSTER_EMOTE
 			self:PlaySound(1296216, "long")
 		end, eventInfo.duration)
 		return {
@@ -201,7 +216,10 @@ do
 				self:Error("Ssscavenging now has a callback")
 			end,
 			cancelCallback = function()
-				self:CancelTimer(timer)
+				if timer then
+					self:CancelTimer(timer)
+					timer = nil
+				end
 			end
 		}
 	end

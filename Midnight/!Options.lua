@@ -4,6 +4,7 @@ BigWigs:AddColors("Rav'i", {
 	[1296050] = "orange",
 	[1296216] = "cyan",
 	[1296220] = "yellow",
+	[1307703] = "purple",
 	[1307894] = "red",
 })
 
@@ -11,6 +12,7 @@ BigWigs:AddSounds("Rav'i", {
 	[1296050] = "alarm",
 	[1296216] = "long",
 	[1296220] = "alert",
+	[1307703] = "info",
 	[1307894] = "alarm",
 })
 
