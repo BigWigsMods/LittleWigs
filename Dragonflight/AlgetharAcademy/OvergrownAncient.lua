@@ -196,7 +196,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
 end
 
 --------------------------------------------------------------------------------
--- Timeline Event Handlers
+-- Timeline Ability Handlers
 --
 
 function mod:GerminateTimeline(eventInfo) -- Small Adds / Dodge
