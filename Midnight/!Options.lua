@@ -322,7 +322,8 @@ BigWigs:AddSounds("Kystia Manaheart", {
 BigWigs:AddColors("Zaen Bladesorrow", {
 	[474478] = "red",
 	[474765] = "yellow",
-	[1214357] = "orange",
+	[1214357] = {"blue","orange"},
+	[1218347] = "cyan",
 	[1222795] = "purple",
 })
 

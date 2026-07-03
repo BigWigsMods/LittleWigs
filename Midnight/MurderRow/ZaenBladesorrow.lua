@@ -22,6 +22,19 @@ local fireBombCount = 1
 local envenomCount = 1
 local murderInARowCount = 1
 local activeBars = {}
+local backupBars = {}
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[474478] = {474478},  -- Killing Spree
+	[474765] = {474765},  -- Same-Day Delivery
+	[1214357] = {1214357, CL.you:format(mod:SpellName(1214357)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1214357, CL.you:format(mod:SpellName(1214357))}}, -- Fire Bomb
+	[1222795] = {1222795}, -- Envenom
+	[1218347] = {1218347}, -- Murder in a Row
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -34,9 +47,6 @@ function mod:GetOptions()
 		1214357, -- Fire Bomb
 		1222795, -- Envenom
 		1218347, -- Murder in a Row
-		{474515, "PRIVATE"}, -- Heartstop Poison
-		--{474545, "PRIVATE"}, -- Murder in a Row
-		--{1214352, "PRIVATE"}, -- Fire Bomb
 	}
 end
 
@@ -48,10 +58,17 @@ function mod:OnEncounterStart()
 	envenomCount = 1
 	murderInARowCount = 1
 	activeBars = {}
+	backupBars = {}
 	if self:ShouldShowBars() then
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+	end
+end
+
+function mod:OnBossDisable()
+	for eventID in next, backupBars do
+		self:SendMessage("BigWigs_StopBar", nil, nil, eventID)
 	end
 end
 
@@ -75,6 +92,12 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		barInfo = self:MurderInARowTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
+		backupBars[eventInfo.id] = true
+		self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
+		local state = C_EncounterTimeline.GetEventState(eventInfo.id)
+		if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
+			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
+		end
 	end
 	if barInfo then
 		activeBars[eventInfo.id] = barInfo
@@ -99,6 +122,15 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 			self:StopBar(barInfo.msg)
 			activeBars[eventID] = nil
 		end
+	elseif backupBars[eventID] then
+		local newState = C_EncounterTimeline.GetEventState(eventID)
+		if newState == 0 then -- Enum.EncounterTimelineEventState.Active
+			self:SendMessage("BigWigs_ResumeBar", nil, nil, eventID)
+		elseif newState == 1 then -- Enum.EncounterTimelineEventState.Paused
+			self:SendMessage("BigWigs_PauseBar", nil, nil, eventID)
+		else -- Canceled / Finished
+			self:SendMessage("BigWigs_StopBar", nil, nil, eventID)
+		end
 	end
 end
 
@@ -107,6 +139,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
 	if barInfo then
 		self:StopBar(barInfo.msg)
 		activeBars[eventID] = nil
+	elseif backupBars[eventID] then
+		backupBars[eventID] = nil
+		self:SendMessage("BigWigs_StopBar", nil, nil, eventID)
 	end
 end
 
@@ -114,8 +149,8 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:KillingSpreeTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(474478), killingSpreeCount)
+function mod:KillingSpreeTimeline(eventInfo) -- Killing Spree
+	local barText = CL.count:format(self:GetRename(474478), killingSpreeCount)
 	self:CDBar(474478, eventInfo.duration, barText, nil, eventInfo.id)
 	killingSpreeCount = killingSpreeCount + 1
 	return {
@@ -128,8 +163,8 @@ function mod:KillingSpreeTimeline(eventInfo)
 	}
 end
 
-function mod:SameDayDeliveryTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(474765), sameDayDeliveryCount)
+function mod:SameDayDeliveryTimeline(eventInfo) -- Same-Day Delivery
+	local barText = CL.count:format(self:GetRename(474765), sameDayDeliveryCount)
 	self:CDBar(474765, eventInfo.duration, barText, nil, eventInfo.id)
 	sameDayDeliveryCount = sameDayDeliveryCount + 1
 	return {
@@ -142,22 +177,23 @@ function mod:SameDayDeliveryTimeline(eventInfo)
 	}
 end
 
-function mod:FireBombTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1214357), fireBombCount)
+function mod:FireBombTimeline(eventInfo) -- Fire Bomb
+	local barText = CL.count:format(self:GetRename(1214357), fireBombCount)
 	self:CDBar(1214357, eventInfo.duration, barText, nil, eventInfo.id)
 	fireBombCount = fireBombCount + 1
 	return {
 		msg = barText,
 		key = 1214357,
 		callback = function()
+			self:PersonalMessageFromBlizzMessage(1214357, 1, false, self:GetRename(1214357, 2))
 			self:Message(1214357, "orange", barText)
 			self:PlaySound(1214357, "alarm")
 		end
 	}
 end
 
-function mod:EnvenomTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1222795), envenomCount)
+function mod:EnvenomTimeline(eventInfo) -- Envenom
+	local barText = CL.count:format(self:GetRename(1222795), envenomCount)
 	self:CDBar(1222795, eventInfo.duration, barText, nil, eventInfo.id)
 	envenomCount = envenomCount + 1
 	return {
@@ -170,16 +206,17 @@ function mod:EnvenomTimeline(eventInfo)
 	}
 end
 
-function mod:MurderInARowTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1218347), murderInARowCount)
+function mod:MurderInARowTimeline(eventInfo) -- Murder in a Row
+	local barText = CL.count:format(self:GetRename(1218347), murderInARowCount)
 	self:CDBar(1218347, eventInfo.duration, barText, nil, eventInfo.id)
 	murderInARowCount = murderInARowCount + 1
 	return {
 		msg = barText,
 		key = 1218347,
-		--callback = function() -- has Blizzard alert
-			--self:Message(1218347, "yellow", barText)
-			--self:PlaySound(1218347, "long")
-		--end
+		callback = function() -- has Blizzard alert
+			self:StopBlizzMessages(1)
+			self:Message(1218347, "cyan", barText)
+			-- private aura sound
+		end
 	}
 end
