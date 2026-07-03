@@ -353,9 +353,15 @@ BigWigs:AddSounds("Xathuux the Annihilator", {
 })
 
 BigWigs:AddColors("Lithiel Cinderfury", {
+	[474408] = "cyan",
+	[1218203] = "orange",
+	[1224478] = "red",
 })
 
 BigWigs:AddSounds("Lithiel Cinderfury", {
+	[474408] = "info",
+	[1218203] = "alarm",
+	[1224478] = "warning",
 })
 
 BigWigs:AddColors("Murder Row Trash", {
