@@ -444,9 +444,15 @@ BigWigs:AddSounds("Lightblossom Trinity", {
 })
 
 BigWigs:AddColors("Ikuzz the Light Hunter", {
+	[1236709] = "yellow",
+	[1236746] = "orange",
+	[1237090] = {"blue","red"},
 })
 
 BigWigs:AddSounds("Ikuzz the Light Hunter", {
+	[1236709] = "long",
+	[1236746] = "alert",
+	[1237090] = "warning",
 })
 
 BigWigs:AddColors("Lightwarden Ruia", {
