@@ -185,12 +185,14 @@ BigWigs:AddSounds("The Hoardmonger", {
 BigWigs:AddColors("Sentinel of Winter", {
 	[1235548] = "red",
 	[1235623] = "cyan",
+	[1235656] = "yellow",
 	[1235783] = "orange",
 })
 
 BigWigs:AddSounds("Sentinel of Winter", {
 	[1235548] = "alert",
 	[1235623] = "info",
+	[1235656] = "long",
 	[1235783] = "alarm",
 })
 

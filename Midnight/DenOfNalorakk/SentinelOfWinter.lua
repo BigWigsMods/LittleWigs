@@ -18,10 +18,10 @@ mod:SetPrivateAuraSounds({
 -- Locals
 --
 
-local shatteringFrostspikeCount = 1
 local glacialTormentCount = 1
 local ragingSquallCount = 1
-local eternalWinterCount = 1
+local shatteringFrostspikeCount = 1
+local frozenTempestCount = 1
 local activeBars = {}
 local activeBarBySpellId = {}
 local backupBars = {}
@@ -31,10 +31,10 @@ local backupBars = {}
 --
 
 mod:SetRenames({
-	[1235783] = {1235783}, -- Shattering Frostspike
 	[1235548] = {1235548}, -- Glacial Torment
 	[1235623] = {1235623}, -- Raging Squall
-	[1235656] = {1235656}, -- Eternal Winter
+	[1235783] = {1235783}, -- Shattering Frostspike
+	[1235656] = {1235656}, -- Frozen Tempest
 })
 
 --------------------------------------------------------------------------------
@@ -43,19 +43,19 @@ mod:SetRenames({
 
 function mod:GetOptions()
 	return {
-		1235783, -- Shattering Frostspike
 		1235548, -- Glacial Torment
 		1235623, -- Raging Squall
-		1235656, -- Eternal Winter
+		1235783, -- Shattering Frostspike
+		1235656, -- Frozen Tempest
 	}
 end
 
 mod:UseCustomTimers(true)
 function mod:OnEncounterStart()
-	shatteringFrostspikeCount = 1
 	glacialTormentCount = 1
 	ragingSquallCount = 1
-	eternalWinterCount = 1
+	shatteringFrostspikeCount = 1
+	frozenTempestCount = 1
 	activeBars = {}
 	activeBarBySpellId = {}
 	backupBars = {}
@@ -100,26 +100,50 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
-	if duration > 60 then return end -- filter placeholder bars
-	if duration == 7 then -- Shattering Frostspike
-		self:CancelBarForSpell(1235783)
-		barInfo = self:ShatteringFrostspikeTimeline(eventInfo)
-	elseif duration == 17 then -- Glacial Torment
-		self:CancelBarForSpell(1235548)
-		barInfo = self:GlacialTormentTimeline(eventInfo)
-	elseif not self:IsWiping() and duration == 30 then -- Raging Squall
-		self:CancelBarForSpell(1235623)
-		barInfo = self:RagingSquallTimeline(eventInfo)
-	elseif duration == 38 then -- Eternal Winter
-		self:CancelBarForSpell(1235656)
-		barInfo = self:EternalWinterTimeline(eventInfo)
-	elseif not self:IsWiping() then
-		self:ErrorForTimelineEvent(eventInfo)
-		backupBars[eventInfo.id] = true
-		self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
-		local state = C_EncounterTimeline.GetEventState(eventInfo.id)
-		if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
-			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
+	if duration > 59 then return end -- filter placeholder bars
+	if BigWigsLoader.isNext then
+		if duration == 7 then -- Glacial Torment
+			self:CancelBarForSpell(1235548)
+			barInfo = self:GlacialTormentTimeline(eventInfo)
+		elseif duration == 12 then -- Raging Squall
+			self:CancelBarForSpell(1235623)
+			barInfo = self:RagingSquallTimeline(eventInfo)
+		elseif duration == 24 then -- Shattering Frostspike
+			self:CancelBarForSpell(1235783)
+			barInfo = self:ShatteringFrostspikeTimeline(eventInfo)
+		elseif duration == 49 then -- Frozen Tempest
+			self:CancelBarForSpell(1235656)
+			barInfo = self:FrozenTempestTimeline(eventInfo)
+		elseif not self:IsWiping() then
+			self:ErrorForTimelineEvent(eventInfo)
+			backupBars[eventInfo.id] = true
+			self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
+			local state = C_EncounterTimeline.GetEventState(eventInfo.id)
+			if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
+				self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
+			end
+		end
+	else -- XXX remove in 12.1
+		if duration == 7 then -- Shattering Frostspike
+			self:CancelBarForSpell(1235783)
+			barInfo = self:ShatteringFrostspikeTimeline(eventInfo)
+		elseif duration == 17 then -- Glacial Torment
+			self:CancelBarForSpell(1235548)
+			barInfo = self:GlacialTormentTimeline(eventInfo)
+		elseif not self:IsWiping() and duration == 30 then -- Raging Squall
+			self:CancelBarForSpell(1235623)
+			barInfo = self:RagingSquallTimeline(eventInfo)
+		elseif duration == 38 then -- Eternal Winter
+			self:CancelBarForSpell(1235656)
+			barInfo = self:FrozenTempestTimeline(eventInfo)
+		elseif not self:IsWiping() then
+			self:ErrorForTimelineEvent(eventInfo)
+			backupBars[eventInfo.id] = true
+			self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
+			local state = C_EncounterTimeline.GetEventState(eventInfo.id)
+			if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
+				self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
+			end
 		end
 	end
 	if barInfo then
@@ -136,7 +160,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 		if state == 0 then -- Active
 			self:ResumeBar(barInfo.key, barInfo.msg)
 		elseif state == 1 then -- Paused
-			-- all bars pause during Eternal Winter, but they are canceled when it ends.
+			-- all bars pause during Frozen Tempest, but they are canceled when it ends.
 			-- so we can just cancel them now instead of pausing.
 			self:StopBar(barInfo.msg)
 			activeBars[eventID] = nil
@@ -192,23 +216,6 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:ShatteringFrostspikeTimeline(eventInfo) -- Shattering Frostspike
-	local barText = CL.count:format(self:GetRename(1235783), shatteringFrostspikeCount)
-	self:CDBar(1235783, eventInfo.duration, barText, nil, eventInfo.id)
-	shatteringFrostspikeCount = shatteringFrostspikeCount + 1
-	return {
-		msg = barText,
-		key = 1235783,
-		callback = function()
-			self:Message(1235783, "orange", barText)
-			self:PlaySound(1235783, "alarm")
-		end,
-		cancelCallback = function()
-			shatteringFrostspikeCount = shatteringFrostspikeCount - 1
-		end
-	}
-end
-
 function mod:GlacialTormentTimeline(eventInfo) -- Glacial Torment
 	local barText = CL.count:format(self:GetRename(1235548), glacialTormentCount)
 	self:CDBar(1235548, eventInfo.duration, barText, nil, eventInfo.id)
@@ -243,19 +250,37 @@ function mod:RagingSquallTimeline(eventInfo) -- Raging Squall
 	}
 end
 
-function mod:EternalWinterTimeline(eventInfo) -- Eternal Winter
-	local barText = CL.count:format(self:GetRename(1235656), eternalWinterCount)
+function mod:ShatteringFrostspikeTimeline(eventInfo) -- Shattering Frostspike
+	local barText = CL.count:format(self:GetRename(1235783), shatteringFrostspikeCount)
+	self:CDBar(1235783, eventInfo.duration, barText, nil, eventInfo.id)
+	shatteringFrostspikeCount = shatteringFrostspikeCount + 1
+	return {
+		msg = barText,
+		key = 1235783,
+		callback = function()
+			self:Message(1235783, "orange", barText)
+			self:PlaySound(1235783, "alarm")
+		end,
+		cancelCallback = function()
+			shatteringFrostspikeCount = shatteringFrostspikeCount - 1
+		end
+	}
+end
+
+function mod:FrozenTempestTimeline(eventInfo) -- Frozen Tempest
+	local barText = CL.count:format(self:GetRename(1235656), frozenTempestCount)
 	self:CDBar(1235656, eventInfo.duration, barText, nil, eventInfo.id)
-	eternalWinterCount = eternalWinterCount + 1
+	frozenTempestCount = frozenTempestCount + 1
 	return {
 		msg = barText,
 		key = 1235656,
-		--callback = function() has Blizzard message + sound
-			--self:Message(1235656, "yellow", barText)
-			--self:PlaySound(1235656, "long")
-		--end,
+		callback = function()
+			self:StopBlizzMessages(1)
+			self:Message(1235656, "yellow", barText)
+			self:PlaySound(1235656, "long")
+		end,
 		cancelCallback = function()
-			eternalWinterCount = eternalWinterCount - 1
+			frozenTempestCount = frozenTempestCount - 1
 		end
 	}
 end
