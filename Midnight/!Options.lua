@@ -478,9 +478,17 @@ BigWigs:AddSounds("Lightwarden Ruia", {
 })
 
 BigWigs:AddColors("Ziekket", {
+	[1246372] = "cyan",
+	[1246607] = {"blue","orange"},
+	[1246858] = "yellow",
+	[1247685] = "purple",
 })
 
 BigWigs:AddSounds("Ziekket", {
+	[1246372] = "long",
+	[1246607] = "alarm",
+	[1246858] = "info",
+	[1247685] = "alert",
 })
 
 BigWigs:AddColors("Taz'Rah", {
