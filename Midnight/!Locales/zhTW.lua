@@ -100,6 +100,13 @@ if L then
 	L.blademaster_darza = "大劍師妲莎"
 end
 
+-- Delves: Venomfall Deeps
+
+L = BigWigs:NewBossLocale("Azta'rec", "zhTW")
+if L then
+	L.aztarec = "阿茲塔瑞"
+end
+
 -- Delves: Trash
 
 L = BigWigs:NewBossLocale("Midnight Delve Trash", "zhTW")

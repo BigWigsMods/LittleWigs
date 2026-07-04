@@ -22,6 +22,7 @@
 <Script file="Delves\TheShadowEnclave\Antenorian.lua"/>
 <Script file="Delves\TormentsRise\Nullaeus.lua"/>
 <Script file="Delves\TwilightCrypts\BlademasterDarza.lua"/>
+<Script file="Delves\VenomfallDeeps\Aztarec.lua"/>
 <Script file="Delves\Trash.lua"/>
 
 <Script file="DenOfNalorakk\TheHoardmonger.lua"/>

@@ -158,6 +158,12 @@ BigWigs:AddColors("Blademaster Darza", {
 BigWigs:AddSounds("Blademaster Darza", {
 })
 
+BigWigs:AddColors("Azta'rec", {
+})
+
+BigWigs:AddSounds("Azta'rec", {
+})
+
 BigWigs:AddColors("Midnight Delve Trash", {
 })
 
