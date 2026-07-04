@@ -430,9 +430,17 @@ BigWigs:AddSounds("Nexus-Point Xenas Trash", {
 })
 
 BigWigs:AddColors("Lightblossom Trinity", {
+	[1234753] = "purple",
+	[1234850] = "red",
+	[1235564] = "cyan",
+	[1235640] = "yellow",
 })
 
 BigWigs:AddSounds("Lightblossom Trinity", {
+	[1234753] = "alert",
+	[1234850] = "alarm",
+	[1235564] = "long",
+	[1235640] = "alert",
 })
 
 BigWigs:AddColors("Ikuzz the Light Hunter", {
