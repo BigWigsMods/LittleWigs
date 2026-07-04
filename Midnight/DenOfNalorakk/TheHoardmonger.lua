@@ -93,21 +93,40 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
-	if duration > 90 then return end -- filter placeholder bars
-	if duration == 7 or duration == 21 then -- Earthshatter Slam
-		self:CancelBarForSpell(1253268)
-		barInfo = self:EarthshatterSlamTimeline(eventInfo)
-	elseif duration == 18 then -- Ravenous Bellow
-		barInfo = self:RavenousBellowTimeline(eventInfo)
-	elseif duration == 39 then -- Spoiled Supplies
-		barInfo = self:SpoiledSuppliesTimeline(eventInfo)
-	elseif not self:IsWiping() then
-		self:ErrorForTimelineEvent(eventInfo)
-		backupBars[eventInfo.id] = true
-		self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
-		local state = C_EncounterTimeline.GetEventState(eventInfo.id)
-		if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
-			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
+	if duration > 60 then return end -- filter placeholder bars
+	if BigWigsLoader.isNext then
+		if duration == 6 then -- Earthshatter Slam
+			self:CancelBarForSpell(1253268) -- TODO not needed in 12.1?
+			barInfo = self:EarthshatterSlamTimeline(eventInfo)
+		elseif duration == 16 then -- Ravenous Bellow
+			barInfo = self:RavenousBellowTimeline(eventInfo)
+		elseif not self:IsWiping() and duration == 30 then -- Spoiled Supplies
+			barInfo = self:SpoiledSuppliesTimeline(eventInfo)
+		elseif not self:IsWiping() then
+			self:ErrorForTimelineEvent(eventInfo)
+			backupBars[eventInfo.id] = true
+			self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
+			local state = C_EncounterTimeline.GetEventState(eventInfo.id)
+			if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
+				self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
+			end
+		end
+	else -- XXX remove in 12.1
+		if duration == 7 or duration == 21 then -- Earthshatter Slam
+			self:CancelBarForSpell(1253268)
+			barInfo = self:EarthshatterSlamTimeline(eventInfo)
+		elseif duration == 18 then -- Ravenous Bellow
+			barInfo = self:RavenousBellowTimeline(eventInfo)
+		elseif duration == 39 then -- Spoiled Supplies
+			barInfo = self:SpoiledSuppliesTimeline(eventInfo)
+		elseif not self:IsWiping() then
+			self:ErrorForTimelineEvent(eventInfo)
+			backupBars[eventInfo.id] = true
+			self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
+			local state = C_EncounterTimeline.GetEventState(eventInfo.id)
+			if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
+				self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
+			end
 		end
 	end
 	if barInfo then
@@ -214,6 +233,7 @@ function mod:SpoiledSuppliesTimeline(eventInfo) -- Spoiled Supplies
 		key = 1234233,
 		callback = function()
 			self:StopBlizzMessages(1)
+			-- TODO not needed in 12.1?
 			-- cancel + decrement the Earthshatter Slam bar when this ability occurs, it will be restarted later
 			local earthshatterSlamBarId = activeBarBySpellId[1253268] -- Earthshatter Slam
 			if earthshatterSlamBarId then
