@@ -18,6 +18,7 @@ mod:SetPrivateAuraSounds({
 
 local legionStrikeCount = 1
 local axeTossCount = 1
+local infernalCrushCount = 1
 local demonicRageCount = 1
 local activeBars = {}
 local backupBars = {}
@@ -29,6 +30,7 @@ local backupBars = {}
 mod:SetRenames({
 	[473898] = {473898},  -- Legion Strike
 	[1214637] = {1214637, CL.you:format(mod:SpellName(1214637)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1214637, CL.you:format(mod:SpellName(1214637))}}, -- Axe Toss
+	[1295453] = {1295453}, -- Infernal Crush
 	[474197] = {474197},  -- Demonic Rage
 })
 
@@ -36,18 +38,30 @@ mod:SetRenames({
 -- Initialization
 --
 
-function mod:GetOptions()
-	return {
-		473898, -- Legion Strike
-		1214637, -- Axe Toss
-		474197, -- Demonic Rage
-	}
+if BigWigsLoader.isNext then
+	function mod:GetOptions()
+		return {
+			473898, -- Legion Strike
+			1214637, -- Axe Toss
+			1295453, -- Infernal Crush
+			474197, -- Demonic Rage
+		}
+	end
+else -- XXX remove in 12.1
+	function mod:GetOptions()
+		return {
+			473898, -- Legion Strike
+			1214637, -- Axe Toss
+			474197, -- Demonic Rage
+		}
+	end
 end
 
 mod:UseCustomTimers(true)
 function mod:OnEncounterStart()
 	legionStrikeCount = 1
 	axeTossCount = 1
+	infernalCrushCount = 1
 	demonicRageCount = 1
 	activeBars = {}
 	backupBars = {}
@@ -77,6 +91,8 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		barInfo = self:LegionStrikesTimeline(eventInfo)
 	elseif duration == 15 then -- Axe Toss
 		barInfo = self:AxeTossTimeline(eventInfo)
+	elseif BigWigsLoader.isNext and (not self:IsWiping() and duration == 30) then -- Infernal Crush (XXX remove check in 12.1)
+		barInfo = self:InfernalCrushTimeline(eventInfo)
 	elseif duration == 35 then -- Demonic Rage
 		barInfo = self:DemonicRageTimeline(eventInfo)
 	elseif not self:IsWiping() then
@@ -171,6 +187,20 @@ function mod:AxeTossTimeline(eventInfo) -- Axe Toss
 			self:PersonalMessageFromBlizzMessage(1214637, 1, false, self:GetRename(1214637, 2))
 			self:Message(1214637, "red", barText)
 			self:PlaySound(1214637, "alarm")
+		end
+	}
+end
+
+function mod:InfernalCrushTimeline(eventInfo) -- Infernal Crush
+	local barText = CL.count:format(self:GetRename(1295453), infernalCrushCount)
+	self:CDBar(1295453, eventInfo.duration, barText, nil, eventInfo.id)
+	infernalCrushCount = infernalCrushCount + 1
+	return {
+		msg = barText,
+		key = 1295453,
+		callback = function()
+			self:Message(1295453, "orange", barText)
+			self:PlaySound(1295453, "alarm")
 		end
 	}
 end

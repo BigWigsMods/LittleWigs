@@ -354,12 +354,14 @@ BigWigs:AddColors("Xathuux the Annihilator", {
 	[473898] = "purple",
 	[474197] = "yellow",
 	[1214637] = {"blue","red"},
+	[1295453] = "orange",
 })
 
 BigWigs:AddSounds("Xathuux the Annihilator", {
 	[473898] = "alert",
 	[474197] = "long",
 	[1214637] = "alarm",
+	[1295453] = "alarm",
 })
 
 BigWigs:AddColors("Lithiel Cinderfury", {
