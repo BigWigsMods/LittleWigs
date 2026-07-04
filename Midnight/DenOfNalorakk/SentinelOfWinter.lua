@@ -105,13 +105,13 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		if duration == 7 then -- Glacial Torment
 			self:CancelBarForSpell(1235548)
 			barInfo = self:GlacialTormentTimeline(eventInfo)
-		elseif duration == 12 then -- Raging Squall
+		elseif duration == 13 then -- Raging Squall
 			self:CancelBarForSpell(1235623)
 			barInfo = self:RagingSquallTimeline(eventInfo)
-		elseif duration == 24 then -- Shattering Frostspike
+		elseif duration == 25 then -- Shattering Frostspike
 			self:CancelBarForSpell(1235783)
 			barInfo = self:ShatteringFrostspikeTimeline(eventInfo)
-		elseif duration == 49 then -- Frozen Tempest
+		elseif duration == 50 then -- Frozen Tempest
 			self:CancelBarForSpell(1235656)
 			barInfo = self:FrozenTempestTimeline(eventInfo)
 		elseif not self:IsWiping() then
