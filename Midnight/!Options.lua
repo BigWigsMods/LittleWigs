@@ -458,9 +458,23 @@ BigWigs:AddSounds("Ikuzz the Light Hunter", {
 })
 
 BigWigs:AddColors("Lightwarden Ruia", {
+	[1239824] = {"blue","yellow"},
+	[1239882] = "cyan",
+	[1239883] = "cyan",
+	[1239885] = "cyan",
+	[1240098] = "orange",
+	[1240210] = {"orange","yellow"},
+	[1241058] = "red",
 })
 
 BigWigs:AddSounds("Lightwarden Ruia", {
+	[1239824] = "warning",
+	[1239882] = "info",
+	[1239883] = "info",
+	[1239885] = "info",
+	[1240098] = "alarm",
+	[1240210] = "alarm",
+	[1241058] = "alert",
 })
 
 BigWigs:AddColors("Ziekket", {
