@@ -247,8 +247,9 @@ function mod:OverwhemlingOnslaughtTimeline(eventInfo) -- Overwhelming Onslaught
 		msg = barText,
 		key = 1243569,
 		callback = function()
-			self:Message(1243569, "purple", barText)
-			self:PlaySound(1243569, "alert")
+			self:StopBlizzMessages(1) -- only the tank gets the message but in 12.1 it affects everyone
+			self:Message(1243569, "orange", barText)
+			self:PlaySound(1243569, "alarm")
 		end,
 		cancelCallback = function()
 			overwhemlingOnslaughtCount = overwhemlingOnslaughtCount - 1
@@ -265,7 +266,7 @@ function mod:ForcefulRoarTimeline(eventInfo) -- XXX remove in 12.1
 		key = 1255385,
 		callback = function()
 			self:Message(1255385, "orange", barText)
-			self:PlaySound(1255385, "alarm")
+			self:PlaySound(1255385, "alert")
 		end,
 		cancelCallback = function()
 			forcefulRoarCount = forcefulRoarCount - 1
