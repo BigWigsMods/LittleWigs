@@ -528,9 +528,17 @@ BigWigs:AddSounds("Atroxus", {
 })
 
 BigWigs:AddColors("Charonus", {
+	[1222755] = "yellow",
+	[1227264] = "red",
+	[1263982] = "cyan",
+	[1282770] = "orange",
 })
 
 BigWigs:AddSounds("Charonus", {
+	[1222755] = "warning",
+	[1227264] = "alarm",
+	[1263982] = "info",
+	[1282770] = "alert",
 })
 
 BigWigs:AddColors("Emberdawn", {
