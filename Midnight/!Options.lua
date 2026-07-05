@@ -512,9 +512,19 @@ BigWigs:AddSounds("Taz'Rah", {
 })
 
 BigWigs:AddColors("Atroxus", {
+	[1222371] = "cyan",
+	[1222642] = "purple",
+	[1222721] = "red",
+	[1226120] = "yellow",
+	[1262497] = "orange",
 })
 
 BigWigs:AddSounds("Atroxus", {
+	[1222371] = "info",
+	[1222642] = "alert",
+	[1222721] = "alarm",
+	[1226120] = "long",
+	[1262497] = "alarm",
 })
 
 BigWigs:AddColors("Charonus", {
