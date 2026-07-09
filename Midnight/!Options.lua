@@ -42,7 +42,7 @@ BigWigs:AddColors("Zul'jan", {
 	[1300876] = "cyan",
 	[1301111] = "orange",
 	[1301350] = "purple",
-	[1301413] = "red",
+	[1301413] = {"blue","red"},
 })
 
 BigWigs:AddSounds("Zul'jan", {

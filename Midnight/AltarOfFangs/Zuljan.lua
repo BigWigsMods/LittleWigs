@@ -31,7 +31,7 @@ mod:SetRenames({
 	[1300876] = {1300876}, -- Ritual of the Fang
 	[1301111] = {1301111}, -- Axegrinder
 	[1301350] = {1301350}, -- Chop Down
-	[1301413] = {1301413}, -- Boneslicer
+	[1301413] = {1301413, CL.you:format(mod:SpellName(1301413)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1301413, CL.you:format(mod:SpellName(1301413))}}, -- Boneslicer
 })
 
 --------------------------------------------------------------------------------
@@ -195,6 +195,7 @@ function mod:BoneslicerTimeline(eventInfo) -- Boneslicer
 		msg = barText,
 		key = 1301413,
 		callback = function()
+			self:PersonalMessageFromBlizzMessage(1301413, 1, false, self:GetRename(1301413, 2))
 			self:Message(1301413, "red", barText)
 			self:PlaySound(1301413, "alarm")
 		end
