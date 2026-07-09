@@ -18,11 +18,13 @@ BigWigs:AddSounds("Rav'i", {
 
 BigWigs:AddColors("The Writhing Coil", {
 	[1298949] = "purple",
-	[1299053] = "red",
+	[1299053] = "yellow",
 	[1299130] = "orange",
 	[1299154] = "yellow",
-	[1300044] = "red",
+	[1300044] = "yellow",
 	[1300686] = "cyan",
+	[1310358] = "red",
+	[1310547] = "red",
 })
 
 BigWigs:AddSounds("The Writhing Coil", {
@@ -32,6 +34,8 @@ BigWigs:AddSounds("The Writhing Coil", {
 	[1299154] = "alert",
 	[1300044] = "alarm",
 	[1300686] = "info",
+	[1310358] = "alert",
+	[1310547] = "alert",
 })
 
 BigWigs:AddColors("Zul'jan", {
