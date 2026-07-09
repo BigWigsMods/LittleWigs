@@ -19,7 +19,7 @@ local freshMeatCount = 1
 local ssscavengingCount = 1
 --local feedingFrenzyCount = 1
 local regurgitateCount = 1
-local ravenousStompCount = 1
+local ravenousStompCount = 2
 local count24 = 1
 local activeBars = {}
 local backupBars = {}
@@ -29,7 +29,7 @@ local backupBars = {}
 --
 
 mod:SetRenames({
-	[1296220] = {1296220}, -- Triple Shot
+	[1296220] = {1296220, CL.you:format(mod:SpellName(1296220)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1296220, CL.you:format(mod:SpellName(1296220))}}, -- Triple Shot
 	[1307703] = {1307703}, -- Fresh Meat
 	[1296216] = {1296216}, -- Ssscavenging
 	--[1307765] = {1307765}, -- Feeding Frenzy
@@ -59,7 +59,7 @@ function mod:OnEncounterStart()
 	ssscavengingCount = 1
 	--feedingFrenzyCount = 1
 	regurgitateCount = 1
-	ravenousStompCount = 1
+	ravenousStompCount = 2 -- cast on pull
 	count24 = 1
 	activeBars = {}
 	backupBars = {}
@@ -70,6 +70,8 @@ function mod:OnEncounterStart()
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
 		self:SendMessage("BigWigs_BlockBlizzMessages")
 		self:RegisterEvent("ENCOUNTER_WARNING")
+		self:CDBar(1307703, 6, CL.count:format(self:GetRename(1307703), freshMeatCount)) -- Fresh Meat
+		self:RavenousStomp(CL.count:format(self:GetRename(1307894), 1)) -- Ravenous Stomp is cast on pull
 	end
 end
 
@@ -161,15 +163,24 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:ENCOUNTER_WARNING() -- Fresh Meat
-	self:Message(1307703, "purple", CL.count:format(self:GetRename(1307703), freshMeatCount))
-	freshMeatCount = freshMeatCount + 1
-	self:PlaySound(1307703, "info")
+function mod:ENCOUNTER_WARNING(_, info)
+	if info.severity == 0 then -- Triple Shot (LOW)
+		self:PersonalMessage(1296220, false, self:GetRename(1296220, 2))
+		self:PlaySound(1296220, "warning", nil, self:UnitName("player"))
+	elseif info.severity == 1 then -- Fresh Meat (MEDIUM)
+		local barText = CL.count:format(self:GetRename(1307703), freshMeatCount)
+		self:StopBar(barText)
+		freshMeatCount = freshMeatCount + 1
+		self:Message(1307703, "purple", barText)
+		self:PlaySound(1307703, "info")
+	--elseif info.severity == 2 then -- Ssscavenging (HIGH)
+	end
 end
 
 function mod:TripleShotTimeline(eventInfo) -- Triple Shot
 	if self:GetStage() == 2 then
 		self:SetStage(1)
+		self:CDBar(1307703, 30, CL.count:format(self:GetRename(1307703), freshMeatCount)) -- Fresh Meat
 	end
 	local barText = CL.count:format(self:GetRename(1296220), tripleShotCount)
 	self:CDBar(1296220, eventInfo.duration, barText, nil, eventInfo.id)
@@ -178,6 +189,7 @@ function mod:TripleShotTimeline(eventInfo) -- Triple Shot
 		msg = barText,
 		key = 1296220,
 		callback = function()
+			-- there is a :PersonalMessage at the end of this 2s cast, handled in ENCOUNTER_WARNING
 			self:Message(1296220, "yellow", barText)
 			self:PlaySound(1296220, "alert")
 		end
@@ -192,14 +204,14 @@ end
 	--self:PlaySound(1307765, "warning")
 --end
 
-do
-	local timer
-	function mod:SsscavengingTimeline(eventInfo) -- Ssscavenging
-		local barText = CL.count:format(self:GetRename(1296216), ssscavengingCount)
-		self:CDBar(1296216, eventInfo.duration, barText, nil, eventInfo.id)
-		ssscavengingCount = ssscavengingCount + 1
-		timer = self:ScheduleTimer(function()
-			self:StopBar(barText)
+function mod:SsscavengingTimeline(eventInfo) -- Ssscavenging
+	local barText = CL.count:format(self:GetRename(1296216), ssscavengingCount)
+	self:CDBar(1296216, eventInfo.duration, barText, nil, eventInfo.id)
+	ssscavengingCount = ssscavengingCount + 1
+	return {
+		msg = barText,
+		key = 1296216,
+		callback = function()
 			self:SetStage(2)
 			self:Message(1296216, "cyan", barText)
 			-- if there's a CHAT_MSG_MONSTER_EMOTE within a few seconds, it means the mechanic was (probably) failed.
@@ -208,21 +220,8 @@ do
 			-- to make this reliable enough maybe we could look for a Ssscavenging (here) -> UNIT_SPELLCAST_CHANNEL_START[boss1] -> CHAT_MSG_MONSTER_EMOTE combo
 			-- in the non-fail case the only thing missing is the CHAT_MSG_MONSTER_EMOTE
 			self:PlaySound(1296216, "long")
-		end, eventInfo.duration)
-		return {
-			msg = barText,
-			key = 1296216,
-			callback = function()
-				self:Error("Ssscavenging now has a callback")
-			end,
-			cancelCallback = function()
-				if timer then
-					self:CancelTimer(timer)
-					timer = nil
-				end
-			end
-		}
-	end
+		end
+	}
 end
 
 function mod:RegurgitateTimeline(eventInfo) -- Regurgitate
@@ -239,6 +238,11 @@ function mod:RegurgitateTimeline(eventInfo) -- Regurgitate
 	}
 end
 
+function mod:RavenousStomp(barText)
+	self:Message(1307894, "red", barText)
+	self:PlaySound(1307894, "alarm")
+end
+
 function mod:RavenousStompTimeline(eventInfo) -- Ravenous Stomp
 	local barText = CL.count:format(self:GetRename(1307894), ravenousStompCount)
 	self:CDBar(1307894, eventInfo.duration, barText, nil, eventInfo.id)
@@ -247,8 +251,7 @@ function mod:RavenousStompTimeline(eventInfo) -- Ravenous Stomp
 		msg = barText,
 		key = 1307894,
 		callback = function()
-			self:Message(1307894, "red", barText)
-			self:PlaySound(1307894, "alarm")
+			self:RavenousStomp(barText)
 		end
 	}
 end
