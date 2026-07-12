@@ -1,4 +1,4 @@
-
+if BigWigsLoader.isRetail then return end -- don't load in Midnight+
 --------------------------------------------------------------------------------
 -- TODO
 --
