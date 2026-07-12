@@ -1263,11 +1263,15 @@ BigWigs:AddSounds("Merektha", {
 BigWigs:AddColors("Galvazzt", {
 	[266512] = {"orange","red"},
 	[266923] = {"blue","orange"},
+	[1291618] = "yellow",
+	[1309525] = "yellow",
 })
 
 BigWigs:AddSounds("Galvazzt", {
 	[266512] = {"alarm","warning"},
 	[266923] = {"alert","info"},
+	[1291618] = "info",
+	[1309525] = "info",
 })
 
 BigWigs:AddColors("Avatar of Sethraliss", {
