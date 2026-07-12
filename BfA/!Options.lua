@@ -1237,7 +1237,13 @@ BigWigs:AddColors("Merektha", {
 	[263914] = "red",
 	[263927] = "blue",
 	[263958] = {"blue","red"},
+	[264172] = {"cyan","green"},
 	[264206] = {"cyan","green"},
+	[1289109] = "yellow",
+	[1289205] = "yellow",
+	[1290029] = "red",
+	[1290797] = "yellow",
+	[1293048] = "yellow",
 })
 
 BigWigs:AddSounds("Merektha", {
@@ -1245,7 +1251,13 @@ BigWigs:AddSounds("Merektha", {
 	[263914] = "warning",
 	[263927] = "alarm",
 	[263958] = "warning",
+	[264172] = {"info","long"},
 	[264206] = {"info","long"},
+	[1289109] = "info",
+	[1289205] = "info",
+	[1290029] = "warning",
+	[1290797] = "info",
+	[1293048] = "info",
 })
 
 BigWigs:AddColors("Galvazzt", {
