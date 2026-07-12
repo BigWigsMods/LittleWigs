@@ -455,7 +455,7 @@ BigWigs:AddColors("Rukhran", {
 BigWigs:AddSounds("Rukhran", {
 	[153794] = "alarm",
 	[153810] = "info",
-	[159382] = "long",
+	[159382] = {"info","long"},
 	[167757] = "warning",
 	[1253510] = "info",
 	[1253519] = {"alarm","alert"},
