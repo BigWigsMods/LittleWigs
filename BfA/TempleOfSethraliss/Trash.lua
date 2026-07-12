@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -71,6 +70,7 @@ function mod:GetOptions()
 end
 
 function mod:OnBossEnable()
+	self:RegisterEvent("GOSSIP_SHOW")
 	self:Log("SPELL_CAST_START", "HealingSurge", 265968)
 	self:Log("SPELL_CAST_START", "PowerShot", 264574)
 	self:Log("SPELL_AURA_APPLIED", "NeurotoxinApplied", 273563)
@@ -88,8 +88,33 @@ function mod:OnBossEnable()
 end
 
 --------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if mod:Retail() then -- Midnight+
+	function mod:GetOptions()
+		return {
+		}
+	end
+
+	function mod:OnBossEnable()
+		self:RegisterEvent("GOSSIP_SHOW")
+	end
+end
+
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:GOSSIP_SHOW()
+	if self:GetGossipID(107065) then
+		local avatarModule = BigWigs:GetBossModule("Avatar of Sethraliss", true)
+		if avatarModule then
+			avatarModule:Enable()
+			avatarModule:GOSSIP_SHOW()
+		end
+	end
+end
 
 function mod:HealingSurge(args)
 	self:Message(args.spellId, "yellow")

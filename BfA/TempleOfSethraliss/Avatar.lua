@@ -32,8 +32,10 @@ end
 -- Initialization
 --
 
+local autotalk = mod:AddAutoTalkOption(true, "boss")
 function mod:GetOptions()
 	return {
+		autotalk,
 		"stages",
 		"adds",
 		268024, -- Pulse
@@ -100,6 +102,7 @@ end
 if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 	function mod:GetOptions()
 		return {
+			autotalk,
 			1301202, -- Defiling Taint
 			1273408, -- Stage One
 		}
@@ -231,6 +234,12 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:GOSSIP_SHOW() -- called from Trash module
+	if self:GetOption(autotalk) and self:GetGossipID(107065) then
+		self:SelectGossipID(107065)
+	end
+end
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, msg)
 	if not self:IsSecret(msg) and msg:find("269688", nil, true) then -- Rain of Toads
