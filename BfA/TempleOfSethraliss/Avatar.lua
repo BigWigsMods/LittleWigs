@@ -1,4 +1,3 @@
-
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,8 +5,12 @@
 local mod, CL = BigWigs:NewBoss("Avatar of Sethraliss", 1877, 2145)
 if not mod then return end
 mod:RegisterEnableMob(133392, 137204) -- Avatar of Sethraliss, Hoodoo Hexer (boss add)
-mod.engageId = 2127
-mod.respawnTime = 20
+mod:SetEncounterID(2127)
+if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+	mod:SetRespawnTime(30)
+else
+	mod:SetRespawnTime(20)
+end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -68,6 +71,161 @@ end
 
 function mod:OnEngage()
 	self:Bar(268024, 9.5) -- Pulse
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Locals
+--
+
+local defilingTaintCount = 1
+local stageOneCount = 1
+local activeBars = {}
+local backupBars = {}
+
+--------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+	mod:SetRenames({
+		[1301202] = {1301202}, -- Defiling Taint
+		[1273408] = {1273408}, -- Stage One
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+	function mod:GetOptions()
+		return {
+			1301202, -- Defiling Taint
+			1273408, -- Stage One
+		}
+	end
+
+	function mod:OnBossEnable()
+	end
+
+	mod:UseCustomTimers(true)
+	function mod:OnEncounterStart()
+		defilingTaintCount = 1
+		stageOneCount = 1
+		activeBars = {}
+		backupBars = {}
+		if self:ShouldShowBars() then
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+		end
+	end
+
+	function mod:OnBossDisable()
+		for eventID in next, backupBars do
+			self:SendMessage("BigWigs_StopBar", nil, nil, eventID)
+		end
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Event Handlers
+--
+
+function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
+	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
+	local duration = self:RoundNumber(eventInfo.duration, 1)
+	local barInfo
+	if duration == 11 then -- Defiling Taint
+		barInfo = self:DefilingTaintTimeline(eventInfo)
+	elseif duration == 32.5 then -- Stage One
+		barInfo = self:StageOneTimeline(eventInfo)
+	elseif not self:IsWiping() then
+		self:ErrorForTimelineEvent(eventInfo)
+		backupBars[eventInfo.id] = true
+		self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
+		local state = C_EncounterTimeline.GetEventState(eventInfo.id)
+		if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
+			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
+		end
+	end
+	if barInfo then
+		activeBars[eventInfo.id] = barInfo
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		local state = C_EncounterTimeline.GetEventState(eventID)
+		if state == 0 then -- Active
+			self:ResumeBar(barInfo.key, barInfo.msg)
+		elseif state == 1 then -- Paused
+			self:PauseBar(barInfo.key, barInfo.msg)
+		elseif state == 2 then -- Finished
+			self:StopBar(barInfo.msg)
+			if barInfo.callback then
+				barInfo.callback()
+			end
+			activeBars[eventID] = nil
+		elseif state == 3 then -- Canceled
+			self:StopBar(barInfo.msg)
+			activeBars[eventID] = nil
+		end
+	elseif backupBars[eventID] then
+		local newState = C_EncounterTimeline.GetEventState(eventID)
+		if newState == 0 then -- Enum.EncounterTimelineEventState.Active
+			self:SendMessage("BigWigs_ResumeBar", nil, nil, eventID)
+		elseif newState == 1 then -- Enum.EncounterTimelineEventState.Paused
+			self:SendMessage("BigWigs_PauseBar", nil, nil, eventID)
+		else -- Canceled / Finished
+			self:SendMessage("BigWigs_StopBar", nil, nil, eventID)
+		end
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		self:StopBar(barInfo.msg)
+		activeBars[eventID] = nil
+	elseif backupBars[eventID] then
+		backupBars[eventID] = nil
+		self:SendMessage("BigWigs_StopBar", nil, nil, eventID)
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Ability Handlers
+--
+
+function mod:DefilingTaintTimeline(eventInfo) -- Defiling Taint
+	local barText = CL.count:format(self:GetRename(1301202), defilingTaintCount)
+	self:CDBar(1301202, eventInfo.duration, barText, nil, eventInfo.id)
+	defilingTaintCount = defilingTaintCount + 1
+	return {
+		msg = barText,
+		key = 1301202,
+		callback = function()
+			self:StopBlizzMessages(1) -- TODO confirm (emote?)
+			self:Message(1301202, "yellow", barText)
+			self:PlaySound(1301202, "info")
+		end
+	}
+end
+
+function mod:StageOneTimeline(eventInfo) -- Stage One
+	local barText = CL.count:format(self:GetRename(1273408), stageOneCount)
+	self:CDBar(1273408, eventInfo.duration, barText, nil, eventInfo.id)
+	stageOneCount = stageOneCount + 1
+	return {
+		msg = barText,
+		key = 1273408,
+		callback = function()
+			self:Message(1273408, "cyan", barText)
+			self:PlaySound(1273408, "long")
+		end
+	}
 end
 
 --------------------------------------------------------------------------------

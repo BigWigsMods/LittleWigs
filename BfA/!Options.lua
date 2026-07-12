@@ -1281,6 +1281,8 @@ BigWigs:AddColors("Avatar of Sethraliss", {
 	[269686] = {"blue","orange"},
 	[269688] = "orange",
 	[274149] = {"blue","green"},
+	[1273408] = "cyan",
+	[1301202] = "yellow",
 	["adds"] = "orange",
 	["stages"] = "cyan",
 })
@@ -1292,6 +1294,8 @@ BigWigs:AddSounds("Avatar of Sethraliss", {
 	[269686] = "alarm",
 	[269688] = "info",
 	[274149] = "info",
+	[1273408] = "long",
+	[1301202] = "info",
 	["adds"] = "warning",
 	["stages"] = {"info","long"},
 })
