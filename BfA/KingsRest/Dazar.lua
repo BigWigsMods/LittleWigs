@@ -6,6 +6,8 @@ local mod, CL = BigWigs:NewBoss("Dazar, The First King", 1762, 2172)
 if not mod then return end
 mod:RegisterEnableMob(136160, 136984, 136976) -- Dazar, Reban, T'zala
 mod:SetEncounterID(2143)
+mod:SetRespawnTime(30)
+mod:SetStage(1)
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -60,6 +62,7 @@ end
 function mod:OnEngage()
 	nextHPWarning = 85 -- 80%, 60% and 40%
 	mobCollector = {}
+	self:SetStage(1)
 	self:RegisterEvent("INSTANCE_ENCOUNTER_ENGAGE_UNIT")
 	self:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 
@@ -77,6 +80,313 @@ function mod:OnBossDisable()
 end
 
 --------------------------------------------------------------------------------
+-- Midnight Locals
+--
+
+local huntingLeapCount = 1
+local deathlyRoarCount = 1
+local aerialSmashCount = 1
+local bladeComboCount = 1
+local gildedDestructionCount = 1
+local quakingLeapCount = 1
+local savageMaulCount = 1
+local count10 = 1
+local activeBars = {}
+local backupBars = {}
+
+--------------------------------------------------------------------------------
+-- Midnight Renames
+--
+
+if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+	mod:SetRenames({
+		[269230] = {269230}, -- Hunting Leap
+		[269369] = {269369}, -- Deathly Roar
+		[1303115] = {1303115}, -- Aerial Smash
+		[268586] = {268586}, -- Blade Combo
+		[1303267] = {1303267}, -- Gilded Destruction
+		[1303326] = {1303326, CL.you:format(mod:SpellName(1303326)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1303326, CL.you:format(mod:SpellName(1303326))}}, -- Quaking Leap
+		[1303481] = {1303481}, -- Savage Maul
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+	function mod:GetOptions()
+		return {
+			269230, -- Hunting Leap
+			269369, -- Deathly Roar
+			1303115, -- Aerial Smash
+			268586, -- Blade Combo
+			1303267, -- Gilded Destruction
+			1303326, -- Quaking Leap
+			1303481, -- Savage Maul
+		}
+	end
+
+	function mod:OnBossEnable()
+	end
+
+	mod:UseCustomTimers(true)
+	function mod:OnEncounterStart()
+		huntingLeapCount = 1
+		deathlyRoarCount = 1
+		aerialSmashCount = 1
+		bladeComboCount = 1
+		gildedDestructionCount = 1
+		quakingLeapCount = 1
+		savageMaulCount = 1
+		count10 = 1
+		activeBars = {}
+		backupBars = {}
+		self:SetStage(1)
+		if self:ShouldShowBars() then
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
+			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+		end
+	end
+
+	function mod:OnBossDisable()
+		for eventID in next, backupBars do
+			self:SendMessage("BigWigs_StopBar", nil, nil, eventID)
+		end
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Event Handlers
+--
+
+function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
+	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
+	local duration = self:RoundNumber(eventInfo.duration, 0)
+	local barInfo
+	if duration == 8 or (duration == 10 and count10 % 2 == 1) then -- Hunting Leap
+		barInfo = self:HuntingLeapTimeline(eventInfo)
+	elseif duration == 14 or (duration == 10 and count10 % 2 == 0) then -- Deathly Roar
+		barInfo = self:DeathlyRoarTimeline(eventInfo)
+	elseif duration == 15 then -- Aerial Smash
+		barInfo = self:AerialSmashTimeline(eventInfo)
+	elseif duration == 23 or duration == 32 then -- Blade Combo
+		barInfo = self:BladeComboTimeline(eventInfo)
+	elseif (self:GetStage() == 1 and not self:IsWiping() and duration == 30) or duration == 18 then -- Gilded Destruction
+		barInfo = self:GildedDestructionTimeline(eventInfo)
+	elseif duration == 9 then -- Quaking Leap
+		barInfo = self:QuakingLeapTimeline(eventInfo)
+	elseif (not self:IsWiping() and duration == 30) then -- Savage Maul
+		barInfo = self:SavageMaulTimeline(eventInfo)
+	elseif not self:IsWiping() then
+		self:ErrorForTimelineEvent(eventInfo)
+		backupBars[eventInfo.id] = true
+		self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
+		local state = C_EncounterTimeline.GetEventState(eventInfo.id)
+		if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
+			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
+		end
+	end
+	if duration == 10 then
+		count10 = count10 + 1
+	end
+	if barInfo then
+		activeBars[eventInfo.id] = barInfo
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		local state = C_EncounterTimeline.GetEventState(eventID)
+		if state == 0 then -- Active
+			self:ResumeBar(barInfo.key, barInfo.msg)
+		elseif state == 1 then -- Paused
+			self:PauseBar(barInfo.key, barInfo.msg)
+		elseif state == 2 then -- Finished
+			self:StopBar(barInfo.msg)
+			if barInfo.callback then
+				barInfo.callback()
+			end
+			activeBars[eventID] = nil
+		elseif state == 3 then -- Canceled
+			self:StopBar(barInfo.msg)
+			if barInfo.cancelCallback then
+				barInfo.cancelCallback()
+			end
+			activeBars[eventID] = nil
+		end
+	elseif backupBars[eventID] then
+		local newState = C_EncounterTimeline.GetEventState(eventID)
+		if newState == 0 then -- Enum.EncounterTimelineEventState.Active
+			self:SendMessage("BigWigs_ResumeBar", nil, nil, eventID)
+		elseif newState == 1 then -- Enum.EncounterTimelineEventState.Paused
+			self:SendMessage("BigWigs_PauseBar", nil, nil, eventID)
+		else -- Canceled / Finished
+			self:SendMessage("BigWigs_StopBar", nil, nil, eventID)
+		end
+	end
+end
+
+function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
+	local barInfo = activeBars[eventID]
+	if barInfo then
+		self:StopBar(barInfo.msg)
+		activeBars[eventID] = nil
+	elseif backupBars[eventID] then
+		backupBars[eventID] = nil
+		self:SendMessage("BigWigs_StopBar", nil, nil, eventID)
+	end
+end
+
+--------------------------------------------------------------------------------
+-- Timeline Ability Handlers
+--
+
+do
+	local timer
+	function mod:HuntingLeapTimeline(eventInfo) -- Hunting Leap
+		local barText = CL.count:format(self:GetRename(269230), huntingLeapCount)
+		self:CDBar(269230, eventInfo.duration, barText, nil, eventInfo.id)
+		huntingLeapCount = huntingLeapCount + 1
+		timer = self:ScheduleTimer(function()
+			self:StopBar(barText)
+			self:Message(269230, "orange", barText)
+			self:PlaySound(269230, "alarm")
+		end, eventInfo.duration)
+		return {
+			msg = barText,
+			key = 269230,
+			callback = function()
+				self:Error("Hunting Leap now has a callback")
+			end,
+			cancelCallback = function()
+				if timer then
+					self:CancelTimer(timer)
+					timer = nil
+				end
+			end
+		}
+	end
+end
+
+function mod:DeathlyRoarTimeline(eventInfo) -- Deathly Roar
+	local barText = CL.count:format(self:GetRename(269369), deathlyRoarCount)
+	self:CDBar(269369, eventInfo.duration, barText, nil, eventInfo.id)
+	deathlyRoarCount = deathlyRoarCount + 1
+	return {
+		msg = barText,
+		key = 269369,
+		callback = function()
+			self:Message(269369, "red", barText)
+			self:PlaySound(269369, "warning")
+		end,
+		cancelCallback = function()
+			self:SetStage(2) -- Reban died
+		end
+	}
+end
+
+do
+	local timer
+	function mod:AerialSmashTimeline(eventInfo) -- Aerial Smash
+		local barText = CL.count:format(self:GetRename(1303115), aerialSmashCount)
+		self:CDBar(1303115, eventInfo.duration, barText, nil, eventInfo.id)
+		aerialSmashCount = aerialSmashCount + 1
+		timer = self:ScheduleTimer(function()
+			self:StopBar(barText)
+			self:Message(1303115, "yellow", barText)
+			self:PlaySound(1303115, "info")
+		end, eventInfo.duration)
+		return {
+			msg = barText,
+			key = 1303115,
+			callback = function()
+				self:Error("Aerial Smash now has a callback")
+			end,
+			cancelCallback = function()
+				if timer then
+					self:CancelTimer(timer)
+					timer = nil
+				end
+			end
+		}
+	end
+end
+
+function mod:BladeComboTimeline(eventInfo) -- Blade Combo
+	local barText = CL.count:format(self:GetRename(268586), bladeComboCount)
+	self:CDBar(268586, eventInfo.duration, barText, nil, eventInfo.id)
+	bladeComboCount = bladeComboCount + 1
+	return {
+		msg = barText,
+		key = 268586,
+		callback = function()
+			self:Message(268586, "purple", barText)
+			self:PlaySound(268586, "alert")
+		end
+	}
+end
+
+function mod:GildedDestructionTimeline(eventInfo) -- Gilded Destruction
+	local barText = CL.count:format(self:GetRename(1303267), gildedDestructionCount)
+	self:CDBar(1303267, eventInfo.duration, barText, nil, eventInfo.id)
+	gildedDestructionCount = gildedDestructionCount + 1
+	return {
+		msg = barText,
+		key = 1303267,
+		callback = function()
+			self:StopBlizzMessages(1)
+			self:Message(1303267, "red", barText)
+			self:PlaySound(1303267, "warning")
+		end
+	}
+end
+
+do
+	local timer
+	function mod:QuakingLeapTimeline(eventInfo) -- Quaking Leap
+		local barText = CL.count:format(self:GetRename(1303326), quakingLeapCount)
+		self:CDBar(1303326, eventInfo.duration, barText, nil, eventInfo.id)
+		quakingLeapCount = quakingLeapCount + 1
+		timer = self:ScheduleTimer(function()
+			self:StopBar(barText)
+			self:PersonalMessageFromBlizzMessage(1303326, 1, false, self:GetRename(1303326, 2))
+			self:Message(1303326, "orange", barText)
+			self:PlaySound(1303326, "long")
+		end, eventInfo.duration)
+		return {
+			msg = barText,
+			key = 1303326,
+			callback = function()
+				self:Error("Quaking Leap now has a callback")
+			end,
+			cancelCallback = function()
+				if timer then
+					self:CancelTimer(timer)
+					timer = nil
+				end
+			end
+		}
+	end
+end
+
+function mod:SavageMaulTimeline(eventInfo) -- Savage Maul
+	local barText = CL.count:format(self:GetRename(1303481), savageMaulCount)
+	self:CDBar(1303481, eventInfo.duration, barText, nil, eventInfo.id)
+	savageMaulCount = savageMaulCount + 1
+	return {
+		msg = barText,
+		key = 1303481,
+		callback = function()
+			self:Message(1303481, "purple", barText)
+			self:PlaySound(1303481, "alarm")
+		end
+	}
+end
+
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 
@@ -85,7 +395,6 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 		local guid = self:UnitGUID(("boss%d"):format(i))
 		if guid and not mobCollector[guid] then
 			mobCollector[guid] = true
-
 			local mobId = self:MobId(guid)
 			if mobId == 136984 then -- Reban
 				self:Message("stages", "yellow", CL.spawned:format(self:SpellName(-18251)), false)
@@ -99,6 +408,7 @@ function mod:INSTANCE_ENCOUNTER_ENGAGE_UNIT()
 end
 
 function mod:Deaths(args)
+	self:SetStage(self:GetStage() + 1)
 	if args.mobId == 136984 then -- Reban
 		self:StopBar(269231) -- Hunting Leap
 	else -- T'zala
@@ -129,8 +439,8 @@ end
 
 function mod:BladeCombo(args)
 	self:Message(args.spellId, "purple")
-	self:PlaySound(args.spellId, "alarm")
 	self:CDBar(args.spellId, 17)
+	self:PlaySound(args.spellId, "alert")
 end
 
 do
@@ -177,8 +487,8 @@ end
 
 function mod:DeathlyRoar(args)
 	self:Message(args.spellId, "red", CL.casting:format(args.spellName))
-	self:PlaySound(args.spellId, "warning")
 	self:CDBar(args.spellId, 13.3)
+	self:PlaySound(args.spellId, "warning")
 end
 
 function mod:UNIT_SPELLCAST_SUCCEEDED(event, unit, _, spellId)

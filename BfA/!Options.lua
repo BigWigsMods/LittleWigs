@@ -637,16 +637,26 @@ BigWigs:AddSounds("The Council of Tribes", {
 BigWigs:AddColors("Dazar, The First King", {
 	[268586] = "purple",
 	[268932] = {"blue","orange"},
+	[269230] = "orange",
 	[269231] = "blue",
 	[269369] = "red",
+	[1303115] = "yellow",
+	[1303267] = "red",
+	[1303326] = {"blue","orange"},
+	[1303481] = "purple",
 	["stages"] = {"cyan","yellow"},
 })
 
 BigWigs:AddSounds("Dazar, The First King", {
-	[268586] = "alarm",
+	[268586] = "alert",
 	[268932] = "long",
+	[269230] = "alarm",
 	[269231] = "alert",
 	[269369] = "warning",
+	[1303115] = "info",
+	[1303267] = "warning",
+	[1303326] = "long",
+	[1303481] = "alarm",
 	["stages"] = "info",
 })
 
