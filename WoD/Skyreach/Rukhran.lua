@@ -193,21 +193,20 @@ function mod:SunbreakTimeline(eventInfo) -- Add
 	}
 end
 
-function mod:UNIT_SPELLCAST_CHANNEL_START(event, unit)
+function mod:UNIT_SPELLCAST_CHANNEL_START(event, unit) -- Quills
 	self:UnregisterUnitEvent(event, unit)
 	if self:ShouldShowBars() then
 		self:Message(159382, "orange", CL.count_amount:format(self:GetRename(159382, 3), 1, 4))
 		self:ScheduleTimer(function() self:Message(159382, "orange", CL.count_amount:format(self:GetRename(159382, 3), 2, 4)) end, 1)
 		self:ScheduleTimer(function() self:Message(159382, "orange", CL.count_amount:format(self:GetRename(159382, 3), 3, 4)) end, 2)
 		self:ScheduleTimer(function()
-			self:Message(159382, "orange", CL.count_amount:format(self:GetRename(159382, 3), 4, 4))
 			self:Message(159382, "green", self:GetRename(159382, 4)) -- Quills over
 			self:PlaySound(159382, "info")
 		end, 3)
 	end
 end
 
-function mod:UNIT_SPELLCAST_START(event, unit)
+function mod:UNIT_SPELLCAST_START(event, unit) -- Quills
 	self:UnregisterUnitEvent(event, unit)
 	self:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", nil, unit)
 	if self:ShouldShowBars() then
