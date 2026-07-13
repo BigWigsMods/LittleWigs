@@ -226,8 +226,8 @@ function mod:LightningBiteTimeline(eventInfo) -- Lightning Bite
 		msg = barText,
 		key = 1290797,
 		callback = function()
-			self:Message(1290797, "yellow", barText)
-			self:PlaySound(1290797, "info")
+			self:Message(1290797, "purple", barText)
+			self:PlaySound(1290797, "alert")
 		end
 	}
 end
@@ -239,10 +239,7 @@ function mod:AKnotOfSnakesTimeline(eventInfo) -- A Knot of Snakes
 	return {
 		msg = barText,
 		key = 1290029,
-		callback = function()
-			self:Message(1290029, "red", barText)
-			self:PlaySound(1290029, "warning")
-		end
+		-- alerts in :ENCOUNTER_WARNING
 	}
 end
 
@@ -255,7 +252,7 @@ function mod:ThunderSpitTimeline(eventInfo) -- Thunder Spit
 		key = 1289109,
 		callback = function()
 			self:Message(1289109, "yellow", barText)
-			self:PlaySound(1289109, "info")
+			self:PlaySound(1289109, "alert")
 		end
 	}
 end
@@ -268,8 +265,8 @@ function mod:SerpentstormTimeline(eventInfo) -- Serpentstorm
 		msg = barText,
 		key = 1293048,
 		callback = function()
-			self:Message(1293048, "yellow", barText)
-			self:PlaySound(1293048, "info")
+			self:Message(1293048, "orange", barText)
+			self:PlaySound(1293048, "alarm")
 		end
 	}
 end

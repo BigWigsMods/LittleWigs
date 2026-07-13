@@ -1214,10 +1214,10 @@ BigWigs:AddColors("Adderis and Aspix", {
 	[263309] = "yellow",
 	[263371] = {"blue","orange"},
 	[263424] = "orange",
-	[1288049] = "yellow",
-	[1288428] = "yellow",
+	[1288049] = "orange",
+	[1288428] = "purple",
 	[1288864] = {"blue","yellow"},
-	[1289059] = {"blue","yellow"},
+	[1289059] = {"blue","red"},
 })
 
 BigWigs:AddSounds("Adderis and Aspix", {
@@ -1227,9 +1227,9 @@ BigWigs:AddSounds("Adderis and Aspix", {
 	[263371] = "warning",
 	[263424] = "alert",
 	[1288049] = "info",
-	[1288428] = "info",
-	[1288864] = "info",
-	[1289059] = "info",
+	[1288428] = "alert",
+	[1288864] = "warning",
+	[1289059] = "alarm",
 })
 
 BigWigs:AddColors("Merektha", {
@@ -1241,9 +1241,8 @@ BigWigs:AddColors("Merektha", {
 	[264206] = {"cyan","green"},
 	[1289109] = "yellow",
 	[1289205] = "yellow",
-	[1290029] = "red",
-	[1290797] = "yellow",
-	[1293048] = "yellow",
+	[1290797] = "purple",
+	[1293048] = "orange",
 })
 
 BigWigs:AddSounds("Merektha", {
@@ -1253,25 +1252,25 @@ BigWigs:AddSounds("Merektha", {
 	[263958] = "warning",
 	[264172] = {"info","long"},
 	[264206] = {"info","long"},
-	[1289109] = "info",
+	[1289109] = "alert",
 	[1289205] = "info",
 	[1290029] = "warning",
-	[1290797] = "info",
-	[1293048] = "info",
+	[1290797] = "alert",
+	[1293048] = "alarm",
 })
 
 BigWigs:AddColors("Galvazzt", {
 	[266512] = {"orange","red"},
 	[266923] = {"blue","orange"},
 	[1291618] = "yellow",
-	[1309525] = "yellow",
+	[1309525] = "orange",
 })
 
 BigWigs:AddSounds("Galvazzt", {
 	[266512] = {"alarm","warning"},
 	[266923] = {"alert","info"},
 	[1291618] = "info",
-	[1309525] = "info",
+	[1309525] = "alarm",
 })
 
 BigWigs:AddColors("Avatar of Sethraliss", {

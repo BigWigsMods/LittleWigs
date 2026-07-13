@@ -219,8 +219,8 @@ function mod:GaleForceTimeline(eventInfo) -- Gale Force
 		key = 1289059,
 		callback = function()
 			self:PersonalMessageFromBlizzMessage(1289059, 1, false, self:GetRename(1289059, 2))
-			self:Message(1289059, "yellow", barText)
-			self:PlaySound(1289059, "info")
+			self:Message(1289059, "red", barText)
+			self:PlaySound(1289059, "alarm")
 		end
 	}
 end
@@ -233,25 +233,29 @@ function mod:ThunderAndLightningTimeline(eventInfo) -- Thunder and Lightning
 		msg = barText,
 		key = 1288049,
 		callback = function()
-			self:TargetMessageFromBlizzMessage(1288049, 1, "yellow", false)
+			self:TargetMessageFromBlizzMessage(1288049, 1, "orange", false)
 			self:PlaySound(1288049, "info")
 		end
 	}
 end
 
-function mod:TempestWindsTimeline(eventInfo) -- Tempest Winds
-	local barText = CL.count:format(self:GetRename(1288864), tempestWindsCount)
-	self:CDBar(1288864, eventInfo.duration, barText, nil, eventInfo.id)
-	tempestWindsCount = tempestWindsCount + 1
-	return {
-		msg = barText,
-		key = 1288864,
-		callback = function()
-			self:PersonalMessageFromBlizzMessage(1288864, 1, false, self:GetRename(1288864, 2))
-			self:Message(1288864, "yellow", barText)
-			self:PlaySound(1288864, "info")
-		end
-	}
+do
+	local function IfOnMe(self)
+		self:PlaySound(1288864, "warning", nil, self:UnitName("player"))
+	end
+	function mod:TempestWindsTimeline(eventInfo) -- Tempest Winds
+		local barText = CL.count:format(self:GetRename(1288864), tempestWindsCount)
+		self:CDBar(1288864, eventInfo.duration, barText, nil, eventInfo.id)
+		tempestWindsCount = tempestWindsCount + 1
+		return {
+			msg = barText,
+			key = 1288864,
+			callback = function()
+				self:PersonalMessageFromBlizzMessage(1288864, 1, false, self:GetRename(1288864, 2), nil, nil, IfOnMe)
+				self:Message(1288864, "yellow", barText)
+			end
+		}
+	end
 end
 
 function mod:OverloadTimeline(eventInfo) -- Overload
@@ -262,8 +266,8 @@ function mod:OverloadTimeline(eventInfo) -- Overload
 		msg = barText,
 		key = 1288428,
 		callback = function()
-			self:Message(1288428, "yellow", barText)
-			self:PlaySound(1288428, "info")
+			self:Message(1288428, "purple", barText)
+			self:PlaySound(1288428, "alert")
 		end
 	}
 end

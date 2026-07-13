@@ -198,8 +198,8 @@ function mod:InductionTimeline(eventInfo) -- Induction
 		msg = barText,
 		key = 1309525,
 		callback = function()
-			self:Message(1309525, "yellow", barText)
-			self:PlaySound(1309525, "info")
+			self:Message(1309525, "orange", barText)
+			self:PlaySound(1309525, "alarm")
 		end
 	}
 end
