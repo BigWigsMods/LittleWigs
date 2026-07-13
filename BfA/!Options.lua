@@ -611,22 +611,26 @@ BigWigs:AddSounds("Mchimba the Embalmer", {
 })
 
 BigWigs:AddColors("The Council of Tribes", {
-	[266206] = "yellow",
-	[266231] = {"blue","orange"},
+	[266206] = "orange",
+	[266231] = {"blue","yellow"},
 	[266237] = "purple",
 	[266951] = {"blue","red"},
 	[267060] = "yellow",
-	[267273] = "orange",
+	[267273] = "red",
+	[267494] = "red",
+	[1305810] = "orange",
 	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("The Council of Tribes", {
-	[266206] = "alert",
-	[266231] = "alarm",
-	[266237] = "alarm",
-	[266951] = "warning",
+	[266206] = "alarm",
+	[266231] = "alert",
+	[266237] = "alert",
+	[266951] = "info",
 	[267060] = "long",
-	[267273] = "alarm",
+	[267273] = "alert",
+	[267494] = "info",
+	[1305810] = "alarm",
 	["stages"] = "long",
 })
 
