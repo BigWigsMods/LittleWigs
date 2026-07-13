@@ -763,17 +763,21 @@ BigWigs:AddSounds("Melidrussa Chillworn", {
 })
 
 BigWigs:AddColors("Kokia Blazehoof", {
-	[372107] = {"blue","yellow"},
+	[372107] = {"blue","orange"},
+	[372110] = "orange",
 	[372858] = "purple",
-	[372863] = "orange",
+	[372863] = "red",
+	[372864] = "red",
 	[373017] = "red",
 	[373087] = "orange",
 })
 
 BigWigs:AddSounds("Kokia Blazehoof", {
 	[372107] = "alarm",
+	[372110] = "alarm",
 	[372858] = "alert",
 	[372863] = "long",
+	[372864] = "long",
 	[373017] = "warning",
 	[373087] = "alarm",
 })
