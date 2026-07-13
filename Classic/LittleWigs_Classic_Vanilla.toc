@@ -1,4 +1,4 @@
-## Interface: 11508, 11507
+## Interface: 11508, 11509
 
 ## Title: LittleWigs [|cffeda55fClassic|r]
 ## Title-deDE: LittleWigs [|cffeda55fClassic|r]
