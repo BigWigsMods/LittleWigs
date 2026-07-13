@@ -788,7 +788,7 @@ BigWigs:AddColors("Kyrakka and Erkhart Stormvein", {
 	[381517] = "yellow",
 	[381525] = "orange",
 	[381602] = "red",
-	[381862] = "blue",
+	[381862] = {"blue","orange"},
 	["stages"] = "cyan",
 })
 
