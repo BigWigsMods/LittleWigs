@@ -599,14 +599,14 @@ BigWigs:AddSounds("The Golden Serpent", {
 })
 
 BigWigs:AddColors("Mchimba the Embalmer", {
-	[267618] = {"blue","orange"},
-	[267639] = "red",
+	[267618] = {"blue","red"},
+	[267639] = "orange",
 	[267702] = {"blue","green","yellow"},
 })
 
 BigWigs:AddSounds("Mchimba the Embalmer", {
-	[267618] = "alarm",
-	[267639] = "warning",
+	[267618] = "alert",
+	[267639] = "alarm",
 	[267702] = {"info","long"},
 })
 
