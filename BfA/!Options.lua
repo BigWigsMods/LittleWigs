@@ -588,7 +588,7 @@ BigWigs:AddColors("The Golden Serpent", {
 	[265773] = {"blue","orange"},
 	[265781] = "red",
 	[265910] = "purple",
-	[265923] = "yellow",
+	[265923] = "cyan",
 })
 
 BigWigs:AddSounds("The Golden Serpent", {
