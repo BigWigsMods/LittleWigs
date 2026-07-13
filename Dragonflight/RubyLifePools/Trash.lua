@@ -151,6 +151,22 @@ function mod:OnBossEnable()
 end
 
 --------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if mod:Retail() then -- Midnight+
+	function mod:GetOptions()
+		return {
+		}
+	end
+
+	function mod:OnBossEnable()
+		-- Warmups
+		self:RegisterEvent("CHAT_MSG_MONSTER_YELL")
+	end
+end
+
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 
