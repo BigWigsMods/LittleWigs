@@ -7,11 +7,11 @@ if not mod then return end
 mod:SetEncounterID(3201)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1239825, sound = "alarm"}, -- Lightfire
+	{1239825, sound = "none"}, -- Lightfire
 	{1239919, sound = "underyou"}, -- Lightfire Beams
-	{1241058, sound = "alarm"}, -- Grievous Thrash
+	{1241058, sound = "none"}, -- Grievous Thrash
 	{1251345, sound = "underyou"}, -- Blight Resin
-	{1257094, sound = "alert"}, -- Pulverized
+	{1257094, sound = "none"}, -- Pulverized
 })
 mod:SetStage(1)
 
@@ -97,6 +97,8 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	elseif duration == 2.5 then -- Spirits of the Vale
 		self:SpiritsOfTheValeTimeline(eventInfo)
 	elseif self:GetStage() == 3 then
+		-- TODO in Stage 3 these timers will all be canceled with 0.5s left.
+		-- we should probably just schedule their callbacks to fire then unless Blizzard fixes these.
 		if duration == 7.3 or (duration == 32 and sharedCount % 4 == 1) then
 			barInfo = self:LightfireTimeline(eventInfo)
 		elseif duration == 15.3 or (duration == 32 and sharedCount % 4 == 2) then
@@ -189,23 +191,19 @@ function mod:ShapeshiftMoonkinTimeline(eventInfo) -- Shapeshift: Moonkin
 	}
 end
 
-do
-	local function IfOnMe(self)
-		self:PlaySound(1239824, "warning", nil, self:UnitName("player"))
-	end
-	function mod:LightfireTimeline(eventInfo) -- Lightfire
-		local barText = CL.count:format(self:GetRename(1239824), lightfireCount)
-		self:CDBar(1239824, eventInfo.duration, barText, nil, eventInfo.id)
-		lightfireCount = lightfireCount + 1
-		return {
-			msg = barText,
-			key = 1239824,
-			callback = function()
-				self:PersonalMessageFromBlizzMessage(1239824, 3, false, self:GetRename(1239824, 2), nil, nil, IfOnMe)
-				self:Message(1239824, "yellow", barText)
-			end
-		}
-	end
+function mod:LightfireTimeline(eventInfo) -- Lightfire
+	local barText = CL.count:format(self:GetRename(1239824), lightfireCount)
+	self:CDBar(1239824, eventInfo.duration, barText, nil, eventInfo.id)
+	lightfireCount = lightfireCount + 1
+	return {
+		msg = barText,
+		key = 1239824,
+		callback = function()
+			self:PersonalMessageFromBlizzMessage(1239824, 3, false, self:GetRename(1239824, 2))
+			self:Message(1239824, "yellow", barText)
+			self:PlaySound(1239824, "alarm")
+		end
+	}
 end
 
 function mod:LightfallTimeline(eventInfo) -- Lightfall
@@ -264,7 +262,15 @@ do
 			msg = barText,
 			key = 1240210,
 			callback = function()
-				pulverizingStrikesRemaining = 3
+				if BigWigsLoader.isNext then
+					if self:GetStage() ~= 3 then -- Stage 2
+						pulverizingStrikesRemaining = 2
+					else -- Stage 3
+						pulverizingStrikesRemaining = 3
+					end
+				else -- XXX remove in 12.1
+					pulverizingStrikesRemaining = 3
+				end
 				self:SimpleTimer(function()
 					self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss1")
 				end, 0.1)

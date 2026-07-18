@@ -474,7 +474,7 @@ BigWigs:AddColors("Lightwarden Ruia", {
 })
 
 BigWigs:AddSounds("Lightwarden Ruia", {
-	[1239824] = "warning",
+	[1239824] = "alarm",
 	[1239882] = "info",
 	[1239883] = "info",
 	[1239885] = "info",
