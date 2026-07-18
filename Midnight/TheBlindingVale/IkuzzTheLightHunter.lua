@@ -127,6 +127,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 			activeBars[eventID] = nil
 		elseif state == 3 then -- Canceled
 			self:StopBar(barInfo.msg)
+			if not self:IsWiping() and barInfo.cancelCallback then
+				barInfo.cancelCallback()
+			end
 			activeBars[eventID] = nil
 		end
 	elseif backupBars[eventID] then
@@ -167,6 +170,9 @@ function mod:VerdantStompTimeline(eventInfo) -- Verdant Stomp
 			self:StopBlizzMessages(1)
 			self:Message(1236746, "orange", barText)
 			self:PlaySound(1236746, "alert")
+		end,
+		cancelCallback = function()
+			verdantStompCount = verdantStompCount - 1
 		end
 	}
 end
