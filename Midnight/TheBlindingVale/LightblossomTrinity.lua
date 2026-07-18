@@ -31,7 +31,7 @@ local backupBars = {}
 
 mod:SetRenames({
 	[1234753] = {1234753}, -- Bedrock Slam
-	[1235640] = {1235640}, -- Thornblade
+	[1235640] = {1235640, CL.you:format(mod:SpellName(1235640)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1235640, CL.you:format(mod:SpellName(1235640))}}, -- Thornblade
 	[1234850] = {1234850}, -- Lightsower Dash
 	[1235564] = {1235564}, -- Lightblossom Beam
 })
@@ -84,13 +84,13 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if BigWigsLoader.isNext then
-		if duration == 5 or (count40something % 3 == 1 and duration > 40 and duration <= 45) then -- Bedrock Slam
+		if duration == 5 or (count40something % 4 == 1 and duration > 40 and duration <= 45) then -- Bedrock Slam
 			barInfo = self:BedrockSlamTimeline(eventInfo)
-		elseif duration == 8 then -- Thornblade
+		elseif duration == 8 or (count40something % 4 == 2 and duration > 40 and duration <= 45) then -- Thornblade
 			barInfo = self:ThornbladeTimeline(eventInfo)
-		elseif duration == 20 or (count40something % 3 == 2 and duration > 40 and duration <= 45) then -- Lightsower Dash
+		elseif duration == 20 or (count40something % 4 == 3 and duration > 40 and duration <= 45) then -- Lightsower Dash
 			barInfo = self:LightsowerDashTimeline(eventInfo)
-		elseif duration == 35 or (count40something % 3 == 0 and duration > 40 and duration <= 45) then -- Lightblossom Beam
+		elseif duration == 35 or (count40something % 4 == 0 and duration > 40 and duration <= 45) then -- Lightblossom Beam
 			barInfo = self:LightblossomBeamTimeline(eventInfo)
 		elseif not self:IsWiping() then
 			self:ErrorForTimelineEvent(eventInfo)
@@ -197,9 +197,10 @@ do
 			msg = barText,
 			key = 1235640,
 			callback = function()
-				-- first Thornblade double alerts (and all other Thornblade casts have no timer)
+				-- TODO first Thornblade double alerts (and all other Thornblade casts have no timer)
 				if GetTime() - prev > 2 then
 					prev = GetTime()
+					self:PersonalMessageFromBlizzMessage(1235640, 1, false, self:GetRename(1235640, 2))
 					self:Message(1235640, "yellow", barText)
 					self:PlaySound(1235640, "alert")
 				end

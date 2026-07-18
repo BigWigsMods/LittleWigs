@@ -441,7 +441,7 @@ BigWigs:AddColors("Lightblossom Trinity", {
 	[1234753] = "purple",
 	[1234850] = "red",
 	[1235564] = "cyan",
-	[1235640] = "yellow",
+	[1235640] = {"blue","yellow"},
 })
 
 BigWigs:AddSounds("Lightblossom Trinity", {
