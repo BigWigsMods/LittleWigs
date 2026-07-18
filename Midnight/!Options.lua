@@ -329,12 +329,14 @@ BigWigs:AddSounds("Maisara Caverns Trash", {
 
 BigWigs:AddColors("Kystia Manaheart", {
 	[474240] = "orange",
+	[1230304] = "green",
 	[1253811] = "red",
 	[1264095] = "cyan",
 })
 
 BigWigs:AddSounds("Kystia Manaheart", {
 	[474240] = "alarm",
+	[1230304] = "info",
 	[1253811] = "alarm",
 	[1264095] = "info",
 })

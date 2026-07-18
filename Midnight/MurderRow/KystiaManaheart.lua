@@ -29,6 +29,7 @@ mod:SetRenames({
 	[1253811] = {1253811}, -- Fel Spray
 	[1264095] = {1264095}, -- Mirror Images
 	[474240] = {474240},   -- Fel Nova
+	[1230304] = {1230304}, -- Light Infusion
 })
 
 --------------------------------------------------------------------------------
@@ -40,6 +41,7 @@ function mod:GetOptions()
 		1253811, -- Fel Spray
 		1264095, -- Mirror Images
 		474240, -- Fel Nova
+		1230304, -- Light Infusion
 	}
 end
 
@@ -55,10 +57,13 @@ function mod:OnEncounterStart()
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+		self:RegisterEvent("ENCOUNTER_WARNING")
+		self:SendMessage("BigWigs_BlockBlizzMessages")
 	end
 end
 
 function mod:OnBossDisable()
+	self:SendMessage("BigWigs_AllowBlizzMessages")
 	for eventID in next, backupBars do
 		self:SendMessage("BigWigs_StopBar", nil, nil, eventID)
 	end
@@ -97,7 +102,8 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	elseif duration == 15 or (not self:IsWiping() and duration == 30) then -- Mirror Images
 		self:CancelBarForSpell(1264095)
 		barInfo = self:MirrorImagesTimeline(eventInfo)
-	elseif duration == 25 then -- Fel Nova
+	elseif duration == 12 or duration == 25 then -- Fel Nova
+		-- XXX 12.1 is always 12, remove duration == 25 (BigWigsLoader.isNext)
 		self:CancelBarForSpell(474240)
 		barInfo = self:FelNovaTimeline(eventInfo)
 	elseif not self:IsWiping() then
@@ -173,6 +179,15 @@ end
 -- Timeline Ability Handlers
 --
 
+function mod:ENCOUNTER_WARNING(_, info)
+	if info.severity == 1 then -- Light Infusion
+		self:Message(1230304, "green", self:GetRename(1230304))
+		self:PlaySound(1230304, "info")
+	-- elseif info.severity == 2 then -- 1253811 Fel Spray (handled via timeline)
+	-- elseif info.severity == 0 then -- 1248184 Escape (fight end, ignored)
+	end
+end
+
 function mod:FelSprayTimeline(eventInfo) -- Fel Spray
 	local barText = CL.count:format(self:GetRename(1253811), felSprayCount)
 	self:CDBar(1253811, eventInfo.duration, barText, nil, eventInfo.id)
@@ -181,7 +196,6 @@ function mod:FelSprayTimeline(eventInfo) -- Fel Spray
 		msg = barText,
 		key = 1253811,
 		callback = function()
-			self:StopBlizzMessages(1)
 			self:Message(1253811, "red", barText)
 			self:PlaySound(1253811, "alarm")
 		end,
