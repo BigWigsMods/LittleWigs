@@ -165,6 +165,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 			activeBars[eventID] = nil
 		elseif state == 3 then -- Canceled
 			self:StopBar(barInfo.msg)
+			if not self:IsWiping() and barInfo.cancelCallback then
+				barInfo.cancelCallback()
+			end
 			activeBars[eventID] = nil
 		end
 	elseif backupBars[eventID] then
@@ -209,6 +212,9 @@ function mod:HailburstTimeline(eventInfo) -- Hailburst
 		callback = function()
 			self:Message(1307297, "orange", barText)
 			self:PlaySound(1307297, "alarm")
+		end,
+		cancelCallback = function()
+			hailburstCount = hailburstCount - 1
 		end
 	}
 end
@@ -224,23 +230,26 @@ function mod:ChillstormTimeline(eventInfo) -- Chillstorm
 			self:PersonalMessageFromBlizzMessage(1307308, 1, false, self:GetRename(1307308, 2)) -- TODO confirm
 			self:Message(1307308, "yellow", barText)
 			self:PlaySound(1307308, "alert")
+		end,
+		cancelCallback = function()
+			chillstormCount = chillstormCount - 1
 		end
 	}
 end
 
 function mod:FrostOverloadTimeline(eventInfo) -- Frost Overload
 	self:SetStage(2)
-	self:StopBlizzMessages(1) -- TODO confirm
+	self:StopBlizzMessages(1)
 	local barText = CL.count:format(self:GetRename(373686), frostOverloadCount)
 	self:CDBar(373686, eventInfo.duration, barText, nil, eventInfo.id)
 	frostOverloadCount = frostOverloadCount + 1
-	self:Message(373046, "cyan", CL.percent:format(awakenWhelpsCount == 1 and 75 or 45, self:GetRename(373046))) -- Awaken Whelps
+	self:Message(373046, "cyan", CL.percent:format(awakenWhelpsCount == 1 and 66 or 33, self:GetRename(373046))) -- Awaken Whelps
 	awakenWhelpsCount = awakenWhelpsCount + 1
-	self:PlaySound(373046, "long") -- Awaken Whelps
+	self:PlaySound(373046, "info") -- Awaken Whelps
 	return {
 		msg = barText,
 		key = 373686,
-		callback = function() -- TODO cancelCallback?
+		callback = function()
 			self:Message(373686, "red", barText)
 			self:PlaySound(373686, "long")
 		end
@@ -255,7 +264,7 @@ function mod:AwakenWhelps(args)
 	local percent = awakenWhelpsCount == 1 and 75 or 45
 	awakenWhelpsCount = awakenWhelpsCount + 1
 	self:Message(args.spellId, "cyan", CL.percent:format(percent, args.spellName))
-	self:PlaySound(args.spellId, "long")
+	self:PlaySound(args.spellId, "info")
 	if self:Mythic() then
 		self:SetStage(2)
 		self:CDBar(373680, 8.5) -- Frost Overload
