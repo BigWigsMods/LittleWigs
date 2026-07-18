@@ -7,10 +7,10 @@ if not mod then return end
 mod:SetEncounterID(3209)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1242869, sound = "alarm"}, -- Echoing Maul
+	{1242869, sound = "none"}, -- Echoing Maul
 	{1243590, sound = "alarm"}, -- Overwhelming Onslaught
-	{1255577, sound = "warning"}, -- Spectral Slash
-	{1262253, sound = "info"}, -- Demoralizing Scream
+	{1255577, sound = "none"}, -- Spectral Slash
+	{1262253, sound = "alarm"}, -- Demoralizing Scream
 	{1261781, sound = "info"}, -- Defensive Stance
 })
 
