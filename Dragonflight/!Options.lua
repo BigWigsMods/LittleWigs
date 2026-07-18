@@ -785,17 +785,17 @@ BigWigs:AddSounds("Kokia Blazehoof", {
 BigWigs:AddColors("Kyrakka and Erkhart Stormvein", {
 	[381512] = {"blue","purple"},
 	[381516] = "red",
-	[381517] = "yellow",
+	[381517] = "cyan",
 	[381525] = "orange",
 	[381602] = "red",
-	[381862] = {"blue","orange"},
+	[381862] = {"blue","yellow"},
 	["stages"] = "cyan",
 })
 
 BigWigs:AddSounds("Kyrakka and Erkhart Stormvein", {
 	[381512] = {"alarm","alert"},
 	[381516] = "warning",
-	[381517] = "alert",
+	[381517] = "info",
 	[381525] = "alarm",
 	[381602] = "alert",
 	[381862] = "alarm",

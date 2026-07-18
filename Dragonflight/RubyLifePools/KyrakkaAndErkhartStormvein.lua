@@ -101,7 +101,6 @@ local stormslamCount = 1
 local infernoSpitCount = 1
 local interruptingCloudburstCount = 1
 local count20 = 1
-local count21_5 = 1
 local count16 = 1
 local activeBars = {}
 local backupBars = {}
@@ -151,7 +150,6 @@ if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 		infernoSpitCount = 1
 		interruptingCloudburstCount = 1
 		count20 = 1
-		count21_5 = 1
 		count16 = 1
 		activeBars = {}
 		backupBars = {}
@@ -182,9 +180,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 			self:EncounterEvent() -- Stage 2
 		end
 		barInfo = self:RoaringFirebreathTimeline(eventInfo)
-	elseif duration == 5 or (duration == 21.5 and count21_5 % 2 == 1) then -- Stormslam
+	elseif duration == 5 or duration == 22.5 then -- Stormslam
 		barInfo = self:StormslamTimeline(eventInfo)
-	elseif duration == 10 or (duration == 21.5 and count21_5 % 2 == 0) then -- Winds of Change
+	elseif duration == 10 or duration == 21.5 then -- Winds of Change
 		barInfo = self:WindsOfChangeTimeline(eventInfo)
 	elseif duration == 12 or (duration == 20 and count20 % 2 == 0) or duration == 9 or (duration == 16 and count16 % 2 == 0) then -- Inferno Spit
 		barInfo = self:InfernoSpitTimeline(eventInfo)
@@ -201,9 +199,6 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	end
 	if duration == 20 then
 		count20 = count20 + 1
-	end
-	if duration == 21.5 then
-		count21_5 = count21_5 + 1
 	end
 	if duration == 16 then
 		count16 = count16 + 1
@@ -295,8 +290,8 @@ function mod:WindsOfChangeTimeline(eventInfo) -- Winds of Change
 		msg = barText,
 		key = 381517,
 		callback = function()
-			self:Message(381517, "yellow", barText)
-			self:PlaySound(381517, "alert")
+			self:Message(381517, "cyan", barText)
+			self:PlaySound(381517, "info")
 		end
 	}
 end
@@ -310,7 +305,7 @@ function mod:InfernoSpitTimeline(eventInfo) -- Inferno Spit
 		key = 381862,
 		callback = function()
 			self:PersonalMessageFromBlizzMessage(381862, 1, false, self:GetRename(381862, 2)) -- TODO confirm
-			self:Message(381862, "orange", barText)
+			self:Message(381862, "yellow", barText)
 			self:PlaySound(381862, "alarm")
 		end
 	}
@@ -324,6 +319,7 @@ function mod:InterruptingCloudburstTimeline(eventInfo) -- Interrupting Cloudburs
 		msg = barText,
 		key = 381516,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(381516, "red", barText)
 			self:CastBar(381516, 5, 2)
 			self:PlaySound(381516, "warning")
