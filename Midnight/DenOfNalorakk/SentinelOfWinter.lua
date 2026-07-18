@@ -7,9 +7,9 @@ if not mod then return end
 mod:SetEncounterID(3208)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1235549, sound = "alert"}, -- Glacial Torment
+	{1235549, sound = "info"}, -- Glacial Torment
 	{1235829, sound = "warning"}, -- Winter's Shroud
-	{1235841, sound = "underyou"}, -- Snowdrift
+	{1235841, sound = "info"}, -- Snowdrift
 	{1235641, sound = "underyou"}, -- Raging Squall
 	{1236289, sound = "underyou"}, -- Blizzard's Wrath
 })
