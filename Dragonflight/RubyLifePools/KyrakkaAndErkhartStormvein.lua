@@ -471,10 +471,10 @@ function mod:WindsOfChange(args)
 		icon = "misc_arrowright"
 		nextIcon = "misc_arrowlup"
 	end
-	self:Message(args.spellId, "yellow", CL.other:format(L.winds, direction), icon)
+	self:Message(args.spellId, "cyan", CL.other:format(L.winds, direction), icon)
 	self:StopBar(CL.other:format(L.winds, direction))
 	self:CDBar(args.spellId, 19.4, CL.other:format(L.winds, nextDirection), nextIcon)
-	self:PlaySound(args.spellId, "alert")
+	self:PlaySound(args.spellId, "info")
 end
 
 function mod:InterruptingCloudburst(args)
