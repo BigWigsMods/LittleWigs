@@ -201,17 +201,24 @@ function mod:ThornspikeTimeline(eventInfo) -- Thornspike
 	}
 end
 
-function mod:ConcentratedLightbeamTimeline(eventInfo) -- Concentrated Lightbeam
-	local barText = CL.count:format(self:GetRename(1246607), concentratedLightbeamCount)
-	self:CDBar(1246607, eventInfo.duration, barText, nil, eventInfo.id)
-	concentratedLightbeamCount = concentratedLightbeamCount + 1
-	return {
-		msg = barText,
-		key = 1246607,
-		callback = function()
-			self:PersonalMessageFromBlizzMessage(1246607, 1, false, self:GetRename(1246607, 2))
-			self:Message(1246607, "orange", barText)
-			self:PlaySound(1246607, "alarm")
-		end
-	}
+do
+	local prev = 0
+	function mod:ConcentratedLightbeamTimeline(eventInfo) -- Concentrated Lightbeam
+		local barText = CL.count:format(self:GetRename(1246607), concentratedLightbeamCount)
+		self:CDBar(1246607, eventInfo.duration, barText, nil, eventInfo.id)
+		concentratedLightbeamCount = concentratedLightbeamCount + 1
+		return {
+			msg = barText,
+			key = 1246607,
+			callback = function()
+				-- TODO first Concentrated Lightbeam double alerts (and all other Concentrated Lightbeam casts have no timer)
+				if GetTime() - prev > 2 then
+					prev = GetTime()
+					self:PersonalMessageFromBlizzMessage(1246607, 1, false, self:GetRename(1246607, 2))
+					self:Message(1246607, "orange", barText)
+					self:PlaySound(1246607, "alarm")
+				end
+			end
+		}
+	end
 end
