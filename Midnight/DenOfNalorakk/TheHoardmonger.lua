@@ -8,15 +8,15 @@ mod:SetEncounterID(3207)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
 	{1234846, sound = "info"}, -- Toxic Spores
-	{1235125, sound = "alarm"}, -- Hearty Bellow
+	{1235125, sound = "none"}, -- Hearty Bellow
 })
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
-local earthshatterSlamCount = 1
 local ravenousBellowCount = 1
+local earthshatterSlamCount = 1
 local spoiledSuppliesCount = 1
 local activeBars = {}
 local activeBarBySpellId = {}
@@ -27,8 +27,8 @@ local backupBars = {}
 --
 
 mod:SetRenames({
-	[1253268] = {1253268}, -- Earthshatter Slam
 	[1235118] = {1235118}, -- Ravenous Bellow
+	[1253268] = {1253268}, -- Earthshatter Slam
 	[1234233] = {1234233}, -- Spoiled Supplies
 })
 
@@ -38,8 +38,8 @@ mod:SetRenames({
 
 function mod:GetOptions()
 	return {
-		1253268, -- Earthshatter Slam
 		1235118, -- Ravenous Bellow
+		1253268, -- Earthshatter Slam
 		1234233, -- Spoiled Supplies
 	}
 end
@@ -95,11 +95,10 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local barInfo
 	if duration > 60 then return end -- filter placeholder bars
 	if BigWigsLoader.isNext then
-		if duration == 6 then -- Earthshatter Slam
-			self:CancelBarForSpell(1253268) -- TODO not needed in 12.1?
-			barInfo = self:EarthshatterSlamTimeline(eventInfo)
-		elseif duration == 16 then -- Ravenous Bellow
+		if duration == 6 then -- Ravenous Bellow
 			barInfo = self:RavenousBellowTimeline(eventInfo)
+		elseif duration == 16 then -- Earthshatter Slam
+			barInfo = self:EarthshatterSlamTimeline(eventInfo)
 		elseif not self:IsWiping() and duration == 30 then -- Spoiled Supplies
 			barInfo = self:SpoiledSuppliesTimeline(eventInfo)
 		elseif not self:IsWiping() then
@@ -193,6 +192,20 @@ end
 -- Timeline Ability Handlers
 --
 
+function mod:RavenousBellowTimeline(eventInfo) -- Ravenous Bellow
+	local barText = CL.count:format(self:GetRename(1235118), ravenousBellowCount)
+	self:CDBar(1235118, eventInfo.duration, barText, nil, eventInfo.id)
+	ravenousBellowCount = ravenousBellowCount + 1
+	return {
+		msg = barText,
+		key = 1235118,
+		callback = function()
+			self:Message(1235118, "red", barText)
+			self:PlaySound(1235118, "alert")
+		end
+	}
+end
+
 function mod:EarthshatterSlamTimeline(eventInfo) -- Earthshatter Slam
 	local barText = CL.count:format(self:GetRename(1253268), earthshatterSlamCount)
 	self:CDBar(1253268, eventInfo.duration, barText, nil, eventInfo.id)
@@ -210,20 +223,6 @@ function mod:EarthshatterSlamTimeline(eventInfo) -- Earthshatter Slam
 	}
 end
 
-function mod:RavenousBellowTimeline(eventInfo) -- Ravenous Bellow
-	local barText = CL.count:format(self:GetRename(1235118), ravenousBellowCount)
-	self:CDBar(1235118, eventInfo.duration, barText, nil, eventInfo.id)
-	ravenousBellowCount = ravenousBellowCount + 1
-	return {
-		msg = barText,
-		key = 1235118,
-		callback = function()
-			self:Message(1235118, "red", barText)
-			self:PlaySound(1235118, "alert")
-		end
-	}
-end
-
 function mod:SpoiledSuppliesTimeline(eventInfo) -- Spoiled Supplies
 	local barText = CL.count:format(self:GetRename(1234233), spoiledSuppliesCount)
 	self:CDBar(1234233, eventInfo.duration, barText, nil, eventInfo.id)
@@ -233,7 +232,7 @@ function mod:SpoiledSuppliesTimeline(eventInfo) -- Spoiled Supplies
 		key = 1234233,
 		callback = function()
 			self:StopBlizzMessages(1)
-			-- TODO not needed in 12.1?
+			-- XXX not needed in 12.1? (BigWigsLoader.isNext)
 			-- cancel + decrement the Earthshatter Slam bar when this ability occurs, it will be restarted later
 			local earthshatterSlamBarId = activeBarBySpellId[1253268] -- Earthshatter Slam
 			if earthshatterSlamBarId then
