@@ -166,7 +166,22 @@ function mod:FingersOfGuldanTimeline(eventInfo) -- Fingers of Gul'dan
 	}
 end
 
-do
+if BigWigsLoader.isNext then -- XXX remove in 12.1
+	function mod:MaleficWaveTimeline(eventInfo) -- Malefic Wave
+		local barText = CL.count:format(self:GetRename(1224478), maleficWaveCount)
+		self:CDBar(1224478, eventInfo.duration, barText, nil, eventInfo.id)
+		maleficWaveCount = maleficWaveCount + 1
+		return {
+			msg = barText,
+			key = 1224478,
+			callback = function()
+				self:StopBlizzMessages(1)
+				self:Message(1224478, "red", barText)
+				self:PlaySound(1224478, "warning")
+			end
+		}
+	end
+else
 	local timer
 	function mod:MaleficWaveTimeline(eventInfo) -- Malefic Wave
 		local barText = CL.count:format(self:GetRename(1224478), maleficWaveCount)
