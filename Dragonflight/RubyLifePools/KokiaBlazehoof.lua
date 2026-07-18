@@ -7,6 +7,9 @@ if not mod then return end
 mod:RegisterEnableMob(189232) -- Kokia Blazehoof
 mod:SetEncounterID(2606)
 mod:SetRespawnTime(30)
+mod:SetPrivateAuraSounds({
+	{372820, sound = "underyou"}, -- Scorched Earth
+})
 
 --------------------------------------------------------------------------------
 -- Locals
