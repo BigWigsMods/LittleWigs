@@ -29,7 +29,6 @@ local deathRattleCount = 1
 local toxicAtrophyCount = 1
 local assimilationCount = 1
 local count10 = 1
-local count20 = 1
 local activeBars = {}
 local backupBars = {}
 
@@ -88,7 +87,6 @@ function mod:OnEncounterStart()
 	toxicAtrophyCount = 1
 	assimilationCount = 1
 	count10 = 1
-	count20 = 1
 	activeBars = {}
 	backupBars = {}
 	self:SetStage(1)
@@ -115,17 +113,17 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local barInfo
 	if duration == 1 or (duration == 10 and count10 % 2 == 0) then -- Synchronized Venom
 		barInfo = self:SynchronizedVenomTimeline(eventInfo)
-	elseif duration == 11 or (duration == 20 and count20 % 2 == 0) then -- Tail Scythe
+	elseif duration == 7 or duration == 16 then -- Tail Scythe
 		barInfo = self:TailScytheTimeline(eventInfo)
-	elseif duration == 18 or duration == 27 then -- Preparing Toxin
+	elseif duration == 14 or duration == 23 then -- Preparing Toxin
 		barInfo = self:PreparingToxinTimeline(eventInfo)
-	elseif duration == 34 or duration == 43 then -- Vindictive Onslaught
+	elseif duration == 30 or duration == 39 then -- Vindictive Onslaught
 		barInfo = self:VindictiveOnslaughtTimeline(eventInfo)
 	elseif duration == 44 or duration == 53 then -- Death Rattle
 		barInfo = self:DeathRattleTimeline(eventInfo)
 	elseif (duration == 10 and count10 % 2 == 1) then -- Toxic Atrophy
 		barInfo = self:ToxicAtrophyTimeline(eventInfo)
-	elseif (duration == 20 and count20 % 2 == 1) then -- Assimilation
+	elseif duration == 25 then -- Assimilation
 		barInfo = self:AssimilationTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
@@ -138,9 +136,6 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	end
 	if duration == 10 then
 		count10 = count10 + 1
-	end
-	if duration == 20 then
-		count20 = count20 + 1
 	end
 	if barInfo then
 		activeBars[eventInfo.id] = barInfo
@@ -318,6 +313,7 @@ function mod:ToxicAtrophyTimeline(eventInfo) -- Toxic Atrophy
 		msg = barText,
 		key = 1310547,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(1310547, "red", barText)
 			self:PlaySound(1310547, "alert")
 		end
