@@ -60,13 +60,15 @@ local galeForceCount = 1
 local thunderAndLightningCount = 1
 local tempestWindsCount = 1
 local overloadCount = 1
-local count55 = 1
+local count42 = 1
+local count19 = 1
 local adderisDead = false
 local aspixDead = false
 local aspixSpells = { [1288864] = true, [1289059] = true } -- Tempest Winds, Gale Force
 local adderisSpells = { [1288049] = true, [1288428] = true } -- Thunder and Lightning, Overload
 local activeBars = {}
 local backupBars = {}
+local activeBarBySpellId = {}
 
 --------------------------------------------------------------------------------
 -- Midnight Renames
@@ -107,11 +109,13 @@ if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 		thunderAndLightningCount = 1
 		tempestWindsCount = 1
 		overloadCount = 1
-		count55 = 1
+		count42 = 1
+		count19 = 1
 		adderisDead = false
 		aspixDead = false
 		activeBars = {}
 		backupBars = {}
+		activeBarBySpellId = {}
 		if self:ShouldShowBars() then
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
@@ -134,14 +138,52 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
-	if duration == 8 or (duration == 55 and not aspixDead and (adderisDead or count55 % 2 == 1)) then -- Gale Force
+	-- initial: GF=5 TL=9 TW=26 OL=36 -> all 42
+	-- re-sync: GF=1 TL=4 TW=21 OL=31 -> all 42
+	-- Adderis dies: GF=5 TW=12 -> both 19
+	-- Aspix dies: TODO (guess: TL=9 OL=?? -> both 19?)
+	if duration == 5 or duration == 1 then -- Gale Force
+		aspixDead = false
 		barInfo = self:GaleForceTimeline(eventInfo)
-	elseif duration == 22 or (duration == 55 and not adderisDead and (aspixDead or count55 % 2 == 0)) then -- Thunder and Lightning
+	elseif duration == 9 or duration == 4 then -- Thunder and Lightning
+		adderisDead = false
 		barInfo = self:ThunderAndLightningTimeline(eventInfo)
-	elseif duration == 33 or duration == 57 then -- Tempest Winds
+	elseif duration == 26 or duration == 21 or duration == 12 then -- Tempest Winds
+		aspixDead = false
 		barInfo = self:TempestWindsTimeline(eventInfo)
-	elseif duration == 48 or duration == 59 then -- Overload
+	elseif duration == 36 or duration == 31 then -- Overload
+		adderisDead = false
 		barInfo = self:OverloadTimeline(eventInfo)
+	elseif duration == 42 then
+		if count42 % 4 == 1 then -- Gale Force
+			barInfo = self:GaleForceTimeline(eventInfo)
+		elseif count42 % 4 == 2 then -- Thunder and Lightning
+			barInfo = self:ThunderAndLightningTimeline(eventInfo)
+		elseif count42 % 4 == 3 then -- Tempest Winds
+			barInfo = self:TempestWindsTimeline(eventInfo)
+		else -- Overload
+			barInfo = self:OverloadTimeline(eventInfo)
+		end
+		count42 = count42 + 1
+	elseif duration == 19 then
+		if not aspixDead then -- Aspix alive
+			if count19 % 2 == 1 then -- Gale Force
+				barInfo = self:GaleForceTimeline(eventInfo)
+			else -- Tempest Winds
+				barInfo = self:TempestWindsTimeline(eventInfo)
+			end
+		elseif not adderisDead then -- Adderis alive
+			if count19 % 2 == 1 then -- Thunder and Lightning
+				barInfo = self:ThunderAndLightningTimeline(eventInfo)
+			else -- Overload
+				barInfo = self:OverloadTimeline(eventInfo)
+			end
+		end
+		count19 = count19 + 1
+	end
+	if barInfo then
+		activeBars[eventInfo.id] = barInfo
+		activeBarBySpellId[barInfo.key] = eventInfo.id
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
 		backupBars[eventInfo.id] = true
@@ -150,12 +192,6 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
 			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
 		end
-	end
-	if duration == 55 then
-		count55 = count55 + 1
-	end
-	if barInfo then
-		activeBars[eventInfo.id] = barInfo
 	end
 end
 
@@ -173,14 +209,20 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 				barInfo.callback()
 			end
 			activeBars[eventID] = nil
+			if activeBarBySpellId[barInfo.key] == eventID then
+				activeBarBySpellId[barInfo.key] = nil
+			end
 		elseif state == 3 then -- Canceled
-			if adderisSpells[barInfo.key] then
-				adderisDead = true
-			end
-			if aspixSpells[barInfo.key] then
-				aspixDead = true
-			end
 			self:StopBar(barInfo.msg)
+			if activeBarBySpellId[barInfo.key] == eventID then
+				if adderisSpells[barInfo.key] then
+					adderisDead = true
+				end
+				if aspixSpells[barInfo.key] then
+					aspixDead = true
+				end
+				activeBarBySpellId[barInfo.key] = nil
+			end
 			activeBars[eventID] = nil
 		end
 	elseif backupBars[eventID] then
@@ -200,6 +242,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_REMOVED(_, eventID)
 	if barInfo then
 		self:StopBar(barInfo.msg)
 		activeBars[eventID] = nil
+		if activeBarBySpellId[barInfo.key] == eventID then
+			activeBarBySpellId[barInfo.key] = nil
+		end
 	elseif backupBars[eventID] then
 		backupBars[eventID] = nil
 		self:SendMessage("BigWigs_StopBar", nil, nil, eventID)
@@ -210,19 +255,23 @@ end
 -- Timeline Ability Handlers
 --
 
-function mod:GaleForceTimeline(eventInfo) -- Gale Force
-	local barText = CL.count:format(self:GetRename(1289059), galeForceCount)
-	self:CDBar(1289059, eventInfo.duration, barText, nil, eventInfo.id)
-	galeForceCount = galeForceCount + 1
-	return {
-		msg = barText,
-		key = 1289059,
-		callback = function()
-			self:PersonalMessageFromBlizzMessage(1289059, 1, false, self:GetRename(1289059, 2))
-			self:Message(1289059, "red", barText)
-			self:PlaySound(1289059, "alarm")
-		end
-	}
+do
+	local function IfOnMe(self)
+		self:PlaySound(1289059, "alarm", nil, self:UnitName("player"))
+	end
+	function mod:GaleForceTimeline(eventInfo) -- Gale Force
+		local barText = CL.count:format(self:GetRename(1289059), galeForceCount)
+		self:CDBar(1289059, eventInfo.duration, barText, nil, eventInfo.id)
+		galeForceCount = galeForceCount + 1
+		return {
+			msg = barText,
+			key = 1289059,
+			callback = function()
+				-- in Mythic all 5 players get a PersonalMessage
+				self:PersonalMessageFromBlizzMessage(1289059, 1, false, self:GetRename(1289059, 2), nil, nil, IfOnMe)
+			end
+		}
+	end
 end
 
 function mod:ThunderAndLightningTimeline(eventInfo) -- Thunder and Lightning
@@ -251,7 +300,7 @@ do
 			msg = barText,
 			key = 1288864,
 			callback = function()
-				self:PersonalMessageFromBlizzMessage(1288864, 1, false, self:GetRename(1288864, 2), nil, nil, IfOnMe)
+				self:PersonalMessageFromBlizzMessage(1288864, 4, false, self:GetRename(1288864, 2), nil, nil, IfOnMe)
 				self:Message(1288864, "yellow", barText)
 			end
 		}
