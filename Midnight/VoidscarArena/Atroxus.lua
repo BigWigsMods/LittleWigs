@@ -8,9 +8,9 @@ mod:SetEncounterID(3286)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
 	{1222484, sound = "underyou"}, -- Poison Pool
-	{1222642, sound = "alarm"}, -- Hulking Claw
-	{1226031, sound = "alert"}, -- Poison Splash
-	{1263971, sound = "alert"}, -- Lingering Poison
+	{1222642, sound = "none"}, -- Hulking Claw
+	{1226031, sound = "none"}, -- Poison Splash
+	{1263971, sound = "none"}, -- Lingering Poison
 })
 
 --------------------------------------------------------------------------------
