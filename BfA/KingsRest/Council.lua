@@ -164,7 +164,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		barInfo = self:DebilitatingBackhandTimeline(eventInfo)
 	elseif duration == 2 or duration == 7 then -- Arc Lightning
 		barInfo = self:ArcLightningTimeline(eventInfo)
-	elseif duration == 10 or duration == 24 then -- Poison Nova
+	elseif duration == 10 or duration == 24.4 then -- Poison Nova
 		barInfo = self:PoisonNovaTimeline(eventInfo)
 	elseif duration == 20 or duration == 52.5 then -- Call of the Elements
 		barInfo = self:CallOfTheElementsTimeline(eventInfo)
@@ -317,7 +317,7 @@ function mod:PoisonNovaTimeline(eventInfo) -- Poison Nova
 		msg = barText,
 		key = 267273,
 		callback = function()
-			self:StopBlizzMessages(1) -- TODO confirm
+			self:StopBlizzMessages(1)
 			self:Message(267273, "red", barText)
 			self:PlaySound(267273, "alert")
 		end
@@ -332,7 +332,7 @@ function mod:CallOfTheElementsTimeline(eventInfo) -- Call of the Elements
 		msg = barText,
 		key = 267060,
 		callback = function()
-			self:StopBlizzMessages(1) -- TODO confirm
+			self:StopBlizzMessages(1)
 			self:Message(267060, "yellow", barText)
 			self:PlaySound(267060, "long")
 		end
