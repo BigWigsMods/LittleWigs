@@ -7,9 +7,9 @@ if not mod then return end
 mod:SetEncounterID(3287)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{1227197, sound = "alert"}, -- Cosmic Crash
+	{1227197, sound = "none"}, -- Cosmic Crash
 	{1248130, sound = "underyou"}, -- Unstable Singularity
-	{1264188, sound = "alarm"}, -- Event Horizon
+	{1264188, sound = "none"}, -- Event Horizon
 })
 
 --------------------------------------------------------------------------------
@@ -19,6 +19,7 @@ mod:SetPrivateAuraSounds({
 local unstableSingularityCount = 1
 local cosmicCrashCount = 1
 local graviticOrbsCount = 1
+local darkWavesCount = 1
 local voidCascadeCount = 1
 local activeBars = {}
 local backupBars = {}
@@ -31,6 +32,7 @@ mod:SetRenames({
 	[1282770] = {1282770}, -- Unstable Singularity
 	[1227264] = {1227264}, -- Cosmic Crash
 	[1263982] = {1263982}, -- Gravitic Orbs
+	[1311923] = {1311923}, -- Dark Waves
 	[1222755] = {1222755}, -- Void Cascade
 })
 
@@ -38,13 +40,29 @@ mod:SetRenames({
 -- Initialization
 --
 
-function mod:GetOptions()
-	return {
-		1282770, -- Unstable Singularity
-		1227264, -- Cosmic Crash
-		1263982, -- Gravitic Orbs
-		1222755, -- Void Cascade (Mythic)
-	}
+if BigWigsLoader.isNext then
+	function mod:GetOptions()
+		return {
+			1282770, -- Unstable Singularity
+			1227264, -- Cosmic Crash
+			1263982, -- Gravitic Orbs
+			1311923, -- Dark Waves
+			1222755, -- Void Cascade
+		}, {
+			[1222755] = CL.mythic, -- Void Cascade (Mythic)
+		}
+	end
+else -- XXX remove in 12.1
+	function mod:GetOptions()
+		return {
+			1282770, -- Unstable Singularity
+			1227264, -- Cosmic Crash
+			1263982, -- Gravitic Orbs
+			1222755, -- Void Cascade
+		}, {
+			[1222755] = CL.mythic, -- Void Cascade (Mythic)
+		}
+	end
 end
 
 mod:UseCustomTimers(true)
@@ -52,6 +70,7 @@ function mod:OnEncounterStart()
 	unstableSingularityCount = 1
 	cosmicCrashCount = 1
 	graviticOrbsCount = 1
+	darkWavesCount = 1
 	voidCascadeCount = 1
 	activeBars = {}
 	backupBars = {}
@@ -83,7 +102,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 			barInfo = self:CosmicCrashTimeline(eventInfo)
 		elseif duration == 28 then -- Gravitic Orbs
 			barInfo = self:GraviticOrbsTimeline(eventInfo)
-		elseif duration == 40 then -- Void Cascade
+		elseif duration == 34 then -- Dark Waves
+			barInfo = self:DarkWavesTimeline(eventInfo)
+		elseif duration == 43 then -- Void Cascade
 			barInfo = self:VoidCascadeTimeline(eventInfo)
 		elseif not self:IsWiping() then
 			self:ErrorForTimelineEvent(eventInfo)
@@ -102,6 +123,8 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 			barInfo = self:CosmicCrashTimeline(eventInfo)
 		elseif duration == 36 or duration == 44 then -- Gravitic Orbs
 			barInfo = self:GraviticOrbsTimeline(eventInfo)
+		--elseif duration = ?? then -- Dark Waves
+			--barInfo = self:DarkWavesTimeline(eventInfo)
 		elseif not self:IsWiping() then
 			self:ErrorForTimelineEvent(eventInfo)
 			backupBars[eventInfo.id] = true
@@ -201,6 +224,20 @@ function mod:GraviticOrbsTimeline(eventInfo) -- Gravitic Orbs
 			self:StopBlizzMessages(1)
 			self:Message(1263982, "cyan", barText)
 			self:PlaySound(1263982, "info")
+		end
+	}
+end
+
+function mod:DarkWavesTimeline(eventInfo) -- Dark Waves
+	local barText = CL.count:format(self:GetRename(1311923), darkWavesCount)
+	self:CDBar(1311923, eventInfo.duration, barText, nil, eventInfo.id)
+	darkWavesCount = darkWavesCount + 1
+	return {
+		msg = barText,
+		key = 1311923,
+		callback = function()
+			self:Message(1311923, "purple", barText)
+			self:PlaySound(1311923, "alarm")
 		end
 	}
 end

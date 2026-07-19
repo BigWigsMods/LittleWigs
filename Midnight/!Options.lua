@@ -538,6 +538,7 @@ BigWigs:AddColors("Charonus", {
 	[1227264] = "red",
 	[1263982] = "cyan",
 	[1282770] = "orange",
+	[1311923] = "purple",
 })
 
 BigWigs:AddSounds("Charonus", {
@@ -545,6 +546,7 @@ BigWigs:AddSounds("Charonus", {
 	[1227264] = "alarm",
 	[1263982] = "info",
 	[1282770] = "alert",
+	[1311923] = "alarm",
 })
 
 BigWigs:AddColors("Emberdawn", {
