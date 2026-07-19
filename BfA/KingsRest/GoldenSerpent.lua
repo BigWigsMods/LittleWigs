@@ -45,7 +45,7 @@ local spitGoldCount = 1
 local tailThrashCount = 1
 local serpentineGustCount = 1
 local lucresCallCount = 1
-local count21 = 1
+local count25 = 1
 local activeBars = {}
 local backupBars = {}
 
@@ -85,7 +85,7 @@ if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 		tailThrashCount = 1
 		serpentineGustCount = 1
 		lucresCallCount = 1
-		count21 = 1
+		count25 = 1
 		activeBars = {}
 		backupBars = {}
 		if self:ShouldShowBars() then
@@ -110,13 +110,13 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
-	if duration == 5 or (duration == 21 and count21 % 2 == 1) then -- Spit Gold
+	if duration == 5 or (duration == 25 and count25 % 2 == 1) then -- Spit Gold
 		barInfo = self:SpitGoldTimeline(eventInfo)
-	elseif duration == 8 or (duration == 21 and count21 % 2 == 0) then -- Tail Thrash
+	elseif duration == 8 or (duration == 25 and count25 % 2 == 0) then -- Tail Thrash
 		barInfo = self:TailThrashTimeline(eventInfo)
-	elseif duration == 14 or duration == 24 then -- Serpentine Gust
+	elseif duration == 14 or duration == 28 then -- Serpentine Gust
 		barInfo = self:SerpentineGustTimeline(eventInfo)
-	elseif duration == 45 then -- Lucre's Call
+	elseif duration == 54 then -- Lucre's Call
 		barInfo = self:LucresCallTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
@@ -127,8 +127,8 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
 		end
 	end
-	if duration == 21 then
-		count21 = count21 + 1
+	if duration == 25 then
+		count25 = count25 + 1
 	end
 	if barInfo then
 		activeBars[eventInfo.id] = barInfo
