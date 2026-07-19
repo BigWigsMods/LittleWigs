@@ -111,7 +111,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local barInfo
 	if duration == 6 or (duration == 26 and count26 % 2 == 1) then -- Lightning Spire
 		barInfo = self:LightningSpireTimeline(eventInfo)
-	elseif (duration == 26 and count26 % 2 == 0) then -- Induction
+	elseif duration == 24 or (duration == 26 and count26 % 2 == 0) then -- Induction
 		barInfo = self:InductionTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
