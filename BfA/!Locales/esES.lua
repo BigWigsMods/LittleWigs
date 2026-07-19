@@ -350,6 +350,11 @@ end
 
 -- Temple of Sethraliss
 
+L = BigWigs:NewBossLocale("Avatar of Sethraliss", "esES")
+if L then
+	--L.heal_boss = "The Avatar can be healed"
+end
+
 L = BigWigs:NewBossLocale("Temple of Sethraliss Trash", "esES")
 if L then
 	L.dust_devil = "Diablesa de polvo cargado"

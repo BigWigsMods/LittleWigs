@@ -25,7 +25,7 @@ local hexerCount = 4
 
 local L = mod:GetLocale()
 if L then
-	L.adds = CL.adds
+	L.heal_boss = "The Avatar can be healed"
 end
 
 --------------------------------------------------------------------------------
@@ -90,7 +90,7 @@ local backupBars = {}
 
 if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 	mod:SetRenames({
-		[1301202] = {1301202}, -- Defiling Taint
+		[1301202] = {1301202, L.heal_boss, notes = {CL.generalNote, CL.messageCastOverNote}, original = {1301202, CL.removed:format(mod:SpellName(1301202))}}, -- Defiling Taint
 		[1273408] = {1273408}, -- Stage One
 	})
 end
@@ -210,17 +210,20 @@ function mod:DefilingTaintTimeline(eventInfo) -- Defiling Taint
 		msg = barText,
 		key = 1301202,
 		callback = function()
-			self:StopBlizzMessages(1) -- TODO confirm (emote?)
+			self:StopBlizzMessages(1)
 			self:Message(1301202, "yellow", barText)
-			self:PlaySound(1301202, "info")
+			self:PlaySound(1301202, "alarm")
 		end
 	}
 end
 
 function mod:StageOneTimeline(eventInfo) -- Stage One
+	self:StopBlizzMessages(1)
 	local barText = CL.count:format(self:GetRename(1273408), stageOneCount)
 	self:CDBar(1273408, eventInfo.duration, barText, nil, eventInfo.id)
 	stageOneCount = stageOneCount + 1
+	self:Message(1301202, "green", self:GetRename(1301202, 2)) -- The Avatar can be healed (Defiling Taint removed)
+	self:PlaySound(1301202, "info")
 	return {
 		msg = barText,
 		key = 1273408,
