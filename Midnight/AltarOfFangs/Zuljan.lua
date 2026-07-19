@@ -19,7 +19,7 @@ local ritualOfTheFangCount = 1
 local axegrinderCount = 1
 local chopDownCount = 1
 local boneslicerCount = 1
-local count16 = 1
+local count14 = 1
 local activeBars = {}
 local backupBars = {}
 
@@ -53,7 +53,7 @@ function mod:OnEncounterStart()
 	axegrinderCount = 1
 	chopDownCount = 1
 	boneslicerCount = 1
-	count16 = 1
+	count14 = 1
 	activeBars = {}
 	backupBars = {}
 	if self:ShouldShowBars() then
@@ -77,13 +77,13 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
-	if duration == 62 then -- Ritual of the Fang
+	if duration == 64 then -- Ritual of the Fang
 		barInfo = self:RitualOfTheFangTimeline(eventInfo)
-	elseif (duration == 16 and count16 % 2 == 1) then -- Axegrinder
+	elseif (duration == 14 and count14 % 2 == 1) then -- Axegrinder
 		barInfo = self:AxegrinderTimeline(eventInfo)
-	elseif duration == 24 or duration == 32 then -- Chop Down
+	elseif duration == 26 or (not self:IsWiping() and duration == 30) then -- Chop Down
 		barInfo = self:ChopDownTimeline(eventInfo)
-	elseif duration == 30 or (duration == 16 and count16 % 2 == 0) then -- Boneslicer
+	elseif duration == 32 or (duration == 14 and count14 % 2 == 0) then -- Boneslicer
 		barInfo = self:BoneslicerTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
@@ -94,8 +94,8 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
 		end
 	end
-	if duration == 16 then
-		count16 = count16 + 1
+	if duration == 14 then
+		count14 = count14 + 1
 	end
 	if barInfo then
 		activeBars[eventInfo.id] = barInfo
@@ -150,7 +150,7 @@ end
 function mod:RitualOfTheFangTimeline(eventInfo) -- Ritual of the Fang
 	local barText = CL.count:format(self:GetRename(1300876), ritualOfTheFangCount + 1)
 	self:CDBar(1300876, eventInfo.duration, barText, nil, eventInfo.id)
-	self:Message(1300876, "cyan", CL.count:format(self:GetRename(1300876), ritualOfTheFangCount))
+	self:Message(1300876, "cyan", CL.count:format(self:GetRename(1300876), ritualOfTheFangCount)) -- cast on pull
 	ritualOfTheFangCount = ritualOfTheFangCount + 1
 	self:PlaySound(1300876, "long")
 	return {
