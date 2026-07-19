@@ -102,7 +102,7 @@ if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 	mod:SetRenames({
 		[269230] = {269230}, -- Hunting Leap
 		[269369] = {269369}, -- Deathly Roar
-		[1303115] = {1303115}, -- Aerial Smash
+		[1303115] = {1303115, CL.you:format(mod:SpellName(1303115)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1303115, CL.you:format(mod:SpellName(1303115))}}, -- Aerial Smash
 		[268586] = {268586}, -- Blade Combo
 		[1303267] = {1303267}, -- Gilded Destruction
 		[1303326] = {1303326, CL.you:format(mod:SpellName(1303326)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1303326, CL.you:format(mod:SpellName(1303326))}}, -- Quaking Leap
@@ -165,19 +165,21 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
+	-- Stage 1: Hunting Leap 8->10, Deathly Roar 14->10, Aerial Smash 15, Blade Combo 23, Gilded Destruction 30
+	-- Stage 2: Quaking Leap 9, Gilded Destruction 24, Savage Maul 36, Blade Combo 38
 	if duration == 8 or (duration == 10 and count10 % 2 == 1) then -- Hunting Leap
 		barInfo = self:HuntingLeapTimeline(eventInfo)
 	elseif duration == 14 or (duration == 10 and count10 % 2 == 0) then -- Deathly Roar
 		barInfo = self:DeathlyRoarTimeline(eventInfo)
 	elseif duration == 15 then -- Aerial Smash
 		barInfo = self:AerialSmashTimeline(eventInfo)
-	elseif duration == 23 or duration == 32 then -- Blade Combo
+	elseif duration == 23 or duration == 38 then -- Blade Combo
 		barInfo = self:BladeComboTimeline(eventInfo)
-	elseif (self:GetStage() == 1 and not self:IsWiping() and duration == 30) or duration == 18 then -- Gilded Destruction
+	elseif (self:GetStage() == 1 and not self:IsWiping() and duration == 30) or duration == 24 then -- Gilded Destruction
 		barInfo = self:GildedDestructionTimeline(eventInfo)
 	elseif duration == 9 then -- Quaking Leap
 		barInfo = self:QuakingLeapTimeline(eventInfo)
-	elseif (not self:IsWiping() and duration == 30) then -- Savage Maul
+	elseif duration == 36 then -- Savage Maul
 		barInfo = self:SavageMaulTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
@@ -244,31 +246,28 @@ end
 -- Timeline Ability Handlers
 --
 
-do
-	local timer
-	function mod:HuntingLeapTimeline(eventInfo) -- Hunting Leap
-		local barText = CL.count:format(self:GetRename(269230), huntingLeapCount)
-		self:CDBar(269230, eventInfo.duration, barText, nil, eventInfo.id)
-		huntingLeapCount = huntingLeapCount + 1
-		timer = self:ScheduleTimer(function()
-			self:StopBar(barText)
-			self:Message(269230, "orange", barText)
-			self:PlaySound(269230, "alarm")
-		end, eventInfo.duration)
-		return {
-			msg = barText,
-			key = 269230,
-			callback = function()
-				self:Error("Hunting Leap now has a callback")
-			end,
-			cancelCallback = function()
-				if timer then
-					self:CancelTimer(timer)
-					timer = nil
-				end
+function mod:HuntingLeapTimeline(eventInfo) -- Hunting Leap
+	local barText = CL.count:format(self:GetRename(269230), huntingLeapCount)
+	self:CDBar(269230, eventInfo.duration, barText, nil, eventInfo.id)
+	huntingLeapCount = huntingLeapCount + 1
+	local timer = self:ScheduleTimer(function()
+		self:StopBar(barText)
+		self:Message(269230, "orange", barText)
+		self:PlaySound(269230, "alarm")
+	end, eventInfo.duration)
+	return {
+		msg = barText,
+		key = 269230,
+		callback = function()
+			self:Error("Hunting Leap now has a callback")
+		end,
+		cancelCallback = function()
+			if timer then
+				self:CancelTimer(timer)
+				timer = nil
 			end
-		}
-	end
+		end
+	}
 end
 
 function mod:DeathlyRoarTimeline(eventInfo) -- Deathly Roar
@@ -288,31 +287,29 @@ function mod:DeathlyRoarTimeline(eventInfo) -- Deathly Roar
 	}
 end
 
-do
-	local timer
-	function mod:AerialSmashTimeline(eventInfo) -- Aerial Smash
-		local barText = CL.count:format(self:GetRename(1303115), aerialSmashCount)
-		self:CDBar(1303115, eventInfo.duration, barText, nil, eventInfo.id)
-		aerialSmashCount = aerialSmashCount + 1
-		timer = self:ScheduleTimer(function()
-			self:StopBar(barText)
-			self:Message(1303115, "yellow", barText)
-			self:PlaySound(1303115, "info")
-		end, eventInfo.duration)
-		return {
-			msg = barText,
-			key = 1303115,
-			callback = function()
-				self:Error("Aerial Smash now has a callback")
-			end,
-			cancelCallback = function()
-				if timer then
-					self:CancelTimer(timer)
-					timer = nil
-				end
+function mod:AerialSmashTimeline(eventInfo) -- Aerial Smash
+	local barText = CL.count:format(self:GetRename(1303115), aerialSmashCount)
+	self:CDBar(1303115, eventInfo.duration, barText, nil, eventInfo.id)
+	aerialSmashCount = aerialSmashCount + 1
+	local timer = self:ScheduleTimer(function()
+		self:StopBar(barText)
+		self:PersonalMessageFromBlizzMessage(1303115, 1, false, self:GetRename(1303115, 2))
+		self:Message(1303115, "yellow", barText)
+		self:PlaySound(1303115, "info")
+	end, eventInfo.duration)
+	return {
+		msg = barText,
+		key = 1303115,
+		callback = function()
+			self:Error("Aerial Smash now has a callback")
+		end,
+		cancelCallback = function()
+			if timer then
+				self:CancelTimer(timer)
+				timer = nil
 			end
-		}
-	end
+		end
+	}
 end
 
 function mod:BladeComboTimeline(eventInfo) -- Blade Combo
@@ -339,37 +336,34 @@ function mod:GildedDestructionTimeline(eventInfo) -- Gilded Destruction
 		callback = function()
 			self:StopBlizzMessages(1)
 			self:Message(1303267, "red", barText)
-			self:PlaySound(1303267, "warning")
+			self:PlaySound(1303267, "long")
 		end
 	}
 end
 
-do
-	local timer
-	function mod:QuakingLeapTimeline(eventInfo) -- Quaking Leap
-		local barText = CL.count:format(self:GetRename(1303326), quakingLeapCount)
-		self:CDBar(1303326, eventInfo.duration, barText, nil, eventInfo.id)
-		quakingLeapCount = quakingLeapCount + 1
-		timer = self:ScheduleTimer(function()
-			self:StopBar(barText)
-			self:PersonalMessageFromBlizzMessage(1303326, 1, false, self:GetRename(1303326, 2))
-			self:Message(1303326, "orange", barText)
-			self:PlaySound(1303326, "long")
-		end, eventInfo.duration)
-		return {
-			msg = barText,
-			key = 1303326,
-			callback = function()
-				self:Error("Quaking Leap now has a callback")
-			end,
-			cancelCallback = function()
-				if timer then
-					self:CancelTimer(timer)
-					timer = nil
-				end
+function mod:QuakingLeapTimeline(eventInfo) -- Quaking Leap
+	local barText = CL.count:format(self:GetRename(1303326), quakingLeapCount)
+	self:CDBar(1303326, eventInfo.duration, barText, nil, eventInfo.id)
+	quakingLeapCount = quakingLeapCount + 1
+	local timer = self:ScheduleTimer(function()
+		self:StopBar(barText)
+		self:PersonalMessageFromBlizzMessage(1303326, 1, false, self:GetRename(1303326, 2))
+		self:Message(1303326, "orange", barText)
+		self:PlaySound(1303326, "long")
+	end, eventInfo.duration)
+	return {
+		msg = barText,
+		key = 1303326,
+		callback = function()
+			self:Error("Quaking Leap now has a callback")
+		end,
+		cancelCallback = function()
+			if timer then
+				self:CancelTimer(timer)
+				timer = nil
 			end
-		}
-	end
+		end
+	}
 end
 
 function mod:SavageMaulTimeline(eventInfo) -- Savage Maul
