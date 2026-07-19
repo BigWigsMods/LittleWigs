@@ -112,8 +112,6 @@ if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
-			self:SendMessage("BigWigs_BlockBlizzMessages")
-			self:RegisterEvent("ENCOUNTER_WARNING")
 			self:RegisterUnitEvent("UNIT_TARGETABLE_CHANGED", nil, "boss1")
 		end
 	end
@@ -205,17 +203,9 @@ end
 -- Timeline Ability Handlers
 --
 
-do
-	local prev = 0
-	function mod:ENCOUNTER_WARNING(_, info)
-		if info.targetGUID == nil then return end -- filter Burrow
-		self:SecretTargetMessage(1290029, "red", info) -- A Knot of Snakes
-		local t = GetTime()
-		if t - prev > 2 then
-			prev = t
-			self:PlaySound(1290029, "warning") -- A Knot of Snakes
-		end
-	end
+function mod:ENCOUNTER_WARNING() -- Burrow (mid Stage 2)
+	self:Message(264172, "orange", self:GetRename(264172))
+	self:PlaySound(264172, "alarm")
 end
 
 function mod:LightningBiteTimeline(eventInfo) -- Lightning Bite
@@ -239,7 +229,11 @@ function mod:AKnotOfSnakesTimeline(eventInfo) -- A Knot of Snakes
 	return {
 		msg = barText,
 		key = 1290029,
-		-- alerts in :ENCOUNTER_WARNING
+		callback = function()
+			self:StopBlizzMessages(1)
+			self:Message(1290029, "red", barText)
+			self:PlaySound(1290029, "info")
+		end
 	}
 end
 
@@ -307,6 +301,8 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit) -- Burrow
 	if UnitCanAttack("player", unit) then
 		self:SetStage(1)
 		if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+			self:SendMessage("BigWigs_AllowBlizzMessages")
+			self:UnregisterEvent("ENCOUNTER_WARNING")
 			self:StopBar(self:GetRename(264172, 2)) -- <Cast: Burrow>
 			self:Message(264172, "green", self:GetRename(264172, 3)) -- Burrow over
 			self:PlaySound(264172, "info") -- Burrow
@@ -320,6 +316,8 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit) -- Burrow
 	else
 		self:SetStage(2)
 		if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+			self:SendMessage("BigWigs_BlockBlizzMessages")
+			self:RegisterEvent("ENCOUNTER_WARNING")
 			self:Bar(264172, 21, self:GetRename(264172, 2)) -- <Cast: Burrow>
 		elseif not self:Retail() then
 			self:Message(264206, "cyan") -- Burrow
