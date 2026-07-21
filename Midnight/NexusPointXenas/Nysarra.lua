@@ -111,7 +111,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	elseif duration == 5 or duration == 18 then -- Eclipsing Step
 		self:CancelBarForSpell(1249014)
 		barInfo = self:EclipsingStepTimeline(eventInfo)
-	elseif self:GetStage() == 1 and (duration == 15 or (duration == 61 and count61 % 2 == 1)) then -- Null Vanguard
+	elseif (self:GetStage() == 1 and duration == 15) or (duration == 61 and count61 % 2 == 1) then -- Null Vanguard
 		self:CancelBarForSpell(1252703)
 		barInfo = self:NullVanguardTimeline(eventInfo)
 	elseif duration == 28 or (duration == 61 and count61 % 2 == 0) then -- Lightscar Flare
