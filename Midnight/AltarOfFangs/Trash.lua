@@ -1,4 +1,4 @@
-if not BigWigsLoader.isNext then return end -- 12.1
+if not BigWigsLoader.isNext then return end -- XXX 12.1
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -6,6 +6,9 @@ if not BigWigsLoader.isNext then return end -- 12.1
 local mod, CL = BigWigs:NewBoss("Altar of Fangs Trash", 2993)
 if not mod then return end
 mod:SetPrivateAuraSounds({
+	{1306232, sound = "underyou"}, -- Septic Spatter
+	{1307531, sound = "underyou"}, -- Bloodletting
+	{1297422, sound = "none"}, -- Deadly Venom
 	{1308865, sound = "alert"}, -- Infest
 })
 
