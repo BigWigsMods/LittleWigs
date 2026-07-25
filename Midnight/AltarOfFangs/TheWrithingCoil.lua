@@ -9,7 +9,7 @@ mod:SetEncounterID(3457)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
 	{1299080, sound = "none"}, -- Death Rattle
-	{1300503, sound = "warning"}, -- Spiteful Hunt
+	{1300503, sound = "none"}, -- Spiteful Hunt
 })
 mod:SetStage(1)
 
@@ -57,7 +57,7 @@ function mod:GetOptions()
 	return {
 		-- The Writhing Coil (Stage 1)
 		1299154, -- Synchronized Venom
-		{1298949, "TANK"}, -- Tail Scythe
+		{1298949, "TANK_HEALER"}, -- Tail Scythe
 		1310357, -- Preparing Toxin
 		1310547, -- Toxic Atrophy
 		1299940, -- Vindictive Onslaught
@@ -265,6 +265,7 @@ function mod:PreparingToxinTimeline(eventInfo) -- Preparing Toxin
 		msg = barText,
 		key = 1310357,
 		callback = function()
+			self:StopBlizzMessages(1)
 			toxicAtrophyRemaining = 3
 			self:RegisterUnitEvent("UNIT_SPELLCAST_START", "PreparingToxinCasts", "boss1")
 			self:ScheduleTimer(function()
