@@ -148,6 +148,4 @@ end
 L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "zhTW")
 if L then
 	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000需要 25點 至暗之夜的工程學技能。|r 自動選擇NPC對話選項以停用秘法引線。"
-
-	L.arcane_tripwire = "秘法引線"
 end

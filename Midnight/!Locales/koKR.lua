@@ -148,6 +148,4 @@ end
 L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "koKR")
 if L then
 	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000한밤 기계공학 25 필요.|r NPC 대화에서 비전 철사덫을 비활성화하는 옵션을 자동으로 선택합니다."
-
-	L.arcane_tripwire = "비전 철사덫"
 end

@@ -148,6 +148,4 @@ end
 L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "ruRU")
 if L then
 	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Требуется навык инженерного дела Midnight 25.|r Автоматически выбирать вариант диалога с NPC, чтобы отключить чародейскую растяжку."
-
-	L.arcane_tripwire = "Чародейская растяжка"
 end

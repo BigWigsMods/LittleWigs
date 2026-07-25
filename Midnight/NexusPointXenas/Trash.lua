@@ -15,8 +15,6 @@ if L then
 	L.custom_on_arcane_tripwire_autotalk = CL.autotalk
 	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Engineering.|r Automatically select the NPC dialog option to disable the Arcane Tripwire."
 	L.custom_on_arcane_tripwire_autotalk_icon = mod:GetMenuIcon("SAY")
-
-	L.arcane_tripwire = "Arcane Tripwire"
 end
 
 --------------------------------------------------------------------------------

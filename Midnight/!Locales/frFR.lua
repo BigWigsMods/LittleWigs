@@ -148,6 +148,4 @@ end
 L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "frFR")
 if L then
 	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requiert 25 points de compétence en Ingénierie de Midnight.|r Sélectionne automatiquement le dialogue avec le PNK afin de désactiver le Dispositif de détection arcanique."
-
-	L.arcane_tripwire = "Dispositif de détection arcanique"
 end

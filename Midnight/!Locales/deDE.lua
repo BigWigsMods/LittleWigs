@@ -148,6 +148,4 @@ end
 L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "deDE")
 if L then
 	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Benötigt 25 Fertigkeitspunkte der Ingenieurskunst von Midnight.|r Wählt automatisch die NSC Dialogoption zum Deaktivieren des arkanen Stolperdrahtes."
-
-	L.arcane_tripwire = "Arkaner Stolperdraht"
 end
