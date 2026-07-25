@@ -53,9 +53,11 @@ BigWigs:AddSounds("Zul'jan", {
 })
 
 BigWigs:AddColors("Altar of Fangs Trash", {
+	[1310012] = "green",
 })
 
 BigWigs:AddSounds("Altar of Fangs Trash", {
+	[1310012] = "info",
 })
 
 BigWigs:AddColors("Spiritflayer Jin'ma", {

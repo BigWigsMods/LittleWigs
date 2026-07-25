@@ -1,6 +1,13 @@
+-- Altar of Fangs
+
+local L = BigWigs:NewBossLocale("Altar of Fangs Trash", "zhCN")
+if L then
+	--L.custom_on_mixture_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Cooking or Midnight Alchemy.|r Automatically select the NPC dialog option to gain the 'Mutating Elixir' buff.\n\n|T136242:16|tMutating Elixir\n{1310012}"
+end
+
 -- Delves: Atal'Aman
 
-local L = BigWigs:NewBossLocale("Spiritflayer Jin'ma", "zhCN")
+L = BigWigs:NewBossLocale("Spiritflayer Jin'ma", "zhCN")
 if L then
 	L.spiritflayer_jinma = "夺灵者金玛"
 end
