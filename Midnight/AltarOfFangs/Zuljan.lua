@@ -9,6 +9,7 @@ mod:SetEncounterID(3458)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
 	{1300894, sound = "info"}, -- Ritual Venom
+	{1301231, sound = "none"}, -- Bloodletting
 })
 
 --------------------------------------------------------------------------------
