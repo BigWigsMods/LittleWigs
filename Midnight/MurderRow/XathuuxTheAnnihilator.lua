@@ -7,9 +7,9 @@ if not mod then return end
 mod:SetEncounterID(3103)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
-	{473898, sound = "alarm"}, -- Legion Strike
+	{473898, sound = "none"}, -- Legion Strike
 	{474234, sound = "underyou"}, -- Burning Steps
-	{1214650, sound = "alert"}, -- Fel Light
+	{1214650, sound = "none"}, -- Fel Light
 })
 
 --------------------------------------------------------------------------------
@@ -20,6 +20,7 @@ local legionStrikeCount = 1
 local axeTossCount = 1
 local infernalCrushCount = 1
 local demonicRageCount = 1
+local count27 = 1
 local activeBars = {}
 local backupBars = {}
 
@@ -31,7 +32,7 @@ mod:SetRenames({
 	[473898] = {473898},  -- Legion Strike
 	[1214637] = {1214637, CL.you:format(mod:SpellName(1214637)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1214637, CL.you:format(mod:SpellName(1214637))}}, -- Axe Toss
 	[1295453] = {1295453}, -- Infernal Crush
-	[474197] = {474197},  -- Demonic Rage
+	[474197] = {474197, CL.cast:format(mod:SpellName(474197)), CL.onboss:format(mod:SpellName(474197)), notes = {CL.generalNote, CL.castTimerNote, CL.messageCastOverNote}, original = {474197, CL.cast:format(mod:SpellName(474197)), CL.onboss:format(mod:SpellName(474197))}}, -- Demonic Rage
 })
 
 --------------------------------------------------------------------------------
@@ -44,7 +45,7 @@ if BigWigsLoader.isNext then
 			473898, -- Legion Strike
 			1214637, -- Axe Toss
 			1295453, -- Infernal Crush
-			474197, -- Demonic Rage
+			{474197, "CASTBAR"}, -- Demonic Rage
 		}
 	end
 else -- XXX remove in 12.1
@@ -52,7 +53,7 @@ else -- XXX remove in 12.1
 		return {
 			473898, -- Legion Strike
 			1214637, -- Axe Toss
-			474197, -- Demonic Rage
+			{474197, "CASTBAR"}, -- Demonic Rage
 		}
 	end
 end
@@ -63,6 +64,7 @@ function mod:OnEncounterStart()
 	axeTossCount = 1
 	infernalCrushCount = 1
 	demonicRageCount = 1
+	count27 = 1
 	activeBars = {}
 	backupBars = {}
 	if self:ShouldShowBars() then
@@ -88,7 +90,15 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local barInfo
 	if duration < 1 or duration > 100 then return end -- filter placeholder bars
 	if duration == 6 or duration == 27 then -- Legion Strike
+		-- TODO the first 27 Legion Strike seems to happen several seconds early. any way we can improve?
+		if duration == 27 and count27 % 2 == 0 then
+			count27 = count27 + 1
+			return -- phantom Legion Strike, always canceled by Demonic Rage
+		end
 		barInfo = self:LegionStrikesTimeline(eventInfo)
+		if duration == 27 then
+			count27 = count27 + 1
+		end
 	elseif duration == 15 then -- Axe Toss
 		barInfo = self:AxeTossTimeline(eventInfo)
 	elseif BigWigsLoader.isNext and (not self:IsWiping() and duration == 30) then -- Infernal Crush (XXX remove check in 12.1)
@@ -169,9 +179,6 @@ function mod:LegionStrikesTimeline(eventInfo) -- Legion Strike
 		callback = function()
 			self:Message(473898, "purple", barText)
 			self:PlaySound(473898, "alert")
-		end,
-		cancelCallback = function()
-			legionStrikeCount = legionStrikeCount - 1
 		end
 	}
 end
@@ -215,6 +222,11 @@ function mod:DemonicRageTimeline(eventInfo) -- Demonic Rage
 		callback = function()
 			self:StopBlizzMessages(1)
 			self:Message(474197, "yellow", barText)
+			self:CastBar(474197, 4, self:GetRename(474197, 2))
+			self:ScheduleTimer(function()
+				self:Message(474197, "yellow", self:GetRename(474197, 3))
+				self:Bar(474197, 15, self:GetRename(474197, 3))
+			end, 4) -- 15s buff after 4s cast
 			self:PlaySound(474197, "long")
 		end
 	}
