@@ -355,6 +355,7 @@ BigWigs:AddSounds("Zaen Bladesorrow", {
 	[474478] = "info",
 	[474765] = "alert",
 	[1214357] = "alarm",
+	[1218347] = "warning",
 	[1222795] = "alert",
 })
 

@@ -8,8 +8,8 @@ mod:SetEncounterID(3102)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
 	{474515, sound = "alert"}, -- Heartstop Poison
-	{474545, sound = "warning"}, -- Murder in a Row
-	{1214352, sound = "alarm"}, -- Fire Bomb
+	{474545, sound = "none"}, -- Murder in a Row
+	{1214352, sound = "none"}, -- Fire Bomb
 })
 
 --------------------------------------------------------------------------------
@@ -46,7 +46,7 @@ function mod:GetOptions()
 		474765, -- Same-Day Delivery
 		1214357, -- Fire Bomb
 		1222795, -- Envenom
-		1218347, -- Murder in a Row
+		{1218347, "CASTBAR", "CASTBAR_COUNTDOWN"}, -- Murder in a Row
 	}
 end
 
@@ -185,7 +185,7 @@ function mod:FireBombTimeline(eventInfo) -- Fire Bomb
 		msg = barText,
 		key = 1214357,
 		callback = function()
-			self:PersonalMessageFromBlizzMessage(1214357, 1, false, self:GetRename(1214357, 2))
+			self:PersonalMessageFromBlizzMessage(1214357, 2, false, self:GetRename(1214357, 2))
 			self:Message(1214357, "orange", barText)
 			self:PlaySound(1214357, "alarm")
 		end
@@ -216,7 +216,8 @@ function mod:MurderInARowTimeline(eventInfo) -- Murder in a Row
 		callback = function() -- has Blizzard alert
 			self:StopBlizzMessages(1)
 			self:Message(1218347, "cyan", barText)
-			-- private aura sound
+			self:CastBar(1218347, 5.5)
+			self:PlaySound(1218347, "warning")
 		end
 	}
 end
