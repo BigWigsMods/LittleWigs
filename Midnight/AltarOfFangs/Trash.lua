@@ -5,6 +5,7 @@ if not BigWigsLoader.isNext then return end -- XXX 12.1
 
 local mod, CL = BigWigs:NewBoss("Altar of Fangs Trash", 2993)
 if not mod then return end
+mod:SetTrashModule(true)
 mod:SetPrivateAuraSounds({
 	{1306232, sound = "underyou"}, -- Septic Spatter
 	{1307531, sound = "underyou"}, -- Bloodletting
