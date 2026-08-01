@@ -164,7 +164,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		barInfo = self:DebilitatingBackhandTimeline(eventInfo)
 	elseif duration == 2 or duration == 7 then -- Arc Lightning
 		barInfo = self:ArcLightningTimeline(eventInfo)
-	elseif duration == 10 or duration == 24.4 then -- Poison Nova
+	elseif duration == 10 or duration == 24 or duration == 24.4 or duration == 25.2 then -- Poison Nova
 		barInfo = self:PoisonNovaTimeline(eventInfo)
 	elseif duration == 20 or duration == 52.5 then -- Call of the Elements
 		barInfo = self:CallOfTheElementsTimeline(eventInfo)
