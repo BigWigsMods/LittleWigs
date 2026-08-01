@@ -105,8 +105,8 @@ if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 		[1303115] = {1303115, CL.you:format(mod:SpellName(1303115)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1303115, CL.you:format(mod:SpellName(1303115))}}, -- Aerial Smash
 		[268586] = {268586}, -- Blade Combo
 		[1303267] = {1303267}, -- Gilded Destruction
-		[1303326] = {1303326, CL.you:format(mod:SpellName(1303326)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1303326, CL.you:format(mod:SpellName(1303326))}}, -- Quaking Leap
-		[1303481] = {1303481}, -- Savage Maul
+		[1303327] = {1303327, CL.you:format(mod:SpellName(1303327)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1303327, CL.you:format(mod:SpellName(1303327))}}, -- Quaking Leap
+		[1303488] = {1303488}, -- Savage Maul
 	})
 end
 
@@ -122,8 +122,8 @@ if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 			1303115, -- Aerial Smash
 			268586, -- Blade Combo
 			1303267, -- Gilded Destruction
-			1303326, -- Quaking Leap
-			1303481, -- Savage Maul
+			1303327, -- Quaking Leap
+			1303488, -- Savage Maul
 		}
 	end
 
@@ -342,18 +342,18 @@ function mod:GildedDestructionTimeline(eventInfo) -- Gilded Destruction
 end
 
 function mod:QuakingLeapTimeline(eventInfo) -- Quaking Leap
-	local barText = CL.count:format(self:GetRename(1303326), quakingLeapCount)
-	self:CDBar(1303326, eventInfo.duration, barText, nil, eventInfo.id)
+	local barText = CL.count:format(self:GetRename(1303327), quakingLeapCount)
+	self:CDBar(1303327, eventInfo.duration, barText, nil, eventInfo.id)
 	quakingLeapCount = quakingLeapCount + 1
 	local timer = self:ScheduleTimer(function()
 		self:StopBar(barText)
-		self:PersonalMessageFromBlizzMessage(1303326, 1, false, self:GetRename(1303326, 2))
-		self:Message(1303326, "orange", barText)
-		self:PlaySound(1303326, "long")
+		self:PersonalMessageFromBlizzMessage(1303327, 1, false, self:GetRename(1303327, 2))
+		self:Message(1303327, "orange", barText)
+		self:PlaySound(1303327, "long")
 	end, eventInfo.duration)
 	return {
 		msg = barText,
-		key = 1303326,
+		key = 1303327,
 		callback = function()
 			self:Error("Quaking Leap now has a callback")
 		end,
@@ -367,15 +367,15 @@ function mod:QuakingLeapTimeline(eventInfo) -- Quaking Leap
 end
 
 function mod:SavageMaulTimeline(eventInfo) -- Savage Maul
-	local barText = CL.count:format(self:GetRename(1303481), savageMaulCount)
-	self:CDBar(1303481, eventInfo.duration, barText, nil, eventInfo.id)
+	local barText = CL.count:format(self:GetRename(1303488), savageMaulCount)
+	self:CDBar(1303488, eventInfo.duration, barText, nil, eventInfo.id)
 	savageMaulCount = savageMaulCount + 1
 	return {
 		msg = barText,
-		key = 1303481,
+		key = 1303488,
 		callback = function()
-			self:Message(1303481, "purple", barText)
-			self:PlaySound(1303481, "alarm")
+			self:Message(1303488, "purple", barText)
+			self:PlaySound(1303488, "alarm")
 		end
 	}
 end

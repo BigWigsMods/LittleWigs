@@ -646,8 +646,8 @@ BigWigs:AddColors("Dazar, The First King", {
 	[269369] = "red",
 	[1303115] = {"blue","yellow"},
 	[1303267] = "red",
-	[1303326] = {"blue","orange"},
-	[1303481] = "purple",
+	[1303327] = {"blue","orange"},
+	[1303488] = "purple",
 	["stages"] = {"cyan","yellow"},
 })
 
@@ -659,8 +659,8 @@ BigWigs:AddSounds("Dazar, The First King", {
 	[269369] = "warning",
 	[1303115] = "info",
 	[1303267] = "long",
-	[1303326] = "long",
-	[1303481] = "alarm",
+	[1303327] = "long",
+	[1303488] = "alarm",
 	["stages"] = "info",
 })
 
