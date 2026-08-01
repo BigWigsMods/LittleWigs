@@ -55,7 +55,7 @@ local initialEventsTimer
 if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 	mod:SetRenames({
 		[267618] = {267618}, -- Drain Fluids
-		[267639] = {267639}, -- Burn Corruption
+		[1311956] = {1311956}, -- Burn Corruption
 		[1312146] = {1312146}, -- Awakening Slam
 		[267702] = {267702}, -- Entomb
 	})
@@ -69,7 +69,7 @@ if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 	function mod:GetOptions()
 		return {
 			267618, -- Drain Fluids
-			267639, -- Burn Corruption
+			1311956, -- Burn Corruption
 			1312146, -- Awakening Slam
 			267702, -- Entomb
 		}
@@ -205,18 +205,18 @@ function mod:DrainFluidsTimeline(eventInfo) -- Drain Fluids
 end
 
 function mod:BurnCorruptionTimeline(eventInfo) -- Burn Corruption
-	local barText = CL.count:format(self:GetRename(267639), burnCorruptionCount)
-	self:CDBar(267639, eventInfo.duration, barText, nil, eventInfo.id)
+	local barText = CL.count:format(self:GetRename(1311956), burnCorruptionCount)
+	self:CDBar(1311956, eventInfo.duration, barText, nil, eventInfo.id)
 	if not initialEvents then
 		burnCorruptionCount = burnCorruptionCount + 1
 		burnCorruptionStageCount = burnCorruptionStageCount + 1
 	end
 	return {
 		msg = barText,
-		key = 267639,
+		key = 1311956,
 		callback = function()
-			self:Message(267639, "orange", barText)
-			self:PlaySound(267639, "alarm")
+			self:Message(1311956, "orange", barText)
+			self:PlaySound(1311956, "alarm")
 		end
 	}
 end

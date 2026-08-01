@@ -602,6 +602,7 @@ BigWigs:AddColors("Mchimba the Embalmer", {
 	[267618] = {"blue","red"},
 	[267639] = "orange",
 	[267702] = {"blue","green","yellow"},
+	[1311956] = "orange",
 	[1312146] = "cyan",
 })
 
@@ -609,6 +610,7 @@ BigWigs:AddSounds("Mchimba the Embalmer", {
 	[267618] = "alert",
 	[267639] = "alarm",
 	[267702] = {"info","long"},
+	[1311956] = "alarm",
 	[1312146] = "info",
 })
 
