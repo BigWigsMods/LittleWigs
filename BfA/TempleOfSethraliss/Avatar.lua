@@ -139,7 +139,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 1)
 	local barInfo
-	if duration == 11 then -- Defiling Taint
+	if duration == 15 then -- Defiling Taint
 		barInfo = self:DefilingTaintTimeline(eventInfo)
 	elseif duration == 32.5 then -- Stage One
 		barInfo = self:StageOneTimeline(eventInfo)
