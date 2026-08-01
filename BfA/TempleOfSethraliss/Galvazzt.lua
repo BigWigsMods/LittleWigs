@@ -50,7 +50,7 @@ end
 
 local lightningSpireCount = 1
 local inductionCount = 1
-local count26 = 1
+local count22 = 1
 local activeBars = {}
 local backupBars = {}
 
@@ -84,7 +84,7 @@ if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 	function mod:OnEncounterStart()
 		lightningSpireCount = 1
 		inductionCount = 1
-		count26 = 1
+		count22 = 1
 		activeBars = {}
 		backupBars = {}
 		if self:ShouldShowBars() then
@@ -109,9 +109,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
-	if duration == 6 or (duration == 26 and count26 % 2 == 1) then -- Lightning Spire
+	if duration == 5 or (duration == 22 and count22 % 2 == 1) then -- Lightning Spire
 		barInfo = self:LightningSpireTimeline(eventInfo)
-	elseif duration == 24 or (duration == 26 and count26 % 2 == 0) then -- Induction
+	elseif duration == 20 or (duration == 22 and count22 % 2 == 0) then -- Induction
 		barInfo = self:InductionTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
@@ -125,8 +125,8 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if barInfo then
 		activeBars[eventInfo.id] = barInfo
 	end
-	if duration == 26 then
-		count26 = count26 + 1
+	if duration == 22 then
+		count22 = count22 + 1
 	end
 end
 
@@ -183,7 +183,7 @@ function mod:LightningSpireTimeline(eventInfo) -- Lightning Spire
 		msg = barText,
 		key = 1291618,
 		callback = function()
-			self:StopBlizzMessages(1) -- TODO confirm (emote?)
+			self:StopBlizzMessages(1)
 			self:Message(1291618, "yellow", barText)
 			self:PlaySound(1291618, "info")
 		end
