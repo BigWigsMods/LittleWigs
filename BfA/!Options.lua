@@ -1255,7 +1255,7 @@ BigWigs:AddColors("Merektha", {
 	[263958] = {"blue","red"},
 	[264172] = {"cyan","green","orange"},
 	[264206] = {"cyan","green"},
-	[1289109] = "yellow",
+	[1289109] = {"blue","yellow"},
 	[1289205] = "yellow",
 	[1290029] = "red",
 	[1290797] = "purple",

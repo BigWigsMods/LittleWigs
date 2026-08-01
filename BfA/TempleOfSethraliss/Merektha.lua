@@ -71,10 +71,10 @@ if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 	mod:SetRenames({
 		[1290797] = {1290797}, -- Lightning Bite
 		[1290029] = {1290029}, -- A Knot of Snakes
-		[1289109] = {1289109}, -- Thunder Spit
+		[1289109] = {1289109, CL.you:format(mod:SpellName(1289109)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1289109, CL.you:format(mod:SpellName(1289109))}}, -- Thunder Spit
 		[1293048] = {1293048}, -- Serpentstorm
 		[1289205] = {1289205}, -- Hatch
-		[264172] = {264172, CL.cast:format(mod:SpellName(264172)), CL.over:format(mod:SpellName(264172)), notes = {CL.generalNote, CL.messageNote, CL.messageNote}, original = false}, -- Burrow
+		[264172] = {264172, CL.cast:format(mod:SpellName(264172)), CL.over:format(mod:SpellName(264172)), notes = {CL.generalNote, CL.castTimerNote, CL.messageCastOverNote}, original = {264172, CL.cast:format(mod:SpellName(264172)), CL.over:format(mod:SpellName(264172))}}, -- Burrow
 	})
 end
 
@@ -245,6 +245,7 @@ function mod:ThunderSpitTimeline(eventInfo) -- Thunder Spit
 		msg = barText,
 		key = 1289109,
 		callback = function()
+			self:PersonalMessageFromBlizzMessage(1289109, 1, false, self:GetRename(1289109, 2))
 			self:Message(1289109, "yellow", barText)
 			self:PlaySound(1289109, "alert")
 		end
@@ -287,6 +288,7 @@ function mod:BurrowTimeline(eventInfo) -- Burrow
 		msg = barText,
 		key = 264172,
 		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(264172, "cyan", barText)
 			self:PlaySound(264172, "long")
 		end
