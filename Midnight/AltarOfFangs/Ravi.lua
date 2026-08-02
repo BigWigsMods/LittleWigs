@@ -20,7 +20,6 @@ local ssscavengingCount = 1
 --local feedingFrenzyCount = 1
 local regurgitateCount = 1
 local ravenousStompCount = 2
-local count24 = 1
 local activeBars = {}
 local backupBars = {}
 
@@ -60,7 +59,6 @@ function mod:OnEncounterStart()
 	--feedingFrenzyCount = 1
 	regurgitateCount = 1
 	ravenousStompCount = 2 -- cast on pull
-	count24 = 1
 	activeBars = {}
 	backupBars = {}
 	self:SetStage(1)
@@ -90,13 +88,13 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
-	if duration == 8 or (duration == 24 and count24 % 2 == 0) then -- Triple Shot
+	if duration == 8 or duration == 24 then -- Triple Shot
 		barInfo = self:TripleShotTimeline(eventInfo)
 	elseif duration == 25 or duration == 45 then -- Ssscavenging
 		barInfo = self:SsscavengingTimeline(eventInfo)
 	elseif duration == 13 then -- Regurgitate
 		barInfo = self:RegurgitateTimeline(eventInfo)
-	elseif (duration == 24 and count24 % 2 == 1) then -- Ravenous Stomp
+	elseif duration == 23 then -- Ravenous Stomp
 		barInfo = self:RavenousStompTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
@@ -106,9 +104,6 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
 			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
 		end
-	end
-	if duration == 24 then
-		count24 = count24 + 1
 	end
 	if barInfo then
 		activeBars[eventInfo.id] = barInfo
