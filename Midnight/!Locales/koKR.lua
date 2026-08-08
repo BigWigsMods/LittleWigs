@@ -156,3 +156,28 @@ L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "koKR")
 if L then
 	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000한밤 기계공학 25 필요.|r NPC 대화에서 비전 철사덫을 비활성화하는 옵션을 자동으로 선택합니다."
 end
+
+-- Common Trash
+
+L = BigWigs:NewBossLocale("Common Trash", "koKR")
+if L then
+    --L.common_trash = "Common Trash"
+	--L.trash_cast = "Cast"
+	--L.trash_cast_desc = "Alert when a standard trash mob casts a spell."
+	--L.lieutenant_cast = "Cast (Lieutenant)"
+	--L.lieutenant_cast_desc = "Alert when a Lieutenant trash mob casts a spell."
+	--L.trash_channel = "Channel"
+	--L.trash_channel_desc = "Alert when any trash mob channels a spell."
+    --L.customization = "Customization"
+    --L.custom_select_unit = "Which units to track"
+    --L.custom_select_unit_desc = "Select which units should show messages and play sounds."
+    --L.custom_select_unit_value1 = "All units show messages and play sounds"
+    --L.custom_select_unit_value2 = "All units show messages, but only your target plays sounds"
+    --L.custom_select_unit_value3 = "Only your target shows messages and plays sounds"
+    --L.custom_select_throttle_type = "Throttle type"
+    --L.custom_select_throttle_type_desc = "What features should be throttled"
+    --L.custom_select_throttle_type_value1 = "Both messages and sounds"
+	--L.custom_select_throttle_type_value2 = "Sounds only"
+    --L.custom_select_throttle_duration = "Throttle duration"
+	--L.custom_select_throttle_duration_desc = "Trash alert throttle in seconds. Your target is never throttled."
+end

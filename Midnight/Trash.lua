@@ -3,7 +3,7 @@ if not BigWigsLoader.isNext then return end -- XXX 12.1
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Generic Trash", {2813, 2825, 2859, 2923, 2993, 2521, 1877, 1762}) -- S2 dungeons
+local mod, CL = BigWigs:NewBoss("Common Trash", {2813, 2825, 2859, 2923, 2993, 2521, 1877, 1762}) -- S2 dungeons
 if not mod then return end
 mod:SetTrashModule(true)
 
@@ -13,12 +13,12 @@ mod:SetTrashModule(true)
 
 local L = mod:GetLocale()
 if L then
-    L.generic_trash = "Generic Trash"
-	L.trash_cast = "Trash Cast"
+    L.common_trash = "Common Trash"
+	L.trash_cast = "Cast"
 	L.trash_cast_desc = "Alert when a standard trash mob casts a spell."
-	L.lieutenant_cast = "Trash Cast (Lieutenant)"
+	L.lieutenant_cast = "Cast (Lieutenant)"
 	L.lieutenant_cast_desc = "Alert when a Lieutenant trash mob casts a spell."
-	L.trash_channel = "Trash Channel"
+	L.trash_channel = "Channel"
 	L.trash_channel_desc = "Alert when any trash mob channels a spell."
     L.customization = "Customization"
     L.custom_select_unit = "Which units to track"
@@ -48,7 +48,7 @@ local castsPerUnit = {}
 --
 
 function mod:OnRegister()
-	self.displayName = L.generic_trash
+	self.displayName = L.common_trash
 end
 
 function mod:GetOptions()
