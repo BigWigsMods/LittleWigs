@@ -605,3 +605,15 @@ BigWigs:AddSounds("Restless Heart", {
 	[472556] = "info",
 	[472662] = "alert",
 })
+
+BigWigs:AddColors("Generic Trash", {
+	["lieutenant_cast"] = "orange",
+	["trash_cast"] = "red",
+	["trash_channel"] = "yellow",
+})
+
+BigWigs:AddSounds("Generic Trash", {
+	["lieutenant_cast"] = "alarm",
+	["trash_cast"] = "alert",
+	["trash_channel"] = "info",
+})

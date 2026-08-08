@@ -65,6 +65,8 @@
 <Script file="WindrunnerSpire\CommanderKroluk.lua"/>
 <Script file="WindrunnerSpire\RestlessHeart.lua"/>
 
+<Script file="Trash.lua"/>
+
 <Script file="!Options.lua"/>
 
 </Ui>
