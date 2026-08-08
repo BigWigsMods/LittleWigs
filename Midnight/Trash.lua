@@ -115,7 +115,7 @@ function mod:UNIT_SPELLCAST(event, unit, _, spellID, castBarID)
             if UnitAffectingCombat(unit) then
                 self:ShowAlert(unit, spellID, event, allEventsPlaySounds)
             end
-        end, 0)
+        end, 0.05)
         return
     end
 
