@@ -165,9 +165,23 @@ BigWigs:AddSounds("Blademaster Darza", {
 })
 
 BigWigs:AddColors("Azta'rec", {
+	[1288103] = "cyan",
+	[1288125] = "cyan",
+	[1291555] = "red",
+	[1293824] = "yellow",
+	[1293825] = "purple",
+	[1294963] = "red",
+	[1309418] = "orange",
 })
 
 BigWigs:AddSounds("Azta'rec", {
+	[1288103] = "long",
+	[1288125] = "info",
+	[1291555] = "alarm",
+	[1293824] = "info",
+	[1293825] = "alert",
+	[1294963] = "warning",
+	[1309418] = "info",
 })
 
 BigWigs:AddColors("Midnight Delve Trash", {
