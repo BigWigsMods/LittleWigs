@@ -304,7 +304,7 @@ function mod:InfernoSpitTimeline(eventInfo) -- Inferno Spit
 		msg = barText,
 		key = 381862,
 		callback = function()
-			self:PersonalMessageFromBlizzMessage(381862, 1, false, self:GetRename(381862, 2)) -- TODO confirm
+			self:PersonalMessageFromBlizzMessage(381862, 3, false, self:GetRename(381862, 2))
 			self:Message(381862, "yellow", barText)
 			self:PlaySound(381862, "alarm")
 		end
