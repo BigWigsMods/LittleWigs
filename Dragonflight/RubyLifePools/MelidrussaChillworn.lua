@@ -62,7 +62,7 @@ end
 local hailburstCount = 1
 local chillstormCount = 1
 local frostOverloadCount = 1
-local count27 = 1
+local count24 = 1
 local activeBars = {}
 local backupBars = {}
 
@@ -102,7 +102,7 @@ if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 		chillstormCount = 1
 		awakenWhelpsCount = 1
 		frostOverloadCount = 1
-		count27 = 1
+		count24 = 1
 		activeBars = {}
 		backupBars = {}
 		self:SetStage(1)
@@ -128,9 +128,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
-	if duration == 6 or (duration == 27 and count27 % 2 == 1) then -- Hailburst
+	if duration == 5 or (duration == 24 and count24 % 2 == 1) then -- Hailburst
 		barInfo = self:HailburstTimeline(eventInfo)
-	elseif duration == 16 or (duration == 27 and count27 % 2 == 0) then -- Chillstorm
+	elseif duration == 15 or (duration == 24 and count24 % 2 == 0) then -- Chillstorm
 		barInfo = self:ChillstormTimeline(eventInfo)
 	elseif duration == 12 then -- Frost Overload
 		barInfo = self:FrostOverloadTimeline(eventInfo)
@@ -146,7 +146,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if barInfo then
 		activeBars[eventInfo.id] = barInfo
 	end
-	if duration == 27 then count27 = count27 + 1 end
+	if duration == 24 then count24 = count24 + 1 end
 end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
