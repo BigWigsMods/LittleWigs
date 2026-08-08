@@ -71,11 +71,6 @@ function mod:GetOptions()
 	}
 end
 
-function mod:OnBossEnable()
-	self:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", nil, "boss1")
-	self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss1")
-end
-
 mod:UseCustomTimers(true)
 function mod:OnEncounterStart()
 	noxiousBileCount = 1
@@ -94,6 +89,8 @@ function mod:OnEncounterStart()
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_REMOVED")
+		self:RegisterUnitEvent("UNIT_SPELLCAST_CHANNEL_START", nil, "boss1")
+		self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss1")
 	end
 end
 
