@@ -179,5 +179,8 @@ if L then
     --L.custom_select_throttle_type_value1 = "Both messages and sounds"
 	--L.custom_select_throttle_type_value2 = "Sounds only"
     --L.custom_select_throttle_duration = "Throttle duration"
-	--L.custom_select_throttle_duration_desc = "Trash alert throttle in seconds. Your target is never throttled."
+	--L.custom_select_throttle_duration_desc = "How long to wait between alerts. Your target is never throttled."
+	--L.custom_select_throttle_duration_value1 = "2 seconds"
+	--L.custom_select_throttle_duration_value2 = "1 second"
+	--L.custom_select_throttle_duration_value3 = "3 seconds"
 end

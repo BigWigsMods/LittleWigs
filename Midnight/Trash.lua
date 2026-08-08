@@ -31,10 +31,10 @@ if L then
     L.custom_select_throttle_type_value1 = "Both messages and sounds"
 	L.custom_select_throttle_type_value2 = "Sounds only"
     L.custom_select_throttle_duration = "Throttle duration"
-	L.custom_select_throttle_duration_desc = "Trash alert throttle in seconds. Your target is never throttled."
-	L.custom_select_throttle_duration_value1 = 2
-	L.custom_select_throttle_duration_value2 = 1
-	L.custom_select_throttle_duration_value3 = 3
+	L.custom_select_throttle_duration_desc = "How long to wait between alerts. Your target is never throttled."
+	L.custom_select_throttle_duration_value1 = "2 seconds"
+	L.custom_select_throttle_duration_value2 = "1 second"
+	L.custom_select_throttle_duration_value3 = "3 seconds"
 end
 
 --------------------------------------------------------------------------------
@@ -87,12 +87,13 @@ end
 
 local prevChannel, prevLieutenant, prevCast = 0, 0, 0
 function mod:UNIT_SPELLCAST(event, unit, _, spellID, castBarID)
-    local customSelectUnit = self:GetOption("custom_select_unit") -- 1 = all, 2 = all message, target sound, 3 = target
-    if customSelectUnit == 3 then -- target only
+    local unitFilterOption = self:GetOption("custom_select_unit") -- 1 = all, 2 = all message, target sound, 3 = target
+    if unitFilterOption == 3 then -- target only
         if unit ~= "target" then return end
     else -- only nameplate units (trash mobs)
         if not unit:find("^nameplate") then return end
     end
+    local allEventsPlaySounds = unitFilterOption ~= 2
 
 	-- once per cast (don't alert on SUCCEEDED if we saw the START)
 	if event == "UNIT_SPELLCAST_SUCCEEDED" and castBarID and castsPerUnit[unit] and castsPerUnit[unit][castBarID] then
@@ -112,16 +113,16 @@ function mod:UNIT_SPELLCAST(event, unit, _, spellID, castBarID)
         -- check again on the next frame - some mobs cast immediately on entering combat.
         self:SimpleTimer(function()
             if UnitAffectingCombat(unit) then
-                self:ShowAlert(unit, spellID, event, customSelectUnit)
+                self:ShowAlert(unit, spellID, event, allEventsPlaySounds)
             end
         end, 0)
         return
     end
 
-    self:ShowAlert(unit, spellID, event, customSelectUnit)
+    self:ShowAlert(unit, spellID, event, allEventsPlaySounds)
 end
 
-function mod:ShowAlert(unit, spellID, event, customSelectUnit)
+function mod:ShowAlert(unit, spellID, event, allEventsPlaySounds)
     local t = GetTime()
     local unitIsTarget = UnitIsUnit("target", unit)
     local level = BigWigsLoader.UnitLevel(unit)
@@ -138,35 +139,35 @@ function mod:ShowAlert(unit, spellID, event, customSelectUnit)
     end
     local throttleSoundsOnly = self:GetOption("custom_select_throttle_type") == 2
     if event == "UNIT_SPELLCAST_CHANNEL_START" and (level == STANDARD_LEVEL or level == LIEUTENANT_LEVEL) then -- channels
-        local throttlePassed = t - prevChannel > throttleDuration
-        if throttleSoundsOnly or throttlePassed then
+        local shouldAlert = t - prevChannel > throttleDuration
+        if throttleSoundsOnly or shouldAlert then
             self:SecretMessage("trash_channel", "yellow", spellID)
         end
-        if throttlePassed then
+        if shouldAlert then
             prevChannel = t
-            if unitIsTarget or customSelectUnit ~= 2 then
+            if unitIsTarget or allEventsPlaySounds then
                 self:PlaySound("trash_channel", "info")
             end
         end
     elseif level == LIEUTENANT_LEVEL then -- lieutenant casts
-        local throttlePassed = t - prevLieutenant > throttleDuration
-        if throttleSoundsOnly or throttlePassed then
+        local shouldAlert = t - prevLieutenant > throttleDuration
+        if throttleSoundsOnly or shouldAlert then
             self:SecretMessage("lieutenant_cast", "orange", spellID)
         end
-        if throttlePassed then
+        if shouldAlert then
             prevLieutenant = t
-            if unitIsTarget or customSelectUnit ~= 2 then
+            if unitIsTarget or allEventsPlaySounds then
                 self:PlaySound("lieutenant_cast", "alarm")
             end
         end
     elseif level == STANDARD_LEVEL then -- standard casts
-        local throttlePassed = t - prevCast > throttleDuration
-        if throttleSoundsOnly or throttlePassed then
+        local shouldAlert = t - prevCast > throttleDuration
+        if throttleSoundsOnly or shouldAlert then
             self:SecretMessage("trash_cast", "red", spellID)
         end
-        if throttlePassed then
+        if shouldAlert then
             prevCast = t
-            if unitIsTarget or customSelectUnit ~= 2 then
+            if unitIsTarget or allEventsPlaySounds then
                 self:PlaySound("trash_cast", "alert")
             end
         end
