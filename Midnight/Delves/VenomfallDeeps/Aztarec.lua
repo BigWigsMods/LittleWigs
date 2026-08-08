@@ -87,7 +87,7 @@ function mod:OnEncounterStart()
 	echoOfUlatekCount = 1
 	activeBars = {}
 	backupBars = {}
-	local info = C_UIWidgetManager.GetScenarioHeaderDelvesWidgetVisualizationInfo(6185) -- ?? Difficulty
+	local info = self:GetWidgetInfo("delve", 6185) -- ?? Difficulty
 	hardMode = info and info.shownState == 1 and true or false
 	self:SetStage(1)
 	if self:ShouldShowBars() then
