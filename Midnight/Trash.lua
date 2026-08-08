@@ -42,6 +42,7 @@ end
 --
 
 local castsPerUnit = {}
+local STANDARD_LEVEL, LIEUTENANT_LEVEL = 90, 91 -- Midnight-specific
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -116,12 +117,14 @@ function mod:UNIT_SPELLCAST(event, unit, _, spellID, castBarID)
         end, 0)
         return
     end
+
     self:ShowAlert(unit, spellID, event, customSelectUnit)
 end
 
 function mod:ShowAlert(unit, spellID, event, customSelectUnit)
     local t = GetTime()
     local unitIsTarget = UnitIsUnit("target", unit)
+    local level = BigWigsLoader.UnitLevel(unit)
     local throttleIndex = self:GetOption("custom_select_throttle_duration")
     local throttleDuration
     if unitIsTarget then -- don't throttle target
@@ -134,7 +137,7 @@ function mod:ShowAlert(unit, spellID, event, customSelectUnit)
         throttleDuration = 3
     end
     local throttleSoundsOnly = self:GetOption("custom_select_throttle_type") == 2
-    if event == "UNIT_SPELLCAST_CHANNEL_START" and BigWigsLoader.UnitLevel(unit) ~= 92 then
+    if event == "UNIT_SPELLCAST_CHANNEL_START" and (level == STANDARD_LEVEL or level == LIEUTENANT_LEVEL) then -- channels
         local throttlePassed = t - prevChannel > throttleDuration
         if throttleSoundsOnly or throttlePassed then
             self:SecretMessage("trash_channel", "yellow", spellID)
@@ -145,7 +148,7 @@ function mod:ShowAlert(unit, spellID, event, customSelectUnit)
                 self:PlaySound("trash_channel", "info")
             end
         end
-    elseif BigWigsLoader.UnitLevel(unit) == 91 then
+    elseif level == LIEUTENANT_LEVEL then -- lieutenant casts
         local throttlePassed = t - prevLieutenant > throttleDuration
         if throttleSoundsOnly or throttlePassed then
             self:SecretMessage("lieutenant_cast", "orange", spellID)
@@ -156,7 +159,7 @@ function mod:ShowAlert(unit, spellID, event, customSelectUnit)
                 self:PlaySound("lieutenant_cast", "alarm")
             end
         end
-    elseif BigWigsLoader.UnitLevel(unit) == 90 then
+    elseif level == STANDARD_LEVEL then -- standard casts
         local throttlePassed = t - prevCast > throttleDuration
         if throttleSoundsOnly or throttlePassed then
             self:SecretMessage("trash_cast", "red", spellID)
