@@ -262,19 +262,16 @@ do
 			msg = barText,
 			key = 1240210,
 			callback = function()
-				if BigWigsLoader.isNext then
-					if self:GetStage() ~= 3 then -- Stage 2
-						pulverizingStrikesRemaining = 2
-					else -- Stage 3
-						pulverizingStrikesRemaining = 3
-					end
-				else -- XXX remove in 12.1
-					pulverizingStrikesRemaining = 3
+				pulverizingStrikesRemaining = 3
+				if self:GetStage() ~= 3 then
+					self:ScheduleTimer(function()
+						self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss1")
+					end, 0.1)
+					self:Message(1240210, "yellow", self:GetRename(1240210, 2)) -- Pulverizing Strikes incoming
+				else
+					self:Message(1240210, "yellow", self:GetRename(1240210)) -- Pulverizing Strikes
+					self:PlaySound(1240210, "alarm")
 				end
-				self:SimpleTimer(function()
-					self:RegisterUnitEvent("UNIT_SPELLCAST_START", nil, "boss1")
-				end, 0.1)
-				self:Message(1240210, "yellow", self:GetRename(1240210, 2)) -- Pulverizing Strikes incoming
 			end
 		}
 	end
