@@ -8,6 +8,7 @@ mod:SetEncounterID(3207)
 mod:SetRespawnTime(30)
 mod:SetPrivateAuraSounds({
 	{1234846, sound = "info"}, -- Toxic Spores
+	{1234681, sound = "none"}, -- Ravenous Bellow
 	{1235125, sound = "none"}, -- Hearty Bellow
 })
 
