@@ -12,6 +12,7 @@ mod:SetPrivateAuraSounds({
 	{1235841, sound = "info"}, -- Snowdrift
 	{1235641, sound = "underyou"}, -- Raging Squall
 	{1236289, sound = "underyou"}, -- Blizzard's Wrath
+	{1297749, sound = "alarm"}, -- Frozen Tempest
 })
 
 --------------------------------------------------------------------------------
