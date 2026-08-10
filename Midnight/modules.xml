@@ -55,6 +55,7 @@
 <Script file="TheBlindingVale\IkuzzTheLightHunter.lua"/>
 <Script file="TheBlindingVale\LightwardenRuia.lua"/>
 <Script file="TheBlindingVale\Ziekket.lua"/>
+<Script file="TheBlindingVale\Trash.lua"/>
 
 <Script file="VoidscarArena\TazRah.lua"/>
 <Script file="VoidscarArena\Atroxus.lua"/>

@@ -500,6 +500,12 @@ BigWigs:AddSounds("Ziekket", {
 	[1247685] = "alert",
 })
 
+BigWigs:AddColors("The Blinding Vale Trash", {
+})
+
+BigWigs:AddSounds("The Blinding Vale Trash", {
+})
+
 BigWigs:AddColors("Taz'Rah", {
 	[1222085] = "purple",
 	[1222098] = {"blue","red"},
