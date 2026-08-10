@@ -8,6 +8,13 @@ mod:RegisterEnableMob(133384, 134487) -- Creature and Vehicle
 mod:SetEncounterID(2125)
 if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 	mod:SetRespawnTime(30)
+	mod:SetAuraData({
+		[1290030] = {soundOnApplied = "none"}, -- A Knot of Snakes
+		[1289109] = {soundOnApplied = "none"}, -- Thunder Spit
+		[1289588] = {soundOnApplied = "none"}, -- Thunder Spit
+		[1289589] = {soundOnApplied = "underyou"}, -- Lingering Storm
+		[1297034] = {soundOnApplied = "underyou"}, -- Electrified Ground
+	})
 else
 	mod:SetRespawnTime(20)
 end
