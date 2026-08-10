@@ -83,7 +83,7 @@ function mod:OnEncounterStart()
 	activeBars = {}
 	backupBars = {}
 	local info = self:GetWidgetInfo("delve", 6185) -- ?? Difficulty
-	hardMode = info and info.shownState == 1 and true or false
+	hardMode = info ~= nil and info.shownState == 1
 	self:SetStage(1)
 	if self:ShouldShowBars() then
 		self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
