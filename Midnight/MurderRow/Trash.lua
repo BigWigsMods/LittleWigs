@@ -5,6 +5,19 @@
 local mod, CL = BigWigs:NewBoss("Murder Row Trash", 2813)
 if not mod then return end
 mod:SetTrashModule(true)
+mod:SetAuraData({
+	[1216300] = {soundOnApplied = "none"}, -- Cutpurse
+	[1216529] = {soundOnApplied = "none"}, -- Shield Bash
+	[1295035] = {soundOnApplied = "none"}, -- Glaive Toss
+	[1217633] = {soundOnApplied = "none"}, -- Corroding Spittle
+	[1216590] = {soundOnApplied = "none"}, -- Heartstop Poison
+	[1311136] = {soundOnApplied = "none"}, -- Sharp Nail
+	[1218508] = {soundOnApplied = "none"}, -- Disguised
+	[1295427] = {soundOnApplied = "none"}, -- Flay
+	[1217973] = {soundOnApplied = "alarm"}, -- Curse of Doom
+	[1218187] = {soundOnApplied = "none"}, -- Fel Beam
+	[1294870] = {soundOnApplied = "underyou"}, -- Fel-Scarred Earth
+})
 
 --------------------------------------------------------------------------------
 -- Localization
