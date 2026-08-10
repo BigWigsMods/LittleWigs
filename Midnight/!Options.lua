@@ -558,6 +558,12 @@ BigWigs:AddSounds("Charonus", {
 	[1311923] = "alarm",
 })
 
+BigWigs:AddColors("Voidscar Arena Trash", {
+})
+
+BigWigs:AddSounds("Voidscar Arena Trash", {
+})
+
 BigWigs:AddColors("Emberdawn", {
 	[465904] = {"green","yellow"},
 	[466064] = "purple",

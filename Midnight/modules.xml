@@ -60,6 +60,7 @@
 <Script file="VoidscarArena\TazRah.lua"/>
 <Script file="VoidscarArena\Atroxus.lua"/>
 <Script file="VoidscarArena\Charonus.lua"/>
+<Script file="VoidscarArena\Trash.lua"/>
 
 <Script file="WindrunnerSpire\Emberdawn.lua"/>
 <Script file="WindrunnerSpire\DerelictDuo.lua"/>
