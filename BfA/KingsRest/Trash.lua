@@ -1,4 +1,3 @@
-if BigWigsLoader.isRetail then return end -- don't load in Midnight+
 --------------------------------------------------------------------------------
 -- TODO
 --
@@ -39,6 +38,27 @@ mod:RegisterEnableMob(
 	135231, -- Spectral Brute
 	138489 -- Shadow of Zul
 )
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		[269936] = {soundOnApplied = "none"}, -- Fixate
+		[269972] = {soundOnApplied = "none"}, -- Hex Volley
+		[1306763] = {soundOnApplied = "none"}, -- Serpent Strike
+		[270931] = {soundOnApplied = "none"}, -- Shadow Volley
+		[270927] = {soundOnApplied = "none"}, -- Bladestorm
+		[1297918] = {soundOnApplied = "none"}, -- Mortal Bleed
+		[1297781] = {soundOnApplied = "none"}, -- Sudden Rupture
+		[270292] = {soundOnApplied = "underyou"}, -- Purifying Flame
+		[271555] = {soundOnApplied = "none"}, -- Entomb
+		[1301851] = {soundOnApplied = "none"}, -- Bloodthirsty Axe
+		[1302028] = {soundOnApplied = "none"}, -- Soul Crush
+		[270492] = {soundOnApplied = "none"}, -- Hex
+		[272388] = {soundOnApplied = "none"}, -- Shadow Barrage
+		[1298304] = {soundOnApplied = "none"}, -- Dark Revelation
+		[276031] = {soundOnApplied = "none"}, -- Pit of Despair
+		[274387] = {soundOnApplied = "none"}, -- Absorbed in Darkness
+		[272021] = {soundOnApplied = "none"}, -- Erupting Darkness
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -279,6 +299,23 @@ end
 
 function mod:OnBossDisable()
 	prevTable = {}
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Initialization
+--
+
+if mod:Retail() then -- Midnight+
+	function mod:GetOptions()
+		return {
+		}
+	end
+
+	function mod:OnBossEnable()
+	end
+
+	function mod:OnBossDisable()
+	end
 end
 
 --------------------------------------------------------------------------------
