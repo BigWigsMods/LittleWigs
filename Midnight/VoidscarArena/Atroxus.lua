@@ -6,11 +6,11 @@ local mod, CL = BigWigs:NewBoss("Atroxus", 2923, 2792)
 if not mod then return end
 mod:SetEncounterID(3286)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1222484, sound = "underyou"}, -- Poison Pool
-	{1222642, sound = "none"}, -- Hulking Claw
-	{1226031, sound = "none"}, -- Poison Splash
-	{1263971, sound = "none"}, -- Lingering Poison
+mod:SetAuraData({
+	[1222484] = {soundOnApplied = "underyou"}, -- Poison Pool
+	[1222642] = {soundOnApplied = "none"}, -- Hulking Claw
+	[1226031] = {soundOnApplied = "none"}, -- Poison Splash
+	[1263971] = {soundOnApplied = "none"}, -- Lingering Poison
 })
 
 --------------------------------------------------------------------------------

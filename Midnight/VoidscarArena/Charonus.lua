@@ -6,10 +6,10 @@ local mod, CL = BigWigs:NewBoss("Charonus", 2923, 2793)
 if not mod then return end
 mod:SetEncounterID(3287)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1227197, sound = "none"}, -- Cosmic Crash
-	{1248130, sound = "underyou"}, -- Unstable Singularity
-	{1264188, sound = "none"}, -- Event Horizon
+mod:SetAuraData({
+	[1227197] = {soundOnApplied = "none"}, -- Cosmic Crash
+	[1248130] = {soundOnApplied = "underyou"}, -- Unstable Singularity
+	[1264188] = {soundOnApplied = "none"}, -- Event Horizon
 })
 
 --------------------------------------------------------------------------------

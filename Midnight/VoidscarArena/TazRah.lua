@@ -6,10 +6,10 @@ local mod, CL = BigWigs:NewBoss("Taz'Rah", 2923, 2791)
 if not mod then return end
 mod:SetEncounterID(3285)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1222103, sound = "none"}, -- Nether Dash
-	{1262283, sound = "none"}, -- Dark Rift
-	{1222305, sound = "underyou"}, -- Dark Rift
+mod:SetAuraData({
+	[1222103] = {soundOnApplied = "none"}, -- Nether Dash
+	[1262283] = {soundOnApplied = "none"}, -- Dark Rift
+	[1222305] = {soundOnApplied = "underyou"}, -- Dark Rift
 })
 
 --------------------------------------------------------------------------------
