@@ -38,6 +38,17 @@ if L then
 end
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[1280086] = {1280086}, -- Emptiness of the Void
+	[1280087] = {1280087}, -- Imploding Strike
+	[1280088] = {1280088}, -- Devouring Essence
+	["adds"] = {CL.adds_spawning}, -- Adds spawning
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -51,12 +62,6 @@ function mod:GetOptions()
 		1280087, -- Imploding Strike
 		1280088, -- Devouring Essence
 		"adds",
-		{1256045, "PRIVATE"}, -- Null Zone
-		{1256167, "PRIVATE"}, -- Void Hole
-		--{1256358, "PRIVATE"}, -- Devouring Essence
-		{1256366, "PRIVATE"}, -- Jagged Rip
-		{1256518, "PRIVATE"}, -- Poisonous Spit
-		{1256526, "PRIVATE"}, -- Curse of Hesitation
 	}
 end
 
@@ -117,8 +122,8 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 		if state == 0 then -- Active
 			self:ResumeBar(barInfo.key, barInfo.msg)
 		elseif state == 1 then -- Paused
-			-- bars pausing means adds are spawning (and also just stop the bars)
-			self:StopBar(barInfo.msg)
+			self:PauseBar(barInfo.key, barInfo.msg)
+			-- bars pausing means adds are spawning
 			self:Adds()
 		elseif state == 2 then -- Finished
 			self:StopBar(barInfo.msg)
@@ -158,10 +163,10 @@ end
 --
 
 function mod:EmptinessOfTheVoidTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1280086), emptinessOfTheVoidCount)
+	local barText = CL.count:format(self:GetRename(1280086), emptinessOfTheVoidCount)
 	self:CDBar(1280086, eventInfo.duration, barText, nil, eventInfo.id)
 	if emptinessOfTheVoidCount > 1 then
-		self:Message(1280086, "red", CL.casting:format(CL.count:format(self:SpellName(1280086), emptinessOfTheVoidCount - 1)))
+		self:Message(1280086, "red", CL.casting:format(CL.count:format(self:GetRename(1280086), emptinessOfTheVoidCount - 1)))
 		self:PlaySound(1280086, "warning")
 	end
 	emptinessOfTheVoidCount = emptinessOfTheVoidCount + 1
@@ -172,10 +177,10 @@ function mod:EmptinessOfTheVoidTimeline(eventInfo)
 end
 
 function mod:ImplodingStrikeTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1280087), implodingStrikeCount)
+	local barText = CL.count:format(self:GetRename(1280087), implodingStrikeCount)
 	self:CDBar(1280087, eventInfo.duration, barText, nil, eventInfo.id)
 	if implodingStrikeCount > 1 then
-		self:Message(1280087, "orange", CL.count:format(self:SpellName(1280087), implodingStrikeCount - 1))
+		self:Message(1280087, "orange", CL.count:format(self:GetRename(1280087), implodingStrikeCount - 1))
 		self:PlaySound(1280087, "alarm")
 	end
 	implodingStrikeCount = implodingStrikeCount + 1
@@ -186,10 +191,10 @@ function mod:ImplodingStrikeTimeline(eventInfo)
 end
 
 function mod:DevouringEssenceTimeline(eventInfo)
-	local barText = CL.count:format(self:SpellName(1280088), devouringEssenceCount)
+	local barText = CL.count:format(self:GetRename(1280088), devouringEssenceCount)
 	self:CDBar(1280088, eventInfo.duration, barText, nil, eventInfo.id)
 	if devouringEssenceCount > 1 then
-		self:Message(1280088, "yellow", CL.count:format(self:SpellName(1280088), devouringEssenceCount - 1))
+		self:Message(1280088, "yellow", CL.count:format(self:GetRename(1280088), devouringEssenceCount - 1))
 		self:PlaySound(1280088, "info")
 	end
 	devouringEssenceCount = devouringEssenceCount + 1
@@ -204,7 +209,7 @@ do
 	function mod:Adds()
 		if GetTime() - prev > 2 then
 			prev = GetTime()
-			self:Message("adds", "cyan", CL.count_amount:format(CL.adds_spawning, addsCount, 3), L.adds_icon)
+			self:Message("adds", "cyan", CL.count_amount:format(self:GetRename("adds"), addsCount, 3), L.adds_icon)
 			addsCount = addsCount + 1
 			self:PlaySound("adds", "long")
 		end
