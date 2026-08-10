@@ -8,6 +8,10 @@ mod:RegisterEnableMob(133379, 133944) -- Adderis, Aspix
 mod:SetEncounterID(2124)
 if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 	mod:SetRespawnTime(30)
+	mod:SetAuraData({
+		[1288457] = {soundOnApplied = "none"}, -- Gust
+		[1288885] = {soundOnApplied = "none"}, -- Tempest Winds
+	})
 else
 	mod:SetRespawnTime(20)
 end
