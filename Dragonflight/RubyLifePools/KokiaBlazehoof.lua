@@ -7,9 +7,15 @@ if not mod then return end
 mod:RegisterEnableMob(189232) -- Kokia Blazehoof
 mod:SetEncounterID(2606)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{372820, sound = "underyou"}, -- Scorched Earth
-})
+if mod:Retail() then
+	mod:SetAuraData({
+		[372865] = {soundOnApplied = "none"}, -- Ritual of Blazebinding
+		[384823] = {soundOnApplied = "none"}, -- Inferno
+		[372820] = {soundOnApplied = "underyou"}, -- Scorched Earth
+		[372858] = {soundOnApplied = "none"}, -- Searing Blows
+		[372860] = {soundOnApplied = "none"}, -- Searing Wounds
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Locals
