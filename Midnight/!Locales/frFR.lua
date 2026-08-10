@@ -154,33 +154,33 @@ end
 
 L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "frFR")
 if L then
-	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requiert 25 points de compétence en Ingénierie de Midnight.|r Sélectionne automatiquement le dialogue avec le PNK afin de désactiver le Dispositif de détection arcanique."
+	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requiert 25 points de compétence en Ingénierie de Midnight.|r Sélectionne automatiquement le dialogue avec le PNJ afin de désactiver le Dispositif de détection arcanique."
 end
 
 -- Common Trash
 
 L = BigWigs:NewBossLocale("Common Trash", "frFR")
 if L then
-    --L.common_trash = "Common Trash"
-	--L.trash_cast = "Cast"
-	--L.trash_cast_desc = "Alert when a standard trash mob casts a spell."
-	--L.lieutenant_cast = "Cast (Lieutenant)"
-	--L.lieutenant_cast_desc = "Alert when a Lieutenant trash mob casts a spell."
-	--L.trash_channel = "Channel"
-	--L.trash_channel_desc = "Alert when any trash mob channels a spell."
-    --L.customization = "Customization"
-    --L.custom_select_unit = "Which units to track"
-    --L.custom_select_unit_desc = "Select which units should show messages and play sounds."
-    --L.custom_select_unit_value1 = "All units show messages and play sounds"
-    --L.custom_select_unit_value2 = "All units show messages, but only your target plays sounds"
-    --L.custom_select_unit_value3 = "Only your target shows messages and plays sounds"
-    --L.custom_select_throttle_type = "Throttle type"
-    --L.custom_select_throttle_type_desc = "What features should be throttled"
-    --L.custom_select_throttle_type_value1 = "Both messages and sounds"
-	--L.custom_select_throttle_type_value2 = "Sounds only"
-    --L.custom_select_throttle_duration = "Throttle duration"
-	--L.custom_select_throttle_duration_desc = "How long to wait between alerts. Your target is never throttled."
-	--L.custom_select_throttle_duration_value1 = "2 seconds"
-	--L.custom_select_throttle_duration_value2 = "1 second"
-	--L.custom_select_throttle_duration_value3 = "3 seconds"
+    L.common_trash = "Monstre commun"
+	L.trash_cast = "Incantation"
+	L.trash_cast_desc = "Alerte lorsqu'un monstre commun incante un sort."
+	L.lieutenant_cast = "Incantation (Lieutenant)"
+	L.lieutenant_cast_desc = "Alerte lorsqu'un lieutenant incante un sort."
+	L.trash_channel = "Canalisation"
+	L.trash_channel_desc = "Alerte lorsqu'un monstre commun canalise un sort."
+    L.customization = "Personnalisation"
+    L.custom_select_unit = "Quels unités à traquer"
+    L.custom_select_unit_desc = "Selectionne quelles unités doivent afficher des messages et jouer des sons."
+    L.custom_select_unit_value1 = "Toutes les unités affichent des messages et jouent des sons"
+    L.custom_select_unit_value2 = "Toutes les unités affichent des messages, mais seule votre cible joue des sons"
+    L.custom_select_unit_value3 = "Seulement votre cible affiche des messages et joue des sons pour votre cible"
+    L.custom_select_throttle_type = "Cadençage"
+    L.custom_select_throttle_type_desc = "Fonctionnalités à cadencer"
+    L.custom_select_throttle_type_value1 = "Messages et sons"
+	L.custom_select_throttle_type_value2 = "Sons seulement"
+    L.custom_select_throttle_duration = "Durée de la cadence"
+	L.custom_select_throttle_duration_desc = "Durée d'attente entre les alertes. Votre cible ne sera jamais cadencée."
+	L.custom_select_throttle_duration_value1 = "2 secondes"
+	L.custom_select_throttle_duration_value2 = "1 seconde"
+	L.custom_select_throttle_duration_value3 = "3 secondes"
 end
