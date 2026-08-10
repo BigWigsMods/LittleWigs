@@ -6,10 +6,10 @@ local mod, CL = BigWigs:NewBoss("Ikuzz the Light Hunter", 2859, 2770)
 if not mod then return end
 mod:SetEncounterID(3200)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1237091, sound = "warning"}, -- Bloodthirsty Gaze
-	{1237267, sound = "alarm"}, -- Incise
-	{1272290, sound = "warning"}, -- Crunched
+mod:SetAuraData({
+	[1237091] = {soundOnApplied = "none"}, -- Bloodthirsty Gaze
+	[1237267] = {soundOnApplied = "alarm"}, -- Incise
+	[1272290] = {soundOnApplied = "none"}, -- Crunched
 })
 
 --------------------------------------------------------------------------------
