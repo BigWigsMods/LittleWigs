@@ -6,12 +6,12 @@ local mod, CL = BigWigs:NewBoss("Lightwarden Ruia", 2859, 2771)
 if not mod then return end
 mod:SetEncounterID(3201)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1239825, sound = "none"}, -- Lightfire
-	{1239919, sound = "underyou"}, -- Lightfire Beams
-	{1241058, sound = "none"}, -- Grievous Thrash
-	{1251345, sound = "underyou"}, -- Blight Resin
-	{1257094, sound = "none"}, -- Pulverized
+mod:SetAuraData({
+	[1239825] = {soundOnApplied = "none"}, -- Lightfire
+	[1239919] = {soundOnApplied = "underyou"}, -- Lightfire Beams
+	[1241058] = {soundOnApplied = "none"}, -- Grievous Thrash
+	[1251345] = {soundOnApplied = "underyou"}, -- Blight Resin
+	[1257094] = {soundOnApplied = "none"}, -- Pulverized
 })
 mod:SetStage(1)
 
