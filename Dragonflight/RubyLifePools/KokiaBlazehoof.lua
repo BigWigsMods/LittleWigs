@@ -9,11 +9,11 @@ mod:SetEncounterID(2606)
 mod:SetRespawnTime(30)
 if mod:Retail() then
 	mod:SetAuraData({
-		[372865] = {soundOnApplied = "none"}, -- Ritual of Blazebinding
-		[384823] = {soundOnApplied = "none"}, -- Inferno
-		[372820] = {soundOnApplied = "underyou"}, -- Scorched Earth
-		[372858] = {soundOnApplied = "none"}, -- Searing Blows
-		[372860] = {soundOnApplied = "none"}, -- Searing Wounds
+		{372865}, -- Ritual of Blazebinding
+		{384823}, -- Inferno
+		{372820, soundOnApplied = "underyou"}, -- Scorched Earth
+		{372858}, -- Searing Blows
+		{372860}, -- Searing Wounds
 	})
 end
 

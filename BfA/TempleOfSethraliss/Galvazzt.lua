@@ -9,9 +9,9 @@ mod:SetEncounterID(2126)
 if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 	mod:SetRespawnTime(30)
 	mod:SetAuraData({
-		[266923] = {soundOnApplied = "none"}, -- Galvanize
-		[1291815] = {soundOnApplied = "underyou"}, -- Induction Field
-		[266512] = {soundOnApplied = "none"}, -- Consume Charge
+		{266923}, -- Galvanize
+		{1291815, soundOnApplied = "underyou"}, -- Induction Field
+		{266512}, -- Consume Charge
 	})
 else
 	mod:SetRespawnTime(25)

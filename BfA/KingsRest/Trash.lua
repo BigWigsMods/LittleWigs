@@ -40,23 +40,23 @@ mod:RegisterEnableMob(
 )
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		[269936] = {soundOnApplied = "none"}, -- Fixate
-		[269972] = {soundOnApplied = "none"}, -- Hex Volley
-		[1306763] = {soundOnApplied = "none"}, -- Serpent Strike
-		[270931] = {soundOnApplied = "none"}, -- Shadow Volley
-		[270927] = {soundOnApplied = "none"}, -- Bladestorm
-		[1297918] = {soundOnApplied = "none"}, -- Mortal Bleed
-		[1297781] = {soundOnApplied = "none"}, -- Sudden Rupture
-		[270292] = {soundOnApplied = "underyou"}, -- Purifying Flame
-		[271555] = {soundOnApplied = "none"}, -- Entomb
-		[1301851] = {soundOnApplied = "none"}, -- Bloodthirsty Axe
-		[1302028] = {soundOnApplied = "none"}, -- Soul Crush
-		[270492] = {soundOnApplied = "none"}, -- Hex
-		[272388] = {soundOnApplied = "none"}, -- Shadow Barrage
-		[1298304] = {soundOnApplied = "none"}, -- Dark Revelation
-		[276031] = {soundOnApplied = "none"}, -- Pit of Despair
-		[274387] = {soundOnApplied = "none"}, -- Absorbed in Darkness
-		[272021] = {soundOnApplied = "none"}, -- Erupting Darkness
+		{269936}, -- Fixate
+		{269972}, -- Hex Volley
+		{1306763}, -- Serpent Strike
+		{270931}, -- Shadow Volley
+		{270927}, -- Bladestorm
+		{1297918}, -- Mortal Bleed
+		{1297781}, -- Sudden Rupture
+		{270292, soundOnApplied = "underyou"}, -- Purifying Flame
+		{271555}, -- Entomb
+		{1301851}, -- Bloodthirsty Axe
+		{1302028}, -- Soul Crush
+		{270492}, -- Hex
+		{272388}, -- Shadow Barrage
+		{1298304}, -- Dark Revelation
+		{276031}, -- Pit of Despair
+		{274387}, -- Absorbed in Darkness
+		{272021}, -- Erupting Darkness
 	})
 end
 

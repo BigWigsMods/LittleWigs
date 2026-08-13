@@ -13,10 +13,10 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 if mod:Retail() then
 	mod:SetAuraData({
-		[381515] = {soundOnApplied = "none"}, -- Stormslam
-		[381518] = {soundOnApplied = "none"}, -- Winds of Change
-		[381862] = {soundOnApplied = "none"}, -- Inferno Spit
-		[384773] = {soundOnApplied = "underyou"}, -- Flaming Embers
+		{381515}, -- Stormslam
+		{381518}, -- Winds of Change
+		{381862}, -- Inferno Spit
+		{384773, soundOnApplied = "underyou"}, -- Flaming Embers
 	})
 end
 

@@ -7,11 +7,11 @@ if not mod then return end
 mod:SetEncounterID(3201)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	[1239825] = {soundOnApplied = "none"}, -- Lightfire
-	[1239919] = {soundOnApplied = "underyou"}, -- Lightfire Beams
-	[1241058] = {soundOnApplied = "none"}, -- Grievous Thrash
-	[1251345] = {soundOnApplied = "underyou"}, -- Blight Resin
-	[1257094] = {soundOnApplied = "none"}, -- Pulverized
+	{1239825}, -- Lightfire
+	{1239919, soundOnApplied = "underyou"}, -- Lightfire Beams
+	{1241058}, -- Grievous Thrash
+	{1251345, soundOnApplied = "underyou"}, -- Blight Resin
+	{1257094}, -- Pulverized
 })
 mod:SetStage(1)
 

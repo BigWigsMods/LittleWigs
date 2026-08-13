@@ -7,9 +7,9 @@ if not mod then return end
 mod:SetEncounterID(3202)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	[1246751] = {soundOnApplied = "warning"}, -- Concentrated Lightbeam
-	[1246753] = {soundOnApplied = "underyou"}, -- Lightsap
-	[1247746] = {soundOnApplied = "none"}, -- Thornspike
+	{1246751, soundOnApplied = "warning"}, -- Concentrated Lightbeam
+	{1246753, soundOnApplied = "underyou"}, -- Lightsap
+	{1247746}, -- Thornspike
 })
 
 --------------------------------------------------------------------------------

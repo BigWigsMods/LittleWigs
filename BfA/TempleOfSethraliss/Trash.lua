@@ -17,19 +17,19 @@ mod:RegisterEnableMob(
 )
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		[1291399] = {soundOnApplied = "none"}, -- Serrated Charge
-		[1291468] = {soundOnApplied = "none"}, -- Sunder Slam
-		[1308113] = {soundOnApplied = "none"}, -- Arrow Barrage
-		[1308100] = {soundOnApplied = "none"}, -- Poisoned Cheap Shot
-		[1308148] = {soundOnApplied = "none"}, -- Cytotoxin
-		[1293133] = {soundOnApplied = "none"}, -- Lingering Storm
-		[1296052] = {soundOnApplied = "none"}, -- Imbued Conduction
-		[1303596] = {soundOnApplied = "none"}, -- Siphon Energy
-		[1308546] = {soundOnApplied = "none"}, -- Venomous Slash
-		[1303486] = {soundOnApplied = "none"}, -- Caustic Stomp
-		[1300704] = {soundOnApplied = "none"}, -- Fixate
-		[1311981] = {soundOnApplied = "none"}, -- Latent Hex
-		[1300684] = {soundOnApplied = "none"}, -- Hex Muck
+		{1291399}, -- Serrated Charge
+		{1291468}, -- Sunder Slam
+		{1308113}, -- Arrow Barrage
+		{1308100}, -- Poisoned Cheap Shot
+		{1308148}, -- Cytotoxin
+		{1293133}, -- Lingering Storm
+		{1296052}, -- Imbued Conduction
+		{1303596}, -- Siphon Energy
+		{1308546}, -- Venomous Slash
+		{1303486}, -- Caustic Stomp
+		{1300704}, -- Fixate
+		{1311981}, -- Latent Hex
+		{1300684}, -- Hex Muck
 	})
 end
 
