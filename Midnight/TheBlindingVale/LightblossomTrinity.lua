@@ -7,10 +7,10 @@ if not mod then return end
 mod:SetEncounterID(3199)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	[1234802] = {soundOnApplied = "underyou"}, -- Fertile Loam
-	[1235574] = {soundOnApplied = "info"}, -- Lightblossom Beam
-	[1235828] = {soundOnApplied = "underyou"}, -- Light-Scorched Earth
-	[1235865] = {soundOnApplied = "alert"}, -- Thornblade
+	{1234802, soundOnApplied = "underyou"}, -- Fertile Loam
+	{1235574, soundOnApplied = "info"}, -- Lightblossom Beam
+	{1235828, soundOnApplied = "underyou"}, -- Light-Scorched Earth
+	{1235865, soundOnApplied = "alert"}, -- Thornblade
 })
 
 --------------------------------------------------------------------------------

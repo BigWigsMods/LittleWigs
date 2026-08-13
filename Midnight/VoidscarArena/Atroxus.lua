@@ -7,10 +7,10 @@ if not mod then return end
 mod:SetEncounterID(3286)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	[1222484] = {soundOnApplied = "underyou"}, -- Poison Pool
-	[1222642] = {soundOnApplied = "none"}, -- Hulking Claw
-	[1226031] = {soundOnApplied = "none"}, -- Poison Splash
-	[1263971] = {soundOnApplied = "none"}, -- Lingering Poison
+	{1222484, soundOnApplied = "underyou"}, -- Poison Pool
+	{1222642}, -- Hulking Claw
+	{1226031}, -- Poison Splash
+	{1263971}, -- Lingering Poison
 })
 
 --------------------------------------------------------------------------------

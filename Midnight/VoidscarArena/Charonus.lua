@@ -7,9 +7,9 @@ if not mod then return end
 mod:SetEncounterID(3287)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	[1227197] = {soundOnApplied = "none"}, -- Cosmic Crash
-	[1248130] = {soundOnApplied = "underyou"}, -- Unstable Singularity
-	[1264188] = {soundOnApplied = "none"}, -- Event Horizon
+	{1227197}, -- Cosmic Crash
+	{1248130, soundOnApplied = "underyou"}, -- Unstable Singularity
+	{1264188}, -- Event Horizon
 })
 
 --------------------------------------------------------------------------------

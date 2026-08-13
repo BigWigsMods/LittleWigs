@@ -10,10 +10,10 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 if mod:Retail() then
 	mod:SetAuraData({
-		[385518] = {soundOnApplied = "none"}, -- Chillstorm
-		[372963] = {soundOnApplied = "none"}, -- Storm's Eye
-		[373688] = {soundOnApplied = "none"}, -- Frost Overload
-		[384024] = {soundOnApplied = "none"}, -- Hailbombs
+		{385518}, -- Chillstorm
+		{372963}, -- Storm's Eye
+		{373688}, -- Frost Overload
+		{384024}, -- Hailbombs
 	})
 end
 

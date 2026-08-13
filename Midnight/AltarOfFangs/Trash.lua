@@ -7,16 +7,16 @@ local mod, CL = BigWigs:NewBoss("Altar of Fangs Trash", 2993)
 if not mod then return end
 mod:SetTrashModule(true)
 mod:SetAuraData({
-	[1306669] = {soundOnApplied = "none"}, -- Toxic Breath
-	[1294569] = {soundOnApplied = "none"}, -- Paralyzing Shots
-	[1306232] = {soundOnApplied = "underyou"}, -- Septic Spatter
-	[1306550] = {soundOnApplied = "none"}, -- Blood Sacrifice
-	[1294845] = {soundOnApplied = "none"}, -- Corrosive Fangs
-	[1307531] = {soundOnApplied = "underyou"}, -- Bloodletting
-	[1307571] = {soundOnApplied = "none"}, -- Envenom
-	[1308518] = {soundOnApplied = "none"}, -- Laced Edge
-	[1297422] = {soundOnApplied = "none"}, -- Deadly Venom
-	[1308865] = {soundOnApplied = "alert"}, -- Infest
+	{1306669}, -- Toxic Breath
+	{1294569}, -- Paralyzing Shots
+	{1306232, soundOnApplied = "underyou"}, -- Septic Spatter
+	{1306550}, -- Blood Sacrifice
+	{1294845}, -- Corrosive Fangs
+	{1307531, soundOnApplied = "underyou"}, -- Bloodletting
+	{1307571}, -- Envenom
+	{1308518}, -- Laced Edge
+	{1297422}, -- Deadly Venom
+	{1308865, soundOnApplied = "alert"}, -- Infest
 })
 
 --------------------------------------------------------------------------------

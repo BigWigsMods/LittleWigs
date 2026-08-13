@@ -21,20 +21,20 @@ mod:RegisterEnableMob(
 )
 if mod:Retail() then
 	mod:SetAuraData({
-		[1305201] = {soundOnApplied = "none"}, -- Excavating Blast
-		[1307205] = {soundOnApplied = "none"}, -- Earthbound's Imprint
-		[1305225] = {soundOnApplied = "none"}, -- Tectonic Strike
-		[1305234] = {soundOnApplied = "none"}, -- Cold Claws
-		[373593] = {soundOnApplied = "none"}, -- Frozen Solid
-		[372047] = {soundOnApplied = "none"}, -- Steel Barrage
-		[373693] = {soundOnApplied = "none"}, -- Living Bomb
-		[385536] = {soundOnApplied = "none"}, -- Flaming Barrage
-		[373692] = {soundOnApplied = "none"}, -- Inferno
-		[395292] = {soundOnApplied = "none"}, -- Fire Maw
-		[392641] = {soundOnApplied = "none"}, -- Rolling Thunder
-		[1310599] = {soundOnApplied = "none"}, -- Electrical Discharge
-		[1307372] = {soundOnApplied = "underyou"}, -- Fiery Demise
-		[1306366] = {soundOnApplied = "none"}, -- Lightning Torrent
+		{1305201}, -- Excavating Blast
+		{1307205}, -- Earthbound's Imprint
+		{1305225}, -- Tectonic Strike
+		{1305234}, -- Cold Claws
+		{373593}, -- Frozen Solid
+		{372047}, -- Steel Barrage
+		{373693}, -- Living Bomb
+		{385536}, -- Flaming Barrage
+		{373692}, -- Inferno
+		{395292}, -- Fire Maw
+		{392641}, -- Rolling Thunder
+		{1310599}, -- Electrical Discharge
+		{1307372, soundOnApplied = "underyou"}, -- Fiery Demise
+		{1306366}, -- Lightning Torrent
 	})
 end
 

@@ -7,9 +7,9 @@ if not mod then return end
 mod:SetEncounterID(3200)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	[1237091] = {soundOnApplied = "none"}, -- Bloodthirsty Gaze
-	[1237267] = {soundOnApplied = "alarm"}, -- Incise
-	[1272290] = {soundOnApplied = "none"}, -- Crunched
+	{1237091}, -- Bloodthirsty Gaze
+	{1237267, soundOnApplied = "alarm"}, -- Incise
+	{1272290}, -- Crunched
 })
 
 --------------------------------------------------------------------------------

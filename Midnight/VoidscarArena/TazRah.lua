@@ -7,9 +7,9 @@ if not mod then return end
 mod:SetEncounterID(3285)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	[1222103] = {soundOnApplied = "none"}, -- Nether Dash
-	[1262283] = {soundOnApplied = "none"}, -- Dark Rift
-	[1222305] = {soundOnApplied = "underyou"}, -- Dark Rift
+	{1222103}, -- Nether Dash
+	{1262283}, -- Dark Rift
+	{1222305, soundOnApplied = "underyou"}, -- Dark Rift
 })
 
 --------------------------------------------------------------------------------

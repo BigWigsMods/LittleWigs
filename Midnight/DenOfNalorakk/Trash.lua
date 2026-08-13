@@ -6,17 +6,17 @@ local mod, CL = BigWigs:NewBoss("Den of Nalorakk Trash", 2825)
 if not mod then return end
 mod:SetTrashModule(true)
 mod:SetAuraData({
-	[1239428] = {soundOnApplied = "none"}, -- Carrying Supplies
-	[1238439] = {soundOnApplied = "none"}, -- Razor Dive
-	[1238801] = {soundOnApplied = "none"}, -- Insatiable Hunger
-	[1238687] = {soundOnApplied = "none"}, -- Feast of Misery
-	[1297701] = {soundOnApplied = "none"}, -- Rotten Ground
-	[1252825] = {soundOnApplied = "none"}, -- Harsh Winds
-	[1233904] = {soundOnApplied = "none"}, -- Sheltered
-	[1309919] = {soundOnApplied = "none"}, -- Frigid Roar
-	[1309964] = {soundOnApplied = "none"}, -- Harsh Winter
-	[1246957] = {soundOnApplied = "none"}, -- Primal Echo
-	[1247367] = {soundOnApplied = "underyou"}, -- Earthquake
+	{1239428}, -- Carrying Supplies
+	{1238439}, -- Razor Dive
+	{1238801}, -- Insatiable Hunger
+	{1238687}, -- Feast of Misery
+	{1297701}, -- Rotten Ground
+	{1252825}, -- Harsh Winds
+	{1233904}, -- Sheltered
+	{1309919}, -- Frigid Roar
+	{1309964}, -- Harsh Winter
+	{1246957}, -- Primal Echo
+	{1247367, soundOnApplied = "underyou"}, -- Earthquake
 })
 
 --------------------------------------------------------------------------------

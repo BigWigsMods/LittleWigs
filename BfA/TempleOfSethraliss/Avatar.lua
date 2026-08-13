@@ -9,12 +9,12 @@ mod:SetEncounterID(2127)
 if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 	mod:SetRespawnTime(30)
 	mod:SetAuraData({
-		[1300714] = {soundOnApplied = "none"}, -- Shadowlash
-		[1300877] = {soundOnApplied = "none"}, -- Corruption
-		[1303446] = {soundOnApplied = "none"}, -- Tainted Strike
-		[1302618] = {soundOnApplied = "none"}, -- Vile Charge
-		[1311979] = {soundOnApplied = "none"}, -- Latent Hex
-		[1302826] = {soundOnApplied = "none"}, -- Corruption Burst
+		{1300714}, -- Shadowlash
+		{1300877}, -- Corruption
+		{1303446}, -- Tainted Strike
+		{1302618}, -- Vile Charge
+		{1311979}, -- Latent Hex
+		{1302826}, -- Corruption Burst
 	})
 else
 	mod:SetRespawnTime(20)
