@@ -1233,9 +1233,9 @@ BigWigs:AddColors("Adderis and Aspix", {
 	[263371] = {"blue","orange"},
 	[263424] = "orange",
 	[1288049] = "orange",
-	[1288428] = "purple",
-	[1288864] = {"blue","yellow"},
 	[1289059] = "blue",
+	[1311804] = "purple",
+	[1311805] = {"blue","yellow"},
 })
 
 BigWigs:AddSounds("Adderis and Aspix", {
@@ -1245,9 +1245,9 @@ BigWigs:AddSounds("Adderis and Aspix", {
 	[263371] = "warning",
 	[263424] = "alert",
 	[1288049] = "info",
-	[1288428] = "alert",
-	[1288864] = "warning",
 	[1289059] = "alarm",
+	[1311804] = "alert",
+	[1311805] = "warning",
 })
 
 BigWigs:AddColors("Merektha", {
