@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Merektha", 1877, 2143)
 if not mod then return end
 mod:RegisterEnableMob(133384, 134487) -- Creature and Vehicle
 mod:SetEncounterID(2125)
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	mod:SetRespawnTime(30)
 	mod:SetAuraData({
 		{1290030}, -- A Knot of Snakes
@@ -74,7 +74,7 @@ local backupBars = {}
 -- Midnight Renames
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[1290797] = {1290797}, -- Lightning Bite
 		[1290029] = {1290029}, -- A Knot of Snakes
@@ -89,7 +89,7 @@ end
 -- Midnight Initialization
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			1290797, -- Lightning Bite
@@ -141,15 +141,15 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local barInfo
 	if duration == 5 then -- Lightning Bite
 		barInfo = self:LightningBiteTimeline(eventInfo)
-	elseif duration == 13 then -- A Knot of Snakes
+	elseif self:Mythic() and duration == 13 then -- A Knot of Snakes
 		barInfo = self:AKnotOfSnakesTimeline(eventInfo)
-	elseif duration == 25 then -- Thunder Spit
+	elseif (self:Mythic() and duration == 25) or (not self:Mythic() and duration == 13) then -- Thunder Spit
 		barInfo = self:ThunderSpitTimeline(eventInfo)
-	elseif duration == 36 then -- Serpentstorm
+	elseif (self:Mythic() and duration == 36) or (not self:Mythic() and duration == 27) then -- Serpentstorm
 		barInfo = self:SerpentstormTimeline(eventInfo)
-	elseif duration == 44 then -- Hatch
+	elseif (self:Mythic() and duration == 44) or (not self:Mythic() and duration == 38) then -- Hatch
 		barInfo = self:HatchTimeline(eventInfo)
-	elseif duration == 49 then -- Burrow
+	elseif (self:Mythic() and duration == 49) or (not self:Mythic() and duration == 43) then -- Burrow
 		barInfo = self:BurrowTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
@@ -309,13 +309,13 @@ end
 function mod:UNIT_TARGETABLE_CHANGED(_, unit) -- Burrow
 	if UnitCanAttack("player", unit) then
 		self:SetStage(1)
-		if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+		if self:Retail() then -- Midnight+
 			self:SendMessage("BigWigs_AllowBlizzMessages")
 			self:UnregisterEvent("ENCOUNTER_WARNING")
 			self:StopBar(self:GetRename(264172, 2)) -- <Cast: Burrow>
 			self:Message(264172, "green", self:GetRename(264172, 3)) -- Burrow over
 			self:PlaySound(264172, "info") -- Burrow
-		elseif not self:Retail() then
+		else
 			self:StopBar(264206) -- Burrow
 			self:Message(264206, "green", CL.over:format(self:SpellName(264206))) -- Burrow
 			self:CDBar(263914, 6) -- Blinding Sand
@@ -324,11 +324,11 @@ function mod:UNIT_TARGETABLE_CHANGED(_, unit) -- Burrow
 		end
 	else
 		self:SetStage(2)
-		if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+		if self:Retail() then -- Midnight+
 			self:SendMessage("BigWigs_BlockBlizzMessages")
 			self:RegisterEvent("ENCOUNTER_WARNING")
 			self:Bar(264172, 21, self:GetRename(264172, 2)) -- <Cast: Burrow>
-		elseif not self:Retail() then
+		else
 			self:Message(264206, "cyan") -- Burrow
 			self:Bar(264206, 29) -- Burrow
 			self:StopBar(264239) -- Hatch
