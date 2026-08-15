@@ -1,4 +1,3 @@
-if not BigWigsLoader.isNext then return end -- XXX 12.1
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -85,7 +84,6 @@ function mod:NAME_PLATE_UNIT_REMOVED(_, unit)
 	castsPerUnit[unit] = nil
 end
 
-local prevChannel, prevLieutenant, prevCast = 0, 0, 0
 function mod:UNIT_SPELLCAST(event, unit, _, spellID, castBarID)
 	local unitFilterOption = self:GetOption("custom_select_unit") -- 1 = all, 2 = all message, target sound, 3 = target
 	if unitFilterOption == 3 then -- target only
@@ -122,53 +120,56 @@ function mod:UNIT_SPELLCAST(event, unit, _, spellID, castBarID)
 	self:ShowAlert(unit, spellID, event, allEventsPlaySounds)
 end
 
-function mod:ShowAlert(unit, spellID, event, allEventsPlaySounds)
-	local t = GetTime()
-	local unitIsTarget = UnitIsUnit("target", unit)
-	local level = BigWigsLoader.UnitLevel(unit)
-	local throttleIndex = self:GetOption("custom_select_throttle_duration")
-	local throttleDuration
-	if unitIsTarget then -- don't throttle target
-		throttleDuration = 0
-	elseif throttleIndex == 1 then -- default (2s)
-		throttleDuration = 2
-	elseif throttleIndex == 2 then
-		throttleDuration = 1
-	else
-		throttleDuration = 3
-	end
-	local throttleSoundsOnly = self:GetOption("custom_select_throttle_type") == 2
-	if event == "UNIT_SPELLCAST_CHANNEL_START" and (level == STANDARD_LEVEL or level == LIEUTENANT_LEVEL) then -- channels
-		local shouldAlert = t - prevChannel > throttleDuration
-		if throttleSoundsOnly or shouldAlert then
-			self:SecretMessage("trash_channel", "yellow", spellID)
+do
+	local prevChannel, prevLieutenant, prevCast = 0, 0, 0
+	function mod:ShowAlert(unit, spellID, event, allEventsPlaySounds)
+		local t = GetTime()
+		local unitIsTarget = UnitIsUnit("target", unit)
+		local level = BigWigsLoader.UnitLevel(unit)
+		local throttleIndex = self:GetOption("custom_select_throttle_duration")
+		local throttleDuration
+		if unitIsTarget then -- don't throttle target
+			throttleDuration = 0
+		elseif throttleIndex == 1 then -- default (2s)
+			throttleDuration = 2
+		elseif throttleIndex == 2 then
+			throttleDuration = 1
+		else
+			throttleDuration = 3
 		end
-		if shouldAlert then
-			prevChannel = t
-			if unitIsTarget or allEventsPlaySounds then
-				self:PlaySound("trash_channel", "info")
+		local throttleSoundsOnly = self:GetOption("custom_select_throttle_type") == 2
+		if event == "UNIT_SPELLCAST_CHANNEL_START" and (level == STANDARD_LEVEL or level == LIEUTENANT_LEVEL) then -- channels
+			local shouldAlert = t - prevChannel > throttleDuration
+			if throttleSoundsOnly or shouldAlert then
+				self:SecretMessage("trash_channel", "yellow", spellID)
 			end
-		end
-	elseif level == LIEUTENANT_LEVEL then -- lieutenant casts
-		local shouldAlert = t - prevLieutenant > throttleDuration
-		if throttleSoundsOnly or shouldAlert then
-			self:SecretMessage("lieutenant_cast", "orange", spellID)
-		end
-		if shouldAlert then
-			prevLieutenant = t
-			if unitIsTarget or allEventsPlaySounds then
-				self:PlaySound("lieutenant_cast", "alarm")
+			if shouldAlert then
+				prevChannel = t
+				if unitIsTarget or allEventsPlaySounds then
+					self:PlaySound("trash_channel", "info")
+				end
 			end
-		end
-	elseif level == STANDARD_LEVEL then -- standard casts
-		local shouldAlert = t - prevCast > throttleDuration
-		if throttleSoundsOnly or shouldAlert then
-			self:SecretMessage("trash_cast", "red", spellID)
-		end
-		if shouldAlert then
-			prevCast = t
-			if unitIsTarget or allEventsPlaySounds then
-				self:PlaySound("trash_cast", "alert")
+		elseif level == LIEUTENANT_LEVEL then -- lieutenant casts
+			local shouldAlert = t - prevLieutenant > throttleDuration
+			if throttleSoundsOnly or shouldAlert then
+				self:SecretMessage("lieutenant_cast", "orange", spellID)
+			end
+			if shouldAlert then
+				prevLieutenant = t
+				if unitIsTarget or allEventsPlaySounds then
+					self:PlaySound("lieutenant_cast", "alarm")
+				end
+			end
+		elseif level == STANDARD_LEVEL then -- standard casts
+			local shouldAlert = t - prevCast > throttleDuration
+			if throttleSoundsOnly or shouldAlert then
+				self:SecretMessage("trash_cast", "red", spellID)
+			end
+			if shouldAlert then
+				prevCast = t
+				if unitIsTarget or allEventsPlaySounds then
+					self:PlaySound("trash_cast", "alert")
+				end
 			end
 		end
 	end
