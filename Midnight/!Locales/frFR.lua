@@ -2,7 +2,7 @@
 
 local L = BigWigs:NewBossLocale("Altar of Fangs Trash", "frFR")
 if L then
-	--L.custom_on_mixture_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Cooking or Midnight Alchemy.|r Automatically select the NPC dialog option to gain the 'Mutating Elixir' buff.\n\n|T136242:16|tMutating Elixir\n{1310012}"
+	L.custom_on_mixture_autotalk_desc = "|cFFFF0000Requiert 25 points de compétence en Cuisine ou Alchimie de Midnight.|r Sélectionne automatiquement le dialogue avec le PNJ pour gagner l'amélioration 'Élixir de mutation'.\n\n|T136242:16|tÉlixir de mutation\n{1310012}"
 end
 
 -- Delves: Atal'Aman
