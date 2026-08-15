@@ -247,8 +247,9 @@ end
 --
 
 function mod:GOSSIP_SHOW() -- called from Trash module
-	if self:GetOption(autotalk) and self:GetGossipID(107065) then
-		self:SelectGossipID(107065)
+	if self:GetOption(autotalk) and self:GetGossipID(48126) then -- Avatar of Sethraliss, start encounter
+		-- 48126:We will restore you!
+		self:SelectGossipID(48126)
 	end
 end
 

@@ -124,7 +124,7 @@ end
 --
 
 function mod:GOSSIP_SHOW()
-	if self:GetGossipID(107065) then
+	if self:GetGossipID(48126) then -- 48126:We will restore you!
 		local avatarModule = BigWigs:GetBossModule("Avatar of Sethraliss", true)
 		if avatarModule then
 			avatarModule:Enable()
