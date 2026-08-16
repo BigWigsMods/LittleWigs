@@ -6,7 +6,9 @@ local mod, CL = BigWigs:NewBoss("Lithiel Cinderfury", 2813, 2682)
 if not mod then return end
 mod:SetEncounterID(3105)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
+mod:SetAuraData({
+	{1214730}, -- Demonic Gateway
+	{1217384, soundOnApplied = "warning", note = CL.debuffFailureNote}, -- Malefic Wave
 })
 
 --------------------------------------------------------------------------------
@@ -166,43 +168,17 @@ function mod:FingersOfGuldanTimeline(eventInfo) -- Fingers of Gul'dan
 	}
 end
 
-if BigWigsLoader.isNext then -- XXX remove in 12.1
-	function mod:MaleficWaveTimeline(eventInfo) -- Malefic Wave
-		local barText = CL.count:format(self:GetRename(1224478), maleficWaveCount)
-		self:CDBar(1224478, eventInfo.duration, barText, nil, eventInfo.id)
-		maleficWaveCount = maleficWaveCount + 1
-		return {
-			msg = barText,
-			key = 1224478,
-			callback = function()
-				self:StopBlizzMessages(1)
-				self:Message(1224478, "red", barText)
-				self:PlaySound(1224478, "warning")
-			end
-		}
-	end
-else
-	function mod:MaleficWaveTimeline(eventInfo) -- Malefic Wave
-		local barText = CL.count:format(self:GetRename(1224478), maleficWaveCount)
-		self:CDBar(1224478, eventInfo.duration, barText, nil, eventInfo.id)
-		maleficWaveCount = maleficWaveCount + 1
-		local timer = self:ScheduleTimer(function()
-			self:StopBar(barText)
+function mod:MaleficWaveTimeline(eventInfo) -- Malefic Wave
+	local barText = CL.count:format(self:GetRename(1224478), maleficWaveCount)
+	self:CDBar(1224478, eventInfo.duration, barText, nil, eventInfo.id)
+	maleficWaveCount = maleficWaveCount + 1
+	return {
+		msg = barText,
+		key = 1224478,
+		callback = function()
+			self:StopBlizzMessages(1)
 			self:Message(1224478, "red", barText)
 			self:PlaySound(1224478, "warning")
-		end, eventInfo.duration)
-		return {
-			msg = barText,
-			key = 1224478,
-			callback = function()
-				self:Error("Malefic Wave now has a callback")
-			end,
-			cancelCallback = function()
-				if timer then
-					self:CancelTimer(timer)
-					timer = nil
-				end
-			end
-		}
-	end
+		end
+	}
 end
