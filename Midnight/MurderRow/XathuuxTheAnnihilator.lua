@@ -6,10 +6,12 @@ local mod, CL = BigWigs:NewBoss("Xathuux the Annihilator", 2813, 2681)
 if not mod then return end
 mod:SetEncounterID(3103)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{473898, sound = "none"}, -- Legion Strike
-	{474234, sound = "underyou"}, -- Burning Steps
-	{1214650, sound = "none"}, -- Fel Light
+mod:SetAuraData({
+	{473898}, -- Legion Strike
+	{1214637}, -- Axe Toss
+	{1214650}, -- Fel Lightning
+	{1295455}, -- Infernal Crush
+	{474234, soundOnApplied = "underyou"}, -- Burning Steps
 })
 
 --------------------------------------------------------------------------------
@@ -39,23 +41,13 @@ mod:SetRenames({
 -- Initialization
 --
 
-if BigWigsLoader.isNext then
-	function mod:GetOptions()
-		return {
-			473898, -- Legion Strike
-			1214637, -- Axe Toss
-			1295453, -- Infernal Crush
-			{474197, "CASTBAR"}, -- Demonic Rage
-		}
-	end
-else -- XXX remove in 12.1
-	function mod:GetOptions()
-		return {
-			473898, -- Legion Strike
-			1214637, -- Axe Toss
-			{474197, "CASTBAR"}, -- Demonic Rage
-		}
-	end
+function mod:GetOptions()
+	return {
+		473898, -- Legion Strike
+		1214637, -- Axe Toss
+		1295453, -- Infernal Crush
+		{474197, "CASTBAR"}, -- Demonic Rage
+	}
 end
 
 mod:UseCustomTimers(true)
@@ -101,7 +93,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		end
 	elseif duration == 15 then -- Axe Toss
 		barInfo = self:AxeTossTimeline(eventInfo)
-	elseif BigWigsLoader.isNext and (not self:IsWiping() and duration == 30) then -- Infernal Crush (XXX remove check in 12.1)
+	elseif not self:IsWiping() and duration == 30 then -- Infernal Crush
 		barInfo = self:InfernalCrushTimeline(eventInfo)
 	elseif duration == 35 then -- Demonic Rage
 		barInfo = self:DemonicRageTimeline(eventInfo)
