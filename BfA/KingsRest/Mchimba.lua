@@ -41,12 +41,9 @@ local drainFluidsCount = 1
 local burnCorruptionCount = 1
 local awakeningSlamCount = 1
 local entombCount = 1
-local drainFluidsStageCount = 1
-local burnCorruptionStageCount = 1
 local activeBars = {}
 local backupBars = {}
 local initialEvents = true
-local initialEventsTimer
 
 --------------------------------------------------------------------------------
 -- Midnight Renames
@@ -84,12 +81,9 @@ if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
 		burnCorruptionCount = 1
 		awakeningSlamCount = 1
 		entombCount = 1
-		drainFluidsStageCount = 1
-		burnCorruptionStageCount = 1
 		activeBars = {}
 		backupBars = {}
 		initialEvents = true
-		initialEventsTimer = nil
 		if self:ShouldShowBars() then
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_ADDED")
 			self:RegisterEvent("ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED")
@@ -112,19 +106,16 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
-	if duration > 60 then -- filter placeholder bars (Awakening Slam 90+, Entomb 62)
-		return
-	elseif not initialEvents and duration == 32 and drainFluidsStageCount > 2 then -- filter 3rd Drain Fluids -> canceled by Entomb
-		return
-	elseif not initialEvents and duration == 30 and burnCorruptionStageCount > 2 then -- filter 3rd Burn Corruption -> canceled by Entomb
-		return
-	elseif initialEvents and duration ~= 5 and duration ~= 20 and duration ~= 30 and duration ~= 60 then -- filter junk events during the timer reset
+	-- on pull and after each Entomb: DF=5, BC=20, AS=30, ET=60
+	-- follow-ups: DF=32, BC=30, AS=102
+	-- can't skip timers based on Entomb time left because if Entomb is skipped they will be cast as scheduled
+	if duration == 62 then -- Entomb placeholder
 		return
 	elseif (initialEvents and duration == 5) or (not initialEvents and duration == 32) then -- Drain Fluids
 		barInfo = self:DrainFluidsTimeline(eventInfo)
-	elseif (initialEvents and duration == 20) or (not initialEvents and duration == 30) then -- Burn Corruption
+	elseif (initialEvents and duration == 20) or (not initialEvents and not self:IsWiping() and duration == 30) then -- Burn Corruption
 		barInfo = self:BurnCorruptionTimeline(eventInfo)
-	elseif (initialEvents and duration == 30) then -- Awakening Slam
+	elseif (initialEvents and not self:IsWiping() and duration == 30) or (not initialEvents and duration == 102) then -- Awakening Slam
 		barInfo = self:AwakeningSlamTimeline(eventInfo)
 	elseif duration == 60 then -- Entomb
 		barInfo = self:EntombTimeline(eventInfo)
@@ -158,6 +149,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 			activeBars[eventID] = nil
 		elseif state == 3 then -- Canceled
 			self:StopBar(barInfo.msg)
+			if barInfo.cancelCallback then
+				barInfo.cancelCallback()
+			end
 			activeBars[eventID] = nil
 		end
 	elseif backupBars[eventID] then
@@ -190,10 +184,7 @@ end
 function mod:DrainFluidsTimeline(eventInfo) -- Drain Fluids
 	local barText = CL.count:format(self:GetRename(267618), drainFluidsCount)
 	self:CDBar(267618, eventInfo.duration, barText, nil, eventInfo.id)
-	if not initialEvents then
-		drainFluidsCount = drainFluidsCount + 1
-		drainFluidsStageCount = drainFluidsStageCount + 1
-	end
+	drainFluidsCount = drainFluidsCount + 1
 	return {
 		msg = barText,
 		key = 267618,
@@ -207,10 +198,7 @@ end
 function mod:BurnCorruptionTimeline(eventInfo) -- Burn Corruption
 	local barText = CL.count:format(self:GetRename(1311956), burnCorruptionCount)
 	self:CDBar(1311956, eventInfo.duration, barText, nil, eventInfo.id)
-	if not initialEvents then
-		burnCorruptionCount = burnCorruptionCount + 1
-		burnCorruptionStageCount = burnCorruptionStageCount + 1
-	end
+	burnCorruptionCount = burnCorruptionCount + 1
 	return {
 		msg = barText,
 		key = 1311956,
@@ -224,7 +212,7 @@ end
 function mod:AwakeningSlamTimeline(eventInfo) -- Awakening Slam
 	local barText = CL.count:format(self:GetRename(1312146), awakeningSlamCount)
 	self:CDBar(1312146, eventInfo.duration, barText, nil, eventInfo.id)
-	-- awakeningSlamCount incremented after initialEvents is over
+	awakeningSlamCount = awakeningSlamCount + 1
 	return {
 		msg = barText,
 		key = 1312146,
@@ -238,28 +226,23 @@ end
 function mod:EntombTimeline(eventInfo) -- Entomb
 	local barText = CL.count:format(self:GetRename(267702), entombCount)
 	self:CDBar(267702, eventInfo.duration, barText, nil, eventInfo.id)
-	if not initialEventsTimer then
-		initialEventsTimer = self:ScheduleTimer(function()
-			initialEventsTimer = nil
-			initialEvents = false
-			-- instead of fighting the counters, just increment them all 1s after Entomb bar starts
-			drainFluidsCount = drainFluidsCount + 1
-			drainFluidsStageCount = drainFluidsStageCount + 1
-			burnCorruptionCount = burnCorruptionCount + 1
-			burnCorruptionStageCount = burnCorruptionStageCount + 1
-			awakeningSlamCount = awakeningSlamCount + 1
-			entombCount = entombCount + 1
-		end, 1)
-	end
+	entombCount = entombCount + 1
+	local initialEventsTimer = self:ScheduleTimer(function()
+		initialEvents = false
+	end, 1)
 	return {
 		msg = barText,
 		key = 267702,
 		callback = function()
 			initialEvents = true
-			drainFluidsStageCount = 1
-			burnCorruptionStageCount = 1
-			self:TargetMessageFromBlizzMessage(267702, 1, "yellow", false)
+			self:TargetMessageFromBlizzMessage(267702, 1, "yellow")
 			self:PlaySound(267702, "long")
+		end,
+		cancelCallback = function()
+			if initialEventsTimer then
+				self:CancelTimer(initialEventsTimer)
+				initialEventsTimer = nil
+			end
 		end
 	}
 end
