@@ -6,13 +6,14 @@ local mod, CL = BigWigs:NewBoss("Sentinel of Winter", 2825, 2777)
 if not mod then return end
 mod:SetEncounterID(3208)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1235549, sound = "info"}, -- Glacial Torment
-	{1235829, sound = "warning"}, -- Winter's Shroud
-	{1235841, sound = "info"}, -- Snowdrift
-	{1235641, sound = "underyou"}, -- Raging Squall
-	{1236289, sound = "underyou"}, -- Blizzard's Wrath
-	{1297749, sound = "alarm"}, -- Frozen Tempest
+mod:SetAuraData({
+	{1235549, soundOnApplied = "alert"}, -- Glacial Torment
+	{1235829, soundOnApplied = "warning", soundOnAppliedDose = "warning", note = CL.debuffFailureInterruptNote:format(mod:SpellName(1235829))}, -- Winter's Shroud
+	{1235841, soundOnApplied = "info"}, -- Snowdrift
+	{1263597, note = CL.debuffFailureNote}, -- Rime Detonation
+	{1235641, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Raging Squall
+	{1236289, note = CL.debuffUnderYouNote}, -- Blizzard's Wrath
+	{1297749, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Frozen Tempest
 })
 
 --------------------------------------------------------------------------------
@@ -102,49 +103,25 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if duration > 59 then return end -- filter placeholder bars
-	if BigWigsLoader.isNext then
-		if duration == 7 then -- Glacial Torment
-			self:CancelBarForSpell(1235548)
-			barInfo = self:GlacialTormentTimeline(eventInfo)
-		elseif duration == 13 then -- Raging Squall
-			self:CancelBarForSpell(1235623)
-			barInfo = self:RagingSquallTimeline(eventInfo)
-		elseif duration == 25 then -- Shattering Frostspike
-			self:CancelBarForSpell(1235783)
-			barInfo = self:ShatteringFrostspikeTimeline(eventInfo)
-		elseif duration == 50 then -- Frozen Tempest
-			self:CancelBarForSpell(1235656)
-			barInfo = self:FrozenTempestTimeline(eventInfo)
-		elseif not self:IsWiping() then
-			self:ErrorForTimelineEvent(eventInfo)
-			backupBars[eventInfo.id] = true
-			self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
-			local state = C_EncounterTimeline.GetEventState(eventInfo.id)
-			if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
-				self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
-			end
-		end
-	else -- XXX remove in 12.1
-		if duration == 7 then -- Shattering Frostspike
-			self:CancelBarForSpell(1235783)
-			barInfo = self:ShatteringFrostspikeTimeline(eventInfo)
-		elseif duration == 17 then -- Glacial Torment
-			self:CancelBarForSpell(1235548)
-			barInfo = self:GlacialTormentTimeline(eventInfo)
-		elseif not self:IsWiping() and duration == 30 then -- Raging Squall
-			self:CancelBarForSpell(1235623)
-			barInfo = self:RagingSquallTimeline(eventInfo)
-		elseif duration == 38 then -- Eternal Winter
-			self:CancelBarForSpell(1235656)
-			barInfo = self:FrozenTempestTimeline(eventInfo)
-		elseif not self:IsWiping() then
-			self:ErrorForTimelineEvent(eventInfo)
-			backupBars[eventInfo.id] = true
-			self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
-			local state = C_EncounterTimeline.GetEventState(eventInfo.id)
-			if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
-				self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
-			end
+	if duration == 7 then -- Glacial Torment
+		self:CancelBarForSpell(1235548)
+		barInfo = self:GlacialTormentTimeline(eventInfo)
+	elseif duration == 13 then -- Raging Squall
+		self:CancelBarForSpell(1235623)
+		barInfo = self:RagingSquallTimeline(eventInfo)
+	elseif duration == 25 then -- Shattering Frostspike
+		self:CancelBarForSpell(1235783)
+		barInfo = self:ShatteringFrostspikeTimeline(eventInfo)
+	elseif duration == 50 then -- Frozen Tempest
+		self:CancelBarForSpell(1235656)
+		barInfo = self:FrozenTempestTimeline(eventInfo)
+	elseif not self:IsWiping() then
+		self:ErrorForTimelineEvent(eventInfo)
+		backupBars[eventInfo.id] = true
+		self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
+		local state = C_EncounterTimeline.GetEventState(eventInfo.id)
+		if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
+			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
 		end
 	end
 	if barInfo then
