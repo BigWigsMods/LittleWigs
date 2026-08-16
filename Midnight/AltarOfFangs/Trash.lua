@@ -1,4 +1,3 @@
-if not BigWigsLoader.isNext then return end -- XXX 12.1
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
