@@ -27,6 +27,7 @@ if mod:Retail() then
 		{1305234}, -- Cold Claws
 		{373593}, -- Frozen Solid
 		{372047}, -- Steel Barrage
+		{374927, soundOnApplied = "underyou"}, -- Wall of Flames
 		{373693}, -- Living Bomb
 		{385536}, -- Flaming Barrage
 		{373692}, -- Inferno
