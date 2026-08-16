@@ -41,7 +41,7 @@ end
 --
 
 local castsPerUnit = {}
-local STANDARD_LEVEL, LIEUTENANT_LEVEL = 90, 91 -- Midnight-specific
+local STANDARD_LEVEL, LIEUTENANT_LEVEL, BOSS_LEVEL = 90, 91, 92 -- Midnight-specific
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -107,6 +107,7 @@ function mod:UNIT_SPELLCAST(event, unit, _, spellID, castBarID)
 	if not UnitIsEnemy("player", unit) then return end -- skip friendly/neutral
 	if BigWigsLoader.UnitClassification(unit) ~= "elite" then return end -- elite only
 	if not self:UnitWithinRange(unit, 45) then return end -- range check
+	if self:IsAnyEncounterInProgress() then return end -- don't alert during boss fights
 	if not UnitAffectingCombat(unit) then
 		-- check again on the next frame - some mobs cast immediately on entering combat.
 		self:SimpleTimer(function()
@@ -138,7 +139,7 @@ do
 			throttleDuration = 3
 		end
 		local throttleSoundsOnly = self:GetOption("custom_select_throttle_type") == 2
-		if event == "UNIT_SPELLCAST_CHANNEL_START" and (level == STANDARD_LEVEL or level == LIEUTENANT_LEVEL) then -- channels
+		if event == "UNIT_SPELLCAST_CHANNEL_START" and (level == STANDARD_LEVEL or level == LIEUTENANT_LEVEL or level == BOSS_LEVEL) then -- channels
 			local shouldAlert = t - prevChannel > throttleDuration
 			if throttleSoundsOnly or shouldAlert then
 				self:SecretMessage("trash_channel", "yellow", spellID)
@@ -149,7 +150,7 @@ do
 					self:PlaySound("trash_channel", "info")
 				end
 			end
-		elseif level == LIEUTENANT_LEVEL then -- lieutenant casts
+		elseif level == LIEUTENANT_LEVEL or level == BOSS_LEVEL then -- lieutenant casts
 			local shouldAlert = t - prevLieutenant > throttleDuration
 			if throttleSoundsOnly or shouldAlert then
 				self:SecretMessage("lieutenant_cast", "orange", spellID)
