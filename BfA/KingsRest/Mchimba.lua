@@ -7,6 +7,14 @@ if not mod then return end
 mod:RegisterEnableMob(134993) -- Mchimba the Embalmer
 mod:SetEncounterID(2142)
 mod:SetRespawnTime(30)
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{267618}, -- Drain Fluids
+		{267626}, -- Desiccation
+		{267874, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Burning Ground
+		{267702}, -- Entomb
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -49,10 +57,10 @@ local initialEvents = true
 -- Midnight Renames
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[267618] = {267618}, -- Drain Fluids
-		[1311956] = {1311956}, -- Burn Corruption
+		[1311956] = {1311956, CL.you:format(mod:SpellName(1311956)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1311956, CL.you:format(mod:SpellName(1311956))}}, -- Burn Corruption
 		[1312146] = {1312146}, -- Awakening Slam
 		[267702] = {267702}, -- Entomb
 	})
@@ -62,7 +70,7 @@ end
 -- Midnight Initialization
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			267618, -- Drain Fluids
@@ -203,6 +211,7 @@ function mod:BurnCorruptionTimeline(eventInfo) -- Burn Corruption
 		msg = barText,
 		key = 1311956,
 		callback = function()
+			self:PersonalMessageFromBlizzMessage(1311956, 1, false, self:GetRename(1311956, 2))
 			self:Message(1311956, "orange", barText)
 			self:PlaySound(1311956, "alarm")
 		end

@@ -602,7 +602,7 @@ BigWigs:AddColors("Mchimba the Embalmer", {
 	[267618] = {"blue","red"},
 	[267639] = "orange",
 	[267702] = {"blue","green","yellow"},
-	[1311956] = "orange",
+	[1311956] = {"blue","orange"},
 	[1312146] = "cyan",
 })
 
