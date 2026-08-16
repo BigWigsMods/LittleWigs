@@ -7,6 +7,13 @@ if not mod then return end
 mod:RegisterEnableMob(135322) -- The Golden Serpent
 mod:SetEncounterID(2139)
 mod:SetRespawnTime(30)
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{1306736, note = CL.preDebuffNote}, -- Spit Gold (pre-application)
+		{265773, note = CL.mainDebuffNote}, -- Spit Gold (DoT)
+		{265914, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Molten Gold
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
