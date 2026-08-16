@@ -8,6 +8,14 @@ mod:RegisterEnableMob(136160, 136984, 136976) -- Dazar, Reban, T'zala
 mod:SetEncounterID(2143)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{1303039}, -- Hunting Leap
+		{1302945, note = CL.debuffFailureNote}, -- Impaling Spear
+		{1303490}, -- Savage Maul
+		{1303267}, -- Gilded Destruction
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -300,9 +308,10 @@ function mod:AerialSmashTimeline(eventInfo) -- Aerial Smash
 	return {
 		msg = barText,
 		key = 1303115,
-		callback = function()
-			self:Error("Aerial Smash now has a callback")
-		end,
+		--callback = function()
+			-- TODO there is a callback but it's likely late
+			--self:Error("Aerial Smash now has a callback")
+		--end,
 		cancelCallback = function()
 			if timer then
 				self:CancelTimer(timer)
@@ -354,9 +363,10 @@ function mod:QuakingLeapTimeline(eventInfo) -- Quaking Leap
 	return {
 		msg = barText,
 		key = 1303327,
-		callback = function()
-			self:Error("Quaking Leap now has a callback")
-		end,
+		--callback = function()
+			-- TODO there is a callback but it's likely late
+			--self:Error("Quaking Leap now has a callback")
+		--end,
 		cancelCallback = function()
 			if timer then
 				self:CancelTimer(timer)
