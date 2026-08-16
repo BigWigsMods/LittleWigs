@@ -10,13 +10,15 @@ mod:SetAuraData({
 	{1238439}, -- Razor Dive
 	{1238801}, -- Insatiable Hunger
 	{1238687}, -- Feast of Misery
-	{1297701}, -- Rotten Ground
+	{1297701, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Rotten Ground
 	{1252825}, -- Harsh Winds
-	{1233904}, -- Sheltered
+	{1233904, soundOnApplied = "info"}, -- Sheltered
+	{1266193}, -- Snowdrift
+	{1241464}, -- Glacial Tomb
 	{1309919}, -- Frigid Roar
 	{1309964}, -- Harsh Winter
 	{1246957}, -- Primal Echo
-	{1247367, soundOnApplied = "underyou"}, -- Earthquake
+	{1247367, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Earthquake
 })
 
 --------------------------------------------------------------------------------
