@@ -8,6 +8,14 @@ mod:RegisterEnableMob(135475, 135470, 135472) -- Kula the Butcher, Aka'ali the C
 mod:SetEncounterID(2140)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{266191}, -- Whirling Axe
+		{266231}, -- Severing Axe
+		{267494}, -- Barrel Through
+		{266238}, -- Shattered Defenses
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Locals
