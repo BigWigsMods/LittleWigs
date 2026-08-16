@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Midnight Delve Trash", {2933, 2952, 2953, 2961, 2962, 2963, 2964, 2965, 2979, 3003}) -- All Midnight Delves (except Torment's Rise)
+local mod, CL = BigWigs:NewBoss("Midnight Delve Trash", {2933, 2952, 2953, 2961, 2962, 2963, 2964, 2965, 2979, 3003, 3038, 3077}) -- All Midnight Delves (except Nemesis Delves)
 if not mod then return end
 mod:SetTrashModule(true)
 mod:SetPrivateAuraSounds({
@@ -67,6 +67,12 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(135798) then -- Collegiate Calamity, start Delve (Thalandri Fatesinger)
 			-- 135798:|cFF0000FF(Delve)|r I'll stop this invasion!
 			self:SelectGossipID(135798)
+		elseif self:GetGossipID(139635) then -- Gnarldor Isle, start Delve (Artolla)
+			-- 139635:They'll never know what hit them.
+			self:SelectGossipID(139635)
+		elseif self:GetGossipID(139585) then -- Gnarldor Isle, start Delve (Minchi)
+			-- 139585:|cFF0000FF(Delve)|r Education is important. Let's go.
+			self:SelectGossipID(139585)
 		elseif self:GetGossipID(136477) then -- Parhelion Plaza, start Delve (Grand Artificer Romuul)
 			-- 136477:|cFF0000FF(Delve)|r I will break that shield and eliminate the units inside.
 			self:SelectGossipID(136477)
