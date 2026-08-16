@@ -167,9 +167,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local barInfo
 	-- Stage 1: Hunting Leap 8->10, Deathly Roar 14->10, Aerial Smash 15, Blade Combo 23, Gilded Destruction 30
 	-- Stage 2: Quaking Leap 9, Gilded Destruction 24, Savage Maul 36, Blade Combo 38
-	if duration == 8 or (duration == 10 and count10 % 2 == 1) then -- Hunting Leap
+	if duration == 8 or (duration == 10 and count10 % 2 == 1) or duration == 28 then -- Hunting Leap
 		barInfo = self:HuntingLeapTimeline(eventInfo)
-	elseif duration == 14 or (duration == 10 and count10 % 2 == 0) then -- Deathly Roar
+	elseif duration == 14 or (duration == 10 and count10 % 2 == 0) or duration == 27 then -- Deathly Roar
 		barInfo = self:DeathlyRoarTimeline(eventInfo)
 	elseif duration == 15 then -- Aerial Smash
 		barInfo = self:AerialSmashTimeline(eventInfo)
