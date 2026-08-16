@@ -6,10 +6,12 @@ local mod, CL = BigWigs:NewBoss("Zaen Bladesorrow", 2813, 2680)
 if not mod then return end
 mod:SetEncounterID(3102)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{474515, sound = "alert"}, -- Heartstop Poison
-	{474545, sound = "none"}, -- Murder in a Row
-	{1214352, sound = "none"}, -- Fire Bomb
+mod:SetAuraData({
+	{474515, soundOnApplied = "alert"}, -- Heartstop Poison
+	{474545, soundOnRemoved = "info"}, -- Murder in a Row
+	{474740, soundOnApplied = "warning", note = CL.debuffFailureNote}, -- Murder in a Row
+	{1214352}, -- Fire Bomb
+	{1219631}, -- Fel-Infused Freight
 })
 
 --------------------------------------------------------------------------------
