@@ -43,7 +43,7 @@ if mod:Retail() then -- Midnight+
 		{269936}, -- Fixate
 		{269972}, -- Hex Volley
 		{1306763}, -- Serpent Strike
-		{270931}, -- Shadow Volley
+		{270931, soundOnApplied = "underyou"}, -- Shadow Volley
 		{270927}, -- Bladestorm
 		{1297918}, -- Mortal Bleed
 		{1297781}, -- Sudden Rupture
