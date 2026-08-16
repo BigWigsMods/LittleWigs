@@ -6,10 +6,11 @@ local mod, CL = BigWigs:NewBoss("The Hoardmonger", 2825, 2776)
 if not mod then return end
 mod:SetEncounterID(3207)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1234846, sound = "info"}, -- Toxic Spores
-	{1234681, sound = "none"}, -- Ravenous Bellow
-	{1235125, sound = "none"}, -- Hearty Bellow
+mod:SetAuraData({
+	{1234846, soundOnApplied = "info", soundOnAppliedDose = "info"}, -- Toxic Spores
+	{1234681}, -- Ravenous Bellow
+	{1235125}, -- Hearty Bellow
+	{1235405, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Bonespiked
 })
 
 --------------------------------------------------------------------------------
@@ -95,38 +96,19 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if duration > 60 then return end -- filter placeholder bars
-	if BigWigsLoader.isNext then
-		if duration == 6 then -- Ravenous Bellow
-			barInfo = self:RavenousBellowTimeline(eventInfo)
-		elseif duration == 16 then -- Earthshatter Slam
-			barInfo = self:EarthshatterSlamTimeline(eventInfo)
-		elseif not self:IsWiping() and duration == 30 then -- Spoiled Supplies
-			barInfo = self:SpoiledSuppliesTimeline(eventInfo)
-		elseif not self:IsWiping() then
-			self:ErrorForTimelineEvent(eventInfo)
-			backupBars[eventInfo.id] = true
-			self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
-			local state = C_EncounterTimeline.GetEventState(eventInfo.id)
-			if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
-				self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
-			end
-		end
-	else -- XXX remove in 12.1
-		if duration == 7 or duration == 21 then -- Earthshatter Slam
-			self:CancelBarForSpell(1253268)
-			barInfo = self:EarthshatterSlamTimeline(eventInfo)
-		elseif duration == 18 then -- Ravenous Bellow
-			barInfo = self:RavenousBellowTimeline(eventInfo)
-		elseif duration == 39 then -- Spoiled Supplies
-			barInfo = self:SpoiledSuppliesTimeline(eventInfo)
-		elseif not self:IsWiping() then
-			self:ErrorForTimelineEvent(eventInfo)
-			backupBars[eventInfo.id] = true
-			self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
-			local state = C_EncounterTimeline.GetEventState(eventInfo.id)
-			if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
-				self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
-			end
+	if duration == 6 then -- Ravenous Bellow
+		barInfo = self:RavenousBellowTimeline(eventInfo)
+	elseif duration == 16 then -- Earthshatter Slam
+		barInfo = self:EarthshatterSlamTimeline(eventInfo)
+	elseif not self:IsWiping() and duration == 30 then -- Spoiled Supplies
+		barInfo = self:SpoiledSuppliesTimeline(eventInfo)
+	elseif not self:IsWiping() then
+		self:ErrorForTimelineEvent(eventInfo)
+		backupBars[eventInfo.id] = true
+		self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
+		local state = C_EncounterTimeline.GetEventState(eventInfo.id)
+		if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
+			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
 		end
 	end
 	if barInfo then
