@@ -7,9 +7,11 @@ if not mod then return end
 mod:SetEncounterID(3200)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
+	{1236747}, -- Verdant Stomp
+	{1259365, soundOnApplied = "info"}, -- Bloodthorn Roots
 	{1237091}, -- Bloodthirsty Gaze
-	{1237267, soundOnApplied = "alarm"}, -- Incise
-	{1272290}, -- Crunched
+	{1237267, soundOnApplied = "warning", note = CL.debuffFailureNote}, -- Incise
+	{1272290, note = CL.debuffFailureNote}, -- Crunched
 })
 
 --------------------------------------------------------------------------------
@@ -73,7 +75,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if duration >= 60 then return end
-	if BigWigsLoader.isNext then
+	if self:Mythic() then
 		if duration == 6 or duration == 29 then -- Verdant Stomp
 			barInfo = self:VerdantStompTimeline(eventInfo)
 		elseif duration == 22 then -- Thorncaller Roar
@@ -89,7 +91,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 				self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
 			end
 		end
-	else -- XXX remove in 12.1
+	else -- Normal, Heroic
 		if duration == 6 then -- Verdant Stomp
 			barInfo = self:VerdantStompTimeline(eventInfo)
 		elseif duration == 20 then -- Thorncaller Roar
