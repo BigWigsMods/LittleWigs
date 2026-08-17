@@ -76,21 +76,6 @@ end
 -- Timeline Event Handlers
 --
 
-function mod:CancelBarForSpell(spellId)
-	local priorEventID = activeBarBySpellId[spellId]
-	if priorEventID then
-		local barInfo = activeBars[priorEventID]
-		if barInfo and barInfo.createdAt and (GetTime() - barInfo.createdAt) < 2 then
-			self:StopBar(barInfo.msg)
-			if barInfo.cancelCallback then
-				barInfo.cancelCallback()
-			end
-			activeBars[priorEventID] = nil
-			activeBarBySpellId[spellId] = nil
-		end
-	end
-end
-
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 0)
@@ -137,9 +122,6 @@ function mod:ENCOUNTER_TIMELINE_EVENT_STATE_CHANGED(_, eventID)
 			end
 		elseif state == 3 then -- Canceled
 			self:StopBar(barInfo.msg)
-			if not self:IsWiping() and barInfo.cancelCallback then
-				barInfo.cancelCallback()
-			end
 			activeBars[eventID] = nil
 			if activeBarBySpellId[barInfo.key] == eventID then
 				activeBarBySpellId[barInfo.key] = nil
@@ -199,9 +181,6 @@ function mod:EarthshatterSlamTimeline(eventInfo) -- Earthshatter Slam
 		callback = function()
 			self:Message(1253268, "orange", barText)
 			self:PlaySound(1253268, "alarm")
-		end,
-		cancelCallback = function()
-			earthshatterSlamCount = earthshatterSlamCount - 1
 		end
 	}
 end
@@ -215,16 +194,6 @@ function mod:SpoiledSuppliesTimeline(eventInfo) -- Spoiled Supplies
 		key = 1234233,
 		callback = function()
 			self:StopBlizzMessages(1)
-			-- XXX not needed in 12.1? (BigWigsLoader.isNext)
-			-- cancel + decrement the Earthshatter Slam bar when this ability occurs, it will be restarted later
-			local earthshatterSlamBarId = activeBarBySpellId[1253268] -- Earthshatter Slam
-			if earthshatterSlamBarId then
-				local barInfo = activeBars[earthshatterSlamBarId]
-				self:StopBar(barInfo.msg)
-				barInfo.cancelCallback()
-				activeBars[earthshatterSlamBarId] = nil
-				activeBarBySpellId[barInfo.key] = nil
-			end
 			self:Message(1234233, "yellow", barText)
 			self:PlaySound(1234233, "long")
 		end
