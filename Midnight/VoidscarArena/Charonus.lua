@@ -12,7 +12,7 @@ mod:SetAuraData({
 	{1310026, soundOnApplied = "warning", note = CL.debuffHitByCastNote:format(mod:SpellName(1282770))}, -- Atomized
 	{1287450, soundOnApplied = "warning", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1263982))}, -- Condensed Mass
 	{1263983}, -- Condensed Mass
-	{1311933, soundOnApplied = "alarm"}, -- Dark Waves
+	{1311933, soundOnApplied = "info"}, -- Dark Waves
 	{1227247, soundOnApplied = "underyou", note = CL.debuffFailureNote}, -- Void Cascade
 })
 
