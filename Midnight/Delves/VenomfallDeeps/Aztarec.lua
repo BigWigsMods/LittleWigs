@@ -1,4 +1,3 @@
-if not BigWigsLoader.isNext then return end -- 12.1
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -8,8 +7,9 @@ if not mod then return end
 mod:SetEncounterID({3508, 3525}) -- Tier 8, Tier 11
 mod:SetAllowWin(true)
 mod:SetRespawnTime(15)
-mod:SetPrivateAuraSounds({
-	{1298887, sound = "underyou"}, -- Noxious Venom
+mod:SetAuraData({
+	{1293824}, -- Void Toxin
+	{1298887, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Noxious Venom
 })
 mod:SetStage(1)
 
