@@ -7,9 +7,13 @@ if not mod then return end
 mod:SetEncounterID(3287)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	{1227197}, -- Cosmic Crash
-	{1248130, soundOnApplied = "underyou"}, -- Unstable Singularity
-	{1264188}, -- Event Horizon
+	{1300372, note = CL.debuffDotAfterCastNote:format(mod:SpellName(1227264))}, -- Cosmic Crash
+	{1264188}, -- Unstable Singularity
+	{1310026, soundOnApplied = "warning", note = CL.debuffHitByCastNote:format(mod:SpellName(1282770))}, -- Atomized
+	{1287450, soundOnApplied = "warning", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1263982))}, -- Condensed Mass
+	{1263983}, -- Condensed Mass
+	{1311933, soundOnApplied = "alarm"}, -- Dark Waves
+	{1227247, soundOnApplied = "underyou", note = CL.debuffFailureNote}, -- Void Cascade
 })
 
 --------------------------------------------------------------------------------
@@ -40,29 +44,16 @@ mod:SetRenames({
 -- Initialization
 --
 
-if BigWigsLoader.isNext then
-	function mod:GetOptions()
-		return {
-			1282770, -- Unstable Singularity
-			1227264, -- Cosmic Crash
-			1263982, -- Gravitic Orbs
-			1311923, -- Dark Waves
-			1222755, -- Void Cascade
-		}, {
-			[1222755] = CL.mythic, -- Void Cascade (Mythic)
-		}
-	end
-else -- XXX remove in 12.1
-	function mod:GetOptions()
-		return {
-			1282770, -- Unstable Singularity
-			1227264, -- Cosmic Crash
-			1263982, -- Gravitic Orbs
-			1222755, -- Void Cascade
-		}, {
-			[1222755] = CL.mythic, -- Void Cascade (Mythic)
-		}
-	end
+function mod:GetOptions()
+	return {
+		1282770, -- Unstable Singularity
+		1227264, -- Cosmic Crash
+		1263982, -- Gravitic Orbs
+		1311923, -- Dark Waves
+		1222755, -- Void Cascade
+	}, {
+		[1222755] = CL.mythic, -- Void Cascade (Mythic)
+	}
 end
 
 mod:UseCustomTimers(true)
@@ -93,7 +84,7 @@ end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
-	local duration = self:RoundNumber(eventInfo.duration, 1)
+	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if self:Mythic() then -- Mythic
 		if duration == 5 then -- Unstable Singularity
@@ -116,15 +107,14 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 			end
 		end
 	else -- Normal / Heroic
-		-- TODO: re-check timers in 12.1
-		if duration == 5 or duration == 40 then -- Unstable Singularity
+		if duration == 5 then -- Unstable Singularity
 			barInfo = self:UnstableSingularityTimeline(eventInfo)
-		elseif duration == 19 or duration == 44.8 then -- Cosmic Crash
+		elseif duration == 17 then -- Cosmic Crash
 			barInfo = self:CosmicCrashTimeline(eventInfo)
-		elseif duration == 36 or duration == 44 then -- Gravitic Orbs
+		elseif duration == 28 then -- Gravitic Orbs
 			barInfo = self:GraviticOrbsTimeline(eventInfo)
-		--elseif duration = ?? then -- Dark Waves
-			--barInfo = self:DarkWavesTimeline(eventInfo)
+		elseif duration == 34 then -- Dark Waves
+			barInfo = self:DarkWavesTimeline(eventInfo)
 		elseif not self:IsWiping() then
 			self:ErrorForTimelineEvent(eventInfo)
 			backupBars[eventInfo.id] = true
