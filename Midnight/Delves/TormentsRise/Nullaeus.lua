@@ -7,13 +7,13 @@ if not mod then return end
 mod:SetEncounterID({3372, 3430}) -- Tier 8, Tier 11
 mod:SetAllowWin(true)
 mod:SetRespawnTime(15)
-mod:SetPrivateAuraSounds({
-	{1256045, sound = "underyou"}, -- Null Zone
-	{1256167, sound = "underyou"}, -- Void Hole
-	{1256358, sound = "none"}, -- Devouring Essence
-	{1256366, sound = "none"}, -- Jagged Rip
-	{1256518, sound = "none"}, -- Poisonous Spit
-	{1256526, sound = "info"}, -- Curse of Hesitation
+mod:SetAuraData({
+	{1256045, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Null Zone
+	{1256167, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Void Hole
+	{1256358}, -- Devouring Essence
+	{1256366}, -- Jagged Rip
+	{1256518}, -- Poisonous Spit
+	{1256526, soundOnApplied = "info"}, -- Curse of Hesitation
 })
 
 --------------------------------------------------------------------------------
