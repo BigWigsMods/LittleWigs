@@ -7,11 +7,13 @@ if not mod then return end
 mod:RegisterEnableMob(122316, 122319, 125340) -- Saprish, Darkfang, Duskwing
 mod:SetEncounterID(2066)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{245742, sound = "alert", note = CL.bleed}, -- Shadow Pounce
-	{246026, sound = "alarm", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(246026))}, -- Void Bomb
-	{1263523, sound = "info", note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1263523), CL.explosion))}, -- Overload
-})
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{245742, soundOnApplied = "alert", note = CL.bleed}, -- Shadow Pounce
+		{246026, soundOnApplied = "alarm", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(246026))}, -- Void Bomb
+		{1263523, soundOnApplied = "info", note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1263523), CL.explosion))}, -- Overload
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Initialization

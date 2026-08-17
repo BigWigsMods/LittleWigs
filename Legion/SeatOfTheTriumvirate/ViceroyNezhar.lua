@@ -7,11 +7,13 @@ if not mod then return end
 mod:RegisterEnableMob(122056) -- Viceroy Nezhar
 mod:SetEncounterID(2067)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1263532, sound = "underyou", note = CL.debuffUnderYouNote}, -- Void Storm
-	{1263542, sound = "none", note = CL.group_damage}, -- Mass Void Infusion
-	{1268733, sound = "none", note = CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(1263538), CL.adds))}, -- Mind Flay
-})
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{1263532, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Void Storm
+		{1263542, note = CL.group_damage}, -- Mass Void Infusion
+		{1268733, note = CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(1263538), CL.adds))}, -- Mind Flay
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Locals

@@ -7,10 +7,12 @@ if not mod then return end
 mod:RegisterEnableMob(122313) -- Zuraal the Ascended
 mod:SetEncounterID(2065)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{244588, sound = "underyou", note = CL.debuffUnderYouNote}, -- Void Sludge
-	{244599, sound = "warning", note = CL.other:format(CL.adds, CL.debuffFailureMoveFromExplosionNote)}, -- Dark Expulsion
-})
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{244588, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Void Sludge
+		{244599, soundOnApplied = "warning", note = CL.other:format(CL.adds, CL.debuffFailureMoveFromExplosionNote)}, -- Dark Expulsion
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Initialization

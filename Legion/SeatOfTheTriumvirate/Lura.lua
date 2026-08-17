@@ -7,9 +7,11 @@ if not mod then return end
 mod:RegisterEnableMob(124729) -- L'ura
 mod:SetEncounterID(2068)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1265426, sound = "warning", note = CL.beam}, -- Discordant Beam
-})
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{1265426, soundOnApplied = "warning", note = CL.beam}, -- Discordant Beam
+	})
+end
 
 --------------------------------------------------------------------------------
 -- Localization
