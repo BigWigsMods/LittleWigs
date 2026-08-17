@@ -88,7 +88,7 @@ local backupBars = {}
 -- Midnight Renames
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[266206] = {266206}, -- Whirling Axes
 		[266231] = {266231}, -- Severing Axe
@@ -104,7 +104,7 @@ end
 -- Midnight Initialization
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			-- Kula the Butcher

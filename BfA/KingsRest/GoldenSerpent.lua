@@ -60,7 +60,7 @@ local backupBars = {}
 -- Midnight Renames
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[265773] = {265773, CL.you:format(mod:SpellName(265773)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {265773, CL.you:format(mod:SpellName(265773))}}, -- Spit Gold
 		[265910] = {265910}, -- Tail Thrash
@@ -73,7 +73,7 @@ end
 -- Midnight Initialization
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			265773, -- Spit Gold

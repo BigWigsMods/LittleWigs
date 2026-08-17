@@ -106,7 +106,7 @@ local backupBars = {}
 -- Midnight Renames
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[269230] = {269230}, -- Hunting Leap
 		[269369] = {269369}, -- Deathly Roar
@@ -122,7 +122,7 @@ end
 -- Midnight Initialization
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			269230, -- Hunting Leap
