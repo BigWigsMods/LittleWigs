@@ -8,8 +8,7 @@ mod:SetEncounterID(3285)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
 	{1222103}, -- Nether Dash
-	{1262283}, -- Dark Rift
-	{1222305, soundOnApplied = "underyou"}, -- Dark Rift
+	{1296967, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Void Fissure
 })
 
 --------------------------------------------------------------------------------
@@ -20,10 +19,6 @@ local netherDashCount = 1
 local umbralRuptureCount = 1
 local voidBlastCount = 1
 local darkBloomCount = 1
-local cosmicSpikeCount = 1 -- XXX remove in 12.1
-local darkRiftCount = 1 -- XXX remove in 12.1
-local gatherShadowsCount = 1 -- XXX remove in 12.1
-local count50 = 1 -- XXX remove in 12.1
 local activeBars = {}
 local backupBars = {}
 
@@ -42,24 +37,13 @@ mod:SetRenames({
 -- Initialization
 --
 
-if BigWigsLoader.isNext then
-	function mod:GetOptions()
-		return {
-			1222098, -- Nether Dash
-			1296963, -- Umbral Rupture
-			1297017, -- Void Blast
-			1300259, -- Dark Bloom
-		}
-	end
-else -- XXX remove in 12.1
-	function mod:GetOptions()
-		return {
-			{1222085, "TANK_HEALER"}, -- Cosmic Spike
-			1222274, -- Dark Rift
-			1262901, -- Gather Shadows
-			1222098, -- Nether Dash
-		}
-	end
+function mod:GetOptions()
+	return {
+		1222098, -- Nether Dash
+		1296963, -- Umbral Rupture
+		1297017, -- Void Blast
+		1300259, -- Dark Bloom
+	}
 end
 
 mod:UseCustomTimers(true)
@@ -68,10 +52,6 @@ function mod:OnEncounterStart()
 	umbralRuptureCount = 1
 	voidBlastCount = 1
 	darkBloomCount = 1
-	cosmicSpikeCount = 1
-	darkRiftCount = 1
-	gatherShadowsCount = 1
-	count50 = 1
 	activeBars = {}
 	backupBars = {}
 	if self:ShouldShowBars() then
@@ -93,44 +73,23 @@ end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
-	local duration = self:RoundNumber(eventInfo.duration, 1)
+	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
-	if BigWigsLoader.isNext then
-		if duration == 6 then -- Nether Dash
-			barInfo = self:NetherDashTimeline(eventInfo)
-		elseif duration == 16 then -- Umbral Rupture
-			barInfo = self:UmbralRuptureTimeline(eventInfo)
-		elseif duration == 25 then -- Void Blast
-			barInfo = self:VoidBlastTimeline(eventInfo)
-		elseif duration == 31 then -- Dark Bloom
-			barInfo = self:DarkBloomTimeline(eventInfo)
-		elseif not self:IsWiping() then
-			self:ErrorForTimelineEvent(eventInfo)
-			backupBars[eventInfo.id] = true
-			self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
-			local state = C_EncounterTimeline.GetEventState(eventInfo.id)
-			if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
-				self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
-			end
-		end
-	else -- XXX remove in 12.1
-		if duration == 5 or duration == 22.5 then
-			barInfo = self:CosmicSpikeTimeline(eventInfo)
-		elseif duration == 12 or (duration == 50 and count50 % 2 == 1) then
-			barInfo = self:DarkRiftTimeline(eventInfo)
-		elseif duration == 35 or (duration == 50 and count50 % 2 == 0) then
-			barInfo = self:GatherShadowsTimeline(eventInfo)
-		elseif not self:IsWiping() then
-			self:ErrorForTimelineEvent(eventInfo)
-			backupBars[eventInfo.id] = true
-			self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
-			local state = C_EncounterTimeline.GetEventState(eventInfo.id)
-			if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
-				self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
-			end
-		end
-		if duration == 50 then
-			count50 = count50 + 1
+	if duration == 6 then -- Nether Dash
+		barInfo = self:NetherDashTimeline(eventInfo)
+	elseif duration == 16 then -- Umbral Rupture
+		barInfo = self:UmbralRuptureTimeline(eventInfo)
+	elseif duration == 25 then -- Void Blast
+		barInfo = self:VoidBlastTimeline(eventInfo)
+	elseif duration == 31 then -- Dark Bloom
+		barInfo = self:DarkBloomTimeline(eventInfo)
+	elseif not self:IsWiping() then
+		self:ErrorForTimelineEvent(eventInfo)
+		backupBars[eventInfo.id] = true
+		self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
+		local state = C_EncounterTimeline.GetEventState(eventInfo.id)
+		if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
+			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
 		end
 	end
 	if barInfo then
@@ -253,50 +212,6 @@ function mod:DarkBloomTimeline(eventInfo) -- Dark Bloom
 			self:StopBlizzMessages(1)
 			self:Message(1300259, "yellow", barText)
 			self:PlaySound(1300259, "long")
-		end
-	}
-end
-
-function mod:CosmicSpikeTimeline(eventInfo) -- XXX remove in 12.1
-	local barText = CL.count:format(self:SpellName(1222085), cosmicSpikeCount)
-	self:CDBar(1222085, eventInfo.duration, barText, nil, eventInfo.id)
-	cosmicSpikeCount = cosmicSpikeCount + 1
-	return {
-		msg = barText,
-		key = 1222085,
-		callback = function()
-			self:Message(1222085, "purple", barText)
-			self:PlaySound(1222085, "alert")
-		end
-	}
-end
-
-function mod:DarkRiftTimeline(eventInfo) -- XXX remove in 12.1
-	local barText = CL.count:format(self:SpellName(1222274), darkRiftCount)
-	self:CDBar(1222274, eventInfo.duration, barText, nil, eventInfo.id)
-	darkRiftCount = darkRiftCount + 1
-	return {
-		msg = barText,
-		key = 1222274,
-		callback = function()
-			self:StopBlizzMessages(1)
-			self:Message(1222274, "yellow", barText)
-			self:PlaySound(1222274, "long")
-		end
-	}
-end
-
-function mod:GatherShadowsTimeline(eventInfo) -- XXX remove in 12.1
-	local barText = CL.count:format(self:SpellName(1262901), gatherShadowsCount)
-	self:CDBar(1262901, eventInfo.duration, barText, nil, eventInfo.id)
-	gatherShadowsCount = gatherShadowsCount + 1
-	return {
-		msg = barText,
-		key = 1262901,
-		callback = function()
-			self:PersonalMessageFromBlizzMessage(1222098, 4, false, self:GetRename(1222098, 2)) -- Nether Dash
-			self:Message(1262901, "cyan", barText)
-			self:PlaySound(1262901, "info")
 		end
 	}
 end
