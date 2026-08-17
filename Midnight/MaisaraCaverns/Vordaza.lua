@@ -7,12 +7,12 @@ if not mod then return end
 mod:SetEncounterID(3213)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-mod:SetPrivateAuraSounds({
-	{1251568, sound = "none"}, -- Drain Soul
-	{1251775, sound = "warning", note = CL.other:format(CL.fixate, CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(-33734), CL.add)))}, -- Final Pursuit
-	{1251833, sound = "underyou", note = CL.debuffUnderYouNote}, -- Soulrot
-	{1252130, sound = "underyou", note = CL.debuffUnderYouNote}, -- Unmake
-	{1266706, sound = "warning", note = CL.debuffWalkIntoObjectNote:format(CL.extra:format(mod:SpellName(-33734), CL.add))}, -- Haunting Remains
+mod:SetAuraData({
+	{1251568}, -- Drain Soul
+	{1251775, soundOnApplied = "warning", note = CL.other:format(CL.fixate, CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(-33734), CL.add)))}, -- Final Pursuit
+	{1251833, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Soulrot
+	{1252130, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Unmake
+	{1266706, soundOnApplied = "warning", note = CL.debuffWalkIntoObjectNote:format(CL.extra:format(mod:SpellName(-33734), CL.add))}, -- Haunting Remains
 })
 
 --------------------------------------------------------------------------------

@@ -6,13 +6,13 @@ local mod, CL = BigWigs:NewBoss("Muro'jin and Nekraxx", 2874, 2810)
 if not mod then return end
 mod:SetEncounterID(3212)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1243741, sound = "none", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1266480))}, -- Freezing Trap
-	{1243752, sound = "underyou", note = CL.debuffUnderYouNote}, -- Icy Slick
-	{1246666, sound = "none", note = CL.disease}, -- Infected Pinions
-	{1249478, sound = "warning", note = CL.charge}, -- Carrion Swoop
-	{1260643, sound = "warning"}, -- Barrage
-	{1266488, sound = "alert", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1266480), CL.tank_knockback))}, -- Open Wound
+mod:SetAuraData({
+	{1243741, note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1266480))}, -- Freezing Trap
+	{1243752, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Icy Slick
+	{1246666, note = CL.disease}, -- Infected Pinions
+	{1249478, soundOnApplied = "warning", note = CL.charge}, -- Carrion Swoop
+	{1260643, soundOnApplied = "warning"}, -- Barrage
+	{1266488, soundOnApplied = "alert", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1266480), CL.tank_knockback))}, -- Open Wound
 })
 
 --------------------------------------------------------------------------------
