@@ -1,4 +1,3 @@
-if not BigWigsLoader.isNext then return end -- 12.1
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -7,7 +6,11 @@ local mod, CL = BigWigs:NewBoss("Rav'i", 2993, 2878)
 if not mod then return end
 mod:SetEncounterID(3456)
 mod:SetRespawnTime(30)
---mod:SetPrivateAuraSounds({})
+mod:SetAuraData({
+	{1297876, note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1296220))}, -- Triple Shot
+	{1307700, soundOnAppliedDose = "none", note = CL.debuffDotAfterCastNote:format(mod:SpellName(1296216))}, -- Carrion Burst
+	{1307915, soundOnApplied = "alarm", note = CL.debuffHitByCastNote:format(mod:SpellName(1307894))}, -- Ravenous Stomp
+})
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
