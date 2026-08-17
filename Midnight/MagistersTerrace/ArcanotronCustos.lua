@@ -7,9 +7,9 @@ if not mod then return end
 mod:SetEncounterID(3071)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-mod:SetPrivateAuraSounds({
-	{1214038, sound = "none", note = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1214032), CL.dispels))}, -- Ethereal Shackles
-	{1214089, sound = "underyou", note = CL.debuffUnderYouNote}, -- Arcane Residue
+mod:SetAuraData({
+	{1214038, note = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1214032), CL.dispels))}, -- Ethereal Shackles
+	{1214089, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Arcane Residue
 })
 
 --------------------------------------------------------------------------------

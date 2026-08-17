@@ -6,11 +6,11 @@ local mod, CL = BigWigs:NewBoss("Seranel Sunlash", 2811, 2661)
 if not mod then return end
 mod:SetEncounterID(3072)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1225015, sound = "none", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Suppression Zone
-	{1225205, sound = "none", note = CL.debuffFailureNote}, -- Wave of Silence
-	{1225792, sound = "warning", note = CL.mark}, -- Runic Mark
-	{1246446, sound = "alarm", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Null Reaction
+mod:SetAuraData({
+	{1225015, note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Suppression Zone
+	{1225205, note = CL.debuffFailureNote}, -- Wave of Silence
+	{1225792, soundOnApplied = "warning", note = CL.mark}, -- Runic Mark
+	{1246446, soundOnApplied = "alarm", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Null Reaction
 })
 
 --------------------------------------------------------------------------------

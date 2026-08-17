@@ -6,12 +6,12 @@ local mod, CL = BigWigs:NewBoss("Gemellus", 2811, 2660)
 if not mod then return end
 mod:SetEncounterID(3073)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1224401, sound = "underyou", note = CL.debuffUnderYouNote}, -- Cosmic Radiation
-	{1284958, sound = "alert", note = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1284954), CL.pools))}, -- Cosmic Sting
-	{1224104, sound = "underyou", note = CL.debuffUnderYouNote}, -- Void Secretions
-	{1224299, sound = "warning", note = CL.grip}, -- Astral Grasp
-	{1253709, sound = "warning", note = CL.break_shield}, -- Neural Link
+mod:SetAuraData({
+	{1224401, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Cosmic Radiation
+	{1284958, soundOnApplied = "alert", note = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1284954), CL.pools))}, -- Cosmic Sting
+	{1224104, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Void Secretions
+	{1224299, soundOnApplied = "warning", note = CL.grip}, -- Astral Grasp
+	{1253709, soundOnApplied = "warning", note = CL.break_shield}, -- Neural Link
 })
 
 --------------------------------------------------------------------------------
@@ -141,6 +141,7 @@ function mod:TriplicateTimeline(eventInfo) -- Triplicate / Split / Adds
 		key = 1223847,
 		callback = function()
 			self:StopBlizzMessages(1)
+			-- TODO there's more Triplicates later with no timer, do we have another trigger for that?
 			self:Message(1223847, "cyan", barText)
 			self:PlaySound(1223847, "info")
 		end

@@ -6,12 +6,12 @@ local mod, CL = BigWigs:NewBoss("Degentrius", 2811, 2662)
 if not mod then return end
 mod:SetEncounterID(3074)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1215161, sound = "none", note = CL.other:format(CL.bouncing_ball, CL.debuffFailureNote)}, -- Void Destruction
-	{1215897, sound = "warning", note = CL.orbs}, -- Devouring Entropy
-	{1269631, sound = "none", note = CL.other:format(CL.orbs , CL.debuffFailureNote)}, -- Entropy Orb
-	{1284627, sound = "none", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1280113), CL.tank_debuff))}, -- Umbral Splinters
-	{1284633, sound = "underyou", note = CL.debuffUnderYouNote}, -- Stygian Ichor
+mod:SetAuraData({
+	{1215161, note = CL.other:format(CL.bouncing_ball, CL.debuffFailureNote)}, -- Void Destruction
+	{1215897, soundOnApplied = "warning", note = CL.orbs}, -- Devouring Entropy
+	{1269631, note = CL.other:format(CL.orbs , CL.debuffFailureNote)}, -- Entropy Orb
+	{1284627, note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1280113), CL.tank_debuff))}, -- Umbral Splinters
+	{1284633, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Stygian Ichor
 })
 
 --------------------------------------------------------------------------------
