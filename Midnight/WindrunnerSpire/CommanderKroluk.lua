@@ -7,14 +7,14 @@ if not mod then return end
 mod:SetEncounterID(3058)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-mod:SetPrivateAuraSounds({
-	{467620, sound = "none", note = CL.tank_hit}, -- Rampage
-	{468659, sound = "alert", note = CL.bleed}, -- Throw Axe
-	{1283247, sound = "none", note = CL.preDebuffNote}, -- Reckless Leap
-	{472054, sound = "none", note = CL.mainDebuffNote}, -- Reckless Leap
-	{1253030, sound = "warning", note = CL.soak}, -- Intimidating Shout
-	{470966, sound = "warning", note = CL.fixate}, -- Bladestorm
-	{468924, sound = "underyou", note = CL.debuffUnderYouNote}, -- Bladestorm
+mod:SetAuraData({
+	{467620, note = CL.tank_hit}, -- Rampage
+	{468659, soundOnApplied = "alert", note = CL.bleed}, -- Throw Axe
+	{1283247, note = CL.preDebuffNote}, -- Reckless Leap
+	{472054, note = CL.mainDebuffNote}, -- Reckless Leap
+	{1253030, soundOnApplied = "warning", note = CL.soak}, -- Intimidating Shout
+	{470966, soundOnApplied = "warning", note = CL.fixate}, -- Bladestorm
+	{468924, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Bladestorm
 })
 
 --------------------------------------------------------------------------------

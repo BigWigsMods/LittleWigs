@@ -6,14 +6,14 @@ local mod, CL = BigWigs:NewBoss("Restless Heart", 2805, 2658)
 if not mod then return end
 mod:SetEncounterID(3059)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{468442, sound = "warning", note = CL.other:format(CL.leap, CL.debuffFailureNote)}, -- Billowing Wind
-	{472662, sound = "alarm", note = CL.tank_knockback}, -- Tempest Slash
-	{474528, sound = "warning", note = CL.other:format(CL.frontal_cone, CL.mainDebuffNote)}, -- Bolt Gale
-	{1282911, sound = "warning", note = CL.other:format(CL.frontal_cone, CL.preDebuffNote)}, -- Bolt Gale
-	{1216042, sound = "alert"}, -- Squall Leap
-	{1253979, sound = "warning", note = CL.clear_pools}, -- Gust Shot
-	{1282955, sound = "underyou", note = CL.debuffUnderYouNote}, -- Storming Soulfont
+mod:SetAuraData({
+	{468442, soundOnApplied = "warning", note = CL.other:format(CL.leap, CL.debuffFailureNote)}, -- Billowing Wind
+	{472662, soundOnApplied = "alarm", note = CL.tank_knockback}, -- Tempest Slash
+	{474528, soundOnApplied = "warning", note = CL.other:format(CL.frontal_cone, CL.mainDebuffNote)}, -- Bolt Gale
+	{1282911, soundOnApplied = "warning", note = CL.other:format(CL.frontal_cone, CL.preDebuffNote)}, -- Bolt Gale
+	{1216042, soundOnApplied = "alert"}, -- Squall Leap
+	{1253979, soundOnApplied = "warning", note = CL.clear_pools}, -- Gust Shot
+	{1282955, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Storming Soulfont
 })
 
 --------------------------------------------------------------------------------

@@ -7,11 +7,11 @@ if not mod then return end
 mod:SetEncounterID(3056)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-mod:SetPrivateAuraSounds({
-	{466091, sound = "alarm", note = CL.tank_hit}, -- Searing Beak
-	{466559, sound = "warning", note = CL.fire_debuffs}, -- Flaming Updraft
-	{470212, sound = "warning"}, -- Flaming Twisters
-	{472118, sound = "underyou", note = CL.debuffUnderYouNote}, -- Ignited Embers
+mod:SetAuraData({
+	{466091, soundOnApplied = "alarm", note = CL.tank_hit}, -- Searing Beak
+	{466559, soundOnApplied = "warning", note = CL.fire_debuffs}, -- Flaming Updraft
+	{470212, soundOnApplied = "warning"}, -- Flaming Twisters
+	{472118, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Ignited Embers
 })
 
 --------------------------------------------------------------------------------
