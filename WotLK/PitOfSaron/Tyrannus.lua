@@ -9,11 +9,11 @@ mod:SetEncounterID(mod:Classic() and 837 or 2000)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
 if mod:Retail() then -- Midnight+
-	mod:SetPrivateAuraSounds({
-		{1262596, sound = "none", note = CL.tank_knockback}, -- Scourgelord's Brand
-		{1262772, sound = "warning"}, -- Rime Blast
-		{1263716, sound = "none", note = CL.postDebuffNote:format(mod:SpellName(1262772))}, -- Frostbite
-		{1276648, sound = "none", note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1276648), CL.group_damage))}, -- Bone Infusion
+	mod:SetAuraData({
+		{1262596, note = CL.tank_knockback}, -- Scourgelord's Brand
+		{1262772, soundOnApplied = "warning"}, -- Rime Blast
+		{1263716, note = CL.postDebuffNote:format(mod:SpellName(1262772))}, -- Frostbite
+		{1276648, note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1276648), CL.group_damage))}, -- Bone Infusion
 	})
 end
 

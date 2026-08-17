@@ -8,11 +8,11 @@ mod:RegisterEnableMob(36494)
 mod:SetEncounterID(mod:Classic() and 833 or 1999)
 mod:SetRespawnTime(30)
 if mod:Retail() then -- Midnight+
-	mod:SetPrivateAuraSounds({
-		{1261286, sound = "warning"}, -- Throw Saronite
-		{1261540, sound = "warning", note = CL.tank_hit}, -- Orebreaker
-		{1261799, sound = "underyou", note = CL.debuffUnderYouNote}, -- Saronite Sludge
-		{1261921, sound = "alert", note = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1261847), CL.stomp))}, -- Cryoshards
+	mod:SetAuraData({
+		{1261286, soundOnApplied = "warning"}, -- Throw Saronite
+		{1261540, soundOnApplied = "warning", note = CL.tank_hit}, -- Orebreaker
+		{1261799, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Saronite Sludge
+		{1261921, soundOnApplied = "alert", note = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1261847), CL.stomp))}, -- Cryoshards
 	})
 end
 
