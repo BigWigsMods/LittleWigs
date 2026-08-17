@@ -1,4 +1,3 @@
-if not BigWigsLoader.isNext then return end -- 12.1
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -7,9 +6,11 @@ local mod, CL = BigWigs:NewBoss("Zul'jan", 2993, 2880)
 if not mod then return end
 mod:SetEncounterID(3458)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1300894, sound = "info"}, -- Ritual Venom
-	{1301231, sound = "none"}, -- Bloodletting
+mod:SetAuraData({
+	{1300885}, -- Ritual of the Fang
+	{1300894, soundOnApplied = "info", soundOnAppliedDose = "none"}, -- Ritual Venom
+	{1301508}, -- Boneslicer
+	{1301231, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Bloodletting
 })
 
 --------------------------------------------------------------------------------
