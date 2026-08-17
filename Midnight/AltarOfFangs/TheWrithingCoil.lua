@@ -1,4 +1,3 @@
-if not BigWigsLoader.isNext then return end -- 12.1
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
@@ -7,9 +6,11 @@ local mod, CL = BigWigs:NewBoss("The Writhing Coil", 2993, 2879)
 if not mod then return end
 mod:SetEncounterID(3457)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1299080, sound = "none"}, -- Death Rattle
-	{1300503, sound = "none"}, -- Spiteful Hunt
+mod:SetAuraData({
+	{1299080, soundOnAppliedDose = "none"}, -- Death Rattle
+	{1300503}, -- Spiteful Hunt
+	{1310974}, -- Toxic Atrophy
+	{1299189}, -- Synchronized Venom
 })
 mod:SetStage(1)
 
