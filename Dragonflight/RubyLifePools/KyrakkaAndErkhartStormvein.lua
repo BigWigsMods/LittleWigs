@@ -117,7 +117,7 @@ local backupBars = {}
 -- Midnight Renames
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[381525] = {381525}, -- Roaring Firebreath
 		[381512] = {381512}, -- Stormslam
@@ -131,7 +131,7 @@ end
 -- Midnight Initialization
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			"warmup",
@@ -495,7 +495,7 @@ function mod:Stormslam(args)
 	if self:Tank() then
 		self:Message(args.spellId, "purple")
 		self:CDBar(args.spellId, 17.0)
-		self:PlaySound(args.spellId, "alarm")
+		self:PlaySound(args.spellId, "alert")
 	elseif self:Dispeller("magic", nil, args.spellId) then
 		self:CDBar(args.spellId, 17.0)
 	end

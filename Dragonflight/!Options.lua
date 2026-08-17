@@ -793,7 +793,7 @@ BigWigs:AddColors("Kyrakka and Erkhart Stormvein", {
 })
 
 BigWigs:AddSounds("Kyrakka and Erkhart Stormvein", {
-	[381512] = {"alarm","alert"},
+	[381512] = "alert",
 	[381516] = "warning",
 	[381517] = "info",
 	[381525] = "alarm",
