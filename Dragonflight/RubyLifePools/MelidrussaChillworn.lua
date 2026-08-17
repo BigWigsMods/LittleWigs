@@ -8,7 +8,7 @@ mod:RegisterEnableMob(188252) -- Melidrussa Chillworn
 mod:SetEncounterID(2609)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-if mod:Retail() then
+if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
 		{385518}, -- Chillstorm
 		{372963}, -- Storm's Eye
@@ -78,7 +78,7 @@ local backupBars = {}
 -- Midnight Renames
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[1307297] = {1307297}, -- Hailburst
 		[1307308] = {1307308, CL.you:format(mod:SpellName(1307308)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1307308, CL.you:format(mod:SpellName(1307308))}}, -- Chillstorm
@@ -91,7 +91,7 @@ end
 -- Midnight Initialization
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			1307297, -- Hailburst

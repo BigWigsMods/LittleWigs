@@ -7,7 +7,7 @@ if not mod then return end
 mod:RegisterEnableMob(189232) -- Kokia Blazehoof
 mod:SetEncounterID(2606)
 mod:SetRespawnTime(30)
-if mod:Retail() then
+if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
 		{372865}, -- Ritual of Blazebinding
 		{384823}, -- Inferno
@@ -74,7 +74,7 @@ local backupBars = {}
 -- Midnight Renames
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[372864] = {372864}, -- Ritual of Blazebinding
 		[372110] = {372110}, -- Molten Boulder
@@ -86,7 +86,7 @@ end
 -- Midnight Initialization
 --
 
-if BigWigsLoader.isNext then -- Midnight+ XXX swap to mod:Retail() in 12.1
+if mod:Retail() then -- Midnight+
 	function mod:GetOptions()
 		return {
 			372864, -- Ritual of Blazebinding

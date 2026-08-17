@@ -19,7 +19,7 @@ mod:RegisterEnableMob(
 	197985, -- Flame Channeler
 	197535  -- High Channeler Ryvati
 )
-if mod:Retail() then
+if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
 		{1305201}, -- Excavating Blast
 		{1307205}, -- Earthbound's Imprint

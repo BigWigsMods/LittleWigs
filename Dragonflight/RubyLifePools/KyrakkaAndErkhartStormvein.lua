@@ -11,7 +11,7 @@ mod:RegisterEnableMob(
 mod:SetEncounterID(2623)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-if mod:Retail() then
+if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
 		{381515, note = CL.debuffTankAfterCastNote}, -- Stormslam
 		{381518}, -- Winds of Change
