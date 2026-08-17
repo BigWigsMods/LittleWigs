@@ -24,6 +24,7 @@ mod:SetAuraData({
 	{1289258}, -- Corrosive Essence
 	{1311778}, -- Rip and Slice
 	{458835, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Toxic Sludge
+	{456057, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Vile Putrescence
 	{1300138}, -- Void Beam
 	{1252406}, -- Dreadbellow
 	{1300243}, -- Brutalize
