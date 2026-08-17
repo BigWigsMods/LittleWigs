@@ -7,11 +7,11 @@ if not mod then return end
 mod:SetEncounterID(3328)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-mod:SetPrivateAuraSounds({
-	{1251626, sound = "info", note = CL.debuffWalkIntoObjectNote:format(CL.extra:format(mod:SpellName(1251626), CL.beam))}, -- Leyline Array
-	{1251772, sound = "warning"}, -- Reflux Charge
-	{1264042, sound = "underyou", note = CL.debuffUnderYouNote}, -- Arcane Spill
-	{1276485, sound = "alert", note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1257509), CL.full_energy))}, -- Sparkburn
+mod:SetAuraData({
+	{1251626, soundOnApplied = "info", note = CL.debuffWalkIntoObjectNote:format(CL.extra:format(mod:SpellName(1251626), CL.beam))}, -- Leyline Array
+	{1251772, soundOnApplied = "warning"}, -- Reflux Charge
+	{1264042, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Arcane Spill
+	{1276485, soundOnApplied = "alert", note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1257509), CL.full_energy))}, -- Sparkburn
 })
 
 --------------------------------------------------------------------------------

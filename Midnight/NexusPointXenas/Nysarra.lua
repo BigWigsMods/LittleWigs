@@ -6,9 +6,9 @@ local mod, CL = BigWigs:NewBoss("Corewarden Nysarra", 2915, 2814)
 if not mod then return end
 mod:SetEncounterID(3332)
 mod:SetRespawnTime(30)
-mod:SetPrivateAuraSounds({
-	{1249020, sound = "warning", note = CL.bomb}, -- Eclipsing Step
-	{1252828, sound = "alarm", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1247937), CL.tank_hit))}, -- Void Gash
+mod:SetAuraData({
+	{1249020, soundOnApplied = "warning", note = CL.bomb}, -- Eclipsing Step
+	{1252828, soundOnApplied = "alarm", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1247937), CL.tank_hit))}, -- Void Gash
 })
 mod:SetStage(1)
 
