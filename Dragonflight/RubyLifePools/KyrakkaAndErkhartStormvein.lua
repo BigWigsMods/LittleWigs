@@ -13,10 +13,10 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 if mod:Retail() then
 	mod:SetAuraData({
-		{381515}, -- Stormslam
+		{381515, note = CL.debuffTankAfterCastNote}, -- Stormslam
 		{381518}, -- Winds of Change
 		{381862}, -- Inferno Spit
-		{384773, soundOnApplied = "underyou"}, -- Flaming Embers
+		{384773, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Flaming Embers
 	})
 end
 
