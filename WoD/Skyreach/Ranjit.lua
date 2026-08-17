@@ -7,10 +7,10 @@ if not mod then return end
 mod:RegisterEnableMob(75964)
 mod:SetEncounterID(1698)
 mod:SetRespawnTime(15)
-if mod:Retail() then
-	mod:SetPrivateAuraSounds({
-		{153757, sound = "alert", note = CL.bleed}, -- Fan of Blades
-		{1252733, sound = "warning", note = CL.knockback}, -- Gale Surge
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{153757, soundOnApplied = "alert", note = CL.bleed}, -- Fan of Blades
+		{1252733, soundOnApplied = "warning", note = CL.knockback}, -- Gale Surge
 	})
 end
 

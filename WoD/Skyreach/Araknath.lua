@@ -7,11 +7,11 @@ if not mod then return end
 mod:RegisterEnableMob(76141)
 mod:SetEncounterID(1699)
 mod:SetRespawnTime(23) -- respawns 11s after, unattackable for a while
-if mod:Retail() then
-	mod:SetPrivateAuraSounds({
-		{154150, sound = "alert", note = CL.beam}, -- Light Ray
-		{1279002, sound = "warning"}, -- Blast Wave
-		{154132, sound = "warning", note = CL.other:format(CL.tank_frontal, CL.debuffFailureNote)}, -- Fiery Smash
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{154150, soundOnApplied = "alert", note = CL.beam}, -- Light Ray
+		{1279002, soundOnApplied = "warning"}, -- Blast Wave
+		{154132, soundOnApplied = "warning", note = CL.other:format(CL.tank_frontal, CL.debuffFailureNote)}, -- Fiery Smash
 	})
 end
 

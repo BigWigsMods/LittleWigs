@@ -7,12 +7,12 @@ if not mod then return end
 mod:RegisterEnableMob(76266)
 mod:SetEncounterID(1701)
 mod:SetRespawnTime(15)
-if mod:Retail() then
-	mod:SetPrivateAuraSounds({
-		{153954, sound = "none", note = CL.add}, -- Cast Down
-		{1253541, sound = "alert", note = CL.other:format(CL.fire_debuffs, CL.preDebuffNote)}, -- Scorching Ray
-		{1253543, sound = "none", note = CL.other:format(CL.fire_debuffs, CL.mainDebuffNote)}, -- Scorching Ray
-		{1253531, sound = "warning", note = CL.beam}, -- Lens Flare
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{153954, note = CL.add}, -- Cast Down
+		{1253541, soundOnApplied = "alert", note = CL.other:format(CL.fire_debuffs, CL.preDebuffNote)}, -- Scorching Ray
+		{1253543, note = CL.other:format(CL.fire_debuffs, CL.mainDebuffNote)}, -- Scorching Ray
+		{1253531, soundOnApplied = "warning", note = CL.beam}, -- Lens Flare
 	})
 end
 
