@@ -5,18 +5,17 @@
 local mod, CL = BigWigs:NewBoss("Midnight Delve Trash", {2933, 2952, 2953, 2961, 2962, 2963, 2964, 2965, 2979, 3003, 3038, 3077}) -- All Midnight Delves (except Nemesis Delves)
 if not mod then return end
 mod:SetTrashModule(true)
-mod:SetPrivateAuraSounds({
-	{1256045, sound = "underyou"}, -- Null Zone
-})
+--mod:SetAuraData({
+	--{1256045, soundOnApplied = "underyou"}, -- Null Zone (Season 1)
+--})
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.nullaeus = "Nullaeus"
-end
+--local L = mod:GetLocale()
+--if L then
+--end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -26,10 +25,6 @@ local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()
 	return {
 		autotalk,
-		-- Nullaeus
-		{1256045, "PRIVATE"}, -- Null Zone
-	}, {
-		[1256045] = L.nullaeus,
 	}
 end
 

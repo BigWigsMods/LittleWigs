@@ -118,7 +118,6 @@ end
 
 L = BigWigs:NewBossLocale("Midnight Delve Trash", "zhCN")
 if L then
-	L.nullaeus = "努雷乌斯"
 end
 
 -- Den of Nalorakk

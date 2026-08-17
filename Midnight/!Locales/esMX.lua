@@ -118,7 +118,6 @@ end
 
 L = BigWigs:NewBossLocale("Midnight Delve Trash", "esMX")
 if L then
-	L.nullaeus = "Nullaeus"
 end
 
 -- Den of Nalorakk
