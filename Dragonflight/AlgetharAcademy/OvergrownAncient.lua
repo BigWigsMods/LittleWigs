@@ -8,9 +8,9 @@ mod:RegisterEnableMob(196482) -- Overgrown Ancient
 mod:SetEncounterID(2563)
 mod:SetRespawnTime(30)
 if mod:Retail() then -- Midnight+
-	mod:SetPrivateAuraSounds({
-		{388544, sound = "none", note = CL.debuffTankAfterCastNote:format(mod:SpellName(388544))}, -- Barkbreaker
-		{396716, sound = "none", note = CL.debuffDotAfterCastNote:format(mod:SpellName(388623))}, -- Splinterbark
+	mod:SetAuraData({
+		{388544, note = CL.debuffTankAfterCastNote:format(mod:SpellName(388544))}, -- Barkbreaker
+		{396716, note = CL.debuffDotAfterCastNote:format(mod:SpellName(388623))}, -- Splinterbark
 	})
 end
 

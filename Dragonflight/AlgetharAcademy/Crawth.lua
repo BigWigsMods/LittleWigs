@@ -11,10 +11,10 @@ mod:RegisterEnableMob(
 mod:SetEncounterID(2564)
 mod:SetRespawnTime(30)
 if mod:Retail() then -- Midnight+
-	mod:SetPrivateAuraSounds({
-		{376760, sound = "info", note = CL.debuffWalkIntoObjectNote:format(CL.orb)}, -- Gale Force
-		{376997, sound = "none", note = CL.debuffTankAfterCastNote:format(mod:SpellName(376997))}, -- Savage Peck
-		{377009, sound = "none", note = CL.debuffDotAfterCastNote:format(mod:SpellName(377009))}, -- Deafening Screech
+	mod:SetAuraData({
+		{376760, soundOnApplied = "info", note = CL.debuffWalkIntoObjectNote:format(CL.orb)}, -- Gale Force
+		{376997, note = CL.debuffTankAfterCastNote:format(mod:SpellName(376997))}, -- Savage Peck
+		{377009, note = CL.debuffDotAfterCastNote:format(mod:SpellName(377009))}, -- Deafening Screech
 	})
 end
 

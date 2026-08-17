@@ -8,10 +8,10 @@ mod:RegisterEnableMob(190609) -- Echo of Doragosa
 mod:SetEncounterID(2565)
 mod:SetRespawnTime(30)
 if mod:Retail() then -- Midnight+
-	mod:SetPrivateAuraSounds({
-		{389007, sound = "underyou", note = CL.debuffUnderYouNote}, -- Wild Energy
-		{389011, sound = "none"}, -- Overwhelming Power
-		{374350, sound = "warning", note = CL.bomb}, -- Energy Bomb
+	mod:SetAuraData({
+		{389007, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Wild Energy
+		{389011}, -- Overwhelming Power
+		{374350, soundOnApplied = "warning", note = CL.bomb}, -- Energy Bomb
 	})
 end
 

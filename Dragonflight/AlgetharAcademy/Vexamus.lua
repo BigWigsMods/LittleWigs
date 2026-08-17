@@ -8,10 +8,10 @@ mod:RegisterEnableMob(194181) -- Vexamus
 mod:SetEncounterID(2562)
 mod:SetRespawnTime(30)
 if mod:Retail() then -- Midnight+
-	mod:SetPrivateAuraSounds({
-		{386181, sound = "warning", note = CL.bomb}, -- Mana Bomb
-		{386201, sound = "underyou", note = CL.debuffUnderYouNote}, -- Corrupted Mana
-		{391977, sound = "none", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(386544))}, -- Oversurge
+	mod:SetAuraData({
+		{386181, soundOnApplied = "warning", note = CL.bomb}, -- Mana Bomb
+		{386201, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Corrupted Mana
+		{391977, note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(386544))}, -- Oversurge
 	})
 end
 
