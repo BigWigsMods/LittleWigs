@@ -8,8 +8,10 @@ mod:SetEncounterID({3508, 3525}) -- Tier 8, Tier 11
 mod:SetAllowWin(true)
 mod:SetRespawnTime(15)
 mod:SetAuraData({
-	{1293824}, -- Void Toxin
+	{1291555, note = CL.debuffHitByCastNote:format(mod:SpellName(1291555))}, -- Noxious Bile
+	{1293824, note = CL.debuffDotAfterCastNote:format(mod:SpellName(1293824))}, -- Void Toxin
 	{1298887, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Noxious Venom
+	{1297422, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Deadly Venom
 })
 mod:SetStage(1)
 
