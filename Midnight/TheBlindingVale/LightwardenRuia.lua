@@ -10,7 +10,6 @@ mod:SetAuraData({
 	{1239825}, -- Lightfire
 	{1239919, soundOnApplied = "underyou"}, -- Lightfire Beams
 	{1241058}, -- Grievous Thrash
-	{1251345, soundOnApplied = "underyou"}, -- Blight Resin
 	{1257094}, -- Pulverized
 })
 mod:SetStage(1)
