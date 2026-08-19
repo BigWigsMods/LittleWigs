@@ -66,7 +66,7 @@ end
 
 L = BigWigs:NewBossLocale("Gyrospore", "deDE")
 if L then
-	--L.gyrospore = "Gyrospore"
+	L.gyrospore = "Gyrospore"
 end
 
 L = BigWigs:NewBossLocale("Mycomight", "deDE")
@@ -171,10 +171,10 @@ if L then
 	L.all_units = "Alle Einheiten zeigen Nachrichten und geben Sounds wieder"
 	L.messages_all_sounds_target = "Alle Einheiten zeigen Nachrichten, aber nur Dein Ziel gibt Sounds wieder"
 	L.target_only = "Nur Dein Ziel zeigt Nachrichten und gibt Sounds wieder"
-	--L.custom_select_unit_standard = "Standard mobs"
-	--L.custom_select_unit_standard_desc = "Select which standard trash mobs should show messages and play sounds."
-	--L.custom_select_unit_lieutenant = "Lieutenants"
-	--L.custom_select_unit_lieutenant_desc = "Select which Lieutenant trash mobs should show messages and play sounds."
+	L.custom_select_unit_standard = "Normale Gegner"
+	L.custom_select_unit_standard_desc = "Wähle welche normalen Gegner Nachrichten anzeigen und Sounds wiedergeben."
+	L.custom_select_unit_lieutenant = "Leutnants"
+	L.custom_select_unit_lieutenant_desc = "Wähle welche Leutnant Gegner Nachrichten anzeigen und Sounds wiedergeben."
 	L.custom_select_throttle_type = "Drossel Typ"
 	L.custom_select_throttle_type_desc = "Welche Funktionen sollen gedrosselt werden"
 	L.custom_select_throttle_type_value1 = "Sowohl Nachrichten als auch Sounds"
