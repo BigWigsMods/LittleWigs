@@ -12,6 +12,7 @@ mod:SetAuraData({
 	{1293824, note = CL.debuffDotAfterCastNote:format(mod:SpellName(1293824))}, -- Void Toxin
 	{1298887, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Noxious Venom
 	{1297422, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Deadly Venom
+	{1313213, soundOnApplied = "warning", note = CL.debuffHitByCastNote:format(mod:SpellName(1288125))}, -- Ula'tek's Mark
 })
 mod:SetStage(1)
 
@@ -117,7 +118,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		barInfo = self:VoidToxinTimeline(eventInfo)
 	elseif (not self:IsWiping() and duration == 15) or duration == 17.5 then -- Serpent's Strike (tank only)
 		barInfo = self:SerpentsStrikeTimeline(eventInfo)
-	elseif duration == 18 or duration == 20 or (not hardMode and duration == 20.5) then -- Soul Extinction
+	elseif duration == 18 or duration == 20 or (not hardMode and duration == 20.5) or duration == 35 then -- Soul Extinction
 		-- TODO probably longer timers here for casters
 		barInfo = self:SoulExtinctionTimeline(eventInfo)
 	elseif duration == 23 or duration == 26 or duration == 28.5 or duration == 31.5 then -- Venom Storm
