@@ -167,8 +167,8 @@ end
 
 L = BigWigs:NewBossLocale("Myza's Oasis", "frFR")
 if L then
-	--L.notes = "Notes"
-	--L.notes_desc = "Show a message when the notes are available. Hit the notes with your instrument's ability to gain 'Jazzy'.\n\n|T237554:16|tJazzy\n{348567}"
+	L.notes = "Notes"
+	L.notes_desc = "Affiche un message lorsque les notes sont disponibles. Touchez les notes avec votre technique d'instrument pour gagner 'Jazzy'.\n\n|T237554:16|tJazzy\n{348567}"
 end
 
 L = BigWigs:NewBossLocale("So'leah", "frFR")
@@ -186,14 +186,14 @@ if L then
 	L.soazmi_warmup_trigger = "Pardonnez notre intrusion, So’leah. J’espère que nous ne vous dérangeons pas."
 	L.portal_authority = "Garde des portails de Tazavesh"
 	L.custom_on_portal_autotalk_desc = "Ouvre les portails de retour vers l'entrée lorsque vous parlez aux négociants."
-	--L.mailroom_door_desc = "Show a bar indicating when the door to the mailroom will open."
-	--L.vendor_active = "Vendor active"
-	--L.vendor_active_desc = "Show a bar indicating when the vendor for the Trading Game will be active."
-	--L.vendor_autopurchase = "Auto-purchase trading game item"
-	--L.vendor_autopurchase_desc = "Automatically purchase the initial trading game item from the vendor."
-	--L.vendor_autopurchase_message = "Purchased %s"
-	--L.tradeable_goods = "Tradeable Goods"
-	--L.tradeable_goods_desc = "Show a message indicating when tradeable goods have been picked up."
+	L.mailroom_door_desc = "Affiche une barre indiquant lorsque la porte de la poste s'ouvrira."
+	L.vendor_active = "Vendeur actif"
+	L.vendor_active_desc = "Affiche une barre indiquant lorsque le marchand pour le mini-jeu d'échange sera actif."
+	L.vendor_autopurchase = "Auto-achète les objets du mini-jeu d'échange"
+	L.vendor_autopurchase_desc = "Achète automatiquement l'objet initial du mini-jeu d'échange auprès du marchand."
+	L.vendor_autopurchase_message = "Acheté %s"
+	L.tradeable_goods = "Marchandises échangeable"
+	L.tradeable_goods_desc = "Affiche un message lorsqu'une marchandise échangeable a été ramassée."
 	L.trading_game = "Jeu d'échange"
 	L.trading_game_desc = "Alerte avec le bon mot de passe pendant le jeu d'échange."
 	L.custom_on_trading_game_autotalk_desc = "Choisit automatiquement le bon mot de passe après que le jeu des échanges ait été complété."
@@ -234,8 +234,8 @@ if L then
 	L.commander_zofar = "Commandant Zo'far"
 
 	--L.hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans."
-	--L.portal_open = "Portal opens"
-	--L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
+	L.portal_open = "Ouverture de portail"
+	L.portal_open_desc = "Affiche une barre indiquant lorsqu'un portal vers la zone suivante s'ouvrira."
 	L.murkbrine_scalebinder = "Lieur d'écailles bourbe-sel"
 	L.murkbrine_fishmancer = "Pescomancien bourbe-sel"
 	L.murkbrine_shellcrusher = "Brise-conque bourbe-sel"

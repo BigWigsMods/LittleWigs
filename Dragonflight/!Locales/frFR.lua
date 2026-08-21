@@ -30,7 +30,7 @@ end
 
 L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "frFR")
 if L then
-	--L.custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
+	L.custom_on_cauldron_autotalk_desc = "[Alchimie] Désintoxifie instantanément les chaudrons de putréfaction pour une amélioration purifiant les maladies."
 	L.captive_tuskarr_freed = "Captif Tuskarr libéré"
 	L.captive_tuskarr_freed_desc = "Affiche une alerte lorsqu'un Captif Tuskarr est libéré."
 
