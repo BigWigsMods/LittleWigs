@@ -23,18 +23,18 @@ if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
 		{1305201}, -- Excavating Blast
 		{1307205}, -- Earthbound's Imprint
-		{1305225}, -- Tectonic Strike
-		{1305234}, -- Cold Claws
+		{1305225, soundOnAppliedDose = "none"}, -- Tectonic Strike
+		{1305234, soundOnAppliedDose = "none"}, -- Cold Claws
 		{373593}, -- Frozen Solid
 		{372047}, -- Steel Barrage
-		{374927, soundOnApplied = "underyou"}, -- Wall of Flames
+		{374927, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Wall of Flames
 		{373693}, -- Living Bomb
 		{385536}, -- Flaming Barrage
 		{373692}, -- Inferno
 		{395292}, -- Fire Maw
-		{392641}, -- Rolling Thunder
-		{1310599}, -- Electrical Discharge
-		{1307372, soundOnApplied = "underyou"}, -- Fiery Demise
+		{392641, soundOnAppliedDose = "none"}, -- Rolling Thunder
+		{1310599, soundOnAppliedDose = "none"}, -- Electrical Discharge
+		{1307372, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Fiery Demise
 		{1306366}, -- Lightning Torrent
 	})
 end
