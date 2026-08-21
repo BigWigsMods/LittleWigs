@@ -18,7 +18,7 @@ mod:RegisterEnableMob(
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
 		{1291399}, -- Serrated Charge
-		{1291468}, -- Sunder Slam
+		{1291468, soundOnAppliedDose = "none"}, -- Sunder Slam
 		{1308113}, -- Arrow Barrage
 		{1308100}, -- Poisoned Cheap Shot
 		{1308148}, -- Cytotoxin
