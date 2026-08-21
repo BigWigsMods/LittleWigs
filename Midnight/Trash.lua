@@ -65,6 +65,13 @@ local THROTTLE_DURATIONS = { 2, 1, 3 } -- custom_select_throttle_duration values
 
 function mod:OnRegister()
 	self.displayName = L.common_trash
+	-- delayed for custom locale
+	L.custom_select_unit_standard_value1 = L.target_only
+	L.custom_select_unit_standard_value2 = L.messages_all_sounds_target
+	L.custom_select_unit_standard_value3 = L.all_units
+	L.custom_select_unit_lieutenant_value1 = L.all_units
+	L.custom_select_unit_lieutenant_value2 = L.messages_all_sounds_target
+	L.custom_select_unit_lieutenant_value3 = L.target_only
 end
 
 function mod:GetOptions()
