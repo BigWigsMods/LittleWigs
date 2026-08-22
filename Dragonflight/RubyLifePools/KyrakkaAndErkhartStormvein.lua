@@ -196,16 +196,17 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
 	local duration = self:RoundNumber(eventInfo.duration, 1)
 	local barInfo
-	if duration == 1 or (duration == 20 and count20 % 2 == 1) or (duration == 16 and count16 % 2 == 1) then -- Roaring Firebreath
-		if duration == 16 and self:GetStage() == 1 then
+	if C_EncounterTimeline.GetEventState(eventInfo.id) == 1 then return end -- filter Paused bars
+	if duration == 1 or (stormslamCount > 1 and duration == 5) or (duration == 20 and count20 % 2 == 1) or (duration == 16 and count16 % 2 == 1) then -- Roaring Firebreath
+		if duration == 5 and self:GetStage() == 1 then
 			self:EncounterEvent() -- Stage 2
 		end
 		barInfo = self:RoaringFirebreathTimeline(eventInfo)
-	elseif duration == 5 or duration == 22.5 then -- Stormslam
+	elseif (stormslamCount == 1 and duration == 5) or duration == 22.5 then -- Stormslam
 		barInfo = self:StormslamTimeline(eventInfo)
 	elseif duration == 10 or duration == 21.5 then -- Winds of Change
 		barInfo = self:WindsOfChangeTimeline(eventInfo)
-	elseif duration == 12 or (duration == 20 and count20 % 2 == 0) or duration == 9 or (duration == 16 and count16 % 2 == 0) then -- Inferno Spit
+	elseif duration == 12 or (duration == 20 and count20 % 2 == 0) or duration == 13 or (duration == 16 and count16 % 2 == 0) then -- Inferno Spit
 		barInfo = self:InfernoSpitTimeline(eventInfo)
 	elseif duration == 21 or duration == 25 then -- Interrupting Cloudburst
 		barInfo = self:InterruptingCloudburstTimeline(eventInfo)
