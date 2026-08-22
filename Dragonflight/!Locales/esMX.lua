@@ -183,11 +183,6 @@ if L then
 	--L.kyrakka_and_erkhart_warmup_trigger = "Your false queen cannot stop us. We are the truth."
 end
 
-L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "esMX")
-if L then
-	L.winds = "Vientos"
-end
-
 -- The Azure Vault
 
 L = BigWigs:NewBossLocale("The Azure Vault Trash", "esMX")

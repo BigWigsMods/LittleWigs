@@ -183,11 +183,6 @@ if L then
 	L.kyrakka_and_erkhart_warmup_trigger = "那個假龍后阻止不了我們，因為我們才是真理。"
 end
 
-L = BigWigs:NewBossLocale("Kyrakka and Erkhart Stormvein", "zhTW")
-if L then
-	L.winds = "風"
-end
-
 -- The Azure Vault
 
 L = BigWigs:NewBossLocale("The Azure Vault Trash", "zhTW")

@@ -27,7 +27,6 @@ end
 
 local L = mod:GetLocale()
 if L then
-	L.winds = "Winds"
 	L.warmup_icon = "achievement_dungeon_lifepools"
 end
 
@@ -58,7 +57,7 @@ function mod:GetOptions()
 		[381862] = -25365, -- Kyrakka
 		[381517] = -25369, -- Erkhart Stormvein
 	}, {
-		[381517] = L.winds, -- Winds of Change (Winds)
+		[381517] = CL.winds, -- Winds of Change (Winds)
 	}
 end
 
@@ -97,7 +96,7 @@ function mod:OnEngage()
 		self:CDBar(381516, 9.7) -- Interrupting Cloudburst
 	end
 	if not self:Normal() then
-		self:CDBar(381517, 17.0, CL.other:format(L.winds, CL.north_west), "misc_arrowlup") -- Winds of Change
+		self:CDBar(381517, 17.0, CL.other:format(CL.winds, CL.north_west), "misc_arrowlup") -- Winds of Change
 	end
 end
 
@@ -124,10 +123,10 @@ if mod:Retail() then -- Midnight+
 		[381525] = {381525}, -- Roaring Firebreath
 		[381512] = {381512}, -- Stormslam
 		[381517] = {
-			CL.other:format(L.winds, CL.north_west), -- Winds: North-West
-			CL.other:format(L.winds, CL.south_west), -- Winds: South-West
-			CL.other:format(L.winds, CL.south_east), -- Winds: South-East
-			CL.other:format(L.winds, CL.north_east), -- Winds: North-East
+			CL.other:format(CL.winds, CL.north_west), -- Winds: North-West
+			CL.other:format(CL.winds, CL.south_west), -- Winds: South-West
+			CL.other:format(CL.winds, CL.south_east), -- Winds: South-East
+			CL.other:format(CL.winds, CL.north_east), -- Winds: North-East
 			notes = {CL.north_west, CL.south_west, CL.south_east, CL.north_east}, original = {
 				CL.other:format(mod:SpellName(381517), CL.north_west), -- Winds of Change: North-West
 				CL.other:format(mod:SpellName(381517), CL.south_west), -- Winds of Change: South-West
@@ -398,7 +397,7 @@ function mod:BossDeath(args)
 			elseif windsOfChangeCount % 4 == 0 then
 				nextDirection = CL.north_west
 			end
-			self:StopBar(CL.other:format(L.winds, nextDirection)) -- Winds of Change
+			self:StopBar(CL.other:format(CL.winds, nextDirection)) -- Winds of Change
 			self:StopBar(381516) -- Interrupting Cloudburst
 			self:StopBar(381512) -- Stormslam
 		end
@@ -495,9 +494,9 @@ function mod:WindsOfChange(args)
 		icon = "misc_arrowright"
 		nextIcon = "misc_arrowlup"
 	end
-	self:Message(args.spellId, "cyan", CL.other:format(L.winds, direction), icon)
-	self:StopBar(CL.other:format(L.winds, direction))
-	self:CDBar(args.spellId, 19.4, CL.other:format(L.winds, nextDirection), nextIcon)
+	self:Message(args.spellId, "cyan", CL.other:format(CL.winds, direction), icon)
+	self:StopBar(CL.other:format(CL.winds, direction))
+	self:CDBar(args.spellId, 19.4, CL.other:format(CL.winds, nextDirection), nextIcon)
 	self:PlaySound(args.spellId, "info")
 end
 
