@@ -124,29 +124,29 @@ end
 
 L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "itIT")
 if L then
-	--L.offerings_acquired = "Offerings Acquired"
-	--L.offerings_acquired_desc = "Show an alert when an offering has been acquired."
+	L.offerings_acquired = "Offerte raccolte"
+	L.offerings_acquired_desc = "Avvisa quando viene raccolta un'offerta."
 end
 
 -- Maisara Caverns
 
 L = BigWigs:NewBossLocale("Maisara Caverns Trash", "itIT")
 if L then
-	--L.prisoners_freed = "Prisoners Freed"
-	--L.prisoners_freed_desc = "Show an alert when a prisoner has been freed."
+	L.prisoners_freed = "Prigionieri liberati"
+	L.prisoners_freed_desc = "Avvisa quando un prigioniero viene liberato."
 	--L.custom_on_cooking_pot_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Hearty Vilebranch Stew' buff.\n\n|T4659336:16|tHearty Vilebranch Stew\n{1269056}"
 	--L.custom_on_ritual_cauldron_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Ritual Concoction' buff.\n\n|T236271:16|tRitual Concoction\n{1271300}"
 
-	--L.cooking_pot = "Cooking Pot"
-	--L.ritual_cauldron = "Ritual Cauldron"
+	L.cooking_pot = "Pentola da cucina"
+	L.ritual_cauldron = "Calderone rituale"
 end
 
 -- Murder Row
 
 L = BigWigs:NewBossLocale("Murder Row Trash", "itIT")
 if L then
-	--L.snitches_interrogated = "Snitches Interrogated"
-	--L.snitches_interrogated_desc = "Show an alert when a snitch has been interrogated."
+	L.snitches_interrogated = "Informatori interrogati"
+	L.snitches_interrogated_desc = "Avvisa quando viene interrogato un informatore."
 end
 
 -- Nexus-Point Xenas
@@ -160,28 +160,28 @@ end
 
 L = BigWigs:NewBossLocale("Common Trash", "itIT")
 if L then
-	--L.common_trash = "Common Trash"
-	--L.trash_cast = "Cast"
-	--L.trash_cast_desc = "Alert when a standard trash mob casts a spell."
-	--L.lieutenant_cast = "Cast (Lieutenant)"
-	--L.lieutenant_cast_desc = "Alert when a Lieutenant trash mob casts a spell."
-	--L.trash_channel = "Channel"
-	--L.trash_channel_desc = "Alert when any trash mob channels a spell."
-	--L.customization = "Customization"
-	--L.all_units = "All units show messages and play sounds"
-	--L.messages_all_sounds_target = "All units show messages, but only your target plays sounds"
-	--L.target_only = "Only your target shows messages and plays sounds"
-	--L.custom_select_unit_standard = "Standard mobs"
-	--L.custom_select_unit_standard_desc = "Select which standard trash mobs should show messages and play sounds."
-	--L.custom_select_unit_lieutenant = "Lieutenants"
-	--L.custom_select_unit_lieutenant_desc = "Select which Lieutenant trash mobs should show messages and play sounds."
-	--L.custom_select_throttle_type = "Throttle type"
-	--L.custom_select_throttle_type_desc = "What features should be throttled"
-	--L.custom_select_throttle_type_value1 = "Both messages and sounds"
-	--L.custom_select_throttle_type_value2 = "Sounds only"
-	--L.custom_select_throttle_duration = "Throttle duration"
-	--L.custom_select_throttle_duration_desc = "How long to wait between alerts. Your target is never throttled."
-	--L.custom_select_throttle_duration_value1 = "2 seconds"
-	--L.custom_select_throttle_duration_value2 = "1 second"
-	--L.custom_select_throttle_duration_value3 = "3 seconds"
+	L.common_trash = "Trash comuni"
+	L.trash_cast = "Cast"
+	L.trash_cast_desc = "Avvisa quando un mob trash standard lancia un incantesimo."
+	L.lieutenant_cast = "Cast (Luogotenente)"
+	L.lieutenant_cast_desc = "Avvisa quando un luogotenente lancia un incantesimo."
+	L.trash_channel = "Channel"
+	L.trash_channel_desc = "Avvisa quando un mob trash canalizza un incantesimo."
+	L.customization = "Personalizzazione"
+	L.all_units = "Mostra messaggi e riproduci suoni per tutte le unità"
+	L.messages_all_sounds_target = "Mostra messaggi per tutte le unità, ma riproduci suoni solo per il tuo bersaglio"
+	L.target_only = "Mostra messaggi e riproduci suoni solo per il tuo bersaglio"
+	L.custom_select_unit_standard = "Mob standard"
+	L.custom_select_unit_standard_desc = "Seleziona i mob trash standard per cui mostrare messaggi e riprodurre suoni."
+	L.custom_select_unit_lieutenant = "Luogotenenti"
+	L.custom_select_unit_lieutenant_desc = "Seleziona i mob trash luogotenente per cui mostrare messaggi e riprodurre suoni."
+	L.custom_select_throttle_type = "Avvisi da limitare"
+	L.custom_select_throttle_type_desc = "Scegli quali avvisi limitare"
+	L.custom_select_throttle_type_value1 = "Messaggi e suoni"
+	L.custom_select_throttle_type_value2 = "Solo suoni"
+	L.custom_select_throttle_duration = "Intervallo tra avvisi"
+	L.custom_select_throttle_duration_desc = "Tempo di attesa tra un avviso e l'altro. Gli avvisi relativi al tuo bersaglio non vengono mai limitati."
+	L.custom_select_throttle_duration_value1 = "2 secondi"
+	L.custom_select_throttle_duration_value2 = "1 secondo"
+	L.custom_select_throttle_duration_value3 = "3 secondi"
 end
