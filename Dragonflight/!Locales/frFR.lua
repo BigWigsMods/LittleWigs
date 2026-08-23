@@ -180,7 +180,7 @@ if L then
 	L.flame_channeler = "Invocateur de flammes"
 	L.high_channeler_ryvati = "Haute invocatrice Ryvati"
 
-	--L.kyrakka_and_erkhart_warmup_trigger = "Your false queen cannot stop us. We are the truth."
+	L.kyrakka_and_erkhart_warmup_trigger = "Votre fausse reine ne nous arrêtera pas. Nous incarnons la vérité."
 end
 
 -- The Azure Vault
