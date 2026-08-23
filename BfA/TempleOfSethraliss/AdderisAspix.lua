@@ -9,8 +9,11 @@ mod:SetEncounterID(2124)
 if mod:Retail() then -- Midnight+
 	mod:SetRespawnTime(30)
 	mod:SetAuraData({
-		{1288457}, -- Gust
-		{1288885}, -- Tempest Winds
+		{1288457, duration = 4, note = CL.debuffDotAfterCastNote:format(mod:SpellName(1288457))}, -- Gust
+		{1289059, duration = 4, note = CL.debuffTargetedNote:format(mod:SpellName(1289059))}, -- Gale Force
+		{1288874, duration = 5, soundOnRemoved = "alarm", note = CL.debuffTargetedNote:format(mod:SpellName(1311805))}, -- Tempest Winds
+		{1288885, duration = 4, mechanic = "silenced", note = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1311805))}, -- Tempest Winds
+		{1288074, duration = 4.5, soundOnRemoved = "alarm", note = CL.debuffTargetedNote:format(mod:SpellName(1288049))}, -- Thunder and Lightning
 	})
 else
 	mod:SetRespawnTime(20)
@@ -136,10 +139,11 @@ end
 -- Timeline Event Handlers
 --
 
--- resyncs and Storm Blessed re-add active bars at their current remaining duration (~0.001 if already expired);
--- match those against tracked expTimes so we create the proper bar
+-- resyncs and Storm Blessed re-add active bars at their current remaining duration (~0.001 if already queued).
+-- match those against tracked expTimes.
 local function matchActiveBar(duration)
 	local now = GetTime()
+	local bestBar, bestDiff
 	for _, barInfo in pairs(activeBars) do
 		-- while paused, the remaining time is measured from the pause start, not now
 		local remaining
@@ -149,16 +153,18 @@ local function matchActiveBar(duration)
 			remaining = barInfo.expTime - now
 		end
 		if remaining < 0 then remaining = 0 end
-		if math.abs(duration - remaining) <= 0.05 then
-			return barInfo
+		local diff = math.abs(duration - remaining)
+		if diff <= 1.5 and (not bestDiff or diff < bestDiff) then
+			bestBar, bestDiff = barInfo, diff
 		end
 	end
-	return nil
+	return bestBar
 end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
-	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
-	local duration = self:RoundNumber(eventInfo.duration, 0)
+	if self:IsWiping() or eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
+	-- increased precision to avoid false-positive matches as bars will be canceled and re-added with their ~previous times
+	local duration = self:RoundNumber(eventInfo.duration, 3)
 	local barInfo
 	-- initial: GF=5 TL=9 TW=29 OL=39 -> all 45
 	-- re-sync: GF=1 TL=5 TW=25 OL=35 -> all 45
@@ -166,9 +172,9 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	-- Aspix dies: OL=15 TL=22 -> both 19
 	-- during Storm Blessed (66%, 33%) bars pause. queued bars will be canceled and re-created with ~0.001s.
 	-- TODO: counts increment a lot because bars are started and canceled in weird orders.
-	if duration == 15 or duration == 22 then -- Overload or Thunder and Lightning, after Aspix dies
+	if (duration == 15 or duration == 22) and not adderisDead then -- Overload or Thunder and Lightning, after Aspix dies
 		aspixDead = true
-	elseif duration == 12 then -- Tempest Winds, after Adderis dies
+	elseif duration == 12 and not aspixDead then -- Tempest Winds, after Adderis dies
 		-- this relies on Tempest Winds being added at 12 before Gale Force is added with 5.
 		adderisDead = true
 	end
@@ -207,14 +213,13 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		end
 		count19 = count19 + 1
 	else
+		-- these durations will match the existing bars and generally be in these ranges:
+		-- - 0-1s Gale Force (0.001 can also be any spell queued during Storm Blessed)
+		-- - 4-5s Thunder and Lightning
+		-- - 22-25s Tempest Winds
+		-- - 34-35s Overload
 		local matchedBar = matchActiveBar(eventInfo.duration)
 		if matchedBar then
-			-- these durations will match the existing bars and generally be in these ranges:
-			-- - 0.001s Gale Force
-			-- - 5s Thunder and Lightning
-			-- - 24-25s Tempest Winds
-			-- - 34-35s Overload
-			-- but 0.001 here can also be any spell if it was queued during Storm Blessed
 			if matchedBar.key == 1289059 then
 				barInfo = self:GaleForceTimeline(eventInfo, true)
 			elseif matchedBar.key == 1288049 then
@@ -235,7 +240,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 			self:PauseBar(barInfo.key, barInfo.msg)
 		end
 		activeBars[eventInfo.id] = barInfo
-	elseif not self:IsWiping() then
+	else
 		self:ErrorForTimelineEvent(eventInfo)
 		backupBars[eventInfo.id] = true
 		self:SendMessage("BigWigs_StartBar", nil, nil, ("[B] %s"):format(eventInfo.spellName), eventInfo.duration, eventInfo.iconFileID, eventInfo.maxQueueDuration, nil, eventInfo.id, eventInfo.id)
@@ -301,12 +306,10 @@ do
 		self:PlaySound(1289059, "alarm", nil, self:UnitName("player"))
 	end
 	function mod:GaleForceTimeline(eventInfo, resync) -- Gale Force
-		local barText
+		local barText = CL.count:format(self:GetRename(1289059), galeForceCount)
 		if resync then
-			barText = CL.count:format(self:GetRename(1289059), galeForceCount)
 			self:CDBar(1289059, {eventInfo.duration, 45}, barText, nil, eventInfo.id)
 		else
-			barText = CL.count:format(self:GetRename(1289059), galeForceCount)
 			self:CDBar(1289059, eventInfo.duration, barText, nil, eventInfo.id)
 		end
 		galeForceCount = galeForceCount + 1
@@ -322,12 +325,10 @@ do
 end
 
 function mod:ThunderAndLightningTimeline(eventInfo, resync) -- Thunder and Lightning
-	local barText
+	local barText = CL.count:format(self:GetRename(1288049), thunderAndLightningCount)
 	if resync then
-		barText = CL.count:format(self:GetRename(1288049), thunderAndLightningCount)
 		self:CDBar(1288049, {eventInfo.duration, 45}, barText, nil, eventInfo.id)
 	else
-		barText = CL.count:format(self:GetRename(1288049), thunderAndLightningCount)
 		self:CDBar(1288049, eventInfo.duration, barText, nil, eventInfo.id)
 	end
 	thunderAndLightningCount = thunderAndLightningCount + 1
@@ -346,12 +347,10 @@ do
 		self:PlaySound(1311805, "warning", nil, self:UnitName("player"))
 	end
 	function mod:TempestWindsTimeline(eventInfo, resync) -- Tempest Winds
-		local barText
+		local barText = CL.count:format(self:GetRename(1311805), tempestWindsCount)
 		if resync then
-			barText = CL.count:format(self:GetRename(1311805), tempestWindsCount)
 			self:CDBar(1311805, {eventInfo.duration, 45}, barText, nil, eventInfo.id)
 		else
-			barText = CL.count:format(self:GetRename(1311805), tempestWindsCount)
 			self:CDBar(1311805, eventInfo.duration, barText, nil, eventInfo.id)
 		end
 		tempestWindsCount = tempestWindsCount + 1
@@ -367,12 +366,10 @@ do
 end
 
 function mod:OverloadTimeline(eventInfo, resync) -- Overload
-	local barText
+	local barText = CL.count:format(self:GetRename(1311804), overloadCount)
 	if resync then
-		barText = CL.count:format(self:GetRename(1311804), overloadCount)
 		self:CDBar(1311804, {eventInfo.duration, 45}, barText, nil, eventInfo.id)
 	else
-		barText = CL.count:format(self:GetRename(1311804), overloadCount)
 		self:CDBar(1311804, eventInfo.duration, barText, nil, eventInfo.id)
 	end
 	overloadCount = overloadCount + 1
