@@ -124,29 +124,29 @@ end
 
 L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "itIT")
 if L then
-	--L.offerings_acquired = "Offerings Acquired"
-	--L.offerings_acquired_desc = "Show an alert when an offering has been acquired."
+	L.offerings_acquired = "Offerte raccolte"
+	L.offerings_acquired_desc = "Avvisa quando viene raccolta un'offerta."
 end
 
 -- Maisara Caverns
 
 L = BigWigs:NewBossLocale("Maisara Caverns Trash", "itIT")
 if L then
-	--L.prisoners_freed = "Prisoners Freed"
-	--L.prisoners_freed_desc = "Show an alert when a prisoner has been freed."
+	L.prisoners_freed = "Prigionieri liberati"
+	L.prisoners_freed_desc = "Avvisa quando un prigioniero viene liberato."
 	--L.custom_on_cooking_pot_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Hearty Vilebranch Stew' buff.\n\n|T4659336:16|tHearty Vilebranch Stew\n{1269056}"
 	--L.custom_on_ritual_cauldron_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Ritual Concoction' buff.\n\n|T236271:16|tRitual Concoction\n{1271300}"
 
-	--L.cooking_pot = "Cooking Pot"
-	--L.ritual_cauldron = "Ritual Cauldron"
+	L.cooking_pot = "Pentola da cucina"
+	L.ritual_cauldron = "Calderone rituale"
 end
 
 -- Murder Row
 
 L = BigWigs:NewBossLocale("Murder Row Trash", "itIT")
 if L then
-	--L.snitches_interrogated = "Snitches Interrogated"
-	--L.snitches_interrogated_desc = "Show an alert when a snitch has been interrogated."
+	L.snitches_interrogated = "Informatori interrogati"
+	L.snitches_interrogated_desc = "Avvisa quando viene interrogato un informatore."
 end
 
 -- Nexus-Point Xenas
