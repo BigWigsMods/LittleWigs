@@ -109,18 +109,19 @@ end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
-	local duration = self:RoundNumber(eventInfo.duration, 2)
+	local duration = self:RoundNumber(eventInfo.duration, 3)
 	local barInfo
 	-- DPS/Healer have shorter timers on Soul Extinction and Venom Storm in exchange for no Serpent's Strike
+	-- TODO can/should we check initial timers to differentiate between tank vs non-tank sets for the whole fight?
 	if duration == 6 or (hardMode and (duration == 20.5 or duration == 20.75)) or duration == 21 then -- Noxious Bile
 		barInfo = self:NoxiousBileTimeline(eventInfo)
-	elseif duration == 10 or duration == 21.5 or duration == 21.65 then -- Void Toxin
+	elseif duration == 10 or duration == 21.25 or duration == 21.375 or duration == 21.5 or duration == 21.65 or duration == 21.815 then -- Void Toxin
 		barInfo = self:VoidToxinTimeline(eventInfo)
 	elseif (not self:IsWiping() and duration == 15) or duration == 17.5 then -- Serpent's Strike (tank only)
 		barInfo = self:SerpentsStrikeTimeline(eventInfo)
-	elseif duration == 18 or duration == 20 or (not hardMode and duration == 20.5) or duration == 35 or duration == 35.2 then -- Soul Extinction
+	elseif duration == 18 or duration == 20 or (not hardMode and duration == 20.5) or duration == 34.667 or duration == 35 or duration == 35.2 or duration == 35.42 then -- Soul Extinction
 		barInfo = self:SoulExtinctionTimeline(eventInfo)
-	elseif duration == 23 or duration == 26 or duration == 28.5 or duration == 28.65 or duration == 31.5 then -- Venom Storm
+	elseif duration == 23 or duration == 26 or duration == 28.5 or duration == 28.65 or duration == 28.815 or duration == 31.5 then -- Venom Storm
 		barInfo = self:VenomStormTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
