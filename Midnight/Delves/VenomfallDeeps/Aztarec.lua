@@ -8,8 +8,8 @@ mod:SetEncounterID({3508, 3525}) -- Tier 8, Tier 11
 mod:SetAllowWin(true)
 mod:SetRespawnTime(15)
 mod:SetAuraData({
-	{1291555, note = CL.debuffHitByCastNote:format(mod:SpellName(1291555))}, -- Noxious Bile
-	{1293824, note = CL.debuffDotAfterCastNote:format(mod:SpellName(1293824))}, -- Void Toxin
+	{1291555, duration = 21, note = CL.debuffHitByCastNote:format(mod:SpellName(1291555))}, -- Noxious Bile
+	{1293824, duration = 18, dispel = "magic", note = CL.debuffDotAfterCastNote:format(mod:SpellName(1293824))}, -- Void Toxin
 	{1298887, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Noxious Venom
 	{1297422, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Deadly Venom
 	{1313213, soundOnApplied = "warning", note = CL.debuffHitByCastNote:format(mod:SpellName(1288125))}, -- Ula'tek's Mark
@@ -109,19 +109,18 @@ end
 
 function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if eventInfo.source ~= 0 then return end -- Enum.EncounterTimelineEventSource.Encounter
-	local duration = self:RoundNumber(eventInfo.duration, 1)
+	local duration = self:RoundNumber(eventInfo.duration, 2)
 	local barInfo
 	-- DPS/Healer have shorter timers on Soul Extinction and Venom Storm in exchange for no Serpent's Strike
-	if duration == 6 or (hardMode and duration == 20.5) or duration == 21 then -- Noxious Bile
+	if duration == 6 or (hardMode and (duration == 20.5 or duration == 20.75)) or duration == 21 then -- Noxious Bile
 		barInfo = self:NoxiousBileTimeline(eventInfo)
-	elseif duration == 10 or duration == 21.5 then -- Void Toxin
+	elseif duration == 10 or duration == 21.5 or duration == 21.65 then -- Void Toxin
 		barInfo = self:VoidToxinTimeline(eventInfo)
 	elseif (not self:IsWiping() and duration == 15) or duration == 17.5 then -- Serpent's Strike (tank only)
 		barInfo = self:SerpentsStrikeTimeline(eventInfo)
-	elseif duration == 18 or duration == 20 or (not hardMode and duration == 20.5) or duration == 35 then -- Soul Extinction
-		-- TODO probably longer timers here for casters
+	elseif duration == 18 or duration == 20 or (not hardMode and duration == 20.5) or duration == 35 or duration == 35.2 then -- Soul Extinction
 		barInfo = self:SoulExtinctionTimeline(eventInfo)
-	elseif duration == 23 or duration == 26 or duration == 28.5 or duration == 31.5 then -- Venom Storm
+	elseif duration == 23 or duration == 26 or duration == 28.5 or duration == 28.65 or duration == 31.5 then -- Venom Storm
 		barInfo = self:VenomStormTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
