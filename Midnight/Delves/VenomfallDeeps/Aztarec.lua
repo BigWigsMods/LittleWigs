@@ -23,6 +23,7 @@ mod:SetStage(1)
 local L = mod:SetDefaultLocale({
 	aztarec = "Azta'rec",
 })
+mod.displayName = L.aztarec
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -56,10 +57,6 @@ mod:SetRenames({
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.aztarec
-end
 
 function mod:GetOptions()
 	return {

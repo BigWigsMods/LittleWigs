@@ -14,14 +14,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	infiltrator_gulkat = "Infiltrator Gulkat",
 })
+mod.displayName = L.infiltrator_gulkat
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.infiltrator_gulkat
-end
 
 function mod:GetOptions()
 	return {

@@ -19,16 +19,18 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	spinshroom = "Spinshroom",
 })
+mod.displayName = L.spinshroom
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(415499, CL.weakened) -- Dizzy (Weakened)
+mod:SetSpellRename(415492, CL.charge) -- Fungal Charge (Charge)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.spinshroom
-	self:SetSpellRename(415499, CL.weakened) -- Dizzy (Weakened)
-	self:SetSpellRename(415492, CL.charge) -- Fungal Charge (Charge)
-end
 
 function mod:GetOptions()
 	return {

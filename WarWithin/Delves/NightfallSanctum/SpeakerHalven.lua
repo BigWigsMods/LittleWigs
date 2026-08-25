@@ -16,14 +16,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	speaker_halven = "Speaker Halven",
 })
+mod.displayName = L.speaker_halven
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.speaker_halven
-end
 
 function mod:GetOptions()
 	return {

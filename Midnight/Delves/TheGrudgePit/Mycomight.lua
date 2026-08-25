@@ -14,14 +14,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	mycomight = "Mycomight",
 })
+mod.displayName = L.mycomight
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.mycomight
-end
 
 function mod:GetOptions()
 	return {

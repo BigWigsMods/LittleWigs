@@ -35,6 +35,7 @@ local L = mod:SetDefaultLocale({
 	nullaeus = "Nullaeus",
 	adds_icon = "inv_babyvoidwalker_silver",
 })
+mod.displayName = L.nullaeus
 
 --------------------------------------------------------------------------------
 -- Renames
@@ -50,10 +51,6 @@ mod:SetRenames({
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.nullaeus
-end
 
 function mod:GetOptions()
 	return {

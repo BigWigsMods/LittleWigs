@@ -23,6 +23,7 @@ local shardCount = 1
 local L = mod:SetDefaultLocale({
 	name = "Nightbane",
 })
+mod.displayName = L.name
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -45,10 +46,6 @@ function mod:GetOptions()
 		[228834] = CL.stage:format(2),
 		[228837] = CL.stage:format(3),
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

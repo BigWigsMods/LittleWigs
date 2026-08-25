@@ -23,16 +23,18 @@ local nextSwiftness = 0
 local L = mod:SetDefaultLocale({
 	cragpie = "Cragpie",
 })
+mod.displayName = L.cragpie
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(470612, CL.poison) -- Corrosive Bile (Poison)
+mod:SetSpellRename(390943, CL.dodge) -- Electric Cataclysm (Dodge)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.cragpie
-	self:SetSpellRename(470612, CL.poison) -- Corrosive Bile (Poison)
-	self:SetSpellRename(390943, CL.dodge) -- Electric Cataclysm (Dodge)
-end
 
 function mod:GetOptions()
 	return {

@@ -24,6 +24,7 @@ local hopelessnessCount = 1
 local L = mod:SetDefaultLocale({
 	oblivion_elemental = "Oblivion Elemental",
 })
+mod.displayName = L.oblivion_elemental
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -33,10 +34,6 @@ function mod:GetOptions()
 	return {
 		297574, -- Hopelessness
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.oblivion_elemental
 end
 
 function mod:OnBossEnable()

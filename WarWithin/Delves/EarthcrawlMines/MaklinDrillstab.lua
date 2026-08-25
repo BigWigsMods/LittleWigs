@@ -16,14 +16,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	maklin_drillstab = "Maklin Drillstab",
 })
+mod.displayName = L.maklin_drillstab
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.maklin_drillstab
-end
 
 function mod:GetOptions()
 	return {

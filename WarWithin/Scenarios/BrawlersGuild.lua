@@ -94,14 +94,11 @@ local L = mod:SetDefaultLocale({
 	["133359_icon"] = "spell_fire_immolation", -- Enraging Flames
 	["133359_desc"] = 134545, -- Enraging Flames
 })
+mod.displayName = L.brawlers_guild
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.brawlers_guild
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

@@ -14,14 +14,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	chiefarcanist_patram = "Chief-Arcanist Patram",
 })
+mod.displayName = L.chiefarcanist_patram
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.chiefarcanist_patram
-end
 
 function mod:GetOptions()
 	return {

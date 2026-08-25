@@ -14,14 +14,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	brightthorn = "Brightthorn",
 })
+mod.displayName = L.brightthorn
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.brightthorn
-end
 
 function mod:GetOptions()
 	return {

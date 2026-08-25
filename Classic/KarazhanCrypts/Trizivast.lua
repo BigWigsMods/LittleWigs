@@ -16,14 +16,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	trizivast = "Trizivast",
 })
+mod.displayName = L.trizivast
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.trizivast
-end
 
 function mod:GetOptions()
 	return {

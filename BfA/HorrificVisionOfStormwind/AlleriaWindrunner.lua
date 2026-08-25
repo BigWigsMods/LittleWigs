@@ -21,6 +21,7 @@ local L = mod:SetDefaultLocale({
 	["312260_desc"] = 305672, -- Explosive Ordnance
 	warmup_icon = "spell_arcane_teleportstormwind",
 })
+mod.displayName = L.alleria_windrunner
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -45,10 +46,6 @@ function mod:GetOptions()
 		[312260] = 312226, -- Fallen Servants: Therum Deepforge
 		[308669] = 312229, -- Fallen Servants: Overlord Shaw
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.alleria_windrunner
 end
 
 function mod:OnBossEnable()

@@ -38,14 +38,11 @@ local L = mod:SetDefaultLocale({
 	siphoned_drake = "Siphoned Drake",
 	steelsoul_arcanoward = "Steelsoul Arcanoward",
 })
+mod.displayName = L.ethereal_trash
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.ethereal_trash
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

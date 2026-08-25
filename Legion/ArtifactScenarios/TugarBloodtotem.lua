@@ -41,6 +41,7 @@ local L = mod:SetDefaultLocale({
 
 	totem_warning = "The totem hit you!",
 })
+mod.displayName = L.tugar
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -62,10 +63,6 @@ function mod:GetOptions()
 		[242733] = L.tugar,
 		[241687] = L.jormog,
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.tugar
 end
 
 function mod:OnBossEnable()

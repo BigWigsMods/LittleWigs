@@ -39,14 +39,11 @@ local L = mod:SetDefaultLocale({
 	curses_icon = 418990,
 	curses_desc = "Notifies you when you recieve a curse from a Wicker Man.",
 })
+mod.displayName = L.the_headless_horseman
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.the_headless_horseman
-end
 
 function mod:GetOptions()
 	return {

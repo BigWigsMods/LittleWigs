@@ -21,6 +21,7 @@ local L = mod:SetDefaultLocale({
 	guardian_tentacle = "Guardian Tentacle",
 	slamming_tentacles = "Slamming Tentacles",
 })
+mod.displayName = L.leviathan_caller
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -31,10 +32,6 @@ local encounterEventCount = 1
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.leviathan_caller
-end
 
 function mod:GetOptions()
 	return {

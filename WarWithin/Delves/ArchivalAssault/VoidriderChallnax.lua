@@ -22,14 +22,11 @@ local L = mod:SetDefaultLocale({
 	voidrider_challnax = "Voidrider Challnax",
 	stages_icon = "inv_112_etherealwraps_basic_original",
 })
+mod.displayName = L.voidrider_challnax
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.voidrider_challnax
-end
 
 function mod:GetOptions()
 	return {

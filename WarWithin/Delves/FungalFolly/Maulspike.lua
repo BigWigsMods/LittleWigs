@@ -21,16 +21,18 @@ local L = mod:SetDefaultLocale({
 	maulspike = "Maulspike",
 	darkfuse_cackler = "Darkfuse Cackler",
 })
+mod.displayName = L.maulspike
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(1214620, CL.adds) -- Whooping Rally (Adds)
+mod:SetSpellRename(1214680, CL.fear) -- Hideous Cackle (Fear)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.maulspike
-	self:SetSpellRename(1214620, CL.adds) -- Whooping Rally (Adds)
-	self:SetSpellRename(1214680, CL.fear) -- Hideous Cackle (Fear)
-end
 
 function mod:GetOptions()
 	return {

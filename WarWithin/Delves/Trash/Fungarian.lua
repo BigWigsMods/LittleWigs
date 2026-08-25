@@ -45,18 +45,20 @@ local L = mod:SetDefaultLocale({
 	fungal_rotcaster = "Fungal Rotcaster",
 	particularly_bad_guy = "Particularly Bad Guy",
 })
+mod.displayName = L.fungarian_trash
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(414944, CL.roar) -- Battle Roar (Roar)
+mod:SetSpellRename(424798, CL.explosion) -- Bloated Eruption (Explosion)
+mod:SetSpellRename(424704, CL.frontal_cone) -- Vicious Stabs (Frontal Cone)
+mod:SetSpellRename(372529, CL.fear) -- Hideous Laughter (Fear)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.fungarian_trash
-	self:SetSpellRename(414944, CL.roar) -- Battle Roar (Roar)
-	self:SetSpellRename(424798, CL.explosion) -- Bloated Eruption (Explosion)
-	self:SetSpellRename(424704, CL.frontal_cone) -- Vicious Stabs (Frontal Cone)
-	self:SetSpellRename(372529, CL.fear) -- Hideous Laughter (Fear)
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

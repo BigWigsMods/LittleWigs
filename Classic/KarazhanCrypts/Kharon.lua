@@ -16,14 +16,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	kharon = "Kharon",
 })
+mod.displayName = L.kharon
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.kharon
-end
 
 function mod:GetOptions()
 	return {

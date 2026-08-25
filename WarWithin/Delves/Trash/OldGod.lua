@@ -29,14 +29,11 @@ local L = mod:SetDefaultLocale({
 	silent_slitherer = "Silent Slitherer",
 	amalgamized_mass = "Amalgamized Mass",
 })
+mod.displayName = L.old_god_trash
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.old_god_trash
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

@@ -26,12 +26,14 @@ local L = mod:SetDefaultLocale({
 })
 
 --------------------------------------------------------------------------------
--- Initialization
+-- Renames
 --
 
-function mod:OnRegister()
-	self:SetSpellRename(450714, CL.frontal_cone) -- Jagged Barbs (Frontal Cone)
-end
+mod:SetSpellRename(450714, CL.frontal_cone) -- Jagged Barbs (Frontal Cone)
+
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

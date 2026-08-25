@@ -16,14 +16,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	unkomon = "Unk'omon",
 })
+mod.displayName = L.unkomon
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.unkomon
-end
 
 function mod:GetOptions()
 	return {

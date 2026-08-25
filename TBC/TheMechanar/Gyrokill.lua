@@ -15,6 +15,7 @@ mod:RegisterEnableMob(19218)
 local L = mod:SetDefaultLocale({
 	bossName = "Gatewatcher Gyro-Kill",
 })
+mod.displayName = L.bossName -- no journal entry
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -25,10 +26,6 @@ function mod:GetOptions()
 		39193, -- Shadow Power
 		35311, -- Stream of Machine Fluid
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.bossName -- no journal entry
 end
 
 function mod:OnBossEnable()

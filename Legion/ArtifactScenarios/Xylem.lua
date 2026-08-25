@@ -39,6 +39,7 @@ local L = mod:SetDefaultLocale({
 	warmup_trigger1 = "With the Focusing Iris under my control", -- You are too late, demon hunter! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!
 	warmup_trigger2 = "Drained of magic, your world will be ripe", -- Drained of magic, your world will be ripe for destruction by my demon masters... and my power will be limitless!
 })
+mod.displayName = L.name
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -63,10 +64,6 @@ function mod:GetOptions()
 		[242015] = L.name,
 		[232672] = L.corruptingShadows,
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

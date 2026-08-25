@@ -27,12 +27,14 @@ local L = mod:SetDefaultLocale({
 })
 
 --------------------------------------------------------------------------------
--- Initialization
+-- Renames
 --
 
-function mod:OnRegister()
-	self:SetSpellRename(257459, CL.fixate) -- On the Hook (Fixate)
-end
+mod:SetSpellRename(257459, CL.fixate) -- On the Hook (Fixate)
+
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {

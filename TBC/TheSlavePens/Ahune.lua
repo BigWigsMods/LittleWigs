@@ -25,14 +25,11 @@ local L = mod:SetDefaultLocale({
 	warmup_trigger = "The Ice Stone has melted!",
 	warmup_icon = "spell_frost_summonwaterelemental",
 })
+mod.displayName = L.ahune
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.ahune
-end
 
 local autotalk = mod:AddAutoTalkOption(true, "boss")
 function mod:GetOptions()

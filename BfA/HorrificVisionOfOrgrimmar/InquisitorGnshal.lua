@@ -24,6 +24,7 @@ local criesOfTheVoidCount = 1
 local L = mod:SetDefaultLocale({
 	inquisitor_gnshal = "Inquisitor Gnshal",
 })
+mod.displayName = L.inquisitor_gnshal
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -34,10 +35,6 @@ function mod:GetOptions()
 		{307863, "SAY"}, -- Void Torrent
 		304976, -- Cries of the Void
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.inquisitor_gnshal
 end
 
 function mod:OnBossEnable()

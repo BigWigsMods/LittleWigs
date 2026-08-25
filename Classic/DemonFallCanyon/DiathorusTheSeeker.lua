@@ -17,14 +17,11 @@ mod:SetStage(1)
 local L = mod:SetDefaultLocale({
 	diathorus_the_seeker = "Diathorus the Seeker",
 })
+mod.displayName = L.diathorus_the_seeker
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.diathorus_the_seeker
-end
 
 function mod:GetOptions()
 	return {

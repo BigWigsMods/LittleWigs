@@ -14,14 +14,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	blademaster_darza = "Blademaster Darza",
 })
+mod.displayName = L.blademaster_darza
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.blademaster_darza
-end
 
 function mod:GetOptions()
 	return {

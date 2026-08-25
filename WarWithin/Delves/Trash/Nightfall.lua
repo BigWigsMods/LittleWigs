@@ -32,16 +32,18 @@ local L = mod:SetDefaultLocale({
 	nightfall_shadeguard = "Nightfall Shadeguard",
 	shadow_elemental = "Shadow Elemental",
 })
+mod.displayName = L.nightfall_trash
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(443292, CL.frontal_cone) -- Umbral Slam (Frontal Cone)
+mod:SetSpellRename(434281, CL.explosion) -- Echo of Renilash (Explosion)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.nightfall_trash
-	self:SetSpellRename(443292, CL.frontal_cone) -- Umbral Slam (Frontal Cone)
-	self:SetSpellRename(434281, CL.explosion) -- Echo of Renilash (Explosion)
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

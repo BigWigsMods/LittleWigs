@@ -53,14 +53,11 @@ local L = mod:SetDefaultLocale({
 	zekvir = "Zekvir",
 	the_underpin = "The Underpin",
 })
+mod.displayName = L.rares
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.rares
-end
 
 function mod:GetOptions()
 	return {

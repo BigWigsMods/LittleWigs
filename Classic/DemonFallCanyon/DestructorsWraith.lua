@@ -16,14 +16,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	destructors_wraith = "Destructor's Wraith",
 })
+mod.displayName = L.destructors_wraith
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.destructors_wraith
-end
 
 function mod:GetOptions()
 	return {

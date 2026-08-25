@@ -16,16 +16,18 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	shroomsprew = "Shroomsprew",
 })
+mod.displayName = L.shroomsprew
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(415499, CL.weakened) -- Dizzy (Weakened)
+mod:SetSpellRename(415492, CL.charge) -- Fungal Charge (Charge)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.shroomsprew
-	self:SetSpellRename(415499, CL.weakened) -- Dizzy (Weakened)
-	self:SetSpellRename(415492, CL.charge) -- Fungal Charge (Charge)
-end
 
 function mod:GetOptions()
 	return {

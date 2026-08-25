@@ -19,15 +19,17 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	bogpiper = "Bogpiper",
 })
+mod.displayName = L.bogpiper
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(454213, CL.charge) -- Muck Charge (Charge)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.bogpiper
-	self:SetSpellRename(454213, CL.charge) -- Muck Charge (Charge)
-end
 
 function mod:GetOptions()
 	return {

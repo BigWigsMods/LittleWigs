@@ -15,6 +15,7 @@ mod:RegisterEnableMob(19710)
 local L = mod:SetDefaultLocale({
 	bossName = "Gatewatcher Iron-Hand",
 })
+mod.displayName = L.bossName -- no journal entry
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -26,10 +27,6 @@ function mod:GetOptions()
 		35311, -- Stream of Machine Fluid
 		{39194, "CASTBAR"}, -- Jackhammer
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.bossName -- no journal entry
 end
 
 function mod:OnBossEnable()

@@ -14,6 +14,7 @@ mod:RegisterEnableMob(32273)
 local L = mod:SetDefaultLocale({
 	name = "Infinite Corruptor",
 })
+mod.displayName = L.name
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -23,10 +24,6 @@ function mod:GetOptions()
 	return {
 		60588, -- Corrupting Blight
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

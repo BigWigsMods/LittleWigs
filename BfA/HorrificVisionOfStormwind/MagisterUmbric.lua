@@ -24,6 +24,7 @@ local frozenStormCount = 1
 local L = mod:SetDefaultLocale({
 	magister_umbric = "Magister Umbric",
 })
+mod.displayName = L.magister_umbric
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,10 +36,6 @@ function mod:GetOptions()
 		309648, -- Tainted Polymorph
 		{309451, "CASTBAR"}, -- Frozen Storm
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.magister_umbric
 end
 
 function mod:OnBossEnable()

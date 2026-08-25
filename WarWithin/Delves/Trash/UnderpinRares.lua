@@ -42,21 +42,23 @@ local L = mod:SetDefaultLocale({
 
 	["1216937_icon"] = "inv_goblinshreddermech_black", -- Underpin's Grand Entrance
 })
+mod.displayName = L.rares
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(1216790, CL.charge) -- Forward Charge (Charge)
+mod:SetSpellRename(1216806, CL.frontal_cone) -- There's the Door (Frontal Cone)
+mod:SetSpellRename(1213497, CL.enrage) -- Me Go Mad (Enrage)
+mod:SetSpellRename(1217301, CL.charge) -- Heedless Charge (Charge)
+mod:SetSpellRename(1213852, CL.leap) -- Crush (Leap)
+mod:SetSpellRename(1217371, CL.frontal_cone) -- Flamethrower (Frontal Cone)
+mod:SetSpellRename(1214147, CL.bombs) -- Time Bomb Launcher (Bombs)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.rares
-	self:SetSpellRename(1216790, CL.charge) -- Forward Charge (Charge)
-	self:SetSpellRename(1216806, CL.frontal_cone) -- There's the Door (Frontal Cone)
-	self:SetSpellRename(1213497, CL.enrage) -- Me Go Mad (Enrage)
-	self:SetSpellRename(1217301, CL.charge) -- Heedless Charge (Charge)
-	self:SetSpellRename(1213852, CL.leap) -- Crush (Leap)
-	self:SetSpellRename(1217371, CL.frontal_cone) -- Flamethrower (Frontal Cone)
-	self:SetSpellRename(1214147, CL.bombs) -- Time Bomb Launcher (Bombs)
-end
 
 function mod:GetOptions()
 	return {

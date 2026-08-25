@@ -36,6 +36,7 @@ local L = mod:SetDefaultLocale({
 	soldier = "Corrupted Risen Soldier",
 	arbalest = "Corrupted Risen Arbalest",
 })
+mod.displayName = L.erdris
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -65,10 +66,6 @@ function mod:GetOptions()
 		[235823] = L.soldier,
 		[237188] = L.erdris
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.erdris
 end
 
 function mod:OnBossEnable()

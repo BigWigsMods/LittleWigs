@@ -19,14 +19,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	mirror_master_murkna = "Mirror Master Murkna",
 })
+mod.displayName = L.mirror_master_murkna
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.mirror_master_murkna
-end
 
 function mod:GetOptions()
 	return {

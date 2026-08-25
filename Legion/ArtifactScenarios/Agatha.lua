@@ -39,6 +39,7 @@ local L = mod:SetDefaultLocale({
 
 	stacks = "Stacks",
 })
+mod.displayName = L.name
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -60,10 +61,6 @@ function mod:GetOptions()
 		imp_servant = CL.adds,
 		warmup = L.name,
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

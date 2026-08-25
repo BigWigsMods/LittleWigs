@@ -14,14 +14,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	voidscorned_vagrant = "Voidscorned Vagrant",
 })
+mod.displayName = L.voidscorned_vagrant
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.voidscorned_vagrant
-end
 
 function mod:GetOptions()
 	return {

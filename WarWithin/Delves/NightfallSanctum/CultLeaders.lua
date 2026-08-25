@@ -29,14 +29,11 @@ local L = mod:SetDefaultLocale({
 	inquisitor_speaker = "Inquisitor Speaker",
 	shadeguard_speaker = "Shadeguard Speaker",
 })
+mod.displayName = L.cult_leaders
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.cult_leaders
-end
 
 function mod:GetOptions()
 	return {

@@ -16,14 +16,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	hellscreams_phantom = "Hellscream's Phantom",
 })
+mod.displayName = L.hellscreams_phantom
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.hellscreams_phantom
-end
 
 function mod:GetOptions()
 	return {

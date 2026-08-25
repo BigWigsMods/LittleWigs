@@ -24,14 +24,11 @@ local L = mod:SetDefaultLocale({
 	awakened_defense_matrix = "Awakened Defense Matrix",
 	overcharged_bot = "Overcharged Bot",
 })
+mod.displayName = L.overcharged_trash
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.overcharged_trash
-end
 
 function mod:GetOptions()
 	return {

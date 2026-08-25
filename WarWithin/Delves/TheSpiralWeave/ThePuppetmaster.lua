@@ -21,18 +21,20 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	the_puppetmaster = "The Puppetmaster",
 })
+mod.displayName = L.the_puppetmaster
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(450197, CL.charge) -- Skitter Charge (Charge)
+mod:SetSpellRename(450546, CL.shield) -- Webbed Aegis (Shield)
+mod:SetSpellRename(450509, CL.frontal_cone) -- Wide Swipe (Frontal Cone)
+mod:SetSpellRename(450714, CL.frontal_cone) -- Jagged Barbs (Frontal Cone)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.the_puppetmaster
-	self:SetSpellRename(450197, CL.charge) -- Skitter Charge (Charge)
-	self:SetSpellRename(450546, CL.shield) -- Webbed Aegis (Shield)
-	self:SetSpellRename(450509, CL.frontal_cone) -- Wide Swipe (Frontal Cone)
-	self:SetSpellRename(450714, CL.frontal_cone) -- Jagged Barbs (Frontal Cone)
-end
 
 function mod:GetOptions()
 	return {

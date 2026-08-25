@@ -50,22 +50,24 @@ local L = mod:SetDefaultLocale({
 	bomb_bot = "Bomb Bot",
 	rad_rat = "Rad Rat",
 })
+mod.displayName = L.goblin_trash
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(474001, CL.enrage) -- Bathe in Blood (Enrage)
+mod:SetSpellRename(473972, CL.charge) -- Reckless Charge (Charge)
+mod:SetSpellRename(473541, CL.frontal_cone) -- Flurry of Punches (Frontal Cone)
+mod:SetSpellRename(473537, CL.knockback) -- Uppercut (Knockback)
+mod:SetSpellRename(472842, CL.fixate) -- Destroy (Fixate)
+
+-- Obedient-ish Predator (231930)
+mod:SetSpellRename(473533, CL.enrage) -- Ferocious Howl (Enrage)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.goblin_trash
-	self:SetSpellRename(474001, CL.enrage) -- Bathe in Blood (Enrage)
-	self:SetSpellRename(473972, CL.charge) -- Reckless Charge (Charge)
-	self:SetSpellRename(473541, CL.frontal_cone) -- Flurry of Punches (Frontal Cone)
-	self:SetSpellRename(473537, CL.knockback) -- Uppercut (Knockback)
-	self:SetSpellRename(472842, CL.fixate) -- Destroy (Fixate)
-
-	-- Obedient-ish Predator (231930)
-	self:SetSpellRename(473533, CL.enrage) -- Ferocious Howl (Enrage)
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

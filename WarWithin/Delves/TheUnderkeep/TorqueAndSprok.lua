@@ -23,16 +23,18 @@ local L = mod:SetDefaultLocale({
 	torque_clankfire = "Torque Clankfire",
 	sprok = "Sprok",
 })
+mod.displayName = L.bossName
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(1215084, CL.enrage) -- Darkfuse Cocktail (Enrage)
+mod:SetSpellRename(1215015, CL.frontal_cone) -- This One, Boss? (Frontal Cone)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.bossName
-	self:SetSpellRename(1215084, CL.enrage) -- Darkfuse Cocktail (Enrage)
-	self:SetSpellRename(1215015, CL.frontal_cone) -- This One, Boss? (Frontal Cone)
-end
 
 function mod:GetOptions()
 	return {

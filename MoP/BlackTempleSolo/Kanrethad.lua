@@ -20,6 +20,7 @@ local L = mod:SetDefaultLocale({
 	start_say = "BEHOLD", -- BEHOLD! I have truly mastered the fel energies of this world! The demonic power I now command... It is indescribable, unlimited, OMNIPOTENT!
 	win_say = "Jubeka", -- Jubeka?! What are you...?!
 })
+mod.displayName = L.name
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,10 +36,6 @@ function mod:GetOptions()
 		[138561] = L.debuffs,
 		[138559] = "general",
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.name
 end
 
 function mod:VerifyEnable(unit, mobId)

@@ -63,17 +63,19 @@ local L = mod:SetDefaultLocale({
 	nullbot = "Nullbot",
 	awakened_phalanx = "Awakened Phalanx",
 })
+mod.displayName = L.awakening_the_machine
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(462892, CL.beam) -- Hazardous Beam (Beam)
+mod:SetSpellRename(462983, CL.bomb) -- Volatile Magma (Bomb)
+mod:SetSpellRename(463081, CL.charge) -- Earthshaking Charge (Charge)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.awakening_the_machine
-	self:SetSpellRename(462892, CL.beam) -- Hazardous Beam (Beam)
-	self:SetSpellRename(462983, CL.bomb) -- Volatile Magma (Bomb)
-	self:SetSpellRename(463081, CL.charge) -- Earthshaking Charge (Charge)
-end
 
 function mod:GetOptions()
 	return {

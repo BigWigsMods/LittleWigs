@@ -36,6 +36,7 @@ local L = mod:SetDefaultLocale({
 	smoldering_infernal_desc = "Summons a Smoldering Infernal.",
 	smoldering_infernal_icon = "inv_infernalmountgreen",
 })
+mod.displayName = L.name
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -69,10 +70,6 @@ function mod:GetOptions()
 		[234423] = L.inquisitor,
 		[236572] = L.name,
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

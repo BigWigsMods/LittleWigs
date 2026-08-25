@@ -26,6 +26,7 @@ local L = mod:SetDefaultLocale({
 	["311530_icon"] = 311570, -- Seek And Destroy
 	["311530_desc"] = 311570, -- Seek And Destroy
 })
+mod.displayName = L.overlord_mathias_shaw
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -38,10 +39,6 @@ function mod:GetOptions()
 		-- Eye of Chaos
 		{308669, "NAMEPLATE"}, -- Dark Gaze
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.overlord_mathias_shaw
 end
 
 function mod:OnBossEnable()

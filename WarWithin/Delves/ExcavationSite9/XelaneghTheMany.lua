@@ -22,14 +22,11 @@ local tentaclesKilled = 0
 local L = mod:SetDefaultLocale({
 	xelanegh_the_many = "Xel'anegh The Many",
 })
+mod.displayName = L.xelanegh_the_many
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.xelanegh_the_many
-end
 
 function mod:GetOptions()
 	return {

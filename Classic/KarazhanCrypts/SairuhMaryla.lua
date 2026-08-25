@@ -16,14 +16,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	sairuh_maryla = "Sairuh Maryla",
 })
+mod.displayName = L.sairuh_maryla
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.sairuh_maryla
-end
 
 function mod:GetOptions()
 	return {

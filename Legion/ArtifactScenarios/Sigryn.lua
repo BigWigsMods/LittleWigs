@@ -31,6 +31,7 @@ local L = mod:SetDefaultLocale({
 
 	warmup_trigger = "What's this? The outsider has come to stop me?",
 })
+mod.displayName = L.sigryn
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -56,10 +57,6 @@ function mod:GetOptions()
 		[237949] = L.faljar,
 		[237947] = L.jarl,
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.sigryn
 end
 
 function mod:OnBossEnable()

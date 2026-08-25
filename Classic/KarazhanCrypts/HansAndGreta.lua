@@ -21,14 +21,11 @@ local L = mod:SetDefaultLocale({
 	hans = "Hans",
 	greta = "Greta",
 })
+mod.displayName = L.hans_and_greta
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.hans_and_greta
-end
 
 function mod:GetOptions()
 	return {

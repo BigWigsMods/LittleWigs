@@ -22,14 +22,11 @@ local bossGUID = nil
 local L = mod:SetDefaultLocale({
 	zilbagob = "Zilbagob",
 })
+mod.displayName = L.zilbagob
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.zilbagob
-end
 
 function mod:GetOptions()
 	return {

@@ -27,14 +27,11 @@ local L = mod:SetDefaultLocale({
 	jank = "Jank",
 	gold_rustboot = "Gold Rustboot",
 })
+mod.displayName = L.goblins
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.goblins
-end
 
 function mod:GetOptions()
 	return {

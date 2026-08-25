@@ -21,6 +21,7 @@ local L = mod:SetDefaultLocale({
 	["305708_desc"] = 305672,
 	warmup_icon = "spell_arcane_teleportstormwind",
 })
+mod.displayName = L.therum_deepforge
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -32,10 +33,6 @@ function mod:GetOptions()
 		305708, -- Explosive Ordnance
 		309671, -- Empowered Forge Breath
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.therum_deepforge
 end
 
 function mod:OnBossEnable()

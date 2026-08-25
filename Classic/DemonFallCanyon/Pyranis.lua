@@ -16,14 +16,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	pyranis = "Pyranis",
 })
+mod.displayName = L.pyranis
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.pyranis
-end
 
 function mod:GetOptions()
 	return {

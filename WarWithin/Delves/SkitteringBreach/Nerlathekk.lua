@@ -19,14 +19,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	nerlathekk_the_skulking = "Nerl'athekk the Skulking",
 })
+mod.displayName = L.nerlathekk_the_skulking
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.nerlathekk_the_skulking
-end
 
 function mod:GetOptions()
 	return {

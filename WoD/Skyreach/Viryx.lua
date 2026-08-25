@@ -42,11 +42,6 @@ function mod:GetOptions()
 	}
 end
 
-function mod:OnRegister()
-	-- delayed for custom locale
-	solarZealotMarker = mod:AddMarkerOption(true, "npc", 8, "solar_zealot", 8)
-end
-
 function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_SPELLCAST_SUCCEEDED", nil, "boss1", "boss2", "boss3")
 

@@ -119,11 +119,6 @@ function mod:GetOptions()
 	}
 end
 
-function mod:OnRegister()
-	-- delayed for custom locale
-	evokedSpiritMarker = mod:AddMarkerOption(true, "npc", 8, "evoked_spirit", 8)
-end
-
 function mod:OnBossEnable()
 	-- Warmups
 	self:RegisterEvent("CHAT_MSG_MONSTER_YELL")

@@ -22,6 +22,7 @@ local L = mod:SetDefaultLocale({
 	pet_trigger_3 = "Hunt them down!",
 	adds_icon = "inv_jewelcrafting_purpleboar",
 })
+mod.displayName = L.rexxar
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,10 +36,6 @@ function mod:GetOptions()
 	}, {
 		[304251] = CL.adds,
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.rexxar
 end
 
 function mod:OnBossEnable()

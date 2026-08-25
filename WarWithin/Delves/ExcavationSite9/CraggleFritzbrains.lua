@@ -19,14 +19,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	craggle_fritzbrains = "Craggle Fritzbrains",
 })
+mod.displayName = L.craggle_fritzbrains
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.craggle_fritzbrains
-end
 
 function mod:GetOptions()
 	return {

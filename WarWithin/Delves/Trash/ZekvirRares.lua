@@ -53,19 +53,21 @@ local L = mod:SetDefaultLocale({
 	zekvir_breach_desc = "Show an alert when Zekvir is spawning in the Delve.",
 	zekvir_breach_icon = "INV_Achievement_RaidNerubian_NerubianHulk",
 })
+mod.displayName = L.rares
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(445781, CL.frontal_cone) -- Lava Blast (Frontal Cone)
+mod:SetSpellRename(415253, CL.frontal_cone) -- Fungal Breath (Frontal Cone)
+mod:SetSpellRename(415250, CL.explosion) -- Fungal Bloom (Explosion)
+mod:SetSpellRename(449038, CL.spikes) -- Impaling Spikes (Spikes)
+mod:SetSpellRename(450492, CL.fear) -- Horrendous Roar (Fear)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.rares
-	self:SetSpellRename(445781, CL.frontal_cone) -- Lava Blast (Frontal Cone)
-	self:SetSpellRename(415253, CL.frontal_cone) -- Fungal Breath (Frontal Cone)
-	self:SetSpellRename(415250, CL.explosion) -- Fungal Bloom (Explosion)
-	self:SetSpellRename(449038, CL.spikes) -- Impaling Spikes (Spikes)
-	self:SetSpellRename(450492, CL.fear) -- Horrendous Roar (Fear)
-end
 
 local autotalk = mod:AddAutoTalkOption(false, "boss")
 function mod:GetOptions()

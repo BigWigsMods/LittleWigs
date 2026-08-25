@@ -22,14 +22,11 @@ local etherealChargeCount = 1
 local L = mod:SetDefaultLocale({
 	dark_rider = "Dark Rider",
 })
+mod.displayName = L.dark_rider
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.dark_rider
-end
 
 function mod:GetOptions()
 	return {

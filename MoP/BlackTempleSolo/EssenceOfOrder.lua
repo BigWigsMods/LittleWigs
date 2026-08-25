@@ -14,6 +14,7 @@ mod:RegisterEnableMob(68151)
 local L = mod:SetDefaultLocale({
 	name = "Essence of Order",
 })
+mod.displayName = L.name
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -23,10 +24,6 @@ function mod:GetOptions()
 	return {
 		134225, 134234
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

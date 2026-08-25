@@ -17,13 +17,15 @@ local heaveDebrisRemaining = 3
 local nextSinlightVisions = 0
 
 --------------------------------------------------------------------------------
--- Initialization
+-- Renames
 --
 
-function mod:OnRegister()
-	self:SetSpellRename(322711, CL.beams) -- Refracted Sinlight (Beams)
-	self:SetSpellRename(339237, CL.fear) -- Sinlight Visions (Fear)
-end
+mod:SetSpellRename(322711, CL.beams) -- Refracted Sinlight (Beams)
+mod:SetSpellRename(339237, CL.fear) -- Sinlight Visions (Fear)
+
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {

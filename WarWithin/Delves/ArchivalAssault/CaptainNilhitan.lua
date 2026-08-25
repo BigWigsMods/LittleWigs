@@ -16,14 +16,11 @@ mod:SetAllowWin(true)
 local L = mod:SetDefaultLocale({
 	captain_nilhitan = "Captain Nil'hitan",
 })
+mod.displayName = L.captain_nilhitan
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.captain_nilhitan
-end
 
 function mod:GetOptions()
 	return {
