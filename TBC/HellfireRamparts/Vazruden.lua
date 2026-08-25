@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Vazruden", 543, 529)
@@ -19,7 +19,7 @@ mod:RegisterEnableMob(17537, 17536, 17307) -- Vazruden, Nazan <Vazruden's Mount>
 local deaths = 0
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()

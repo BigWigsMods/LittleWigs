@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Anub'arakAN", 601, 587) -- AN (Azjol-Nerub) is intentional to prevent conflict with Anub'arak from Trial of the Crusader
@@ -9,13 +9,13 @@ mod:SetEncounterID(mod:Classic() and 218 or 1973)
 mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local nextSubmergeWarning = 80
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -37,7 +37,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:Pound(args)

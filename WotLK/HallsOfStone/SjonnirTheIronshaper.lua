@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Sjonnir The Ironshaper", 599, 607)
@@ -9,7 +9,7 @@ mod:SetEncounterID(mod:Classic() and 569 or 1998)
 mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -25,7 +25,7 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:StaticCharge(args)

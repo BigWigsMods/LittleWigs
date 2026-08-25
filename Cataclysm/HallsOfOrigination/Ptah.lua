@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Earthrager Ptah", 644, 125)
@@ -9,7 +9,7 @@ mod.engageId = 1076
 mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -23,5 +23,5 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --

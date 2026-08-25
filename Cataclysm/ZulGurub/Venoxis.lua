@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("High Priest Venoxis", 859, 175)
@@ -9,13 +9,13 @@ mod:SetEncounterID(1178)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local breathsLeft = 3
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -45,7 +45,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 do

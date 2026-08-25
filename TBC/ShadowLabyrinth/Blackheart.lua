@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Blackheart the Inciter", 555, 545)
@@ -9,7 +9,7 @@ mod:RegisterEnableMob(18667)
 -- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -31,7 +31,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:Chaos(args)

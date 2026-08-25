@@ -4,7 +4,7 @@
 -- - The boss is bugged as of 7.3.5 and doesn't cast Shield of the Perfidious. When/if it is fixed, make the module warn about it.
 
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Commander Springvale", 33, 98)
@@ -14,7 +14,7 @@ mod.engageId = 1071
 --mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -44,7 +44,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:DesecrationCast(args)

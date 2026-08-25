@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("King Dred", 600, 590)
@@ -9,7 +9,7 @@ mod:SetEncounterID(mod:Classic() and 373 or 1977)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -31,7 +31,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:PiercingSlash(args)

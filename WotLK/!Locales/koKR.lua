@@ -27,7 +27,7 @@ BigWigsAPI.SetBossModuleLocale("Halls of Lightning Trash", {
 
 BigWigsAPI.SetBossModuleLocale("Tribunal of Ages", {
 	engage_trigger = "이제 잘 보시라고요", -- Now keep an eye out! I'll have this licked in two shakes of a--
-	defeat_trigger = "늙은이의 노련한 손길", --  Ha! The old magic fingers finally won through! Now let's get down to--
+	defeat_trigger = "늙은이의 노련한 손길", -- Ha! The old magic fingers finally won through! Now let's get down to--
 	fail_trigger = "아직은 아니야... 아직은 아니--",
 
 	timers = "타이머",

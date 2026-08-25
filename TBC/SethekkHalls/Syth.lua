@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Darkweaver Syth", 556, 541)
@@ -9,13 +9,13 @@ mod.engageId = 1903
 -- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local elementalsWarnings = 1
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -44,7 +44,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 do

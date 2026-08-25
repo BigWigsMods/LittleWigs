@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Mekgineer Steamrigger", {545, 2849}, 574)
@@ -9,7 +9,7 @@ mod.engageId = 1943
 -- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local nextAddWarning = 80
@@ -26,7 +26,7 @@ local L = mod:SetDefaultLocale({
 })
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -56,7 +56,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 
 do
 	local playerList = mod:NewTargetList()

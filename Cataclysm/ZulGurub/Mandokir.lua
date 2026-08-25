@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 
 local mod, CL = BigWigs:NewBoss("Bloodlord Mandokir", 859, 176)
 if not mod then return end
@@ -8,7 +8,7 @@ mod.engageId = 1179
 mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 
 function mod:GetOptions()
 	return {
@@ -29,7 +29,7 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 
 function mod:DevastatingSlam(args)
 	self:MessageOld(args.spellId, "red", "info")

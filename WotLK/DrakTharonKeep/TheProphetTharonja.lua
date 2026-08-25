@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("The Prophet Tharon'ja", 600, 591)
@@ -9,7 +9,7 @@ mod:SetEncounterID(mod:Classic() and 375 or 1975)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -32,7 +32,7 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:UNIT_HEALTH(event, unit)

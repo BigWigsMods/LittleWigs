@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Trollgore", 600, 588)
@@ -9,7 +9,7 @@ mod:RegisterEnableMob(26630)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -45,7 +45,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:InfectedWound(args)

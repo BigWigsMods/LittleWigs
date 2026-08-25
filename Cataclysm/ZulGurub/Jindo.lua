@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Jin'do the Godbreaker", 859, 185)
@@ -9,7 +9,7 @@ mod.engageId = 1182
 mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local barriersLeft = 3
@@ -23,7 +23,7 @@ local L = mod:SetDefaultLocale({
 })
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -56,7 +56,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:ShadowsOfHakkar(args)

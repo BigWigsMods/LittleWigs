@@ -20,7 +20,7 @@ local lastKill = nil
 
 local L = mod:SetDefaultLocale({
 	engage_trigger = "Now keep an eye out", -- Now keep an eye out! I'll have this licked in two shakes of a--
-	defeat_trigger = "The old magic fingers", --  Ha! The old magic fingers finally won through! Now let's get down to--
+	defeat_trigger = "The old magic fingers", -- Ha! The old magic fingers finally won through! Now let's get down to--
 	fail_trigger = "Not yet... not ye--",
 
 	timers = "Timers",

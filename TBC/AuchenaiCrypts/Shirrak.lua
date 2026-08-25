@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 
 local mod, CL = BigWigs:NewBoss("Shirrak the Dead Watcher", 558, 523)
 if not mod then return end
@@ -8,7 +8,7 @@ mod:SetEncounterID(1890)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 
 function mod:GetOptions()
 	return {
@@ -21,7 +21,7 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 
 function mod:CHAT_MSG_RAID_BOSS_EMOTE(_, _, source, _, _, target) -- Focus Fire
 	if not self:IsSecret(source) and not self:IsSecret(target) and source == self.displayName then -- this is the only BOSS_EMOTE that appears during this encounter

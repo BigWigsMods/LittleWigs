@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 
 local mod, CL = BigWigs:NewBoss("Krik'thir the Gatewatcher", 601, 585)
 if not mod then return end
@@ -8,7 +8,7 @@ mod:SetEncounterID(mod:Classic() and 216 or 1971)
 mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 
 function mod:GetOptions()
 	return {
@@ -26,7 +26,7 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 
 function mod:CurseOfFatigue(args)
 	self:TargetMessage(52592, "yellow", args.destName)

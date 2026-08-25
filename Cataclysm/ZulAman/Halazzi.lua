@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Halazzi", 568, 189)
@@ -9,7 +9,7 @@ mod.engageId = 1192
 -- mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local spiritPhasesLeft = 2
@@ -25,7 +25,7 @@ local L = mod:SetDefaultLocale({
 })
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -54,7 +54,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:FlameShock(args)

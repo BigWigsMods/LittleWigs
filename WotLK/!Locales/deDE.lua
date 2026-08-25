@@ -27,7 +27,7 @@ BigWigsAPI.SetBossModuleLocale("Halls of Lightning Trash", {
 
 BigWigsAPI.SetBossModuleLocale("Tribunal of Ages", {
 	engage_trigger = "Haltet jetzt die Augen offen", -- Now keep an eye out! I'll have this licked in two shakes of a--
-	defeat_trigger = "Die alten, magischen Finger", --  Ha! The old magic fingers finally won through! Now let's get down to--
+	defeat_trigger = "Die alten, magischen Finger", -- Ha! The old magic fingers finally won through! Now let's get down to--
 	fail_trigger = "Noch nicht... noch nich--",
 
 	timers = "Timer",

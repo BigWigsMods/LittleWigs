@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 
 local mod, CL = BigWigs:NewBoss("Falric", 668, 601)
 if not mod then return end
@@ -8,7 +8,7 @@ mod:SetEncounterID(mod:Classic() and 841 or 1992)
 mod:SetRespawnTime(30) -- you have to actually walk towards the altar, nothing will respawn on its own
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 
 function mod:GetOptions()
 	return {
@@ -33,7 +33,7 @@ function mod:OnWin()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 
 function mod:QuiveringStrike(args)
 	if self:Me(args.destGUID) or self:Dispeller("magic") then

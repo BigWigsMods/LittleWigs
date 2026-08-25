@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Anzu", 556, 542)
@@ -9,7 +9,7 @@ mod.engageId = 1904
 -- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local nextBroodWarning = 80
@@ -17,7 +17,7 @@ local addsAlive = 0
 local castingScreech = false
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -52,7 +52,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:ParalyzingScreech(args)

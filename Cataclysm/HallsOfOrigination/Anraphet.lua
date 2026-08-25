@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Anraphet", 644, 126)
@@ -9,7 +9,7 @@ mod.engageId = 1075
 mod.respawnTime = 39 -- respawns after 30s but is unattackable for a while
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -41,7 +41,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:AlphaBeamsCast(args)

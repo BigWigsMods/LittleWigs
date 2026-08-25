@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------------
 -- TODO List:
 -- - Seeds are interrupted for Smash / Execution Combo, timer started in Smash
---   might be wrong
+--  might be wrong
 
 --------------------------------------------------------------------------------
 -- Module Declaration

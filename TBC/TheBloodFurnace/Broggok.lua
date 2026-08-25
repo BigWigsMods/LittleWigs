@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 
 local mod, CL = BigWigs:NewBoss("Broggok", {542, 2849}, 556)
 if not mod then return end
@@ -8,7 +8,7 @@ mod:RegisterEnableMob(17380)
 -- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Initialize
+-- Initialize
 
 function mod:GetOptions()
 	return {
@@ -23,7 +23,7 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 
 do
 	local prev = 0

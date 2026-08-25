@@ -18,7 +18,7 @@ local L = mod:SetDefaultLocale({
 })
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 
 function mod:GetOptions()
 	return {
@@ -38,7 +38,7 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if not self:IsSecret(msg) and msg:find(L.warmup_trigger, nil, true) then

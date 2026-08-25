@@ -138,7 +138,7 @@ function mod:OnBossEnable()
 	self:Death("RefreshmentVendorDeath", 136470)
 
 	-- Mech Jockey
-	self:Log("SPELL_CAST_START", "ActivateMech", 267433) --  Heroic and Mythic only
+	self:Log("SPELL_CAST_START", "ActivateMech", 267433) -- Heroic and Mythic only
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Grease Gun
 
 	-- Mechanized Peacekeeper

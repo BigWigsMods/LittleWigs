@@ -1,6 +1,6 @@
 
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Baron Ashbury", 33, 96)
@@ -10,7 +10,7 @@ mod.engageId = 1069
 mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -38,7 +38,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:PainAndSuffering(args)

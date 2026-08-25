@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Archbishop Benedictus", 940, 341)
@@ -10,7 +10,7 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -51,7 +51,7 @@ function mod:OnEngage()
 end
 
 --------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 -- Stage One: The Light Will Consume You!

@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Ley-Guardian Eregos", 578, 625)
@@ -9,7 +9,7 @@ mod:SetEncounterID(mod:Classic() and 534 or 2013)
 mod:SetRespawnTime(30)
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -28,7 +28,7 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:EnragedAssault(args)

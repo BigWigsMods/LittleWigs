@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Novos the Summoner", 600, 589)
@@ -10,7 +10,7 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 -------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local crystalHandlersSpawned = 1 -- to decide whether CDBar needs to be displayed
@@ -26,7 +26,7 @@ mod:SetDefaultLocale({
 })
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -73,7 +73,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 -- Arcane Field, normal/heroic Blizzard

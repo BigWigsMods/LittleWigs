@@ -1,6 +1,6 @@
 
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Lord Walden", {33, 2849}, 99)
@@ -10,7 +10,7 @@ mod.engageId = 1073
 --mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local coagulantCastEnds = 0
@@ -26,7 +26,7 @@ local L = mod:SetDefaultLocale({
 })
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -62,7 +62,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:IceShards(args)

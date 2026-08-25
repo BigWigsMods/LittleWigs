@@ -10,7 +10,7 @@ mod:RegisterEnableMob(24664)
 -- mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
---  Localization
+-- Localization
 
 local L = mod:SetDefaultLocale({
 	-- Don't look so smug! I know what you're thinking, but Tempest Keep was merely a setback. Did you honestly believe I would trust the future to some blind, half-night elf mongrel?

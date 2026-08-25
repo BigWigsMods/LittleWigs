@@ -1,6 +1,6 @@
 
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Lord Godfrey", 33, 100)
@@ -10,13 +10,13 @@ mod.engageId = 1072
 mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local cursedBulletsCount = 0
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -48,7 +48,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:CursedBullets(args)

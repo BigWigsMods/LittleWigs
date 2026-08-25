@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Argent Confessor Paletress", 650, 636)
@@ -8,7 +8,7 @@ mod:RegisterEnableMob(34928)
 --mod.engageId = 2023 -- she shares it with Eadric
 
 -------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local shielded = false
@@ -24,7 +24,7 @@ mod:SetDefaultLocale({
 })
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -68,7 +68,7 @@ function mod:VerifyEnable(unit) -- becomes friendly after being defeated
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:ReflectiveShield(args)

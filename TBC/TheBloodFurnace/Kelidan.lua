@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 
 local mod, CL = BigWigs:NewBoss("Keli'dan the Breaker", 542, 557)
 if not mod then return end
@@ -8,7 +8,7 @@ mod:RegisterEnableMob(17377)
 -- mod.respawnTime = 0 -- resets, doesn't respawn
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 
 function mod:GetOptions()
 	return {
@@ -22,7 +22,7 @@ function mod:OnBossEnable()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 
 function mod:BurningNova(args)
 	self:MessageOld(-5388, "red", nil, CL.casting:format(args.spellName))

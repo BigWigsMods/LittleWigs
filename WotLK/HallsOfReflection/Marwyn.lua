@@ -1,5 +1,5 @@
 -------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 
 local mod, CL = BigWigs:NewBoss("Marwyn", 668, 602)
 if not mod then return end
@@ -10,7 +10,7 @@ mod:RegisterEnableMob(38113)
 -- mod:SetRespawnTime(30) -- you have to actually walk towards the altar, nothing will respawn on its own
 
 -------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 
 function mod:GetOptions()
 	return {
@@ -43,7 +43,7 @@ function mod:OnEngage()
 end
 
 -------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 
 function mod:Warmup()
 	-- There's a 60s break before the 6th wave spawns,
