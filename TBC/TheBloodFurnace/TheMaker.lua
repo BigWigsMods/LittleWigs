@@ -1,14 +1,16 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("The Maker", 542, 555)
 if not mod then return end
 mod:RegisterEnableMob(17381)
--- mod.engageId = 1922 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1922 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -22,8 +24,9 @@ function mod:OnBossEnable()
 	self:Death("Win", 17381)
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
+--
 
 function mod:Domination(args)
 	self:TargetMessage(args.spellId, "red", args.destName)

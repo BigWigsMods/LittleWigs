@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Nethermancer Sepethrea", 554, 564)
 if not mod then return end
 mod:RegisterEnableMob(19221)
--- mod.engageId = 1930 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1930 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Locals

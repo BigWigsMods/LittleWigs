@@ -8,8 +8,8 @@ mod:RegisterEnableMob(
 	29266, -- Xevozz
 	32231 -- Ethereal Wind Trader (replacement boss)
 )
--- mod.engageId = 0 -- no IEEU and ENCOUNTER_* events
--- mod.respawnTime = 0
+--mod.engageId = 0 -- no IEEU and ENCOUNTER_* events
+--mod.respawnTime = 0
 
 --------------------------------------------------------------------------------
 -- Localization

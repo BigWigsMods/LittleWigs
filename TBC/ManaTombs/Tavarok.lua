@@ -6,8 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Tavarok", 557, 535)
 if not mod then return end
 mod:RegisterEnableMob(18343)
--- mod.engageId = 1901 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1901 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization

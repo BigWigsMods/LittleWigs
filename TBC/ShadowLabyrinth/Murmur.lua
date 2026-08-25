@@ -1,14 +1,14 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Murmur", 555, 547)
 if not mod then return end
 mod:RegisterEnableMob(18708)
--- mod.engageId = 1910 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1910 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -26,7 +26,7 @@ function mod:OnBossEnable()
 	self:Death("Win", 18708)
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 

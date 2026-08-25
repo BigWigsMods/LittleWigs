@@ -15,8 +15,9 @@ mod.respawnTime = 64
 
 local nextSplitWarning = 71
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Localization
+--
 
 local L = mod:SetDefaultLocale({
 	-- I knew the prince would be angry, but I... I have not been myself. I had to let them out! The great one speaks to me, you see. Wait--outsiders. Kael'thas did not send you! Good... I'll just tell the prince you released the prisoners!

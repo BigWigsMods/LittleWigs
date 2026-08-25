@@ -6,8 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Yor", 557, 536)
 if not mod then return end
 mod:RegisterEnableMob(22927)
--- mod.engageId = 250 --no boss frames
--- mod.respawnTime = 0 -- no idea
+--mod.engageId = 250 --no boss frames
+--mod.respawnTime = 0 -- no idea
 
 --------------------------------------------------------------------------------
 -- Initialization

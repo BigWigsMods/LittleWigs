@@ -16,7 +16,7 @@ mod:RegisterEnableMob(24553, -- Apoko
 	24561 -- Yazzai
 )
 mod.engageId = 1895
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization

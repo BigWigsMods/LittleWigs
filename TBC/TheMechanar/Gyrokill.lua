@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Gatewatcher Gyro-Kill", 554)
 if not mod then return end
 mod:RegisterEnableMob(19218)
--- mod.engageId = 1933 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1933 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Localization

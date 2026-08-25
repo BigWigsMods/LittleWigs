@@ -6,8 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Rokmar the Crackler", 547, 571)
 if not mod then return end
 mod:RegisterEnableMob(17991)
--- mod.engageId = 1941 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1941 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization

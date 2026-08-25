@@ -1,13 +1,15 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Eadric the Pure", 650, 635)
 if not mod then return end
 mod:RegisterEnableMob(35119)
--- mod.engageId = 2023 -- doesn't fire ENCOUNTER_END on a wipe, also shares it with Paletress
+--mod.engageId = 2023 -- doesn't fire ENCOUNTER_END on a wipe, also shares it with Paletress
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -36,8 +38,9 @@ function mod:OnEngage()
 	end
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
+--
 
 function mod:Radiance(args)
 	self:MessageOld(args.spellId, "orange", nil, CL.casting:format(args.spellName))

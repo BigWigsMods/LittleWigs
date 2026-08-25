@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -10,7 +10,7 @@ mod:RegisterEnableMob(
 	17833 -- Durnholde Warden
 )
 mod:SetEncounterID(1907)
--- mod.respawnTime = 0 -- you have to free Thrall again if you wipe
+--mod.respawnTime = 0 -- you have to free Thrall again if you wipe
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -21,8 +21,9 @@ local L = mod:SetDefaultLocale({
 	warmup_trigger = "answer to Blackmoore",
 })
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -57,8 +58,9 @@ function mod:VerifyEnable(_, mobId)
 	end
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
+--
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 	if not self:IsSecret(msg) and msg:find(L.warmup_trigger, nil, true) then

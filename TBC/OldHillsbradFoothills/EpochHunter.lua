@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -14,7 +14,7 @@ mod:RegisterEnableMob(
 	18172 -- Infinite Saboteur
 )
 mod.engageId = 1906
--- mod.respawnTime = 0 -- you have to talk to Taretha again if you wipe
+--mod.respawnTime = 0 -- you have to talk to Taretha again if you wipe
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -27,8 +27,9 @@ local L = mod:SetDefaultLocale({
 	boss_warmup_trigger = "very existence!",
 })
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -45,8 +46,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SandBreath", 31914)
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
+--
 
 function mod:CHAT_MSG_MONSTER_YELL(event, msg)
 	if self:IsSecret(msg) then return end

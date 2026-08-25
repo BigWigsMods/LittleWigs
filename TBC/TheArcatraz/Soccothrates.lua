@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Wrath-Scryer Soccothrates", 552, 550)
 if not mod then return end
 mod:RegisterEnableMob(20886)
 mod.engageId = 1915
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Vexallus", 585, 531)
 if not mod then return end
 mod:RegisterEnableMob(24744)
 mod.engageId = 1898
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Localization

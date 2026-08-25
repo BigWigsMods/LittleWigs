@@ -1,13 +1,14 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Broggok", {542, 2849}, 556)
 if not mod then return end
 mod:RegisterEnableMob(17380)
--- mod.engageId = 1924 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1924 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialize
 
 function mod:GetOptions()
@@ -22,8 +23,9 @@ function mod:OnBossEnable()
 	self:Death("Win", 17380)
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
+--
 
 do
 	local prev = 0

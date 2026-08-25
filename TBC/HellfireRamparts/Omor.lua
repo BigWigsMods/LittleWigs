@@ -1,14 +1,14 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Omor the Unscarred", 543, 528)
 if not mod then return end
 mod:RegisterEnableMob(17308)
--- mod.engageId = 1891 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1891 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -24,7 +24,7 @@ function mod:OnBossEnable()
 	self:Death("Win", 17308)
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 

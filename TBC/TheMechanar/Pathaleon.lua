@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Pathaleon the Calculator", 554, 565)
 if not mod then return end
 mod:RegisterEnableMob(19220)
--- mod.engageId = 1931 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1931 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Localization

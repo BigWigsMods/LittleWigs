@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Gatewatcher Iron-Hand", 554)
 if not mod then return end
 mod:RegisterEnableMob(19710)
--- mod.engageId = 1934 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1934 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Localization

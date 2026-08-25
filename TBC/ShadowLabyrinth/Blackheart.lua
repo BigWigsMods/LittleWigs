@@ -1,14 +1,14 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Blackheart the Inciter", 555, 545)
 if not mod then return end
 mod:RegisterEnableMob(18667)
--- mod.engageId = 1909 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1909 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -30,7 +30,7 @@ function mod:OnEngage()
 	self:CDBar(33676, 15) -- Incite Chaos
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 

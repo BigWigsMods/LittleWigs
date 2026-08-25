@@ -1,5 +1,6 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Krik'thir the Gatewatcher", 601, 585)
 if not mod then return end
@@ -7,8 +8,9 @@ mod:RegisterEnableMob(28684)
 mod:SetEncounterID(mod:Classic() and 216 or 1971)
 mod:SetRespawnTime(30)
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -25,8 +27,9 @@ function mod:OnBossEnable()
 	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
+--
 
 function mod:CurseOfFatigue(args)
 	self:TargetMessage(52592, "yellow", args.destName)

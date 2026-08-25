@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Commander Sarannis", 553, 558)
 if not mod then return end
 mod:RegisterEnableMob(17976)
 mod.engageId = 1925
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization

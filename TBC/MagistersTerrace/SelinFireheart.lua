@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Selin Fireheart", 585, 530)
 if not mod then return end
 mod:RegisterEnableMob(24723)
 mod.engageId = 1897
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization

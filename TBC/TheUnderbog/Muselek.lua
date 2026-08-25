@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -6,9 +6,9 @@ local mod, CL = BigWigs:NewBoss("Swamplord Musel'ek", 546, 578)
 if not mod then return end
 mod:RegisterEnableMob(17826, 17827) -- Swamplord Musel'ek, Claw <Swamplord Musel'ek's Pet>
 mod.engageId = 1947
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -31,7 +31,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "EchoingRoar", 31429)
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 

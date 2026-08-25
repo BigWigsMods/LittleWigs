@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -9,14 +9,14 @@ mod:SetEncounterID(mod:Classic() and 371 or 1976)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Locals
 --
 
 local crystalHandlersSpawned = 1 -- to decide whether CDBar needs to be displayed
 local crystalHandlersLeft = 4 -- to display CL.mob_remaining messages
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Localization
 --
 
@@ -25,7 +25,7 @@ mod:SetDefaultLocale({
 	adds_desc = -6375, -- The description of the first stage that mentions that 4 of those need to be killed.
 })
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -72,7 +72,7 @@ function mod:OnEngage()
 	self:CDBar("adds", 15.5, CL.count:format(self:SpellName(-6378), crystalHandlersSpawned), "spell_shadow_raisedead")
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 

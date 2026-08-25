@@ -8,8 +8,8 @@ mod:RegisterEnableMob(
 	29315, -- Erekem
 	32226 -- Arakkoa Windwalker (replacement boss)
 )
--- mod.engageId = 0 -- no IEEU and ENCOUNTER_* events
--- mod.respawnTime = 0
+--mod.engageId = 0 -- no IEEU and ENCOUNTER_* events
+--mod.respawnTime = 0
 
 --------------------------------------------------------------------------------
 -- Initialization
