@@ -11,10 +11,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.hydrangea = "Hydrangea"
-end
+local L = mod:SetDefaultLocale({
+	hydrangea = "Hydrangea",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -29,35 +29,34 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- Opera Event
-	L.custom_on_autotalk = CL.autotalk
-	L.custom_on_autotalk_desc = "Instantly selects Barnes' gossip option to start the Opera Hall encounter."
-	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
-	L.opera_hall_wikket_story_text = "Opera Hall: Wikket"
-	L.opera_hall_wikket_story_trigger = "Shut your jabber" -- Shut your jabber, drama man! The Monkey King got another plan!
-	L.opera_hall_westfall_story_text = "Opera Hall: Westfall Story"
-	L.opera_hall_westfall_story_trigger = "we meet two lovers" -- Tonight... we meet two lovers born on opposite sides of Sentinel Hill.
-	L.opera_hall_beautiful_beast_story_text = "Opera Hall: Beautiful Beast"
-	L.opera_hall_beautiful_beast_story_trigger = "a tale of romance and rage" -- Tonight... a tale of romance and rage, one which will prove once and for all if beaty is more than skin deep.
+	custom_on_autotalk = CL.autotalk,
+	custom_on_autotalk_desc = "Instantly selects Barnes' gossip option to start the Opera Hall encounter.",
+	custom_on_autotalk_icon = mod:GetMenuIcon("SAY"),
+	opera_hall_wikket_story_text = "Opera Hall: Wikket",
+	opera_hall_wikket_story_trigger = "Shut your jabber", -- Shut your jabber, drama man! The Monkey King got another plan!
+	opera_hall_westfall_story_text = "Opera Hall: Westfall Story",
+	opera_hall_westfall_story_trigger = "we meet two lovers", -- Tonight... we meet two lovers born on opposite sides of Sentinel Hill.
+	opera_hall_beautiful_beast_story_text = "Opera Hall: Beautiful Beast",
+	opera_hall_beautiful_beast_story_trigger = "a tale of romance and rage", -- Tonight... a tale of romance and rage, one which will prove once and for all if beaty is more than skin deep.
 
 	-- Return to Karazhan: Lower
-	L.barnes = "Barnes"
-	L.ghostly_philanthropist = "Ghostly Philanthropist"
-	L.skeletal_usher = "Skeletal Usher"
-	L.spectral_attendant = "Spectral Attendant"
-	L.spectral_valet = "Spectral Valet"
-	L.spectral_retainer = "Spectral Retainer"
-	L.phantom_guardsman = "Phantom Guardsman"
-	L.wholesome_hostess = "Wholesome Hostess"
-	L.reformed_maiden = "Reformed Maiden"
-	L.spectral_charger = "Spectral Charger"
+	barnes = "Barnes",
+	ghostly_philanthropist = "Ghostly Philanthropist",
+	skeletal_usher = "Skeletal Usher",
+	spectral_attendant = "Spectral Attendant",
+	spectral_valet = "Spectral Valet",
+	spectral_retainer = "Spectral Retainer",
+	phantom_guardsman = "Phantom Guardsman",
+	wholesome_hostess = "Wholesome Hostess",
+	reformed_maiden = "Reformed Maiden",
+	spectral_charger = "Spectral Charger",
 
 	-- Return to Karazhan: Upper
-	L.chess_event = "Chess Event"
-	L.king = "King"
-end
+	chess_event = "Chess Event",
+	king = "King",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

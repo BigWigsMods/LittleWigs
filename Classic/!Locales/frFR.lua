@@ -1,21 +1,17 @@
 -- Dire Maul
 
-local L = BigWigs:NewBossLocale("Lethtendris", "frFR")
-if not L then return end
-if L then
-	L.pimgib = "Pimgib"
-end
+BigWigsAPI.SetBossModuleLocale("Lethtendris", {
+	pimgib = "Pimgib",
+})
 
 -- Stratholme
 
-L = BigWigs:NewBossLocale("Lord Aurius Rivendare", "frFR")
-if L then
-	L.death_pact_trigger = "Essaie de lancer Pacte mortel sur ses serviteurs !"
-end
+BigWigsAPI.SetBossModuleLocale("Lord Aurius Rivendare", {
+	death_pact_trigger = "Essaie de lancer Pacte mortel sur ses serviteurs !",
+})
 
 -- Blackrock Spire (Vanilla through Mists only)
 
-L = BigWigs:NewBossLocale("Pyroguard Emberseer", "frFR")
-if L then
-	L.pyroguard_emberseer = "Pyrogarde Prophète ardent"
-end
+BigWigsAPI.SetBossModuleLocale("Pyroguard Emberseer", {
+	pyroguard_emberseer = "Pyrogarde Prophète ardent",
+})

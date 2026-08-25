@@ -17,12 +17,11 @@ mod:SetStage(1)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.speaker_davenruth = "Speaker Davenruth"
-	L.reformed_fury = "Reformed Fury"
-	L.warmup_icon = "ability_rogue_nightblade"
-end
+local L = mod:SetDefaultLocale({
+	speaker_davenruth = "Speaker Davenruth",
+	reformed_fury = "Reformed Fury",
+	warmup_icon = "ability_rogue_nightblade",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

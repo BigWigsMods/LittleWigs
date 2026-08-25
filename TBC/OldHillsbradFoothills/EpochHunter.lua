@@ -20,13 +20,12 @@ mod.engageId = 1906
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- Ah, there you are. I had hoped to accomplish this with a bit of subtlety, but I suppose direct confrontation was inevitable. Your future, Thrall, must not come to pass and so... you and your troublesome friends must die!
-	L.trash_warmup_trigger = "troublesome friends"
+	trash_warmup_trigger = "troublesome friends",
 	-- Enough, I will erase your very existence!
-	L.boss_warmup_trigger = "very existence!"
-end
+	boss_warmup_trigger = "very existence!",
+})
 
 -------------------------------------------------------------------------------
 --  Initialization

@@ -1,187 +1,162 @@
 -- Altar of Fangs
 
-local L = BigWigs:NewBossLocale("Altar of Fangs Trash", "deDE")
-if L then
-	L.custom_on_mixture_autotalk_desc = "|cFFFF0000Benötigt 25 Fertigkeitspunkte der Kochkunst von Midnight oder Alchemie von Midnight.|r Wählt automatisch die NSC Dialogoption zur Gewährung des Buffs 'Mutierendes Elixier'.\n\n|T136242:16|tMutierendes Elixier\n{1310012}"
-end
+BigWigsAPI.SetBossModuleLocale("Altar of Fangs Trash", {
+	custom_on_mixture_autotalk_desc = "|cFFFF0000Benötigt 25 Fertigkeitspunkte der Kochkunst von Midnight oder Alchemie von Midnight.|r Wählt automatisch die NSC Dialogoption zur Gewährung des Buffs 'Mutierendes Elixier'.\n\n|T136242:16|tMutierendes Elixier\n{1310012}",
+})
 
 -- Delves: Atal'Aman
 
-L = BigWigs:NewBossLocale("Spiritflayer Jin'ma", "deDE")
-if L then
-	L.spiritflayer_jinma = "Geisterschänder Jin'Ma"
-end
+BigWigsAPI.SetBossModuleLocale("Spiritflayer Jin'ma", {
+	spiritflayer_jinma = "Geisterschänder Jin'Ma",
+})
 
 -- Delves: Collegiate Calamity
 
-L = BigWigs:NewBossLocale("Hydrangea", "deDE")
-if L then
-	L.hydrangea = "Hortensie"
-end
+BigWigsAPI.SetBossModuleLocale("Hydrangea", {
+	hydrangea = "Hortensie",
+})
 
-L = BigWigs:NewBossLocale("Infiltrator Garand", "deDE")
-if L then
-	L.infiltrator_garand = "Spitzel Garand"
-end
+BigWigsAPI.SetBossModuleLocale("Infiltrator Garand", {
+	infiltrator_garand = "Spitzel Garand",
+})
 
-L = BigWigs:NewBossLocale("Voidscorned Vagrant", "deDE")
-if L then
-	L.voidscorned_vagrant = "Leerenverschmähter Landstreicher"
-end
+BigWigsAPI.SetBossModuleLocale("Voidscorned Vagrant", {
+	voidscorned_vagrant = "Leerenverschmähter Landstreicher",
+})
 
 -- Delves: Parhelion Plaza
 
-L = BigWigs:NewBossLocale("Gladius Slaurna", "deDE")
-if L then
-	L.gladius_slaurna = "Gladius Slaurna"
-end
+BigWigsAPI.SetBossModuleLocale("Gladius Slaurna", {
+	gladius_slaurna = "Gladius Slaurna",
+})
 
 -- Delves: Shadowguard Point
 
-L = BigWigs:NewBossLocale("Chief-Arcanist Patram", "deDE")
-if L then
-	L.chiefarcanist_patram = "Chefarkanist Patram"
-end
+BigWigsAPI.SetBossModuleLocale("Chief-Arcanist Patram", {
+	chiefarcanist_patram = "Chefarkanist Patram",
+})
 
 -- Delves: Sunkiller Sanctum
 
-L = BigWigs:NewBossLocale("Esuritus", "deDE")
-if L then
-	L.esuritus = "Esuritus"
-end
+BigWigsAPI.SetBossModuleLocale("Esuritus", {
+	esuritus = "Esuritus",
+})
 
 -- Delves: The Darkway
 
-L = BigWigs:NewBossLocale("Infiltrator Gulkat", "deDE")
-if L then
-	L.infiltrator_gulkat = "Spitzel Gulkat"
-end
+BigWigsAPI.SetBossModuleLocale("Infiltrator Gulkat", {
+	infiltrator_gulkat = "Spitzel Gulkat",
+})
 
 -- Delves: The Grudge Pit
 
-L = BigWigs:NewBossLocale("Brightthorn", "deDE")
-if L then
-	L.brightthorn = "Strahldorn"
-end
+BigWigsAPI.SetBossModuleLocale("Brightthorn", {
+	brightthorn = "Strahldorn",
+})
 
-L = BigWigs:NewBossLocale("Gyrospore", "deDE")
-if L then
-	L.gyrospore = "Gyrospore"
-end
+BigWigsAPI.SetBossModuleLocale("Gyrospore", {
+	gyrospore = "Gyrospore",
+})
 
-L = BigWigs:NewBossLocale("Mycomight", "deDE")
-if L then
-	L.mycomight = "Myzelan"
-end
+BigWigsAPI.SetBossModuleLocale("Mycomight", {
+	mycomight = "Myzelan",
+})
 
 -- Delves: The Gulf of Memory
 
-L = BigWigs:NewBossLocale("Lumenia", "deDE")
-if L then
-	L.lumenia = "Lumenia"
-end
+BigWigsAPI.SetBossModuleLocale("Lumenia", {
+	lumenia = "Lumenia",
+})
 
-L = BigWigs:NewBossLocale("Mul'tha'ul", "deDE")
-if L then
-	L.multhaul = "Mul'tha'ul"
-end
+BigWigsAPI.SetBossModuleLocale("Mul'tha'ul", {
+	multhaul = "Mul'tha'ul",
+})
 
 -- Delves: The Shadow Enclave
 
-L = BigWigs:NewBossLocale("Antenorian", "deDE")
-if L then
-	L.antenorian = "Antenorian"
-end
+BigWigsAPI.SetBossModuleLocale("Antenorian", {
+	antenorian = "Antenorian",
+})
 
 -- Delves: Torment's Rise
 
-L = BigWigs:NewBossLocale("Nullaeus", "deDE")
-if L then
-	L.nullaeus = "Nullaeus"
-end
+BigWigsAPI.SetBossModuleLocale("Nullaeus", {
+	nullaeus = "Nullaeus",
+})
 
 -- Delves: Twilight Crypts
 
-L = BigWigs:NewBossLocale("Blademaster Darza", "deDE")
-if L then
-	L.blademaster_darza = "Klingenmeisterin Darza"
-end
+BigWigsAPI.SetBossModuleLocale("Blademaster Darza", {
+	blademaster_darza = "Klingenmeisterin Darza",
+})
 
 -- Delves: Venomfall Deeps
 
-L = BigWigs:NewBossLocale("Azta'rec", "deDE")
-if L then
-	L.aztarec = "Azta'rec"
-end
+BigWigsAPI.SetBossModuleLocale("Azta'rec", {
+	aztarec = "Azta'rec",
+})
 
 -- Delves: Trash
 
-L = BigWigs:NewBossLocale("Midnight Delve Trash", "deDE")
-if L then
-end
+BigWigsAPI.SetBossModuleLocale("Midnight Delve Trash", {})
 
 -- Den of Nalorakk
 
-L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "deDE")
-if L then
-	L.offerings_acquired = "Gaben erhalten"
-	L.offerings_acquired_desc = "Zeigt einen Alarm, wenn eine Gabe erhalten wurde."
-end
+BigWigsAPI.SetBossModuleLocale("Den of Nalorakk Trash", {
+	offerings_acquired = "Gaben erhalten",
+	offerings_acquired_desc = "Zeigt einen Alarm, wenn eine Gabe erhalten wurde.",
+})
 
 -- Maisara Caverns
 
-L = BigWigs:NewBossLocale("Maisara Caverns Trash", "deDE")
-if L then
-	L.prisoners_freed = "Gefangene befreit"
-	L.prisoners_freed_desc = "Zeigt einen Alarm, wenn ein Gefangener befreit wurde."
-	L.custom_on_cooking_pot_autotalk_desc = "Wählt automatisch die NSC Dialogoption zur Gewährung des Buffs 'Herzhafter Eintopf der Blutfratzen'.\n\n|T4659336:16|tHerzhafter Eintopf der Blutfratzen\n{1269056}"
-	L.custom_on_ritual_cauldron_autotalk_desc = "Wählt automatisch die NSC Dialogoption zur Gewährung des Buffs 'Ritualgemisch'.\n\n|T236271:16|tRitualgemisch\n{1271300}"
+BigWigsAPI.SetBossModuleLocale("Maisara Caverns Trash", {
+	prisoners_freed = "Gefangene befreit",
+	prisoners_freed_desc = "Zeigt einen Alarm, wenn ein Gefangener befreit wurde.",
+	custom_on_cooking_pot_autotalk_desc = "Wählt automatisch die NSC Dialogoption zur Gewährung des Buffs 'Herzhafter Eintopf der Blutfratzen'.\n\n|T4659336:16|tHerzhafter Eintopf der Blutfratzen\n{1269056}",
+	custom_on_ritual_cauldron_autotalk_desc = "Wählt automatisch die NSC Dialogoption zur Gewährung des Buffs 'Ritualgemisch'.\n\n|T236271:16|tRitualgemisch\n{1271300}",
 
-	L.cooking_pot = "Kochtopf"
-	L.ritual_cauldron = "Ritualkessel"
-end
+	cooking_pot = "Kochtopf",
+	ritual_cauldron = "Ritualkessel",
+})
 
 -- Murder Row
 
-L = BigWigs:NewBossLocale("Murder Row Trash", "deDE")
-if L then
-	L.snitches_interrogated = "Spitzel verhört"
-	L.snitches_interrogated_desc = "Zeigt einen Alarm, wenn ein Spitzel verhört wurde."
-end
+BigWigsAPI.SetBossModuleLocale("Murder Row Trash", {
+	snitches_interrogated = "Spitzel verhört",
+	snitches_interrogated_desc = "Zeigt einen Alarm, wenn ein Spitzel verhört wurde.",
+})
 
 -- Nexus-Point Xenas
 
-L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "deDE")
-if L then
-	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Benötigt 25 Fertigkeitspunkte der Ingenieurskunst von Midnight.|r Wählt automatisch die NSC Dialogoption zum Deaktivieren des arkanen Stolperdrahtes."
-end
+BigWigsAPI.SetBossModuleLocale("Nexus-Point Xenas Trash", {
+	custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Benötigt 25 Fertigkeitspunkte der Ingenieurskunst von Midnight.|r Wählt automatisch die NSC Dialogoption zum Deaktivieren des arkanen Stolperdrahtes.",
+})
 
 -- Common Trash
 
-L = BigWigs:NewBossLocale("Common Trash", "deDE")
-if L then
-	L.common_trash = "Gemeinsamer Trash"
-	L.trash_cast = "Zauber"
-	L.trash_cast_desc = "Alarmieren wenn ein normaler Gegner einen Zauber wirkt."
-	L.lieutenant_cast = "Zauber (Leutnant)"
-	L.lieutenant_cast_desc = "Alarmieren wenn ein Leutnant einen Zauber wirkt."
-	L.trash_channel = "Kanalisieren"
-	L.trash_channel_desc = "Alarmieren, wenn ein Gegner einen Zauber kanalisiert."
-	L.customization = "Anpassung"
-	L.all_units = "Alle Einheiten zeigen Nachrichten und geben Sounds wieder"
-	L.messages_all_sounds_target = "Alle Einheiten zeigen Nachrichten, aber nur Dein Ziel gibt Sounds wieder"
-	L.target_only = "Nur Dein Ziel zeigt Nachrichten und gibt Sounds wieder"
-	L.custom_select_unit_standard = "Normale Gegner"
-	L.custom_select_unit_standard_desc = "Wähle welche normalen Gegner Nachrichten anzeigen und Sounds wiedergeben."
-	L.custom_select_unit_lieutenant = "Leutnants"
-	L.custom_select_unit_lieutenant_desc = "Wähle welche Leutnant Gegner Nachrichten anzeigen und Sounds wiedergeben."
-	L.custom_select_throttle_type = "Drossel Typ"
-	L.custom_select_throttle_type_desc = "Welche Funktionen sollen gedrosselt werden"
-	L.custom_select_throttle_type_value1 = "Sowohl Nachrichten als auch Sounds"
-	L.custom_select_throttle_type_value2 = "Nur Sounds"
-	L.custom_select_throttle_duration = "Drossel Dauer"
-	L.custom_select_throttle_duration_desc = "Wartezeit zwischen Alarmen. Dein Ziel wird nie gedrosselt."
-	L.custom_select_throttle_duration_value1 = "2 Sekunden"
-	L.custom_select_throttle_duration_value2 = "1 Sekunde"
-	L.custom_select_throttle_duration_value3 = "3 Sekunden"
-end
+BigWigsAPI.SetBossModuleLocale("Common Trash", {
+	common_trash = "Gemeinsamer Trash",
+	trash_cast = "Zauber",
+	trash_cast_desc = "Alarmieren wenn ein normaler Gegner einen Zauber wirkt.",
+	lieutenant_cast = "Zauber (Leutnant)",
+	lieutenant_cast_desc = "Alarmieren wenn ein Leutnant einen Zauber wirkt.",
+	trash_channel = "Kanalisieren",
+	trash_channel_desc = "Alarmieren, wenn ein Gegner einen Zauber kanalisiert.",
+	customization = "Anpassung",
+	all_units = "Alle Einheiten zeigen Nachrichten und geben Sounds wieder",
+	messages_all_sounds_target = "Alle Einheiten zeigen Nachrichten, aber nur Dein Ziel gibt Sounds wieder",
+	target_only = "Nur Dein Ziel zeigt Nachrichten und gibt Sounds wieder",
+	custom_select_unit_standard = "Normale Gegner",
+	custom_select_unit_standard_desc = "Wähle welche normalen Gegner Nachrichten anzeigen und Sounds wiedergeben.",
+	custom_select_unit_lieutenant = "Leutnants",
+	custom_select_unit_lieutenant_desc = "Wähle welche Leutnant Gegner Nachrichten anzeigen und Sounds wiedergeben.",
+	custom_select_throttle_type = "Drossel Typ",
+	custom_select_throttle_type_desc = "Welche Funktionen sollen gedrosselt werden",
+	custom_select_throttle_type_value1 = "Sowohl Nachrichten als auch Sounds",
+	custom_select_throttle_type_value2 = "Nur Sounds",
+	custom_select_throttle_duration = "Drossel Dauer",
+	custom_select_throttle_duration_desc = "Wartezeit zwischen Alarmen. Dein Ziel wird nie gedrosselt.",
+	custom_select_throttle_duration_value1 = "2 Sekunden",
+	custom_select_throttle_duration_value2 = "1 Sekunde",
+	custom_select_throttle_duration_value3 = "3 Sekunden",
+})

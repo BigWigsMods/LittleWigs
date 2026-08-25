@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.pyranis = "Pyranis"
-end
+local L = mod:SetDefaultLocale({
+	pyranis = "Pyranis",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -20,10 +20,9 @@ local shardCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.name = "Nightbane"
-end
+local L = mod:SetDefaultLocale({
+	name = "Nightbane",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

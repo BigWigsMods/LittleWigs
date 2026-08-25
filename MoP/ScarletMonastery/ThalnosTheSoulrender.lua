@@ -11,10 +11,9 @@ mod:RegisterEnableMob(59789)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.engage_yell = "My endless agony shall be yours, as well!"
-end
+mod:SetDefaultLocale({
+	engage_yell = "My endless agony shall be yours, as well!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

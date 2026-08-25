@@ -14,10 +14,9 @@ mod:SetStage(1)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.diathorus_the_seeker = "Diathorus the Seeker"
-end
+local L = mod:SetDefaultLocale({
+	diathorus_the_seeker = "Diathorus the Seeker",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

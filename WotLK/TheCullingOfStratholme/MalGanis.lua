@@ -12,10 +12,9 @@ mod:SetEncounterID(mod:Classic() and 296 or 2005)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_trigger = "We're going to finish this right now, Mal'Ganis. Just you... and me."
-end
+local L = mod:SetDefaultLocale({
+	warmup_trigger = "We're going to finish this right now, Mal'Ganis. Just you... and me.",
+})
 
 -------------------------------------------------------------------------------
 -- Initialization

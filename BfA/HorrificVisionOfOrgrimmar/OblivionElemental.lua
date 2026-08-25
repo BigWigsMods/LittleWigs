@@ -21,10 +21,9 @@ local hopelessnessCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.oblivion_elemental = "Oblivion Elemental"
-end
+local L = mod:SetDefaultLocale({
+	oblivion_elemental = "Oblivion Elemental",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

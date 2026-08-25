@@ -11,10 +11,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.infiltrator_gulkat = "Infiltrator Gulkat"
-end
+local L = mod:SetDefaultLocale({
+	infiltrator_gulkat = "Infiltrator Gulkat",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

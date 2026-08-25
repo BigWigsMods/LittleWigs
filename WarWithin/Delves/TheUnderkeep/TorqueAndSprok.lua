@@ -18,12 +18,11 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.bossName = "Torque Clankfire and Sprok"
-	L.torque_clankfire = "Torque Clankfire"
-	L.sprok = "Sprok"
-end
+local L = mod:SetDefaultLocale({
+	bossName = "Torque Clankfire and Sprok",
+	torque_clankfire = "Torque Clankfire",
+	sprok = "Sprok",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -16,12 +16,11 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.custom_on_autotalk = CL.autotalk
-	L.custom_on_autotalk_desc = "Instantly select Thrall's gossip options."
-	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
-end
+mod:SetDefaultLocale({
+	custom_on_autotalk = CL.autotalk,
+	custom_on_autotalk_desc = "Instantly select Thrall's gossip options.",
+	custom_on_autotalk_icon = mod:GetMenuIcon("SAY"),
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

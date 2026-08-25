@@ -16,12 +16,11 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.hans_and_greta = "Hans and Greta"
-	L.hans = "Hans"
-	L.greta = "Greta"
-end
+local L = mod:SetDefaultLocale({
+	hans_and_greta = "Hans and Greta",
+	hans = "Hans",
+	greta = "Greta",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

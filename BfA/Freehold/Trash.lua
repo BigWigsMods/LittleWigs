@@ -33,30 +33,29 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.sharkbait = "Sharkbait"
-	L.irontide_enforcer = "Irontide Enforcer"
-	L.irontide_bonesaw = "Irontide Bonesaw"
-	L.irontide_crackshot = "Irontide Crackshot"
-	L.irontide_corsair = "Irontide Corsair"
-	L.cutwater_duelist = "Cutwater Duelist"
-	L.irontide_oarsman = "Irontide Oarsman"
-	L.cutwater_knife_juggler = "Cutwater Knife Juggler"
-	L.bilge_rat_brinescale = "Bilge Rat Brinescale"
-	L.blacktooth_scrapper = "Blacktooth Scrapper"
-	L.blacktooth_knuckleduster = "Blacktooth Knuckleduster"
-	L.bilge_rat_swabby = "Bilge Rat Swabby"
-	L.vermin_trapper = "Vermin Trapper"
-	L.bilge_rat_buccaneer = "Bilge Rat Buccaneer"
-	L.bilge_rat_padfoot = "Bilge Rat Padfoot"
-	L.soggy_shiprat = "Soggy Shiprat"
-	L.irontide_crusher = "Irontide Crusher"
-	L.irontide_buccaneer = "Irontide Buccaneer"
-	L.irontide_ravager = "Irontide Ravager"
-	L.irontide_officer = "Irontide Officer"
-	L.irontide_stormcaller = "Irontide Stormcaller"
-end
+local L = mod:SetDefaultLocale({
+	sharkbait = "Sharkbait",
+	irontide_enforcer = "Irontide Enforcer",
+	irontide_bonesaw = "Irontide Bonesaw",
+	irontide_crackshot = "Irontide Crackshot",
+	irontide_corsair = "Irontide Corsair",
+	cutwater_duelist = "Cutwater Duelist",
+	irontide_oarsman = "Irontide Oarsman",
+	cutwater_knife_juggler = "Cutwater Knife Juggler",
+	bilge_rat_brinescale = "Bilge Rat Brinescale",
+	blacktooth_scrapper = "Blacktooth Scrapper",
+	blacktooth_knuckleduster = "Blacktooth Knuckleduster",
+	bilge_rat_swabby = "Bilge Rat Swabby",
+	vermin_trapper = "Vermin Trapper",
+	bilge_rat_buccaneer = "Bilge Rat Buccaneer",
+	bilge_rat_padfoot = "Bilge Rat Padfoot",
+	soggy_shiprat = "Soggy Shiprat",
+	irontide_crusher = "Irontide Crusher",
+	irontide_buccaneer = "Irontide Buccaneer",
+	irontide_ravager = "Irontide Ravager",
+	irontide_officer = "Irontide Officer",
+	irontide_stormcaller = "Irontide Stormcaller",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

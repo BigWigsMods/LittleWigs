@@ -18,13 +18,12 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.ascended_webfriar = "Ascended Webfriar"
-	L.deepwalker_guardian = "Deepwalker Guardian"
-	L.crazed_abomination = "Crazed Abomination"
-	L.web_marauder = "Web Marauder"
-end
+local L = mod:SetDefaultLocale({
+	ascended_webfriar = "Ascended Webfriar",
+	deepwalker_guardian = "Deepwalker Guardian",
+	crazed_abomination = "Crazed Abomination",
+	web_marauder = "Web Marauder",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

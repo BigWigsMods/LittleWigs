@@ -21,10 +21,9 @@ local chainsOfServitudeCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.slavemaster_ulrok = "Slavemaster Ul'rok"
-end
+local L = mod:SetDefaultLocale({
+	slavemaster_ulrok = "Slavemaster Ul'rok",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

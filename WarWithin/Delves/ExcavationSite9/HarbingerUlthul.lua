@@ -16,10 +16,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.harbinger_ulthul = "Harbinger Ul'thul"
-end
+local L = mod:SetDefaultLocale({
+	harbinger_ulthul = "Harbinger Ul'thul",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

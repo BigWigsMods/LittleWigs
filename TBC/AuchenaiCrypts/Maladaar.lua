@@ -10,12 +10,11 @@ mod:RegisterEnableMob(18373)
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:GetLocale()
-if L then
-	L.avatar = -5046 -- Avatar of the Martyred
-	L.avatar_desc = -5045 -- EJ entry of the summoning spell, has better description than that of the actual spell
-	L.avatar_icon = -5045
-end
+local L = mod:SetDefaultLocale({
+	avatar = -5046, -- Avatar of the Martyred
+	avatar_desc = -5045, -- EJ entry of the summoning spell, has better description than that of the actual spell
+	avatar_icon = -5045,
+})
 
 -------------------------------------------------------------------------------
 --  Initialization

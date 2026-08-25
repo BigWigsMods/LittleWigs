@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.portalmaster_halsan = "Portalmaster Halsan"
-end
+local L = mod:SetDefaultLocale({
+	portalmaster_halsan = "Portalmaster Halsan",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

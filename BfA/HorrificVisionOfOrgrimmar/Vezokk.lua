@@ -21,10 +21,9 @@ local unleashCorruptionCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.vezokk = "Vez'okk the Lightless"
-end
+local L = mod:SetDefaultLocale({
+	vezokk = "Vez'okk the Lightless",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

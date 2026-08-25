@@ -10,10 +10,9 @@ mod:RegisterEnableMob(32273)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.name = "Infinite Corruptor"
-end
+local L = mod:SetDefaultLocale({
+	name = "Infinite Corruptor",
+})
 
 -------------------------------------------------------------------------------
 --  Initialization

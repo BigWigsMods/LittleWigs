@@ -22,19 +22,18 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.shadowmoon_bonemender = "Shadowmoon Bone-Mender"
-	L.reanimated_ritual_bones = "Reanimated Ritual Bones"
-	L.void_spawn = "Void Spawn"
-	L.shadowmoon_loyalist = "Shadowmoon Loyalist"
-	L.defiled_spirit = "Defiled Spirit"
-	L.shadowmoon_dominator = "Shadowmoon Dominator"
-	L.shadowmoon_exhumer = "Shadowmoon Exhumer"
-	L.exhumed_spirit = "Exhumed Spirit"
-	L.monstrous_corpse_spider = "Monstrous Corpse Spider"
-	L.carrion_worm = "Carrion Worm"
-end
+local L = mod:SetDefaultLocale({
+	shadowmoon_bonemender = "Shadowmoon Bone-Mender",
+	reanimated_ritual_bones = "Reanimated Ritual Bones",
+	void_spawn = "Void Spawn",
+	shadowmoon_loyalist = "Shadowmoon Loyalist",
+	defiled_spirit = "Defiled Spirit",
+	shadowmoon_dominator = "Shadowmoon Dominator",
+	shadowmoon_exhumer = "Shadowmoon Exhumer",
+	exhumed_spirit = "Exhumed Spirit",
+	monstrous_corpse_spider = "Monstrous Corpse Spider",
+	carrion_worm = "Carrion Worm",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

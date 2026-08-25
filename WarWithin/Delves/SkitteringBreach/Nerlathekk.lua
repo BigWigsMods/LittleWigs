@@ -16,10 +16,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.nerlathekk_the_skulking = "Nerl'athekk the Skulking"
-end
+local L = mod:SetDefaultLocale({
+	nerlathekk_the_skulking = "Nerl'athekk the Skulking",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

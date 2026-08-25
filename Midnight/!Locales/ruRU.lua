@@ -1,187 +1,162 @@
 -- Altar of Fangs
 
-local L = BigWigs:NewBossLocale("Altar of Fangs Trash", "ruRU")
-if L then
-	--L.custom_on_mixture_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Cooking or Midnight Alchemy.|r Automatically select the NPC dialog option to gain the 'Mutating Elixir' buff.\n\n|T136242:16|tMutating Elixir\n{1310012}"
-end
+BigWigsAPI.SetBossModuleLocale("Altar of Fangs Trash", {
+	--custom_on_mixture_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Cooking or Midnight Alchemy.|r Automatically select the NPC dialog option to gain the 'Mutating Elixir' buff.\n\n|T136242:16|tMutating Elixir\n{1310012}",
+})
 
 -- Delves: Atal'Aman
 
-L = BigWigs:NewBossLocale("Spiritflayer Jin'ma", "ruRU")
-if L then
-	L.spiritflayer_jinma = "Свежеватель духов Джин'Ма"
-end
+BigWigsAPI.SetBossModuleLocale("Spiritflayer Jin'ma", {
+	spiritflayer_jinma = "Свежеватель духов Джин'Ма",
+})
 
 -- Delves: Collegiate Calamity
 
-L = BigWigs:NewBossLocale("Hydrangea", "ruRU")
-if L then
-	L.hydrangea = "Гидрангея"
-end
+BigWigsAPI.SetBossModuleLocale("Hydrangea", {
+	hydrangea = "Гидрангея",
+})
 
-L = BigWigs:NewBossLocale("Infiltrator Garand", "ruRU")
-if L then
-	L.infiltrator_garand = "Лазутчик Гаранд"
-end
+BigWigsAPI.SetBossModuleLocale("Infiltrator Garand", {
+	infiltrator_garand = "Лазутчик Гаранд",
+})
 
-L = BigWigs:NewBossLocale("Voidscorned Vagrant", "ruRU")
-if L then
-	L.voidscorned_vagrant = "Обожженный Бездной бродяга"
-end
+BigWigsAPI.SetBossModuleLocale("Voidscorned Vagrant", {
+	voidscorned_vagrant = "Обожженный Бездной бродяга",
+})
 
 -- Delves: Parhelion Plaza
 
-L = BigWigs:NewBossLocale("Gladius Slaurna", "ruRU")
-if L then
-	L.gladius_slaurna = "Гладий Слаурна"
-end
+BigWigsAPI.SetBossModuleLocale("Gladius Slaurna", {
+	gladius_slaurna = "Гладий Слаурна",
+})
 
 -- Delves: Shadowguard Point
 
-L = BigWigs:NewBossLocale("Chief-Arcanist Patram", "ruRU")
-if L then
-	L.chiefarcanist_patram = "Главный чародей Патрам"
-end
+BigWigsAPI.SetBossModuleLocale("Chief-Arcanist Patram", {
+	chiefarcanist_patram = "Главный чародей Патрам",
+})
 
 -- Delves: Sunkiller Sanctum
 
-L = BigWigs:NewBossLocale("Esuritus", "ruRU")
-if L then
-	L.esuritus = "Эзурит"
-end
+BigWigsAPI.SetBossModuleLocale("Esuritus", {
+	esuritus = "Эзурит",
+})
 
 -- Delves: The Darkway
 
-L = BigWigs:NewBossLocale("Infiltrator Gulkat", "ruRU")
-if L then
-	L.infiltrator_gulkat = "Лазутчик Гулкат"
-end
+BigWigsAPI.SetBossModuleLocale("Infiltrator Gulkat", {
+	infiltrator_gulkat = "Лазутчик Гулкат",
+})
 
 -- Delves: The Grudge Pit
 
-L = BigWigs:NewBossLocale("Brightthorn", "ruRU")
-if L then
-	L.brightthorn = "Яркий Шип"
-end
+BigWigsAPI.SetBossModuleLocale("Brightthorn", {
+	brightthorn = "Яркий Шип",
+})
 
-L = BigWigs:NewBossLocale("Gyrospore", "ruRU")
-if L then
-	L.gyrospore = "Гироспор"
-end
+BigWigsAPI.SetBossModuleLocale("Gyrospore", {
+	gyrospore = "Гироспор",
+})
 
-L = BigWigs:NewBossLocale("Mycomight", "ruRU")
-if L then
-	L.mycomight = "Могуцелий"
-end
+BigWigsAPI.SetBossModuleLocale("Mycomight", {
+	mycomight = "Могуцелий",
+})
 
 -- Delves: The Gulf of Memory
 
-L = BigWigs:NewBossLocale("Lumenia", "ruRU")
-if L then
-	L.lumenia = "Люмения"
-end
+BigWigsAPI.SetBossModuleLocale("Lumenia", {
+	lumenia = "Люмения",
+})
 
-L = BigWigs:NewBossLocale("Mul'tha'ul", "ruRU")
-if L then
-	L.multhaul = "Мул'та'уль"
-end
+BigWigsAPI.SetBossModuleLocale("Mul'tha'ul", {
+	multhaul = "Мул'та'уль",
+})
 
 -- Delves: The Shadow Enclave
 
-L = BigWigs:NewBossLocale("Antenorian", "ruRU")
-if L then
-	L.antenorian = "Антенориан"
-end
+BigWigsAPI.SetBossModuleLocale("Antenorian", {
+	antenorian = "Антенориан",
+})
 
 -- Delves: Torment's Rise
 
-L = BigWigs:NewBossLocale("Nullaeus", "ruRU")
-if L then
-	L.nullaeus = "Нуллэй"
-end
+BigWigsAPI.SetBossModuleLocale("Nullaeus", {
+	nullaeus = "Нуллэй",
+})
 
 -- Delves: Twilight Crypts
 
-L = BigWigs:NewBossLocale("Blademaster Darza", "ruRU")
-if L then
-	L.blademaster_darza = "Мастер клинка Дарза"
-end
+BigWigsAPI.SetBossModuleLocale("Blademaster Darza", {
+	blademaster_darza = "Мастер клинка Дарза",
+})
 
 -- Delves: Venomfall Deeps
 
-L = BigWigs:NewBossLocale("Azta'rec", "ruRU")
-if L then
-	L.aztarec = "Азта'рек"
-end
+BigWigsAPI.SetBossModuleLocale("Azta'rec", {
+	aztarec = "Азта'рек",
+})
 
 -- Delves: Trash
 
-L = BigWigs:NewBossLocale("Midnight Delve Trash", "ruRU")
-if L then
-end
+BigWigsAPI.SetBossModuleLocale("Midnight Delve Trash", {})
 
 -- Den of Nalorakk
 
-L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "ruRU")
-if L then
-	L.offerings_acquired = "Подношения получены"
-	L.offerings_acquired_desc = "Показывать оповещение, когда подношение получено."
-end
+BigWigsAPI.SetBossModuleLocale("Den of Nalorakk Trash", {
+	offerings_acquired = "Подношения получены",
+	offerings_acquired_desc = "Показывать оповещение, когда подношение получено.",
+})
 
 -- Maisara Caverns
 
-L = BigWigs:NewBossLocale("Maisara Caverns Trash", "ruRU")
-if L then
-	L.prisoners_freed = "Узники освобождены"
-	L.prisoners_freed_desc = "Показывать оповещение, когда узник освобождён."
-	L.custom_on_cooking_pot_autotalk_desc = "Автоматически выбирать вариант диалога с NPC, чтобы получить эффект 'Сытная похлебка племени Порочной Ветви'.\n\n|T4659336:16|tСытная похлебка племени Порочной Ветви\n{1269056}"
-	L.custom_on_ritual_cauldron_autotalk_desc = "Автоматически выбирать вариант диалога с NPC, чтобы получить эффект 'Ритуальное снадобье'.\n\n|T236271:16|tРитуальное снадобье\n{1271300}"
+BigWigsAPI.SetBossModuleLocale("Maisara Caverns Trash", {
+	prisoners_freed = "Узники освобождены",
+	prisoners_freed_desc = "Показывать оповещение, когда узник освобождён.",
+	custom_on_cooking_pot_autotalk_desc = "Автоматически выбирать вариант диалога с NPC, чтобы получить эффект 'Сытная похлебка племени Порочной Ветви'.\n\n|T4659336:16|tСытная похлебка племени Порочной Ветви\n{1269056}",
+	custom_on_ritual_cauldron_autotalk_desc = "Автоматически выбирать вариант диалога с NPC, чтобы получить эффект 'Ритуальное снадобье'.\n\n|T236271:16|tРитуальное снадобье\n{1271300}",
 
-	L.cooking_pot = "Котелок"
-	L.ritual_cauldron = "Ритуальный котёл"
-end
+	cooking_pot = "Котелок",
+	ritual_cauldron = "Ритуальный котёл",
+})
 
 -- Murder Row
 
-L = BigWigs:NewBossLocale("Murder Row Trash", "ruRU")
-if L then
-	L.snitches_interrogated = "Осведомители допрошены"
-	L.snitches_interrogated_desc = "Показывать оповещение, когда осведомитель допрошен."
-end
+BigWigsAPI.SetBossModuleLocale("Murder Row Trash", {
+	snitches_interrogated = "Осведомители допрошены",
+	snitches_interrogated_desc = "Показывать оповещение, когда осведомитель допрошен.",
+})
 
 -- Nexus-Point Xenas
 
-L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "ruRU")
-if L then
-	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Требуется навык инженерного дела Midnight 25.|r Автоматически выбирать вариант диалога с NPC, чтобы отключить чародейскую растяжку."
-end
+BigWigsAPI.SetBossModuleLocale("Nexus-Point Xenas Trash", {
+	custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Требуется навык инженерного дела Midnight 25.|r Автоматически выбирать вариант диалога с NPC, чтобы отключить чародейскую растяжку.",
+})
 
 -- Common Trash
 
-L = BigWigs:NewBossLocale("Common Trash", "ruRU")
-if L then
-	--L.common_trash = "Common Trash"
-	--L.trash_cast = "Cast"
-	--L.trash_cast_desc = "Alert when a standard trash mob casts a spell."
-	--L.lieutenant_cast = "Cast (Lieutenant)"
-	--L.lieutenant_cast_desc = "Alert when a Lieutenant trash mob casts a spell."
-	--L.trash_channel = "Channel"
-	--L.trash_channel_desc = "Alert when any trash mob channels a spell."
-	--L.customization = "Customization"
-	--L.all_units = "All units show messages and play sounds"
-	--L.messages_all_sounds_target = "All units show messages, but only your target plays sounds"
-	--L.target_only = "Only your target shows messages and plays sounds"
-	--L.custom_select_unit_standard = "Standard mobs"
-	--L.custom_select_unit_standard_desc = "Select which standard trash mobs should show messages and play sounds."
-	--L.custom_select_unit_lieutenant = "Lieutenants"
-	--L.custom_select_unit_lieutenant_desc = "Select which Lieutenant trash mobs should show messages and play sounds."
-	--L.custom_select_throttle_type = "Throttle type"
-	--L.custom_select_throttle_type_desc = "What features should be throttled"
-	--L.custom_select_throttle_type_value1 = "Both messages and sounds"
-	--L.custom_select_throttle_type_value2 = "Sounds only"
-	--L.custom_select_throttle_duration = "Throttle duration"
-	--L.custom_select_throttle_duration_desc = "How long to wait between alerts. Your target is never throttled."
-	--L.custom_select_throttle_duration_value1 = "2 seconds"
-	--L.custom_select_throttle_duration_value2 = "1 second"
-	--L.custom_select_throttle_duration_value3 = "3 seconds"
-end
+BigWigsAPI.SetBossModuleLocale("Common Trash", {
+	--common_trash = "Common Trash",
+	--trash_cast = "Cast",
+	--trash_cast_desc = "Alert when a standard trash mob casts a spell.",
+	--lieutenant_cast = "Cast (Lieutenant)",
+	--lieutenant_cast_desc = "Alert when a Lieutenant trash mob casts a spell.",
+	--trash_channel = "Channel",
+	--trash_channel_desc = "Alert when any trash mob channels a spell.",
+	--customization = "Customization",
+	--all_units = "All units show messages and play sounds",
+	--messages_all_sounds_target = "All units show messages, but only your target plays sounds",
+	--target_only = "Only your target shows messages and plays sounds",
+	--custom_select_unit_standard = "Standard mobs",
+	--custom_select_unit_standard_desc = "Select which standard trash mobs should show messages and play sounds.",
+	--custom_select_unit_lieutenant = "Lieutenants",
+	--custom_select_unit_lieutenant_desc = "Select which Lieutenant trash mobs should show messages and play sounds.",
+	--custom_select_throttle_type = "Throttle type",
+	--custom_select_throttle_type_desc = "What features should be throttled",
+	--custom_select_throttle_type_value1 = "Both messages and sounds",
+	--custom_select_throttle_type_value2 = "Sounds only",
+	--custom_select_throttle_duration = "Throttle duration",
+	--custom_select_throttle_duration_desc = "How long to wait between alerts. Your target is never throttled.",
+	--custom_select_throttle_duration_value1 = "2 seconds",
+	--custom_select_throttle_duration_value2 = "1 second",
+	--custom_select_throttle_duration_value3 = "3 seconds",
+})

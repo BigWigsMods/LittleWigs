@@ -21,10 +21,9 @@ local risingGloomCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.wriggling_darkspawn = "Wriggling Darkspawn"
-end
+local L = mod:SetDefaultLocale({
+	wriggling_darkspawn = "Wriggling Darkspawn",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

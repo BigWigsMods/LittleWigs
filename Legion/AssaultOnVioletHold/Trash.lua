@@ -19,15 +19,14 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.custom_on_autotalk = CL.autotalk
-	L.custom_on_autotalk_desc = "Instantly selects Lieutenant Sinclaris gossip option to start the Assault on Violet Hold."
-	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
-	L.keeper = "Portal Keeper"
-	L.guardian = "Portal Guardian"
-	L.infernal = "Blazing Infernal"
-end
+local L = mod:SetDefaultLocale({
+	custom_on_autotalk = CL.autotalk,
+	custom_on_autotalk_desc = "Instantly selects Lieutenant Sinclaris gossip option to start the Assault on Violet Hold.",
+	custom_on_autotalk_icon = mod:GetMenuIcon("SAY"),
+	keeper = "Portal Keeper",
+	guardian = "Portal Guardian",
+	infernal = "Blazing Infernal",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -21,12 +21,11 @@ local summonEyeOfChaosCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.overlord_mathias_shaw = "Overlord Mathias Shaw"
-	L["311530_icon"] = 311570 -- Seek And Destroy
-	L["311530_desc"] = 311570 -- Seek And Destroy
-end
+local L = mod:SetDefaultLocale({
+	overlord_mathias_shaw = "Overlord Mathias Shaw",
+	["311530_icon"] = 311570, -- Seek And Destroy
+	["311530_desc"] = 311570, -- Seek And Destroy
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

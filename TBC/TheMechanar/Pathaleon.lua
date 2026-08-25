@@ -12,10 +12,9 @@ mod:RegisterEnableMob(19220)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.despawn_message = "Nether Wraiths Despawning Soon"
-end
+local L = mod:SetDefaultLocale({
+	despawn_message = "Nether Wraiths Despawning Soon",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

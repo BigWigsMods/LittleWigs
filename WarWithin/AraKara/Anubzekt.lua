@@ -27,12 +27,11 @@ local nextInfestation = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.bloodstained_webmage = -28975
-	L.bloodstained_webmage_desc = "Anub'zekt summons a Bloodstained Webmage.\n\n{-28975}"
-	L.bloodstained_webmage_icon = "spell_nature_web"
-end
+local L = mod:SetDefaultLocale({
+	bloodstained_webmage = -28975,
+	bloodstained_webmage_desc = "Anub'zekt summons a Bloodstained Webmage.\n\n{-28975}",
+	bloodstained_webmage_icon = "spell_nature_web",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

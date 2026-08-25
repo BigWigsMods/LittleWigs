@@ -15,14 +15,13 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.rexxar = "Rexxar"
-	L.pet_trigger_1 = "Come, my pets! Serve your master!"
-	L.pet_trigger_2 = "My beasts will devour you!"
-	L.pet_trigger_3 = "Hunt them down!"
-	L.adds_icon = "inv_jewelcrafting_purpleboar"
-end
+local L = mod:SetDefaultLocale({
+	rexxar = "Rexxar",
+	pet_trigger_1 = "Come, my pets! Serve your master!",
+	pet_trigger_2 = "My beasts will devour you!",
+	pet_trigger_3 = "Hunt them down!",
+	adds_icon = "inv_jewelcrafting_purpleboar",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

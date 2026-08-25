@@ -11,10 +11,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.infiltrator_garand = "Infiltrator Garand"
-end
+local L = mod:SetDefaultLocale({
+	infiltrator_garand = "Infiltrator Garand",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

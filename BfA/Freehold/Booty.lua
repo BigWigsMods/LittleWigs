@@ -24,18 +24,17 @@ local ripperPunchCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
-	L.lightning_warmup = "new set of vict--"
+	lightning_warmup = "new set of vict--",
 	-- It's a greased up pig? I'm beginning to think this is not a professional setup. Oh well... grab the pig and you win
-	L.lightning_warmup_2 = "not a professional setup"
+	lightning_warmup_2 = "not a professional setup",
 
-	L.lightning = "Lightning"
-	L.lightning_caught = "Lightning caught after %.1f seconds!"
-	L.ludwig = "Ludwig Von Tortollan"
-	L.trothak = "Trothak"
-end
+	lightning = "Lightning",
+	lightning_caught = "Lightning caught after %.1f seconds!",
+	ludwig = "Ludwig Von Tortollan",
+	trothak = "Trothak",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

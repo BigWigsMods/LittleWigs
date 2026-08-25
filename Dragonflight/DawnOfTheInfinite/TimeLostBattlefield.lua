@@ -22,10 +22,9 @@ local nextTankBuster = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_icon = "factionchange"
-end
+mod:SetDefaultLocale({
+	warmup_icon = "factionchange",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

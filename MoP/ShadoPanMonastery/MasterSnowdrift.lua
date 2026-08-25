@@ -13,11 +13,10 @@ mod:SetStage(1)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- When I was but a cub I could scarcely throw a punch, but after years of training I can do so much more!
-	L.stage3_yell = "was but a cub"
-end
+	stage3_yell = "was but a cub",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

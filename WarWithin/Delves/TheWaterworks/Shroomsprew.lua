@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.shroomsprew = "Shroomsprew"
-end
+local L = mod:SetDefaultLocale({
+	shroomsprew = "Shroomsprew",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

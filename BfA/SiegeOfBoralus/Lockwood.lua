@@ -19,10 +19,9 @@ local withdrawCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.ordnance_dropped = "Unstable Ordnance dropped"
-end
+local L = mod:SetDefaultLocale({
+	ordnance_dropped = "Unstable Ordnance dropped",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

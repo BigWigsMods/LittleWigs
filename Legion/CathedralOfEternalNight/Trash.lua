@@ -24,22 +24,21 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.dulzak = "Dul'zak"
-	L.wrathguard = "Wrathguard Invader"
-	L.felguard = "Felguard Destroyer"
-	L.soulmender = "Helblaze Soulmender"
-	L.botanist = "Felborne Botanist"
-	L.temptress = "Hellblaze Temptress"
-	L.orbcaster = "Felstrider Orbcaster"
-	L.waglur = "Wa'glur"
-	L.scavenger = "Wyrmtongue Scavenger"
-	L.gazerax = "Gazerax"
-	L.vilebark = "Vilebark Walker"
+local L = mod:SetDefaultLocale({
+	dulzak = "Dul'zak",
+	wrathguard = "Wrathguard Invader",
+	felguard = "Felguard Destroyer",
+	soulmender = "Helblaze Soulmender",
+	botanist = "Felborne Botanist",
+	temptress = "Hellblaze Temptress",
+	orbcaster = "Felstrider Orbcaster",
+	waglur = "Wa'glur",
+	scavenger = "Wyrmtongue Scavenger",
+	gazerax = "Gazerax",
+	vilebark = "Vilebark Walker",
 
-	L.throw_tome = "Throw Tome"
-end
+	throw_tome = "Throw Tome",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

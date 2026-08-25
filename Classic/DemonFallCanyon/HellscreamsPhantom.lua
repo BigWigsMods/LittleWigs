@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.hellscreams_phantom = "Hellscream's Phantom"
-end
+local L = mod:SetDefaultLocale({
+	hellscreams_phantom = "Hellscream's Phantom",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

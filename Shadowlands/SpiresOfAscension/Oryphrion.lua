@@ -22,10 +22,9 @@ local prevEnergy = 100
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.early_intermission_over = "Intermission Over (%d |4orb:orbs; reached)"
-end
+local L = mod:SetDefaultLocale({
+	early_intermission_over = "Intermission Over (%d |4orb:orbs; reached)",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

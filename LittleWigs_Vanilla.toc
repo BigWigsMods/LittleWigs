@@ -29,7 +29,7 @@
 #@do-not-package@
 ## X-LittleWigs-Repo: 1
 ## X-BigWigs-LoadOn-InstanceId: 36, 209, 229, 329, 429, 2784, 2875
-Classic\modules_Vanilla.xml
 Classic\!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 Classic\!Locales\[TextLocale]_Vanilla.lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+Classic\modules_Vanilla.xml
 #@end-do-not-package@

@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.harbinger_of_sin = "Harbinger of Sin"
-end
+local L = mod:SetDefaultLocale({
+	harbinger_of_sin = "Harbinger of Sin",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

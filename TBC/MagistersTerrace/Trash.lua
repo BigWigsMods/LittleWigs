@@ -15,12 +15,11 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.mage_guard = "Sunblade Mage Guard"
-	L.magister = "Sunblade Magister"
-	L.keeper = "Sunblade Keeper"
-end
+local L = mod:SetDefaultLocale({
+	mage_guard = "Sunblade Mage Guard",
+	magister = "Sunblade Magister",
+	keeper = "Sunblade Keeper",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

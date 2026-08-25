@@ -26,11 +26,10 @@ local focusedTempestCD = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.high_tide_trigger1 = "Take arms, minions! Rise from the icy depths!"
-	L.high_tide_trigger2 = "Destroy these intruders! Leave them for the great dark beyond!"
-end
+local L = mod:SetDefaultLocale({
+	high_tide_trigger1 = "Take arms, minions! Rise from the icy depths!",
+	high_tide_trigger2 = "Destroy these intruders! Leave them for the great dark beyond!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

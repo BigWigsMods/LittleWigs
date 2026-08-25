@@ -11,11 +11,11 @@ mod:RegisterEnableMob(55085)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.eyes, L.eyes_desc = -4092, -4092
-	L.eyes_icon = "inv_misc_eye_04"
-end
+local L = mod:SetDefaultLocale({
+	eyes = -4092,
+	eyes_desc = -4092,
+	eyes_icon = "inv_misc_eye_04",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

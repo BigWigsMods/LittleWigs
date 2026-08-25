@@ -33,27 +33,26 @@ local zekvirEngaged = false
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.rares = "Rares"
+local L = mod:SetDefaultLocale({
+	rares = "Rares",
 
-	L.stolen_loader = "Stolen Loader"
-	L.invasive_sporecap = "Invasive Sporecap"
-	L.reno_jackson = "Reno Jackson"
-	L.sir_finley_mrgglton = "Sir Finley Mrgglton"
-	L.treasure_wraith = "Treasure Wraith"
-	L.venombite = "Venombite"
-	L.kasdru = "Kas'dru"
-	L.tala = "Tala"
-	L.velo = "Velo"
-	L.anubvir = "Anub'vir"
-	L.zekvir = "Zekvir"
-	L.zekvirs_influence = "Zekvir's Influence"
-	L.zekvir_random = "Zekvir (Random Spawn)"
-	L.zekvir_breach = "Zekvir incoming"
-	L.zekvir_breach_desc = "Show an alert when Zekvir is spawning in the Delve."
-	L.zekvir_breach_icon = "INV_Achievement_RaidNerubian_NerubianHulk"
-end
+	stolen_loader = "Stolen Loader",
+	invasive_sporecap = "Invasive Sporecap",
+	reno_jackson = "Reno Jackson",
+	sir_finley_mrgglton = "Sir Finley Mrgglton",
+	treasure_wraith = "Treasure Wraith",
+	venombite = "Venombite",
+	kasdru = "Kas'dru",
+	tala = "Tala",
+	velo = "Velo",
+	anubvir = "Anub'vir",
+	zekvir = "Zekvir",
+	zekvirs_influence = "Zekvir's Influence",
+	zekvir_random = "Zekvir (Random Spawn)",
+	zekvir_breach = "Zekvir incoming",
+	zekvir_breach_desc = "Show an alert when Zekvir is spawning in the Delve.",
+	zekvir_breach_icon = "INV_Achievement_RaidNerubian_NerubianHulk",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

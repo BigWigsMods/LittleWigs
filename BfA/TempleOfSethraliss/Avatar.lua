@@ -31,10 +31,9 @@ local hexerCount = 4
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.heal_boss = "The Avatar can be healed"
-end
+local L = mod:SetDefaultLocale({
+	heal_boss = "The Avatar can be healed",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

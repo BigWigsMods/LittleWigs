@@ -22,12 +22,11 @@ local nextSanitizingCycle = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_icon = "achievement_dungeon_brokerdungeon"
-	L.vault_purifier = -23004
-	L.vault_purifier_icon = "achievement_dungeon_ulduarraid_titan_01"
-end
+local L = mod:SetDefaultLocale({
+	warmup_icon = "achievement_dungeon_brokerdungeon",
+	vault_purifier = -23004,
+	vault_purifier_icon = "achievement_dungeon_ulduarraid_titan_01",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

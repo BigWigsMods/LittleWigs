@@ -12,11 +12,10 @@ mod:SetEncounterID(mod:Classic() and 295 or 2003)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- Prince Arthas Menethil, on this day, a powerful darkness has taken hold of your soul. The death you are destined to visit upon others will this day be your own.
-	L.warmup_trigger = "on this day"
-end
+	warmup_trigger = "on this day",
+})
 
 -------------------------------------------------------------------------------
 -- Initialization

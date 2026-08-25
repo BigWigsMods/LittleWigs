@@ -12,10 +12,9 @@ mod:SetRespawnTime(30)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.engage_yell = "Hatred will consume and conquer all!"
-end
+mod:SetDefaultLocale({
+	engage_yell = "Hatred will consume and conquer all!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

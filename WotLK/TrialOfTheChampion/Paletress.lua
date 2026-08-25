@@ -14,15 +14,14 @@ mod:RegisterEnableMob(34928)
 local shielded = false
 
 -------------------------------------------------------------------------------
---  Localization
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.confess = 66680 -- the real cast
-	L.confess_desc = -7577 -- EJ entry with a better description
-	L.confess_icon = 66680
-end
+mod:SetDefaultLocale({
+	confess = 66680, -- the real cast
+	confess_desc = -7577, -- EJ entry with a better description
+	confess_icon = 66680,
+})
 
 -------------------------------------------------------------------------------
 --  Initialization

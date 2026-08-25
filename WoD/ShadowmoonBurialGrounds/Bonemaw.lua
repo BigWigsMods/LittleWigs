@@ -12,18 +12,17 @@ mod:SetRespawnTime(33)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.summon_worms = "Summon Carrion Worms"
-	L.summon_worms_desc = "Bonemaw summons two Carrion Worms."
-	L.summon_worms_icon = "ability_hunter_pet_worm"
-	L.summon_worms_trigger = "piercing screech attracts nearby Carrion Worms!"
+local L = mod:SetDefaultLocale({
+	summon_worms = "Summon Carrion Worms",
+	summon_worms_desc = "Bonemaw summons two Carrion Worms.",
+	summon_worms_icon = "ability_hunter_pet_worm",
+	summon_worms_trigger = "piercing screech attracts nearby Carrion Worms!",
 
-	L.submerge = "Submerge"
-	L.submerge_desc = "Bonemaw submerges and repositions."
-	L.submerge_icon = "misc_arrowdown"
-	L.submerge_trigger = "hisses, slinking back into the shadowy depths!"
-end
+	submerge = "Submerge",
+	submerge_desc = "Bonemaw submerges and repositions.",
+	submerge_icon = "misc_arrowdown",
+	submerge_trigger = "hisses, slinking back into the shadowy depths!",
+})
 
 --------------------------------------------------------------------------------
 -- Locals

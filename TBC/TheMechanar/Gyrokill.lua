@@ -12,10 +12,9 @@ mod:RegisterEnableMob(19218)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.bossName = "Gatewatcher Gyro-Kill"
-end
+local L = mod:SetDefaultLocale({
+	bossName = "Gatewatcher Gyro-Kill",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

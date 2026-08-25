@@ -19,10 +19,9 @@ local etherealChargeCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.dark_rider = "Dark Rider"
-end
+local L = mod:SetDefaultLocale({
+	dark_rider = "Dark Rider",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

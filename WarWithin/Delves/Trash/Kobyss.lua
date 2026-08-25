@@ -27,18 +27,17 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.kobyss_trash = "Kobyss Trash"
+local L = mod:SetDefaultLocale({
+	kobyss_trash = "Kobyss Trash",
 
-	L.kobyss_necromancer = "Kobyss Necromancer"
-	L.kobyss_spearfisher = "Kobyss Spearfisher"
-	L.kobyss_witherer = "Kobyss Witherer"
-	L.wandering_gutter = "Wandering Gutter"
-	L.crazed_predator = "Crazed Predator"
-	L.deepwater_makura = "Deepwater Makura"
-	L.kobyss_trickster = "Kobyss Trickster"
-end
+	kobyss_necromancer = "Kobyss Necromancer",
+	kobyss_spearfisher = "Kobyss Spearfisher",
+	kobyss_witherer = "Kobyss Witherer",
+	wandering_gutter = "Wandering Gutter",
+	crazed_predator = "Crazed Predator",
+	deepwater_makura = "Deepwater Makura",
+	kobyss_trickster = "Kobyss Trickster",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

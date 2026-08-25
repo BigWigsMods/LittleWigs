@@ -43,23 +43,22 @@ end
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.primal_juggernaut = "Primal Juggernaut"
-	L.flashfrost_earthshaper = "Flashfrost Earthshaper"
-	L.flashfrost_chillweaver = "Flashfrost Chillweaver"
-	L.defier_draghar = "Defier Draghar"
-	L.primalist_flamedancer = "Primalist Flamedancer"
-	L.blazebound_destroyer = "Blazebound Destroyer"
-	L.primalist_shockcaster = "Primalist Shockcaster"
-	L.thunderhead = "Thunderhead"
-	L.flamegullet = "Flamegullet"
-	L.tempest_channeler = "Tempest Channeler"
-	L.flame_channeler = "Flame Channeler"
-	L.high_channeler_ryvati = "High Channeler Ryvati"
+local L = mod:SetDefaultLocale({
+	primal_juggernaut = "Primal Juggernaut",
+	flashfrost_earthshaper = "Flashfrost Earthshaper",
+	flashfrost_chillweaver = "Flashfrost Chillweaver",
+	defier_draghar = "Defier Draghar",
+	primalist_flamedancer = "Primalist Flamedancer",
+	blazebound_destroyer = "Blazebound Destroyer",
+	primalist_shockcaster = "Primalist Shockcaster",
+	thunderhead = "Thunderhead",
+	flamegullet = "Flamegullet",
+	tempest_channeler = "Tempest Channeler",
+	flame_channeler = "Flame Channeler",
+	high_channeler_ryvati = "High Channeler Ryvati",
 
-	L.kyrakka_and_erkhart_warmup_trigger = "Your false queen cannot stop us. We are the truth."
-end
+	kyrakka_and_erkhart_warmup_trigger = "Your false queen cannot stop us. We are the truth.",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

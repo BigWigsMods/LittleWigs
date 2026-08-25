@@ -15,10 +15,9 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.short_name = "Zuramat"
-end
+local L = mod:SetDefaultLocale({
+	short_name = "Zuramat",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

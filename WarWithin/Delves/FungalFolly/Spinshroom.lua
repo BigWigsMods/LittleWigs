@@ -16,10 +16,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.spinshroom = "Spinshroom"
-end
+local L = mod:SetDefaultLocale({
+	spinshroom = "Spinshroom",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

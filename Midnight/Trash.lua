@@ -10,39 +10,39 @@ mod:SetTrashModule(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.common_trash = "Common Trash"
-	L.trash_cast = "Cast"
-	L.trash_cast_desc = "Alert when a standard trash mob casts a spell."
-	L.lieutenant_cast = "Cast (Lieutenant)"
-	L.lieutenant_cast_desc = "Alert when a Lieutenant trash mob casts a spell."
-	L.trash_channel = "Channel"
-	L.trash_channel_desc = "Alert when any trash mob channels a spell."
-	L.customization = "Customization"
-	L.all_units = "All units show messages and play sounds"
-	L.messages_all_sounds_target = "All units show messages, but only your target plays sounds"
-	L.target_only = "Only your target shows messages and plays sounds"
-	L.custom_select_unit_standard = "Standard mobs"
-	L.custom_select_unit_standard_desc = "Select which standard trash mobs should show messages and play sounds."
-	L.custom_select_unit_standard_value1 = L.target_only
-	L.custom_select_unit_standard_value2 = L.messages_all_sounds_target
-	L.custom_select_unit_standard_value3 = L.all_units
-	L.custom_select_unit_lieutenant = "Lieutenants"
-	L.custom_select_unit_lieutenant_desc = "Select which Lieutenant trash mobs should show messages and play sounds."
-	L.custom_select_unit_lieutenant_value1 = L.all_units
-	L.custom_select_unit_lieutenant_value2 = L.messages_all_sounds_target
-	L.custom_select_unit_lieutenant_value3 = L.target_only
-	L.custom_select_throttle_type = "Throttle type"
-	L.custom_select_throttle_type_desc = "What features should be throttled"
-	L.custom_select_throttle_type_value1 = "Both messages and sounds"
-	L.custom_select_throttle_type_value2 = "Sounds only"
-	L.custom_select_throttle_duration = "Throttle duration"
-	L.custom_select_throttle_duration_desc = "How long to wait between alerts. Your target is never throttled."
-	L.custom_select_throttle_duration_value1 = "2 seconds"
-	L.custom_select_throttle_duration_value2 = "1 second"
-	L.custom_select_throttle_duration_value3 = "3 seconds"
-end
+local L = mod:SetDefaultLocale({
+	common_trash = "Common Trash",
+	trash_cast = "Cast",
+	trash_cast_desc = "Alert when a standard trash mob casts a spell.",
+	lieutenant_cast = "Cast (Lieutenant)",
+	lieutenant_cast_desc = "Alert when a Lieutenant trash mob casts a spell.",
+	trash_channel = "Channel",
+	trash_channel_desc = "Alert when any trash mob channels a spell.",
+	customization = "Customization",
+	all_units = "All units show messages and play sounds",
+	messages_all_sounds_target = "All units show messages, but only your target plays sounds",
+	target_only = "Only your target shows messages and plays sounds",
+	custom_select_unit_standard = "Standard mobs",
+	custom_select_unit_standard_desc = "Select which standard trash mobs should show messages and play sounds.",
+	custom_select_unit_lieutenant = "Lieutenants",
+	custom_select_unit_lieutenant_desc = "Select which Lieutenant trash mobs should show messages and play sounds.",
+	custom_select_throttle_type = "Throttle type",
+	custom_select_throttle_type_desc = "What features should be throttled",
+	custom_select_throttle_type_value1 = "Both messages and sounds",
+	custom_select_throttle_type_value2 = "Sounds only",
+	custom_select_throttle_duration = "Throttle duration",
+	custom_select_throttle_duration_desc = "How long to wait between alerts. Your target is never throttled.",
+	custom_select_throttle_duration_value1 = "2 seconds",
+	custom_select_throttle_duration_value2 = "1 second",
+	custom_select_throttle_duration_value3 = "3 seconds",
+})
+mod.displayName = L.common_trash
+L.custom_select_unit_standard_value1 = L.target_only
+L.custom_select_unit_standard_value2 = L.messages_all_sounds_target
+L.custom_select_unit_standard_value3 = L.all_units
+L.custom_select_unit_lieutenant_value1 = L.all_units
+L.custom_select_unit_lieutenant_value2 = L.messages_all_sounds_target
+L.custom_select_unit_lieutenant_value3 = L.target_only
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -62,17 +62,6 @@ local THROTTLE_DURATIONS = { 2, 1, 3 } -- custom_select_throttle_duration values
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.common_trash
-	-- delayed for custom locale
-	L.custom_select_unit_standard_value1 = L.target_only
-	L.custom_select_unit_standard_value2 = L.messages_all_sounds_target
-	L.custom_select_unit_standard_value3 = L.all_units
-	L.custom_select_unit_lieutenant_value1 = L.all_units
-	L.custom_select_unit_lieutenant_value2 = L.messages_all_sounds_target
-	L.custom_select_unit_lieutenant_value3 = L.target_only
-end
 
 function mod:GetOptions()
 	return {

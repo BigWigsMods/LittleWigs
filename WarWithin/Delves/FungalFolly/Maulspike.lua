@@ -17,11 +17,10 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.maulspike = "Maulspike"
-	L.darkfuse_cackler = "Darkfuse Cackler"
-end
+local L = mod:SetDefaultLocale({
+	maulspike = "Maulspike",
+	darkfuse_cackler = "Darkfuse Cackler",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

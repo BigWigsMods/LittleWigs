@@ -38,12 +38,11 @@ local finalWarningCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.notes = "Notes"
-	L.notes_desc = "Show a message when the notes are available. Hit the notes with your instrument's ability to gain 'Jazzy'.\n\n|T237554:16|tJazzy\n{348567}"
-	L.notes_icon = "inv_misc_trinket_goldenharp"
-end
+local L = mod:SetDefaultLocale({
+	notes = "Notes",
+	notes_desc = "Show a message when the notes are available. Hit the notes with your instrument's ability to gain 'Jazzy'.\n\n|T237554:16|tJazzy\n{348567}",
+	notes_icon = "inv_misc_trinket_goldenharp",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

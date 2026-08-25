@@ -20,10 +20,9 @@ local nextSwiftness = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.cragpie = "Cragpie"
-end
+local L = mod:SetDefaultLocale({
+	cragpie = "Cragpie",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

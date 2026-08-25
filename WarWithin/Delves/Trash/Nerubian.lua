@@ -30,17 +30,16 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.nerubian_trash = "Nerubian Trash"
+local L = mod:SetDefaultLocale({
+	nerubian_trash = "Nerubian Trash",
 
-	L.nerubian_lord = "Nerubian Lord"
-	L.nerubian_darkcaster = "Nerubian Darkcaster"
-	L.nerubian_captain = "Nerubian Captain"
-	L.chittering_fearmonger = "Chittering Fearmonger"
-	L.skittering_swarmer = "Skittering Swarmer"
-	L.nerubian_webspinner = "Nerubian Webspinner"
-end
+	nerubian_lord = "Nerubian Lord",
+	nerubian_darkcaster = "Nerubian Darkcaster",
+	nerubian_captain = "Nerubian Captain",
+	chittering_fearmonger = "Chittering Fearmonger",
+	skittering_swarmer = "Skittering Swarmer",
+	nerubian_webspinner = "Nerubian Webspinner",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

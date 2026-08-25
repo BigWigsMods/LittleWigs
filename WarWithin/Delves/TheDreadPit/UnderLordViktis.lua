@@ -23,10 +23,9 @@ local nextStingingSwarm = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.under_lord_viktis = "Under-Lord Vik'tis"
-end
+local L = mod:SetDefaultLocale({
+	under_lord_viktis = "Under-Lord Vik'tis",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

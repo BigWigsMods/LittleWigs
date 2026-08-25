@@ -13,10 +13,9 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.berserker = "Ymirjar Berserker"
-end
+local L = mod:SetDefaultLocale({
+	berserker = "Ymirjar Berserker",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

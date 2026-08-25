@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.grimroot = "Grimroot"
-end
+local L = mod:SetDefaultLocale({
+	grimroot = "Grimroot",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

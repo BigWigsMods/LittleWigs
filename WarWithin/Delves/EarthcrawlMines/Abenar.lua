@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.web_general_abenar = "Web General Ab'enar"
-end
+local L = mod:SetDefaultLocale({
+	web_general_abenar = "Web General Ab'enar",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

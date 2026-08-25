@@ -32,31 +32,30 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.plagueborer = "Plagueborer"
-	L.fen_hatchling = "Fen Hatchling"
-	L.fen_hornet = "Fen Hornet"
-	L.decaying_flesh_giant = "Decaying Flesh Giant"
-	L.plagueroc = "Plagueroc"
-	L.plaguebelcher = "Plaguebelcher"
-	L.rotting_slimeclaw = "Rotting Slimeclaw"
-	L.blighted_spinebreaker = "Blighted Spinebreaker"
-	L.plaguebinder = "Plaguebinder"
-	L.congealed_slime = "Congealed Slime"
-	L.slime_tentacle = "Slime Tentacle"
-	L.defender_of_many_eyes = "Defender of Many Eyes"
-	L.venomous_sniper = "Venomous Sniper"
-	L.brood_ambusher = "Brood Ambusher"
-	L.ickor_bileflesh = "Ickor Bileflesh"
-	L.fungalmancer = "Fungalmancer"
-	L.pestilent_harvester = "Pestilent Harvester"
-	L.fungi_stormer = "Fungi Stormer"
+local L = mod:SetDefaultLocale({
+	plagueborer = "Plagueborer",
+	fen_hatchling = "Fen Hatchling",
+	fen_hornet = "Fen Hornet",
+	decaying_flesh_giant = "Decaying Flesh Giant",
+	plagueroc = "Plagueroc",
+	plaguebelcher = "Plaguebelcher",
+	rotting_slimeclaw = "Rotting Slimeclaw",
+	blighted_spinebreaker = "Blighted Spinebreaker",
+	plaguebinder = "Plaguebinder",
+	congealed_slime = "Congealed Slime",
+	slime_tentacle = "Slime Tentacle",
+	defender_of_many_eyes = "Defender of Many Eyes",
+	venomous_sniper = "Venomous Sniper",
+	brood_ambusher = "Brood Ambusher",
+	ickor_bileflesh = "Ickor Bileflesh",
+	fungalmancer = "Fungalmancer",
+	pestilent_harvester = "Pestilent Harvester",
+	fungi_stormer = "Fungi Stormer",
 
-	L.summon_stealthlings = 328400
-	L.summon_stealthlings_desc = "Show a warning when the Stealthlings spawn."
-	L.summon_stealthlings_icon = 328400
-end
+	summon_stealthlings = 328400,
+	summon_stealthlings_desc = "Show a warning when the Stealthlings spawn.",
+	summon_stealthlings_icon = 328400,
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

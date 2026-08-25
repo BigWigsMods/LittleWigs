@@ -13,10 +13,9 @@ mod:SetStage(1)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.energyStatus = "A Globule reached Witherbark: %d%% energy"
-end
+local L = mod:SetDefaultLocale({
+	energyStatus = "A Globule reached Witherbark: %d%% energy",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

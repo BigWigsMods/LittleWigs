@@ -11,10 +11,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.gyrospore = "Gyrospore"
-end
+local L = mod:SetDefaultLocale({
+	gyrospore = "Gyrospore",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

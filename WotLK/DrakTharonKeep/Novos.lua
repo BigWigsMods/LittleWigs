@@ -17,14 +17,13 @@ local crystalHandlersSpawned = 1 -- to decide whether CDBar needs to be displaye
 local crystalHandlersLeft = 4 -- to display CL.mob_remaining messages
 
 -------------------------------------------------------------------------------
---  Localization
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.adds = -6378 -- Crystal Handler
-	L.adds_desc = -6375 -- The description of the first stage that mentions that 4 of those need to be killed.
-end
+mod:SetDefaultLocale({
+	adds = -6378, -- Crystal Handler
+	adds_desc = -6375, -- The description of the first stage that mentions that 4 of those need to be killed.
+})
 
 -------------------------------------------------------------------------------
 --  Initialization

@@ -48,40 +48,39 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	------ Junkyard ------
-	L.scrapbone_shaman = "Scrapbone Shaman"
-	L.scrapbone_bully = "Scrapbone Bully"
-	L.scrapbone_grinder = "Scrapbone Grinder"
-	L.saurolisk_bonenipper = "Saurolisk Bonenipper"
-	L.malfunctioning_scrapbot = "Malfunctioning Scrapbot"
-	L.heavy_scrapbot = "Heavy Scrapbot"
-	L.pistonhead_blaster = "Pistonhead Blaster"
-	L.pistonhead_scrapper = "Pistonhead Scrapper"
-	L.weaponized_crawler = "Weaponized Crawler"
-	L.slime_elemental = "Slime Elemental"
-	L.toxic_monstrosity = "Toxic Monstrosity"
-	L.toxic_lurker = "Toxic Lurker"
-	L.pistonhead_mechanic = "Pistonhead Mechanic"
-	L.scraphound = "Scraphound"
-	L.mechagon_renormalizer = "Mechagon Renormalizer"
-	L.mechagon_cavalry = "Mechagon Cavalry"
-	L.mechagon_trooper = "Mechagon Trooper"
-	L.anodized_coilbearer = "Anodized Coilbearer"
+	scrapbone_shaman = "Scrapbone Shaman",
+	scrapbone_bully = "Scrapbone Bully",
+	scrapbone_grinder = "Scrapbone Grinder",
+	saurolisk_bonenipper = "Saurolisk Bonenipper",
+	malfunctioning_scrapbot = "Malfunctioning Scrapbot",
+	heavy_scrapbot = "Heavy Scrapbot",
+	pistonhead_blaster = "Pistonhead Blaster",
+	pistonhead_scrapper = "Pistonhead Scrapper",
+	weaponized_crawler = "Weaponized Crawler",
+	slime_elemental = "Slime Elemental",
+	toxic_monstrosity = "Toxic Monstrosity",
+	toxic_lurker = "Toxic Lurker",
+	pistonhead_mechanic = "Pistonhead Mechanic",
+	scraphound = "Scraphound",
+	mechagon_renormalizer = "Mechagon Renormalizer",
+	mechagon_cavalry = "Mechagon Cavalry",
+	mechagon_trooper = "Mechagon Trooper",
+	anodized_coilbearer = "Anodized Coilbearer",
 	------ Workshop ------
-	L.bomb_tonk = "Bomb Tonk"
-	L.rocket_tonk = "Rocket Tonk"
-	L.waste_processing_unit = "Waste Processing Unit"
-	L.metal_gunk = "Metal Gunk"
-	L.junkyard_d0g = "Junkyard D.0.G."
-	L.mechagon_tinkerer = "Mechagon Tinkerer"
-	L.anti_personnel_squirrel = "Anti-Personnel Squirrel"
-	L.defense_bot_mk_iii = "Defense Bot Mk III"
-	L.blastatron_x80 = "Blastatron X-80"
-	L.mechagon_mechanic = "Mechagon Mechanic"
-	L.workshop_defender = "Workshop Defender"
-end
+	bomb_tonk = "Bomb Tonk",
+	rocket_tonk = "Rocket Tonk",
+	waste_processing_unit = "Waste Processing Unit",
+	metal_gunk = "Metal Gunk",
+	junkyard_d0g = "Junkyard D.0.G.",
+	mechagon_tinkerer = "Mechagon Tinkerer",
+	anti_personnel_squirrel = "Anti-Personnel Squirrel",
+	defense_bot_mk_iii = "Defense Bot Mk III",
+	blastatron_x80 = "Blastatron X-80",
+	mechagon_mechanic = "Mechagon Mechanic",
+	workshop_defender = "Workshop Defender",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

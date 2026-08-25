@@ -12,10 +12,9 @@ mod:SetRespawnTime(30)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_icon = "inv_achievement_dungeon_cinderbrewmeadery"
-end
+local L = mod:SetDefaultLocale({
+	warmup_icon = "inv_achievement_dungeon_cinderbrewmeadery",
+})
 
 --------------------------------------------------------------------------------
 -- Locals

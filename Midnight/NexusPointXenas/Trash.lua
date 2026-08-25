@@ -10,12 +10,11 @@ mod:SetTrashModule(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.custom_on_arcane_tripwire_autotalk = CL.autotalk
-	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Engineering.|r Automatically select the NPC dialog option to disable the Arcane Tripwire."
-	L.custom_on_arcane_tripwire_autotalk_icon = mod:GetMenuIcon("SAY")
-end
+mod:SetDefaultLocale({
+	custom_on_arcane_tripwire_autotalk = CL.autotalk,
+	custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Engineering.|r Automatically select the NPC dialog option to disable the Arcane Tripwire.",
+	custom_on_arcane_tripwire_autotalk_icon = mod:GetMenuIcon("SAY"),
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

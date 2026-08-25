@@ -33,25 +33,24 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.mug_of_mead = "Mug of Mead"
-	L.valarjar_thundercaller = "Valarjar Thundercaller"
-	L.storm_drake = "Storm Drake"
-	L.stormforged_sentinel = "Stormforged Sentinel"
-	L.valarjar_runecarver = "Valarjar Runecarver"
-	L.valarjar_mystic = "Valarjar Mystic"
-	L.valarjar_purifier = "Valarjar Purifier"
-	L.valarjar_shieldmaiden = "Valarjar Shieldmaiden"
-	L.valarjar_aspirant = "Valarjar Aspirant"
-	L.solsten = "Solsten"
-	L.olmyr = "Olmyr the Enlightened"
-	L.valarjar_marksman = "Valarjar Marksman"
-	L.gildedfur_stag = "Gildedfur Stag"
-	L.angerhoof_bull = "Angerhoof Bull"
-	L.valarjar_trapper = "Valarjar Trapper"
-	L.fourkings = "The Four Kings"
-end
+local L = mod:SetDefaultLocale({
+	mug_of_mead = "Mug of Mead",
+	valarjar_thundercaller = "Valarjar Thundercaller",
+	storm_drake = "Storm Drake",
+	stormforged_sentinel = "Stormforged Sentinel",
+	valarjar_runecarver = "Valarjar Runecarver",
+	valarjar_mystic = "Valarjar Mystic",
+	valarjar_purifier = "Valarjar Purifier",
+	valarjar_shieldmaiden = "Valarjar Shieldmaiden",
+	valarjar_aspirant = "Valarjar Aspirant",
+	solsten = "Solsten",
+	olmyr = "Olmyr the Enlightened",
+	valarjar_marksman = "Valarjar Marksman",
+	gildedfur_stag = "Gildedfur Stag",
+	angerhoof_bull = "Angerhoof Bull",
+	valarjar_trapper = "Valarjar Trapper",
+	fourkings = "The Four Kings",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

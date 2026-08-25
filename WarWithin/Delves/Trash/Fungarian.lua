@@ -33,19 +33,18 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.fungarian_trash = "Fungarian Trash"
+local L = mod:SetDefaultLocale({
+	fungarian_trash = "Fungarian Trash",
 
-	L.sporbit = "Sporbit"
-	L.fungal_speartender = "Fungal Speartender"
-	L.gnarled_reviver = "Gnarled Reviver"
-	L.infected_beast = "Infected Beast"
-	L.fungal_gutter = "Fungal Gutter"
-	L.fungarian_flinger = "Fungarian Flinger"
-	L.fungal_rotcaster = "Fungal Rotcaster"
-	L.particularly_bad_guy = "Particularly Bad Guy"
-end
+	sporbit = "Sporbit",
+	fungal_speartender = "Fungal Speartender",
+	gnarled_reviver = "Gnarled Reviver",
+	infected_beast = "Infected Beast",
+	fungal_gutter = "Fungal Gutter",
+	fungarian_flinger = "Fungarian Flinger",
+	fungal_rotcaster = "Fungal Rotcaster",
+	particularly_bad_guy = "Particularly Bad Guy",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

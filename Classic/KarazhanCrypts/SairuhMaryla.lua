@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.sairuh_maryla = "Sairuh Maryla"
-end
+local L = mod:SetDefaultLocale({
+	sairuh_maryla = "Sairuh Maryla",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

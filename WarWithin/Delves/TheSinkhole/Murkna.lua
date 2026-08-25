@@ -16,10 +16,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.mirror_master_murkna = "Mirror Master Murkna"
-end
+local L = mod:SetDefaultLocale({
+	mirror_master_murkna = "Mirror Master Murkna",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

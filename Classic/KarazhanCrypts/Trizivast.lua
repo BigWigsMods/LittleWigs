@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.trizivast = "Trizivast"
-end
+local L = mod:SetDefaultLocale({
+	trizivast = "Trizivast",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

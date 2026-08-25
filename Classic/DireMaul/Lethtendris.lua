@@ -15,10 +15,9 @@ mod:SetEncounterID(345)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.pimgib = "Pimgib"
-end
+local L = mod:SetDefaultLocale({
+	pimgib = "Pimgib",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

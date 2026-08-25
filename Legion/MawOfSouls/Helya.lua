@@ -16,12 +16,11 @@ mod.engageId = 1824
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.destructor_tentacle = -12364
-	L.destructor_tentacle_desc = -12366
-	L.destructor_tentacle_icon = "inv_misc_monsterhorn_03"
-end
+local L = mod:SetDefaultLocale({
+	destructor_tentacle = -12364,
+	destructor_tentacle_desc = -12366,
+	destructor_tentacle_icon = "inv_misc_monsterhorn_03",
+})
 
 --------------------------------------------------------------------------------
 -- Locals

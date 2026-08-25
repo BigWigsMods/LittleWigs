@@ -16,12 +16,11 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.bloodmaul_enforcer = "Bloodmaul Enforcer"
-	L.bloodmaul_overseer = "Bloodmaul Overseer"
-	L.bloodmaul_warder = "Bloodmaul Warder"
-end
+local L = mod:SetDefaultLocale({
+	bloodmaul_enforcer = "Bloodmaul Enforcer",
+	bloodmaul_overseer = "Bloodmaul Overseer",
+	bloodmaul_warder = "Bloodmaul Warder",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

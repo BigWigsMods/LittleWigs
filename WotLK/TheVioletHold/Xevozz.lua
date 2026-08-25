@@ -15,10 +15,9 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.sphere_name = "Ethereal Sphere"
-end
+local L = mod:SetDefaultLocale({
+	sphere_name = "Ethereal Sphere",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

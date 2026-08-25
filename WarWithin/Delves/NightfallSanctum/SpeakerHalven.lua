@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.speaker_halven = "Speaker Halven"
-end
+local L = mod:SetDefaultLocale({
+	speaker_halven = "Speaker Halven",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -21,25 +21,24 @@ local hasFury = nil
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.name = "Agatha"
-	L.levia = "Levia" -- Shortcut for warmup_trigger1 so most locales should still work if you enable quick enough
+local L = mod:SetDefaultLocale({
+	name = "Agatha",
+	levia = "Levia", -- Shortcut for warmup_trigger1 so most locales should still work if you enable quick enough
 
-	L.warmup_trigger1 = "You are too late! Levia's power is mine! Using her knowledge, my minions will infiltrate the Kirin Tor and dismantle it from the inside!" -- 35
-	L.warmup_trigger2 = "Even now, my sayaad tempt your weak-willed mages. Your allies will surrender willingly to the Legion!" -- 16
-	L.warmup_trigger3 = "But first, you must be punished for taking away my little pet." -- 3
+	warmup_trigger1 = "You are too late! Levia's power is mine! Using her knowledge, my minions will infiltrate the Kirin Tor and dismantle it from the inside!", -- 35
+	warmup_trigger2 = "Even now, my sayaad tempt your weak-willed mages. Your allies will surrender willingly to the Legion!", -- 16
+	warmup_trigger3 = "But first, you must be punished for taking away my little pet.", -- 3
 
-	--L.servant_trigger = "Kill the Imp Servants before they energize Agatha!"
-	--L.umbral_trigger = "Protect me, my children! I will give you the power!"
+	--servant_trigger = "Kill the Imp Servants before they energize Agatha!",
+	--umbral_trigger = "Protect me, my children! I will give you the power!",
 
-	L.imp_servant = "Imp Servant"
-	L.imp_servant_desc = 229928 -- Funnel Energy
-	L.fuming_imp = "Fuming Imp"
-	L.fuming_imp_desc = 236163 -- Plague Zone
+	imp_servant = "Imp Servant",
+	imp_servant_desc = 229928, -- Funnel Energy
+	fuming_imp = "Fuming Imp",
+	fuming_imp_desc = 236163, -- Plague Zone
 
-	L.stacks = "Stacks"
-end
+	stacks = "Stacks",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.captain_nilhitan = "Captain Nil'hitan"
-end
+local L = mod:SetDefaultLocale({
+	captain_nilhitan = "Captain Nil'hitan",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

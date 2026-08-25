@@ -36,25 +36,24 @@ mod:SetPrivateAuraSounds({
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.arathi_lamplighter = "Arathi Lamplighter"
-	L.nightfall_curseblade = "Nightfall Curseblade"
-	L.nightfall_shadowmage = "Nightfall Shadowmage"
-	L.nightfall_ritualist = "Nightfall Ritualist"
-	L.nightfall_commander = "Nightfall Commander"
-	L.sureki_webmage = "Sureki Webmage"
-	L.arathi_bomb = "Arathi Bomb"
-	L.ascendant_viscoxria = "Ascendant Vis'coxria"
-	L.deathscreamer_ikentak = "Deathscreamer Iken'tak"
-	L.ixkreten_the_unbreakable = "Ixkreten the Unbreakable"
-	L.sureki_militant = "Sureki Militant"
-	L.nightfall_tactician = "Nightfall Tactician"
-	L.nightfall_darkcaster = "Nightfall Darkcaster"
-	L.nightfall_shadowalker = "Nightfall Shadowalker"
-	L.manifested_shadow = "Manifested Shadow"
-	L.nightfall_dark_architect = "Nightfall Dark Architect"
-end
+local L = mod:SetDefaultLocale({
+	arathi_lamplighter = "Arathi Lamplighter",
+	nightfall_curseblade = "Nightfall Curseblade",
+	nightfall_shadowmage = "Nightfall Shadowmage",
+	nightfall_ritualist = "Nightfall Ritualist",
+	nightfall_commander = "Nightfall Commander",
+	sureki_webmage = "Sureki Webmage",
+	arathi_bomb = "Arathi Bomb",
+	ascendant_viscoxria = "Ascendant Vis'coxria",
+	deathscreamer_ikentak = "Deathscreamer Iken'tak",
+	ixkreten_the_unbreakable = "Ixkreten the Unbreakable",
+	sureki_militant = "Sureki Militant",
+	nightfall_tactician = "Nightfall Tactician",
+	nightfall_darkcaster = "Nightfall Darkcaster",
+	nightfall_shadowalker = "Nightfall Shadowalker",
+	manifested_shadow = "Manifested Shadow",
+	nightfall_dark_architect = "Nightfall Dark Architect",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

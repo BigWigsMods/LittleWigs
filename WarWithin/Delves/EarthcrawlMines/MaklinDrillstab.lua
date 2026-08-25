@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.maklin_drillstab = "Maklin Drillstab"
-end
+local L = mod:SetDefaultLocale({
+	maklin_drillstab = "Maklin Drillstab",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

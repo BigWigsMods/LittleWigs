@@ -37,20 +37,19 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.goblin_trash = "Goblin Trash"
+local L = mod:SetDefaultLocale({
+	goblin_trash = "Goblin Trash",
 
-	L.bopper_bot = "Bopper Bot"
-	L.aerial_support_bot = "Aerial Support Bot"
-	L.masked_freelancer = "Masked Freelancer"
-	L.underpaid_brute = "Underpaid Brute"
-	L.drill_sergeant = "Drill Sergeant"
-	L.punchy_thug = "Punchy Thug"
-	L.flinging_flicker = "Flinging Flicker"
-	L.bomb_bot = "Bomb Bot"
-	L.rad_rat = "Rad Rat"
-end
+	bopper_bot = "Bopper Bot",
+	aerial_support_bot = "Aerial Support Bot",
+	masked_freelancer = "Masked Freelancer",
+	underpaid_brute = "Underpaid Brute",
+	drill_sergeant = "Drill Sergeant",
+	punchy_thug = "Punchy Thug",
+	flinging_flicker = "Flinging Flicker",
+	bomb_bot = "Bomb Bot",
+	rad_rat = "Rad Rat",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

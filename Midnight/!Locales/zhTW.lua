@@ -1,187 +1,162 @@
 -- Altar of Fangs
 
-local L = BigWigs:NewBossLocale("Altar of Fangs Trash", "zhTW")
-if L then
-	--L.custom_on_mixture_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Cooking or Midnight Alchemy.|r Automatically select the NPC dialog option to gain the 'Mutating Elixir' buff.\n\n|T136242:16|tMutating Elixir\n{1310012}"
-end
+BigWigsAPI.SetBossModuleLocale("Altar of Fangs Trash", {
+	--custom_on_mixture_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Cooking or Midnight Alchemy.|r Automatically select the NPC dialog option to gain the 'Mutating Elixir' buff.\n\n|T136242:16|tMutating Elixir\n{1310012}",
+})
 
 -- Delves: Atal'Aman
 
-L = BigWigs:NewBossLocale("Spiritflayer Jin'ma", "zhTW")
-if L then
-	L.spiritflayer_jinma = "奪魂者金瑪"
-end
+BigWigsAPI.SetBossModuleLocale("Spiritflayer Jin'ma", {
+	spiritflayer_jinma = "奪魂者金瑪",
+})
 
 -- Delves: Collegiate Calamity
 
-L = BigWigs:NewBossLocale("Hydrangea", "zhTW")
-if L then
-	L.hydrangea = "海德吉爾"
-end
+BigWigsAPI.SetBossModuleLocale("Hydrangea", {
+	hydrangea = "海德吉爾",
+})
 
-L = BigWigs:NewBossLocale("Infiltrator Garand", "zhTW")
-if L then
-	L.infiltrator_garand = "滲透者加蘭德"
-end
+BigWigsAPI.SetBossModuleLocale("Infiltrator Garand", {
+	infiltrator_garand = "滲透者加蘭德",
+})
 
-L = BigWigs:NewBossLocale("Voidscorned Vagrant", "zhTW")
-if L then
-	L.voidscorned_vagrant = "虛蔑遊民"
-end
+BigWigsAPI.SetBossModuleLocale("Voidscorned Vagrant", {
+	voidscorned_vagrant = "虛蔑遊民",
+})
 
 -- Delves: Parhelion Plaza
 
-L = BigWigs:NewBossLocale("Gladius Slaurna", "zhTW")
-if L then
-	L.gladius_slaurna = "劍仕斯勞納"
-end
+BigWigsAPI.SetBossModuleLocale("Gladius Slaurna", {
+	gladius_slaurna = "劍仕斯勞納",
+})
 
 -- Delves: Shadowguard Point
 
-L = BigWigs:NewBossLocale("Chief-Arcanist Patram", "zhTW")
-if L then
-	L.chiefarcanist_patram = "首席秘法師帕特拉姆"
-end
+BigWigsAPI.SetBossModuleLocale("Chief-Arcanist Patram", {
+	chiefarcanist_patram = "首席秘法師帕特拉姆",
+})
 
 -- Delves: Sunkiller Sanctum
 
-L = BigWigs:NewBossLocale("Esuritus", "zhTW")
-if L then
-	L.esuritus = "艾修里圖斯"
-end
+BigWigsAPI.SetBossModuleLocale("Esuritus", {
+	esuritus = "艾修里圖斯",
+})
 
 -- Delves: The Darkway
 
-L = BigWigs:NewBossLocale("Infiltrator Gulkat", "zhTW")
-if L then
-	L.infiltrator_gulkat = "滲透者古卡特"
-end
+BigWigsAPI.SetBossModuleLocale("Infiltrator Gulkat", {
+	infiltrator_gulkat = "滲透者古卡特",
+})
 
 -- Delves: The Grudge Pit
 
-L = BigWigs:NewBossLocale("Brightthorn", "zhTW")
-if L then
-	L.brightthorn = "亮角"
-end
+BigWigsAPI.SetBossModuleLocale("Brightthorn", {
+	brightthorn = "亮角",
+})
 
-L = BigWigs:NewBossLocale("Gyrospore", "zhTW")
-if L then
-	L.gyrospore = "迴旋孢子"
-end
+BigWigsAPI.SetBossModuleLocale("Gyrospore", {
+	gyrospore = "迴旋孢子",
+})
 
-L = BigWigs:NewBossLocale("Mycomight", "zhTW")
-if L then
-	L.mycomight = "菌力者"
-end
+BigWigsAPI.SetBossModuleLocale("Mycomight", {
+	mycomight = "菌力者",
+})
 
 -- Delves: The Gulf of Memory
 
-L = BigWigs:NewBossLocale("Lumenia", "zhTW")
-if L then
-	L.lumenia = "麗尼亞"
-end
+BigWigsAPI.SetBossModuleLocale("Lumenia", {
+	lumenia = "麗尼亞",
+})
 
-L = BigWigs:NewBossLocale("Mul'tha'ul", "zhTW")
-if L then
-	L.multhaul = "莫薩沃"
-end
+BigWigsAPI.SetBossModuleLocale("Mul'tha'ul", {
+	multhaul = "莫薩沃",
+})
 
 -- Delves: The Shadow Enclave
 
-L = BigWigs:NewBossLocale("Antenorian", "zhTW")
-if L then
-	L.antenorian = "安諾里恩"
-end
+BigWigsAPI.SetBossModuleLocale("Antenorian", {
+	antenorian = "安諾里恩",
+})
 
 -- Delves: Torment's Rise
 
-L = BigWigs:NewBossLocale("Nullaeus", "zhTW")
-if L then
-	L.nullaeus = "努萊厄斯"
-end
+BigWigsAPI.SetBossModuleLocale("Nullaeus", {
+	nullaeus = "努萊厄斯",
+})
 
 -- Delves: Twilight Crypts
 
-L = BigWigs:NewBossLocale("Blademaster Darza", "zhTW")
-if L then
-	L.blademaster_darza = "大劍師妲莎"
-end
+BigWigsAPI.SetBossModuleLocale("Blademaster Darza", {
+	blademaster_darza = "大劍師妲莎",
+})
 
 -- Delves: Venomfall Deeps
 
-L = BigWigs:NewBossLocale("Azta'rec", "zhTW")
-if L then
-	L.aztarec = "阿茲塔瑞"
-end
+BigWigsAPI.SetBossModuleLocale("Azta'rec", {
+	aztarec = "阿茲塔瑞",
+})
 
 -- Delves: Trash
 
-L = BigWigs:NewBossLocale("Midnight Delve Trash", "zhTW")
-if L then
-end
+BigWigsAPI.SetBossModuleLocale("Midnight Delve Trash", {})
 
 -- Den of Nalorakk
 
-L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "zhTW")
-if L then
-	L.offerings_acquired = "獲得的供品"
-	L.offerings_acquired_desc = "當收集到獲得的供品時顯示警告。"
-end
+BigWigsAPI.SetBossModuleLocale("Den of Nalorakk Trash", {
+	offerings_acquired = "獲得的供品",
+	offerings_acquired_desc = "當收集到獲得的供品時顯示警告。",
+})
 
 -- Maisara Caverns
 
-L = BigWigs:NewBossLocale("Maisara Caverns Trash", "zhTW")
-if L then
-	L.prisoners_freed = "解救囚犯"
-	L.prisoners_freed_desc = "當解救囚犯時顯示警告。"
-	L.custom_on_cooking_pot_autotalk_desc = "自動選擇NPC的對話選項，獲取“澎湃邪枝燉肉”增益。\n\n|T4659336:16|t澎湃邪枝燉肉\n{1269056}"
-	L.custom_on_ritual_cauldron_autotalk_desc = "自動選擇NPC的對話選項，獲取“儀式混合物”增益。\n\n|T236271:16|t儀式混合物\n{1271300}"
+BigWigsAPI.SetBossModuleLocale("Maisara Caverns Trash", {
+	prisoners_freed = "解救囚犯",
+	prisoners_freed_desc = "當解救囚犯時顯示警告。",
+	custom_on_cooking_pot_autotalk_desc = "自動選擇NPC的對話選項，獲取“澎湃邪枝燉肉”增益。\n\n|T4659336:16|t澎湃邪枝燉肉\n{1269056}",
+	custom_on_ritual_cauldron_autotalk_desc = "自動選擇NPC的對話選項，獲取“儀式混合物”增益。\n\n|T236271:16|t儀式混合物\n{1271300}",
 
-	L.cooking_pot = "煮菜鍋"
-	L.ritual_cauldron = "儀式大鍋"
-end
+	cooking_pot = "煮菜鍋",
+	ritual_cauldron = "儀式大鍋",
+})
 
 -- Murder Row
 
-L = BigWigs:NewBossLocale("Murder Row Trash", "zhTW")
-if L then
-	L.snitches_interrogated = "審問告密者"
-	L.snitches_interrogated_desc = "當審問告密者時顯示警告。"
-end
+BigWigsAPI.SetBossModuleLocale("Murder Row Trash", {
+	snitches_interrogated = "審問告密者",
+	snitches_interrogated_desc = "當審問告密者時顯示警告。",
+})
 
 -- Nexus-Point Xenas
 
-L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "zhTW")
-if L then
-	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000需要 25點 至暗之夜的工程學技能。|r 自動選擇NPC對話選項以停用秘法引線。"
-end
+BigWigsAPI.SetBossModuleLocale("Nexus-Point Xenas Trash", {
+	custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000需要 25點 至暗之夜的工程學技能。|r 自動選擇NPC對話選項以停用秘法引線。",
+})
 
 -- Common Trash
 
-L = BigWigs:NewBossLocale("Common Trash", "zhTW")
-if L then
-	--L.common_trash = "Common Trash"
-	--L.trash_cast = "Cast"
-	--L.trash_cast_desc = "Alert when a standard trash mob casts a spell."
-	--L.lieutenant_cast = "Cast (Lieutenant)"
-	--L.lieutenant_cast_desc = "Alert when a Lieutenant trash mob casts a spell."
-	--L.trash_channel = "Channel"
-	--L.trash_channel_desc = "Alert when any trash mob channels a spell."
-	--L.customization = "Customization"
-	--L.all_units = "All units show messages and play sounds"
-	--L.messages_all_sounds_target = "All units show messages, but only your target plays sounds"
-	--L.target_only = "Only your target shows messages and plays sounds"
-	--L.custom_select_unit_standard = "Standard mobs"
-	--L.custom_select_unit_standard_desc = "Select which standard trash mobs should show messages and play sounds."
-	--L.custom_select_unit_lieutenant = "Lieutenants"
-	--L.custom_select_unit_lieutenant_desc = "Select which Lieutenant trash mobs should show messages and play sounds."
-	--L.custom_select_throttle_type = "Throttle type"
-	--L.custom_select_throttle_type_desc = "What features should be throttled"
-	--L.custom_select_throttle_type_value1 = "Both messages and sounds"
-	--L.custom_select_throttle_type_value2 = "Sounds only"
-	--L.custom_select_throttle_duration = "Throttle duration"
-	--L.custom_select_throttle_duration_desc = "How long to wait between alerts. Your target is never throttled."
-	--L.custom_select_throttle_duration_value1 = "2 seconds"
-	--L.custom_select_throttle_duration_value2 = "1 second"
-	--L.custom_select_throttle_duration_value3 = "3 seconds"
-end
+BigWigsAPI.SetBossModuleLocale("Common Trash", {
+	--common_trash = "Common Trash",
+	--trash_cast = "Cast",
+	--trash_cast_desc = "Alert when a standard trash mob casts a spell.",
+	--lieutenant_cast = "Cast (Lieutenant)",
+	--lieutenant_cast_desc = "Alert when a Lieutenant trash mob casts a spell.",
+	--trash_channel = "Channel",
+	--trash_channel_desc = "Alert when any trash mob channels a spell.",
+	--customization = "Customization",
+	--all_units = "All units show messages and play sounds",
+	--messages_all_sounds_target = "All units show messages, but only your target plays sounds",
+	--target_only = "Only your target shows messages and plays sounds",
+	--custom_select_unit_standard = "Standard mobs",
+	--custom_select_unit_standard_desc = "Select which standard trash mobs should show messages and play sounds.",
+	--custom_select_unit_lieutenant = "Lieutenants",
+	--custom_select_unit_lieutenant_desc = "Select which Lieutenant trash mobs should show messages and play sounds.",
+	--custom_select_throttle_type = "Throttle type",
+	--custom_select_throttle_type_desc = "What features should be throttled",
+	--custom_select_throttle_type_value1 = "Both messages and sounds",
+	--custom_select_throttle_type_value2 = "Sounds only",
+	--custom_select_throttle_duration = "Throttle duration",
+	--custom_select_throttle_duration_desc = "How long to wait between alerts. Your target is never throttled.",
+	--custom_select_throttle_duration_value1 = "2 seconds",
+	--custom_select_throttle_duration_value2 = "1 second",
+	--custom_select_throttle_duration_value3 = "3 seconds",
+})

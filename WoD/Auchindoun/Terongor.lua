@@ -12,12 +12,11 @@ mod:SetRespawnTime(33)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.affliction = "Affliction"
-	L.demonology = "Demonology"
-	L.destruction = "Destruction"
-end
+local L = mod:SetDefaultLocale({
+	affliction = "Affliction",
+	demonology = "Demonology",
+	destruction = "Destruction",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

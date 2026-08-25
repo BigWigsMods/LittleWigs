@@ -16,11 +16,10 @@ mod:SetEncounterID(1907)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- Thrall! You didn't really think you would escape, did you?  You and your allies shall answer to Blackmoore... after I've had my fun.
-	L.warmup_trigger = "answer to Blackmoore"
-end
+	warmup_trigger = "answer to Blackmoore",
+})
 
 -------------------------------------------------------------------------------
 --  Initialization

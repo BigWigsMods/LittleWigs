@@ -12,14 +12,13 @@ mod:SetRespawnTime(30)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.forms = "Forms"
-	L.forms_desc = "Warn before Gal'darah changes forms."
+local L = mod:SetDefaultLocale({
+	forms = "Forms",
+	forms_desc = "Warn before Gal'darah changes forms.",
 
-	L.form_rhino = "Rhino Form"
-	L.form_troll = "Troll Form"
-end
+	form_rhino = "Rhino Form",
+	form_troll = "Troll Form",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

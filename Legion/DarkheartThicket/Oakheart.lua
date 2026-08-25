@@ -24,10 +24,9 @@ local nextShatteredEarth = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.throw = "Throw"
-end
+local L = mod:SetDefaultLocale({
+	throw = "Throw",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

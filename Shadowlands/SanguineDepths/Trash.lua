@@ -27,27 +27,26 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.kaal_engage_trigger1 = "Guards! Slay them all!"
-	L.kaal_engage_trigger2 = "That prisoner belongs to the Master. You will not take it!"
-	L.kaal_engage_trigger3 = "These halls will be your tomb!"
-	L.kaal_retreat_trigger1 = "Wretched mortals!"
-	L.kaal_retreat_trigger2 = "You are nothing but Draven's dogs!"
-	L.kaal_retreat_trigger3 = "Stubborn rebels. You will meet your end!"
-	L.anima_collector = "Anima Collector"
-	L.chamber_sentinel = "Chamber Sentinel"
-	L.depths_warden = "Depths Warden"
-	L.dreadful_huntmaster = "Dreadful Huntmaster"
-	L.grand_overseer = "Grand Overseer"
-	L.head_custodian_javlin = "Head Custodian Javlin"
-	L.insatiable_brute = "Insatiable Brute"
-	L.regal_mistdancer = "Regal Mistdancer"
-	L.research_scribe = "Research Scribe"
-	L.wicked_oppressor = "Wicked Oppressor"
-	L.ravenous_dreadbat = "Ravenous Dreadbat"
-	L.zrali = "Z'rali"
-end
+local L = mod:SetDefaultLocale({
+	kaal_engage_trigger1 = "Guards! Slay them all!",
+	kaal_engage_trigger2 = "That prisoner belongs to the Master. You will not take it!",
+	kaal_engage_trigger3 = "These halls will be your tomb!",
+	kaal_retreat_trigger1 = "Wretched mortals!",
+	kaal_retreat_trigger2 = "You are nothing but Draven's dogs!",
+	kaal_retreat_trigger3 = "Stubborn rebels. You will meet your end!",
+	anima_collector = "Anima Collector",
+	chamber_sentinel = "Chamber Sentinel",
+	depths_warden = "Depths Warden",
+	dreadful_huntmaster = "Dreadful Huntmaster",
+	grand_overseer = "Grand Overseer",
+	head_custodian_javlin = "Head Custodian Javlin",
+	insatiable_brute = "Insatiable Brute",
+	regal_mistdancer = "Regal Mistdancer",
+	research_scribe = "Research Scribe",
+	wicked_oppressor = "Wicked Oppressor",
+	ravenous_dreadbat = "Ravenous Dreadbat",
+	zrali = "Z'rali",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

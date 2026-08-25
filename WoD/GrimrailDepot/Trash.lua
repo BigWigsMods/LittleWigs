@@ -21,18 +21,17 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.grimrail_technician = "Grimrail Technician"
-	L.grimrail_overseer = "Grimrail Overseer"
-	L.gromkar_gunner = "Grom'kar Gunner"
-	L.gromkar_cinderseer = "Grom'kar Cinderseer"
-	L.gromkar_boomer = "Grom'kar Boomer"
-	L.gromkar_hulk = "Grom'kar Hulk"
-	L.gromkar_far_seer = "Grom'kar Far Seer"
-	L.gromkar_captain = "Grom'kar Captain"
-	L.grimrail_scout = "Grimrail Scout"
-end
+local L = mod:SetDefaultLocale({
+	grimrail_technician = "Grimrail Technician",
+	grimrail_overseer = "Grimrail Overseer",
+	gromkar_gunner = "Grom'kar Gunner",
+	gromkar_cinderseer = "Grom'kar Cinderseer",
+	gromkar_boomer = "Grom'kar Boomer",
+	gromkar_hulk = "Grom'kar Hulk",
+	gromkar_far_seer = "Grom'kar Far Seer",
+	gromkar_captain = "Grom'kar Captain",
+	grimrail_scout = "Grimrail Scout",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

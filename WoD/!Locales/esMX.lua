@@ -1,150 +1,137 @@
 -- Auchindoun
 
-local L = BigWigs:NewBossLocale("Teron'gor", "esMX")
-if not L then return end
-if L then
-	L.affliction = "Aflicción"
-	L.demonology = "Demonología"
-	L.destruction = "Destrucción"
-end
+BigWigsAPI.SetBossModuleLocale("Teron'gor", {
+	affliction = "Aflicción",
+	demonology = "Demonología",
+	destruction = "Destrucción",
+})
 
-L = BigWigs:NewBossLocale("Auchindoun Trash", "esMX")
-if L then
-	L.abyssal = "Abisal vilificado"
-end
+BigWigsAPI.SetBossModuleLocale("Auchindoun Trash", {
+	abyssal = "Abisal vilificado",
+})
 
 -- Bloodmaul Slag Mines
 
-L = BigWigs:NewBossLocale("Bloodmaul Slag Mines Trash", "esMX")
-if L then
-	L.bloodmaul_enforcer = "Déspota Machacasangre"
-	L.bloodmaul_overseer = "Sobrestante Machacasangre"
-	L.bloodmaul_warder = "Depositario Machacasangre"
-end
+BigWigsAPI.SetBossModuleLocale("Bloodmaul Slag Mines Trash", {
+	bloodmaul_enforcer = "Déspota Machacasangre",
+	bloodmaul_overseer = "Sobrestante Machacasangre",
+	bloodmaul_warder = "Depositario Machacasangre",
+})
 
 -- Grimrail Depot
 
-L = BigWigs:NewBossLocale("Nitrogg Thundertower", "esMX")
-if L then
-	--L.dropped = "%s dropped!"
-	L.add_trigger1 = "¡Denles fuerte, muchachos!"
-	L.add_trigger2 = "¡Hay que atacar con todo!"
+BigWigsAPI.SetBossModuleLocale("Nitrogg Thundertower", {
+	--dropped = "%s dropped!",
+	add_trigger1 = "¡Denles fuerte, muchachos!",
+	add_trigger2 = "¡Hay que atacar con todo!",
 
-	L.waves[1] = "1x Explotador Grom'kar, 1x Artillero Grom'kar"
-	L.waves[2] = "1x Artillero Grom'kar, 1x Granadero Grom'kar"
-	L.waves[3] = "Infantería de hierro"
-	L.waves[4] = "2x Explotador Grom'kar"
-	L.waves[5] = "Infantería de hierro"
-	L.waves[6] = "2x Artillero Grom'kar"
-	L.waves[7] = "Infantería de hierro"
-	L.waves[8] = "1x Explotador Grom'kar, 1x Granadero Grom'kar"
-	L.waves[9] = "3x Explotador Grom'kar, 1x Artillero Grom'kar"
-end
+	waves = {
+		[1] = "1x Explotador Grom'kar, 1x Artillero Grom'kar",
+		[2] = "1x Artillero Grom'kar, 1x Granadero Grom'kar",
+		[3] = "Infantería de hierro",
+		[4] = "2x Explotador Grom'kar",
+		[5] = "Infantería de hierro",
+		[6] = "2x Artillero Grom'kar",
+		[7] = "Infantería de hierro",
+		[8] = "1x Explotador Grom'kar, 1x Granadero Grom'kar",
+		[9] = "3x Explotador Grom'kar, 1x Artillero Grom'kar",
+	},
+})
 
-L = BigWigs:NewBossLocale("Grimrail Depot Trash", "esMX")
-if L then
-	L.grimrail_technician = "Técnico Malavía"
-	L.grimrail_overseer = "Sobrestante Malavía"
-	L.gromkar_gunner = "Artillero Grom'kar"
-	L.gromkar_cinderseer = "Vidente de las cenizas Grom'kar"
-	L.gromkar_boomer = "Explotador Grom'kar"
-	L.gromkar_hulk = "Mole Grom'kar"
-	L.gromkar_far_seer = "Clarividente Grom'kar"
-	L.gromkar_captain = "Capitana Grom'kar"
-	L.grimrail_scout = "Exploradora Malavía"
-end
+BigWigsAPI.SetBossModuleLocale("Grimrail Depot Trash", {
+	grimrail_technician = "Técnico Malavía",
+	grimrail_overseer = "Sobrestante Malavía",
+	gromkar_gunner = "Artillero Grom'kar",
+	gromkar_cinderseer = "Vidente de las cenizas Grom'kar",
+	gromkar_boomer = "Explotador Grom'kar",
+	gromkar_hulk = "Mole Grom'kar",
+	gromkar_far_seer = "Clarividente Grom'kar",
+	gromkar_captain = "Capitana Grom'kar",
+	grimrail_scout = "Exploradora Malavía",
+})
 
 -- Iron Docks
 
-L = BigWigs:NewBossLocale("Grimrail Enforcers", "esMX")
-if L then
-	--L.sphere_fail_message = "Shield was broken - They're all healing :("
-end
+BigWigsAPI.SetBossModuleLocale("Grimrail Enforcers", {
+	--sphere_fail_message = "Shield was broken - They're all healing :(",
+})
 
-L = BigWigs:NewBossLocale("Oshir", "esMX")
-if L then
-	--L.freed = "Freed after %.1f sec!"
-	L.wolves = "Lobos"
-	L.rylak = "Rylak"
-end
+BigWigsAPI.SetBossModuleLocale("Oshir", {
+	--freed = "Freed after %.1f sec!",
+	wolves = "Lobos",
+	rylak = "Rylak",
+})
 
-L = BigWigs:NewBossLocale("Iron Docks Trash", "esMX")
-if L then
-	L.gromkar_battlemaster = "Maestro de batalla Grom'kar"
-	L.gromkar_flameslinger = "Exhaladora de llamas Grom'kar"
-	L.gromkar_technician = "Técnico Grom'kar"
-	L.siegemaster_olugar = "Maestro de asedio Olugar"
-	L.pitwarden_gwarnok = "Celador de fosa Gwarnok"
-	L.ogron_laborer = "Obrero ogron"
-	L.gromkar_chainmaster = "Maestra de cadenas Grom'kar"
-	L.thunderlord_wrangler = "Retador Señor del Trueno"
-	L.rampaging_clefthoof = "Uñagrieta arrasador"
-	L.ironwing_flamespitter = "Alahierro escupefuego"
-end
+BigWigsAPI.SetBossModuleLocale("Iron Docks Trash", {
+	gromkar_battlemaster = "Maestro de batalla Grom'kar",
+	gromkar_flameslinger = "Exhaladora de llamas Grom'kar",
+	gromkar_technician = "Técnico Grom'kar",
+	siegemaster_olugar = "Maestro de asedio Olugar",
+	pitwarden_gwarnok = "Celador de fosa Gwarnok",
+	ogron_laborer = "Obrero ogron",
+	gromkar_chainmaster = "Maestra de cadenas Grom'kar",
+	thunderlord_wrangler = "Retador Señor del Trueno",
+	rampaging_clefthoof = "Uñagrieta arrasador",
+	ironwing_flamespitter = "Alahierro escupefuego",
+})
 
 -- Shadowmoon Burial Grounds
 
-L = BigWigs:NewBossLocale("Bonemaw", "esMX")
-if L then
-	--L.summon_worms = "Summon Carrion Worms"
-	--L.summon_worms_desc = "Bonemaw summons two Carrion Worms."
-	--L.summon_worms_trigger = "piercing screech attracts nearby Carrion Worms!"
+BigWigsAPI.SetBossModuleLocale("Bonemaw", {
+	--summon_worms = "Summon Carrion Worms",
+	--summon_worms_desc = "Bonemaw summons two Carrion Worms.",
+	--summon_worms_trigger = "piercing screech attracts nearby Carrion Worms!",
 
-	L.submerge = "Sumersión"
-	--L.submerge_desc = "Bonemaw submerges and repositions."
-	--L.submerge_trigger = "hisses, slinking back into the shadowy depths!"
-end
+	submerge = "Sumersión",
+	--submerge_desc = "Bonemaw submerges and repositions.",
+	--submerge_trigger = "hisses, slinking back into the shadowy depths!",
+})
 
-L = BigWigs:NewBossLocale("Shadowmoon Burial Grounds Trash", "esMX")
-if L then
-	L.shadowmoon_bonemender = "Ensalmadora de huesos Sombraluna"
-	L.reanimated_ritual_bones = "Huesos de ritual reanimados"
-	L.void_spawn = "Engendro del Vacío"
-	L.shadowmoon_loyalist = "Leal Sombraluna"
-	L.defiled_spirit = "Espíritu profanado"
-	L.shadowmoon_dominator = "Dominador Sombraluna"
-	L.shadowmoon_exhumer = "Exhumadora Sombraluna"
-	L.exhumed_spirit = "Espíritu exhumado"
-	L.monstrous_corpse_spider = "Araña cadáver monstruosa"
-	L.carrion_worm = "Gusano carroñero"
-end
+BigWigsAPI.SetBossModuleLocale("Shadowmoon Burial Grounds Trash", {
+	shadowmoon_bonemender = "Ensalmadora de huesos Sombraluna",
+	reanimated_ritual_bones = "Huesos de ritual reanimados",
+	void_spawn = "Engendro del Vacío",
+	shadowmoon_loyalist = "Leal Sombraluna",
+	defiled_spirit = "Espíritu profanado",
+	shadowmoon_dominator = "Dominador Sombraluna",
+	shadowmoon_exhumer = "Exhumadora Sombraluna",
+	exhumed_spirit = "Espíritu exhumado",
+	monstrous_corpse_spider = "Araña cadáver monstruosa",
+	carrion_worm = "Gusano carroñero",
+})
 
 -- Skyreach
 
-L = BigWigs:NewBossLocale("High Sage Viryx", "esMX")
-if L then
-	L.solar_zealot = "Fanático solar"
-	L.construct = "Ensamblaje de protección del Trecho Celestial"
-end
+BigWigsAPI.SetBossModuleLocale("High Sage Viryx", {
+	solar_zealot = "Fanático solar",
+	construct = "Ensamblaje de protección del Trecho Celestial",
+})
 
 -- The Everbloom
 
-L = BigWigs:NewBossLocale("Witherbark", "esMX")
-if L then
-	--L.energyStatus = "A Globule reached Witherbark: %d%% energy"
-end
+BigWigsAPI.SetBossModuleLocale("Witherbark", {
+	--energyStatus = "A Globule reached Witherbark: %d%% energy",
+})
 
-L = BigWigs:NewBossLocale("The Everbloom Trash", "esMX")
-if L then
-	L.dreadpetal = "Horripétalo"
-	L.everbloom_naturalist = "Naturalista del Vergel Eterno"
-	L.everbloom_cultivator = "Cultivador del Vergel Eterno"
-	L.rockspine_stinger = "Aguijón Rocaspina"
-	L.everbloom_mender = "Ensalmador del Vergel Eterno"
-	L.gnarlroot = "Tuercerraíces"
-	L.melded_berserker = "Rabioso fusionado"
-	L.twisted_abomination = "Abominación retorcida"
-	L.infested_icecaller = "Llamahielos infestada"
-	L.putrid_pyromancer = "Piromántico pútrido"
-	L.addled_arcanomancer = "Arcanomántico desconcertado"
+BigWigsAPI.SetBossModuleLocale("The Everbloom Trash", {
+	dreadpetal = "Horripétalo",
+	everbloom_naturalist = "Naturalista del Vergel Eterno",
+	everbloom_cultivator = "Cultivador del Vergel Eterno",
+	rockspine_stinger = "Aguijón Rocaspina",
+	everbloom_mender = "Ensalmador del Vergel Eterno",
+	gnarlroot = "Tuercerraíces",
+	melded_berserker = "Rabioso fusionado",
+	twisted_abomination = "Abominación retorcida",
+	infested_icecaller = "Llamahielos infestada",
+	putrid_pyromancer = "Piromántico pútrido",
+	addled_arcanomancer = "Arcanomántico desconcertado",
 
-	--L.gate_open_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
-	--L.yalnu_warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
-end
+	--gate_open_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu.",
+	--yalnu_warmup_trigger = "The portal is lost! We must stop this beast before it can escape!",
+})
 
 -- Upper Blackrock Spire
 
-L = BigWigs:NewBossLocale("Orebender Gor'ashan", "esMX")
-if L then
-	--L.counduitLeft = "%d |4Conduit:Conduits; left"
-end
+BigWigsAPI.SetBossModuleLocale("Orebender Gor'ashan", {
+	--counduitLeft = "%d |4Conduit:Conduits; left",
+})

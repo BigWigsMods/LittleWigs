@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.beste_glatisant = "Beste Glatisant"
-end
+local L = mod:SetDefaultLocale({
+	beste_glatisant = "Beste Glatisant",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

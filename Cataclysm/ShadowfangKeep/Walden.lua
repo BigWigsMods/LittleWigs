@@ -19,12 +19,11 @@ local coagulantCastEnds = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.coagulant = "%s: Move to dispel"
-	L.catalyst = "%s: Crit Buff"
-	L.toxin_healer_message = "%s: DoT on everyone"
-end
+local L = mod:SetDefaultLocale({
+	coagulant = "%s: Move to dispel",
+	catalyst = "%s: Crit Buff",
+	toxin_healer_message = "%s: DoT on everyone",
+})
 
 -------------------------------------------------------------------------------
 --  Initialization

@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.undersea_abomination = "Undersea Abomination"
-end
+local L = mod:SetDefaultLocale({
+	undersea_abomination = "Undersea Abomination",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

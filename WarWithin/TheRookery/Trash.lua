@@ -24,19 +24,18 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.quartermaster_koratite = "Quartermaster Koratite"
-	L.voidrider = "Voidrider"
-	L.cursed_rooktender = "Cursed Rooktender"
-	L.unruly_stormrook = "Unruly Stormrook"
-	L.void_cursed_crusher = "Void-Cursed Crusher"
-	L.corrupted_oracle = "Corrupted Oracle"
-	L.coalescing_void_diffuser = "Coalescing Void Diffuser"
-	L.inflicted_civilian = "Inflicted Civilian"
-	L.void_ascendant = "Void Ascendant"
-	L.consuming_voidstone = "Consuming Voidstone"
-end
+local L = mod:SetDefaultLocale({
+	quartermaster_koratite = "Quartermaster Koratite",
+	voidrider = "Voidrider",
+	cursed_rooktender = "Cursed Rooktender",
+	unruly_stormrook = "Unruly Stormrook",
+	void_cursed_crusher = "Void-Cursed Crusher",
+	corrupted_oracle = "Corrupted Oracle",
+	coalescing_void_diffuser = "Coalescing Void Diffuser",
+	inflicted_civilian = "Inflicted Civilian",
+	void_ascendant = "Void Ascendant",
+	consuming_voidstone = "Consuming Voidstone",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -23,28 +23,27 @@ local lastText
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- Pre-Midnight
-	L.custom_on_autotalk = CL.autotalk
-	L.custom_on_autotalk_desc = "Instantly selects Alleria Winrunner's gossip option."
-	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
-	L.gossip_available = "Gossip available"
-	L.alleria_gossip_trigger = "Follow me!" -- Allerias yell after the first boss is defeated
-	L.lura_warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before."
-	L.lura_warmup_trigger_2 = "Such musings can wait, though. This entity must die."
+	custom_on_autotalk = CL.autotalk,
+	custom_on_autotalk_desc = "Instantly selects Alleria Winrunner's gossip option.",
+	custom_on_autotalk_icon = mod:GetMenuIcon("SAY"),
+	gossip_available = "Gossip available",
+	alleria_gossip_trigger = "Follow me!", -- Allerias yell after the first boss is defeated
+	lura_warmup_trigger = "Such chaos... such anguish. I have never sensed anything like it before.",
+	lura_warmup_trigger_2 = "Such musings can wait, though. This entity must die.",
 
-	L.alleria = "Alleria Windrunner"
-	L.subjugator = "Shadowguard Subjugator"
-	L.voidbender = "Shadowguard Voidbender"
-	L.conjurer = "Shadowguard Conjurer"
-	L.weaver = "Grand Shadow-Weaver"
+	alleria = "Alleria Windrunner",
+	subjugator = "Shadowguard Subjugator",
+	voidbender = "Shadowguard Voidbender",
+	conjurer = "Shadowguard Conjurer",
+	weaver = "Grand Shadow-Weaver",
 
 	-- Midnight+
-	L.void_rifts_closed = "Void Rifts Closed"
-	L.void_rifts_closed_desc = "Show an alert when a Void Rift has been closed."
-	L.void_rifts_closed_icon = "inv12_apextalent_priest_voidshield"
-end
+	void_rifts_closed = "Void Rifts Closed",
+	void_rifts_closed_desc = "Show an alert when a Void Rift has been closed.",
+	void_rifts_closed_icon = "inv12_apextalent_priest_voidshield",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -22,11 +22,10 @@ local sacrificialPyreActive = false
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.charges = "%d charges"
-	L.warmup_icon = "inv_achievement_dungeon_prioryofthesacredflame"
-end
+local L = mod:SetDefaultLocale({
+	charges = "%d charges",
+	warmup_icon = "inv_achievement_dungeon_prioryofthesacredflame",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

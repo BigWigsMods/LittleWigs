@@ -17,10 +17,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.vindle_snapcrank = "Vindle Snapcrank"
-end
+local L = mod:SetDefaultLocale({
+	vindle_snapcrank = "Vindle Snapcrank",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

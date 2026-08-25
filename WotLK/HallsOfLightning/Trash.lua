@@ -14,11 +14,10 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.runeshaper = "Stormforged Runeshaper"
-	L.sentinel = "Stormforged Sentinel"
-end
+local L = mod:SetDefaultLocale({
+	runeshaper = "Stormforged Runeshaper",
+	sentinel = "Stormforged Sentinel",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

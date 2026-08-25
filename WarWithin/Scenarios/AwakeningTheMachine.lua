@@ -50,20 +50,19 @@ local mobsNeeded = {
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.awakening_the_machine = "Awakening the Machine"
-	L.stages_desc = "Show an alert when a new wave of enemies spawns."
-	L.stages_icon = "inv_cape_armor_earthencivilian_d_02_silver"
+local L = mod:SetDefaultLocale({
+	awakening_the_machine = "Awakening the Machine",
+	stages_desc = "Show an alert when a new wave of enemies spawns.",
+	stages_icon = "inv_cape_armor_earthencivilian_d_02_silver",
 
-	L.corrupted_machinist = "Corrupted Machinist"
-	L.explosive_bomberbot = "Explosive Bomberbot"
-	L.malfunctioning_pylon = "Malfunctioning Pylon"
-	L.automatic_ironstrider = "Automatic Ironstrider"
-	L.medbot = "Medbot"
-	L.nullbot = "Nullbot"
-	L.awakened_phalanx = "Awakened Phalanx"
-end
+	corrupted_machinist = "Corrupted Machinist",
+	explosive_bomberbot = "Explosive Bomberbot",
+	malfunctioning_pylon = "Malfunctioning Pylon",
+	automatic_ironstrider = "Automatic Ironstrider",
+	medbot = "Medbot",
+	nullbot = "Nullbot",
+	awakened_phalanx = "Awakened Phalanx",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -23,12 +23,11 @@ local initialTimersStarted = false
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.crit_brew = "Crit Brew"
-	L.haste_brew = "Haste Brew"
-	L.bad_brew = "Bad Brew"
-end
+local L = mod:SetDefaultLocale({
+	crit_brew = "Crit Brew",
+	haste_brew = "Haste Brew",
+	bad_brew = "Bad Brew",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

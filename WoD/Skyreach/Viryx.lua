@@ -20,12 +20,11 @@ end
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.adds_icon = "icon_petfamily_mechanical"
-	L.solar_zealot = "Solar Zealot"
-	L.construct = "Skyreach Shield Construct" -- NPC ID 76292
-end
+local L = mod:SetDefaultLocale({
+	adds_icon = "icon_petfamily_mechanical",
+	solar_zealot = "Solar Zealot",
+	construct = "Skyreach Shield Construct", -- NPC ID 76292
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

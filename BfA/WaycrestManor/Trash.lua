@@ -31,28 +31,27 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.heartsbane_runeweaver = "Heartsbane Runeweaver"
-	L.bewitched_captain = "Bewitched Captain"
-	L.thistle_acolyte = "Thistle Acolyte"
-	L.blight_toad = "Blight Toad"
-	L.dreadwing_raven = "Dreadwing Raven"
-	L.heartsbane_vinetwister = "Heartsbane Vinetwister"
-	L.runic_disciple = "Runic Disciple"
-	L.coven_thornshaper = "Coven Thornshaper"
-	L.thornguard = "Thornguard"
-	L.matron_bryndle = "Matron Bryndle"
-	L.devouring_maggot = "Devouring Maggot"
-	L.pallid_gorger = "Pallid Gorger"
-	L.banquet_steward = "Banquet Steward"
-	L.crazed_marksman = "Crazed Marksman"
-	L.maddened_survivalist = "Maddened Survivalist"
-	L.faceless_maiden = "Faceless Maiden"
-	L.marked_sister = "Marked Sister"
-	L.matron_alma = "Matron Alma"
-	L.heartsbane_soulcharmer = "Heartsbane Soulcharmer"
-end
+local L = mod:SetDefaultLocale({
+	heartsbane_runeweaver = "Heartsbane Runeweaver",
+	bewitched_captain = "Bewitched Captain",
+	thistle_acolyte = "Thistle Acolyte",
+	blight_toad = "Blight Toad",
+	dreadwing_raven = "Dreadwing Raven",
+	heartsbane_vinetwister = "Heartsbane Vinetwister",
+	runic_disciple = "Runic Disciple",
+	coven_thornshaper = "Coven Thornshaper",
+	thornguard = "Thornguard",
+	matron_bryndle = "Matron Bryndle",
+	devouring_maggot = "Devouring Maggot",
+	pallid_gorger = "Pallid Gorger",
+	banquet_steward = "Banquet Steward",
+	crazed_marksman = "Crazed Marksman",
+	maddened_survivalist = "Maddened Survivalist",
+	faceless_maiden = "Faceless Maiden",
+	marked_sister = "Marked Sister",
+	matron_alma = "Matron Alma",
+	heartsbane_soulcharmer = "Heartsbane Soulcharmer",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

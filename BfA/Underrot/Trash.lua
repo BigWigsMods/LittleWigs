@@ -23,21 +23,20 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.spirit = "Befouled Spirit"
-	L.priest = "Devout Blood Priest"
-	L.maggot = "Fetid Maggot"
-	L.matron = "Chosen Blood Matron"
-	L.fanatical_headhunter = "Fanatical Headhunter"
-	L.lasher = "Diseased Lasher"
-	L.bloodswarmer = "Feral Bloodswarmer"
-	L.rot = "Living Rot"
-	L.deathspeaker = "Fallen Deathspeaker"
-	L.grotesque_horror = "Grotesque Horror"
-	L.defiler = "Bloodsworn Defiler"
-	L.corruptor = "Faceless Corruptor"
-end
+local L = mod:SetDefaultLocale({
+	spirit = "Befouled Spirit",
+	priest = "Devout Blood Priest",
+	maggot = "Fetid Maggot",
+	matron = "Chosen Blood Matron",
+	fanatical_headhunter = "Fanatical Headhunter",
+	lasher = "Diseased Lasher",
+	bloodswarmer = "Feral Bloodswarmer",
+	rot = "Living Rot",
+	deathspeaker = "Fallen Deathspeaker",
+	grotesque_horror = "Grotesque Horror",
+	defiler = "Bloodsworn Defiler",
+	corruptor = "Faceless Corruptor",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

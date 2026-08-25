@@ -18,10 +18,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.the_puppetmaster = "The Puppetmaster"
-end
+local L = mod:SetDefaultLocale({
+	the_puppetmaster = "The Puppetmaster",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

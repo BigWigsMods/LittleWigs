@@ -70,36 +70,35 @@ local prevTable = {}
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.guardian = "Animated Guardian"
-	L.minion = "Minion of Zul"
-	L.champion = "Shadow-Borne Champion"
-	L.shadow_witchdoctor = "Shadow-Borne Witchdoctor"
-	L.warrior = "Shadow-Borne Warrior"
-	L.timalji = "King Timalji"
-	L.wasi = "Queen Wasi"
-	L.rahuai = "King Rahu'ai"
-	L.atu = "Guard Captain Atu"
-	L.mbara = "Seneschal M'bara"
-	L.patla = "Queen Patla"
-	L.raptor = "Skeletal Hunting Raptor"
-	L.aakul = "King A'akul"
-	L.agent = "Bloodsworn Agent"
-	L.purification_construct = "Purification Construct"
-	L.fluid = "Embalming Fluid"
-	L.interment_construct = "Interment Construct"
-	L.hex_priest = "Spectral Hex Priest"
-	L.berserker = "Spectral Berserker"
-	L.spectral_witchdoctor = "Spectral Witch Doctor"
-	L.beastmaster = "Spectral Beastmaster"
-	L.brute = "Spectral Brute"
-	L.zul = "Shadow of Zul"
+local L = mod:SetDefaultLocale({
+	guardian = "Animated Guardian",
+	minion = "Minion of Zul",
+	champion = "Shadow-Borne Champion",
+	shadow_witchdoctor = "Shadow-Borne Witchdoctor",
+	warrior = "Shadow-Borne Warrior",
+	timalji = "King Timalji",
+	wasi = "Queen Wasi",
+	rahuai = "King Rahu'ai",
+	atu = "Guard Captain Atu",
+	mbara = "Seneschal M'bara",
+	patla = "Queen Patla",
+	raptor = "Skeletal Hunting Raptor",
+	aakul = "King A'akul",
+	agent = "Bloodsworn Agent",
+	purification_construct = "Purification Construct",
+	fluid = "Embalming Fluid",
+	interment_construct = "Interment Construct",
+	hex_priest = "Spectral Hex Priest",
+	berserker = "Spectral Berserker",
+	spectral_witchdoctor = "Spectral Witch Doctor",
+	beastmaster = "Spectral Beastmaster",
+	brute = "Spectral Brute",
+	zul = "Shadow of Zul",
 
-	L.healing_tide_totem = 270497
-	L.healing_tide_totem_desc = 270497
-	L.healing_tide_totem_icon = "ability_shaman_healingtide"
-end
+	healing_tide_totem = 270497,
+	healing_tide_totem_desc = 270497,
+	healing_tide_totem_icon = "ability_shaman_healingtide",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

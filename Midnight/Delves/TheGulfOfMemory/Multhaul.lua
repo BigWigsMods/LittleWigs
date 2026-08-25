@@ -11,10 +11,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.multhaul = "Mul'tha'ul"
-end
+local L = mod:SetDefaultLocale({
+	multhaul = "Mul'tha'ul",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

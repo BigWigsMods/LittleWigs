@@ -9,14 +9,13 @@ mod.engageId = 1190
 mod.respawnTime = 30
 
 -------------------------------------------------------------------------------
---  Localization
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.troll_message = "Troll Form"
-	L.troll_trigger = "Make way for da Nalorakk!"
-end
+local L = mod:SetDefaultLocale({
+	troll_message = "Troll Form",
+	troll_trigger = "Make way for da Nalorakk!",
+})
 
 -------------------------------------------------------------------------------
 --  Initialization

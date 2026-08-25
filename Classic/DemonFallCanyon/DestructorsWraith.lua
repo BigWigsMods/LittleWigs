@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.destructors_wraith = "Destructor's Wraith"
-end
+local L = mod:SetDefaultLocale({
+	destructors_wraith = "Destructor's Wraith",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

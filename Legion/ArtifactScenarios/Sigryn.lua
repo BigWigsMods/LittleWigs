@@ -24,14 +24,13 @@ local bloodTimer = nil
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.sigryn = "Sigryn"
-	L.jarl = "Jarl Velbrand"
-	L.faljar = "Runeseer Faljar"
+local L = mod:SetDefaultLocale({
+	sigryn = "Sigryn",
+	jarl = "Jarl Velbrand",
+	faljar = "Runeseer Faljar",
 
-	L.warmup_trigger = "What's this? The outsider has come to stop me?"
-end
+	warmup_trigger = "What's this? The outsider has come to stop me?",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

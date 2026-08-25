@@ -16,14 +16,13 @@ local spiritPhasesLeft = 2
 local nextPhaseWarning = 65
 
 -------------------------------------------------------------------------------
---  Localization
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.spirit_message = "Spirit Phase"
-	L.normal_message = "Normal Phase"
-end
+local L = mod:SetDefaultLocale({
+	spirit_message = "Spirit Phase",
+	normal_message = "Normal Phase",
+})
 
 -------------------------------------------------------------------------------
 --  Initialization

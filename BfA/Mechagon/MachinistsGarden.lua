@@ -12,12 +12,11 @@ mod:SetRespawnTime(30)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L["294853_icon"] = "inv_misc_herb_felblossom" -- Activate Plant
-	L["292332_desc"] = 294954 -- Self-Trimming Hedge
-	L["292332_icon"] = 294954 -- Self-Trimming Hedge
-end
+local L = mod:SetDefaultLocale({
+	["294853_icon"] = "inv_misc_herb_felblossom", -- Activate Plant
+	["292332_desc"] = 294954, -- Self-Trimming Hedge
+	["292332_icon"] = 294954, -- Self-Trimming Hedge
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

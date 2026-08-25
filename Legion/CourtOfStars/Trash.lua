@@ -60,78 +60,78 @@ local englishClueNames
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.duskwatch_sentry = "Duskwatch Sentry"
-	L.duskwatch_reinforcement = "Duskwatch Reinforcement"
-	L.Guard = "Duskwatch Guard"
-	L.Construct = "Guardian Construct"
-	L.Enforcer = "Felbound Enforcer"
-	L.Hound = "Legion Hound"
-	L.Mistress = "Shadow Mistress"
-	L.Gerenth = "Gerenth the Vile"
-	L.Jazshariu = "Jazshariu"
-	L.Imacutya = "Imacu'tya"
-	L.Baalgar = "Baalgar the Watchful"
-	L.Inquisitor = "Watchful Inquisitor"
-	L.BlazingImp = "Blazing Imp"
-	L.Energy = "Bound Energy"
-	L.Manifestation = "Arcane Manifestation"
-	L.Wyrm = "Mana Wyrm"
-	L.Arcanist = "Duskwatch Arcanist"
-	L.InfernalImp = "Infernal Imp"
-	L.Malrodi = "Arcanist Malrodi"
-	L.Velimar = "Velimar"
-	L.ArcaneKeys = "Arcane Keys"
-	L.clues = "Clues"
+local L = mod:SetDefaultLocale({
+	duskwatch_sentry = "Duskwatch Sentry",
+	duskwatch_reinforcement = "Duskwatch Reinforcement",
+	Guard = "Duskwatch Guard",
+	Construct = "Guardian Construct",
+	Enforcer = "Felbound Enforcer",
+	Hound = "Legion Hound",
+	Mistress = "Shadow Mistress",
+	Gerenth = "Gerenth the Vile",
+	Jazshariu = "Jazshariu",
+	Imacutya = "Imacu'tya",
+	Baalgar = "Baalgar the Watchful",
+	Inquisitor = "Watchful Inquisitor",
+	BlazingImp = "Blazing Imp",
+	Energy = "Bound Energy",
+	Manifestation = "Arcane Manifestation",
+	Wyrm = "Mana Wyrm",
+	Arcanist = "Duskwatch Arcanist",
+	InfernalImp = "Infernal Imp",
+	Malrodi = "Arcanist Malrodi",
+	Velimar = "Velimar",
+	ArcaneKeys = "Arcane Keys",
+	clues = "Clues",
 
-	L.InfernalTome = "Infernal Tome"
-	L.MagicalLantern = "Magical Lantern"
-	L.NightshadeRefreshments = "Nightshade Refreshments"
-	L.StarlightRoseBrew = "Starlight Rose Brew"
-	L.UmbralBloom = "Umbral Bloom"
-	L.WaterloggedScroll = "Waterlogged Scroll"
-	L.BazaarGoods = "Bazaar Goods"
-	L.LifesizedNightborneStatue = "Lifesized Nightborne Statue"
-	L.DiscardedJunk = "Discarded Junk"
-	L.WoundedNightborneCivilian = "Wounded Nightborne Civilian"
+	InfernalTome = "Infernal Tome",
+	MagicalLantern = "Magical Lantern",
+	NightshadeRefreshments = "Nightshade Refreshments",
+	StarlightRoseBrew = "Starlight Rose Brew",
+	UmbralBloom = "Umbral Bloom",
+	WaterloggedScroll = "Waterlogged Scroll",
+	BazaarGoods = "Bazaar Goods",
+	LifesizedNightborneStatue = "Lifesized Nightborne Statue",
+	DiscardedJunk = "Discarded Junk",
+	WoundedNightborneCivilian = "Wounded Nightborne Civilian",
 
-	L.announce_buff_items = "Announce buff items"
-	L.announce_buff_items_desc = "Announces all available buff items around the dungeon and who is able to use them."
-	L.announce_buff_items_icon = 211080
+	announce_buff_items = "Announce buff items",
+	announce_buff_items_desc = "Announces all available buff items around the dungeon and who is able to use them.",
+	announce_buff_items_icon = 211080,
 
-	L.available = "%s|cffffffff%s|r available" -- Context: item is available to use
-	L.usableBy = "usable by %s" -- Context: item is usable by someone
+	available = "%s|cffffffff%s|r available", -- Context: item is available to use
+	usableBy = "usable by %s", -- Context: item is usable by someone
 
-	L.custom_on_use_buff_items = "Instantly use buff items"
-	L.custom_on_use_buff_items_desc = "Enable this option to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss."
-	L.custom_on_use_buff_items_icon = 211110
+	custom_on_use_buff_items = "Instantly use buff items",
+	custom_on_use_buff_items_desc = "Enable this option to instantly use the buff items around the dungeon. This will not use items which aggro the guards before the second boss.",
+	custom_on_use_buff_items_icon = 211110,
 
-	L.spy_helper = "Spy Event Helper"
-	L.spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be sent to your party members in chat."
-	L.spy_helper_icon = 213213
+	spy_helper = "Spy Event Helper",
+	spy_helper_desc = "Shows an InfoBox with all clues your group gathered about the spy. The clues will also be sent to your party members in chat.",
+	spy_helper_icon = 213213,
 
-	L.clueFound = "Clue found (%d/5): |cffffffff%s|r"
-	L.spyFound = "Spy found by %s!"
-	L.spyFoundChat = "I found the spy!"
-	L.spyFoundPattern = "Now now, let's not be hasty" -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
+	clueFound = "Clue found (%d/5): |cffffffff%s|r",
+	spyFound = "Spy found by %s!",
+	spyFoundChat = "I found the spy!",
+	spyFoundPattern = "Now now, let's not be hasty", -- Now now, let's not be hasty [player]. Why don't you follow me so we can talk about this in a more private setting...
 
-	L.hints = {}
-	L.hints[1] = "Cape"
-	L.hints[2] = "No Cape"
-	L.hints[3] = "Pouch"
-	L.hints[4] = "Potions"
-	L.hints[5] = "Long Sleeves"
-	L.hints[6] = "Short Sleeves"
-	L.hints[7] = "Gloves"
-	L.hints[8] = "No Gloves"
-	L.hints[9] = "Male"
-	L.hints[10] = "Female"
-	L.hints[11] = "Light Vest"
-	L.hints[12] = "Dark Vest"
-	L.hints[13] = "No Potions"
-	L.hints[14] = "Book"
-end
+	hints = {
+		[1] = "Cape",
+		[2] = "No Cape",
+		[3] = "Pouch",
+		[4] = "Potions",
+		[5] = "Long Sleeves",
+		[6] = "Short Sleeves",
+		[7] = "Gloves",
+		[8] = "No Gloves",
+		[9] = "Male",
+		[10] = "Female",
+		[11] = "Light Vest",
+		[12] = "Dark Vest",
+		[13] = "No Potions",
+		[14] = "Book",
+	},
+})
 
 englishSpyFound = L.spyFoundChat
 englishClueNames = L.hints

@@ -35,32 +35,31 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.enforcer = "Scrimshaw Enforcer"
-	L.halberd = "Kul Tiran Halberd"
-	L.gutter = "Scrimshaw Gutter"
-	L.bomber = "Blackar Bomber"
-	L.waveshaper = "Irontide Waveshaper"
-	L.wavetender = "Kul Tiran Wavetender"
-	L.raider = "Irontide Raider"
-	L.shredder = "Riptide Shredder"
-	L.vanguard = "Kul Tiran Vanguard"
-	L.commander = "Ashvane Commander"
-	L.curseblade = "Irontide Curseblade"
-	L.spotter = "Ashvane Spotter"
-	L.cannoneer = "Ashvane Cannoneer"
-	L.demolisher = "Bilge Rat Demolisher"
-	L.buccaneer = "Bilge Rat Buccaneer"
-	L.pillager = "Bilge Rat Pillager"
-	L.tempest = "Bilge Rat Tempest"
-	L.cutthroat = "Bilge Rat Cutthroat"
-	L.invader = "Ashvane Invader"
+local L = mod:SetDefaultLocale({
+	enforcer = "Scrimshaw Enforcer",
+	halberd = "Kul Tiran Halberd",
+	gutter = "Scrimshaw Gutter",
+	bomber = "Blackar Bomber",
+	waveshaper = "Irontide Waveshaper",
+	wavetender = "Kul Tiran Wavetender",
+	raider = "Irontide Raider",
+	shredder = "Riptide Shredder",
+	vanguard = "Kul Tiran Vanguard",
+	commander = "Ashvane Commander",
+	curseblade = "Irontide Curseblade",
+	spotter = "Ashvane Spotter",
+	cannoneer = "Ashvane Cannoneer",
+	demolisher = "Bilge Rat Demolisher",
+	buccaneer = "Bilge Rat Buccaneer",
+	pillager = "Bilge Rat Pillager",
+	tempest = "Bilge Rat Tempest",
+	cutthroat = "Bilge Rat Cutthroat",
+	invader = "Ashvane Invader",
 
-	L.gate_open = CL.gate_open
-	L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
-	L.gate_open_icon = "achievement_dungeon_siegeofboralus"
-end
+	gate_open = CL.gate_open,
+	gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss.",
+	gate_open_icon = "achievement_dungeon_siegeofboralus",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

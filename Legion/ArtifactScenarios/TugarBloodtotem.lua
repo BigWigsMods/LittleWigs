@@ -21,27 +21,26 @@ local deathCount = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.tugar = "Tugar Bloodtotem"
-	L.jormog = "Jormog the Behemoth"
+local L = mod:SetDefaultLocale({
+	tugar = "Tugar Bloodtotem",
+	jormog = "Jormog the Behemoth",
 
-	L.remaining = "Scales Remaining"
+	remaining = "Scales Remaining",
 
-	L.submerge = "Submerge"
-	L.submerge_desc = "Submerges below the ground, summoning spitter eggs and falling spikes."
-	L.submerge_icon = 242379
+	submerge = "Submerge",
+	submerge_desc = "Submerges below the ground, summoning spitter eggs and falling spikes.",
+	submerge_icon = 242379,
 
-	L.charge = 100
-	L.charge_desc = "When Jormog is submerged, he will periodically charge in your direction."
-	L.charge_icon = 100
+	charge = 100,
+	charge_desc = "When Jormog is submerged, he will periodically charge in your direction.",
+	charge_icon = 100,
 
-	L.rupture = "{243382} (X)"
-	L.rupture_desc = "A Fel Rupture in the shape of an X appears under you. After 5 seconds it will rupture the ground, sending spikes into the air and knocking back players on top of it."
-	L.rupture_icon = 243382
+	rupture = "{243382} (X)",
+	rupture_desc = "A Fel Rupture in the shape of an X appears under you. After 5 seconds it will rupture the ground, sending spikes into the air and knocking back players on top of it.",
+	rupture_icon = 243382,
 
-	L.totem_warning = "The totem hit you!"
-end
+	totem_warning = "The totem hit you!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

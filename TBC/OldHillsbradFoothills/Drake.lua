@@ -12,11 +12,10 @@ mod.engageId = 1905
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- You there, fetch water quickly! Get these flames out before they spread to the rest of the keep! Hurry, damn you!
-	L.warmup_trigger = "fetch water"
-end
+	warmup_trigger = "fetch water",
+})
 
 -------------------------------------------------------------------------------
 --  Initialization

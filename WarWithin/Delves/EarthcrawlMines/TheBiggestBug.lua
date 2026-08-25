@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.the_biggest_bug = "The Biggest Bug"
-end
+local L = mod:SetDefaultLocale({
+	the_biggest_bug = "The Biggest Bug",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

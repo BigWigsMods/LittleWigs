@@ -11,10 +11,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.voidscorned_vagrant = "Voidscorned Vagrant"
-end
+local L = mod:SetDefaultLocale({
+	voidscorned_vagrant = "Voidscorned Vagrant",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

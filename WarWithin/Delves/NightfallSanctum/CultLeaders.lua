@@ -24,12 +24,11 @@ local bossesEngaged = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.cult_leaders = "Cult Leaders"
-	L.inquisitor_speaker = "Inquisitor Speaker"
-	L.shadeguard_speaker = "Shadeguard Speaker"
-end
+local L = mod:SetDefaultLocale({
+	cult_leaders = "Cult Leaders",
+	inquisitor_speaker = "Inquisitor Speaker",
+	shadeguard_speaker = "Shadeguard Speaker",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

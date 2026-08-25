@@ -20,10 +20,9 @@ local nextPowerConduitWarning = 80
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.counduitLeft = "%d |4Conduit:Conduits; left"
-end
+local L = mod:SetDefaultLocale({
+	counduitLeft = "%d |4Conduit:Conduits; left",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -21,16 +21,15 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.vicejaw = "Sewer Vicejaw"
-	L.thug = "Irontide Thug"
-	L.seaspeaker = "Bilge Rat Seaspeaker"
-	L.flamecaster = "Ashvane Flamecaster"
-	L.officer = "Ashvane Officer"
-	L.marine = "Ashvane Marine"
-	L.priest = "Ashvane Priest"
-end
+local L = mod:SetDefaultLocale({
+	vicejaw = "Sewer Vicejaw",
+	thug = "Irontide Thug",
+	seaspeaker = "Bilge Rat Seaspeaker",
+	flamecaster = "Ashvane Flamecaster",
+	officer = "Ashvane Officer",
+	marine = "Ashvane Marine",
+	priest = "Ashvane Priest",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

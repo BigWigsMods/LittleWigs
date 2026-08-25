@@ -21,14 +21,13 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.kobold_trash = "Kobold Trash"
+local L = mod:SetDefaultLocale({
+	kobold_trash = "Kobold Trash",
 
-	L.kobold_taskfinder = "Kobold Taskfinder"
-	L.spitfire_charger = "Spitfire Charger"
-	L.spitfire_fusetender = "Spitfire Fusetender"
-end
+	kobold_taskfinder = "Kobold Taskfinder",
+	spitfire_charger = "Spitfire Charger",
+	spitfire_fusetender = "Spitfire Fusetender",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

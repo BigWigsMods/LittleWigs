@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.kharon = "Kharon"
-end
+local L = mod:SetDefaultLocale({
+	kharon = "Kharon",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -1,96 +1,84 @@
 -- Black Temple
 
-local L = BigWigs:NewBossLocale("Kanrethad Ebonlocke", "frFR")
-if L then
-	L.name = "Kanrethad Bouclenoire"
+BigWigsAPI.SetBossModuleLocale("Kanrethad Ebonlocke", {
+	name = "Kanrethad Bouclenoire",
 
-	--L.summons = "Summons"
-	--L.debuffs = "Debuffs"
+	--summons = "Summons",
+	--debuffs = "Debuffs",
 
-	--L.start_say = "BEHOLD" -- BEHOLD! I have truly mastered the fel energies of this world! The demonic power I now command... It is indescribable, unlimited, OMNIPOTENT!
-	--L.win_say = "Jubeka" -- Jubeka?! What are you...?!
-end
+	--start_say = "BEHOLD", -- BEHOLD! I have truly mastered the fel energies of this world! The demonic power I now command... It is indescribable, unlimited, OMNIPOTENT!
+	--win_say = "Jubeka", -- Jubeka?! What are you...?!
+})
 
-L = BigWigs:NewBossLocale("Essence of Order", "frFR")
-if L then
-	L.name = "Essence de l’ordre"
-end
+BigWigsAPI.SetBossModuleLocale("Essence of Order", {
+	name = "Essence de l’ordre",
+})
 
 -- Scarlet Monastery
 
-L = BigWigs:NewBossLocale("Thalnos the Soulrender", "frFR")
-if L then
-	--L.engage_yell = "My endless agony shall be yours, as well!"
-end
+BigWigsAPI.SetBossModuleLocale("Thalnos the Soulrender", {
+	--engage_yell = "My endless agony shall be yours, as well!",
+})
 
-L = BigWigs:NewBossLocale("Brother Korloff", "frFR")
-if L then
-	--L.engage_yell = "I will break you."
-end
+BigWigsAPI.SetBossModuleLocale("Brother Korloff", {
+	--engage_yell = "I will break you.",
+})
 
-L = BigWigs:NewBossLocale("High Inquisitor Whitemane", "frFR")
-if L then
-	--L.engage_yell = "My legend begins NOW!"
-end
+BigWigsAPI.SetBossModuleLocale("High Inquisitor Whitemane", {
+	--engage_yell = "My legend begins NOW!",
+})
 
-L = BigWigs:NewBossLocale("The Headless Horseman", "frFR")
-if L then
-	L.the_headless_horseman = "Le Cavalier sans tête"
-	--L.custom_on_autotalk_desc = "Automatically accept the curses from the Wicker Men, and automatically start the encounter."
-	--L.curses_desc = "Notifies you when you recieve a curse from a Wicker Man."
-end
+BigWigsAPI.SetBossModuleLocale("The Headless Horseman", {
+	the_headless_horseman = "Le Cavalier sans tête",
+	--custom_on_autotalk_desc = "Automatically accept the curses from the Wicker Men, and automatically start the encounter.",
+	--curses_desc = "Notifies you when you recieve a curse from a Wicker Man.",
+})
 
 -- Scholomance
 
-L = BigWigs:NewBossLocale("Lilian Voss", "frFR")
-if L then
-	--L.stage_2_trigger = "Now, Lilian, it is time for your transformation."
-end
+BigWigsAPI.SetBossModuleLocale("Lilian Voss", {
+	--stage_2_trigger = "Now, Lilian, it is time for your transformation.",
+})
 
 -- Shado-Pan Monastery
 
-L = BigWigs:NewBossLocale("Master Snowdrift", "frFR")
-if L then
+BigWigsAPI.SetBossModuleLocale("Master Snowdrift", {
 	-- When I was but a cub I could scarcely throw a punch, but after years of training I can do so much more!
-	--L.stage3_yell = "was but a cub"
-end
+	--stage3_yell = "was but a cub",
+})
 
-L = BigWigs:NewBossLocale("Shado-Pan Monastery Trash", "frFR")
-if L then
-	L.destroying_sha = "Sha destructeur"
-	L.slain_shado_pan_defender = "Défenseur pandashan tué"
-end
+BigWigsAPI.SetBossModuleLocale("Shado-Pan Monastery Trash", {
+	destroying_sha = "Sha destructeur",
+	slain_shado_pan_defender = "Défenseur pandashan tué",
+})
 
 -- Stormstout Brewery
 
-L = BigWigs:NewBossLocale("Yan-Zhu the Uncasked", "frFR")
-if L then
-	--L.summon_desc = "Warn when Yan-Zhu summons a Yeasty Brew Alemental. They can cast |cff71d5ffFerment|r to heal the boss."
-end
+BigWigsAPI.SetBossModuleLocale("Yan-Zhu the Uncasked", {
+	--summon_desc = "Warn when Yan-Zhu summons a Yeasty Brew Alemental. They can cast |cff71d5ffFerment|r to heal the boss.",
+})
 
 -- Temple of the Jade Serpent
 
-L = BigWigs:NewBossLocale("Lorewalker Stonestep", "frFR")
-if L then
+BigWigsAPI.SetBossModuleLocale("Lorewalker Stonestep", {
 	-- Ah, it is not yet over. From what I see, we face the trial of the yaungol. Let me shed some light...
-	--L.yaungol_warmup_trigger = "Ah, it is not yet over."
+	--yaungol_warmup_trigger = "Ah, it is not yet over.",
 
 	-- Oh, my. If I am not mistaken, it appears that the tale of Zao Sunseeker has come to life before us.
-	--L.five_suns_warmup_trigger = "If I am not mistaken"
-end
+	--five_suns_warmup_trigger = "If I am not mistaken",
+})
 
-L = BigWigs:NewBossLocale("Temple of the Jade Serpent Trash", "frFR")
-if L then
-	L.corrupt_living_water = "Eau vivante corrompue"
-	L.fallen_waterspeaker = "Eauracle déchu"
-	L.haunting_sha = "Sha hanteur"
-	L.the_talking_fish = "Le Poisson bavard"
-	L.the_songbird_queen = "La reine des oiseaux chanteurs"
-	L.the_crybaby_hozen = "Le Hozen pleurnicheur"
-	L.the_nodding_tiger = "Le Tigre courbé"
-	L.the_golden_beetle = "Le Scarabée doré"
-	L.sha_touched_guardian = "Gardien touché par les sha"
-	L.depraved_mistweaver = "Tisse-brume dépravée"
-	L.shambling_infester = "Contaminateur titubant"
-	L.minion_of_doubt = "Serviteur du doute"
-end
+BigWigsAPI.SetBossModuleLocale("Temple of the Jade Serpent Trash", {
+	corrupt_living_water = "Eau vivante corrompue",
+	fallen_waterspeaker = "Eauracle déchu",
+	haunting_sha = "Sha hanteur",
+	the_talking_fish = "Le Poisson bavard",
+	the_songbird_queen = "La reine des oiseaux chanteurs",
+	the_crybaby_hozen = "Le Hozen pleurnicheur",
+	the_nodding_tiger = "Le Tigre courbé",
+	the_golden_beetle = "Le Scarabée doré",
+	sha_touched_guardian = "Gardien touché par les sha",
+	depraved_mistweaver = "Tisse-brume dépravée",
+	shambling_infester = "Contaminateur titubant",
+	minion_of_doubt = "Serviteur du doute",
+})

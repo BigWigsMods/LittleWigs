@@ -24,26 +24,25 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.skyscreamer = "Feasting Skyscreamer"
-	L.tlonja = "T'lonja"
-	L.monzumi = "Monzumi"
-	L.shieldbearer = "Shieldbearer of Zul"
-	L.witchdoctor = "Zanchuli Witch-Doctor"
-	L.kisho = "Dinomancer Kish'o"
-	L.dazarai_juggernaut = "Dazar'ai Juggernaut"
-	L.priestess = "Gilded Priestess"
-	L.stalker = "Shadowblade Stalker"
-	L.confessor = "Dazar'ai Confessor"
-	L.augur = "Dazar'ai Augur"
-	L.reanimated_honor_guard = "Reanimated Honor Guard"
+local L = mod:SetDefaultLocale({
+	skyscreamer = "Feasting Skyscreamer",
+	tlonja = "T'lonja",
+	monzumi = "Monzumi",
+	shieldbearer = "Shieldbearer of Zul",
+	witchdoctor = "Zanchuli Witch-Doctor",
+	kisho = "Dinomancer Kish'o",
+	dazarai_juggernaut = "Dazar'ai Juggernaut",
+	priestess = "Gilded Priestess",
+	stalker = "Shadowblade Stalker",
+	confessor = "Dazar'ai Confessor",
+	augur = "Dazar'ai Augur",
+	reanimated_honor_guard = "Reanimated Honor Guard",
 
-	L.stairs_open = "Stairs Open"
-	L.stairs_open_desc = "Show a bar indicating when the stairs open to Yazma."
-	L.stairs_open_icon = "achievement_dungeon_ataldazar"
-	L.stairs_open_trigger = "Impressive. You made it farther than I thought... but I will still be drinking your blood."
-end
+	stairs_open = "Stairs Open",
+	stairs_open_desc = "Show a bar indicating when the stairs open to Yazma.",
+	stairs_open_icon = "achievement_dungeon_ataldazar",
+	stairs_open_trigger = "Impressive. You made it farther than I thought... but I will still be drinking your blood.",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

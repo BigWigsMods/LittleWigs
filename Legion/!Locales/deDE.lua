@@ -1,490 +1,456 @@
 -- Artifact Scenarios
 
-local L = BigWigs:NewBossLocale("Tugar Bloodtotem", "deDE")
-if L then
-	L.tugar = "Tugar Bluttotem"
-	L.jormog = "Jormog das Ungetüm"
+BigWigsAPI.SetBossModuleLocale("Tugar Bloodtotem", {
+	tugar = "Tugar Bluttotem",
+	jormog = "Jormog das Ungetüm",
 
-	L.remaining = "Verbleibende Schuppen"
+	remaining = "Verbleibende Schuppen",
 
-	L.submerge = "Untertauchen"
-	L.submerge_desc = "Taucht unter den Boden und beschwört Spuckereier und fallende Stacheln."
+	submerge = "Untertauchen",
+	submerge_desc = "Taucht unter den Boden und beschwört Spuckereier und fallende Stacheln.",
 
-	L.charge_desc = "Während Jormog untergetaucht ist, stürmt er regelmäßig in Deine Richtung."
+	charge_desc = "Während Jormog untergetaucht ist, stürmt er regelmäßig in Deine Richtung.",
 
-	L.rupture = "{243382} (X)"
-	L.rupture_desc = "Ein X-förmiger Teufelsriss erscheint unter Dir. Nach 5 Sekunden reißt er den Boden auf, wobei Stacheln aus dem Boden schießen und auf ihnen befindliche Spieler zurückstoßen."
+	rupture = "{243382} (X)",
+	rupture_desc = "Ein X-förmiger Teufelsriss erscheint unter Dir. Nach 5 Sekunden reißt er den Boden auf, wobei Stacheln aus dem Boden schießen und auf ihnen befindliche Spieler zurückstoßen.",
 
-	L.totem_warning = "Das Totem trifft Dich!"
-end
+	totem_warning = "Das Totem trifft Dich!",
+})
 
-L = BigWigs:NewBossLocale("Raest", "deDE")
-if L then
-	L.name = "Raest Magusspeer"
+BigWigsAPI.SetBossModuleLocale("Raest", {
+	name = "Raest Magusspeer",
 
-	L.handFromBeyond = "Hand aus den Weiten"
+	handFromBeyond = "Hand aus den Weiten",
 
-	L.rune_desc = "Platziert eine Beschwörungsrune auf dem Boden. Wenn diese nicht gesoaked wird, erscheint eine Ausgeburt des Alptraums."
+	rune_desc = "Platziert eine Beschwörungsrune auf dem Boden. Wenn diese nicht gesoaked wird, erscheint eine Ausgeburt des Alptraums.",
 
-	L.warmup_text = "Karam Magusspeer aktiv"
-	L.warmup_trigger = "Es war dumm, mir zu folgen, Bruder. Der Wirbelnde Nether verleiht mir ungeahnte Macht. Ich bin stärker, als du es dir jemals hättest vorstellen können!"
-	L.warmup_trigger2 = "Töte diesen Eindringling, Bruder!"
-end
+	warmup_text = "Karam Magusspeer aktiv",
+	warmup_trigger = "Es war dumm, mir zu folgen, Bruder. Der Wirbelnde Nether verleiht mir ungeahnte Macht. Ich bin stärker, als du es dir jemals hättest vorstellen können!",
+	warmup_trigger2 = "Töte diesen Eindringling, Bruder!",
+})
 
-L = BigWigs:NewBossLocale("Kruul", "deDE")
-if L then
-	L.name = "Hochlord Kruul"
-	L.inquisitor = "Inquisitor Variss"
-	L.velen = "Prophet Velen"
+BigWigsAPI.SetBossModuleLocale("Kruul", {
+	name = "Hochlord Kruul",
+	inquisitor = "Inquisitor Variss",
+	velen = "Prophet Velen",
 
-	L.warmup_trigger = "Arrogantes Pack! Ich trage die Seelen von tausend unterworfenen Welten in mir!"
-	L.win_trigger = "So sei es. Ihr werdet uns nicht länger im Weg stehen."
+	warmup_trigger = "Arrogantes Pack! Ich trage die Seelen von tausend unterworfenen Welten in mir!",
+	win_trigger = "So sei es. Ihr werdet uns nicht länger im Weg stehen.",
 
-	L.nether_aberration_desc = "Beschwört im Raum verteilt Portale, aus denen Netherschrecken erscheinen."
+	nether_aberration_desc = "Beschwört im Raum verteilt Portale, aus denen Netherschrecken erscheinen.",
 
-	L.smoldering_infernal = "Qualmende Höllenbestie"
-	L.smoldering_infernal_desc = "Beschwört eine Qualmende Höllenbestie."
-end
+	smoldering_infernal = "Qualmende Höllenbestie",
+	smoldering_infernal_desc = "Beschwört eine Qualmende Höllenbestie.",
+})
 
-L = BigWigs:NewBossLocale("Lord Erdris Thorn", "deDE")
-if L then
-	L.erdris = "Lord Erdris Dorn"
+BigWigsAPI.SetBossModuleLocale("Lord Erdris Thorn", {
+	erdris = "Lord Erdris Dorn",
 
-	L.warmup_trigger = "Ihr kommt gerade zur rechten Zeit."
-	L.warmup_trigger2 = "Was... passiert?" --Stage 5 Warm up
+	warmup_trigger = "Ihr kommt gerade zur rechten Zeit.",
+	warmup_trigger2 = "Was... passiert?", --Stage 5 Warm up
 
-	L.mage = "Verderbter auferstandener Magier"
-	L.soldier = "Verderbter auferstandener Soldat"
-	L.arbalest = "Verderbte auferstandene Armbrustschützin"
-end
+	mage = "Verderbter auferstandener Magier",
+	soldier = "Verderbter auferstandener Soldat",
+	arbalest = "Verderbte auferstandene Armbrustschützin",
+})
 
-L = BigWigs:NewBossLocale("Archmage Xylem", "deDE")
-if L then
-	L.name = "Erzmagier Xylem"
-	L.corruptingShadows = "Verderbende Schatten"
+BigWigsAPI.SetBossModuleLocale("Archmage Xylem", {
+	name = "Erzmagier Xylem",
+	corruptingShadows = "Verderbende Schatten",
 
-	L.warmup_trigger1 = "Mit der fokussierenden Iris kann ich die arkane Energie" -- You are too late, demon hunter! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!
-	L.warmup_trigger2 = "Ihrer Magie beraubt wird diese Welt" -- Drained of magic, your world will be ripe for destruction by my demon masters... and my power will be limitless!
-end
+	warmup_trigger1 = "Mit der fokussierenden Iris kann ich die arkane Energie", -- You are too late, demon hunter! With the Focusing Iris under my control, I can siphon the arcane energy from Azeroth's ley lines directly into my magnificent self!
+	warmup_trigger2 = "Ihrer Magie beraubt wird diese Welt", -- Drained of magic, your world will be ripe for destruction by my demon masters... and my power will be limitless!
+})
 
-L = BigWigs:NewBossLocale("Agatha", "deDE")
-if L then
-	L.name = "Agatha"
-	L.imp_servant = "Wichteldiener"
-	L.fuming_imp = "Rauchender Wichtel"
-	L.levia = "Levia" -- Shortcut for warmup_trigger1, since the name "Levia" should be unique
+BigWigsAPI.SetBossModuleLocale("Agatha", {
+	name = "Agatha",
+	imp_servant = "Wichteldiener",
+	fuming_imp = "Rauchender Wichtel",
+	levia = "Levia", -- Shortcut for warmup_trigger1, since the name "Levia" should be unique
 
-	L.warmup_trigger1 = "Ihr kommt zu spät! Levias Macht gehört mir! Meine Diener werden ihr Wissen nutzen, um die Kirin Tor zu unterwandern und sie aus dem Inneren zu zerstören." -- 35
-	L.warmup_trigger2 = "Meine Sayaad bringen Eure schwachen Magier bereits in Versuchung. Eure Verbündeten werden sich widerstandslos der Legion beugen." -- 16
-	L.warmup_trigger3 = "Doch zuerst werde ich Euch dafür bestrafen, mir meine kleine Sklavin genommen zu haben." -- 3
+	warmup_trigger1 = "Ihr kommt zu spät! Levias Macht gehört mir! Meine Diener werden ihr Wissen nutzen, um die Kirin Tor zu unterwandern und sie aus dem Inneren zu zerstören.", -- 35
+	warmup_trigger2 = "Meine Sayaad bringen Eure schwachen Magier bereits in Versuchung. Eure Verbündeten werden sich widerstandslos der Legion beugen.", -- 16
+	warmup_trigger3 = "Doch zuerst werde ich Euch dafür bestrafen, mir meine kleine Sklavin genommen zu haben.", -- 3
 
-	L.stacks = "Stapel"
-end
+	stacks = "Stapel",
+})
 
-L = BigWigs:NewBossLocale("Sigryn", "deDE")
-if L then
-	L.sigryn = "Sigryn"
-	L.jarl = "Jarl Velbrand"
-	L.faljar = "Runenseher Faljar"
+BigWigsAPI.SetBossModuleLocale("Sigryn", {
+	sigryn = "Sigryn",
+	jarl = "Jarl Velbrand",
+	faljar = "Runenseher Faljar",
 
-	L.warmup_trigger = "Wie? Der Fremdling kommt, mich aufzuhalten?"
-end
+	warmup_trigger = "Wie? Der Fremdling kommt, mich aufzuhalten?",
+})
 
 -- Assault on Violet Hold
 
-L = BigWigs:NewBossLocale("Assault on Violet Hold Trash", "deDE")
-if L then
-	L.custom_on_autotalk_desc = "Wählt direkt Leutnant Sinclaris Dialogoption zum Starten des Sturms auf die Violette Festung."
-	L.keeper = "Portalhüter"
-	L.guardian = "Portalwächter"
-	L.infernal = "Lodernde Höllenbestie"
-end
+BigWigsAPI.SetBossModuleLocale("Assault on Violet Hold Trash", {
+	custom_on_autotalk_desc = "Wählt direkt Leutnant Sinclaris Dialogoption zum Starten des Sturms auf die Violette Festung.",
+	keeper = "Portalhüter",
+	guardian = "Portalwächter",
+	infernal = "Lodernde Höllenbestie",
+})
 
-L = BigWigs:NewBossLocale("Thalena", "deDE")
-if L then
-	L.essence = "Essenz"
-end
+BigWigsAPI.SetBossModuleLocale("Thalena", {
+	essence = "Essenz",
+})
 
 -- Black Rook Hold
 
-L = BigWigs:NewBossLocale("Black Rook Hold Trash", "deDE")
-if L then
-	L.ghostly_retainer = "Geisterhafter Gefolgsmann"
-	L.ghostly_protector = "Geisterhafter Beschützer"
-	L.ghostly_councilor = "Geisterhafter Berater"
-	L.lord_etheldrin_ravencrest = "Lord Etheldrin Rabenkrone"
-	L.lady_velandras_ravencrest = "Lady Velandras Rabenkrone"
-	L.rook_spiderling = "Rabenspinnling"
-	L.soultorn_champion = "Seelengeschändeter Champion"
-	L.risen_scout = "Auferstandener Späher"
-	L.risen_archer = "Auferstandene Bogenschützin"
-	L.risen_arcanist = "Auferstandener Arkanist"
-	L.wyrmtongue_scavenger = "Wyrmzungenplünderer"
-	L.bloodscent_felhound = "Blutwitternder Teufelshund"
-	L.felspite_dominator = "Teufelsgrollunterwerfer"
-	L.risen_swordsman = "Auferstandener Schwertkämpfer"
-	L.risen_lancer = "Auferstandener Lanzer"
+BigWigsAPI.SetBossModuleLocale("Black Rook Hold Trash", {
+	ghostly_retainer = "Geisterhafter Gefolgsmann",
+	ghostly_protector = "Geisterhafter Beschützer",
+	ghostly_councilor = "Geisterhafter Berater",
+	lord_etheldrin_ravencrest = "Lord Etheldrin Rabenkrone",
+	lady_velandras_ravencrest = "Lady Velandras Rabenkrone",
+	rook_spiderling = "Rabenspinnling",
+	soultorn_champion = "Seelengeschändeter Champion",
+	risen_scout = "Auferstandener Späher",
+	risen_archer = "Auferstandene Bogenschützin",
+	risen_arcanist = "Auferstandener Arkanist",
+	wyrmtongue_scavenger = "Wyrmzungenplünderer",
+	bloodscent_felhound = "Blutwitternder Teufelshund",
+	felspite_dominator = "Teufelsgrollunterwerfer",
+	risen_swordsman = "Auferstandener Schwertkämpfer",
+	risen_lancer = "Auferstandener Lanzer",
 
-	L.door_open_desc = "Zeigt eine Leiste wann die Tür zum versteckten Durchgang geöffnet ist."
-end
+	door_open_desc = "Zeigt eine Leiste wann die Tür zum versteckten Durchgang geöffnet ist.",
+})
 
-L = BigWigs:NewBossLocale("Kurtalos Ravencrest", "deDE")
-if L then
-	L.phase_2_trigger = "Es reicht! Genug der Scharade."
-end
+BigWigsAPI.SetBossModuleLocale("Kurtalos Ravencrest", {
+	phase_2_trigger = "Es reicht! Genug der Scharade.",
+})
 
 -- Cathedral of Eternal Night
 
-L = BigWigs:NewBossLocale("Mephistroth", "deDE")
-if L then
-	L.custom_on_time_lost = "Verlorene Zeit während Schattenverblassen"
-	L.custom_on_time_lost_desc = "Zeigt die verlorene Zeit während Schattenverblassen in der Leiste in |cffff0000red|r."
-	L.time_lost = "%s |cffff0000(+%ds)|r"
-end
+BigWigsAPI.SetBossModuleLocale("Mephistroth", {
+	custom_on_time_lost = "Verlorene Zeit während Schattenverblassen",
+	custom_on_time_lost_desc = "Zeigt die verlorene Zeit während Schattenverblassen in der Leiste in |cffff0000red|r.",
+	time_lost = "%s |cffff0000(+%ds)|r",
+})
 
-L = BigWigs:NewBossLocale("Domatrax", "deDE")
-if L then
-	L.custom_on_autotalk_desc = "Wählt direkt Aegis von Aggramars Dialogoption um den Kampf gegen Domatrax zu starten."
+BigWigsAPI.SetBossModuleLocale("Domatrax", {
+	custom_on_autotalk_desc = "Wählt direkt Aegis von Aggramars Dialogoption um den Kampf gegen Domatrax zu starten.",
 
-	L.missing_aegis = "Du stehst nicht im Aegis" -- Aegis is a short name for Aegis of Aggramar
-	L.aegis_healing = "Aegis: Reduzierte Heilung"
-	L.aegis_damage = "Aegis: Reduzierter verursachter Schaden"
-end
+	missing_aegis = "Du stehst nicht im Aegis", -- Aegis is a short name for Aegis of Aggramar
+	aegis_healing = "Aegis: Reduzierte Heilung",
+	aegis_damage = "Aegis: Reduzierter verursachter Schaden",
+})
 
-L = BigWigs:NewBossLocale("Cathedral of Eternal Night Trash", "deDE")
-if L then
-	L.dulzak = "Dul'zak"
-	L.wrathguard = "Einfallender Zornwächter"
-	L.felguard = "Zerstörer der Teufelswache"
-	L.soulmender = "Höllenglutseelenheiler"
-	L.temptress = "Höllenglutverführerin"
-	L.botanist = "Teufelsgeborene Botanikerin"
-	L.orbcaster = "Sphärenwirker der Teufelsschreiter"
-	L.waglur = "Wa'glur"
-	L.scavenger = "Wyrmzungenplünderer"
-	L.gazerax = "Gazerax"
-	L.vilebark = "Übelrindenläufer"
+BigWigsAPI.SetBossModuleLocale("Cathedral of Eternal Night Trash", {
+	dulzak = "Dul'zak",
+	wrathguard = "Einfallender Zornwächter",
+	felguard = "Zerstörer der Teufelswache",
+	soulmender = "Höllenglutseelenheiler",
+	temptress = "Höllenglutverführerin",
+	botanist = "Teufelsgeborene Botanikerin",
+	orbcaster = "Sphärenwirker der Teufelsschreiter",
+	waglur = "Wa'glur",
+	scavenger = "Wyrmzungenplünderer",
+	gazerax = "Gazerax",
+	vilebark = "Übelrindenläufer",
 
-	L.throw_tome = "Folianten werfen" -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
-end
+	throw_tome = "Folianten werfen", -- Common part of Throw Arcane/Frost/Silence Tome (242837/242839/242841)
+})
 
 -- Court of Stars
 
-L = BigWigs:NewBossLocale("Court of Stars Trash", "deDE")
-if L then
-	L.duskwatch_sentry = "Wächter der Dämmerwache"
-	L.duskwatch_reinforcement = "Verstärkung der Dämmerwache"
-	L.Guard = "Wachposten der Dämmerwache"
-	L.Construct = "Wächterkonstrukt"
-	L.Enforcer = "Dämonenversklavte Vollstreckerin"
-	L.Hound = "Legionshund"
-	L.Mistress = "Schattenmeisterin"
-	L.Gerenth = "Verdächtiger Adliger"
-	L.Jazshariu = "Jazshariu"
-	L.Imacutya = "Imacu'tya"
-	L.Baalgar = "Baalgar der Wachsame"
-	L.Inquisitor = "Wachsamer Inquisitor"
-	L.BlazingImp = "Lodernder Wichtel"
-	L.Energy = "Gebundene Energie"
-	L.Manifestation = "Arkane Manifestation"
-	L.Wyrm = "Manawyrm"
-	L.Arcanist = "Arkanist der Dämmerwache"
-	L.InfernalImp = "Höllenwichtel"
-	L.Malrodi = "Arkanistin Malrodi"
-	L.Velimar = "Velimar"
-	L.ArcaneKeys = "Arkane Schlüssel"
-	L.clues = "Hinweise"
+BigWigsAPI.SetBossModuleLocale("Court of Stars Trash", {
+	duskwatch_sentry = "Wächter der Dämmerwache",
+	duskwatch_reinforcement = "Verstärkung der Dämmerwache",
+	Guard = "Wachposten der Dämmerwache",
+	Construct = "Wächterkonstrukt",
+	Enforcer = "Dämonenversklavte Vollstreckerin",
+	Hound = "Legionshund",
+	Mistress = "Schattenmeisterin",
+	Gerenth = "Verdächtiger Adliger",
+	Jazshariu = "Jazshariu",
+	Imacutya = "Imacu'tya",
+	Baalgar = "Baalgar der Wachsame",
+	Inquisitor = "Wachsamer Inquisitor",
+	BlazingImp = "Lodernder Wichtel",
+	Energy = "Gebundene Energie",
+	Manifestation = "Arkane Manifestation",
+	Wyrm = "Manawyrm",
+	Arcanist = "Arkanist der Dämmerwache",
+	InfernalImp = "Höllenwichtel",
+	Malrodi = "Arkanistin Malrodi",
+	Velimar = "Velimar",
+	ArcaneKeys = "Arkane Schlüssel",
+	clues = "Hinweise",
 
-	L.InfernalTome = "Höllischer Foliant"
-	L.MagicalLantern = "Magische Laterne"
-	L.NightshadeRefreshments = "Nachtschattenerfrischungen"
-	L.StarlightRoseBrew = "Sternlichtrosenbräu"
-	L.UmbralBloom = "Umbralblüte"
-	L.WaterloggedScroll = "Durchnässte Schriftrolle"
-	L.BazaarGoods = "Basarwaren"
-	L.LifesizedNightborneStatue = "Lebensgroße Nachtgeborenenstatue"
-	L.DiscardedJunk = "Ausrangierter Schrott"
-	L.WoundedNightborneCivilian = "Verwundeter Zivilist der Nachtgeborenen"
+	InfernalTome = "Höllischer Foliant",
+	MagicalLantern = "Magische Laterne",
+	NightshadeRefreshments = "Nachtschattenerfrischungen",
+	StarlightRoseBrew = "Sternlichtrosenbräu",
+	UmbralBloom = "Umbralblüte",
+	WaterloggedScroll = "Durchnässte Schriftrolle",
+	BazaarGoods = "Basarwaren",
+	LifesizedNightborneStatue = "Lebensgroße Nachtgeborenenstatue",
+	DiscardedJunk = "Ausrangierter Schrott",
+	WoundedNightborneCivilian = "Verwundeter Zivilist der Nachtgeborenen",
 
-	L.announce_buff_items = "Buff-Items bekanntgeben"
-	L.announce_buff_items_desc = "Gibt bekannt, welche verfügbaren Buff-Items in der Instanz vorhanden sind und wer sie benutzen kann."
+	announce_buff_items = "Buff-Items bekanntgeben",
+	announce_buff_items_desc = "Gibt bekannt, welche verfügbaren Buff-Items in der Instanz vorhanden sind und wer sie benutzen kann.",
 
-	L.available = "%s|cffffffff%s|r vorhanden" -- Context: item is available to use
-	L.usableBy = "benutzbar von %s" -- Context: item is usable by someone
+	available = "%s|cffffffff%s|r vorhanden", -- Context: item is available to use
+	usableBy = "benutzbar von %s", -- Context: item is usable by someone
 
-	L.custom_on_use_buff_items = "Buff-Items sofort benutzen"
-	L.custom_on_use_buff_items_desc = "Durch die Aktivierung dieser Option werden die Buff-Items beim anklicken sofort benutzt, ausgenommen derjenigen, die eine der drei Botschafter des zweiten Bosses rufen."
+	custom_on_use_buff_items = "Buff-Items sofort benutzen",
+	custom_on_use_buff_items_desc = "Durch die Aktivierung dieser Option werden die Buff-Items beim anklicken sofort benutzt, ausgenommen derjenigen, die eine der drei Botschafter des zweiten Bosses rufen.",
 
-	L.spy_helper = "Spion Event Helfer"
-	L.spy_helper_desc = "Zeigt eine Infobox mit allen Hinweisen über den Spion an. Diese Hinweise werden ebenfalls im Chat an deine Gruppe geschickt."
+	spy_helper = "Spion Event Helfer",
+	spy_helper_desc = "Zeigt eine Infobox mit allen Hinweisen über den Spion an. Diese Hinweise werden ebenfalls im Chat an deine Gruppe geschickt.",
 
-	L.clueFound = "Hinweise gefunden (%d/5): |cffffffff%s|r"
-	L.spyFound = "Der Spion wurde von %s gefunden!"
-	L.spyFoundChat = "Ich habe den Spion gefunden!"
-	L.spyFoundPattern = "Na, na, wir wollen doch nicht voreilig sein" -- Na, na, wir wollen doch nicht voreilig sein, [player]. Wieso folgt Ihr mir nicht, damit wir in etwas privaterer Umgebung darüber sprechen können...
+	clueFound = "Hinweise gefunden (%d/5): |cffffffff%s|r",
+	spyFound = "Der Spion wurde von %s gefunden!",
+	spyFoundChat = "Ich habe den Spion gefunden!",
+	spyFoundPattern = "Na, na, wir wollen doch nicht voreilig sein", -- Na, na, wir wollen doch nicht voreilig sein, [player]. Wieso folgt Ihr mir nicht, damit wir in etwas privaterer Umgebung darüber sprechen können...
 
-	L.hints[1] = "Umhang"
-	L.hints[2] = "Kein Umhang"
-	L.hints[3] = "Geldbeutel"
-	L.hints[4] = "Fläschchen"
-	L.hints[5] = "Lange Ärmel"
-	L.hints[6] = "Kurze Ärmel"
-	L.hints[7] = "Handschuhe"
-	L.hints[8] = "Keine Handschuhe"
-	L.hints[9] = "Männlich"
-	L.hints[10] = "Weiblich"
-	L.hints[11] = "Helle Weste"
-	L.hints[12] = "Dunkle Weste"
-	L.hints[13] = "Kein Fläschchen"
-	L.hints[14] = "Buch"
-end
+	hints = {
+		[1] = "Umhang",
+		[2] = "Kein Umhang",
+		[3] = "Geldbeutel",
+		[4] = "Fläschchen",
+		[5] = "Lange Ärmel",
+		[6] = "Kurze Ärmel",
+		[7] = "Handschuhe",
+		[8] = "Keine Handschuhe",
+		[9] = "Männlich",
+		[10] = "Weiblich",
+		[11] = "Helle Weste",
+		[12] = "Dunkle Weste",
+		[13] = "Kein Fläschchen",
+		[14] = "Buch",
+	},
+})
 
-L = BigWigs:NewBossLocale("Advisor Melandrus", "deDE")
-if L then
-	L.warmup_trigger = "Eine weitere Fehlleistung, Melandrus. Aber Ihr könnt es wiedergutmachen. Vernichtet die Eindringlinge. Ich muss zurück zur Nachtfestung."
-end
+BigWigsAPI.SetBossModuleLocale("Advisor Melandrus", {
+	warmup_trigger = "Eine weitere Fehlleistung, Melandrus. Aber Ihr könnt es wiedergutmachen. Vernichtet die Eindringlinge. Ich muss zurück zur Nachtfestung.",
+})
 
 -- Darkheart Thicket
 
-L = BigWigs:NewBossLocale("Darkheart Thicket Trash", "deDE")
-if L then
-	L.archdruid_glaidalis_warmup_trigger = "Entweiher... ich wittere den Alptraum in Eurem Blut. Verschwindet aus diesem Wald oder spürt den Zorn der Natur!"
+BigWigsAPI.SetBossModuleLocale("Darkheart Thicket Trash", {
+	archdruid_glaidalis_warmup_trigger = "Entweiher... ich wittere den Alptraum in Eurem Blut. Verschwindet aus diesem Wald oder spürt den Zorn der Natur!",
 
-	L.mindshattered_screecher = "Gebrochener Kreischer"
-	L.dreadsoul_ruiner = "Verheerer der Schreckensseele"
-	L.dreadsoul_poisoner = "Vergifter der Schreckensseele"
-	L.crazed_razorbeak = "Wahnsinniger Klingenschnabel"
-	L.festerhide_grizzly = "Eiterpelzgrizzly"
-	L.vilethorn_blossom = "Garststachelblüte"
-	L.rotheart_dryad = "Moderherzdryade"
-	L.rotheart_keeper = "Moderherzbewahrer"
-	L.nightmare_dweller = "Alptraumbewohner"
-	L.bloodtainted_fury = "Blutbesudelter Zornbrodler"
-	L.bloodtainted_burster = "Blutbesudelter Sprudler"
-	L.taintheart_summoner = "Pestherzbeschwörer"
-	L.dreadfire_imp = "Schreckensfeuerwichtel"
-	L.tormented_bloodseeker = "Gequälter Blutsucher"
-end
+	mindshattered_screecher = "Gebrochener Kreischer",
+	dreadsoul_ruiner = "Verheerer der Schreckensseele",
+	dreadsoul_poisoner = "Vergifter der Schreckensseele",
+	crazed_razorbeak = "Wahnsinniger Klingenschnabel",
+	festerhide_grizzly = "Eiterpelzgrizzly",
+	vilethorn_blossom = "Garststachelblüte",
+	rotheart_dryad = "Moderherzdryade",
+	rotheart_keeper = "Moderherzbewahrer",
+	nightmare_dweller = "Alptraumbewohner",
+	bloodtainted_fury = "Blutbesudelter Zornbrodler",
+	bloodtainted_burster = "Blutbesudelter Sprudler",
+	taintheart_summoner = "Pestherzbeschwörer",
+	dreadfire_imp = "Schreckensfeuerwichtel",
+	tormented_bloodseeker = "Gequälter Blutsucher",
+})
 
-L = BigWigs:NewBossLocale("Oakheart", "deDE")
-if L then
-	L.throw = "Wurf"
-end
+BigWigsAPI.SetBossModuleLocale("Oakheart", {
+	throw = "Wurf",
+})
 
 -- Eye of Azshara
 
-L = BigWigs:NewBossLocale("Eye of Azshara Trash", "deDE")
-if L then
-	L.wrangler = "Zänker der Hassnattern"
-	L.stormweaver = "Sturmwirkerin der Hassnattern"
-	L.crusher = "Zermalmer der Hassnattern"
-	L.oracle = "Orakel der Hassnattern"
-	L.siltwalker = "Treibsandläufer der Mak'rana"
-	L.tides = "Aufgewühlte Fluten"
-	L.arcanist = "Arkanistin der Hassnattern"
-end
+BigWigsAPI.SetBossModuleLocale("Eye of Azshara Trash", {
+	wrangler = "Zänker der Hassnattern",
+	stormweaver = "Sturmwirkerin der Hassnattern",
+	crusher = "Zermalmer der Hassnattern",
+	oracle = "Orakel der Hassnattern",
+	siltwalker = "Treibsandläufer der Mak'rana",
+	tides = "Aufgewühlte Fluten",
+	arcanist = "Arkanistin der Hassnattern",
+})
 
-L = BigWigs:NewBossLocale("Lady Hatecoil", "deDE")
-if L then
-	L.custom_on_show_helper_messages = "Hinweis für Statische Nova und Gebündelter Blitz"
-	L.custom_on_show_helper_messages_desc = "Wenn diese Option aktiviert ist, wird ein Hinweis angezeigt, welcher beinhaltet ob das Wasser oder Land sicher ist wenn der Boss |cff71d5ffStatische Nova|r oder |cff71d5ffGebündelter Blitz|r wirkt."
+BigWigsAPI.SetBossModuleLocale("Lady Hatecoil", {
+	custom_on_show_helper_messages = "Hinweis für Statische Nova und Gebündelter Blitz",
+	custom_on_show_helper_messages_desc = "Wenn diese Option aktiviert ist, wird ein Hinweis angezeigt, welcher beinhaltet ob das Wasser oder Land sicher ist wenn der Boss |cff71d5ffStatische Nova|r oder |cff71d5ffGebündelter Blitz|r wirkt.",
 
-	L.water_safe = "%s (Wasser ist sicher)"
-	L.land_safe = "%s (Land ist sicher)"
-end
+	water_safe = "%s (Wasser ist sicher)",
+	land_safe = "%s (Land ist sicher)",
+})
 
 -- Halls of Valor
 
-L = BigWigs:NewBossLocale("Odyn", "deDE")
-if L then
-	L.gossip_available = "Dialog verfügbar"
-	L.gossip_trigger = "Höchst beeindruckend! Ich hielt die Kräfte der Valarjar stets für unerreicht... und dennoch steht Ihr hier vor mir."
+BigWigsAPI.SetBossModuleLocale("Odyn", {
+	gossip_available = "Dialog verfügbar",
+	gossip_trigger = "Höchst beeindruckend! Ich hielt die Kräfte der Valarjar stets für unerreicht... und dennoch steht Ihr hier vor mir.",
 
-	L[197963] = "|cFF800080Oben rechts|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Right"
-	L[197964] = "|cFFFFA500Unten rechts|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Right"
-	L[197965] = "|cFFFFFF00Unten links|r (|T1323038:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Bottom Left"
-	L[197966] = "|cFF0000FFOben links|r (|T1323035:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top Left"
-	L[197967] = "|cFF008000Oben|r (|T1323036:15:15:0:0:64:64:4:60:4:60|t)" -- Translate "Top"
-end
+	[197963] = "|cFF800080Oben rechts|r (|T1323037:15:15:0:0:64:64:4:60:4:60|t)", -- Translate "Top Right"
+	[197964] = "|cFFFFA500Unten rechts|r (|T1323039:15:15:0:0:64:64:4:60:4:60|t)", -- Translate "Bottom Right"
+	[197965] = "|cFFFFFF00Unten links|r (|T1323038:15:15:0:0:64:64:4:60:4:60|t)", -- Translate "Bottom Left"
+	[197966] = "|cFF0000FFOben links|r (|T1323035:15:15:0:0:64:64:4:60:4:60|t)", -- Translate "Top Left"
+	[197967] = "|cFF008000Oben|r (|T1323036:15:15:0:0:64:64:4:60:4:60|t)", -- Translate "Top"
+})
 
-L = BigWigs:NewBossLocale("God-King Skovald", "deDE")
-if L then
-	L.warmup_text = "Gottkönig Skovald aktiv"
-	L.warmup_trigger = "Die Sieger haben ihren Anspruch geltend gemacht, Skovald, wie es ihr Recht ist. Euer Protest kommt zu spät."
-	L.warmup_trigger_2 = "Wenn sie die Aegis nicht aus freien Stücken übergeben... dann soll ihr Tod mir diesen Dienst erweisen!"
-end
+BigWigsAPI.SetBossModuleLocale("God-King Skovald", {
+	warmup_text = "Gottkönig Skovald aktiv",
+	warmup_trigger = "Die Sieger haben ihren Anspruch geltend gemacht, Skovald, wie es ihr Recht ist. Euer Protest kommt zu spät.",
+	warmup_trigger_2 = "Wenn sie die Aegis nicht aus freien Stücken übergeben... dann soll ihr Tod mir diesen Dienst erweisen!",
+})
 
-L = BigWigs:NewBossLocale("Halls of Valor Trash", "deDE")
-if L then
-	L.mug_of_mead = "Metkrug"
-	L.valarjar_thundercaller = "Donnerrufer der Valarjar"
-	L.storm_drake = "Sturmdrache"
-	L.stormforged_sentinel = "Sturmgeschmiedeter Wächter"
-	L.valarjar_runecarver = "Runenmetz der Valarjar"
-	L.valarjar_mystic = "Mystiker der Valarjar"
-	L.valarjar_purifier = "Läuterer der Valarjar"
-	L.valarjar_shieldmaiden = "Schildmaid der Valarjar"
-	L.valarjar_aspirant = "Aspirantin der Valarjar"
-	L.solsten = "Solsten"
-	L.olmyr = "Olmyr der Erleuchtete"
-	L.valarjar_marksman = "Schützin der Valarjar"
-	L.gildedfur_stag = "Goldfellhirsch"
-	L.angerhoof_bull = "Zornhufbulle"
-	L.valarjar_trapper = "Fallensteller der Valarjar"
-	L.fourkings = "Die Vier Könige"
-end
+BigWigsAPI.SetBossModuleLocale("Halls of Valor Trash", {
+	mug_of_mead = "Metkrug",
+	valarjar_thundercaller = "Donnerrufer der Valarjar",
+	storm_drake = "Sturmdrache",
+	stormforged_sentinel = "Sturmgeschmiedeter Wächter",
+	valarjar_runecarver = "Runenmetz der Valarjar",
+	valarjar_mystic = "Mystiker der Valarjar",
+	valarjar_purifier = "Läuterer der Valarjar",
+	valarjar_shieldmaiden = "Schildmaid der Valarjar",
+	valarjar_aspirant = "Aspirantin der Valarjar",
+	solsten = "Solsten",
+	olmyr = "Olmyr der Erleuchtete",
+	valarjar_marksman = "Schützin der Valarjar",
+	gildedfur_stag = "Goldfellhirsch",
+	angerhoof_bull = "Zornhufbulle",
+	valarjar_trapper = "Fallensteller der Valarjar",
+	fourkings = "Die Vier Könige",
+})
 
 -- Return to Karazhan
 
-L = BigWigs:NewBossLocale("Karazhan Trash", "deDE")
-if L then
+BigWigsAPI.SetBossModuleLocale("Karazhan Trash", {
 	-- Opera Event
-	L.custom_on_autotalk_desc = "Wählt direkt Barnes' Dialogoption zum Starten des Bosskampfes im Opernsaal."
-	L.opera_hall_wikket_story_text = "Opernsaal: Wikket"
-	L.opera_hall_wikket_story_trigger = "Halt die Gotsche" -- Shut your jabber, drama man! The Monkey King got another plan!
-	L.opera_hall_westfall_story_text = "Opernsaal: Westfall Story"
-	L.opera_hall_westfall_story_trigger = "treffen wir auf zwei Liebende" -- Tonight... we meet two lovers born on opposite sides of Sentinel Hill.
-	L.opera_hall_beautiful_beast_story_text = "Opernsaal: Das schöne Biest"
-	L.opera_hall_beautiful_beast_story_trigger = "eine Geschichte von Romantik und Wut" -- Tonight... a tale of romance and rage, one which will prove once and for all if beaty is more than skin deep.
+	custom_on_autotalk_desc = "Wählt direkt Barnes' Dialogoption zum Starten des Bosskampfes im Opernsaal.",
+	opera_hall_wikket_story_text = "Opernsaal: Wikket",
+	opera_hall_wikket_story_trigger = "Halt die Gotsche", -- Shut your jabber, drama man! The Monkey King got another plan!
+	opera_hall_westfall_story_text = "Opernsaal: Westfall Story",
+	opera_hall_westfall_story_trigger = "treffen wir auf zwei Liebende", -- Tonight... we meet two lovers born on opposite sides of Sentinel Hill.
+	opera_hall_beautiful_beast_story_text = "Opernsaal: Das schöne Biest",
+	opera_hall_beautiful_beast_story_trigger = "eine Geschichte von Romantik und Wut", -- Tonight... a tale of romance and rage, one which will prove once and for all if beaty is more than skin deep.
 
 	-- Return to Karazhan: Lower
-	L.barnes = "Barnes"
-	L.ghostly_philanthropist = "Geisterhafter Philanthrop"
-	L.skeletal_usher = "Skelettpförtner"
-	L.spectral_attendant = "Spektraler Knecht"
-	L.spectral_valet = "Spektraldiener"
-	L.spectral_retainer = "Spektraler Anhänger"
-	L.phantom_guardsman = "Phantomgardist"
-	L.wholesome_hostess = "Sittsame Schankmaid"
-	L.reformed_maiden = "Reformierte Jungfer"
-	L.spectral_charger = "Spektrales Streitross"
+	barnes = "Barnes",
+	ghostly_philanthropist = "Geisterhafter Philanthrop",
+	skeletal_usher = "Skelettpförtner",
+	spectral_attendant = "Spektraler Knecht",
+	spectral_valet = "Spektraldiener",
+	spectral_retainer = "Spektraler Anhänger",
+	phantom_guardsman = "Phantomgardist",
+	wholesome_hostess = "Sittsame Schankmaid",
+	reformed_maiden = "Reformierte Jungfer",
+	spectral_charger = "Spektrales Streitross",
 
 	-- Return to Karazhan: Upper
-	L.chess_event = "Das Schachspiel"
-	L.king = "König"
-end
+	chess_event = "Das Schachspiel",
+	king = "König",
+})
 
-L = BigWigs:NewBossLocale("Moroes", "deDE")
-if L then
-	L.cc = "Massenkontrolle"
-	L.cc_desc = "Timer und Warnungen für die Massenkontrolle auf den Essensgästen."
-end
+BigWigsAPI.SetBossModuleLocale("Moroes", {
+	cc = "Massenkontrolle",
+	cc_desc = "Timer und Warnungen für die Massenkontrolle auf den Essensgästen.",
+})
 
-L = BigWigs:NewBossLocale("Nightbane", "deDE")
-if L then
-	L.name = "Schrecken der Nacht"
-end
+BigWigsAPI.SetBossModuleLocale("Nightbane", {
+	name = "Schrecken der Nacht",
+})
 
 -- Maw of Souls
 
-L = BigWigs:NewBossLocale("Maw of Souls Trash", "deDE")
-if L then
-	L.soulguard = "Aufgedunsene Seelenwache"
-	L.champion = "Champion der Helarjar"
-	L.mariner = "Matrosennachtwächter"
-	L.swiftblade = "Meeresfluchschnellklinge"
-	L.mistmender = "Meeresfluchnebelheilerin"
-	L.mistcaller = "Nebelruferin der Helarjar"
-	L.skjal = "Skjal"
-end
+BigWigsAPI.SetBossModuleLocale("Maw of Souls Trash", {
+	soulguard = "Aufgedunsene Seelenwache",
+	champion = "Champion der Helarjar",
+	mariner = "Matrosennachtwächter",
+	swiftblade = "Meeresfluchschnellklinge",
+	mistmender = "Meeresfluchnebelheilerin",
+	mistcaller = "Nebelruferin der Helarjar",
+	skjal = "Skjal",
+})
 
 -- Neltharion's Lair
 
-L = BigWigs:NewBossLocale("Neltharions Lair Trash", "deDE")
-if L then
-	L.rokmora_first_warmup_trigger = "Navarrogg?! Verräter! Ihr führt diese Eindringlinge gegen uns ins Feld?!"
-	L.rokmora_second_warmup_trigger = "Sei's drum, ich werde jeden Moment davon genießen. Rokmora, zerschmettert sie!"
+BigWigsAPI.SetBossModuleLocale("Neltharions Lair Trash", {
+	rokmora_first_warmup_trigger = "Navarrogg?! Verräter! Ihr führt diese Eindringlinge gegen uns ins Feld?!",
+	rokmora_second_warmup_trigger = "Sei's drum, ich werde jeden Moment davon genießen. Rokmora, zerschmettert sie!",
 
-	L.vileshard_crawler = "Ekelsplitterkriecher"
-	L.tarspitter_lurker = "Teerspuckerlauerer"
-	L.rockback_gnasher = "Steinrückenknirscher"
-	L.vileshard_hulk = "Ekelsplittergigant"
-	L.vileshard_chunk = "Ekelsplitterbrocken"
-	L.understone_drummer = "Hämmerer des Tiefgesteins"
-	L.mightstone_breaker = "Machtsteinbrecher"
-	L.blightshard_shaper = "Pestsplitterformer"
-	L.stoneclaw_grubmaster = "Steinklauenlarvenmeister"
-	L.tarspitter_grub = "Teerspuckerlarve"
-	L.rotdrool_grabber = "Rottspeichelschnapper"
-	L.understone_demolisher = "Demolierer des Tiefgesteins"
-	L.rockbound_trapper = "Steingebundener Fallensteller"
-	L.emberhusk_dominator = "Glutpanzerdominator"
-end
+	vileshard_crawler = "Ekelsplitterkriecher",
+	tarspitter_lurker = "Teerspuckerlauerer",
+	rockback_gnasher = "Steinrückenknirscher",
+	vileshard_hulk = "Ekelsplittergigant",
+	vileshard_chunk = "Ekelsplitterbrocken",
+	understone_drummer = "Hämmerer des Tiefgesteins",
+	mightstone_breaker = "Machtsteinbrecher",
+	blightshard_shaper = "Pestsplitterformer",
+	stoneclaw_grubmaster = "Steinklauenlarvenmeister",
+	tarspitter_grub = "Teerspuckerlarve",
+	rotdrool_grabber = "Rottspeichelschnapper",
+	understone_demolisher = "Demolierer des Tiefgesteins",
+	rockbound_trapper = "Steingebundener Fallensteller",
+	emberhusk_dominator = "Glutpanzerdominator",
+})
 
-L = BigWigs:NewBossLocale("Ularogg Cragshaper", "deDE")
-if L then
-	L.hands = "Hände" -- Short for "Stone Hands"
-end
+BigWigsAPI.SetBossModuleLocale("Ularogg Cragshaper", {
+	hands = "Hände", -- Short for "Stone Hands"
+})
 
 -- Seat of the Triumvirate
 
-L = BigWigs:NewBossLocale("Viceroy Nezhar", "deDE")
-if L then
-	L.guards = "Hüter"
-	L.interrupted = "%s unterbrach %s (%.1fs übrig)!"
-end
+BigWigsAPI.SetBossModuleLocale("Viceroy Nezhar", {
+	guards = "Hüter",
+	interrupted = "%s unterbrach %s (%.1fs übrig)!",
+})
 
-L = BigWigs:NewBossLocale("L'ura", "deDE")
-if L then
-	L.warmup_text = "L'ura aktiv"
-end
+BigWigsAPI.SetBossModuleLocale("L'ura", {
+	warmup_text = "L'ura aktiv",
+})
 
-L = BigWigs:NewBossLocale("Seat of the Triumvirate Trash", "deDE")
-if L then
+BigWigsAPI.SetBossModuleLocale("Seat of the Triumvirate Trash", {
 	-- Pre-Midnight
-	L.custom_on_autotalk_desc = "Wählt direkt Alleria Windläufers Dialogoption."
-	L.gossip_available = "Dialog verfügbar"
-	L.alleria_gossip_trigger = "Folgt mir!" -- Allerias yell after the first boss is defeated
-	L.lura_warmup_trigger = "Dieses Chaos... diese Qualen. Etwas Derartiges habe ich noch nie gespürt."
-	L.lura_warmup_trigger_2 = "Derlei Gedanken können jetzt warten. Dieses Wesen muss sterben."
+	custom_on_autotalk_desc = "Wählt direkt Alleria Windläufers Dialogoption.",
+	gossip_available = "Dialog verfügbar",
+	alleria_gossip_trigger = "Folgt mir!", -- Allerias yell after the first boss is defeated
+	lura_warmup_trigger = "Dieses Chaos... diese Qualen. Etwas Derartiges habe ich noch nie gespürt.",
+	lura_warmup_trigger_2 = "Derlei Gedanken können jetzt warten. Dieses Wesen muss sterben.",
 
-	L.alleria = "Alleria Windläufer"
-	L.subjugator = "Unterwerfer der Schattenwache"
-	L.voidbender = "Leerenformer der Schattenwache"
-	L.conjurer = "Beschwörer der Schattenwache"
-	L.weaver = "Großschattenwirker"
+	alleria = "Alleria Windläufer",
+	subjugator = "Unterwerfer der Schattenwache",
+	voidbender = "Leerenformer der Schattenwache",
+	conjurer = "Beschwörer der Schattenwache",
+	weaver = "Großschattenwirker",
 
 	-- Midnight+
-	L.void_rifts_closed = "Leerenrisse geschlossen"
-	L.void_rifts_closed_desc = "Zeigt einen Alarm, wenn ein Leerenriss geschlossen wurde."
-end
+	void_rifts_closed = "Leerenrisse geschlossen",
+	void_rifts_closed_desc = "Zeigt einen Alarm, wenn ein Leerenriss geschlossen wurde.",
+})
 
 -- The Arcway
 
-L = BigWigs:NewBossLocale("The Arcway Trash", "deDE")
-if L then
-	L.anomaly = "Arkananomalie"
-	L.shade = "Warpschemen"
-	L.wraith = "Verdorrtes Managespenst"
-	L.blade = "Teufelsklinge der Zornwächter"
-	L.chaosbringer = "Chaosbringer der Eredar"
-end
+BigWigsAPI.SetBossModuleLocale("The Arcway Trash", {
+	anomaly = "Arkananomalie",
+	shade = "Warpschemen",
+	wraith = "Verdorrtes Managespenst",
+	blade = "Teufelsklinge der Zornwächter",
+	chaosbringer = "Chaosbringer der Eredar",
+})
 
 -- Vault of the Wardens
 
-L = BigWigs:NewBossLocale("Cordana Felsong", "deDE")
-if L then
-	L.kick_combo = "Kick Combo"
+BigWigsAPI.SetBossModuleLocale("Cordana Felsong", {
+	kick_combo = "Kick Combo",
 
-	L.light_dropped = "%s hat das Licht fallen gelassen."
-	L.light_picked = "%s hat das Licht aufgenommen."
+	light_dropped = "%s hat das Licht fallen gelassen.",
+	light_picked = "%s hat das Licht aufgenommen.",
 
-	L.warmup_trigger = "Ich habe, wofür ich gekommen bin. Doch ich wollte Euch noch persönlich ein Ende setzen... ein für alle Mal."
-	L.warmup_trigger_2 = "Und jetzt sitzt Ihr Narren in meiner Falle. Sehen wir mal, wie Ihr im Dunkeln zurechtkommt."
-end
+	warmup_trigger = "Ich habe, wofür ich gekommen bin. Doch ich wollte Euch noch persönlich ein Ende setzen... ein für alle Mal.",
+	warmup_trigger_2 = "Und jetzt sitzt Ihr Narren in meiner Falle. Sehen wir mal, wie Ihr im Dunkeln zurechtkommt.",
+})
 
-L = BigWigs:NewBossLocale("Tirathon Saltheril", "deDE")
-if L then
-	L.warmup_trigger = "Ich diene MEINEM Volk, den Vertriebenen und Verstoßenen."
-end
+BigWigsAPI.SetBossModuleLocale("Tirathon Saltheril", {
+	warmup_trigger = "Ich diene MEINEM Volk, den Vertriebenen und Verstoßenen.",
+})
 
-L = BigWigs:NewBossLocale("Vault of the Wardens Trash", "deDE")
-if L then
-	L.infester = "Verseucher des Dämonenpakts"
-	L.myrmidon = "Myrmidone des Dämonenpakts"
-	L.fury = "Teufelsberauschter Wüter"
-	L.mother = "Üble Mutter"
-	L.illianna = "Klingentänzerin Illianna"
-	L.mendacius = "Schreckenslord Mendacius"
-	L.grimhorn = "Grimmhorn der Versklaver"
-end
+BigWigsAPI.SetBossModuleLocale("Vault of the Wardens Trash", {
+	infester = "Verseucher des Dämonenpakts",
+	myrmidon = "Myrmidone des Dämonenpakts",
+	fury = "Teufelsberauschter Wüter",
+	mother = "Üble Mutter",
+	illianna = "Klingentänzerin Illianna",
+	mendacius = "Schreckenslord Mendacius",
+	grimhorn = "Grimmhorn der Versklaver",
+})

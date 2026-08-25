@@ -15,13 +15,12 @@ mod.respawnTime = 30
 local barriersLeft = 3
 
 -------------------------------------------------------------------------------
---  Localization
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.barrier_down_message = "Barrier down, %d remaining" -- short name for "Brittle Barrier" (97417)
-end
+local L = mod:SetDefaultLocale({
+	barrier_down_message = "Barrier down, %d remaining", -- short name for "Brittle Barrier" (97417)
+})
 
 -------------------------------------------------------------------------------
 --  Initialization

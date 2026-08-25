@@ -28,11 +28,10 @@ local nextDarkBulwark = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.guards = "Guards"
-	L.interrupted = "%s interrupted %s (%.1fs left)!"
-end
+local L = mod:SetDefaultLocale({
+	guards = "Guards",
+	interrupted = "%s interrupted %s (%.1fs left)!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

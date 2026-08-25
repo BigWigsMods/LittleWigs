@@ -19,11 +19,10 @@ local callWebTerrorCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.zekvir = "Zekvir (Tier 8)"
-	L.web_terror = "Web Terror"
-end
+local L = mod:SetDefaultLocale({
+	zekvir = "Zekvir (Tier 8)",
+	web_terror = "Web Terror",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

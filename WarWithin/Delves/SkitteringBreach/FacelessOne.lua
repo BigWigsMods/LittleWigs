@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.faceless_one = "Faceless One"
-end
+local L = mod:SetDefaultLocale({
+	faceless_one = "Faceless One",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

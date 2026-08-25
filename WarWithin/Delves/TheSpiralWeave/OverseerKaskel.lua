@@ -16,10 +16,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.overseer_kaskel = "Overseer Kaskel"
-end
+local L = mod:SetDefaultLocale({
+	overseer_kaskel = "Overseer Kaskel",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.creeping_malison = "Creeping Malison"
-end
+local L = mod:SetDefaultLocale({
+	creeping_malison = "Creeping Malison",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

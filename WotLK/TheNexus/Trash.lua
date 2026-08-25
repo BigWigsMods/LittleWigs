@@ -14,11 +14,10 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.slayer = "Mage Slayer"
-	L.steward = "Steward"
-end
+local L = mod:SetDefaultLocale({
+	slayer = "Mage Slayer",
+	steward = "Steward",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

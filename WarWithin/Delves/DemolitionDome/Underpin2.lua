@@ -13,11 +13,10 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.the_underpin = "The Underpin (Tier 11)"
-	L.crony = "Crony"
-end
+local L = mod:SetDefaultLocale({
+	the_underpin = "The Underpin (Tier 11)",
+	crony = "Crony",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

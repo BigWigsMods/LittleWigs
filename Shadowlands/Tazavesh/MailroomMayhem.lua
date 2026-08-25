@@ -17,12 +17,11 @@ mod:SetPrivateAuraSounds({
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.delivery_portal = "Delivery Portal"
-	L.delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations."
-	L.delivery_portal_icon = "spell_arcane_portaldalarancrater"
-end
+local L = mod:SetDefaultLocale({
+	delivery_portal = "Delivery Portal",
+	delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations.",
+	delivery_portal_icon = "spell_arcane_portaldalarancrater",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

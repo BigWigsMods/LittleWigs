@@ -31,29 +31,28 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.custom_on_autotalk = CL.autotalk
-	L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
-	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
+local L = mod:SetDefaultLocale({
+	custom_on_autotalk = CL.autotalk,
+	custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs.",
+	custom_on_autotalk_icon = mod:GetMenuIcon("SAY"),
 
-	L.burning_chain = "Burning Chain"
-	L.qalashi_warden = "Qalashi Warden"
-	L.qalashi_hunter = "Qalashi Hunter"
-	L.overseer_lahar = "Overseer Lahar"
-	L.qalashi_trainee = "Qalashi Trainee"
-	L.qalashi_bonetender = "Qalashi Bonetender"
-	L.qalashi_irontorch = "Qalashi Irontorch"
-	L.qalashi_bonesplitter = "Qalashi Bonesplitter"
-	L.qalashi_lavabearer = "Qalashi Lavabearer"
-	L.irontorch_commander = "Irontorch Commander"
-	L.qalashi_blacksmith = "Qalashi Blacksmith"
-	L.forgewrought_monstrosity = "Forgewrought Monstrosity"
-	L.qalashi_plunderer = "Qalashi Plunderer"
-	L.qalashi_thaumaturge = "Qalashi Thaumaturge"
-	L.apex_blazewing = "Apex Blazewing"
-	L.qalashi_lavamancer = "Qalahsi Lavamancer"
-end
+	burning_chain = "Burning Chain",
+	qalashi_warden = "Qalashi Warden",
+	qalashi_hunter = "Qalashi Hunter",
+	overseer_lahar = "Overseer Lahar",
+	qalashi_trainee = "Qalashi Trainee",
+	qalashi_bonetender = "Qalashi Bonetender",
+	qalashi_irontorch = "Qalashi Irontorch",
+	qalashi_bonesplitter = "Qalashi Bonesplitter",
+	qalashi_lavabearer = "Qalashi Lavabearer",
+	irontorch_commander = "Irontorch Commander",
+	qalashi_blacksmith = "Qalashi Blacksmith",
+	forgewrought_monstrosity = "Forgewrought Monstrosity",
+	qalashi_plunderer = "Qalashi Plunderer",
+	qalashi_thaumaturge = "Qalashi Thaumaturge",
+	apex_blazewing = "Apex Blazewing",
+	qalashi_lavamancer = "Qalahsi Lavamancer",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

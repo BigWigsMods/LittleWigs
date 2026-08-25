@@ -21,10 +21,9 @@ local hopelessnessCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.thrall = "Thrall"
-end
+local L = mod:SetDefaultLocale({
+	thrall = "Thrall",
+})
 
 ----------------------------------------------------------------------------------
 -- Initialization

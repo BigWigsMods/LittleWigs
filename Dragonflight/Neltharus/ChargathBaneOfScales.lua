@@ -21,10 +21,9 @@ local fieryFocusCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.slow = "Slow"
-end
+local L = mod:SetDefaultLocale({
+	slow = "Slow",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

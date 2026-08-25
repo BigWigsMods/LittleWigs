@@ -19,10 +19,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.geargrave = "Geargrave"
-end
+local L = mod:SetDefaultLocale({
+	geargrave = "Geargrave",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

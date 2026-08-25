@@ -19,10 +19,9 @@ local happyHourCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.cinderbrew_delivered = "Cinderbrew delivered"
-end
+local L = mod:SetDefaultLocale({
+	cinderbrew_delivered = "Cinderbrew delivered",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

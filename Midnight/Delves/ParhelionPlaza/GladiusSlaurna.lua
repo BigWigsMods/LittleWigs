@@ -11,10 +11,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.gladius_slaurna = "Gladius Slaurna"
-end
+local L = mod:SetDefaultLocale({
+	gladius_slaurna = "Gladius Slaurna",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

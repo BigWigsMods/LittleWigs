@@ -17,12 +17,11 @@ mod:SetStage(1)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.voidripper = "Voidripper"
-	L.voidrider_challnax = "Voidrider Challnax"
-	L.stages_icon = "inv_112_etherealwraps_basic_original"
-end
+local L = mod:SetDefaultLocale({
+	voidripper = "Voidripper",
+	voidrider_challnax = "Voidrider Challnax",
+	stages_icon = "inv_112_etherealwraps_basic_original",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

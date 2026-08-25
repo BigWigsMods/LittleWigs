@@ -16,10 +16,9 @@ mod.engageId = 1855
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.essence = "Essence"
-end
+local L = mod:SetDefaultLocale({
+	essence = "Essence",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

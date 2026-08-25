@@ -19,10 +19,9 @@ local tentaclesKilled = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.xelanegh_the_many = "Xel'anegh The Many"
-end
+local L = mod:SetDefaultLocale({
+	xelanegh_the_many = "Xel'anegh The Many",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

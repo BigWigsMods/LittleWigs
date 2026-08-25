@@ -23,10 +23,9 @@ local putridRoarCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_icon = "achievement_dungeon_throne of the tides"
-end
+local L = mod:SetDefaultLocale({
+	warmup_icon = "achievement_dungeon_throne of the tides",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

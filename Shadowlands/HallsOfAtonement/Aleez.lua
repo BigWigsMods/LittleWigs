@@ -21,10 +21,9 @@ local spectralProcessionCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.empty_anima_vessel = "Empty Anima Vessel"
-end
+local L = mod:SetDefaultLocale({
+	empty_anima_vessel = "Empty Anima Vessel",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -38,39 +38,38 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.custom_on_cauldron_autotalk = CL.autotalk
-	L.custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff."
-	L.custom_on_cauldron_autotalk_icon = mod:GetMenuIcon("SAY")
-	L.captive_tuskarr_freed = "Captive Tuskarr Freed"
-	L.captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed."
-	L.captive_tuskarr_freed_icon = "inv_10_dungeonjewelry_primitive_trinket_tuskarrplushie_color1"
+local L = mod:SetDefaultLocale({
+	custom_on_cauldron_autotalk = CL.autotalk,
+	custom_on_cauldron_autotalk_desc = "[Alchemy] Instantly detoxify Decaying Cauldrons for a disease dispel buff.",
+	custom_on_cauldron_autotalk_icon = mod:GetMenuIcon("SAY"),
+	captive_tuskarr_freed = "Captive Tuskarr Freed",
+	captive_tuskarr_freed_desc = "Show an alert when a Captive Tuskarr has been freed.",
+	captive_tuskarr_freed_icon = "inv_10_dungeonjewelry_primitive_trinket_tuskarrplushie_color1",
 
-	L.decaying_cauldron = "Decaying Cauldron"
-	L.captive_tuskarr = "Captive Tuskarr"
-	L.decay_speaker = "Decay Speaker"
-	L.claw_fighter = "Claw Fighter"
-	L.bonebolt_hunter = "Bonebolt Hunter"
-	L.bracken_warscourge = "Bracken Warscourge"
-	L.brackenhide_shaper = "Brackenhide Shaper"
-	L.fishface = "Fishface"
-	L.rotting_creek = "Rotting Creek"
-	L.decayed_elder = "Decayed Elder"
-	L.wilted_oak = "Wilted Oak"
-	L.fetid_rotsinger = "Fetid Rotsinger"
-	L.decay_totem = "Decay Totem"
-	L.monstrous_decay = "Monstrous Decay"
-	L.decaying_slime = "Decaying Slime"
-	L.infected_bear = "Infected Bear"
-	L.stinkbreath = "Stinkbreath"
-	L.rageclaw = "Rageclaw"
-	L.rotbow_ranger = "Rotbow Ranger"
-	L.skulking_gutstabber = "Skulking Gutstabber"
-	L.fleshripper_vulture = "Fleshripper Vulture"
-	L.filth_caller = "Filth Caller"
-	L.vile_rothexer = "Vile Rothexer"
-end
+	decaying_cauldron = "Decaying Cauldron",
+	captive_tuskarr = "Captive Tuskarr",
+	decay_speaker = "Decay Speaker",
+	claw_fighter = "Claw Fighter",
+	bonebolt_hunter = "Bonebolt Hunter",
+	bracken_warscourge = "Bracken Warscourge",
+	brackenhide_shaper = "Brackenhide Shaper",
+	fishface = "Fishface",
+	rotting_creek = "Rotting Creek",
+	decayed_elder = "Decayed Elder",
+	wilted_oak = "Wilted Oak",
+	fetid_rotsinger = "Fetid Rotsinger",
+	decay_totem = "Decay Totem",
+	monstrous_decay = "Monstrous Decay",
+	decaying_slime = "Decaying Slime",
+	infected_bear = "Infected Bear",
+	stinkbreath = "Stinkbreath",
+	rageclaw = "Rageclaw",
+	rotbow_ranger = "Rotbow Ranger",
+	skulking_gutstabber = "Skulking Gutstabber",
+	fleshripper_vulture = "Fleshripper Vulture",
+	filth_caller = "Filth Caller",
+	vile_rothexer = "Vile Rothexer",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

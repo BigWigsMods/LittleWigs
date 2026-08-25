@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.unkomon = "Unk'omon"
-end
+local L = mod:SetDefaultLocale({
+	unkomon = "Unk'omon",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -13,10 +13,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.researcher_venkex = "Researcher Ven'kex"
-end
+local L = mod:SetDefaultLocale({
+	researcher_venkex = "Researcher Ven'kex",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

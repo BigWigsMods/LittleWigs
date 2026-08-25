@@ -24,21 +24,20 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.templar = "Shrine Templar"
-	L.spiritualist = "Tidesage Spiritualist"
-	L.galecaller_apprentice = "Galecaller Apprentice"
-	L.windspeaker = "Windspeaker Heldis"
-	L.ironhull_apprentice = "Ironhull Apprentice"
-	L.runecarver = "Runecarver Sorn"
-	L.guardian_elemental = "Guardian Elemental"
-	L.ritualist = "Deepsea Ritualist"
-	L.cultist = "Abyssal Cultist"
-	L.depthbringer = "Drowned Depthbringer"
-	L.living_current = "Living Current"
-	L.enforcer = "Tidesage Enforcer"
-end
+local L = mod:SetDefaultLocale({
+	templar = "Shrine Templar",
+	spiritualist = "Tidesage Spiritualist",
+	galecaller_apprentice = "Galecaller Apprentice",
+	windspeaker = "Windspeaker Heldis",
+	ironhull_apprentice = "Ironhull Apprentice",
+	runecarver = "Runecarver Sorn",
+	guardian_elemental = "Guardian Elemental",
+	ritualist = "Deepsea Ritualist",
+	cultist = "Abyssal Cultist",
+	depthbringer = "Drowned Depthbringer",
+	living_current = "Living Current",
+	enforcer = "Tidesage Enforcer",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

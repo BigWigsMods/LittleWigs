@@ -15,13 +15,12 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.therum_deepforge = "Therum Deepforge"
-	L["305708_icon"] = "spell_fire_selfdestruct"
-	L["305708_desc"] = 305672
-	L.warmup_icon = "spell_arcane_teleportstormwind"
-end
+local L = mod:SetDefaultLocale({
+	therum_deepforge = "Therum Deepforge",
+	["305708_icon"] = "spell_fire_selfdestruct",
+	["305708_desc"] = 305672,
+	warmup_icon = "spell_arcane_teleportstormwind",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

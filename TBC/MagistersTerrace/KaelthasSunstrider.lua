@@ -12,11 +12,10 @@ mod:RegisterEnableMob(24664)
 -------------------------------------------------------------------------------
 --  Localization
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- Don't look so smug! I know what you're thinking, but Tempest Keep was merely a setback. Did you honestly believe I would trust the future to some blind, half-night elf mongrel?
-	L.warmup_trigger = "Don't look so smug!"
-end
+	warmup_trigger = "Don't look so smug!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -22,13 +22,12 @@ local magicalImplementsList = {}
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.magical_implements = -25983 -- Magical Implements
-	L.magical_implements_desc = "The surrounding treasure piles contain magic items that can help to deplete Magma Shield."
-	L.magical_implements_icon = "inv_wand_06"
-	L.magma_shield = "Magma Shield - Get items from gold piles"
-end
+local L = mod:SetDefaultLocale({
+	magical_implements = -25983, -- Magical Implements
+	magical_implements_desc = "The surrounding treasure piles contain magic items that can help to deplete Magma Shield.",
+	magical_implements_icon = "inv_wand_06",
+	magma_shield = "Magma Shield - Get items from gold piles",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

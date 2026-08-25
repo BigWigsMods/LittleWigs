@@ -24,25 +24,24 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.rares = "Underpin Rares"
+local L = mod:SetDefaultLocale({
+	rares = "Underpin Rares",
 
-	L.treasure_wraith = "Treasure Wraith"
-	L.treasure_crab = "Treasure Crab"
-	L.hovering_menace = "Hovering Menace"
-	L.malfunctioning_pummeler = "Malfunctioning Pummeler"
-	L.underpins_adoring_fan = "Underpin's Adoring Fan"
-	L.underpins_well_connected_friend = "Underpin's Well-Connected Friend"
-	L.underpins_explosive_ally = "Underpin's Explosive Ally"
-	L.underpins_bodyguards_intern = "Underpin's Bodyguard's Intern"
-	L.aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin"
-	L.the_underpin = "The Underpin (Random Spawn)"
+	treasure_wraith = "Treasure Wraith",
+	treasure_crab = "Treasure Crab",
+	hovering_menace = "Hovering Menace",
+	malfunctioning_pummeler = "Malfunctioning Pummeler",
+	underpins_adoring_fan = "Underpin's Adoring Fan",
+	underpins_well_connected_friend = "Underpin's Well-Connected Friend",
+	underpins_explosive_ally = "Underpin's Explosive Ally",
+	underpins_bodyguards_intern = "Underpin's Bodyguard's Intern",
+	aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin",
+	the_underpin = "The Underpin (Random Spawn)",
 
-	L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
+	underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!",
 
-	L["1216937_icon"] = "inv_goblinshreddermech_black" -- Underpin's Grand Entrance
-end
+	["1216937_icon"] = "inv_goblinshreddermech_black", -- Underpin's Grand Entrance
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -21,10 +21,9 @@ local criesOfTheVoidCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.inquisitor_gnshal = "Inquisitor Gnshal"
-end
+local L = mod:SetDefaultLocale({
+	inquisitor_gnshal = "Inquisitor Gnshal",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

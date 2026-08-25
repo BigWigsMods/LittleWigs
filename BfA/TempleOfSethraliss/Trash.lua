@@ -37,17 +37,16 @@ end
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.dust_devil = "Charged Dust Devil"
-	L.marksman = "Sandswept Marksman"
-	L.fang = "Shrouded Fang"
-	L.rider = "Scaled Krolusk Rider"
-	L.tender = "Faithless Tender"
-	L.incubator = "Crazed Incubator"
-	L.nimbus = "Agitated Nimbus"
-	L.doctor = "Plague Doctor"
-end
+local L = mod:SetDefaultLocale({
+	dust_devil = "Charged Dust Devil",
+	marksman = "Sandswept Marksman",
+	fang = "Shrouded Fang",
+	rider = "Scaled Krolusk Rider",
+	tender = "Faithless Tender",
+	incubator = "Crazed Incubator",
+	nimbus = "Agitated Nimbus",
+	doctor = "Plague Doctor",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

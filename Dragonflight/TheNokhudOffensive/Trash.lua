@@ -38,28 +38,27 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.teera_and_maruuk_warmup_trigger = "Why has our rest been disturbed?"
+local L = mod:SetDefaultLocale({
+	teera_and_maruuk_warmup_trigger = "Why has our rest been disturbed?",
 
-	L.nokhud_plainstomper = "Nokhud Plainstomper"
-	L.nokhud_hornsounder = "Nokhud Hornsounder"
-	L.nokhud_beastmaster = "Nokhud Beastmaster"
-	L.nokhud_longbow = "Nokhud Longbow"
-	L.primal_stormshield = "Primal Stormshield"
-	L.primalist_stormspeaker = "Primalist Stormspeaker"
-	L.stormsurge_totem = "Stormsurge Totem"
-	L.primalist_thunderbeast = "Primalist Thunderbeast"
-	L.desecrated_ohuna = "Desecrated Ohuna"
-	L.ukhel_deathspeaker = "Ukhel Deathspeaker"
-	L.risen_mystic = "Risen Mystic"
-	L.ukhel_beastcaller = "Ukhel Beastcaller"
-	L.soulharvester_galtmaa = "Soulharvester Galtmaa"
-	L.nokhud_defender = "Nokhud Defender"
-	L.nokhud_thunderfist = "Nokhud Thunderfist"
-	L.balara = "Balara"
-	L.batak = "Batak"
-end
+	nokhud_plainstomper = "Nokhud Plainstomper",
+	nokhud_hornsounder = "Nokhud Hornsounder",
+	nokhud_beastmaster = "Nokhud Beastmaster",
+	nokhud_longbow = "Nokhud Longbow",
+	primal_stormshield = "Primal Stormshield",
+	primalist_stormspeaker = "Primalist Stormspeaker",
+	stormsurge_totem = "Stormsurge Totem",
+	primalist_thunderbeast = "Primalist Thunderbeast",
+	desecrated_ohuna = "Desecrated Ohuna",
+	ukhel_deathspeaker = "Ukhel Deathspeaker",
+	risen_mystic = "Risen Mystic",
+	ukhel_beastcaller = "Ukhel Beastcaller",
+	soulharvester_galtmaa = "Soulharvester Galtmaa",
+	nokhud_defender = "Nokhud Defender",
+	nokhud_thunderfist = "Nokhud Thunderfist",
+	balara = "Balara",
+	batak = "Batak",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

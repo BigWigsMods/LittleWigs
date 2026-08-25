@@ -24,10 +24,9 @@ local hyperlightNovaRemaining = 2
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.group = "GROUP"
-end
+local L = mod:SetDefaultLocale({
+	group = "GROUP",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

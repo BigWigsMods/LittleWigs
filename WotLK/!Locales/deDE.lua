@@ -1,115 +1,99 @@
 -- Ahn'kahet: The Old Kingdom
 
-local L = BigWigs:NewBossLocale("Ahn'kahet Trash", "deDE")
-if not L then return end
-if L then
-	L.spellflinger = "Zauberwerfer der Ahn'kahar"
-	L.eye = "Auge von Taldaram"
-	L.darkcaster = "Zwielichtdunkelzauberer"
-end
+BigWigsAPI.SetBossModuleLocale("Ahn'kahet Trash", {
+	spellflinger = "Zauberwerfer der Ahn'kahar",
+	eye = "Auge von Taldaram",
+	darkcaster = "Zwielichtdunkelzauberer",
+})
 
 -- Gundrak
 
-L = BigWigs:NewBossLocale("Gal'darah", "deDE")
-if L then
-	L.forms = "Formen"
-	L.forms_desc = "Warnen bevor Gal'darah seine Form ändert."
+BigWigsAPI.SetBossModuleLocale("Gal'darah", {
+	forms = "Formen",
+	forms_desc = "Warnen bevor Gal'darah seine Form ändert.",
 
-	L.form_rhino = "Dinoform"
-	L.form_troll = "Trollform"
-end
+	form_rhino = "Dinoform",
+	form_troll = "Trollform",
+})
 
 -- Halls of Lightning
 
-L = BigWigs:NewBossLocale("Halls of Lightning Trash", "deDE")
-if L then
-	L.runeshaper = "Sturmgeschmiedeter Runenformer"
-	L.sentinel = "Sturmgeschmiedete Schildwache"
-end
+BigWigsAPI.SetBossModuleLocale("Halls of Lightning Trash", {
+	runeshaper = "Sturmgeschmiedeter Runenformer",
+	sentinel = "Sturmgeschmiedete Schildwache",
+})
 
 -- Halls of Stone
 
-L = BigWigs:NewBossLocale("Tribunal of Ages", "deDE")
-if L then
-	L.engage_trigger = "Haltet jetzt die Augen offen" -- Now keep an eye out! I'll have this licked in two shakes of a--
-	L.defeat_trigger = "Die alten, magischen Finger" --  Ha! The old magic fingers finally won through! Now let's get down to--
-	L.fail_trigger = "Noch nicht... noch nich--"
+BigWigsAPI.SetBossModuleLocale("Tribunal of Ages", {
+	engage_trigger = "Haltet jetzt die Augen offen", -- Now keep an eye out! I'll have this licked in two shakes of a--
+	defeat_trigger = "Die alten, magischen Finger", --  Ha! The old magic fingers finally won through! Now let's get down to--
+	fail_trigger = "Noch nicht... noch nich--",
 
-	L.timers = "Timer"
-	L.timers_desc = "Timer für diverse eintretende Ereignisse."
+	timers = "Timer",
+	timers_desc = "Timer für diverse eintretende Ereignisse.",
 
-	L.victory = "Sieg"
-end
+	victory = "Sieg",
+})
 
 -- Pit of Saron
 
-L = BigWigs:NewBossLocale("Pit of Saron Trash", "deDE")
-if L then
-	L.quarry_camps_liberated = "Steinbruchlager befreit"
-	L.quarry_camps_liberated_desc = "Zeigt einen Alarm, wenn ein Steinbruchlager befreit wurde."
-end
+BigWigsAPI.SetBossModuleLocale("Pit of Saron Trash", {
+	quarry_camps_liberated = "Steinbruchlager befreit",
+	quarry_camps_liberated_desc = "Zeigt einen Alarm, wenn ein Steinbruchlager befreit wurde.",
+})
 
 -- The Culling of Stratholme
 
-L = BigWigs:NewBossLocale("The Culling of Stratholme Trash", "deDE")
-if L then
-	L.custom_on_autotalk_desc = "Wählt direkt Chromies und Arthas' Dialogoptionen."
+BigWigsAPI.SetBossModuleLocale("The Culling of Stratholme Trash", {
+	custom_on_autotalk_desc = "Wählt direkt Chromies und Arthas' Dialogoptionen.",
 
-	L.gossip_available = "Dialog verfügbar"
-	L.gossip_timer_trigger = "Wie schön, dass Ihr es geschafft habt, Uther."
-end
+	gossip_available = "Dialog verfügbar",
+	gossip_timer_trigger = "Wie schön, dass Ihr es geschafft habt, Uther.",
+})
 
-L = BigWigs:NewBossLocale("Mal'Ganis", "deDE")
-if L then
-	L.warmup_trigger = "Wir beenden das hier und jetzt, Mal'Ganis. Nur wir beide, sonst niemand."
-end
+BigWigsAPI.SetBossModuleLocale("Mal'Ganis", {
+	warmup_trigger = "Wir beenden das hier und jetzt, Mal'Ganis. Nur wir beide, sonst niemand.",
+})
 
-L = BigWigs:NewBossLocale("Chrono-Lord Epoch", "deDE")
-if L then
+BigWigsAPI.SetBossModuleLocale("Chrono-Lord Epoch", {
 	-- Prince Arthas Menethil, on this day, a powerful darkness has taken hold of your soul. The death you are destined to visit upon others will this day be your own.
-	L.warmup_trigger = "eine große Finsternis"
-end
+	warmup_trigger = "eine große Finsternis",
+})
 
-L = BigWigs:NewBossLocale("Infinite Corruptor", "deDE")
-if L then
-	L.name = "Ewiger Verderber"
-end
+BigWigsAPI.SetBossModuleLocale("Infinite Corruptor", {
+	name = "Ewiger Verderber",
+})
 
 -- The Nexus
 
-L = BigWigs:NewBossLocale("The Nexus Trash", "deDE")
-if L then
-	L.slayer = "Magiertöter"
-	L.steward = "Bediensteter"
-end
+BigWigsAPI.SetBossModuleLocale("The Nexus Trash", {
+	slayer = "Magiertöter",
+	steward = "Bediensteter",
+})
 
 -- The Violet Hold
 
-L = BigWigs:NewBossLocale("Xevozz", "deDE")
-if L then
-	L.sphere_name = "Sphäre des Astraleums"
-end
+BigWigsAPI.SetBossModuleLocale("Xevozz", {
+	sphere_name = "Sphäre des Astraleums",
+})
 
-L = BigWigs:NewBossLocale("Zuramat the Obliterator", "deDE")
-if L then
-	L.short_name = "Zuramat"
-end
+BigWigsAPI.SetBossModuleLocale("Zuramat the Obliterator", {
+	short_name = "Zuramat",
+})
 
-L = BigWigs:NewBossLocale("The Violet Hold Trash", "deDE")
-if L then
-	L.portals_desc = "Informationen über Portale."
-end
+BigWigsAPI.SetBossModuleLocale("The Violet Hold Trash", {
+	portals_desc = "Informationen über Portale.",
+})
 
 -- Trial of the Champion
 
-L = BigWigs:NewBossLocale("Trial of the Champion Trash", "deDE")
-if L then
-	L.custom_on_autotalk_desc = "Wählt direkt die Dialogoption zum Starten von Begegnungen."
-end
+BigWigsAPI.SetBossModuleLocale("Trial of the Champion Trash", {
+	custom_on_autotalk_desc = "Wählt direkt die Dialogoption zum Starten von Begegnungen.",
+})
 
 -- Utgarde Pinnacle
 
-L = BigWigs:NewBossLocale("Utgarde Pinnacle Trash", "deDE")
-if L then
-	L.berserker = "Berserker der Ymirjar"
-end
+BigWigsAPI.SetBossModuleLocale("Utgarde Pinnacle Trash", {
+	berserker = "Berserker der Ymirjar",
+})

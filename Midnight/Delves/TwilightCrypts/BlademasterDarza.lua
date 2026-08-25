@@ -11,10 +11,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.blademaster_darza = "Blademaster Darza"
-end
+local L = mod:SetDefaultLocale({
+	blademaster_darza = "Blademaster Darza",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

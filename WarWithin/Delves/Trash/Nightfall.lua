@@ -22,17 +22,16 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.nightfall_trash = "Nightfall Trash"
+local L = mod:SetDefaultLocale({
+	nightfall_trash = "Nightfall Trash",
 
-	L.dark_bombardier = "Dark Bombardier"
-	L.nightfall_inquisitor = "Nightfall Inquisitor"
-	L.devouring_shade = "Devouring Shade"
-	L.weeping_shade = "Weeping Shade"
-	L.nightfall_shadeguard = "Nightfall Shadeguard"
-	L.shadow_elemental = "Shadow Elemental"
-end
+	dark_bombardier = "Dark Bombardier",
+	nightfall_inquisitor = "Nightfall Inquisitor",
+	devouring_shade = "Devouring Shade",
+	weeping_shade = "Weeping Shade",
+	nightfall_shadeguard = "Nightfall Shadeguard",
+	shadow_elemental = "Shadow Elemental",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

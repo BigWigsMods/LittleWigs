@@ -31,28 +31,27 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.amarth_warmup_trigger = "You will be brought to justice!"
-	L.corpse_harvester = "Corpse Harvester"
-	L.stitched_vanguard = "Stitched Vanguard"
-	L.zolramus_gatekeeper = "Zolramus Gatekeeper"
-	L.zolramus_necromancer = "Zolramus Necromancer"
-	L.brittlebone_mage = "Brittlebone Mage"
-	L.zolramus_bonecarver = "Zolramus Bonecarver"
-	L.skeletal_marauder = "Skeletal Marauder"
-	L.zolramus_bonemender = "Zolramus Bonemender"
-	L.zolramus_sorcerer = "Zolramus Sorcerer"
-	L.narzudah = "Nar'zudah"
-	L.skeletal_monstrosity = "Skeletal Monstrosity"
-	L.corpse_collector = "Corpse Collector"
-	L.kyrian_stitchwerk = "Kyrian Stitchwerk"
-	L.flesh_crafter = "Flesh Crafter"
-	L.loyal_creation = "Loyal Creation"
-	L.separation_assistant = "Separation Assistant"
-	L.goregrind = "Goregrind"
-	L.rotspew = "Rotspew"
-end
+local L = mod:SetDefaultLocale({
+	amarth_warmup_trigger = "You will be brought to justice!",
+	corpse_harvester = "Corpse Harvester",
+	stitched_vanguard = "Stitched Vanguard",
+	zolramus_gatekeeper = "Zolramus Gatekeeper",
+	zolramus_necromancer = "Zolramus Necromancer",
+	brittlebone_mage = "Brittlebone Mage",
+	zolramus_bonecarver = "Zolramus Bonecarver",
+	skeletal_marauder = "Skeletal Marauder",
+	zolramus_bonemender = "Zolramus Bonemender",
+	zolramus_sorcerer = "Zolramus Sorcerer",
+	narzudah = "Nar'zudah",
+	skeletal_monstrosity = "Skeletal Monstrosity",
+	corpse_collector = "Corpse Collector",
+	kyrian_stitchwerk = "Kyrian Stitchwerk",
+	flesh_crafter = "Flesh Crafter",
+	loyal_creation = "Loyal Creation",
+	separation_assistant = "Separation Assistant",
+	goregrind = "Goregrind",
+	rotspew = "Rotspew",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

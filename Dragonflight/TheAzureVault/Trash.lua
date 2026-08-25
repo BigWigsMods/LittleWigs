@@ -34,25 +34,24 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.book_of_translocation = "Book of Translocation"
-	L.custom_on_book_autotalk = CL.autotalk
-	L.custom_on_book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation."
-	L.custom_on_book_autotalk_icon = mod:GetMenuIcon("SAY")
+local L = mod:SetDefaultLocale({
+	book_of_translocation = "Book of Translocation",
+	custom_on_book_autotalk = CL.autotalk,
+	custom_on_book_autotalk_desc = "Instantly proceed to the next area when talking to Books of Translocation.",
+	custom_on_book_autotalk_icon = mod:GetMenuIcon("SAY"),
 
-	L.shrieking_whelp = "Shrieking Whelp"
-	L.conjured_lasher = "Conjured Lasher"
-	L.arcane_tender = "Arcane Tender"
-	L.arcane_elemental = "Arcane Elemental"
-	L.unstable_curator = "Unstable Curator"
-	L.rune_seal_keeper = "Rune Seal Keeper"
-	L.crystal_fury = "Crystal Fury"
-	L.crystal_thrasher = "Crystal Thrasher"
-	L.arcane_construct = "Arcane Construct"
-	L.scalebane_lieutenant = "Scalebane Lieutenant"
-	L.drakonid_breaker = "Drakonid Breaker"
-end
+	shrieking_whelp = "Shrieking Whelp",
+	conjured_lasher = "Conjured Lasher",
+	arcane_tender = "Arcane Tender",
+	arcane_elemental = "Arcane Elemental",
+	unstable_curator = "Unstable Curator",
+	rune_seal_keeper = "Rune Seal Keeper",
+	crystal_fury = "Crystal Fury",
+	crystal_thrasher = "Crystal Thrasher",
+	arcane_construct = "Arcane Construct",
+	scalebane_lieutenant = "Scalebane Lieutenant",
+	drakonid_breaker = "Drakonid Breaker",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -11,10 +11,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.pyroguard_emberseer = "Pyroguard Emberseer"
-end
+local L = mod:SetDefaultLocale({
+	pyroguard_emberseer = "Pyroguard Emberseer",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

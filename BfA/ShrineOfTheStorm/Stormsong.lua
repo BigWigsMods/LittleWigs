@@ -14,11 +14,10 @@ mod.respawnTime = 30
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_trigger_horde = "Intruders?! I shall cast your bodies to the blackened depths, to be crushed for eternity!"
-	L.warmup_trigger_alliance = "Master! Stop this madness at once! The Kul Tiran fleet must not fall to darkness!"
-end
+local L = mod:SetDefaultLocale({
+	warmup_trigger_horde = "Intruders?! I shall cast your bodies to the blackened depths, to be crushed for eternity!",
+	warmup_trigger_alliance = "Master! Stop this madness at once! The Kul Tiran fleet must not fall to darkness!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

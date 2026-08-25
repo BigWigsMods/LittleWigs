@@ -21,10 +21,9 @@ local dynamiteMineCartCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.dynamite_mine_cart = "Dynamite Mine Cart"
-end
+local L = mod:SetDefaultLocale({
+	dynamite_mine_cart = "Dynamite Mine Cart",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

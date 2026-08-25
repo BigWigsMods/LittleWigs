@@ -19,10 +19,9 @@ local bombsRemaining = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L["274002_icon"] = "inv_misc_groupneedmore"
-end
+local L = mod:SetDefaultLocale({
+	["274002_icon"] = "inv_misc_groupneedmore",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -1,94 +1,76 @@
 -- Demon Fall Canyon
 
-local L = BigWigs:NewBossLocale("Grimroot", "esES")
-if not L then return end
-if L then
-	L.grimroot = "Sombrirraíz"
-end
+BigWigsAPI.SetBossModuleLocale("Grimroot", {
+	grimroot = "Sombrirraíz",
+})
 
-L = BigWigs:NewBossLocale("Destructor's Wraith", "esES")
-if L then
-	L.destructors_wraith = "Ánima del Destructor"
-end
+BigWigsAPI.SetBossModuleLocale("Destructor's Wraith", {
+	destructors_wraith = "Ánima del Destructor",
+})
 
-L = BigWigs:NewBossLocale("Zilbagob", "esES")
-if L then
-	L.zilbagob = "Zilbagob"
-end
+BigWigsAPI.SetBossModuleLocale("Zilbagob", {
+	zilbagob = "Zilbagob",
+})
 
-L = BigWigs:NewBossLocale("Pyranis", "esES")
-if L then
-	L.pyranis = "Pyranis"
-end
+BigWigsAPI.SetBossModuleLocale("Pyranis", {
+	pyranis = "Pyranis",
+})
 
-L = BigWigs:NewBossLocale("Diathorus the Seeker", "esES")
-if L then
-	L.diathorus_the_seeker = "Diathorus el Buscador"
-end
+BigWigsAPI.SetBossModuleLocale("Diathorus the Seeker", {
+	diathorus_the_seeker = "Diathorus el Buscador",
+})
 
-L = BigWigs:NewBossLocale("Hellscream's Phantom", "esES")
-if L then
-	L.hellscreams_phantom = "Espectro de Grito Infernal"
-end
+BigWigsAPI.SetBossModuleLocale("Hellscream's Phantom", {
+	hellscreams_phantom = "Espectro de Grito Infernal",
+})
 
 -- Karazhan Crypts
 
-L = BigWigs:NewBossLocale("Kaigy Maryla", "esES")
-if L then
-	--L.kaigy_maryla = "Kaigy Maryla"
-end
+BigWigsAPI.SetBossModuleLocale("Kaigy Maryla", {
+	--kaigy_maryla = "Kaigy Maryla",
+})
 
-L = BigWigs:NewBossLocale("Sairuh Maryla", "esES")
-if L then
-	--L.sairuh_maryla = "Sairuh Maryla"
-end
+BigWigsAPI.SetBossModuleLocale("Sairuh Maryla", {
+	--sairuh_maryla = "Sairuh Maryla",
+})
 
-L = BigWigs:NewBossLocale("Barian Maryla", "esES")
-if L then
-	--L.barian_maryla = "Barian Maryla"
-end
+BigWigsAPI.SetBossModuleLocale("Barian Maryla", {
+	--barian_maryla = "Barian Maryla",
+})
 
-L = BigWigs:NewBossLocale("Creeping Malison", "esES")
-if L then
-	--L.creeping_malison = "Creeping Malison"
-end
+BigWigsAPI.SetBossModuleLocale("Creeping Malison", {
+	--creeping_malison = "Creeping Malison",
+})
 
-L = BigWigs:NewBossLocale("Trizivast", "esES")
-if L then
-	--L.trizivast = "Trizivast"
-end
+BigWigsAPI.SetBossModuleLocale("Trizivast", {
+	--trizivast = "Trizivast",
+})
 
-L = BigWigs:NewBossLocale("Hans and Greta", "esES")
-if L then
-	--L.hans_and_greta = "Hans and Greta"
-	--L.hans = "Hans"
-	--L.greta = "Greta"
-end
+BigWigsAPI.SetBossModuleLocale("Hans and Greta", {
+	--hans_and_greta = "Hans and Greta",
+	--hans = "Hans",
+	--greta = "Greta",
+})
 
-L = BigWigs:NewBossLocale("Goblins", "esES")
-if L then
-	--L.goblins = "Goblins"
-	--L.geenkle = "Geenkle"
-	--L.jank = "Jank"
-	--L.gold_rustboot = "Gold Rustboot"
-end
+BigWigsAPI.SetBossModuleLocale("Goblins", {
+	--goblins = "Goblins",
+	--geenkle = "Geenkle",
+	--jank = "Jank",
+	--gold_rustboot = "Gold Rustboot",
+})
 
-L = BigWigs:NewBossLocale("Harbinger of Sin", "esES")
-if L then
-	--L.harbinger_of_sin = "Harbinger of Sin"
-end
+BigWigsAPI.SetBossModuleLocale("Harbinger of Sin", {
+	--harbinger_of_sin = "Harbinger of Sin",
+})
 
-L = BigWigs:NewBossLocale("Kharon", "esES")
-if L then
-	--L.kharon = "Kharon"
-end
+BigWigsAPI.SetBossModuleLocale("Kharon", {
+	--kharon = "Kharon",
+})
 
-L = BigWigs:NewBossLocale("Unk'omon", "esES")
-if L then
-	--L.unkomon = "Unk'omon"
-end
+BigWigsAPI.SetBossModuleLocale("Unk'omon", {
+	--unkomon = "Unk'omon",
+})
 
-L = BigWigs:NewBossLocale("Dark Rider", "esES")
-if L then
-	--L.dark_rider = "Dark Rider"
-end
+BigWigsAPI.SetBossModuleLocale("Dark Rider", {
+	--dark_rider = "Dark Rider",
+})

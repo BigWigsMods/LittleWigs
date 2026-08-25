@@ -15,16 +15,15 @@ mod.engageId = 1943
 local nextAddWarning = 80
 
 -------------------------------------------------------------------------------
---  Localization
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.mech_trigger = "Tune 'em up good, boys!"
+local L = mod:SetDefaultLocale({
+	mech_trigger = "Tune 'em up good, boys!",
 
-	L.mechanics = -5999 -- Steamrigger Mechanics
-	L.mechanics_icon = "inv_misc_wrench_01"
-end
+	mechanics = -5999, -- Steamrigger Mechanics
+	mechanics_icon = "inv_misc_wrench_01",
+})
 
 -------------------------------------------------------------------------------
 --  Initialization

@@ -12,10 +12,9 @@ mod:SetEncounterID(484)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.death_pact_trigger = "attempts to cast Death Pact on his servants!"
-end
+local L = mod:SetDefaultLocale({
+	death_pact_trigger = "attempts to cast Death Pact on his servants!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

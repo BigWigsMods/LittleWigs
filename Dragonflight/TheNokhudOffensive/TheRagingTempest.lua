@@ -12,11 +12,10 @@ mod:SetRespawnTime(30)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.on_you = "On you"
-	L.on_boss = "On the boss"
-end
+local L = mod:SetDefaultLocale({
+	on_you = "On you",
+	on_boss = "On the boss",
+})
 
 --------------------------------------------------------------------------------
 -- Locals

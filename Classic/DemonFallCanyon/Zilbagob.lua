@@ -19,10 +19,9 @@ local bossGUID = nil
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.zilbagob = "Zilbagob"
-end
+local L = mod:SetDefaultLocale({
+	zilbagob = "Zilbagob",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

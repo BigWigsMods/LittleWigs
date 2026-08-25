@@ -44,51 +44,50 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	------ Galakrond's Fall ------
-	L.infinite_chronoweaver = "Infinite Chronoweaver"
-	L.infinite_timeslicer = "Infinite Timeslicer"
-	L.epoch_ripper = "Epoch Ripper"
-	L.coalesced_time = "Coalesced Time"
-	L.interval = "Interval"
-	L.timestream_leech = "Timestream Leech"
-	L.timestream_anomaly = "Timestream Anomaly"
-	L.infinite_infiltrator = "Infinite Infiltrator"
-	L.risen_dragon = "Risen Dragon"
-	L.iridikrons_creation = "Iridikron's Creation"
+	infinite_chronoweaver = "Infinite Chronoweaver",
+	infinite_timeslicer = "Infinite Timeslicer",
+	epoch_ripper = "Epoch Ripper",
+	coalesced_time = "Coalesced Time",
+	interval = "Interval",
+	timestream_leech = "Timestream Leech",
+	timestream_anomaly = "Timestream Anomaly",
+	infinite_infiltrator = "Infinite Infiltrator",
+	risen_dragon = "Risen Dragon",
+	iridikrons_creation = "Iridikron's Creation",
 
-	L.iridikron_warmup_trigger = "So the titans' puppets have come to face me."
+	iridikron_warmup_trigger = "So the titans' puppets have come to face me.",
 
 	------ Murozond's Rise ------
-	L.infinite_twilight_magus = "Infinite Twilight Magus"
-	L.valow = "Valow, Timesworn Keeper"
-	L.spurlok = "Spurlok, Timesworn Sentinel"
-	L.lerai = "Lerai, Timesworn Maiden"
-	L.timeline_marauder = "Timeline Marauder"
-	L.infinite_saboteur = "Infinite Saboteur"
-	L.infinite_riftmage = "Infinite Riftmage"
-	L.timelost_waveshaper = "Time-Lost Waveshaper"
-	L.timelost_aerobot = "Time-Lost Aerobot"
-	L.chronaxie = "Chronaxie"
-	L.horde_destroyer = "Horde Destroyer"
-	L.alliance_destroyer = "Alliance Destroyer"
-	L.horde_farseer = "Horde Farseer"
-	L.paladin_of_the_silver_hand = "Paladin of the Silver Hand"
-	L.horde_raider_alliance_knight = "Horde Raider / Alliance Knight"
-	L.infinite_timebender = "Infinite Timebender"
+	infinite_twilight_magus = "Infinite Twilight Magus",
+	valow = "Valow, Timesworn Keeper",
+	spurlok = "Spurlok, Timesworn Sentinel",
+	lerai = "Lerai, Timesworn Maiden",
+	timeline_marauder = "Timeline Marauder",
+	infinite_saboteur = "Infinite Saboteur",
+	infinite_riftmage = "Infinite Riftmage",
+	timelost_waveshaper = "Time-Lost Waveshaper",
+	timelost_aerobot = "Time-Lost Aerobot",
+	chronaxie = "Chronaxie",
+	horde_destroyer = "Horde Destroyer",
+	alliance_destroyer = "Alliance Destroyer",
+	horde_farseer = "Horde Farseer",
+	paladin_of_the_silver_hand = "Paladin of the Silver Hand",
+	horde_raider_alliance_knight = "Horde Raider / Alliance Knight",
+	infinite_timebender = "Infinite Timebender",
 
-	L.custom_on_rift_autotalk = CL.autotalk
-	L.custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift."
-	L.custom_on_rift_autotalk_icon = mod:GetMenuIcon("SAY")
-	L.rift_opening = CL.casting:format(mod:SpellName(416882)) -- Open Rift
-	L.rift_opened = "Temporal Rift Opened"
-	L.rift_stability = "Rift Stability"
-	L.rift_stability_desc = "Show an alert when the Temporal Rift has been opened."
-	L.rift_stability_icon = 416882
+	custom_on_rift_autotalk = CL.autotalk,
+	custom_on_rift_autotalk_desc = "Instantly start channeling to open the Temporal Rift.",
+	custom_on_rift_autotalk_icon = mod:GetMenuIcon("SAY"),
+	rift_opening = CL.casting:format(mod:SpellName(416882)), -- Open Rift
+	rift_opened = "Temporal Rift Opened",
+	rift_stability = "Rift Stability",
+	rift_stability_desc = "Show an alert when the Temporal Rift has been opened.",
+	rift_stability_icon = 416882,
 
-	L.manifested_timeways_warmup_trigger = "Even the Aspect of Time cannot be allowed to disrupt the timeways!"
-end
+	manifested_timeways_warmup_trigger = "Even the Aspect of Time cannot be allowed to disrupt the timeways!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

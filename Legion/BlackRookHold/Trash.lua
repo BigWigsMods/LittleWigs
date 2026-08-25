@@ -28,28 +28,27 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.ghostly_retainer = "Ghostly Retainer"
-	L.ghostly_protector = "Ghostly Protector"
-	L.ghostly_councilor = "Ghostly Councilor"
-	L.lord_etheldrin_ravencrest = "Lord Etheldrin Ravencrest"
-	L.lady_velandras_ravencrest = "Lady Velandras Ravencrest"
-	L.rook_spiderling = "Rook Spiderling"
-	L.soultorn_champion = "Soul-Torn Champion"
-	L.risen_scout = "Risen Scout"
-	L.risen_archer = "Risen Archer"
-	L.risen_arcanist = "Risen Arcanist"
-	L.wyrmtongue_scavenger = "Wyrmtongue Scavenger"
-	L.bloodscent_felhound = "Bloodscent Felhound"
-	L.felspite_dominator = "Felspite Dominator"
-	L.risen_swordsman = "Risen Swordsman"
-	L.risen_lancer = "Risen Lancer"
+local L = mod:SetDefaultLocale({
+	ghostly_retainer = "Ghostly Retainer",
+	ghostly_protector = "Ghostly Protector",
+	ghostly_councilor = "Ghostly Councilor",
+	lord_etheldrin_ravencrest = "Lord Etheldrin Ravencrest",
+	lady_velandras_ravencrest = "Lady Velandras Ravencrest",
+	rook_spiderling = "Rook Spiderling",
+	soultorn_champion = "Soul-Torn Champion",
+	risen_scout = "Risen Scout",
+	risen_archer = "Risen Archer",
+	risen_arcanist = "Risen Arcanist",
+	wyrmtongue_scavenger = "Wyrmtongue Scavenger",
+	bloodscent_felhound = "Bloodscent Felhound",
+	felspite_dominator = "Felspite Dominator",
+	risen_swordsman = "Risen Swordsman",
+	risen_lancer = "Risen Lancer",
 
-	L.door_open = CL.door_open
-	L.door_open_desc = "Show a bar indicating when the door is opened to the Hidden Passageway."
-	L.door_open_icon = "achievement_dungeon_blackrookhold"
-end
+	door_open = CL.door_open,
+	door_open_desc = "Show a bar indicating when the door is opened to the Hidden Passageway.",
+	door_open_icon = "achievement_dungeon_blackrookhold",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

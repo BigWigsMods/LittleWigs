@@ -21,10 +21,9 @@ local frozenStormCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.magister_umbric = "Magister Umbric"
-end
+local L = mod:SetDefaultLocale({
+	magister_umbric = "Magister Umbric",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

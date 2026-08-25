@@ -28,12 +28,11 @@ local chainsOfDamnationCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.achillite_warmup_trigger = "Are rampaging beasts ruining your day? We have the solution!"
-	L.venza_goldfuse_warmup_trigger = "Now's my chance! That axe is mine!"
-	L.warmup_icon = "achievement_dungeon_brokerdungeon"
-end
+local L = mod:SetDefaultLocale({
+	achillite_warmup_trigger = "Are rampaging beasts ruining your day? We have the solution!",
+	venza_goldfuse_warmup_trigger = "Now's my chance! That axe is mine!",
+	warmup_icon = "achievement_dungeon_brokerdungeon",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

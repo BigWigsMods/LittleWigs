@@ -20,12 +20,11 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.ahune = "Ahune"
-	L.warmup_trigger = "The Ice Stone has melted!"
-	L.warmup_icon = "spell_frost_summonwaterelemental"
-end
+local L = mod:SetDefaultLocale({
+	ahune = "Ahune",
+	warmup_trigger = "The Ice Stone has melted!",
+	warmup_icon = "spell_frost_summonwaterelemental",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -18,10 +18,9 @@ local firstBombSquadSent = false
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.sphere_fail_message = "Shield was broken - They're all healing :("
-end
+local L = mod:SetDefaultLocale({
+	sphere_fail_message = "Shield was broken - They're all healing :(",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -22,10 +22,9 @@ local nextMightOfMaldraxxus = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.defeated = "%s has defeated %s"
-end
+local L = mod:SetDefaultLocale({
+	defeated = "%s has defeated %s",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

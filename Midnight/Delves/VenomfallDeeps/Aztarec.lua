@@ -20,10 +20,9 @@ mod:SetStage(1)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.aztarec = "Azta'rec"
-end
+local L = mod:SetDefaultLocale({
+	aztarec = "Azta'rec",
+})
 
 --------------------------------------------------------------------------------
 -- Locals

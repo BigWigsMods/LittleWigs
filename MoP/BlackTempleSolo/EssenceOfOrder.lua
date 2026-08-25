@@ -11,10 +11,9 @@ mod:RegisterEnableMob(68151)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.name = "Essence of Order"
-end
+local L = mod:SetDefaultLocale({
+	name = "Essence of Order",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

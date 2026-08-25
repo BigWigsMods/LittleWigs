@@ -11,10 +11,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.mycomight = "Mycomight"
-end
+local L = mod:SetDefaultLocale({
+	mycomight = "Mycomight",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

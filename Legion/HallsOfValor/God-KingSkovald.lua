@@ -15,12 +15,11 @@ mod:SetRespawnTime(30)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_text = "God-King Skovald Active"
-	L.warmup_trigger = "The vanquishers have already taken possession of it, Skovald, as was their right. Your protest comes too late."
-	L.warmup_trigger_2 = "If these false champions will not yield the aegis by choice... then they will surrender it in death!"
-end
+local L = mod:SetDefaultLocale({
+	warmup_text = "God-King Skovald Active",
+	warmup_trigger = "The vanquishers have already taken possession of it, Skovald, as was their right. Your protest comes too late.",
+	warmup_trigger_2 = "If these false champions will not yield the aegis by choice... then they will surrender it in death!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

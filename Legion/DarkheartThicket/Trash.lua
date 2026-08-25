@@ -26,25 +26,24 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.archdruid_glaidalis_warmup_trigger = "Defilers... I can smell the Nightmare in your blood. Be gone from these woods or suffer nature's wrath!"
+local L = mod:SetDefaultLocale({
+	archdruid_glaidalis_warmup_trigger = "Defilers... I can smell the Nightmare in your blood. Be gone from these woods or suffer nature's wrath!",
 
-	L.mindshattered_screecher = "Mindshattered Screecher"
-	L.dreadsoul_ruiner = "Dreadsoul Ruiner"
-	L.dreadsoul_poisoner = "Dreadsoul Poisoner"
-	L.crazed_razorbeak = "Crazed Razorbeak"
-	L.festerhide_grizzly = "Festerhide Grizzly"
-	L.vilethorn_blossom = "Vilethorn Blossom"
-	L.rotheart_dryad = "Rotheart Dryad"
-	L.rotheart_keeper = "Rotheart Keeper"
-	L.nightmare_dweller = "Nightmare Dweller"
-	L.bloodtainted_fury = "Bloodtainted Fury"
-	L.bloodtainted_burster = "Bloodtainted Burster"
-	L.taintheart_summoner = "Taintheart Summoner"
-	L.dreadfire_imp = "Dreadfire Imp"
-	L.tormented_bloodseeker = "Tormented Bloodseeker"
-end
+	mindshattered_screecher = "Mindshattered Screecher",
+	dreadsoul_ruiner = "Dreadsoul Ruiner",
+	dreadsoul_poisoner = "Dreadsoul Poisoner",
+	crazed_razorbeak = "Crazed Razorbeak",
+	festerhide_grizzly = "Festerhide Grizzly",
+	vilethorn_blossom = "Vilethorn Blossom",
+	rotheart_dryad = "Rotheart Dryad",
+	rotheart_keeper = "Rotheart Keeper",
+	nightmare_dweller = "Nightmare Dweller",
+	bloodtainted_fury = "Bloodtainted Fury",
+	bloodtainted_burster = "Bloodtainted Burster",
+	taintheart_summoner = "Taintheart Summoner",
+	dreadfire_imp = "Dreadfire Imp",
+	tormented_bloodseeker = "Tormented Bloodseeker",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

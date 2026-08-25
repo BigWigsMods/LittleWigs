@@ -24,10 +24,9 @@ local nextCloudOfHypnosis = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.phase_2_trigger = "Enough! I tire of this."
-end
+local L = mod:SetDefaultLocale({
+	phase_2_trigger = "Enough! I tire of this.",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

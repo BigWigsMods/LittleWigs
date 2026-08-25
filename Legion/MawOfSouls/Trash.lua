@@ -20,16 +20,15 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.soulguard = "Waterlogged Soul Guard"
-	L.champion = "Helarjar Champion"
-	L.mariner = "Night Watch Mariner"
-	L.swiftblade = "Seacursed Swiftblade"
-	L.mistmender = "Seacursed Mistmender"
-	L.mistcaller = "Helarjar Mistcaller"
-	L.skjal = "Skjal"
-end
+local L = mod:SetDefaultLocale({
+	soulguard = "Waterlogged Soul Guard",
+	champion = "Helarjar Champion",
+	mariner = "Night Watch Mariner",
+	swiftblade = "Seacursed Swiftblade",
+	mistmender = "Seacursed Mistmender",
+	mistcaller = "Helarjar Mistcaller",
+	skjal = "Skjal",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

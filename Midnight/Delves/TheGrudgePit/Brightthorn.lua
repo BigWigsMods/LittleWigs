@@ -11,10 +11,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.brightthorn = "Brightthorn"
-end
+local L = mod:SetDefaultLocale({
+	brightthorn = "Brightthorn",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

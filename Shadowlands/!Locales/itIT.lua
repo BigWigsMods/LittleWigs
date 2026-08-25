@@ -1,308 +1,289 @@
 -- De Other Side
 
-local L = BigWigs:NewBossLocale("De Other Side Trash", "itIT")
-if L then
+BigWigsAPI.SetBossModuleLocale("De Other Side Trash", {
 	-- [[ The ring ]] --
-	L.cultist = "Cultista Rianimato"
-	L.warlord = "Signore della Guerra Risorto"
-	L.enraged = "Spirito Infuriato"
-	L.speaker = "Oratore della Morte"
+	cultist = "Cultista Rianimato",
+	warlord = "Signore della Guerra Risorto",
+	enraged = "Spirito Infuriato",
+	speaker = "Oratore della Morte",
 
 	-- [[ Path to Hakkar ]] --
-	L.deathwalker = "Calcamorte Atal'ai"
-	L.priest = "Gran Sacerdote Atal'ai"
-	L.hexxer = "Malefico del Vudù Atal'ai"
+	deathwalker = "Calcamorte Atal'ai",
+	priest = "Gran Sacerdote Atal'ai",
+	hexxer = "Malefico del Vudù Atal'ai",
 
 	-- [[ Path to the Manastorms ]] --
-	L.drill = "Trapano Dentale in Disuso"
-	L.arf_arf = "B.4U-B.4U"
-	L.lubricator = "Lubrificante"
-	L.headless = "Cliente Senza Testa"
+	drill = "Trapano Dentale in Disuso",
+	arf_arf = "B.4U-B.4U",
+	lubricator = "Lubrificante",
+	headless = "Cliente Senza Testa",
 
 	-- [[ Path to Xyexa ]] --
-	L.shimmermoth = "Falena Brillante del Bosco"
-	L.mythresh = "Mitresh, Artigli del Cielo"
+	shimmermoth = "Falena Brillante del Bosco",
+	mythresh = "Mitresh, Artigli del Cielo",
 
-	--L.soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks."
-end
+	--soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks.",
+})
 
 -- Halls of Atonement
 
-L = BigWigs:NewBossLocale("High Adjudicator Aleez", "itIT")
-if L then
-	L.empty_anima_vessel = "Ricettacolo d'Animum Vuoto"
-end
+BigWigsAPI.SetBossModuleLocale("High Adjudicator Aleez", {
+	empty_anima_vessel = "Ricettacolo d'Animum Vuoto",
+})
 
-L = BigWigs:NewBossLocale("Halls of Atonement Trash", "itIT")
-if L then
-	L.depraved_houndmaster = "Maestra dei Segugi Degenerata"
-	L.vicious_gargon = "Gargon Malvagio"
-	L.loyal_stoneborn = "Litogeno Leale"
-	L.depraved_darkblade = "Lamanera Degenerata"
-	L.depraved_obliterator = "Disintegratore Degenerato"
-	L.depraved_collector = "Collettrice Degenerata"
-	L.stoneborn_slasher = "Sfregiatore Litogeno"
-	L.shard_of_halkias = "Scheggia di Halkias"
-	L.stoneborn_reaver = "Razziatore Litogeno"
-	L.stoneborn_eviscerator = "Svisceratrice Litogena"
-	L.inquisitor_sigar = "Inquisitore Sigar"
-end
+BigWigsAPI.SetBossModuleLocale("Halls of Atonement Trash", {
+	depraved_houndmaster = "Maestra dei Segugi Degenerata",
+	vicious_gargon = "Gargon Malvagio",
+	loyal_stoneborn = "Litogeno Leale",
+	depraved_darkblade = "Lamanera Degenerata",
+	depraved_obliterator = "Disintegratore Degenerato",
+	depraved_collector = "Collettrice Degenerata",
+	stoneborn_slasher = "Sfregiatore Litogeno",
+	shard_of_halkias = "Scheggia di Halkias",
+	stoneborn_reaver = "Razziatore Litogeno",
+	stoneborn_eviscerator = "Svisceratrice Litogena",
+	inquisitor_sigar = "Inquisitore Sigar",
+})
 
 -- Mists of Tirna Scithe
 
-L = BigWigs:NewBossLocale("Mists of Tirna Scithe Trash", "itIT")
-if L then
-	L.tirnenn_villager = "Abitante Tirnenn"
-	L.drust_harvester = "Mietitore Drust"
-	L.drust_soulcleaver = "Fendianime Drust"
-	L.drust_spiteclaw = "Grinfiaperfida Drust"
-	L.drust_boughbreaker = "Spezzarami Drust"
-	L.mistveil_defender = "Difenditrice Velofosco"
-	L.mistveil_gorgegullet = "Gargarosso Velofosco"
-	L.mistveil_guardian = "Guardiano Velofosco"
-	L.mistveil_matriarch = "Matriarca Velofosco"
-	L.mistveil_nightblossom = "Sboccianotte Velofosco"
-	L.mistveil_shaper = "Plasmatore Velofosco"
-	L.mistveil_stalker = "Inseguitore Velofosco"
-	L.mistveil_stinger = "Pungitore Velofosco"
-	L.mistveil_tender = "Guaritrice Velofosco"
-	L.spinemaw_acidgullet = "Gozzoacido Spinafauce"
-	L.spinemaw_staghorn = "Cervicorno Spinafauce"
-	L.spinemaw_gorger = "Mangiatore Spinafauce"
-	L.gormling_larva = "Larva di Gormino"
-	L.spinemaw_reaver = "Razziatore Spinafauce"
+BigWigsAPI.SetBossModuleLocale("Mists of Tirna Scithe Trash", {
+	tirnenn_villager = "Abitante Tirnenn",
+	drust_harvester = "Mietitore Drust",
+	drust_soulcleaver = "Fendianime Drust",
+	drust_spiteclaw = "Grinfiaperfida Drust",
+	drust_boughbreaker = "Spezzarami Drust",
+	mistveil_defender = "Difenditrice Velofosco",
+	mistveil_gorgegullet = "Gargarosso Velofosco",
+	mistveil_guardian = "Guardiano Velofosco",
+	mistveil_matriarch = "Matriarca Velofosco",
+	mistveil_nightblossom = "Sboccianotte Velofosco",
+	mistveil_shaper = "Plasmatore Velofosco",
+	mistveil_stalker = "Inseguitore Velofosco",
+	mistveil_stinger = "Pungitore Velofosco",
+	mistveil_tender = "Guaritrice Velofosco",
+	spinemaw_acidgullet = "Gozzoacido Spinafauce",
+	spinemaw_staghorn = "Cervicorno Spinafauce",
+	spinemaw_gorger = "Mangiatore Spinafauce",
+	gormling_larva = "Larva di Gormino",
+	spinemaw_reaver = "Razziatore Spinafauce",
 
-	--L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
-end
+	--gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss.",
+})
 
-L = BigWigs:NewBossLocale("Mistcaller", "itIT")
-if L then
-	L.vulpin = "Vulpino"
-end
+BigWigsAPI.SetBossModuleLocale("Mistcaller", {
+	vulpin = "Vulpino",
+})
 
 -- Plaguefall
 
-L = BigWigs:NewBossLocale("Plaguefall Trash", "itIT")
-if L then
-	L.plagueborer = "Trivellapiaga"
-	L.fen_hatchling = "Cucciolo della Palude"
-	L.fen_hornet = "Vespa della Palude"
-	L.decaying_flesh_giant = "Gigante di Carne in Decomposizione"
-	L.plagueroc = "Grifalco della Piaga"
-	L.plaguebelcher = "Sputapiaga"
-	L.rotting_slimeclaw = "Graffioputrido Marcescente"
-	L.blighted_spinebreaker = "Spezzaschiena Ammorbato"
-	L.plaguebinder = "Vincolapiaga"
-	L.congealed_slime = "Poltiglia Coagulata"
-	L.slime_tentacle = "Tentacolo di Poltiglia"
-	L.defender_of_many_eyes = "Difensore dai Molti Occhi"
-	L.venomous_sniper = "Cecchino Velenoso"
-	L.brood_ambusher = "Aggressore della Stirpe"
-	L.ickor_bileflesh = "Ickor Carnebiliare"
-	L.fungalmancer = "Fungomante"
-	L.pestilent_harvester = "Mietitore Pestilenziale"
-	L.fungi_stormer = "Assaltatore Fungino"
+BigWigsAPI.SetBossModuleLocale("Plaguefall Trash", {
+	plagueborer = "Trivellapiaga",
+	fen_hatchling = "Cucciolo della Palude",
+	fen_hornet = "Vespa della Palude",
+	decaying_flesh_giant = "Gigante di Carne in Decomposizione",
+	plagueroc = "Grifalco della Piaga",
+	plaguebelcher = "Sputapiaga",
+	rotting_slimeclaw = "Graffioputrido Marcescente",
+	blighted_spinebreaker = "Spezzaschiena Ammorbato",
+	plaguebinder = "Vincolapiaga",
+	congealed_slime = "Poltiglia Coagulata",
+	slime_tentacle = "Tentacolo di Poltiglia",
+	defender_of_many_eyes = "Difensore dai Molti Occhi",
+	venomous_sniper = "Cecchino Velenoso",
+	brood_ambusher = "Aggressore della Stirpe",
+	ickor_bileflesh = "Ickor Carnebiliare",
+	fungalmancer = "Fungomante",
+	pestilent_harvester = "Mietitore Pestilenziale",
+	fungi_stormer = "Assaltatore Fungino",
 
-	--L.summon_stealthlings_desc = "Show a warning when the Stealthlings spawn."
-end
+	--summon_stealthlings_desc = "Show a warning when the Stealthlings spawn.",
+})
 
 -- Sanguine Depths
 
-L = BigWigs:NewBossLocale("Sanguine Depths Trash", "itIT")
-if L then
-	--L.kaal_engage_trigger1 = "Guards! Slay them all!"
-	--L.kaal_engage_trigger2 = "That prisoner belongs to the Master. You will not take it!"
-	--L.kaal_engage_trigger3 = "These halls will be your tomb!"
-	--L.kaal_retreat_trigger1 = "Wretched mortals!"
-	--L.kaal_retreat_trigger2 = "You are nothing but Draven's dogs!"
-	--L.kaal_retreat_trigger3 = "Stubborn rebels. You will meet your end!"
-	L.anima_collector = "Collettore d'Animum"
-	L.chamber_sentinel = "Sentinella della Sala"
-	L.depths_warden = "Custode delle Profondità"
-	L.dreadful_huntmaster = "Mastro Cacciatore Terrificante"
-	L.grand_overseer = "Gran Sovrintendente"
-	L.head_custodian_javlin = "Capocustode Javlin"
-	L.insatiable_brute = "Bruto Insaziabile"
-	L.regal_mistdancer = "Danzanebbia Regale"
-	L.research_scribe = "Scriba Ricercatrice"
-	L.wicked_oppressor = "Oppressora Malvagia"
-	L.ravenous_dreadbat = "Chirorrore Vorace"
-	L.zrali = "Z'rali"
-end
+BigWigsAPI.SetBossModuleLocale("Sanguine Depths Trash", {
+	--kaal_engage_trigger1 = "Guards! Slay them all!",
+	--kaal_engage_trigger2 = "That prisoner belongs to the Master. You will not take it!",
+	--kaal_engage_trigger3 = "These halls will be your tomb!",
+	--kaal_retreat_trigger1 = "Wretched mortals!",
+	--kaal_retreat_trigger2 = "You are nothing but Draven's dogs!",
+	--kaal_retreat_trigger3 = "Stubborn rebels. You will meet your end!",
+	anima_collector = "Collettore d'Animum",
+	chamber_sentinel = "Sentinella della Sala",
+	depths_warden = "Custode delle Profondità",
+	dreadful_huntmaster = "Mastro Cacciatore Terrificante",
+	grand_overseer = "Gran Sovrintendente",
+	head_custodian_javlin = "Capocustode Javlin",
+	insatiable_brute = "Bruto Insaziabile",
+	regal_mistdancer = "Danzanebbia Regale",
+	research_scribe = "Scriba Ricercatrice",
+	wicked_oppressor = "Oppressora Malvagia",
+	ravenous_dreadbat = "Chirorrore Vorace",
+	zrali = "Z'rali",
+})
 
 -- Spires of Ascension
 
-L = BigWigs:NewBossLocale("Oryphrion", "itIT")
-if L then
-	L.early_intermission_over = "Intermezzo Terminato (%d |4orb:orbs; reached)"
-end
+BigWigsAPI.SetBossModuleLocale("Oryphrion", {
+	early_intermission_over = "Intermezzo Terminato (%d |4orb:orbs; reached)",
+})
 
-L = BigWigs:NewBossLocale("Spires of Ascension Trash", "itIT")
-if L then
-	L.etherdiver = "Dragone dell'Etere in Picchiata"
-	L.forsworn_castigator = "Castigatrice Indegna"
-	L.forsworn_champion = "Campione Indegno"
-	L.forsworn_goliath = "Mastodonte Indegno"
-	L.forsworn_inquisitor = "Inquisitrice Indegna"
-	L.forsworn_mender = "Guaritore Indegno"
-	L.forsworn_squad_leader = "Capo-Squadra Indegno"
-	L.forsworn_warden = "Custode Indegno"
-	L.astronos = "Astronos"
-	L.lakesis = "Lakesis"
-end
+BigWigsAPI.SetBossModuleLocale("Spires of Ascension Trash", {
+	etherdiver = "Dragone dell'Etere in Picchiata",
+	forsworn_castigator = "Castigatrice Indegna",
+	forsworn_champion = "Campione Indegno",
+	forsworn_goliath = "Mastodonte Indegno",
+	forsworn_inquisitor = "Inquisitrice Indegna",
+	forsworn_mender = "Guaritore Indegno",
+	forsworn_squad_leader = "Capo-Squadra Indegno",
+	forsworn_warden = "Custode Indegno",
+	astronos = "Astronos",
+	lakesis = "Lakesis",
+})
 
 -- Tazavesh, the Veiled Market
 
-L = BigWigs:NewBossLocale("The Grand Menagerie", "itIT")
-if L then
-	L.achillite_warmup_trigger = "Delle bestie sfrenate vi rovinano la giornata? Abbiamo la soluzione!"
-	L.venza_goldfuse_warmup_trigger = "È la mia occasione! Quell'ascia è mia!"
-end
+BigWigsAPI.SetBossModuleLocale("The Grand Menagerie", {
+	achillite_warmup_trigger = "Delle bestie sfrenate vi rovinano la giornata? Abbiamo la soluzione!",
+	venza_goldfuse_warmup_trigger = "È la mia occasione! Quell'ascia è mia!",
+})
 
-L = BigWigs:NewBossLocale("Mailroom Mayhem", "itIT")
-if L then
-	L.delivery_portal = "Portale di Consegna"
-	--L.delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations."
-end
+BigWigsAPI.SetBossModuleLocale("Mailroom Mayhem", {
+	delivery_portal = "Portale di Consegna",
+	--delivery_portal_desc = "Shows a timer for when the Delivery Portal will change locations.",
+})
 
-L = BigWigs:NewBossLocale("Myza's Oasis", "itIT")
-if L then
-	--L.notes = "Notes"
-	--L.notes_desc = "Show a message when the notes are available. Hit the notes with your instrument's ability to gain 'Jazzy'.\n\n|T237554:16|tJazzy\n{348567}"
-end
+BigWigsAPI.SetBossModuleLocale("Myza's Oasis", {
+	--notes = "Notes",
+	--notes_desc = "Show a message when the notes are available. Hit the notes with your instrument's ability to gain 'Jazzy'.\n\n|T237554:16|tJazzy\n{348567}",
+})
 
-L = BigWigs:NewBossLocale("So'leah", "itIT")
-if L then
-	L.group = "GRUPPO"
-end
+BigWigsAPI.SetBossModuleLocale("So'leah", {
+	group = "GRUPPO",
+})
 
-L = BigWigs:NewBossLocale("Tazavesh Trash", "itIT")
-if L then
-	L.zophex_warmup_trigger = "Consegnate... tutto... il contrabbando..."
-	--L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
-	--L.menagerie_warmup_trigger2 = "Cartel Xy has a profitable venture. Hopefully this inclines them to aid our own."
-	--L.mailroom_door_trigger = "A friend here may be of help in acquiring Zo's signature."
-	--L.vendor_active_trigger = "Myza's Oasis. The most intoxicating establishment in Tazavesh. Gaining the owner's favor will secure Cartel Au's signature."
-	--L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
-	L.portal_authority = "Amministratrice del Portale di Tazavesh"
-	--L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
-	--L.mailroom_door_desc = "Show a bar indicating when the door to the mailroom will open."
-	--L.vendor_active = "Vendor active"
-	--L.vendor_active_desc = "Show a bar indicating when the vendor for the Trading Game will be active."
-	--L.vendor_autopurchase = "Auto-purchase trading game item"
-	--L.vendor_autopurchase_desc = "Automatically purchase the initial trading game item from the vendor."
-	--L.vendor_autopurchase_message = "Purchased %s"
-	--L.tradeable_goods = "Tradeable Goods"
-	--L.tradeable_goods_desc = "Show a message indicating when tradeable goods have been picked up."
-	--L.trading_game = "Trading Game"
-	--L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	--L.custom_on_trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
-	L.password_triggers = {
-		["Guscio d'Avorio"] = 53259,
-		["Oasi di Zaffiro"] = 53260,
-		["Palma di Giada"] = 53261,
-		["Sabbia Dorata"] = 53262,
-		["Tramonto d'Ambra"] = 53263,
-		["Oceano di Smeraldo"] = 53264,
-		["Gemma Rubino"] = 53265,
-		["Pietra di Peltro"] = 53266,
-		["Fiore Pallido"] = 53267,
-		["Coltello Cremisi"] = 53268
-	}
-	--L.gatewarden_zomazz = "Gatewarden Zo'mazz"
-	--L.customs_security = "Customs Security"
-	L.interrogation_specialist = "Specialista in Interrogatori"
-	L.portalmancer_zohonn = "Portalmante Zo'honn"
-	L.armored_overseer = "Sovrintendente Corazzato"
-	L.support_officer = "Ufficiale Ausiliario"
-	L.tracker_zokorss = "Braccatore Zo'korss"
-	L.ancient_core_hound = "Segugio del Nucleo Antico"
-	L.enraged_direhorn = "Cornofurente Rabbioso"
-	L.frenzied_nightclaw = "Zannacupa Frenetica"
-	--L.cartel_skulker = "Cartel Skulker"
-	--L.cartel_wiseguy = "Cartel Wiseguy"
-	L.cartel_muscle = "Forzuto del Cartello"
-	L.cartel_smuggler = "Contrabbandiere del Cartello"
-	L.defective_sorter = "Smistatore Difettoso"
-	--L.overloaded_mailemental = "Overloaded Mailemental"
-	--L.post_worker = "P.O.S.T. Worker"
-	L.smuggled_creature = "Creatura di Contrabbando"
-	--L.bazaar_overseer = "Bazaar Overseer"
-	L.market_peacekeeper = "Pacificatore del Mercato"
-	L.veteran_sparkcaster = "Lanciafaville Veterano"
-	L.commerce_enforcer = "Esecutore del Commercio"
-	L.commander_zofar = "Comandante Zo'far"
+BigWigsAPI.SetBossModuleLocale("Tazavesh Trash", {
+	zophex_warmup_trigger = "Consegnate... tutto... il contrabbando...",
+	--menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!",
+	--menagerie_warmup_trigger2 = "Cartel Xy has a profitable venture. Hopefully this inclines them to aid our own.",
+	--mailroom_door_trigger = "A friend here may be of help in acquiring Zo's signature.",
+	--vendor_active_trigger = "Myza's Oasis. The most intoxicating establishment in Tazavesh. Gaining the owner's favor will secure Cartel Au's signature.",
+	--soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time.",
+	portal_authority = "Amministratrice del Portale di Tazavesh",
+	--custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs.",
+	--mailroom_door_desc = "Show a bar indicating when the door to the mailroom will open.",
+	--vendor_active = "Vendor active",
+	--vendor_active_desc = "Show a bar indicating when the vendor for the Trading Game will be active.",
+	--vendor_autopurchase = "Auto-purchase trading game item",
+	--vendor_autopurchase_desc = "Automatically purchase the initial trading game item from the vendor.",
+	--vendor_autopurchase_message = "Purchased %s",
+	--tradeable_goods = "Tradeable Goods",
+	--tradeable_goods_desc = "Show a message indicating when tradeable goods have been picked up.",
+	--trading_game = "Trading Game",
+	--trading_game_desc = "Alerts with the right password during the Trading Game.",
+	--custom_on_trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed.",
+	ivory_shell_trigger = "Guscio d'Avorio",
+	sapphire_oasis_trigger = "Oasi di Zaffiro",
+	jade_palm_trigger = "Palma di Giada",
+	golden_sands_trigger = "Sabbia Dorata",
+	amber_sunset_trigger = "Tramonto d'Ambra",
+	emerald_ocean_trigger = "Oceano di Smeraldo",
+	ruby_gem_trigger = "Gemma Rubino",
+	pewter_stone_trigger = "Pietra di Peltro",
+	pale_flower_trigger = "Fiore Pallido",
+	crimson_knife_trigger = "Coltello Cremisi",
+	--gatewarden_zomazz = "Gatewarden Zo'mazz",
+	--customs_security = "Customs Security",
+	interrogation_specialist = "Specialista in Interrogatori",
+	portalmancer_zohonn = "Portalmante Zo'honn",
+	armored_overseer = "Sovrintendente Corazzato",
+	support_officer = "Ufficiale Ausiliario",
+	tracker_zokorss = "Braccatore Zo'korss",
+	ancient_core_hound = "Segugio del Nucleo Antico",
+	enraged_direhorn = "Cornofurente Rabbioso",
+	frenzied_nightclaw = "Zannacupa Frenetica",
+	--cartel_skulker = "Cartel Skulker",
+	--cartel_wiseguy = "Cartel Wiseguy",
+	cartel_muscle = "Forzuto del Cartello",
+	cartel_smuggler = "Contrabbandiere del Cartello",
+	defective_sorter = "Smistatore Difettoso",
+	--overloaded_mailemental = "Overloaded Mailemental",
+	--post_worker = "P.O.S.T. Worker",
+	smuggled_creature = "Creatura di Contrabbando",
+	--bazaar_overseer = "Bazaar Overseer",
+	market_peacekeeper = "Pacificatore del Mercato",
+	veteran_sparkcaster = "Lanciafaville Veterano",
+	commerce_enforcer = "Esecutore del Commercio",
+	commander_zofar = "Comandante Zo'far",
 
-	--L.hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans."
-	--L.portal_open = "Portal opens"
-	--L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
-	L.murkbrine_scalebinder = "Vincolascaglie Acquasporca"
-	L.murkbrine_fishmancer = "Pescomante Acquasporca"
-	L.murkbrine_shellcrusher = "Frantumagusci Acquasporca"
-	L.coastwalker_goliath = "Mastodonte Calcacoste"
-	L.stormforged_guardian = "Guardiano Forgiatuono"
-	L.burly_deckhand = "Mozzo Smilzo"
-	L.hourglass_tidesage = "Saggio delle Maree della Clessidra"
-	L.corsair_officer = "Ufficiale Corsaro"
-	L.adorned_starseer = "Veggente Stellare Decorato"
-	L.focused_ritualist = "Ritualista Concentrato"
-	L.devoted_accomplice = "Complice Devoto"
-end
+	--hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans.",
+	--portal_open = "Portal opens",
+	--portal_open_desc = "Show a bar indicating when the portal to the next area will open.",
+	murkbrine_scalebinder = "Vincolascaglie Acquasporca",
+	murkbrine_fishmancer = "Pescomante Acquasporca",
+	murkbrine_shellcrusher = "Frantumagusci Acquasporca",
+	coastwalker_goliath = "Mastodonte Calcacoste",
+	stormforged_guardian = "Guardiano Forgiatuono",
+	burly_deckhand = "Mozzo Smilzo",
+	hourglass_tidesage = "Saggio delle Maree della Clessidra",
+	corsair_officer = "Ufficiale Corsaro",
+	adorned_starseer = "Veggente Stellare Decorato",
+	focused_ritualist = "Ritualista Concentrato",
+	devoted_accomplice = "Complice Devoto",
+})
 
 -- Theater of Pain
 
-L = BigWigs:NewBossLocale("Xav the Unfallen", "itIT")
-if L then
-	--L.defeated = "%s has defeated %s"
-end
+BigWigsAPI.SetBossModuleLocale("Xav the Unfallen", {
+	--defeated = "%s has defeated %s",
+})
 
-L = BigWigs:NewBossLocale("Theater Of Pain Trash", "itIT")
-if L then
-	L.battlefield_ritualist = "Ritualista del Campo di Battaglia"
-	L.raging_bloodhorn = "Cornocruento Furente"
-	L.diseased_horror = "Orrore Malato"
-	L.blighted_sludge_spewer = "Sputapoltiglia Ammorbato"
-	L.putrid_butcher = "Macellaio Putrido"
-	L.disgusting_refuse = "Rifiuto Disgustoso"
-	L.rancid_gasbag = "Pallone Gonfiato Rancido"
-	L.shambling_arbalest = "Arbalestriere Barcollante"
-	L.dokigg_the_brutalizer = "Dokigg il Brutalizzatore"
-	L.nekthara_the_mangler = "Nekthara il Dilaniatore"
-	L.heavin_the_breaker = "Pesan il Demolitore"
-	L.harugia_the_bloodthirsty = "Harugia la Sanguinaria"
-	L.ancient_captain = "Capitano Antico"
-	L.advent_nevermore = "Baluardo dell'Avvento Fatomorto"
-	L.rek_the_hardened = "Rek l'Indurita"
-	L.portal_guardian = "Guardiano del Portale"
-	L.maniacal_soulbinder = "Vincolatore d'Anime Maniacale"
-	L.bone_magus = "Magus d'Ossa"
-	L.nefarious_darkspeaker = "Oratore Oscuro Nefasto"
-	L.soulforged_bonereaver = "Mietiossa Forgianima"
+BigWigsAPI.SetBossModuleLocale("Theater Of Pain Trash", {
+	battlefield_ritualist = "Ritualista del Campo di Battaglia",
+	raging_bloodhorn = "Cornocruento Furente",
+	diseased_horror = "Orrore Malato",
+	blighted_sludge_spewer = "Sputapoltiglia Ammorbato",
+	putrid_butcher = "Macellaio Putrido",
+	disgusting_refuse = "Rifiuto Disgustoso",
+	rancid_gasbag = "Pallone Gonfiato Rancido",
+	shambling_arbalest = "Arbalestriere Barcollante",
+	dokigg_the_brutalizer = "Dokigg il Brutalizzatore",
+	nekthara_the_mangler = "Nekthara il Dilaniatore",
+	heavin_the_breaker = "Pesan il Demolitore",
+	harugia_the_bloodthirsty = "Harugia la Sanguinaria",
+	ancient_captain = "Capitano Antico",
+	advent_nevermore = "Baluardo dell'Avvento Fatomorto",
+	rek_the_hardened = "Rek l'Indurita",
+	portal_guardian = "Guardiano del Portale",
+	maniacal_soulbinder = "Vincolatore d'Anime Maniacale",
+	bone_magus = "Magus d'Ossa",
+	nefarious_darkspeaker = "Oratore Oscuro Nefasto",
+	soulforged_bonereaver = "Mietiossa Forgianima",
 
-	--L.mordretha_warmup_trigger = "Soldiers of Maldraxxus! Are you ready for some carnage?!"
-end
+	--mordretha_warmup_trigger = "Soldiers of Maldraxxus! Are you ready for some carnage?!",
+})
 
 -- The Necrotic Wake
 
-L = BigWigs:NewBossLocale("The Necrotic Wake Trash", "itIT")
-if L then
-	--L.amarth_warmup_trigger = "You will be brought to justice!"
-	L.corpse_harvester = "Razziacorpi"
-	L.stitched_vanguard = "Avanguardia Ricucita"
-	L.zolramus_gatekeeper = "Guardiano delle Porte di Zolramus"
-	L.zolramus_necromancer = "Necromante di Zolramus"
-	L.brittlebone_mage = "Mago Ossafragili"
-	L.zolramus_bonecarver = "Trinciaossa di Zolramus"
-	L.skeletal_marauder = "Predone Scheletrico"
-	L.zolramus_bonemender = "Curaossa di Zolramus"
-	L.zolramus_sorcerer = "Incantatrice di Zolramus"
-	L.narzudah = "Nar'zudah"
-	L.skeletal_monstrosity = "Mostruosità Scheletrica"
-	L.corpse_collector = "Raccoglitore di Cadaveri"
-	L.kyrian_stitchwerk = "Opera Ricucita dei Kyrian"
-	L.flesh_crafter = "Plasmatore di Carne"
-	L.loyal_creation = "Creazione Leale"
-	L.separation_assistant = "Assistente alla Separazione"
-	L.goregrind = "Tritabudella"
-	L.rotspew = "Sputomarcio"
-end
+BigWigsAPI.SetBossModuleLocale("The Necrotic Wake Trash", {
+	--amarth_warmup_trigger = "You will be brought to justice!",
+	corpse_harvester = "Razziacorpi",
+	stitched_vanguard = "Avanguardia Ricucita",
+	zolramus_gatekeeper = "Guardiano delle Porte di Zolramus",
+	zolramus_necromancer = "Necromante di Zolramus",
+	brittlebone_mage = "Mago Ossafragili",
+	zolramus_bonecarver = "Trinciaossa di Zolramus",
+	skeletal_marauder = "Predone Scheletrico",
+	zolramus_bonemender = "Curaossa di Zolramus",
+	zolramus_sorcerer = "Incantatrice di Zolramus",
+	narzudah = "Nar'zudah",
+	skeletal_monstrosity = "Mostruosità Scheletrica",
+	corpse_collector = "Raccoglitore di Cadaveri",
+	kyrian_stitchwerk = "Opera Ricucita dei Kyrian",
+	flesh_crafter = "Plasmatore di Carne",
+	loyal_creation = "Creazione Leale",
+	separation_assistant = "Assistente alla Separazione",
+	goregrind = "Tritabudella",
+	rotspew = "Sputomarcio",
+})

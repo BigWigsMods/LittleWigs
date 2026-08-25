@@ -36,24 +36,23 @@ local kyvezaEngaged = false
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.rares = "Ky'veza Rares"
+local L = mod:SetDefaultLocale({
+	rares = "Ky'veza Rares",
 
-	L.treasure_wraith = "Treasure Wraith"
-	L.invasive_phasecrawler = "Invasive Phasecrawler"
-	L.drude = "D'rude"
-	L.great_devourer = "Great Devourer"
-	L.mercenary_acquisitionist = "Mercenary Acquisitionist"
-	L.pactsworn_fraycaller = "Pactsworn Fraycaller"
-	L.pactsworn_dustblade = "Pactsworn Dustblade"
-	L.pactsworn_sandreaver = "Pactsworn Sandreaver"
-	L.pactsworn_arcanist = "Pactsworn Arcanist"
-	L.pactsworn_wildcaller = "Pactsworn Wildcaller"
-	L.nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)"
-	L.zekvir = "Zekvir"
-	L.the_underpin = "The Underpin"
-end
+	treasure_wraith = "Treasure Wraith",
+	invasive_phasecrawler = "Invasive Phasecrawler",
+	drude = "D'rude",
+	great_devourer = "Great Devourer",
+	mercenary_acquisitionist = "Mercenary Acquisitionist",
+	pactsworn_fraycaller = "Pactsworn Fraycaller",
+	pactsworn_dustblade = "Pactsworn Dustblade",
+	pactsworn_sandreaver = "Pactsworn Sandreaver",
+	pactsworn_arcanist = "Pactsworn Arcanist",
+	pactsworn_wildcaller = "Pactsworn Wildcaller",
+	nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)",
+	zekvir = "Zekvir",
+	the_underpin = "The Underpin",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

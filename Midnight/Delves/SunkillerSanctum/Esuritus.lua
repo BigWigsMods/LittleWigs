@@ -11,10 +11,9 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.esuritus = "Esuritus"
-end
+local L = mod:SetDefaultLocale({
+	esuritus = "Esuritus",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

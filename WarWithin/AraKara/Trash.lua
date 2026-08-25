@@ -33,30 +33,29 @@ mod:SetPrivateAuraSounds({
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.vile_webbing = 434830
-	L.discordant_attendant = "Discordant Attendant"
-	L.engorged_crawler = "Engorged Crawler"
-	L.trilling_attendant = "Trilling Attendant"
-	L.ixin = "Ixin"
-	L.nakt = "Nakt"
-	L.atik = "Atik"
-	L.bloodworker = "Bloodworker"
-	L.hulking_bloodguard = "Hulking Bloodguard"
-	L.sentry_stagshell = "Sentry Stagshell"
-	L.bloodstained_assistant = "Bloodstained Assistant"
-	L.bloodstained_webmage = "Bloodstained Webmage"
-	L.blood_overseer = "Blood Overseer"
-	L.reinforced_drone = "Reinforced Drone"
-	L.nerubian_hauler = "Nerubian Hauler"
-	L.winged_carrier = "Winged Carrier"
+local L = mod:SetDefaultLocale({
+	vile_webbing = 434830,
+	discordant_attendant = "Discordant Attendant",
+	engorged_crawler = "Engorged Crawler",
+	trilling_attendant = "Trilling Attendant",
+	ixin = "Ixin",
+	nakt = "Nakt",
+	atik = "Atik",
+	bloodworker = "Bloodworker",
+	hulking_bloodguard = "Hulking Bloodguard",
+	sentry_stagshell = "Sentry Stagshell",
+	bloodstained_assistant = "Bloodstained Assistant",
+	bloodstained_webmage = "Bloodstained Webmage",
+	blood_overseer = "Blood Overseer",
+	reinforced_drone = "Reinforced Drone",
+	nerubian_hauler = "Nerubian Hauler",
+	winged_carrier = "Winged Carrier",
 
-	L.avanoxx_warmup_trigger = "The Attendants have been silenced... something emerges!"
-	L.custom_on_autotalk = CL.autotalk
-	L.custom_on_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Tailoring.|r Automatically select the NPC dialog option that grants you 'Silk Wrap' which you can use by clicking your extra action button."
-	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
-end
+	avanoxx_warmup_trigger = "The Attendants have been silenced... something emerges!",
+	custom_on_autotalk = CL.autotalk,
+	custom_on_autotalk_desc = "|cFFFF0000Requires 25 skill in Khaz Algar Tailoring.|r Automatically select the NPC dialog option that grants you 'Silk Wrap' which you can use by clicking your extra action button.",
+	custom_on_autotalk_icon = mod:GetMenuIcon("SAY"),
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
