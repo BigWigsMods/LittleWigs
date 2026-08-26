@@ -39,13 +39,18 @@ local lastText
 -- Initialization
 --
 
+local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
 	return {
+		autotalk,
 		"snitches_interrogated",
 	}
 end
 
 function mod:OnBossEnable()
+	-- Autotalk
+	self:RegisterEvent("GOSSIP_SHOW")
+
 	-- Snitches Interrogated
 	self:RegisterWidgetEvent(7571, "SnitchesInterrogated", true)
 end
@@ -57,6 +62,18 @@ end
 --------------------------------------------------------------------------------
 -- Event Handlers
 --
+
+function mod:GOSSIP_SHOW()
+	if self:GetOption(autotalk) then
+		if self:GetGossipID(131567) then -- Disguise (Belath Dawnblade)
+			-- 131567:I'm ready for my disguise.
+			self:SelectGossipID(131567)
+		elseif self:GetGossipID(131502) then -- Clock in (Selenar Sunshy)
+			-- 131502:<Clock in.>
+			self:SelectGossipID(131502)
+		end
+	end
+end
 
 function mod:SnitchesInterrogated(_, text)
 	-- [UPDATE_UI_WIDGET] widgetID:7571, widgetType:8, text:|TInterface\\ICONS\\UI_Chat.BLP:20|t Snitches interrogated: 1/4
