@@ -18,22 +18,23 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.bossName = "Torque Clankfire and Sprok"
-	L.torque_clankfire = "Torque Clankfire"
-	L.sprok = "Sprok"
-end
+local L = mod:SetDefaultLocale({
+	bossName = "Torque Clankfire and Sprok",
+	torque_clankfire = "Torque Clankfire",
+	sprok = "Sprok",
+})
+mod.displayName = L.bossName
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(1215084, CL.enrage) -- Darkfuse Cocktail (Enrage)
+mod:SetSpellRename(1215015, CL.frontal_cone) -- This One, Boss? (Frontal Cone)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.bossName
-	self:SetSpellRename(1215084, CL.enrage) -- Darkfuse Cocktail (Enrage)
-	self:SetSpellRename(1215015, CL.frontal_cone) -- This One, Boss? (Frontal Cone)
-end
 
 function mod:GetOptions()
 	return {

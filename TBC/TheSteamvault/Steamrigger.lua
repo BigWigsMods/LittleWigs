@@ -1,33 +1,32 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Mekgineer Steamrigger", {545, 2849}, 574)
 if not mod then return end
 mod:RegisterEnableMob(17796)
 mod.engageId = 1943
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Locals
+--------------------------------------------------------------------------------
+-- Locals
 --
 
 local nextAddWarning = 80
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.mech_trigger = "Tune 'em up good, boys!"
+local L = mod:SetDefaultLocale({
+	mech_trigger = "Tune 'em up good, boys!",
 
-	L.mechanics = -5999 -- Steamrigger Mechanics
-	L.mechanics_icon = "inv_misc_wrench_01"
-end
+	mechanics = -5999, -- Steamrigger Mechanics
+	mechanics_icon = "inv_misc_wrench_01",
+})
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -56,8 +55,9 @@ function mod:OnEngage()
 	nextAddWarning = 80 -- 75%, 50% and 25%
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
 do
 	local playerList = mod:NewTargetList()

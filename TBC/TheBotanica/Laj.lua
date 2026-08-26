@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Laj", 553, 561)
 if not mod then return end
 mod:RegisterEnableMob(17980)
 mod.engageId = 1927
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization

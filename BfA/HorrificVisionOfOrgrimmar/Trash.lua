@@ -52,44 +52,43 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.sanity_change = "%d Sanity"
-	L.madnesses = "Madnesses"
-	L.potions = "Potions"
-	L.buffs = "Buffs"
-	L.slowed = "Slowed"
-	L.sluggish_potion_effect = "Heal 2% every 5 sec"
-	L.sickening_potion_effect = "5% damage reduction"
-	L.spicy_potion_effect = "Breathe fire"
+local L = mod:SetDefaultLocale({
+	sanity_change = "%d Sanity",
+	madnesses = "Madnesses",
+	potions = "Potions",
+	buffs = "Buffs",
+	slowed = "Slowed",
+	sluggish_potion_effect = "Heal 2% every 5 sec",
+	sickening_potion_effect = "5% damage reduction",
+	spicy_potion_effect = "Breathe fire",
 
-	L.voidbound_shaman = "Voidbound Shaman"
-	L.endless_hunger_totem = "Endless Hunger Totem"
-	L.crawling_corruption = "Crawling Corruption"
-	L.void_globule = "Void Globule"
-	L.voidbound_ravager = "Voidbound Ravager"
-	L.voidbound_honor_guard = "Voidbound Honor Guard"
-	L.voidbound_shieldbearer = "Voidbound Shieldbearer"
-	L.naros = "Naros"
-	L.barkeep_morag = "Barkeep Morag"
-	L.decimator_shiqvoth = "Decimator Shiq'voth"
-	L.voidbound_berserker = "Voidbound Berserker"
-	L.bwemba = "Bwemba"
-	L.greater_void_elemental = "Greater Void Elemental"
-	L.faceless_willbreaker = "Faceless Willbreaker"
-	L.burrowing_appendage = "Burrowing Appendage"
-	L.annihilator_lakhal = "Annihilator Lak'hal"
-	L.kthir_dominator = "K'thir Dominator"
-	L.kthir_mindcarver = "K'thir Mindcarver"
-	L.coagulated_horror = "Coagulated Horror"
-	L.voidcrazed_hulk = "Voidcrazed Hulk"
-	L.misha = "Misha"
-	L.aqir_scarab = "Aqir Scarab"
-	L.aqir_bonecrusher = "Aqir Bonecrusher"
-	L.aqir_mindhunter = "Aqir Mindhunter"
-	L.aqir_venomweaver = "Aqir Venomweaver"
-	L.gamon = "Gamon"
-end
+	voidbound_shaman = "Voidbound Shaman",
+	endless_hunger_totem = "Endless Hunger Totem",
+	crawling_corruption = "Crawling Corruption",
+	void_globule = "Void Globule",
+	voidbound_ravager = "Voidbound Ravager",
+	voidbound_honor_guard = "Voidbound Honor Guard",
+	voidbound_shieldbearer = "Voidbound Shieldbearer",
+	naros = "Naros",
+	barkeep_morag = "Barkeep Morag",
+	decimator_shiqvoth = "Decimator Shiq'voth",
+	voidbound_berserker = "Voidbound Berserker",
+	bwemba = "Bwemba",
+	greater_void_elemental = "Greater Void Elemental",
+	faceless_willbreaker = "Faceless Willbreaker",
+	burrowing_appendage = "Burrowing Appendage",
+	annihilator_lakhal = "Annihilator Lak'hal",
+	kthir_dominator = "K'thir Dominator",
+	kthir_mindcarver = "K'thir Mindcarver",
+	coagulated_horror = "Coagulated Horror",
+	voidcrazed_hulk = "Voidcrazed Hulk",
+	misha = "Misha",
+	aqir_scarab = "Aqir Scarab",
+	aqir_bonecrusher = "Aqir Bonecrusher",
+	aqir_mindhunter = "Aqir Mindhunter",
+	aqir_venomweaver = "Aqir Venomweaver",
+	gamon = "Gamon",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

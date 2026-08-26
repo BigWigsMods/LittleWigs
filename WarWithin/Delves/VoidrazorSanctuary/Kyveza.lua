@@ -24,18 +24,14 @@ local invokeTheShadowsCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.nexus_princess_kyveza = "Nexus-Princess Ky'veza"
-end
+local L = mod:SetDefaultLocale({
+	nexus_princess_kyveza = "Nexus-Princess Ky'veza",
+})
+mod.displayName = L.nexus_princess_kyveza
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.nexus_princess_kyveza
-end
 
 function mod:GetOptions()
 	return {

@@ -25,27 +25,27 @@ local waveCount = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.adds = -9713
-	L.adds_desc = -9708
-	L.adds_icon = "inv_misc_groupneedmore"
+local L = mod:SetDefaultLocale({
+	adds = -9713,
+	adds_desc = -9708,
+	adds_icon = "inv_misc_groupneedmore",
 
-	L.dropped = "%s dropped!"
-	L.add_trigger1 = "Let 'em have it, boys!"
-	L.add_trigger2 = "Give 'em all ya got."
+	dropped = "%s dropped!",
+	add_trigger1 = "Let 'em have it, boys!",
+	add_trigger2 = "Give 'em all ya got.",
 
-	L.waves = {}
-	L.waves[1] = "1x Grom'kar Boomer, 1x Grom'kar Gunner"
-	L.waves[2] = "1x Grom'kar Gunner, 1x Grom'kar Grenadier"
-	L.waves[3] = "Iron Infantry"
-	L.waves[4] = "2x Grom'kar Boomer"
-	L.waves[5] = "Iron Infantry"
-	L.waves[6] = "2x Grom'kar Gunner"
-	L.waves[7] = "Iron Infantry"
-	L.waves[8] = "1x Grom'kar Boomer, 1x Grom'kar Grenadier"
-	L.waves[9] = "3x Grom'kar Boomer, 1x Grom'kar Gunner"
-end
+	waves = {
+		[1] = "1x Grom'kar Boomer, 1x Grom'kar Gunner",
+		[2] = "1x Grom'kar Gunner, 1x Grom'kar Grenadier",
+		[3] = "Iron Infantry",
+		[4] = "2x Grom'kar Boomer",
+		[5] = "Iron Infantry",
+		[6] = "2x Grom'kar Gunner",
+		[7] = "Iron Infantry",
+		[8] = "1x Grom'kar Boomer, 1x Grom'kar Grenadier",
+		[9] = "3x Grom'kar Boomer, 1x Grom'kar Gunner",
+	},
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -13,19 +13,20 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.beste_glatisant = "Beste Glatisant"
-end
+local L = mod:SetDefaultLocale({
+	beste_glatisant = "Beste Glatisant",
+})
+mod.displayName = L.beste_glatisant
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(1245846, CL.knockback) -- Crumbling Rubble (Knockback)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.beste_glatisant
-	self:SetSpellRename(1245846, CL.knockback) -- Crumbling Rubble (Knockback)
-end
 
 function mod:GetOptions()
 	return {

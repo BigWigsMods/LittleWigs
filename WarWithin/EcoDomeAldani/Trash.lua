@@ -28,25 +28,24 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.terrified_broker = "Terrified Broker"
-	L.arcane_siphon = "Arcane Siphon"
-	L.overgorged_mite = "Overgorged Mite"
-	L.voracious_gorger = "Voracious Gorger"
-	L.ravenous_destroyer = "Ravenous Destroyer"
-	L.overcharged_sentinel = "Overcharged Sentinel"
-	L.wastelander_farstalker = "Wastelander Farstalker"
-	L.tamed_ruinstalker = "Tamed Ruinstalker"
-	L.wastelander_ritualist = "Wastelander Ritualist"
-	L.wastelander_pactspeaker = "Wastelander Pactspeaker"
-	L.evoked_spirit = "Evoked Spirit"
-	L.karesh_elemental = "K'aresh Elemental"
-	L.burrowing_creeper = "Burrowing Creeper"
-	L.wastes_creeper = "Wastes Creeper"
+local L = mod:SetDefaultLocale({
+	terrified_broker = "Terrified Broker",
+	arcane_siphon = "Arcane Siphon",
+	overgorged_mite = "Overgorged Mite",
+	voracious_gorger = "Voracious Gorger",
+	ravenous_destroyer = "Ravenous Destroyer",
+	overcharged_sentinel = "Overcharged Sentinel",
+	wastelander_farstalker = "Wastelander Farstalker",
+	tamed_ruinstalker = "Tamed Ruinstalker",
+	wastelander_ritualist = "Wastelander Ritualist",
+	wastelander_pactspeaker = "Wastelander Pactspeaker",
+	evoked_spirit = "Evoked Spirit",
+	karesh_elemental = "K'aresh Elemental",
+	burrowing_creeper = "Burrowing Creeper",
+	wastes_creeper = "Wastes Creeper",
 
-	L.taahbat_and_awazj_warmup_trigger = "I have no time for this. Taah'bat! Be certain they follow no further."
-end
+	taahbat_and_awazj_warmup_trigger = "I have no time for this. Taah'bat! Be certain they follow no further.",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -118,11 +117,6 @@ function mod:GetOptions()
 		[1237195] = L.burrowing_creeper,
 		[1223007] = L.wastes_creeper,
 	}
-end
-
-function mod:OnRegister()
-	-- delayed for custom locale
-	evokedSpiritMarker = mod:AddMarkerOption(true, "npc", 8, "evoked_spirit", 8)
 end
 
 function mod:OnBossEnable()

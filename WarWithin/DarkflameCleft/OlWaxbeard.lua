@@ -21,10 +21,9 @@ local dynamiteMineCartCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.dynamite_mine_cart = "Dynamite Mine Cart"
-end
+local L = mod:SetDefaultLocale({
+	dynamite_mine_cart = "Dynamite Mine Cart",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -42,11 +41,6 @@ function mod:GetOptions()
 	}, {
 		[429093] = CL.mythic,
 	}
-end
-
-function mod:OnRegister()
-	-- delayed for custom locale
-	dynamiteMineCartMarker = mod:AddMarkerOption(true, "npc", 8, "dynamite_mine_cart", 8)
 end
 
 function mod:OnBossEnable()

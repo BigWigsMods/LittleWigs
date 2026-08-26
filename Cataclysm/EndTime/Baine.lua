@@ -12,11 +12,10 @@ mod.respawnTime = 30
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.totemDrop = "Totem dropped"
-	L.totemThrow = "Totem thrown by %s"
-end
+local L = mod:SetDefaultLocale({
+	totemDrop = "Totem dropped",
+	totemThrow = "Totem thrown by %s",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

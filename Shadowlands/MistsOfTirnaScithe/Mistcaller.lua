@@ -18,10 +18,9 @@ local guessingGameHp = 100
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.vulpin = "Vulpin"
-end
+local L = mod:SetDefaultLocale({
+	vulpin = "Vulpin",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

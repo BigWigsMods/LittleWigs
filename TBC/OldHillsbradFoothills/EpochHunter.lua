@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -14,22 +14,22 @@ mod:RegisterEnableMob(
 	18172 -- Infinite Saboteur
 )
 mod.engageId = 1906
--- mod.respawnTime = 0 -- you have to talk to Taretha again if you wipe
+--mod.respawnTime = 0 -- you have to talk to Taretha again if you wipe
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- Ah, there you are. I had hoped to accomplish this with a bit of subtlety, but I suppose direct confrontation was inevitable. Your future, Thrall, must not come to pass and so... you and your troublesome friends must die!
-	L.trash_warmup_trigger = "troublesome friends"
+	trash_warmup_trigger = "troublesome friends",
 	-- Enough, I will erase your very existence!
-	L.boss_warmup_trigger = "very existence!"
-end
+	boss_warmup_trigger = "very existence!",
+})
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -46,8 +46,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "SandBreath", 31914)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
 function mod:CHAT_MSG_MONSTER_YELL(event, msg)
 	if self:IsSecret(msg) then return end

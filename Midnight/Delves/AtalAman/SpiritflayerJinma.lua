@@ -11,18 +11,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.spiritflayer_jinma = "Spiritflayer Jin'ma"
-end
+local L = mod:SetDefaultLocale({
+	spiritflayer_jinma = "Spiritflayer Jin'ma",
+})
+mod.displayName = L.spiritflayer_jinma
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.spiritflayer_jinma
-end
 
 function mod:GetOptions()
 	return {

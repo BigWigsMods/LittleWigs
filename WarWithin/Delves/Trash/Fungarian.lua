@@ -33,31 +33,32 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.fungarian_trash = "Fungarian Trash"
+local L = mod:SetDefaultLocale({
+	fungarian_trash = "Fungarian Trash",
 
-	L.sporbit = "Sporbit"
-	L.fungal_speartender = "Fungal Speartender"
-	L.gnarled_reviver = "Gnarled Reviver"
-	L.infected_beast = "Infected Beast"
-	L.fungal_gutter = "Fungal Gutter"
-	L.fungarian_flinger = "Fungarian Flinger"
-	L.fungal_rotcaster = "Fungal Rotcaster"
-	L.particularly_bad_guy = "Particularly Bad Guy"
-end
+	sporbit = "Sporbit",
+	fungal_speartender = "Fungal Speartender",
+	gnarled_reviver = "Gnarled Reviver",
+	infected_beast = "Infected Beast",
+	fungal_gutter = "Fungal Gutter",
+	fungarian_flinger = "Fungarian Flinger",
+	fungal_rotcaster = "Fungal Rotcaster",
+	particularly_bad_guy = "Particularly Bad Guy",
+})
+mod.displayName = L.fungarian_trash
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(414944, CL.roar) -- Battle Roar (Roar)
+mod:SetSpellRename(424798, CL.explosion) -- Bloated Eruption (Explosion)
+mod:SetSpellRename(424704, CL.frontal_cone) -- Vicious Stabs (Frontal Cone)
+mod:SetSpellRename(372529, CL.fear) -- Hideous Laughter (Fear)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.fungarian_trash
-	self:SetSpellRename(414944, CL.roar) -- Battle Roar (Roar)
-	self:SetSpellRename(424798, CL.explosion) -- Bloated Eruption (Explosion)
-	self:SetSpellRename(424704, CL.frontal_cone) -- Vicious Stabs (Frontal Cone)
-	self:SetSpellRename(372529, CL.fear) -- Hideous Laughter (Fear)
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

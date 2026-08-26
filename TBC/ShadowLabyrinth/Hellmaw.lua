@@ -1,15 +1,15 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Ambassador Hellmaw", 555, 544)
 if not mod then return end
 mod:RegisterEnableMob(18731)
--- mod.engageId = 1908 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1908 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -37,8 +37,8 @@ function mod:OnEngage()
 	end
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:Fear(args)

@@ -12,16 +12,15 @@ mod:SetEncounterID(1049)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
--- Classic Localization
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.summon = "Summon Faceless Corruptor"
-	L.summon_desc = "Warn when Erudax summons a Faceless Corruptor."
-	L.summon_message = "Faceless Corruptor Summoned"
-	L.summon_trigger = "summons a"
-end
+local L = mod:SetDefaultLocale({
+	summon = "Summon Faceless Corruptor",
+	summon_desc = "Warn when Erudax summons a Faceless Corruptor.",
+	summon_message = "Faceless Corruptor Summoned",
+	summon_trigger = "summons a",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

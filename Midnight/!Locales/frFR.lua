@@ -1,187 +1,162 @@
 -- Altar of Fangs
 
-local L = BigWigs:NewBossLocale("Altar of Fangs Trash", "frFR")
-if L then
-	L.custom_on_mixture_autotalk_desc = "|cFFFF0000Requiert 25 points de compétence en Cuisine ou Alchimie de Midnight.|r Sélectionne automatiquement le dialogue avec le PNJ pour gagner l'amélioration 'Élixir de mutation'.\n\n|T136242:16|tÉlixir de mutation\n{1310012}"
-end
+BigWigsAPI.SetBossModuleLocale("Altar of Fangs Trash", {
+	custom_on_mixture_autotalk_desc = "|cFFFF0000Requiert 25 points de compétence en Cuisine ou Alchimie de Midnight.|r Sélectionne automatiquement le dialogue avec le PNJ pour gagner l'amélioration 'Élixir de mutation'.\n\n|T136242:16|tÉlixir de mutation\n{1310012}",
+})
 
 -- Delves: Atal'Aman
 
-L = BigWigs:NewBossLocale("Spiritflayer Jin'ma", "frFR")
-if L then
-	L.spiritflayer_jinma = "Écorche-esprit Jin’Ma"
-end
+BigWigsAPI.SetBossModuleLocale("Spiritflayer Jin'ma", {
+	spiritflayer_jinma = "Écorche-esprit Jin’Ma",
+})
 
 -- Delves: Collegiate Calamity
 
-L = BigWigs:NewBossLocale("Hydrangea", "frFR")
-if L then
-	L.hydrangea = "Hydrensia"
-end
+BigWigsAPI.SetBossModuleLocale("Hydrangea", {
+	hydrangea = "Hydrensia",
+})
 
-L = BigWigs:NewBossLocale("Infiltrator Garand", "frFR")
-if L then
-	L.infiltrator_garand = "Infiltrateur Garand"
-end
+BigWigsAPI.SetBossModuleLocale("Infiltrator Garand", {
+	infiltrator_garand = "Infiltrateur Garand",
+})
 
-L = BigWigs:NewBossLocale("Voidscorned Vagrant", "frFR")
-if L then
-	L.voidscorned_vagrant = "Vagabond brisé par le Vide"
-end
+BigWigsAPI.SetBossModuleLocale("Voidscorned Vagrant", {
+	voidscorned_vagrant = "Vagabond brisé par le Vide",
+})
 
 -- Delves: Parhelion Plaza
 
-L = BigWigs:NewBossLocale("Gladius Slaurna", "frFR")
-if L then
-	L.gladius_slaurna = "Gladius Slaurna"
-end
+BigWigsAPI.SetBossModuleLocale("Gladius Slaurna", {
+	gladius_slaurna = "Gladius Slaurna",
+})
 
 -- Delves: Shadowguard Point
 
-L = BigWigs:NewBossLocale("Chief-Arcanist Patram", "frFR")
-if L then
-	L.chiefarcanist_patram = "Arcaniste en chef Patram"
-end
+BigWigsAPI.SetBossModuleLocale("Chief-Arcanist Patram", {
+	chiefarcanist_patram = "Arcaniste en chef Patram",
+})
 
 -- Delves: Sunkiller Sanctum
 
-L = BigWigs:NewBossLocale("Esuritus", "frFR")
-if L then
-	L.esuritus = "Esuritus"
-end
+BigWigsAPI.SetBossModuleLocale("Esuritus", {
+	esuritus = "Esuritus",
+})
 
 -- Delves: The Darkway
 
-L = BigWigs:NewBossLocale("Infiltrator Gulkat", "frFR")
-if L then
-	L.infiltrator_gulkat = "Infiltrateur Gulkat"
-end
+BigWigsAPI.SetBossModuleLocale("Infiltrator Gulkat", {
+	infiltrator_gulkat = "Infiltrateur Gulkat",
+})
 
 -- Delves: The Grudge Pit
 
-L = BigWigs:NewBossLocale("Brightthorn", "frFR")
-if L then
-	L.brightthorn = "Vivépine"
-end
+BigWigsAPI.SetBossModuleLocale("Brightthorn", {
+	brightthorn = "Vivépine",
+})
 
-L = BigWigs:NewBossLocale("Gyrospore", "frFR")
-if L then
-	L.gyrospore = "Gyrospore"
-end
+BigWigsAPI.SetBossModuleLocale("Gyrospore", {
+	gyrospore = "Gyrospore",
+})
 
-L = BigWigs:NewBossLocale("Mycomight", "frFR")
-if L then
-	L.mycomight = "Sporegantua"
-end
+BigWigsAPI.SetBossModuleLocale("Mycomight", {
+	mycomight = "Sporegantua",
+})
 
 -- Delves: The Gulf of Memory
 
-L = BigWigs:NewBossLocale("Lumenia", "frFR")
-if L then
-	L.lumenia = "Lumenia"
-end
+BigWigsAPI.SetBossModuleLocale("Lumenia", {
+	lumenia = "Lumenia",
+})
 
-L = BigWigs:NewBossLocale("Mul'tha'ul", "frFR")
-if L then
-	L.multhaul = "Mul’tha’ul"
-end
+BigWigsAPI.SetBossModuleLocale("Mul'tha'ul", {
+	multhaul = "Mul’tha’ul",
+})
 
 -- Delves: The Shadow Enclave
 
-L = BigWigs:NewBossLocale("Antenorian", "frFR")
-if L then
-	L.antenorian = "Anténorian"
-end
+BigWigsAPI.SetBossModuleLocale("Antenorian", {
+	antenorian = "Anténorian",
+})
 
 -- Delves: Torment's Rise
 
-L = BigWigs:NewBossLocale("Nullaeus", "frFR")
-if L then
-	L.nullaeus = "Vidaeus"
-end
+BigWigsAPI.SetBossModuleLocale("Nullaeus", {
+	nullaeus = "Vidaeus",
+})
 
 -- Delves: Twilight Crypts
 
-L = BigWigs:NewBossLocale("Blademaster Darza", "frFR")
-if L then
-	L.blademaster_darza = "Maîtresse-lame Darza"
-end
+BigWigsAPI.SetBossModuleLocale("Blademaster Darza", {
+	blademaster_darza = "Maîtresse-lame Darza",
+})
 
 -- Delves: Venomfall Deeps
 
-L = BigWigs:NewBossLocale("Azta'rec", "frFR")
-if L then
-	L.aztarec = "Azta’rec"
-end
+BigWigsAPI.SetBossModuleLocale("Azta'rec", {
+	aztarec = "Azta’rec",
+})
 
 -- Delves: Trash
 
-L = BigWigs:NewBossLocale("Midnight Delve Trash", "frFR")
-if L then
-end
+BigWigsAPI.SetBossModuleLocale("Midnight Delve Trash", {})
 
 -- Den of Nalorakk
 
-L = BigWigs:NewBossLocale("Den of Nalorakk Trash", "frFR")
-if L then
-	L.offerings_acquired = "Offrandes acquises"
-	L.offerings_acquired_desc = "Affiche une alerte lorsqu'une offrande a été acquise."
-end
+BigWigsAPI.SetBossModuleLocale("Den of Nalorakk Trash", {
+	offerings_acquired = "Offrandes acquises",
+	offerings_acquired_desc = "Affiche une alerte lorsqu'une offrande a été acquise.",
+})
 
 -- Maisara Caverns
 
-L = BigWigs:NewBossLocale("Maisara Caverns Trash", "frFR")
-if L then
-	L.prisoners_freed = "Prisonniers libérés"
-	L.prisoners_freed_desc = "Affiche une alerte lorsqu'un prisonnier a été libéré."
-	L.custom_on_cooking_pot_autotalk_desc = "Sélectionne automatiquement le dialogue avec le PNJ afin d'avoir l'amélioration 'Ragoût vilebranche copieux'.\n\n|T4659336:16|tRagoût vilebranche copieux\n{1269056}"
-	L.custom_on_ritual_cauldron_autotalk_desc = "Sélectionne automatiquement le dialogue avec le PNJ afin d'avoir l'amélioration 'Mixture rituelle' buff.\n\n|T236271:16|tMixture rituelle\n{1271300}"
+BigWigsAPI.SetBossModuleLocale("Maisara Caverns Trash", {
+	prisoners_freed = "Prisonniers libérés",
+	prisoners_freed_desc = "Affiche une alerte lorsqu'un prisonnier a été libéré.",
+	custom_on_cooking_pot_autotalk_desc = "Sélectionne automatiquement le dialogue avec le PNJ afin d'avoir l'amélioration 'Ragoût vilebranche copieux'.\n\n|T4659336:16|tRagoût vilebranche copieux\n{1269056}",
+	custom_on_ritual_cauldron_autotalk_desc = "Sélectionne automatiquement le dialogue avec le PNJ afin d'avoir l'amélioration 'Mixture rituelle' buff.\n\n|T236271:16|tMixture rituelle\n{1271300}",
 
-	L.cooking_pot = "Marmite"
-	L.ritual_cauldron = "Chaudron rituel"
-end
+	cooking_pot = "Marmite",
+	ritual_cauldron = "Chaudron rituel",
+})
 
 -- Murder Row
 
-L = BigWigs:NewBossLocale("Murder Row Trash", "frFR")
-if L then
-	L.snitches_interrogated = "Mouchards interrogés"
-	L.snitches_interrogated_desc = "Affiche une alerte lorsqu'un prisonnier a été interrogé."
-end
+BigWigsAPI.SetBossModuleLocale("Murder Row Trash", {
+	snitches_interrogated = "Mouchards interrogés",
+	snitches_interrogated_desc = "Affiche une alerte lorsqu'un prisonnier a été interrogé.",
+})
 
 -- Nexus-Point Xenas
 
-L = BigWigs:NewBossLocale("Nexus-Point Xenas Trash", "frFR")
-if L then
-	L.custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requiert 25 points de compétence en Ingénierie de Midnight.|r Sélectionne automatiquement le dialogue avec le PNJ afin de désactiver le Dispositif de détection arcanique."
-end
+BigWigsAPI.SetBossModuleLocale("Nexus-Point Xenas Trash", {
+	custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requiert 25 points de compétence en Ingénierie de Midnight.|r Sélectionne automatiquement le dialogue avec le PNJ afin de désactiver le Dispositif de détection arcanique.",
+})
 
 -- Common Trash
 
-L = BigWigs:NewBossLocale("Common Trash", "frFR")
-if L then
-	L.common_trash = "Monstre commun"
-	L.trash_cast = "Incantation"
-	L.trash_cast_desc = "Alerte lorsqu'un monstre commun incante un sort."
-	L.lieutenant_cast = "Incantation (Lieutenant)"
-	L.lieutenant_cast_desc = "Alerte lorsqu'un lieutenant incante un sort."
-	L.trash_channel = "Canalisation"
-	L.trash_channel_desc = "Alerte lorsqu'un monstre commun canalise un sort."
-	L.customization = "Personnalisation"
-	L.all_units = "Toutes les unités affichent des messages et jouent des sons"
-	L.messages_all_sounds_target = "Toutes les unités affichent des messages, mais seule votre cible joue des sons"
-	L.target_only = "Seulement votre cible affiche des messages et joue des sons pour votre cible"
-	L.custom_select_unit_standard = "Monstres standard"
-	L.custom_select_unit_standard_desc = "Selectionne sur quel monstre standard afficher des messages et jouer des sons."
-	L.custom_select_unit_lieutenant = "Lieutenants"
-	L.custom_select_unit_lieutenant_desc = "Selectionne sur quel monstre lieutenant afficher des messages et jouer des sons."
-	L.custom_select_throttle_type = "Cadençage"
-	L.custom_select_throttle_type_desc = "Fonctionnalités à cadencer"
-	L.custom_select_throttle_type_value1 = "Messages et sons"
-	L.custom_select_throttle_type_value2 = "Sons seulement"
-	L.custom_select_throttle_duration = "Durée de la cadence"
-	L.custom_select_throttle_duration_desc = "Durée d'attente entre les alertes. Votre cible ne sera jamais cadencée."
-	L.custom_select_throttle_duration_value1 = "2 secondes"
-	L.custom_select_throttle_duration_value2 = "1 seconde"
-	L.custom_select_throttle_duration_value3 = "3 secondes"
-end
+BigWigsAPI.SetBossModuleLocale("Common Trash", {
+	common_trash = "Monstre commun",
+	trash_cast = "Incantation",
+	trash_cast_desc = "Alerte lorsqu'un monstre commun incante un sort.",
+	lieutenant_cast = "Incantation (Lieutenant)",
+	lieutenant_cast_desc = "Alerte lorsqu'un lieutenant incante un sort.",
+	trash_channel = "Canalisation",
+	trash_channel_desc = "Alerte lorsqu'un monstre commun canalise un sort.",
+	customization = "Personnalisation",
+	all_units = "Toutes les unités affichent des messages et jouent des sons",
+	messages_all_sounds_target = "Toutes les unités affichent des messages, mais seule votre cible joue des sons",
+	target_only = "Seulement votre cible affiche des messages et joue des sons pour votre cible",
+	custom_select_unit_standard = "Monstres standard",
+	custom_select_unit_standard_desc = "Selectionne sur quel monstre standard afficher des messages et jouer des sons.",
+	custom_select_unit_lieutenant = "Lieutenants",
+	custom_select_unit_lieutenant_desc = "Selectionne sur quel monstre lieutenant afficher des messages et jouer des sons.",
+	custom_select_throttle_type = "Cadençage",
+	custom_select_throttle_type_desc = "Fonctionnalités à cadencer",
+	custom_select_throttle_type_value1 = "Messages et sons",
+	custom_select_throttle_type_value2 = "Sons seulement",
+	custom_select_throttle_duration = "Durée de la cadence",
+	custom_select_throttle_duration_desc = "Durée d'attente entre les alertes. Votre cible ne sera jamais cadencée.",
+	custom_select_throttle_duration_value1 = "2 secondes",
+	custom_select_throttle_duration_value2 = "1 seconde",
+	custom_select_throttle_duration_value3 = "3 secondes",
+})

@@ -1,701 +1,631 @@
 -- Ara-Kara, City of Echoes
 
-local L = BigWigs:NewBossLocale("Ara-Kara, City of Echoes Trash", "deDE")
-if L then
-	L.discordant_attendant = "Disharmonischer Bediensteter"
-	L.engorged_crawler = "Vollgefressener Krabbler"
-	L.trilling_attendant = "Trillernder Bediensteter"
-	L.ixin = "Ixin"
-	L.nakt = "Nakt"
-	L.atik = "Atik"
-	L.bloodworker = "Blutarbeiter"
-	L.hulking_bloodguard = "Bullige Blutwache"
-	L.sentry_stagshell = "Hirschpanzerwache"
-	L.bloodstained_assistant = "Blutbefleckter Assistent"
-	L.bloodstained_webmage = "Blutbefleckter Netzmagier"
-	L.blood_overseer = "Blutaufseher"
-	L.reinforced_drone = "Verstärkte Drohne"
-	L.nerubian_hauler = "Schlepperin der Neruber"
-	L.winged_carrier = "Geflügelter Träger"
+BigWigsAPI.SetBossModuleLocale("Ara-Kara, City of Echoes Trash", {
+	discordant_attendant = "Disharmonischer Bediensteter",
+	engorged_crawler = "Vollgefressener Krabbler",
+	trilling_attendant = "Trillernder Bediensteter",
+	ixin = "Ixin",
+	nakt = "Nakt",
+	atik = "Atik",
+	bloodworker = "Blutarbeiter",
+	hulking_bloodguard = "Bullige Blutwache",
+	sentry_stagshell = "Hirschpanzerwache",
+	bloodstained_assistant = "Blutbefleckter Assistent",
+	bloodstained_webmage = "Blutbefleckter Netzmagier",
+	blood_overseer = "Blutaufseher",
+	reinforced_drone = "Verstärkte Drohne",
+	nerubian_hauler = "Schlepperin der Neruber",
+	winged_carrier = "Geflügelter Träger",
 
-	L.avanoxx_warmup_trigger = "Die Ritualteilnehmer sind verstummt... Etwas erscheint!"
-	L.custom_on_autotalk_desc = "|cFFFF0000Benötigt 25 Fertigkeitspunkte der Schneiderei von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Fähigkeit 'Fangnetz' gewährt. Diese kann mit dem Extra Aktionsbutton genutzt werden."
-end
+	avanoxx_warmup_trigger = "Die Ritualteilnehmer sind verstummt... Etwas erscheint!",
+	custom_on_autotalk_desc = "|cFFFF0000Benötigt 25 Fertigkeitspunkte der Schneiderei von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Fähigkeit 'Fangnetz' gewährt. Diese kann mit dem Extra Aktionsbutton genutzt werden.",
+})
 
-L = BigWigs:NewBossLocale("Anub'zekt", "deDE")
-if L then
-	L.bloodstained_webmage_desc = "Anub'zekt beschwört einen Blutbefleckten Netzmagier.\n\n{-28975}"
-end
+BigWigsAPI.SetBossModuleLocale("Anub'zekt", {
+	bloodstained_webmage_desc = "Anub'zekt beschwört einen Blutbefleckten Netzmagier.\n\n{-28975}",
+})
 
 -- Cinderbrew Meadery
 
-L = BigWigs:NewBossLocale("Cinderbrew Meadery Trash", "deDE")
-if L then
-	L.venture_co_pyromaniac = "Pyromane der Venture Co."
-	L.venture_co_patron = "Kunde der Venture Co."
-	L.hired_muscle = "Angeheuerter Kraftprotz"
-	L.tasting_room_attendant = "Bedienstete des Verkostungsraums"
-	L.chef_chewie = "Chefkoch Nager"
-	L.cooking_pot = "Kochtopf"
-	L.flamethrower = "Flammenwerfer"
-	L.flavor_scientist = "Aromawissenschaftlerin"
-	L.careless_hopgoblin = "Unvorsichtiger Hobgoblin"
-	L.brew_drop = "Bräutropfen"
-	L.taste_tester = "Verkoster"
-	L.bee_wrangler = "Bienenbändiger"
-	L.venture_co_honey_harvester = "Honigernter der Venture Co."
-	L.royal_jelly_purveyor = "Lieferant von Gelée Royale"
-	L.yes_man = "Ja-Sager"
+BigWigsAPI.SetBossModuleLocale("Cinderbrew Meadery Trash", {
+	venture_co_pyromaniac = "Pyromane der Venture Co.",
+	venture_co_patron = "Kunde der Venture Co.",
+	hired_muscle = "Angeheuerter Kraftprotz",
+	tasting_room_attendant = "Bedienstete des Verkostungsraums",
+	chef_chewie = "Chefkoch Nager",
+	cooking_pot = "Kochtopf",
+	flamethrower = "Flammenwerfer",
+	flavor_scientist = "Aromawissenschaftlerin",
+	careless_hopgoblin = "Unvorsichtiger Hobgoblin",
+	brew_drop = "Bräutropfen",
+	taste_tester = "Verkoster",
+	bee_wrangler = "Bienenbändiger",
+	venture_co_honey_harvester = "Honigernter der Venture Co.",
+	royal_jelly_purveyor = "Lieferant von Gelée Royale",
+	yes_man = "Ja-Sager",
 
-	L.custom_on_cooking_autotalk_desc = "|cFFFF0000Benötigt 25 Fertigkeitspunkte der Alchemie oder Kochkunt von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Fähigkeit 'Klebriger Honig' gewährt. Diese kann mit dem Extra Aktionsbutton genutzt werden.\n\n|T451169:16|tKlebriger Honig\n{438997}"
-	L.custom_on_flamethrower_autotalk_desc = "|cFFFF0000Benötigt Gnom, Goblin, Mechagnom, oder 25 Fertigkeitspunkte der Ingenieurskunst von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Fähigkeit 'Flammeninferno' gewährt. Diese kann mit dem Extra Aktionsbutton genutzt werden.\n\n|T135789:16|tFlammeninferno\n{439616}"
-end
+	custom_on_cooking_autotalk_desc = "|cFFFF0000Benötigt 25 Fertigkeitspunkte der Alchemie oder Kochkunt von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Fähigkeit 'Klebriger Honig' gewährt. Diese kann mit dem Extra Aktionsbutton genutzt werden.\n\n|T451169:16|tKlebriger Honig\n{438997}",
+	custom_on_flamethrower_autotalk_desc = "|cFFFF0000Benötigt Gnom, Goblin, Mechagnom, oder 25 Fertigkeitspunkte der Ingenieurskunst von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Fähigkeit 'Flammeninferno' gewährt. Diese kann mit dem Extra Aktionsbutton genutzt werden.\n\n|T135789:16|tFlammeninferno\n{439616}",
+})
 
-L = BigWigs:NewBossLocale("Brew Master Aldryr", "deDE")
-if L then
-	L.cinderbrew_delivered = "Glutbräu serviert"
-end
+BigWigsAPI.SetBossModuleLocale("Brew Master Aldryr", {
+	cinderbrew_delivered = "Glutbräu serviert",
+})
 
 -- City of Threads
 
-L = BigWigs:NewBossLocale("City of Threads Trash", "deDE")
-if L then
-	L.herald_of_ansurek = "Herold von Ansurek"
-	L.sureki_venomblade = "Giftklinge der Sureki"
-	L.sureki_silkbinder = "Seidenbinder der Sureki"
-	L.royal_swarmguard = "Königliche Schwarmwache"
-	L.xephitik = "Xeph'itik"
-	L.pale_priest = "Blasse Priesterin"
-	L.eye_of_the_queen = "Auge der Königin"
-	L.covert_webmancer = "Verdeckte Netzmagierin"
-	L.web_marauder = "Netzmarodeur"
-	L.royal_venomshell = "Königlicher Giftpanzer"
-	L.unstable_test_subject = "Instabiles Versuchsobjekt"
-	L.sureki_unnaturaler = "Entnaturisierer der Sureki"
-	L.elder_shadeweaver = "Schattenweberältester"
-	L.hulking_warshell = "Bulliger Kriegspanzer"
+BigWigsAPI.SetBossModuleLocale("City of Threads Trash", {
+	herald_of_ansurek = "Herold von Ansurek",
+	sureki_venomblade = "Giftklinge der Sureki",
+	sureki_silkbinder = "Seidenbinder der Sureki",
+	royal_swarmguard = "Königliche Schwarmwache",
+	xephitik = "Xeph'itik",
+	pale_priest = "Blasse Priesterin",
+	eye_of_the_queen = "Auge der Königin",
+	covert_webmancer = "Verdeckte Netzmagierin",
+	web_marauder = "Netzmarodeur",
+	royal_venomshell = "Königlicher Giftpanzer",
+	unstable_test_subject = "Instabiles Versuchsobjekt",
+	sureki_unnaturaler = "Entnaturisierer der Sureki",
+	elder_shadeweaver = "Schattenweberältester",
+	hulking_warshell = "Bulliger Kriegspanzer",
 
-	L.xephitik_defeated_trigger = "Genug!"
-	L.fangs_of_the_queen_warmup_trigger = "Das Transformatorium war einst Heimat heiligster Evolution."
-	L.izo_warmup_trigger = "Genug! Ihr habt einen Platz in meiner Sammlung verdient. Lasst Euch aufnehmen."
-	L.custom_on_autotalk_desc = "|cFFFF0000Benötigt Schurke, Priester oder 25 Fertigkeitspunkte der Ingenieurskunst von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Aura 'Gestohlene Kraft' gewährt."
-end
+	xephitik_defeated_trigger = "Genug!",
+	fangs_of_the_queen_warmup_trigger = "Das Transformatorium war einst Heimat heiligster Evolution.",
+	izo_warmup_trigger = "Genug! Ihr habt einen Platz in meiner Sammlung verdient. Lasst Euch aufnehmen.",
+	custom_on_autotalk_desc = "|cFFFF0000Benötigt Schurke, Priester oder 25 Fertigkeitspunkte der Ingenieurskunst von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Aura 'Gestohlene Kraft' gewährt.",
+})
 
-L = BigWigs:NewBossLocale("Fangs of the Queen", "deDE")
-if L then
-	L.ice_sickles_trigger = "... und der Frost beißt!"
-end
+BigWigsAPI.SetBossModuleLocale("Fangs of the Queen", {
+	ice_sickles_trigger = "... und der Frost beißt!",
+})
 
 -- Darkflame Cleft
 
-L = BigWigs:NewBossLocale("Darkflame Cleft Trash", "deDE")
-if L then
-	L.rank_overseer = "Unverschämter Aufseher"
-	L.lowly_moleherd = "Einfacher Maulwurfhirte"
-	L.royal_wicklighter = "Königlicher Dochtzündler"
-	L.kobold_taskworker = "Koboldauftragnehmer"
-	L.wandering_candle = "Wandernde Kerze"
-	L.blazing_fiend = "Lodernder Unhold"
-	L.sootsnout = "Rußschnauze"
-	L.torchsnarl = "Fackelfletscher"
-	L.skittering_darkness = "Huschende Finsternis"
-	L.shuffling_horror = "Schlurfender Horror"
-	L.corridor_creeper = "Korridorkriecher"
-	L.creaky_mine_cart = "Quietschende Lore"
+BigWigsAPI.SetBossModuleLocale("Darkflame Cleft Trash", {
+	rank_overseer = "Unverschämter Aufseher",
+	lowly_moleherd = "Einfacher Maulwurfhirte",
+	royal_wicklighter = "Königlicher Dochtzündler",
+	kobold_taskworker = "Koboldauftragnehmer",
+	wandering_candle = "Wandernde Kerze",
+	blazing_fiend = "Lodernder Unhold",
+	sootsnout = "Rußschnauze",
+	torchsnarl = "Fackelfletscher",
+	skittering_darkness = "Huschende Finsternis",
+	shuffling_horror = "Schlurfender Horror",
+	corridor_creeper = "Korridorkriecher",
+	creaky_mine_cart = "Quietschende Lore",
 
-	L.minecart = "Minenloren Minigame"
-	L.hits = "Treffer"
-	L.minecart_over = "Gewinner: %s (%d Treffer)"
-end
+	minecart = "Minenloren Minigame",
+	hits = "Treffer",
+	minecart_over = "Gewinner: %s (%d Treffer)",
+})
 
-L = BigWigs:NewBossLocale("Ol' Waxbeard", "deDE")
-if L then
-	L.dynamite_mine_cart = "Dynamitlore"
-end
+BigWigsAPI.SetBossModuleLocale("Ol' Waxbeard", {
+	dynamite_mine_cart = "Dynamitlore",
+})
 
-L = BigWigs:NewBossLocale("The Darkness", "deDE")
-if L then
-	L.wriggling_darkspawn = "Zuckende Dunkelbrut"
-end
+BigWigsAPI.SetBossModuleLocale("The Darkness", {
+	wriggling_darkspawn = "Zuckende Dunkelbrut",
+})
 
 -- Delves: Archival Assault
 
-L = BigWigs:NewBossLocale("Captain Nil'hitan", "deDE")
-if L then
-	L.captain_nilhitan = "Kapitän Nil'hitan"
-end
+BigWigsAPI.SetBossModuleLocale("Captain Nil'hitan", {
+	captain_nilhitan = "Kapitän Nil'hitan",
+})
 
-L = BigWigs:NewBossLocale("Portalmaster Halsan", "deDE")
-if L then
-	L.portalmaster_halsan = "Portalmeister Halsan"
-end
+BigWigsAPI.SetBossModuleLocale("Portalmaster Halsan", {
+	portalmaster_halsan = "Portalmeister Halsan",
+})
 
-L = BigWigs:NewBossLocale("Voidrider Challnax", "deDE")
-if L then
-	L.voidripper = "Leerenreißer"
-	L.voidrider_challnax= "Leerenreiterin Challnax"
-end
+BigWigsAPI.SetBossModuleLocale("Voidrider Challnax", {
+	voidripper = "Leerenreißer",
+	voidrider_challnax = "Leerenreiterin Challnax",
+})
 
 -- Delves: Demolition Dome
 
-L = BigWigs:NewBossLocale("The Underpin", "deDE")
-if L then
-	L.the_underpin = "Der Lorenboss (Stufe 8)"
-	L.crony = "Kumpane"
-end
+BigWigsAPI.SetBossModuleLocale("The Underpin", {
+	the_underpin = "Der Lorenboss (Stufe 8)",
+	crony = "Kumpane",
+})
 
-L = BigWigs:NewBossLocale("The Underpin 2", "deDE")
-if L then
-	L.the_underpin = "Der Lorenboss (Stufe 11)"
-	L.crony = "Kumpane"
-end
+BigWigsAPI.SetBossModuleLocale("The Underpin 2", {
+	the_underpin = "Der Lorenboss (Stufe 11)",
+	crony = "Kumpane",
+})
 
 -- Delves: Earthcrawl Mines
 
-L = BigWigs:NewBossLocale("Maklin Drillstab", "deDE")
-if L then
-	L.maklin_drillstab = "Maklin Bohrspieß"
-end
+BigWigsAPI.SetBossModuleLocale("Maklin Drillstab", {
+	maklin_drillstab = "Maklin Bohrspieß",
+})
 
-L = BigWigs:NewBossLocale("The Biggest Bug", "deDE")
-if L then
-	L.the_biggest_bug = "Der größte Käfer"
-end
+BigWigsAPI.SetBossModuleLocale("The Biggest Bug", {
+	the_biggest_bug = "Der größte Käfer",
+})
 
-L = BigWigs:NewBossLocale("Web General Ab'enar", "deDE")
-if L then
-	L.web_general_abenar = "Netzgeneral Ab'enar"
-end
+BigWigsAPI.SetBossModuleLocale("Web General Ab'enar", {
+	web_general_abenar = "Netzgeneral Ab'enar",
+})
 
 -- Delves: Excavation Site 9
 
-L = BigWigs:NewBossLocale("Beste Glatisant", "deDE")
-if L then
-	--L.beste_glatisant = "Beste Glatisant"
-end
+BigWigsAPI.SetBossModuleLocale("Beste Glatisant", {
+	--beste_glatisant = "Beste Glatisant",
+})
 
-L = BigWigs:NewBossLocale("Craggle Fritzbrains", "deDE")
-if L then
-	L.craggle_fritzbrains = "Craggle Knipshirn"
-end
+BigWigsAPI.SetBossModuleLocale("Craggle Fritzbrains", {
+	craggle_fritzbrains = "Craggle Knipshirn",
+})
 
-L = BigWigs:NewBossLocale("Harbinger Ul'thul", "deDE")
-if L then
-	L.harbinger_ulthul = "Herold Ul'thul"
-end
+BigWigsAPI.SetBossModuleLocale("Harbinger Ul'thul", {
+	harbinger_ulthul = "Herold Ul'thul",
+})
 
-L = BigWigs:NewBossLocale("Xel'anegh The Many", "deDE")
-if L then
-	L.xelanegh_the_many = "Xel'anegh die Vielen"
-end
+BigWigsAPI.SetBossModuleLocale("Xel'anegh The Many", {
+	xelanegh_the_many = "Xel'anegh die Vielen",
+})
 
 -- Delves: Fungal Folly
 
-L = BigWigs:NewBossLocale("Maulspike", "deDE")
-if L then
-	L.maulspike = "Kleffdorn"
-	L.darkfuse_cackler = "Kicherschnauze der Düsternisverschmolzenen"
-end
+BigWigsAPI.SetBossModuleLocale("Maulspike", {
+	maulspike = "Kleffdorn",
+	darkfuse_cackler = "Kicherschnauze der Düsternisverschmolzenen",
+})
 
-L = BigWigs:NewBossLocale("Spinshroom", "deDE")
-if L then
-	L.spinshroom = "Wirbelpilz"
-end
+BigWigsAPI.SetBossModuleLocale("Spinshroom", {
+	spinshroom = "Wirbelpilz",
+})
 
 -- Delves: Kriegval's Rest
 
-L = BigWigs:NewBossLocale("Faceless One Kriegval's Rest", "deDE")
-if L then
-	L.faceless_one = "Gesichtsloser"
-end
+BigWigsAPI.SetBossModuleLocale("Faceless One Kriegval's Rest", {
+	faceless_one = "Gesichtsloser",
+})
 
-L = BigWigs:NewBossLocale("Tomb-Raider Drywhisker", "deDE")
-if L then
-	L.tomb_raider_drywhisker = "Grabräuber der Trockenstoppel"
-end
+BigWigsAPI.SetBossModuleLocale("Tomb-Raider Drywhisker", {
+	tomb_raider_drywhisker = "Grabräuber der Trockenstoppel",
+})
 
 -- Delves: Mycomancer's Cavern
 
-L = BigWigs:NewBossLocale("Bogpiper", "deDE")
-if L then
-	L.bogpiper = "Moorpfeifer"
-end
+BigWigsAPI.SetBossModuleLocale("Bogpiper", {
+	bogpiper = "Moorpfeifer",
+})
 
 -- Delves: Nightfall Sanctum
 
-L = BigWigs:NewBossLocale("Speaker Halven", "deDE")
-if L then
-	L.speaker_halven = "Sprecherin Halven"
-end
+BigWigsAPI.SetBossModuleLocale("Speaker Halven", {
+	speaker_halven = "Sprecherin Halven",
+})
 
-L = BigWigs:NewBossLocale("Speaker Davenruth", "deDE")
-if L then
-	L.speaker_davenruth = "Sprecher Davenruth"
-	L.reformed_fury = "Erneuerter Zorn"
-end
+BigWigsAPI.SetBossModuleLocale("Speaker Davenruth", {
+	speaker_davenruth = "Sprecher Davenruth",
+	reformed_fury = "Erneuerter Zorn",
+})
 
-L = BigWigs:NewBossLocale("Speaker Wicke", "deDE")
-if L then
-	L.speaker_wicke = "Sprecher Wicke"
-	L.reformed_fury = "Erneuerter Zorn"
-end
+BigWigsAPI.SetBossModuleLocale("Speaker Wicke", {
+	speaker_wicke = "Sprecher Wicke",
+	reformed_fury = "Erneuerter Zorn",
+})
 
-L = BigWigs:NewBossLocale("Cult Leaders", "deDE")
-if L then
-	L.cult_leaders = "Kult Anführer"
-	L.inquisitor_speaker = "Inquisitorensprecher"
-	L.shadeguard_speaker = "Sprecher der Schattenwache"
-end
+BigWigsAPI.SetBossModuleLocale("Cult Leaders", {
+	cult_leaders = "Kult Anführer",
+	inquisitor_speaker = "Inquisitorensprecher",
+	shadeguard_speaker = "Sprecher der Schattenwache",
+})
 
 -- Delves: Sidestreet Sluice
 
-L = BigWigs:NewBossLocale("Geargrave", "deDE")
-if L then
-	L.geargrave = "Getriebegrab"
-end
+BigWigsAPI.SetBossModuleLocale("Geargrave", {
+	geargrave = "Getriebegrab",
+})
 
-L = BigWigs:NewBossLocale("Gold Elemental", "deDE")
-if L then
-	L.gold_elemental = "Goldelementar"
-	L.gold_shaman = "Goldener Schamane"
-end
+BigWigsAPI.SetBossModuleLocale("Gold Elemental", {
+	gold_elemental = "Goldelementar",
+	gold_shaman = "Goldener Schamane",
+})
 
-L = BigWigs:NewBossLocale("Vindle Snapcrank", "deDE")
-if L then
-	L.vindle_snapcrank = "Vindle Schnappkurbel"
-end
+BigWigsAPI.SetBossModuleLocale("Vindle Snapcrank", {
+	vindle_snapcrank = "Vindle Schnappkurbel",
+})
 
 -- Delves: Skittering Breach
 
-L = BigWigs:NewBossLocale("Nerl'athekk the Skulking", "deDE")
-if L then
-	L.nerlathekk_the_skulking = "Nerl'athekk der Lauernde"
-end
+BigWigsAPI.SetBossModuleLocale("Nerl'athekk the Skulking", {
+	nerlathekk_the_skulking = "Nerl'athekk der Lauernde",
+})
 
-L = BigWigs:NewBossLocale("Faceless One", "deDE")
-if L then
-	L.faceless_one = "Gesichtsloser"
-end
+BigWigsAPI.SetBossModuleLocale("Faceless One", {
+	faceless_one = "Gesichtsloser",
+})
 
-L = BigWigs:NewBossLocale("Speaker Xanventh", "deDE")
-if L then
-	L.speaker_xanventh = "Sprecher Xanventh"
-end
+BigWigsAPI.SetBossModuleLocale("Speaker Xanventh", {
+	speaker_xanventh = "Sprecher Xanventh",
+})
 
 -- Delves: Tek-Rethan Abyss
 
-L = BigWigs:NewBossLocale("Undersea Abomination", "deDE")
-if L then
-	L.undersea_abomination = "Unterwassermonstrosität"
-end
+BigWigsAPI.SetBossModuleLocale("Undersea Abomination", {
+	undersea_abomination = "Unterwassermonstrosität",
+})
 
 -- Delves: The Dread Pit
 
-L = BigWigs:NewBossLocale("Under-Lord Vik'tis", "deDE")
-if L then
-	L.under_lord_viktis = "Unterfürst Vik'tis"
-end
+BigWigsAPI.SetBossModuleLocale("Under-Lord Vik'tis", {
+	under_lord_viktis = "Unterfürst Vik'tis",
+})
 
 -- Delves: The Sinkhole
 
-L = BigWigs:NewBossLocale("Mirror Master Murkna", "deDE")
-if L then
-	L.mirror_master_murkna = "Spiegelmeister Murkna"
-end
+BigWigsAPI.SetBossModuleLocale("Mirror Master Murkna", {
+	mirror_master_murkna = "Spiegelmeister Murkna",
+})
 
-L = BigWigs:NewBossLocale("Leviathan Caller", "deDE")
-if L then
-	L.leviathan_caller = "Leviathanrufer"
-	L.guardian_tentacle = "Wächtertentakel"
-	L.slamming_tentacles = "Schlagende Tentakel" -- plural
-end
+BigWigsAPI.SetBossModuleLocale("Leviathan Caller", {
+	leviathan_caller = "Leviathanrufer",
+	guardian_tentacle = "Wächtertentakel",
+	slamming_tentacles = "Schlagende Tentakel", -- plural
+})
 
-L = BigWigs:NewBossLocale("Cragpie", "deDE")
-if L then
-	L.cragpie = "Felskruste"
-end
+BigWigsAPI.SetBossModuleLocale("Cragpie", {
+	cragpie = "Felskruste",
+})
 
 -- Delves: The Spiral Weave
 
-L = BigWigs:NewBossLocale("Overseer Kaskel", "deDE")
-if L then
-	L.overseer_kaskel = "Aufseherin Kaskel"
-end
+BigWigsAPI.SetBossModuleLocale("Overseer Kaskel", {
+	overseer_kaskel = "Aufseherin Kaskel",
+})
 
-L = BigWigs:NewBossLocale("The Puppetmaster", "deDE")
-if L then
-	L.the_puppetmaster = "Der Strippenzieher"
-end
+BigWigsAPI.SetBossModuleLocale("The Puppetmaster", {
+	the_puppetmaster = "Der Strippenzieher",
+})
 
 -- Delves: The Underkeep
 
-L = BigWigs:NewBossLocale("Researcher Ven'kex", "deDE")
-if L then
-	L.researcher_venkex = "Forscher Ven'kex"
-end
+BigWigsAPI.SetBossModuleLocale("Researcher Ven'kex", {
+	researcher_venkex = "Forscher Ven'kex",
+})
 
-L = BigWigs:NewBossLocale("Researcher Xik'vik", "deDE")
-if L then
-	L.researcher_xikvik = "Forscher Xik'vik"
-end
+BigWigsAPI.SetBossModuleLocale("Researcher Xik'vik", {
+	researcher_xikvik = "Forscher Xik'vik",
+})
 
-L = BigWigs:NewBossLocale("Torque Clankfire and Sprok", "deDE")
-if L then
-	L.bossName = "Torque Knackfeuer und Sprok"
-	L.torque_clankfire = "Torque Knackfeuer"
-	L.sprok = "Sprok"
-end
+BigWigsAPI.SetBossModuleLocale("Torque Clankfire and Sprok", {
+	bossName = "Torque Knackfeuer und Sprok",
+	torque_clankfire = "Torque Knackfeuer",
+	sprok = "Sprok",
+})
 
 -- Delves: The Waterworks
 
-L = BigWigs:NewBossLocale("Shroomsprew", "deDE")
-if L then
-	L.shroomsprew = "Speipilz"
-end
+BigWigsAPI.SetBossModuleLocale("Shroomsprew", {
+	shroomsprew = "Speipilz",
+})
 
-L = BigWigs:NewBossLocale("Waxface", "deDE")
-if L then
-	L.waxface = "Wachsfratz"
-end
+BigWigsAPI.SetBossModuleLocale("Waxface", {
+	waxface = "Wachsfratz",
+})
 
 -- Delves: Voidrazor Sanctuary
 
-L = BigWigs:NewBossLocale("Nexus-Princess Ky'veza (Tier 11)", "deDE")
-if L then
-	L.nexus_princess_kyveza = "Nexusprinzessin Ky'veza"
-end
+BigWigsAPI.SetBossModuleLocale("Nexus-Princess Ky'veza (Tier 11)", {
+	nexus_princess_kyveza = "Nexusprinzessin Ky'veza",
+})
 
 -- Delves: Zekvir's Lair
 
-L = BigWigs:NewBossLocale("Zekvir", "deDE")
-if L then
-	L.zekvir = "Zekvir (Stufe 8)"
-	L.web_terror = "Netzschrecken"
-end
+BigWigsAPI.SetBossModuleLocale("Zekvir", {
+	zekvir = "Zekvir (Stufe 8)",
+	web_terror = "Netzschrecken",
+})
 
-L = BigWigs:NewBossLocale("Zekvir 2", "deDE")
-if L then
-	L.zekvir = "Zekvir (Stufe 11)"
-	L.web_terror = "Netzschrecken"
-end
+BigWigsAPI.SetBossModuleLocale("Zekvir 2", {
+	zekvir = "Zekvir (Stufe 11)",
+	web_terror = "Netzschrecken",
+})
 
 -- Delves: Trash
 
-L = BigWigs:NewBossLocale("Ethereal Trash", "deDE")
-if L then
-	L.ethereal_trash = "Astraler Trash"
+BigWigsAPI.SetBossModuleLocale("Ethereal Trash", {
+	ethereal_trash = "Astraler Trash",
 
-	L.shadeye_observer = "Schemenaugenbeobachter"
-	L.shadowguard_phasecutter = "Phasenschneider der Schattenwache"
-	L.shadowguard_arcanotech = "Arkanotech der Schattenwache"
-	L.shadowguard_soulbreaker = "Seelenbrecher der Schattenwache"
-	L.shadowguard_steelsoul = "Stahlseele der Schattenwache"
-	L.siphoned_drake = "Ausgelaugter Drache"
-	L.steelsoul_arcanoward = "Stahlseelenarkanoschutz"
-end
+	shadeye_observer = "Schemenaugenbeobachter",
+	shadowguard_phasecutter = "Phasenschneider der Schattenwache",
+	shadowguard_arcanotech = "Arkanotech der Schattenwache",
+	shadowguard_soulbreaker = "Seelenbrecher der Schattenwache",
+	shadowguard_steelsoul = "Stahlseele der Schattenwache",
+	siphoned_drake = "Ausgelaugter Drache",
+	steelsoul_arcanoward = "Stahlseelenarkanoschutz",
+})
 
-L = BigWigs:NewBossLocale("Fungarian Delve Trash", "deDE")
-if L then
-	L.fungarian_trash = "Pilz Trash"
+BigWigsAPI.SetBossModuleLocale("Fungarian Delve Trash", {
+	fungarian_trash = "Pilz Trash",
 
-	L.sporbit = "Sporenbiss"
-	L.fungal_speartender = "Pilzspeerhüter"
-	L.gnarled_reviver = "Knorriger Wiederbeleber"
-	L.infected_beast = "Infiziertes Wildtier"
-	L.fungal_gutter = "Pilzschlitzer"
-	L.fungarian_flinger = "Fungianischer Werfer"
-	L.fungal_rotcaster = "Pilzverfallwirker"
-	L.particularly_bad_guy = "Besonders fieser Bösewicht"
-end
+	sporbit = "Sporenbiss",
+	fungal_speartender = "Pilzspeerhüter",
+	gnarled_reviver = "Knorriger Wiederbeleber",
+	infected_beast = "Infiziertes Wildtier",
+	fungal_gutter = "Pilzschlitzer",
+	fungarian_flinger = "Fungianischer Werfer",
+	fungal_rotcaster = "Pilzverfallwirker",
+	particularly_bad_guy = "Besonders fieser Bösewicht",
+})
 
-L = BigWigs:NewBossLocale("Goblin Delve Trash", "deDE")
-if L then
-	L.goblin_trash = "Goblin Trash"
+BigWigsAPI.SetBossModuleLocale("Goblin Delve Trash", {
+	goblin_trash = "Goblin Trash",
 
-	L.bopper_bot = "Bopperbot"
-	L.aerial_support_bot = "Luftunterstützungsbot"
-	L.masked_freelancer = "Maskierter Freiberufler"
-	L.underpaid_brute = "Unterbezahlter Schläger"
-	L.drill_sergeant = "Ausbildungsoffizier"
-	L.punchy_thug = "Schlagfertiger Schläger"
-	L.flinging_flicker = "Schleuderflacker"
-	L.bomb_bot = "Bombenbot"
-	L.rad_rat = "Radikale Ratte"
-end
+	bopper_bot = "Bopperbot",
+	aerial_support_bot = "Luftunterstützungsbot",
+	masked_freelancer = "Maskierter Freiberufler",
+	underpaid_brute = "Unterbezahlter Schläger",
+	drill_sergeant = "Ausbildungsoffizier",
+	punchy_thug = "Schlagfertiger Schläger",
+	flinging_flicker = "Schleuderflacker",
+	bomb_bot = "Bombenbot",
+	rad_rat = "Radikale Ratte",
+})
 
-L = BigWigs:NewBossLocale("Kobold Delve Trash", "deDE")
-if L then
-	L.kobold_trash = "Kobold Trash"
+BigWigsAPI.SetBossModuleLocale("Kobold Delve Trash", {
+	kobold_trash = "Kobold Trash",
 
-	L.kobold_taskfinder = "Koboldauftragssucher"
-	L.spitfire_charger = "Feuerspeiende Stürmerin"
-	L.spitfire_fusetender = "Luntenhüter des Feuerspeiers"
-end
+	kobold_taskfinder = "Koboldauftragssucher",
+	spitfire_charger = "Feuerspeiende Stürmerin",
+	spitfire_fusetender = "Luntenhüter des Feuerspeiers",
+})
 
-L = BigWigs:NewBossLocale("Kobyss Delve Trash", "deDE")
-if L then
-	L.kobyss_trash = "Kobyss Trash"
+BigWigsAPI.SetBossModuleLocale("Kobyss Delve Trash", {
+	kobyss_trash = "Kobyss Trash",
 
-	L.kobyss_necromancer = "Totenbeschwörer der Kobyss"
-	L.kobyss_spearfisher = "Speerfischer der Kobyss"
-	L.kobyss_witherer = "Siecherer der Kobyss"
-	L.wandering_gutter = "Wandernder Ausweider"
-	L.crazed_predator = "Rasendes Raubtier"
-	L.deepwater_makura = "Tiefwassermakura"
-	L.kobyss_trickster = "Trickser der Kobyss"
-end
+	kobyss_necromancer = "Totenbeschwörer der Kobyss",
+	kobyss_spearfisher = "Speerfischer der Kobyss",
+	kobyss_witherer = "Siecherer der Kobyss",
+	wandering_gutter = "Wandernder Ausweider",
+	crazed_predator = "Rasendes Raubtier",
+	deepwater_makura = "Tiefwassermakura",
+	kobyss_trickster = "Trickser der Kobyss",
+})
 
-L = BigWigs:NewBossLocale("Ky'veza Rares", "deDE")
-if L then
-	L.rares = "Ky'veza Rares"
+BigWigsAPI.SetBossModuleLocale("Ky'veza Rares", {
+	rares = "Ky'veza Rares",
 
-	L.treasure_wraith = "Schatzgespenst"
-	L.invasive_phasecrawler = "Invasiver Phasenkriecher"
-	L.drude = "D'rude"
-	L.great_devourer = "Großer Verschlinger"
-	L.mercenary_acquisitionist = "Söldner-Akquisiteur"
-	L.pactsworn_fraycaller = "Paktgeschworener Getümmelrufer"
-	L.pactsworn_dustblade = "Paktgeschworene Staubklinge"
-	L.pactsworn_sandreaver = "Paktgeschworener Sandjäger"
-	L.pactsworn_arcanist = "Paktgeschworener Arkanist"
-	L.pactsworn_wildcaller = "Paktgeschworener Wildrufer"
-	L.nexus_princess_kyveza = "Nexusprinzessin Ky'veza (Zufälliges Erscheinen)"
-	L.zekvir = "Zekvir"
-	L.the_underpin = "Der Lorenboss"
-end
+	treasure_wraith = "Schatzgespenst",
+	invasive_phasecrawler = "Invasiver Phasenkriecher",
+	drude = "D'rude",
+	great_devourer = "Großer Verschlinger",
+	mercenary_acquisitionist = "Söldner-Akquisiteur",
+	pactsworn_fraycaller = "Paktgeschworener Getümmelrufer",
+	pactsworn_dustblade = "Paktgeschworene Staubklinge",
+	pactsworn_sandreaver = "Paktgeschworener Sandjäger",
+	pactsworn_arcanist = "Paktgeschworener Arkanist",
+	pactsworn_wildcaller = "Paktgeschworener Wildrufer",
+	nexus_princess_kyveza = "Nexusprinzessin Ky'veza (Zufälliges Erscheinen)",
+	zekvir = "Zekvir",
+	the_underpin = "Der Lorenboss",
+})
 
-L = BigWigs:NewBossLocale("Nerubian Delve Trash", "deDE")
-if L then
-	L.nerubian_trash = "Neruber Trash"
+BigWigsAPI.SetBossModuleLocale("Nerubian Delve Trash", {
+	nerubian_trash = "Neruber Trash",
 
-	L.nerubian_lord = "Lady der Neruber"
-	L.nerubian_darkcaster = "Dunkelzauberer der Neruber"
-	L.nerubian_captain = "Hauptmann der Neruber"
-	L.chittering_fearmonger = "Zirpender Furchtschürer"
-	L.skittering_swarmer = "Huschender Schwärmer"
-	L.nerubian_webspinner = "Netzspinner der Neruber"
-end
+	nerubian_lord = "Lady der Neruber",
+	nerubian_darkcaster = "Dunkelzauberer der Neruber",
+	nerubian_captain = "Hauptmann der Neruber",
+	chittering_fearmonger = "Zirpender Furchtschürer",
+	skittering_swarmer = "Huschender Schwärmer",
+	nerubian_webspinner = "Netzspinner der Neruber",
+})
 
-L = BigWigs:NewBossLocale("Nightfall Delve Trash", "deDE")
-if L then
-	L.nightfall_trash = "Nachtsturz Trash"
+BigWigsAPI.SetBossModuleLocale("Nightfall Delve Trash", {
+	nightfall_trash = "Nachtsturz Trash",
 
-	L.dark_bombardier = "Dunkle Bombardierin"
-	L.nightfall_inquisitor = "Inquisitor von Nachtsturz"
-	L.devouring_shade = "Verschlingender Schemen"
-	L.weeping_shade = "Weinender Schemen"
-	L.nightfall_shadeguard = "Schattenwache von Nachtsturz"
-	L.shadow_elemental = "Schattenelementar"
-end
+	dark_bombardier = "Dunkle Bombardierin",
+	nightfall_inquisitor = "Inquisitor von Nachtsturz",
+	devouring_shade = "Verschlingender Schemen",
+	weeping_shade = "Weinender Schemen",
+	nightfall_shadeguard = "Schattenwache von Nachtsturz",
+	shadow_elemental = "Schattenelementar",
+})
 
-L = BigWigs:NewBossLocale("Old God Delve Trash", "deDE")
-if L then
-	L.old_god_trash = "Alter Gott Trash"
+BigWigsAPI.SetBossModuleLocale("Old God Delve Trash", {
+	old_god_trash = "Alter Gott Trash",
 
-	L.dark_walker = "Dunkelwandler"
-	L.hideous_amalgamation = "Schreckliches Gemisch"
-	L.coagulated_mass = "Geronnene Masse"
-	L.silent_slitherer = "Stiller Kriecher"
-	L.amalgamized_mass = "Verschmolzene Masse"
-end
+	dark_walker = "Dunkelwandler",
+	hideous_amalgamation = "Schreckliches Gemisch",
+	coagulated_mass = "Geronnene Masse",
+	silent_slitherer = "Stiller Kriecher",
+	amalgamized_mass = "Verschmolzene Masse",
+})
 
-L = BigWigs:NewBossLocale("The Underkeep Trash", "deDE")
-if L then
-	L.ascended_webfriar = "Aufgestiegener Netzmönch"
-	L.deepwalker_guardian = "Tiefenläuferwächter"
-	L.crazed_abomination = "Wahnsinnige Monstrosität"
-	L.web_marauder = "Netzmarodeur"
-end
+BigWigsAPI.SetBossModuleLocale("The Underkeep Trash", {
+	ascended_webfriar = "Aufgestiegener Netzmönch",
+	deepwalker_guardian = "Tiefenläuferwächter",
+	crazed_abomination = "Wahnsinnige Monstrosität",
+	web_marauder = "Netzmarodeur",
+})
 
 -- Eco-Dome Al'dani
 
-L = BigWigs:NewBossLocale("Eco-Dome Al'dani Trash", "deDE")
-if L then
-	L.terrified_broker = "Verängstigter Mittler"
-	L.arcane_siphon = "Arkanentzug"
-	L.overgorged_mite = "Überfressene Milbe"
-	L.voracious_gorger = "Gieriger Fresser"
-	L.ravenous_destroyer = "Gefräßiger Zerstörer"
-	L.overcharged_sentinel = "Überladener Wächter"
-	L.wastelander_farstalker = "Weitenpirscherin der Ödnisbewohner"
-	L.tamed_ruinstalker = "Gezähmter Ruinenpirscher"
-	L.wastelander_ritualist = "Ritualist der Ödnisbewohner"
-	L.wastelander_pactspeaker = "Paktsprecherin der Ödnisbewohner"
-	L.evoked_spirit = "Heraufbeschworener Geist"
-	L.karesh_elemental = "Elementar der K'aresh"
-	L.burrowing_creeper = "Grabender Kriecher"
-	L.wastes_creeper = "Ödniskriecher"
+BigWigsAPI.SetBossModuleLocale("Eco-Dome Al'dani Trash", {
+	terrified_broker = "Verängstigter Mittler",
+	arcane_siphon = "Arkanentzug",
+	overgorged_mite = "Überfressene Milbe",
+	voracious_gorger = "Gieriger Fresser",
+	ravenous_destroyer = "Gefräßiger Zerstörer",
+	overcharged_sentinel = "Überladener Wächter",
+	wastelander_farstalker = "Weitenpirscherin der Ödnisbewohner",
+	tamed_ruinstalker = "Gezähmter Ruinenpirscher",
+	wastelander_ritualist = "Ritualist der Ödnisbewohner",
+	wastelander_pactspeaker = "Paktsprecherin der Ödnisbewohner",
+	evoked_spirit = "Heraufbeschworener Geist",
+	karesh_elemental = "Elementar der K'aresh",
+	burrowing_creeper = "Grabender Kriecher",
+	wastes_creeper = "Ödniskriecher",
 
-	L.taahbat_and_awazj_warmup_trigger = "Ich habe keine Zeit dafür. Taah'bat! Sie dürfen uns nicht weiter folgen."
-end
+	taahbat_and_awazj_warmup_trigger = "Ich habe keine Zeit dafür. Taah'bat! Sie dürfen uns nicht weiter folgen.",
+})
 
 -- Operation: Floodgate
 
-L = BigWigs:NewBossLocale("Operation: Floodgate Trash", "deDE")
-if L then
-	L.weapons_stockpiles_pilfered = "Waffenvorrat geklaut"
-	L.weapons_stockpiles_pilfered_desc = "Zeigt einen Alarm, wenn ein Waffenvorrat geklaut wurde."
+BigWigsAPI.SetBossModuleLocale("Operation: Floodgate Trash", {
+	weapons_stockpiles_pilfered = "Waffenvorrat geklaut",
+	weapons_stockpiles_pilfered_desc = "Zeigt einen Alarm, wenn ein Waffenvorrat geklaut wurde.",
 
-	L.shreddinator_3000 = "Schreddinator 3000"
-	L.mechadrone_sniper = "Mechadrohnenscharfschütze"
-	L.loaderbot = "Laderbot"
-	L.darkfuse_hyena = "Hyäne der Düsternisverschmolzenen"
-	L.darkfuse_demolitionist = "Demolierer der Dunkeleisenzwerge"
-	L.darkfuse_inspector = "Inspektor der Düsternisverschmolzenen"
-	L.darkfuse_bloodwarper = "Blutverzerrer der Düsternisverschmolzenen"
-	L.undercrawler = "Unterkrabbler"
-	L.venture_co_surveyor = "Inspektor der Venture Co."
-	L.venture_co_architect = "Architekt der Venture Co."
-	L.venture_co_diver = "Taucher der Venture Co."
-	L.disturbed_kelp = "Gestörter Tang"
-	L.bomb_pile = "Bombenhaufen"
-	L.bubbles = "Blubbi"
-	L.venture_co_electrician = "Elektriker der Venture Co."
-	L.darkfuse_jumpstarter = "Überbrücker der Düsternisverschmolzenen"
+	shreddinator_3000 = "Schreddinator 3000",
+	mechadrone_sniper = "Mechadrohnenscharfschütze",
+	loaderbot = "Laderbot",
+	darkfuse_hyena = "Hyäne der Düsternisverschmolzenen",
+	darkfuse_demolitionist = "Demolierer der Dunkeleisenzwerge",
+	darkfuse_inspector = "Inspektor der Düsternisverschmolzenen",
+	darkfuse_bloodwarper = "Blutverzerrer der Düsternisverschmolzenen",
+	undercrawler = "Unterkrabbler",
+	venture_co_surveyor = "Inspektor der Venture Co.",
+	venture_co_architect = "Architekt der Venture Co.",
+	venture_co_diver = "Taucher der Venture Co.",
+	disturbed_kelp = "Gestörter Tang",
+	bomb_pile = "Bombenhaufen",
+	bubbles = "Blubbi",
+	venture_co_electrician = "Elektriker der Venture Co.",
+	darkfuse_jumpstarter = "Überbrücker der Düsternisverschmolzenen",
 
-	L.geezle_gigazap_warmup = "Dieses Projekt funktioniert nicht ohne den Wissenschaftler dahinter. Macht dem Hirni den Garaus!"
-end
+	geezle_gigazap_warmup = "Dieses Projekt funktioniert nicht ohne den Wissenschaftler dahinter. Macht dem Hirni den Garaus!",
+})
 
 -- Priory of the Sacred Flame
 
-L = BigWigs:NewBossLocale("Priory of the Sacred Flame Trash", "deDE")
-if L then
-	L.sacred_flame = "Heilige Flamme"
-	L.guard_captain_suleyman = "Wachoffizier Suleyman"
-	L.forge_master_damian = "Schmiedemeister Damian"
-	L.high_priest_aemya = "Hohepriesterin Aemya"
-	L.sergeant_shaynemail = "Waffenträgerin Schainpanzer"
-	L.elaena_emberlanz = "Elaena Emberlanz"
-	L.taener_duelmal = "Taener Duelmal"
-	L.arathi_knight = "Ritter der Arathi"
-	L.arathi_footman = "Fußsoldat der Arathi"
-	L.fervent_sharpshooter = "Feurige Scharfschützin"
-	L.war_lynx = "Kriegsluchs"
-	L.devout_priest = "Frommer Priester"
-	L.fanatical_conjuror = "Fanatische Herbeizauberin"
-	L.lightspawn = "Lichtbrut"
-	L.ardent_paladin = "Inbrünstiger Paladin"
-	L.zealous_templar = "Fanatische Templerin"
-	L.risen_mage = "Auferstandener Magier"
-	L.sir_braunpyke = "Sir Braunspyß"
+BigWigsAPI.SetBossModuleLocale("Priory of the Sacred Flame Trash", {
+	sacred_flame = "Heilige Flamme",
+	guard_captain_suleyman = "Wachoffizier Suleyman",
+	forge_master_damian = "Schmiedemeister Damian",
+	high_priest_aemya = "Hohepriesterin Aemya",
+	sergeant_shaynemail = "Waffenträgerin Schainpanzer",
+	elaena_emberlanz = "Elaena Emberlanz",
+	taener_duelmal = "Taener Duelmal",
+	arathi_knight = "Ritter der Arathi",
+	arathi_footman = "Fußsoldat der Arathi",
+	fervent_sharpshooter = "Feurige Scharfschützin",
+	war_lynx = "Kriegsluchs",
+	devout_priest = "Frommer Priester",
+	fanatical_conjuror = "Fanatische Herbeizauberin",
+	lightspawn = "Lichtbrut",
+	ardent_paladin = "Inbrünstiger Paladin",
+	zealous_templar = "Fanatische Templerin",
+	risen_mage = "Auferstandener Magier",
+	sir_braunpyke = "Sir Braunspyß",
 
-	L.baron_braunpyke_warmup_trigger = "Sie haben ihren Zweck erfüllt. Baron, zeigt, was Ihr wert seid."
-	L.custom_on_autotalk_desc = "|cFFFF0000Benötigt Priester oder Paladin.|rWählt automatisch die NPC Dialogoption, welche Euch die Aura 'Segen der Heiligen Flamme' gewährt."
-end
+	baron_braunpyke_warmup_trigger = "Sie haben ihren Zweck erfüllt. Baron, zeigt, was Ihr wert seid.",
+	custom_on_autotalk_desc = "|cFFFF0000Benötigt Priester oder Paladin.|rWählt automatisch die NPC Dialogoption, welche Euch die Aura 'Segen der Heiligen Flamme' gewährt.",
+})
 
-L = BigWigs:NewBossLocale("Baron Braunpyke", "deDE")
-if L then
-	L.charges = "%d Aufladungen"
-end
+BigWigsAPI.SetBossModuleLocale("Baron Braunpyke", {
+	charges = "%d Aufladungen",
+})
 
 -- Scenarios
 
-L = BigWigs:NewBossLocale("Awakening the Machine", "deDE")
-if L then
-	L.awakening_the_machine = "Erweckung der Maschine"
-	L.stages_desc = "Zeigt eine Warnung wenn eine neue Welle von Gegnern erscheint."
+BigWigsAPI.SetBossModuleLocale("Awakening the Machine", {
+	awakening_the_machine = "Erweckung der Maschine",
+	stages_desc = "Zeigt eine Warnung wenn eine neue Welle von Gegnern erscheint.",
 
-	L.corrupted_machinist = "Verderbter Maschinist"
-	L.malfunctioning_pylon = "Defekter Pylon"
-	L.explosive_bomberbot = "Explosiver Bomberbot"
-	L.automatic_ironstrider = "Automatischer Eisenschreiter"
-	L.medbot = "Medbot"
-	L.nullbot = "Nullbot"
-	L.awakened_phalanx = "Erweckte Phalanx"
-end
+	corrupted_machinist = "Verderbter Maschinist",
+	malfunctioning_pylon = "Defekter Pylon",
+	explosive_bomberbot = "Explosiver Bomberbot",
+	automatic_ironstrider = "Automatischer Eisenschreiter",
+	medbot = "Medbot",
+	nullbot = "Nullbot",
+	awakened_phalanx = "Erweckte Phalanx",
+})
 
-L = BigWigs:NewBossLocale("Brawler's Guild", "deDE")
-if L then
-	L.brawlers_guild = "Kampfgilde"
-	L.rank = "Rang %d"
-	L.defeated = "%s besiegt"
+BigWigsAPI.SetBossModuleLocale("Brawler's Guild", {
+	brawlers_guild = "Kampfgilde",
+	rank = "Rang %d",
+	defeated = "%s besiegt",
 
-	L.sunny = "Sonni"
-	L.doomflipper = "Todesflosse"
-	L.goredome = "Blutgeweih"
-	L.dippy = "Planschi"
-	L.bruce = "Bruce"
-	L.bill_the_janitor = "Bill der Hausmeister"
-	L.oso = "Oso"
-	L.the_quacken = "Der Quake"
-	L.razorgrin = "Grinsezahn"
-	L.blat = "Blat"
-	L.ooliss = "Ooliss"
-	L.king_kulaka = "König Kulakaa"
-	L.meatball = "Fleischklops"
-	L.ash_katzuum = "Ash'katzuum"
-	L.crush = "Stampf"
-	L.glorp = "Gulp"
-	L.klunk = "Klum"
-	L.stitches = "Kleiner"
-	L.topps = "Topps"
-	L.carl = "Carl"
-	L.leper_gnome_quintet = "Lepragnom Quintett"
-	L.mecha_bruce = "Mecha-Bruce"
-	L.gg_engineering = "GG Ingenieurskunst"
-	L.doopy = "Platschi"
-	L.renegade_swabbie = "Abtrünnige Deckhand"
-	L.ogrewatch = "Ogerwatch"
-	L.blingtron_3000 = "Blingtron 3000"
-	L.epicus_maximus = "Epicus Maximus"
-end
+	sunny = "Sonni",
+	doomflipper = "Todesflosse",
+	goredome = "Blutgeweih",
+	dippy = "Planschi",
+	bruce = "Bruce",
+	bill_the_janitor = "Bill der Hausmeister",
+	oso = "Oso",
+	the_quacken = "Der Quake",
+	razorgrin = "Grinsezahn",
+	blat = "Blat",
+	ooliss = "Ooliss",
+	king_kulaka = "König Kulakaa",
+	meatball = "Fleischklops",
+	ash_katzuum = "Ash'katzuum",
+	crush = "Stampf",
+	glorp = "Gulp",
+	klunk = "Klum",
+	stitches = "Kleiner",
+	topps = "Topps",
+	carl = "Carl",
+	leper_gnome_quintet = "Lepragnom Quintett",
+	mecha_bruce = "Mecha-Bruce",
+	gg_engineering = "GG Ingenieurskunst",
+	doopy = "Platschi",
+	renegade_swabbie = "Abtrünnige Deckhand",
+	ogrewatch = "Ogerwatch",
+	blingtron_3000 = "Blingtron 3000",
+	epicus_maximus = "Epicus Maximus",
+})
 
 -- The Dawnbreaker
 
-L = BigWigs:NewBossLocale("The Dawnbreaker Trash", "deDE")
-if L then
-	L.arathi_lamplighter = "Lampenanzünder der Arathi"
-	L.nightfall_curseblade = "Fluchklinge von Nachtsturz"
-	L.nightfall_shadowmage = "Schattenmagier von Nachtsturz"
-	L.nightfall_ritualist = "Ritualist von Nachtsturz"
-	L.nightfall_commander = "Kommandant von Nachtsturz"
-	L.sureki_webmage = "Netzmagier der Sureki"
-	L.arathi_bomb = "Arathibombe"
-	L.ascendant_viscoxria = "Aszendent Vis'coxria"
-	L.deathscreamer_ikentak = "Todeskreischerin Iken'tak"
-	L.ixkreten_the_unbreakable = "Ixkreten die Unzerstörbare"
-	L.sureki_militant = "Kämpferin der Sureki"
-	L.nightfall_tactician = "Taktikerin von Nachtsturz"
-	L.nightfall_darkcaster = "Dunkelzauberin von Nachtsturz"
-	L.nightfall_shadowalker = "Schattengänger von Nachtsturz"
-	L.manifested_shadow = "Manifestierter Schatten"
-	L.nightfall_dark_architect = "Dunkelarchitektin von Nachtsturz"
-end
+BigWigsAPI.SetBossModuleLocale("The Dawnbreaker Trash", {
+	arathi_lamplighter = "Lampenanzünder der Arathi",
+	nightfall_curseblade = "Fluchklinge von Nachtsturz",
+	nightfall_shadowmage = "Schattenmagier von Nachtsturz",
+	nightfall_ritualist = "Ritualist von Nachtsturz",
+	nightfall_commander = "Kommandant von Nachtsturz",
+	sureki_webmage = "Netzmagier der Sureki",
+	arathi_bomb = "Arathibombe",
+	ascendant_viscoxria = "Aszendent Vis'coxria",
+	deathscreamer_ikentak = "Todeskreischerin Iken'tak",
+	ixkreten_the_unbreakable = "Ixkreten die Unzerstörbare",
+	sureki_militant = "Kämpferin der Sureki",
+	nightfall_tactician = "Taktikerin von Nachtsturz",
+	nightfall_darkcaster = "Dunkelzauberin von Nachtsturz",
+	nightfall_shadowalker = "Schattengänger von Nachtsturz",
+	manifested_shadow = "Manifestierter Schatten",
+	nightfall_dark_architect = "Dunkelarchitektin von Nachtsturz",
+})
 
 -- The Rookery
 
-L = BigWigs:NewBossLocale("The Rookery Trash", "deDE")
-if L then
-	L.quartermaster_koratite = "Rüstmeister Koratit"
-	L.voidrider = "Leerenreiter"
-	L.cursed_rooktender = "Verfluchter Krähenhüter"
-	L.unruly_stormrook = "Widerspenstige Sturmkrähe"
-	L.void_cursed_crusher = "Leerenverfluchter Zermalmer"
-	L.corrupted_oracle = "Verderbtes Orakel"
-	L.coalescing_void_diffuser = "Verdichtender Leerenzerstreuer"
-	L.inflicted_civilian = "Betroffener Bürger"
-	L.void_ascendant = "Leerenaszendentin"
-	L.consuming_voidstone = "Verschlingender Leerenstein"
-end
+BigWigsAPI.SetBossModuleLocale("The Rookery Trash", {
+	quartermaster_koratite = "Rüstmeister Koratit",
+	voidrider = "Leerenreiter",
+	cursed_rooktender = "Verfluchter Krähenhüter",
+	unruly_stormrook = "Widerspenstige Sturmkrähe",
+	void_cursed_crusher = "Leerenverfluchter Zermalmer",
+	corrupted_oracle = "Verderbtes Orakel",
+	coalescing_void_diffuser = "Verdichtender Leerenzerstreuer",
+	inflicted_civilian = "Betroffener Bürger",
+	void_ascendant = "Leerenaszendentin",
+	consuming_voidstone = "Verschlingender Leerenstein",
+})
 
 -- The Stonevault
 
-L = BigWigs:NewBossLocale("The Stonevault Trash", "deDE")
-if L then
-	L.earth_infused_golem = "Erderfüllter Golem"
-	L.repurposed_loaderbot = "Umfunktionierter Laderbot"
-	L.ghastly_voidsoul = "Geisterhafte Leerenseele"
-	L.cursedheart_invader = "Verfluchter Eindringling"
-	L.void_bound_despoiler = "Leerengebundener Plünderer"
-	L.void_bound_howler = "Leerengebundener Heuler"
-	L.turned_speaker = "Vertriebener Sprecher"
-	L.void_touched_elemental = "Leerenberührter Elementar"
-	L.forgebound_mender = "Schmiedegebundene Heilerin"
-	L.forge_loader = "Schmiedelader"
-	L.cursedforge_honor_guard = "Fluchschmiedenehrenwache"
-	L.cursedforge_stoneshaper = "Fluchschmiedesteinschleifer"
-	L.rock_smasher = "Felsschmetterer"
+BigWigsAPI.SetBossModuleLocale("The Stonevault Trash", {
+	earth_infused_golem = "Erderfüllter Golem",
+	repurposed_loaderbot = "Umfunktionierter Laderbot",
+	ghastly_voidsoul = "Geisterhafte Leerenseele",
+	cursedheart_invader = "Verfluchter Eindringling",
+	void_bound_despoiler = "Leerengebundener Plünderer",
+	void_bound_howler = "Leerengebundener Heuler",
+	turned_speaker = "Vertriebener Sprecher",
+	void_touched_elemental = "Leerenberührter Elementar",
+	forgebound_mender = "Schmiedegebundene Heilerin",
+	forge_loader = "Schmiedelader",
+	cursedforge_honor_guard = "Fluchschmiedenehrenwache",
+	cursedforge_stoneshaper = "Fluchschmiedesteinschleifer",
+	rock_smasher = "Felsschmetterer",
 
-	L.edna_warmup_trigger = "Was ist das? Ist der Golem mit etwas anderem verbunden?"
-	L.custom_on_autotalk_desc = "|cFFFF0000Benötigt Krieger, Zwerg, oder 25 Fertigkeitspunkte der Schmiedekunst von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Aura 'Energie verzauberten Eisens' gewährt."
-end
+	edna_warmup_trigger = "Was ist das? Ist der Golem mit etwas anderem verbunden?",
+	custom_on_autotalk_desc = "|cFFFF0000Benötigt Krieger, Zwerg, oder 25 Fertigkeitspunkte der Schmiedekunst von Khaz Algar.|r Wählt automatisch die NPC Dialogoption, welche Euch die Aura 'Energie verzauberten Eisens' gewährt.",
+})

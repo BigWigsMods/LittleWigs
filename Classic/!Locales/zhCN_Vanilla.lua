@@ -1,94 +1,76 @@
 -- Demon Fall Canyon
 
-local L = BigWigs:NewBossLocale("Grimroot", "zhCN")
-if not L then return end
-if L then
-	L.grimroot = "晦根"
-end
+BigWigsAPI.SetBossModuleLocale("Grimroot", {
+	grimroot = "晦根",
+})
 
-L = BigWigs:NewBossLocale("Destructor's Wraith", "zhCN")
-if L then
-	L.destructors_wraith = "毁灭者的幻影"
-end
+BigWigsAPI.SetBossModuleLocale("Destructor's Wraith", {
+	destructors_wraith = "毁灭者的幻影",
+})
 
-L = BigWigs:NewBossLocale("Zilbagob", "zhCN")
-if L then
-	L.zilbagob = "吉尔巴格布"
-end
+BigWigsAPI.SetBossModuleLocale("Zilbagob", {
+	zilbagob = "吉尔巴格布",
+})
 
-L = BigWigs:NewBossLocale("Pyranis", "zhCN")
-if L then
-	L.pyranis = "派拉尼斯"
-end
+BigWigsAPI.SetBossModuleLocale("Pyranis", {
+	pyranis = "派拉尼斯",
+})
 
-L = BigWigs:NewBossLocale("Diathorus the Seeker", "zhCN")
-if L then
-	L.diathorus_the_seeker = "搜寻者迪亚索鲁斯"
-end
+BigWigsAPI.SetBossModuleLocale("Diathorus the Seeker", {
+	diathorus_the_seeker = "搜寻者迪亚索鲁斯",
+})
 
-L = BigWigs:NewBossLocale("Hellscream's Phantom", "zhCN")
-if L then
-	L.hellscreams_phantom = "地狱咆哮的幻灵"
-end
+BigWigsAPI.SetBossModuleLocale("Hellscream's Phantom", {
+	hellscreams_phantom = "地狱咆哮的幻灵",
+})
 
 -- Karazhan Crypts
 
-L = BigWigs:NewBossLocale("Kaigy Maryla", "zhCN")
-if L then
-	L.kaigy_maryla = "凯基·玛丽拉"
-end
+BigWigsAPI.SetBossModuleLocale("Kaigy Maryla", {
+	kaigy_maryla = "凯基·玛丽拉",
+})
 
-L = BigWigs:NewBossLocale("Sairuh Maryla", "zhCN")
-if L then
-	L.sairuh_maryla = "萨鲁·玛丽拉"
-end
+BigWigsAPI.SetBossModuleLocale("Sairuh Maryla", {
+	sairuh_maryla = "萨鲁·玛丽拉",
+})
 
-L = BigWigs:NewBossLocale("Barian Maryla", "zhCN")
-if L then
-	L.barian_maryla = "巴利安·玛丽拉"
-end
+BigWigsAPI.SetBossModuleLocale("Barian Maryla", {
+	barian_maryla = "巴利安·玛丽拉",
+})
 
-L = BigWigs:NewBossLocale("Creeping Malison", "zhCN")
-if L then
-	L.creeping_malison = "蠕行诅咒"
-end
+BigWigsAPI.SetBossModuleLocale("Creeping Malison", {
+	creeping_malison = "蠕行诅咒",
+})
 
-L = BigWigs:NewBossLocale("Trizivast", "zhCN")
-if L then
-	L.trizivast = "特里希瓦斯特"
-end
+BigWigsAPI.SetBossModuleLocale("Trizivast", {
+	trizivast = "特里希瓦斯特",
+})
 
-L = BigWigs:NewBossLocale("Hans and Greta", "zhCN")
-if L then
-	L.hans_and_greta = "汉斯和格雷塔"
-	L.hans = "汉斯"
-	L.greta = "格雷塔"
-end
+BigWigsAPI.SetBossModuleLocale("Hans and Greta", {
+	hans_and_greta = "汉斯和格雷塔",
+	hans = "汉斯",
+	greta = "格雷塔",
+})
 
-L = BigWigs:NewBossLocale("Goblins", "zhCN")
-if L then
-	L.goblins = "地精"
-	L.geenkle = "金科尔"
-	L.jank = "詹克"
-	L.gold_rustboot = "歌德·锈靴"
-end
+BigWigsAPI.SetBossModuleLocale("Goblins", {
+	goblins = "地精",
+	geenkle = "金科尔",
+	jank = "詹克",
+	gold_rustboot = "歌德·锈靴",
+})
 
-L = BigWigs:NewBossLocale("Harbinger of Sin", "zhCN")
-if L then
-	L.harbinger_of_sin = "罪业先驱"
-end
+BigWigsAPI.SetBossModuleLocale("Harbinger of Sin", {
+	harbinger_of_sin = "罪业先驱",
+})
 
-L = BigWigs:NewBossLocale("Kharon", "zhCN")
-if L then
-	L.kharon = "卡戎"
-end
+BigWigsAPI.SetBossModuleLocale("Kharon", {
+	kharon = "卡戎",
+})
 
-L = BigWigs:NewBossLocale("Unk'omon", "zhCN")
-if L then
-	L.unkomon = "昂克欧蒙"
-end
+BigWigsAPI.SetBossModuleLocale("Unk'omon", {
+	unkomon = "昂克欧蒙",
+})
 
-L = BigWigs:NewBossLocale("Dark Rider", "zhCN")
-if L then
-	L.dark_rider = "黑暗骑士"
-end
+BigWigsAPI.SetBossModuleLocale("Dark Rider", {
+	dark_rider = "黑暗骑士",
+})

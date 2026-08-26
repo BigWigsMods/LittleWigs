@@ -19,11 +19,10 @@ local addsLeft = 3
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.servant = "Summon Servant"
-	L.servant_desc = "Warn when a Servant of Siamat is summoned."
-end
+mod:SetDefaultLocale({
+	servant = "Summon Servant",
+	servant_desc = "Warn when a Servant of Siamat is summoned.",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

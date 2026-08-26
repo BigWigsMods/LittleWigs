@@ -1,21 +1,21 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Talon King Ikiss", 556, 543)
 if not mod then return end
 mod:RegisterEnableMob(18473)
 mod.engageId = 1902
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Locals
+--------------------------------------------------------------------------------
+-- Locals
 --
 
 local explosionWarnings = 1
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -47,8 +47,8 @@ function mod:OnEngage()
 	end
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:ArcaneExplosion(args)

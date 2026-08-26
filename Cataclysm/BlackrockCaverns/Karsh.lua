@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Karsh Steelbender", 645, 107)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(39698)
 mod.engageId = 1039
 mod.respawnTime = 30
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -25,8 +25,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED_DOSE", "SuperheatedQuicksilverArmorDose", 75846)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:QuicksilverArmor(args)

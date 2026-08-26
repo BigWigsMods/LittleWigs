@@ -20,10 +20,9 @@ local stage = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_trigger = "How dare you sully this holy place with your presence!"
-end
+local L = mod:SetDefaultLocale({
+	warmup_trigger = "How dare you sully this holy place with your presence!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

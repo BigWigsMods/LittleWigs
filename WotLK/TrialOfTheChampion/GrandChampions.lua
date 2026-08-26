@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Grand Champions", 650, 634)
@@ -18,8 +18,8 @@ mod:RegisterEnableMob(
 mod.engageId = 2022
 mod.respawnTime = 30
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -42,8 +42,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_PERIODIC_MISSED", "PoisonBottle", 67594)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:HexOfMendingApplied(args)

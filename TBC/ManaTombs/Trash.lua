@@ -16,13 +16,12 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.scavenger = "Ethereal Scavenger"
-	L.priest = "Ethereal Priest"
-	L.nexus_terror = "Nexus Terror"
-	L.theurgist = "Ethereal Theurgist"
-end
+local L = mod:SetDefaultLocale({
+	scavenger = "Ethereal Scavenger",
+	priest = "Ethereal Priest",
+	nexus_terror = "Nexus Terror",
+	theurgist = "Ethereal Theurgist",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

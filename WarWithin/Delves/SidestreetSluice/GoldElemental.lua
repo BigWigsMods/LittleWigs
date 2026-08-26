@@ -16,19 +16,15 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.gold_elemental = "Gold Elemental"
-	L.gold_shaman = "Gold Shaman"
-end
+local L = mod:SetDefaultLocale({
+	gold_elemental = "Gold Elemental",
+	gold_shaman = "Gold Shaman",
+})
+mod.displayName = L.gold_elemental
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.gold_elemental
-end
 
 function mod:GetOptions()
 	return {

@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Nalorakk", 568, 187)
@@ -8,18 +8,17 @@ mod:RegisterEnableMob(23576)
 mod.engageId = 1190
 mod.respawnTime = 30
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.troll_message = "Troll Form"
-	L.troll_trigger = "Make way for da Nalorakk!"
-end
+local L = mod:SetDefaultLocale({
+	troll_message = "Troll Form",
+	troll_trigger = "Make way for da Nalorakk!",
+})
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -49,8 +48,9 @@ function mod:OnEngage()
 	self:Bar("stages", 30, 7090, "ability_hunter_pet_bear") -- 7090 = Bear Form
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if not self:IsSecret(msg) and msg == L.troll_trigger then

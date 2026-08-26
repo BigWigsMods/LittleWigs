@@ -25,22 +25,21 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.depraved_houndmaster = "Depraved Houndmaster"
-	L.vicious_gargon = "Vicious Gargon"
-	L.loyal_stoneborn = "Loyal Stoneborn"
-	L.depraved_darkblade = "Depraved Darkblade"
-	L.depraved_obliterator = "Depraved Obliterator"
-	L.depraved_collector = "Depraved Collector"
-	L.stoneborn_slasher = "Stoneborn Slasher"
-	L.shard_of_halkias = "Shard of Halkias"
-	L.stoneborn_reaver = "Stoneborn Reaver"
-	L.stoneborn_eviscerator = "Stoneborn Eviscerator"
-	L.inquisitor_sigar = "Inquisitor Sigar"
+local L = mod:SetDefaultLocale({
+	depraved_houndmaster = "Depraved Houndmaster",
+	vicious_gargon = "Vicious Gargon",
+	loyal_stoneborn = "Loyal Stoneborn",
+	depraved_darkblade = "Depraved Darkblade",
+	depraved_obliterator = "Depraved Obliterator",
+	depraved_collector = "Depraved Collector",
+	stoneborn_slasher = "Stoneborn Slasher",
+	shard_of_halkias = "Shard of Halkias",
+	stoneborn_reaver = "Stoneborn Reaver",
+	stoneborn_eviscerator = "Stoneborn Eviscerator",
+	inquisitor_sigar = "Inquisitor Sigar",
 
-	L["329299_icon"] = "ability_rogue_feint"
-end
+	["329299_icon"] = "ability_rogue_feint",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

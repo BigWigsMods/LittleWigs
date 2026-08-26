@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -8,16 +8,15 @@ mod:RegisterEnableMob(26533)
 mod:SetEncounterID(mod:Classic() and 296 or 2005)
 --mod:SetRespawnTime(0) -- couldn't wipe, Arthas refuses to die
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_trigger = "We're going to finish this right now, Mal'Ganis. Just you... and me."
-end
+local L = mod:SetDefaultLocale({
+	warmup_trigger = "We're going to finish this right now, Mal'Ganis. Just you... and me.",
+})
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -37,7 +36,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "VampiricTouchRemoved", 52723)
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 

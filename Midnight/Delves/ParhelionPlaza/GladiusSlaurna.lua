@@ -11,18 +11,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.gladius_slaurna = "Gladius Slaurna"
-end
+local L = mod:SetDefaultLocale({
+	gladius_slaurna = "Gladius Slaurna",
+})
+mod.displayName = L.gladius_slaurna
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.gladius_slaurna
-end
 
 function mod:GetOptions()
 	return {

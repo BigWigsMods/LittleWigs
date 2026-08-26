@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Dalliah the Doomsayer", 552, 549)
 if not mod then return end
 mod:RegisterEnableMob(20885)
 mod.engageId = 1913
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization

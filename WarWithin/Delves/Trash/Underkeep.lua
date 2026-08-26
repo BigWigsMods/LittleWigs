@@ -18,21 +18,22 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.ascended_webfriar = "Ascended Webfriar"
-	L.deepwalker_guardian = "Deepwalker Guardian"
-	L.crazed_abomination = "Crazed Abomination"
-	L.web_marauder = "Web Marauder"
-end
+local L = mod:SetDefaultLocale({
+	ascended_webfriar = "Ascended Webfriar",
+	deepwalker_guardian = "Deepwalker Guardian",
+	crazed_abomination = "Crazed Abomination",
+	web_marauder = "Web Marauder",
+})
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(450714, CL.frontal_cone) -- Jagged Barbs (Frontal Cone)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self:SetSpellRename(450714, CL.frontal_cone) -- Jagged Barbs (Frontal Cone)
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

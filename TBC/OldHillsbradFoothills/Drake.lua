@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -6,20 +6,20 @@ local mod, CL = BigWigs:NewBoss("Lieutenant Drake", 560, 538)
 if not mod then return end
 mod:RegisterEnableMob(17848)
 mod.engageId = 1905
--- mod.respawnTime = 0 -- does not despawn on a wipe
+--mod.respawnTime = 0 -- does not despawn on a wipe
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- You there, fetch water quickly! Get these flames out before they spread to the rest of the keep! Hurry, damn you!
-	L.warmup_trigger = "fetch water"
-end
+	warmup_trigger = "fetch water",
+})
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -38,8 +38,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_MISSED", "Whirlwind", 31910)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
 function mod:CHAT_MSG_MONSTER_YELL(_, msg)
 	if not self:IsSecret(msg) and msg:find(L.warmup_trigger, nil, true) then

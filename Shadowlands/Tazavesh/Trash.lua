@@ -51,100 +51,109 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	------ Streets of Wonder ------
-	L.zophex_warmup_trigger = "Surrender... all... contraband..."
-	L.menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!"
-	L.menagerie_warmup_trigger2 = "Cartel Xy has a profitable venture. Hopefully this inclines them to aid our own."
-	L.mailroom_door_trigger = "A friend here may be of help in acquiring Zo's signature."
-	L.vendor_active_trigger = "Myza's Oasis. The most intoxicating establishment in Tazavesh. Gaining the owner's favor will secure Cartel Au's signature."
-	L.soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time."
-	L.portal_authority = "Tazavesh Portal Authority"
-	L.custom_on_portal_autotalk = CL.autotalk
-	L.custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs."
-	L.custom_on_portal_autotalk_icon = mod:GetMenuIcon("SAY")
-	L.mailroom_door = CL.door_open
-	L.mailroom_door_desc = "Show a bar indicating when the door to the mailroom will open."
-	L.mailroom_door_icon = "inv_misc_paperpackage01a"
-	L.vendor_active = "Vendor active"
-	L.vendor_active_desc = "Show a bar indicating when the vendor for the Trading Game will be active."
-	L.vendor_active_icon = "inv_misc_coin_04"
-	L.vendor_autopurchase = "Auto-purchase trading game item"
-	L.vendor_autopurchase_desc = "Automatically purchase the initial trading game item from the vendor."
-	L.vendor_autopurchase_icon = "inv_misc_coin_04"
-	L.vendor_autopurchase_message = "Purchased %s"
-	L.tradeable_goods = "Tradeable Goods"
-	L.tradeable_goods_desc = "Show a message indicating when tradeable goods have been picked up."
-	L.tradeable_goods_icon = "inv_crate_02"
-	L.trading_game = "Trading Game"
-	L.trading_game_desc = "Alerts with the right password during the Trading Game."
-	L.trading_game_icon = "achievement_dungeon_brokerdungeon"
-	L.custom_on_trading_game_autotalk = CL.autotalk
-	L.custom_on_trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed."
-	L.custom_on_trading_game_autotalk_icon = mod:GetMenuIcon("SAY")
-	L.password_triggers = {
-		["Ivory Shell"] = 53259,
-		["Sapphire Oasis"] = 53260,
-		["Jade Palm"] = 53261,
-		["Golden Sands"] = 53262,
-		["Amber Sunset"] = 53263,
-		["Emerald Ocean"] = 53264,
-		["Ruby Gem"] = 53265,
-		["Pewter Stone"] = 53266,
-		["Pale Flower"] = 53267,
-		["Crimson Knife"] = 53268
-	}
-	L.gatewarden_zomazz = "Gatewarden Zo'mazz"
-	L.customs_security = "Customs Security"
-	L.interrogation_specialist = "Interrogation Specialist"
-	L.portalmancer_zohonn = "Portalmancer Zo'honn"
-	L.armored_overseer = "Armored Overseer"
-	L.support_officer = "Support Officer"
-	L.tracker_zokorss = "Tracker Zo'korss"
-	L.ancient_core_hound = "Ancient Core Hound"
-	L.enraged_direhorn = "Enraged Direhorn"
-	L.frenzied_nightclaw = "Frenzied Nightclaw"
-	L.cartel_skulker = "Cartel Skulker"
-	L.cartel_wiseguy = "Cartel Wiseguy"
-	L.cartel_muscle = "Cartel Muscle"
-	L.cartel_smuggler = "Cartel Smuggler"
-	L.defective_sorter = "Defective Sorter"
-	L.overloaded_mailemental = "Overloaded Mailemental"
-	L.post_worker = "P.O.S.T. Worker"
-	L.smuggled_creature = "Smuggled Creature"
-	L.bazaar_overseer = "Bazaar Overseer"
-	L.market_peacekeeper = "Market Peacekeeper"
-	L.veteran_sparkcaster = "Veteran Sparkcaster"
-	L.commerce_enforcer = "Commerce Enforcer"
-	L.commander_zofar = "Commander Zo'far"
+	zophex_warmup_trigger = "Surrender... all... contraband...",
+	menagerie_warmup_trigger = "Now for the item you have all been awaiting! The allegedly demon-cursed Edge of Oblivion!",
+	menagerie_warmup_trigger2 = "Cartel Xy has a profitable venture. Hopefully this inclines them to aid our own.",
+	mailroom_door_trigger = "A friend here may be of help in acquiring Zo's signature.",
+	vendor_active_trigger = "Myza's Oasis. The most intoxicating establishment in Tazavesh. Gaining the owner's favor will secure Cartel Au's signature.",
+	soazmi_warmup_trigger = "Excuse our intrusion, So'leah. I hope we caught you at an inconvenient time.",
+	portal_authority = "Tazavesh Portal Authority",
+	custom_on_portal_autotalk = CL.autotalk,
+	custom_on_portal_autotalk_desc = "Instantly open portals back to the entrance when talking to Broker NPCs.",
+	custom_on_portal_autotalk_icon = mod:GetMenuIcon("SAY"),
+	mailroom_door = CL.door_open,
+	mailroom_door_desc = "Show a bar indicating when the door to the mailroom will open.",
+	mailroom_door_icon = "inv_misc_paperpackage01a",
+	vendor_active = "Vendor active",
+	vendor_active_desc = "Show a bar indicating when the vendor for the Trading Game will be active.",
+	vendor_active_icon = "inv_misc_coin_04",
+	vendor_autopurchase = "Auto-purchase trading game item",
+	vendor_autopurchase_desc = "Automatically purchase the initial trading game item from the vendor.",
+	vendor_autopurchase_icon = "inv_misc_coin_04",
+	vendor_autopurchase_message = "Purchased %s",
+	tradeable_goods = "Tradeable Goods",
+	tradeable_goods_desc = "Show a message indicating when tradeable goods have been picked up.",
+	tradeable_goods_icon = "inv_crate_02",
+	trading_game = "Trading Game",
+	trading_game_desc = "Alerts with the right password during the Trading Game.",
+	trading_game_icon = "achievement_dungeon_brokerdungeon",
+	custom_on_trading_game_autotalk = CL.autotalk,
+	custom_on_trading_game_autotalk_desc = "Instantly select the right password after the Trading Game has been completed.",
+	custom_on_trading_game_autotalk_icon = mod:GetMenuIcon("SAY"),
+	ivory_shell_trigger = "Ivory Shell",
+	sapphire_oasis_trigger = "Sapphire Oasis",
+	jade_palm_trigger = "Jade Palm",
+	golden_sands_trigger = "Golden Sands",
+	amber_sunset_trigger = "Amber Sunset",
+	emerald_ocean_trigger = "Emerald Ocean",
+	ruby_gem_trigger = "Ruby Gem",
+	pewter_stone_trigger = "Pewter Stone",
+	pale_flower_trigger = "Pale Flower",
+	crimson_knife_trigger = "Crimson Knife",
+	gatewarden_zomazz = "Gatewarden Zo'mazz",
+	customs_security = "Customs Security",
+	interrogation_specialist = "Interrogation Specialist",
+	portalmancer_zohonn = "Portalmancer Zo'honn",
+	armored_overseer = "Armored Overseer",
+	support_officer = "Support Officer",
+	tracker_zokorss = "Tracker Zo'korss",
+	ancient_core_hound = "Ancient Core Hound",
+	enraged_direhorn = "Enraged Direhorn",
+	frenzied_nightclaw = "Frenzied Nightclaw",
+	cartel_skulker = "Cartel Skulker",
+	cartel_wiseguy = "Cartel Wiseguy",
+	cartel_muscle = "Cartel Muscle",
+	cartel_smuggler = "Cartel Smuggler",
+	defective_sorter = "Defective Sorter",
+	overloaded_mailemental = "Overloaded Mailemental",
+	post_worker = "P.O.S.T. Worker",
+	smuggled_creature = "Smuggled Creature",
+	bazaar_overseer = "Bazaar Overseer",
+	market_peacekeeper = "Market Peacekeeper",
+	veteran_sparkcaster = "Veteran Sparkcaster",
+	commerce_enforcer = "Commerce Enforcer",
+	commander_zofar = "Commander Zo'far",
 
 	------ So'leah's Gambit ------
-	L.hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans."
-	L.portal_open = "Portal opens"
-	L.portal_open_desc = "Show a bar indicating when the portal to the next area will open."
-	L.portal_open_icon = "spell_arcane_portalironforge"
-	L.murkbrine_scalebinder = "Murkbrine Scalebinder"
-	L.murkbrine_fishmancer = "Murkbrine Fishmancer"
-	L.murkbrine_shellcrusher = "Murkbrine Shellcrusher"
-	L.coastwalker_goliath = "Coastwalker Goliath"
-	L.stormforged_guardian = "Stormforged Guardian"
-	L.burly_deckhand = "Burly Deckhand"
-	L.hourglass_tidesage = "Hourglass Tidesage"
-	L.corsair_officer = "Corsair Officer"
-	L.adorned_starseer = "Adorned Starseer"
-	L.focused_ritualist = "Focused Ritualist"
-	L.devoted_accomplice = "Devoted Accomplice"
+	hylbrande_warmup_trigger = "See how your wisdom fares against the might of the titans.",
+	portal_open = "Portal opens",
+	portal_open_desc = "Show a bar indicating when the portal to the next area will open.",
+	portal_open_icon = "spell_arcane_portalironforge",
+	murkbrine_scalebinder = "Murkbrine Scalebinder",
+	murkbrine_fishmancer = "Murkbrine Fishmancer",
+	murkbrine_shellcrusher = "Murkbrine Shellcrusher",
+	coastwalker_goliath = "Coastwalker Goliath",
+	stormforged_guardian = "Stormforged Guardian",
+	burly_deckhand = "Burly Deckhand",
+	hourglass_tidesage = "Hourglass Tidesage",
+	corsair_officer = "Corsair Officer",
+	adorned_starseer = "Adorned Starseer",
+	focused_ritualist = "Focused Ritualist",
+	devoted_accomplice = "Devoted Accomplice",
 
-	L["1244650_icon"] = 356260 -- Tidal Burst has no icon
-	L["1244650_desc"] = 356260 -- Tidal Burst has no description
-end
+	["1244650_icon"] = 356260, -- Tidal Burst has no icon
+	["1244650_desc"] = 356260, -- Tidal Burst has no description
+})
 
 --------------------------------------------------------------------------------
 -- Locals
 --
 
 local passwordId = nil
+local passwordTriggers = {
+	[L.ivory_shell_trigger] = 53259,
+	[L.sapphire_oasis_trigger] = 53260,
+	[L.jade_palm_trigger] = 53261,
+	[L.golden_sands_trigger] = 53262,
+	[L.amber_sunset_trigger] = 53263,
+	[L.emerald_ocean_trigger] = 53264,
+	[L.ruby_gem_trigger] = 53265,
+	[L.pewter_stone_trigger] = 53266,
+	[L.pale_flower_trigger] = 53267,
+	[L.crimson_knife_trigger] = 53268,
+}
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -559,9 +568,9 @@ end
 
 function mod:CHAT_MSG_MONSTER_SAY(event, msg)
 	if self:IsSecret(msg) then return end
-	if L.password_triggers[msg] then
+	if passwordTriggers[msg] then
 		-- Market Trading Game
-		passwordId = L.password_triggers[msg]
+		passwordId = passwordTriggers[msg]
 		if self:GetOption("trading_game") > 0 then
 			self:Message("trading_game", "green", msg, L.trading_game_icon)
 			self:PlaySound("trading_game", "info")

@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Daakara", 568, 191)
@@ -8,20 +8,19 @@ mod:RegisterEnableMob(23863)
 mod.engageId = 1194
 mod.respawnTime = 30
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L[42594] = "Bear Form" -- short form for "Essence of the Bear"
-	L[42607] = "Lynx Form"
-	L[42606] = "Eagle Form"
-	L[42608] = "Dragonhawk Form"
-end
+local L = mod:SetDefaultLocale({
+	[42594] = "Bear Form", -- short form for "Essence of the Bear"
+	[42607] = "Lynx Form",
+	[42606] = "Eagle Form",
+	[42608] = "Dragonhawk Form",
+})
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -47,8 +46,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "Forms", 42594, 42606, 42607, 42608) -- Bear, Eagle, Lynx, Dragonhawk
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 do

@@ -1,15 +1,15 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Grandmaster Vorpil", 555, 546)
 if not mod then return end
 mod:RegisterEnableMob(18732)
--- mod.engageId = 1911 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1911 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -36,8 +36,8 @@ function mod:OnEngage()
 	self:CDBar(-5267, 44) -- Draw Shadows
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:DrawShadows()

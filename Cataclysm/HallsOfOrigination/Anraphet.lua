@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Anraphet", 644, 126)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(39788)
 mod.engageId = 1075
 mod.respawnTime = 39 -- respawns after 30s but is unattackable for a while
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -40,8 +40,8 @@ function mod:OnEngage()
 	self:CDBar(75622, 30) -- Omega Stance
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:AlphaBeamsCast(args)

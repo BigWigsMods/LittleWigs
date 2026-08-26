@@ -28,10 +28,9 @@ local mobCollector = {}
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.spears_active = "Spear Launchers Active"
-end
+local L = mod:SetDefaultLocale({
+	spears_active = "Spear Launchers Active",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

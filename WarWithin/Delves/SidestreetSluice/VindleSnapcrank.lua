@@ -17,18 +17,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.vindle_snapcrank = "Vindle Snapcrank"
-end
+local L = mod:SetDefaultLocale({
+	vindle_snapcrank = "Vindle Snapcrank",
+})
+mod.displayName = L.vindle_snapcrank
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.vindle_snapcrank
-end
 
 function mod:GetOptions()
 	return {

@@ -19,23 +19,19 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.goblins = "Goblins"
-	--L.weeshald_rustboot = "Weeshald Rustboot"
-	--L.beengis = "Beengis"
-	L.geenkle = "Geenkle"
-	L.jank = "Jank"
-	L.gold_rustboot = "Gold Rustboot"
-end
+local L = mod:SetDefaultLocale({
+	goblins = "Goblins",
+	--weeshald_rustboot = "Weeshald Rustboot",
+	--beengis = "Beengis",
+	geenkle = "Geenkle",
+	jank = "Jank",
+	gold_rustboot = "Gold Rustboot",
+})
+mod.displayName = L.goblins
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.goblins
-end
 
 function mod:GetOptions()
 	return {

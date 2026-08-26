@@ -10,21 +10,20 @@ mod:SetTrashModule(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.prisoners_freed = "Prisoners Freed"
-	L.prisoners_freed_desc = "Show an alert when a prisoner has been freed."
-	L.prisoners_freed_icon = "achievement_character_troll_female"
-	L.custom_on_cooking_pot_autotalk = CL.autotalk
-	L.custom_on_cooking_pot_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Hearty Vilebranch Stew' buff.\n\n|T4659336:16|tHearty Vilebranch Stew\n{1269056}"
-	L.custom_on_cooking_pot_autotalk_icon = mod:GetMenuIcon("SAY")
-	L.custom_on_ritual_cauldron_autotalk = CL.autotalk
-	L.custom_on_ritual_cauldron_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Ritual Concoction' buff.\n\n|T236271:16|tRitual Concoction\n{1271300}"
-	L.custom_on_ritual_cauldron_autotalk_icon = mod:GetMenuIcon("SAY")
+local L = mod:SetDefaultLocale({
+	prisoners_freed = "Prisoners Freed",
+	prisoners_freed_desc = "Show an alert when a prisoner has been freed.",
+	prisoners_freed_icon = "achievement_character_troll_female",
+	custom_on_cooking_pot_autotalk = CL.autotalk,
+	custom_on_cooking_pot_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Hearty Vilebranch Stew' buff.\n\n|T4659336:16|tHearty Vilebranch Stew\n{1269056}",
+	custom_on_cooking_pot_autotalk_icon = mod:GetMenuIcon("SAY"),
+	custom_on_ritual_cauldron_autotalk = CL.autotalk,
+	custom_on_ritual_cauldron_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Ritual Concoction' buff.\n\n|T236271:16|tRitual Concoction\n{1271300}",
+	custom_on_ritual_cauldron_autotalk_icon = mod:GetMenuIcon("SAY"),
 
-	L.cooking_pot = "Cooking Pot"
-	L.ritual_cauldron = "Ritual Cauldron"
-end
+	cooking_pot = "Cooking Pot",
+	ritual_cauldron = "Ritual Cauldron",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -21,10 +21,10 @@ local chainsOfServitudeCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.slavemaster_ulrok = "Slavemaster Ul'rok"
-end
+local L = mod:SetDefaultLocale({
+	slavemaster_ulrok = "Slavemaster Ul'rok",
+})
+mod.displayName = L.slavemaster_ulrok
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -35,10 +35,6 @@ function mod:GetOptions()
 		298691, -- Chains of Servitude
 		298866, -- Lashing Tendrils
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.slavemaster_ulrok
 end
 
 function mod:OnBossEnable()

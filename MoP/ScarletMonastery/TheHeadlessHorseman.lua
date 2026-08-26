@@ -30,24 +30,20 @@ local insidiousCackleCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.the_headless_horseman = "The Headless Horseman"
-	L.custom_on_autotalk = CL.autotalk
-	L.custom_on_autotalk_desc = "Automatically accept the curses from the Wicker Men, and automatically start the encounter."
-	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
-	L.curses = 418990
-	L.curses_icon = 418990
-	L.curses_desc = "Notifies you when you recieve a curse from a Wicker Man."
-end
+local L = mod:SetDefaultLocale({
+	the_headless_horseman = "The Headless Horseman",
+	custom_on_autotalk = CL.autotalk,
+	custom_on_autotalk_desc = "Automatically accept the curses from the Wicker Men, and automatically start the encounter.",
+	custom_on_autotalk_icon = mod:GetMenuIcon("SAY"),
+	curses = 418990,
+	curses_icon = 418990,
+	curses_desc = "Notifies you when you recieve a curse from a Wicker Man.",
+})
+mod.displayName = L.the_headless_horseman
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.the_headless_horseman
-end
 
 function mod:GetOptions()
 	return {

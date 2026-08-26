@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Mage-Lord Urom", 578, 624)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(27655)
 mod:SetEncounterID(mod:Classic() and 532 or 2014)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -46,8 +46,8 @@ function mod:OnEngage()
 	end
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:TimeBomb(args)

@@ -6,8 +6,8 @@
 local mod, CL = BigWigs:NewBoss("Quagmirran", 547, 572)
 if not mod then return end
 mod:RegisterEnableMob(17942)
--- mod.engageId = 1940 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1940 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization

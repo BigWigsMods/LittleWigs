@@ -23,19 +23,20 @@ local nextStingingSwarm = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.under_lord_viktis = "Under-Lord Vik'tis"
-end
+local L = mod:SetDefaultLocale({
+	under_lord_viktis = "Under-Lord Vik'tis",
+})
+mod.displayName = L.under_lord_viktis
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(448634, CL.frontal_cone) -- Impale (Frontal Cone)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.under_lord_viktis
-	self:SetSpellRename(448634, CL.frontal_cone) -- Impale (Frontal Cone)
-end
 
 function mod:GetOptions()
 	return {

@@ -27,31 +27,30 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.weapons_stockpiles_pilfered = "Weapons Stockpiles Pilfered"
-	L.weapons_stockpiles_pilfered_desc = "Show an alert when a Weapons Stockpile has been pilfered."
-	L.weapons_stockpiles_pilfered_icon = "garrison_greenweapon"
+local L = mod:SetDefaultLocale({
+	weapons_stockpiles_pilfered = "Weapons Stockpiles Pilfered",
+	weapons_stockpiles_pilfered_desc = "Show an alert when a Weapons Stockpile has been pilfered.",
+	weapons_stockpiles_pilfered_icon = "garrison_greenweapon",
 
-	L.shreddinator_3000 = "Shreddinator 3000"
-	L.mechadrone_sniper = "Mechadrone Sniper"
-	L.loaderbot = "Loaderbot"
-	L.darkfuse_hyena = "Darkfuse Hyena"
-	L.darkfuse_demolitionist = "Darkfuse Demolitionist"
-	L.darkfuse_inspector = "Darkfuse Inspector"
-	L.darkfuse_bloodwarper = "Darkfuse Bloodwarper"
-	L.undercrawler = "Undercrawler"
-	L.venture_co_surveyor = "Venture Co. Surveyor"
-	L.venture_co_architect = "Venture Co. Architect"
-	L.venture_co_diver = "Venture Co. Diver"
-	L.disturbed_kelp = "Disturbed Kelp"
-	L.bomb_pile = "Bomb Pile"
-	L.bubbles = "Bubbles"
-	L.venture_co_electrician = "Venture Co. Electrician"
-	L.darkfuse_jumpstarter = "Darkfuse Jumpstarter"
+	shreddinator_3000 = "Shreddinator 3000",
+	mechadrone_sniper = "Mechadrone Sniper",
+	loaderbot = "Loaderbot",
+	darkfuse_hyena = "Darkfuse Hyena",
+	darkfuse_demolitionist = "Darkfuse Demolitionist",
+	darkfuse_inspector = "Darkfuse Inspector",
+	darkfuse_bloodwarper = "Darkfuse Bloodwarper",
+	undercrawler = "Undercrawler",
+	venture_co_surveyor = "Venture Co. Surveyor",
+	venture_co_architect = "Venture Co. Architect",
+	venture_co_diver = "Venture Co. Diver",
+	disturbed_kelp = "Disturbed Kelp",
+	bomb_pile = "Bomb Pile",
+	bubbles = "Bubbles",
+	venture_co_electrician = "Venture Co. Electrician",
+	darkfuse_jumpstarter = "Darkfuse Jumpstarter",
 
-	L.geezle_gigazap_warmup = "This project can't continue without the scientist behind it all. Put that big brain on ice!"
-end
+	geezle_gigazap_warmup = "This project can't continue without the scientist behind it all. Put that big brain on ice!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

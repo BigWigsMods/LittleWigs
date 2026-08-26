@@ -30,31 +30,32 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.nerubian_trash = "Nerubian Trash"
+local L = mod:SetDefaultLocale({
+	nerubian_trash = "Nerubian Trash",
 
-	L.nerubian_lord = "Nerubian Lord"
-	L.nerubian_darkcaster = "Nerubian Darkcaster"
-	L.nerubian_captain = "Nerubian Captain"
-	L.chittering_fearmonger = "Chittering Fearmonger"
-	L.skittering_swarmer = "Skittering Swarmer"
-	L.nerubian_webspinner = "Nerubian Webspinner"
-end
+	nerubian_lord = "Nerubian Lord",
+	nerubian_darkcaster = "Nerubian Darkcaster",
+	nerubian_captain = "Nerubian Captain",
+	chittering_fearmonger = "Chittering Fearmonger",
+	skittering_swarmer = "Skittering Swarmer",
+	nerubian_webspinner = "Nerubian Webspinner",
+})
+mod.displayName = L.nerubian_trash
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(450714, CL.frontal_cone) -- Jagged Barbs (Frontal Cone)
+mod:SetSpellRename(449318, CL.bomb) -- Shadows of Strife (Bomb)
+mod:SetSpellRename(450546, CL.shield) -- Webbed Aegis (Shield)
+mod:SetSpellRename(450509, CL.frontal_cone) -- Wide Swipe (Frontal Cone)
+mod:SetSpellRename(433410, CL.fear) -- Fearful Shriek (Fear)
+mod:SetSpellRename(450197, CL.charge) -- Skitter Charge (Charge)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.nerubian_trash
-	self:SetSpellRename(450714, CL.frontal_cone) -- Jagged Barbs (Frontal Cone)
-	self:SetSpellRename(449318, CL.bomb) -- Shadows of Strife (Bomb)
-	self:SetSpellRename(450546, CL.shield) -- Webbed Aegis (Shield)
-	self:SetSpellRename(450509, CL.frontal_cone) -- Wide Swipe (Frontal Cone)
-	self:SetSpellRename(433410, CL.fear) -- Fearful Shriek (Fear)
-	self:SetSpellRename(450197, CL.charge) -- Skitter Charge (Charge)
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

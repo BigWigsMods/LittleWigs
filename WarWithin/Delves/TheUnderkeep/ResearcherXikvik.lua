@@ -13,18 +13,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.researcher_xikvik = "Researcher Xik'vik"
-end
+local L = mod:SetDefaultLocale({
+	researcher_xikvik = "Researcher Xik'vik",
+})
+mod.displayName = L.researcher_xikvik
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.researcher_xikvik
-end
 
 function mod:GetOptions()
 	return {

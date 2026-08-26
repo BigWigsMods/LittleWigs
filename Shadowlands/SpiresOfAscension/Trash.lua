@@ -23,19 +23,18 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.etherdiver = "Etherdiver"
-	L.forsworn_castigator = "Forsworn Castigator"
-	L.forsworn_champion = "Forsworn Champion"
-	L.forsworn_goliath = "Forsworn Goliath"
-	L.forsworn_inquisitor = "Forsworn Inquisitor"
-	L.forsworn_mender = "Forsworn Mender"
-	L.forsworn_squad_leader = "Forsworn Squad-Leader"
-	L.forsworn_warden = "Forsworn Warden"
-	L.astronos = "Astronos"
-	L.lakesis = "Lakesis"
-end
+local L = mod:SetDefaultLocale({
+	etherdiver = "Etherdiver",
+	forsworn_castigator = "Forsworn Castigator",
+	forsworn_champion = "Forsworn Champion",
+	forsworn_goliath = "Forsworn Goliath",
+	forsworn_inquisitor = "Forsworn Inquisitor",
+	forsworn_mender = "Forsworn Mender",
+	forsworn_squad_leader = "Forsworn Squad-Leader",
+	forsworn_warden = "Forsworn Warden",
+	astronos = "Astronos",
+	lakesis = "Lakesis",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

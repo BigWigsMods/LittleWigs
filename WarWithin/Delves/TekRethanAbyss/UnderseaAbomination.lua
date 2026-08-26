@@ -13,21 +13,22 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.undersea_abomination = "Undersea Abomination"
-end
+local L = mod:SetDefaultLocale({
+	undersea_abomination = "Undersea Abomination",
+})
+mod.displayName = L.undersea_abomination
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(446300, CL.dodge) -- Deepsea Polyps (Dodge)
+mod:SetSpellRename(446405, CL.frontal_cone) -- Fungal Infection (Frontal Cone)
+mod:SetSpellRename(446230, CL.explosion) -- Repelling Blast (Explosion)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.undersea_abomination
-	self:SetSpellRename(446300, CL.dodge) -- Deepsea Polyps (Dodge)
-	self:SetSpellRename(446405, CL.frontal_cone) -- Fungal Infection (Frontal Cone)
-	self:SetSpellRename(446230, CL.explosion) -- Repelling Blast (Explosion)
-end
 
 function mod:GetOptions()
 	return {

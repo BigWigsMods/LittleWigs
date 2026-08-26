@@ -26,19 +26,18 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.gromkar_battlemaster = "Grom'kar Battlemaster"
-	L.gromkar_flameslinger = "Grom'kar Flameslinger"
-	L.gromkar_technician = "Grom'kar Technician"
-	L.siegemaster_olugar = "Siegemaster Olugar"
-	L.pitwarden_gwarnok = "Pitwarden Gwarnok"
-	L.ogron_laborer = "Ogron Laborer"
-	L.gromkar_chainmaster = "Grom'kar Chainmaster"
-	L.thunderlord_wrangler = "Thunderlord Wrangler"
-	L.rampaging_clefthoof = "Rampaging Clefthoof"
-	L.ironwing_flamespitter = "Ironwing Flamespitter"
-end
+local L = mod:SetDefaultLocale({
+	gromkar_battlemaster = "Grom'kar Battlemaster",
+	gromkar_flameslinger = "Grom'kar Flameslinger",
+	gromkar_technician = "Grom'kar Technician",
+	siegemaster_olugar = "Siegemaster Olugar",
+	pitwarden_gwarnok = "Pitwarden Gwarnok",
+	ogron_laborer = "Ogron Laborer",
+	gromkar_chainmaster = "Grom'kar Chainmaster",
+	thunderlord_wrangler = "Thunderlord Wrangler",
+	rampaging_clefthoof = "Rampaging Clefthoof",
+	ironwing_flamespitter = "Ironwing Flamespitter",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

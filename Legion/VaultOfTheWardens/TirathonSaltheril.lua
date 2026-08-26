@@ -11,10 +11,9 @@ mod:SetEncounterID(1815)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_trigger = "I will serve MY people, the exiled and the reviled."
-end
+local L = mod:SetDefaultLocale({
+	warmup_trigger = "I will serve MY people, the exiled and the reviled.",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

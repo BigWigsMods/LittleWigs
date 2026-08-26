@@ -11,18 +11,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.chiefarcanist_patram = "Chief-Arcanist Patram"
-end
+local L = mod:SetDefaultLocale({
+	chiefarcanist_patram = "Chief-Arcanist Patram",
+})
+mod.displayName = L.chiefarcanist_patram
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.chiefarcanist_patram
-end
 
 function mod:GetOptions()
 	return {

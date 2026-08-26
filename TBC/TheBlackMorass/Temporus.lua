@@ -6,7 +6,7 @@
 local mod, CL = BigWigs:NewBoss("Temporus", 269, 553)
 if not mod then return end
 mod:RegisterEnableMob(17880)
--- mod.engageId = 1921 -- TODO: check if wipes work fine
+--mod.engageId = 1921 -- TODO: check if wipes work fine
 
 --------------------------------------------------------------------------------
 -- Initialization

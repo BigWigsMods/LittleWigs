@@ -37,27 +37,26 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.rank_overseer = "Rank Overseer"
-	L.lowly_moleherd = "Lowly Moleherd"
-	L.royal_wicklighter = "Royal Wicklighter"
-	L.kobold_taskworker = "Kobold Taskworker"
-	L.wandering_candle = "Wandering Candle"
-	L.blazing_fiend = "Blazing Fiend"
-	L.sootsnout = "Sootsnout"
-	L.torchsnarl = "Torchsnarl"
-	L.skittering_darkness = "Skittering Darkness"
-	L.shuffling_horror = "Shuffling Horror"
-	L.corridor_creeper = "Corridor Creeper"
-	L.creaky_mine_cart = "Creaky Mine Cart"
+local L = mod:SetDefaultLocale({
+	rank_overseer = "Rank Overseer",
+	lowly_moleherd = "Lowly Moleherd",
+	royal_wicklighter = "Royal Wicklighter",
+	kobold_taskworker = "Kobold Taskworker",
+	wandering_candle = "Wandering Candle",
+	blazing_fiend = "Blazing Fiend",
+	sootsnout = "Sootsnout",
+	torchsnarl = "Torchsnarl",
+	skittering_darkness = "Skittering Darkness",
+	shuffling_horror = "Shuffling Horror",
+	corridor_creeper = "Corridor Creeper",
+	creaky_mine_cart = "Creaky Mine Cart",
 
-	L.minecart = "Mine Cart Minigame"
-	L.minecart_desc = 423374 -- Throw Dynamite
-	L.minecart_icon = 423374 -- Throw Dynamite
-	L.hits = "Hits"
-	L.minecart_over = "Winner: %s (%d hits)"
-end
+	minecart = "Mine Cart Minigame",
+	minecart_desc = 423374, -- Throw Dynamite
+	minecart_icon = 423374, -- Throw Dynamite
+	hits = "Hits",
+	minecart_over = "Winner: %s (%d hits)",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

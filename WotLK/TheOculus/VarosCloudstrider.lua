@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Varos Cloudstrider", 578, 623)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(27447)
 mod:SetEncounterID(mod:Classic() and 530 or 2015)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -36,8 +36,8 @@ function mod:OnEngage()
 	self:CDBar(-7442, self:Normal() and 22.2 or 9.8) -- Call Azure Ring Captain
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:AmplifyMagic(args)

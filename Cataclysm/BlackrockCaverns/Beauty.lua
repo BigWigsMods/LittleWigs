@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Beauty", 645, 108)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(39700)
 mod:SetEncounterID(1037)
 mod:SetRespawnTime(30)
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -31,8 +31,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "LavaDrool", 76628) -- this might be bugged, does not fire any _DAMAGE events but it's supposed to do damage
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:MagmaSpit(args)

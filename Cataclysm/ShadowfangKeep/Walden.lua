@@ -1,6 +1,6 @@
 
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Lord Walden", {33, 2849}, 99)
@@ -9,8 +9,8 @@ mod:RegisterEnableMob(46963)
 mod.engageId = 1073
 --mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Locals
+--------------------------------------------------------------------------------
+-- Locals
 --
 
 local coagulantCastEnds = 0
@@ -19,15 +19,14 @@ local coagulantCastEnds = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.coagulant = "%s: Move to dispel"
-	L.catalyst = "%s: Crit Buff"
-	L.toxin_healer_message = "%s: DoT on everyone"
-end
+local L = mod:SetDefaultLocale({
+	coagulant = "%s: Move to dispel",
+	catalyst = "%s: Crit Buff",
+	toxin_healer_message = "%s: DoT on everyone",
+})
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -62,8 +61,8 @@ function mod:OnEngage()
 	coagulantCastEnds = 0
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:IceShards(args)

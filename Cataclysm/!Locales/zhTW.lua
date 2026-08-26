@@ -1,145 +1,129 @@
 -- End Time
 
-local L = BigWigs:NewBossLocale("Echo of Baine", "zhTW")
-if not L then return end
-if L then
-	--L.totemDrop = "Totem dropped"
-	--L.totemThrow = "Totem thrown by %s"
-end
+BigWigsAPI.SetBossModuleLocale("Echo of Baine", {
+	--totemDrop = "Totem dropped",
+	--totemThrow = "Totem thrown by %s",
+})
 
 -- Grim Batol
 
-L = BigWigs:NewBossLocale("Erudax", "zhTW")
-if L then
-	--L.summon = "Summon Faceless Corruptor"
-	--L.summon_desc = "Warn when Erudax summons a Faceless Corruptor."
-	--L.summon_message = "Faceless Corruptor Summoned"
-	--L.summon_trigger = "summons a"
-end
+BigWigsAPI.SetBossModuleLocale("Erudax", {
+	--summon = "Summon Faceless Corruptor",
+	--summon_desc = "Warn when Erudax summons a Faceless Corruptor.",
+	--summon_message = "Faceless Corruptor Summoned",
+	--summon_trigger = "summons a",
+})
 
-L = BigWigs:NewBossLocale("Grim Batol Trash", "zhTW")
-if L then
-	--L.twilight_earthcaller = "Twilight Earthcaller"
-	--L.twilight_brute = "Twilight Brute"
-	--L.twilight_destroyer = "Twilight Destroyer"
-	--L.twilight_overseer = "Twilight Overseer"
-	--L.twilight_beguiler = "Twilight Beguiler"
-	--L.molten_giant = "Molten Giant"
-	--L.twilight_warlock = "Twilight Warlock"
-	--L.twilight_flamerender = "Twilight Flamerender"
-	--L.twilight_lavabender = "Twilight Lavabender"
-	--L.faceless_corruptor = "Faceless Corruptor"
-end
+BigWigsAPI.SetBossModuleLocale("Grim Batol Trash", {
+	--twilight_earthcaller = "Twilight Earthcaller",
+	--twilight_brute = "Twilight Brute",
+	--twilight_destroyer = "Twilight Destroyer",
+	--twilight_overseer = "Twilight Overseer",
+	--twilight_beguiler = "Twilight Beguiler",
+	--molten_giant = "Molten Giant",
+	--twilight_warlock = "Twilight Warlock",
+	--twilight_flamerender = "Twilight Flamerender",
+	--twilight_lavabender = "Twilight Lavabender",
+	--faceless_corruptor = "Faceless Corruptor",
+})
 
 -- Hour of Twilight
 
-L = BigWigs:NewBossLocale("The Hour of Twilight Trash", "zhTW")
-if L then
-	--L.custom_on_autotalk_desc = "Instantly select Thrall's gossip options."
-end
+BigWigsAPI.SetBossModuleLocale("The Hour of Twilight Trash", {
+	--custom_on_autotalk_desc = "Instantly select Thrall's gossip options.",
+})
 
 -- Lost City of the Tol'vir
 
-L = BigWigs:NewBossLocale("Siamat", "zhTW")
-if L then
-	L.servant = "召喚希亞梅特的僕從"
-	L.servant_desc = "當希亞梅特的僕從被召喚時發出警報。"
-end
+BigWigsAPI.SetBossModuleLocale("Siamat", {
+	servant = "召喚希亞梅特的僕從",
+	servant_desc = "當希亞梅特的僕從被召喚時發出警報。",
+})
 
 -- Shadowfang Keep
 
-L = BigWigs:NewBossLocale("Lord Walden", "zhTW")
-if L then
+BigWigsAPI.SetBossModuleLocale("Lord Walden", {
 	-- %s will be either "Toxic Coagulant" or "Toxic Catalyst"
-	--L.coagulant = "%s: Move to dispel"
-	--L.catalyst = "%s: Crit Buff"
-	--L.toxin_healer_message = "%s: DoT on everyone"
-end
+	--coagulant = "%s: Move to dispel",
+	--catalyst = "%s: Crit Buff",
+	--toxin_healer_message = "%s: DoT on everyone",
+})
 
 -- The Stonecore
 
-L = BigWigs:NewBossLocale("Corborus", "zhTW")
-if L then
-	L.burrow = "鑽地/浮現"
-	L.burrow_desc = "當寇伯拉斯鑽地或浮現時發出警報。"
-	L.burrow_message = "寇伯拉斯鑽地"
-	L.burrow_warning = "5秒內鑽地！"
-	L.emerge_message = "寇伯拉斯浮現！"
-	L.emerge_warning = "5秒內浮現！"
-end
+BigWigsAPI.SetBossModuleLocale("Corborus", {
+	burrow = "鑽地/浮現",
+	burrow_desc = "當寇伯拉斯鑽地或浮現時發出警報。",
+	burrow_message = "寇伯拉斯鑽地",
+	burrow_warning = "5秒內鑽地！",
+	emerge_message = "寇伯拉斯浮現！",
+	emerge_warning = "5秒內浮現！",
+})
 
 -- Throne of the Tides
 
-L = BigWigs:NewBossLocale("Throne of the Tides Trash", "zhTW")
-if L then
-	L.nazjar_oracle = "納茲賈爾神諭者"
-	L.vicious_snap_dragon = "兇惡嚙龍"
-	L.nazjar_sentinel = "納茲賈爾哨兵"
-	L.nazjar_ravager = "納茲賈爾掠奪者"
-	L.nazjar_tempest_witch = "納茲賈爾風暴女巫"
-	L.faceless_seer = "無面先知"
-	L.faceless_watcher = "無面看守者"
-	L.tainted_sentry = "被感染的哨衛"
+BigWigsAPI.SetBossModuleLocale("Throne of the Tides Trash", {
+	nazjar_oracle = "納茲賈爾神諭者",
+	vicious_snap_dragon = "兇惡嚙龍",
+	nazjar_sentinel = "納茲賈爾哨兵",
+	nazjar_ravager = "納茲賈爾掠奪者",
+	nazjar_tempest_witch = "納茲賈爾風暴女巫",
+	faceless_seer = "無面先知",
+	faceless_watcher = "無面看守者",
+	tainted_sentry = "被感染的哨衛",
 
-	L.ozumat_warmup_trigger = "那頭怪物回來了!不能讓牠污染我的水!"
-end
+	ozumat_warmup_trigger = "那頭怪物回來了!不能讓牠污染我的水!",
+})
 
-L = BigWigs:NewBossLocale("Lady Naz'jar", "zhTW")
-if L then
-	L.high_tide_trigger1 = "武裝吧，手下們!從冰冷的深海竄起!"
-	L.high_tide_trigger2 = "消滅這些入侵讓他們被渾沌黑暗吞噬!"
-end
+BigWigsAPI.SetBossModuleLocale("Lady Naz'jar", {
+	high_tide_trigger1 = "武裝吧，手下們!從冰冷的深海竄起!",
+	high_tide_trigger2 = "消滅這些入侵讓他們被渾沌黑暗吞噬!",
+})
 
 -- The Vortex Pinnacle
 
-L = BigWigs:NewBossLocale("The Vortex Pinnacle Trash", "zhTW")
-if L then
-	L.armored_mistral = "裝甲凜風元素"
-	L.gust_soldier = "狂風士兵"
-	L.wild_vortex = "狂野漩渦"
-	L.lurking_tempest = "潛伏的暴風元素"
-	L.cloud_prince = "雲霧親王"
-	L.turbulent_squall = "騷亂的暴風"
-	L.empyrean_assassin = "蒼穹刺客"
-	L.young_storm_dragon = "小風暴龍"
-	L.executor_of_the_caliph = "卡利夫執行官"
-	L.temple_adept = "神廟專家"
-	L.servant_of_asaad = "亞沙德的僕從"
-	L.minister_of_air = "風之司祭"
-end
+BigWigsAPI.SetBossModuleLocale("The Vortex Pinnacle Trash", {
+	armored_mistral = "裝甲凜風元素",
+	gust_soldier = "狂風士兵",
+	wild_vortex = "狂野漩渦",
+	lurking_tempest = "潛伏的暴風元素",
+	cloud_prince = "雲霧親王",
+	turbulent_squall = "騷亂的暴風",
+	empyrean_assassin = "蒼穹刺客",
+	young_storm_dragon = "小風暴龍",
+	executor_of_the_caliph = "卡利夫執行官",
+	temple_adept = "神廟專家",
+	servant_of_asaad = "亞沙德的僕從",
+	minister_of_air = "風之司祭",
+})
 
 -- Well of Eternity
 
-L = BigWigs:NewBossLocale("Well Of Eternity Trash", "zhTW")
-if L then
-	--L.custom_on_autotalk_desc = "Instantly select Illidan's gossip option."
-end
+BigWigsAPI.SetBossModuleLocale("Well Of Eternity Trash", {
+	--custom_on_autotalk_desc = "Instantly select Illidan's gossip option.",
+})
 
 -- Zul'Aman
 
-L = BigWigs:NewBossLocale("Daakara", "zhTW")
-if L then
-	--L[42594] = "Bear Form" -- short form for "Essence of the Bear"
-	--L[42607] = "Lynx Form"
-	--L[42606] = "Eagle Form"
-	--L[42608] = "Dragonhawk Form"
-end
+BigWigsAPI.SetBossModuleLocale("Daakara", {
+	--[42594] = "Bear Form", -- short form for "Essence of the Bear"
+	--[42607] = "Lynx Form",
+	--[42606] = "Eagle Form",
+	--[42608] = "Dragonhawk Form",
+})
 
-L = BigWigs:NewBossLocale("Halazzi", "zhTW")
-if L then
-	--L.spirit_message = "Spirit Phase"
-	--L.normal_message = "Normal Phase"
-end
+BigWigsAPI.SetBossModuleLocale("Halazzi", {
+	--spirit_message = "Spirit Phase",
+	--normal_message = "Normal Phase",
+})
 
-L = BigWigs:NewBossLocale("Nalorakk", "zhTW")
-if L then
-	--L.troll_message = "Troll Form"
-	--L.troll_trigger = "Make way for da Nalorakk!"
-end
+BigWigsAPI.SetBossModuleLocale("Nalorakk", {
+	--troll_message = "Troll Form",
+	--troll_trigger = "Make way for da Nalorakk!",
+})
 
 -- Zul'Gurub
 
-L = BigWigs:NewBossLocale("Jin'do the Godbreaker", "zhTW")
-if L then
-	--L.barrier_down_message = "Barrier down, %d remaining" -- short name for "Brittle Barrier" (97417)
-end
+BigWigsAPI.SetBossModuleLocale("Jin'do the Godbreaker", {
+	--barrier_down_message = "Barrier down, %d remaining", -- short name for "Brittle Barrier" (97417)
+})

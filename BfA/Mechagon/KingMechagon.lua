@@ -22,16 +22,15 @@ local castingMagnetoArm = false
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.hardmode = 292750 -- H.A.R.D.M.O.D.E.
-	L.hardmode_desc = "Warning for when the Annihilo-tron 5000 starts displaying the button order."
-	L.hardmode_icon = "inv_misc_bomb_03"
+local L = mod:SetDefaultLocale({
+	hardmode = 292750, -- H.A.R.D.M.O.D.E.
+	hardmode_desc = "Warning for when the Annihilo-tron 5000 starts displaying the button order.",
+	hardmode_icon = "inv_misc_bomb_03",
 
-	L.button = "Button"
-	L.button_desc = "Show a warning when someone clicks a button."
-	L.button_icon = 275549 -- Big Red Button
-end
+	button = "Button",
+	button_desc = "Show a warning when someone clicks a button.",
+	button_icon = 275549, -- Big Red Button
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

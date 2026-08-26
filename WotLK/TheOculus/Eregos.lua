@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Ley-Guardian Eregos", 578, 625)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(27656)
 mod:SetEncounterID(mod:Classic() and 534 or 2013)
 mod:SetRespawnTime(30)
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -27,8 +27,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "PlanarShift", 51162)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:EnragedAssault(args)

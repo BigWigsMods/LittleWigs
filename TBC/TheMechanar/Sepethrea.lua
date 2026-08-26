@@ -5,8 +5,8 @@
 local mod, CL = BigWigs:NewBoss("Nethermancer Sepethrea", 554, 564)
 if not mod then return end
 mod:RegisterEnableMob(19221)
--- mod.engageId = 1930 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1930 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -19,12 +19,11 @@ local mobsFound = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.fixate = CL.fixate
-	L.fixate_desc = "Causes the caster to fixate on a random target."
-	L.fixate_icon = "spell_shadow_charm"
-end
+local L = mod:SetDefaultLocale({
+	fixate = CL.fixate,
+	fixate_desc = "Causes the caster to fixate on a random target.",
+	fixate_icon = "spell_shadow_charm",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

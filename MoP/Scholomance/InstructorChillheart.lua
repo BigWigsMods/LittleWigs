@@ -13,12 +13,11 @@ mod:SetStage(1)
 -- Locales
 --
 
-local L = mod:GetLocale()
-if L then
-	L["111209_desc"] = -5515 -- Frigid Grasp
-	L["111441_icon"] = "inv_misc_urn_01"
-	L["111441_desc"] = -5516 -- Stage Two: Second Lesson
-end
+local L = mod:SetDefaultLocale({
+	["111209_desc"] = -5515, -- Frigid Grasp
+	["111441_icon"] = "inv_misc_urn_01",
+	["111441_desc"] = -5516, -- Stage Two: Second Lesson
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

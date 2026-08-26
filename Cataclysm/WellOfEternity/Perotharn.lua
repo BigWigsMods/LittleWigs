@@ -5,17 +5,17 @@
 local mod, CL = BigWigs:NewBoss("Peroth'arn", 939, 290)
 if not mod then return end
 mod:RegisterEnableMob(55085)
--- mod.engageId = 1272 -- doesn't fire ENCOUNTER_END on a wipe
+--mod.engageId = 1272 -- doesn't fire ENCOUNTER_END on a wipe
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.eyes, L.eyes_desc = -4092, -4092
-	L.eyes_icon = "inv_misc_eye_04"
-end
+local L = mod:SetDefaultLocale({
+	eyes = -4092,
+	eyes_desc = -4092,
+	eyes_icon = "inv_misc_eye_04",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

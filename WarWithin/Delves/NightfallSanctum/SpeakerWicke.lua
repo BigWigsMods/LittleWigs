@@ -17,23 +17,24 @@ mod:SetStage(1)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.speaker_wicke = "Speaker Wicke"
-	L.reformed_fury = "Reformed Fury"
-	L.warmup_icon = "ability_rogue_nightblade"
-end
+local L = mod:SetDefaultLocale({
+	speaker_wicke = "Speaker Wicke",
+	reformed_fury = "Reformed Fury",
+	warmup_icon = "ability_rogue_nightblade",
+})
+mod.displayName = L.speaker_wicke
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(443837, CL.frontal_cone) -- Shadow Sweep (Frontal Cone)
+mod:SetSpellRename(444408, CL.dodge) -- Speaker's Wrath (Dodge)
+mod:SetSpellRename(434281, CL.explosion) -- Echo of Renilash (Explosion)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.speaker_wicke
-	self:SetSpellRename(443837, CL.frontal_cone) -- Shadow Sweep (Frontal Cone)
-	self:SetSpellRename(444408, CL.dodge) -- Speaker's Wrath (Dodge)
-	self:SetSpellRename(434281, CL.explosion) -- Echo of Renilash (Explosion)
-end
 
 function mod:GetOptions()
 	return {

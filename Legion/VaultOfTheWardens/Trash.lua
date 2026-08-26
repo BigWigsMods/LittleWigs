@@ -26,16 +26,15 @@ local tormentOnMe = false
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.infester = "Felsworn Infester"
-	L.myrmidon = "Felsworn Myrmidon"
-	L.fury = "Fel-Infused Fury"
-	L.mother = "Foul Mother"
-	L.illianna = "Blade Dancer Illianna"
-	L.mendacius = "Dreadlord Mendacius"
-	L.grimhorn = "Grimhorn the Enslaver"
-end
+local L = mod:SetDefaultLocale({
+	infester = "Felsworn Infester",
+	myrmidon = "Felsworn Myrmidon",
+	fury = "Fel-Infused Fury",
+	mother = "Foul Mother",
+	illianna = "Blade Dancer Illianna",
+	mendacius = "Dreadlord Mendacius",
+	grimhorn = "Grimhorn the Enslaver",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

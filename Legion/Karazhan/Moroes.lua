@@ -20,12 +20,11 @@ mod:SetRespawnTime(15)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.cc = "Crowd Control"
-	L.cc_desc = "Timers and alerts for crowd control on the dinner guests."
-	L.cc_icon = "ability_hunter_traplauncher"
-end
+mod:SetDefaultLocale({
+	cc = "Crowd Control",
+	cc_desc = "Timers and alerts for crowd control on the dinner guests.",
+	cc_icon = "ability_hunter_traplauncher",
+})
 
 --------------------------------------------------------------------------------
 -- Locals

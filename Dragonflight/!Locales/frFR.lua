@@ -1,260 +1,247 @@
 -- Algeth'ar Academy
 
-local L = BigWigs:NewBossLocale("Algeth'ar Academy Trash", "frFR")
-if L then
-	L.custom_on_recruiter_autotalk_desc = "S'engage automatiquement en parlant à un recruteur de Vol draconique pour recevoir un buff."
-	L.critical_strike = "Coup critique"
-	L.haste = "Hâte"
-	L.mastery = "Maîtrise"
-	L.versatility = "Polyvalence"
-	L.healing_taken = "Soins reçus"
+BigWigsAPI.SetBossModuleLocale("Algeth'ar Academy Trash", {
+	custom_on_recruiter_autotalk_desc = "S'engage automatiquement en parlant à un recruteur de Vol draconique pour recevoir un buff.",
+	critical_strike = "Coup critique",
+	haste = "Hâte",
+	mastery = "Maîtrise",
+	versatility = "Polyvalence",
+	healing_taken = "Soins reçus",
 
-	L.vexamus_warmup_trigger = "créé un puissant assemblage nommé Vexamus, qui a vite semé le chaos !"
-	L.overgrown_ancient_warmup_trigger = "La concentration de magie est trop élevée !"
-	L.crawth_warmup_trigger = "Au moins, nous savons que ça fonctionne. Attention à vous."
+	vexamus_warmup_trigger = "créé un puissant assemblage nommé Vexamus, qui a vite semé le chaos !",
+	overgrown_ancient_warmup_trigger = "La concentration de magie est trop élevée !",
+	crawth_warmup_trigger = "Au moins, nous savons que ça fonctionne. Attention à vous.",
 
-	L.corrupted_manafiend = "Manafiel corrompu"
-	L.spellbound_battleaxe = "Hache d’armes envoûtée"
-	L.spellbound_scepter = "Sceptre envoûté"
-	L.arcane_ravager = "Ravageur des arcanes"
-	L.unruly_textbook = "Manuel turbulent"
-	L.guardian_sentry = "Factionnaire gardien"
-	L.alpha_eagle = "Aigle alpha"
-	L.vile_lasher = "Flagellant ignoble"
-	L.algethar_echoknight = "Echo-chevalière d'Algeth'ar"
-	L.spectral_invoker = "Invocatrice spectrale"
-	L.ethereal_restorer = "Restaurateur éthéré"
-end
+	corrupted_manafiend = "Manafiel corrompu",
+	spellbound_battleaxe = "Hache d’armes envoûtée",
+	spellbound_scepter = "Sceptre envoûté",
+	arcane_ravager = "Ravageur des arcanes",
+	unruly_textbook = "Manuel turbulent",
+	guardian_sentry = "Factionnaire gardien",
+	alpha_eagle = "Aigle alpha",
+	vile_lasher = "Flagellant ignoble",
+	algethar_echoknight = "Echo-chevalière d'Algeth'ar",
+	spectral_invoker = "Invocatrice spectrale",
+	ethereal_restorer = "Restaurateur éthéré",
+})
 
 -- Brackenhide Hollow
 
-L = BigWigs:NewBossLocale("Brackenhide Hollow Trash", "frFR")
-if L then
-	L.custom_on_cauldron_autotalk_desc = "[Alchimie] Désintoxifie instantanément les chaudrons de putréfaction pour une amélioration purifiant les maladies."
-	L.captive_tuskarr_freed = "Captif Tuskarr libéré"
-	L.captive_tuskarr_freed_desc = "Affiche une alerte lorsqu'un Captif Tuskarr est libéré."
+BigWigsAPI.SetBossModuleLocale("Brackenhide Hollow Trash", {
+	custom_on_cauldron_autotalk_desc = "[Alchimie] Désintoxifie instantanément les chaudrons de putréfaction pour une amélioration purifiant les maladies.",
+	captive_tuskarr_freed = "Captif Tuskarr libéré",
+	captive_tuskarr_freed_desc = "Affiche une alerte lorsqu'un Captif Tuskarr est libéré.",
 
-	L.decaying_cauldron = "Chaudron de putréfaction"
-	L.captive_tuskarr = "Rohart captif"
-	L.decay_speaker = "Parle-putréfaction"
-	L.claw_fighter = "Combattant griffu"
-	L.bonebolt_hunter = "Chasseur flèche-d'os"
-	L.bracken_warscourge = "Fléau-de-guerre des fougères"
-	L.brackenhide_shaper = "Façonneuse fougerobe"
-	L.fishface = "Face-de-Rascasse"
-	L.rotting_creek = "Crique pourrissante"
-	L.decayed_elder = "Ancien putréfié"
-	L.wilted_oak = "Chêne flétri"
-	L.fetid_rotsinger = "Chante-pourriture fétide"
-	L.decay_totem = "Totem de putréfaction"
-	L.monstrous_decay = "Putréfaction monstrueuse"
-	L.decaying_slime = "Gelée putréfiée"
-	L.infected_bear = "Ours infecté"
-	L.stinkbreath = "Pudubek"
-	L.rageclaw = "Grifferage"
-	L.rotbow_ranger = "Traqueur arc-putride"
-	L.skulking_gutstabber = "Tranche-tripes en maraude"
-	L.fleshripper_vulture = "Vautour déchire-chair"
-	L.filth_caller = "Invoque-pourriture"
-	L.vile_rothexer = "Ignoble maléficieuse putréfiée"
-end
+	decaying_cauldron = "Chaudron de putréfaction",
+	captive_tuskarr = "Rohart captif",
+	decay_speaker = "Parle-putréfaction",
+	claw_fighter = "Combattant griffu",
+	bonebolt_hunter = "Chasseur flèche-d'os",
+	bracken_warscourge = "Fléau-de-guerre des fougères",
+	brackenhide_shaper = "Façonneuse fougerobe",
+	fishface = "Face-de-Rascasse",
+	rotting_creek = "Crique pourrissante",
+	decayed_elder = "Ancien putréfié",
+	wilted_oak = "Chêne flétri",
+	fetid_rotsinger = "Chante-pourriture fétide",
+	decay_totem = "Totem de putréfaction",
+	monstrous_decay = "Putréfaction monstrueuse",
+	decaying_slime = "Gelée putréfiée",
+	infected_bear = "Ours infecté",
+	stinkbreath = "Pudubek",
+	rageclaw = "Grifferage",
+	rotbow_ranger = "Traqueur arc-putride",
+	skulking_gutstabber = "Tranche-tripes en maraude",
+	fleshripper_vulture = "Vautour déchire-chair",
+	filth_caller = "Invoque-pourriture",
+	vile_rothexer = "Ignoble maléficieuse putréfiée",
+})
 
 -- Dawn of the Infinite
 
-L = BigWigs:NewBossLocale("Dawn of the Infinite Trash", "frFR")
-if L then
+BigWigsAPI.SetBossModuleLocale("Dawn of the Infinite Trash", {
 	------ Galakrond's Fall ------
-	L.infinite_chronoweaver = "Chrono-tisseuse de l'Infini"
-	L.infinite_timeslicer = "Tranchetemps de l'Infini"
-	L.epoch_ripper = "Eventreur d'époques"
-	L.coalesced_time = "Temps amalgamé"
-	L.interval = "Intervalle"
-	L.timestream_leech = "Sangsue du flux temporel"
-	L.timestream_anomaly = "Anomalie du flux temporel"
-	L.infinite_infiltrator = "Infiltrateur de l'Infini"
-	L.risen_dragon = "Dragon ressuscité"
-	L.iridikrons_creation = "Création d'Iridikron"
+	infinite_chronoweaver = "Chrono-tisseuse de l'Infini",
+	infinite_timeslicer = "Tranchetemps de l'Infini",
+	epoch_ripper = "Eventreur d'époques",
+	coalesced_time = "Temps amalgamé",
+	interval = "Intervalle",
+	timestream_leech = "Sangsue du flux temporel",
+	timestream_anomaly = "Anomalie du flux temporel",
+	infinite_infiltrator = "Infiltrateur de l'Infini",
+	risen_dragon = "Dragon ressuscité",
+	iridikrons_creation = "Création d'Iridikron",
 
-	--L.iridikron_warmup_trigger = "So the titans' puppets have come to face me."
+	--iridikron_warmup_trigger = "So the titans' puppets have come to face me.",
 
 	------ Murozond's Rise ------
-	L.infinite_twilight_magus = "Maga du crépuscule de l'Infini"
-	L.valow = "Valow, gardien lige-du-temps"
-	L.spurlok = "Spurlok, sentinelle lige-du-temps"
-	L.lerai = "Lerai, vierge lige-du-temps"
-	L.timeline_marauder = "Maraudeuse des lignes temporelles"
-	L.infinite_saboteur = "Saboteur infini"
-	L.infinite_riftmage = "Mage de faille infini"
-	L.timelost_waveshaper = "Sculpte-vagues perdu dans le temps"
-	L.timelost_aerobot = "Aérobot perdu dans le temps"
-	L.chronaxie = "Chronaxie"
-	L.horde_destroyer = "Destructeur de la Horde"
-	L.alliance_destroyer = "Destructeur de l'Alliance"
-	L.horde_farseer = "Long-voyant de la Horde"
-	L.paladin_of_the_silver_hand = "Paladin de la Main d'argent."
-	L.horde_raider_alliance_knight = "Chevaucheur de la Horde / Chevalier de l'Alliance"
-	L.infinite_timebender = "Courbe-temps de l'Infini"
+	infinite_twilight_magus = "Maga du crépuscule de l'Infini",
+	valow = "Valow, gardien lige-du-temps",
+	spurlok = "Spurlok, sentinelle lige-du-temps",
+	lerai = "Lerai, vierge lige-du-temps",
+	timeline_marauder = "Maraudeuse des lignes temporelles",
+	infinite_saboteur = "Saboteur infini",
+	infinite_riftmage = "Mage de faille infini",
+	timelost_waveshaper = "Sculpte-vagues perdu dans le temps",
+	timelost_aerobot = "Aérobot perdu dans le temps",
+	chronaxie = "Chronaxie",
+	horde_destroyer = "Destructeur de la Horde",
+	alliance_destroyer = "Destructeur de l'Alliance",
+	horde_farseer = "Long-voyant de la Horde",
+	paladin_of_the_silver_hand = "Paladin de la Main d'argent.",
+	horde_raider_alliance_knight = "Chevaucheur de la Horde / Chevalier de l'Alliance",
+	infinite_timebender = "Courbe-temps de l'Infini",
 
-	L.custom_on_rift_autotalk_desc = "Canalise automatiquement pour ouvrir la faille temporelle."
-	L.rift_opened = "Faille temporelle ouverte"
-	L.rift_stability = "Stabilité de la faille"
-	L.rift_stability_desc = "Affiche une alerte lorsque la faille temporelle a été ouverte."
+	custom_on_rift_autotalk_desc = "Canalise automatiquement pour ouvrir la faille temporelle.",
+	rift_opened = "Faille temporelle ouverte",
+	rift_stability = "Stabilité de la faille",
+	rift_stability_desc = "Affiche une alerte lorsque la faille temporelle a été ouverte.",
 
-	--L.manifested_timeways_warmup_trigger = "Even the Aspect of Time cannot be allowed to disrupt the timeways!"
-end
+	--manifested_timeways_warmup_trigger = "Even the Aspect of Time cannot be allowed to disrupt the timeways!",
+})
 
 -- Halls of Infusion
 
-L = BigWigs:NewBossLocale("Halls of Infusion Trash", "frFR")
-if L then
-	L.custom_on_autotalk_desc = "Choisit automatiquement les options de dialogue pour avoir les améliorations de métiers."
+BigWigsAPI.SetBossModuleLocale("Halls of Infusion Trash", {
+	custom_on_autotalk_desc = "Choisit automatiquement les options de dialogue pour avoir les améliorations de métiers.",
 
-	L.primalist_ravager = "Ravageuse primaliste"
-	L.primalist_geomancer = "Géomancien primaliste"
-	L.containment_apparatus = "Appareil de confinement"
-	L.refti_defender = "Défenseur refti"
-	L.dazzling_dragonfly = "Libellule éblouissante"
-	L.curious_swoglet = "Bufflouille curieuse"
-	L.primalist_shocktrooper = "Troupier de choc primaliste"
-	L.flamecaller_aymi = "Mande-flammes Aymi"
-	L.squallbringer_cyraz = "Portegrain Cyraz"
-	L.primalist_earthshaker = "Tremble-terre primaliste"
-	L.primalist_galesinger = "Chante-rafale primaliste"
-	L.primalist_icecaller = "Mande-glace primaliste"
-	L.gusting_protodragon = "Proto-dragon de vent"
-	L.glacial_protodragon = "Proto-dragon glaciaire"
-	L.subterranean_protodragon = "Proto-dragon des profondeurs"
-	L.aqua_rager = "Enragé aquatique"
-	L.infuser_sariya = "Imprégnatrice Sariya"
-end
+	primalist_ravager = "Ravageuse primaliste",
+	primalist_geomancer = "Géomancien primaliste",
+	containment_apparatus = "Appareil de confinement",
+	refti_defender = "Défenseur refti",
+	dazzling_dragonfly = "Libellule éblouissante",
+	curious_swoglet = "Bufflouille curieuse",
+	primalist_shocktrooper = "Troupier de choc primaliste",
+	flamecaller_aymi = "Mande-flammes Aymi",
+	squallbringer_cyraz = "Portegrain Cyraz",
+	primalist_earthshaker = "Tremble-terre primaliste",
+	primalist_galesinger = "Chante-rafale primaliste",
+	primalist_icecaller = "Mande-glace primaliste",
+	gusting_protodragon = "Proto-dragon de vent",
+	glacial_protodragon = "Proto-dragon glaciaire",
+	subterranean_protodragon = "Proto-dragon des profondeurs",
+	aqua_rager = "Enragé aquatique",
+	infuser_sariya = "Imprégnatrice Sariya",
+})
 
 -- Neltharus
 
-L = BigWigs:NewBossLocale("Neltharus Trash", "frFR")
-if L then
-	L.custom_on_autotalk_desc = "Choisit automatiquement les options de dialogue pour avoir les améliorations de métiers."
+BigWigsAPI.SetBossModuleLocale("Neltharus Trash", {
+	custom_on_autotalk_desc = "Choisit automatiquement les options de dialogue pour avoir les améliorations de métiers.",
 
-	L.burning_chain = "Chaîne ardente"
-	L.qalashi_warden = "Gardien qalashi"
-	L.qalashi_hunter = "Chasseur qalashi"
-	L.overseer_lahar = "Surveillant Lahar"
-	L.qalashi_trainee = "Recrue qalashi"
-	L.qalashi_bonetender = "Désosseur qalashi"
-	L.qalashi_irontorch = "Flambe-fer qalashi"
-	L.qalashi_bonesplitter = "Craque-les-os qalashi"
-	L.qalashi_lavabearer = "Porte-lave qalashi"
-	L.irontorch_commander = "Commandant des flambe-fer"
-	L.qalashi_blacksmith = "Forgeron qalashi"
-	L.forgewrought_monstrosity = "Monstruosité forgée"
-	L.qalashi_plunderer = "Pilleur qalashi"
-	L.qalashi_thaumaturge = "Thaumaturge qalashi"
-	L.apex_blazewing = "Ailembrase supérieur"
-	L.qalashi_lavamancer = "Lavamancien qalashi"
-end
+	burning_chain = "Chaîne ardente",
+	qalashi_warden = "Gardien qalashi",
+	qalashi_hunter = "Chasseur qalashi",
+	overseer_lahar = "Surveillant Lahar",
+	qalashi_trainee = "Recrue qalashi",
+	qalashi_bonetender = "Désosseur qalashi",
+	qalashi_irontorch = "Flambe-fer qalashi",
+	qalashi_bonesplitter = "Craque-les-os qalashi",
+	qalashi_lavabearer = "Porte-lave qalashi",
+	irontorch_commander = "Commandant des flambe-fer",
+	qalashi_blacksmith = "Forgeron qalashi",
+	forgewrought_monstrosity = "Monstruosité forgée",
+	qalashi_plunderer = "Pilleur qalashi",
+	qalashi_thaumaturge = "Thaumaturge qalashi",
+	apex_blazewing = "Ailembrase supérieur",
+	qalashi_lavamancer = "Lavamancien qalashi",
+})
 
-L = BigWigs:NewBossLocale("Chargath, Bane of Scales", "frFR")
-if L then
-	L.slow = "Lenteur"
-end
+BigWigsAPI.SetBossModuleLocale("Chargath, Bane of Scales", {
+	slow = "Lenteur",
+})
 
-L = BigWigs:NewBossLocale("Warlord Sargha", "frFR")
-if L then
-	L.magical_implements_desc = "Les piles de trésor environnantes contiennent des objets magiques aidant à épuiser le bouclier de lave."
-	L.magma_shield = "Bouclier de lave - Récupérez des objets des piles d'or"
-end
+BigWigsAPI.SetBossModuleLocale("Warlord Sargha", {
+	magical_implements_desc = "Les piles de trésor environnantes contiennent des objets magiques aidant à épuiser le bouclier de lave.",
+	magma_shield = "Bouclier de lave - Récupérez des objets des piles d'or",
+})
 
 -- Ruby Life Pools
 
-L = BigWigs:NewBossLocale("Ruby Life Pools Trash", "frFR")
-if L then
-	L.primal_juggernaut = "Mastodonte primordial"
-	L.flashfrost_earthshaper = "Sculpte-terre givréclair"
-	L.flashfrost_chillweaver = "Tisse-glace givréclair"
-	L.defier_draghar = "Draghar dissident"
-	L.primalist_flamedancer = "Danse-flammes primaliste"
-	L.blazebound_destroyer = "Destructeur braselié"
-	L.primalist_shockcaster = "Lance-choc primaliste"
-	L.thunderhead = "Tête-tonnerre"
-	L.flamegullet = "Gorge-de-feu"
-	L.tempest_channeler = "Invocatrice de tempêtes"
-	L.flame_channeler = "Invocateur de flammes"
-	L.high_channeler_ryvati = "Haute invocatrice Ryvati"
+BigWigsAPI.SetBossModuleLocale("Ruby Life Pools Trash", {
+	primal_juggernaut = "Mastodonte primordial",
+	flashfrost_earthshaper = "Sculpte-terre givréclair",
+	flashfrost_chillweaver = "Tisse-glace givréclair",
+	defier_draghar = "Draghar dissident",
+	primalist_flamedancer = "Danse-flammes primaliste",
+	blazebound_destroyer = "Destructeur braselié",
+	primalist_shockcaster = "Lance-choc primaliste",
+	thunderhead = "Tête-tonnerre",
+	flamegullet = "Gorge-de-feu",
+	tempest_channeler = "Invocatrice de tempêtes",
+	flame_channeler = "Invocateur de flammes",
+	high_channeler_ryvati = "Haute invocatrice Ryvati",
 
-	L.kyrakka_and_erkhart_warmup_trigger = "Votre fausse reine ne nous arrêtera pas. Nous incarnons la vérité."
-end
+	kyrakka_and_erkhart_warmup_trigger = "Votre fausse reine ne nous arrêtera pas. Nous incarnons la vérité.",
+})
 
 -- The Azure Vault
 
-L = BigWigs:NewBossLocale("The Azure Vault Trash", "frFR")
-if L then
-	L.book_of_translocation = "Livre de transposition"
-	L.custom_on_book_autotalk_desc = "Procède automatiquement à la prochaine zone lorsque vous parlez aux livres de transposition."
+BigWigsAPI.SetBossModuleLocale("The Azure Vault Trash", {
+	book_of_translocation = "Livre de transposition",
+	custom_on_book_autotalk_desc = "Procède automatiquement à la prochaine zone lorsque vous parlez aux livres de transposition.",
 
-	L.shrieking_whelp = "Dragonnet hurlant"
-	L.conjured_lasher = "Flagellant invoqué"
-	L.arcane_tender = "Soigneur arcanique"
-	L.arcane_elemental = "Elémentaire des arcanes"
-	L.unstable_curator = "Conservateur instable"
-	L.rune_seal_keeper = "Gardienne du sceau draconique"
-	L.crystal_fury = "Fureur de cristal"
-	L.crystal_thrasher = "Cogneur de cristal"
-	L.arcane_construct = "Assemblage arcanique"
-	L.scalebane_lieutenant = "Lieutenant Plaiedécaille"
-	L.drakonid_breaker = "Briseuse drakônide"
-end
+	shrieking_whelp = "Dragonnet hurlant",
+	conjured_lasher = "Flagellant invoqué",
+	arcane_tender = "Soigneur arcanique",
+	arcane_elemental = "Elémentaire des arcanes",
+	unstable_curator = "Conservateur instable",
+	rune_seal_keeper = "Gardienne du sceau draconique",
+	crystal_fury = "Fureur de cristal",
+	crystal_thrasher = "Cogneur de cristal",
+	arcane_construct = "Assemblage arcanique",
+	scalebane_lieutenant = "Lieutenant Plaiedécaille",
+	drakonid_breaker = "Briseuse drakônide",
+})
 
 -- The Nokhud Offensive
 
-L = BigWigs:NewBossLocale("The Nokhud Offensive Trash", "frFR")
-if L then
-	--L.teera_and_maruuk_warmup_trigger = "Why has our rest been disturbed?"
+BigWigsAPI.SetBossModuleLocale("The Nokhud Offensive Trash", {
+	--teera_and_maruuk_warmup_trigger = "Why has our rest been disturbed?",
 
-	L.nokhud_plainstomper = "Foule-plaine nokhud"
-	L.nokhud_hornsounder = "Sonneuse nokhud"
-	L.nokhud_beastmaster = "Belluaire nokhud"
-	L.nokhud_longbow = "Archère nokhud"
-	L.primal_stormshield = "Bouclier des tempêtes primordial"
-	L.primalist_stormspeaker = "Parlorage primaliste"
-	L.stormsurge_totem = "Totem d'éruption de tempête"
-	L.primalist_thunderbeast = "Bête-de-tonnerre primaliste"
-	L.desecrated_ohuna = "Ohuna profané"
-	L.ukhel_deathspeaker = "Nécrorateur ukhel"
-	L.risen_mystic = "Mystique ressuscitée"
-	L.ukhel_beastcaller = "Mande-bête ukhel"
-	L.soulharvester_galtmaa = "Moissonneuse d'âmes Galtmaa"
-	L.nokhud_defender = "Défenseur nokhud"
-	L.nokhud_thunderfist = "Tonnepoing nokhud"
-	L.balara = "Balara"
-	L.batak = "Batak"
-end
+	nokhud_plainstomper = "Foule-plaine nokhud",
+	nokhud_hornsounder = "Sonneuse nokhud",
+	nokhud_beastmaster = "Belluaire nokhud",
+	nokhud_longbow = "Archère nokhud",
+	primal_stormshield = "Bouclier des tempêtes primordial",
+	primalist_stormspeaker = "Parlorage primaliste",
+	stormsurge_totem = "Totem d'éruption de tempête",
+	primalist_thunderbeast = "Bête-de-tonnerre primaliste",
+	desecrated_ohuna = "Ohuna profané",
+	ukhel_deathspeaker = "Nécrorateur ukhel",
+	risen_mystic = "Mystique ressuscitée",
+	ukhel_beastcaller = "Mande-bête ukhel",
+	soulharvester_galtmaa = "Moissonneuse d'âmes Galtmaa",
+	nokhud_defender = "Défenseur nokhud",
+	nokhud_thunderfist = "Tonnepoing nokhud",
+	balara = "Balara",
+	batak = "Batak",
+})
 
-L = BigWigs:NewBossLocale("Granyth", "frFR")
-if L then
-	L.lance_ready = "Lance prête"
-end
+BigWigsAPI.SetBossModuleLocale("Granyth", {
+	lance_ready = "Lance prête",
+})
 
-L = BigWigs:NewBossLocale("The Raging Tempest", "frFR")
-if L then
-	L.on_you = "Sur vous"
-	L.on_boss = "Sur le boss"
-end
+BigWigsAPI.SetBossModuleLocale("The Raging Tempest", {
+	on_you = "Sur vous",
+	on_boss = "Sur le boss",
+})
 
 -- Uldaman: Legacy of Tyr
 
-L = BigWigs:NewBossLocale("Uldaman: Legacy of Tyr Trash", "frFR")
-if L then
-	L.hulking_berserker = "Berserker massif"
-	L.stonevault_geomancer = "Géomancien cavepierre"
-	L.vicious_basilisk = "Basilic vicieux"
-	L.refti_custodian = "Protecteur refti"
-	L.earthen_custodian = "Protecteur terrestre"
-	L.earthen_weaver = "Tisse-terre"
-	L.earthen_warder = "Gardeterre"
-	L.runic_protector = "Protecteur runique"
-	L.cavern_seeker = "Scrute-grottes"
-	L.ebonstone_golem = "Golem d'ébène"
-	L.earthen_guardian = "Garde-terre"
-	L.infinite_agent = "Agent infini"
+BigWigsAPI.SetBossModuleLocale("Uldaman: Legacy of Tyr Trash", {
+	hulking_berserker = "Berserker massif",
+	stonevault_geomancer = "Géomancien cavepierre",
+	vicious_basilisk = "Basilic vicieux",
+	refti_custodian = "Protecteur refti",
+	earthen_custodian = "Protecteur terrestre",
+	earthen_weaver = "Tisse-terre",
+	earthen_warder = "Gardeterre",
+	runic_protector = "Protecteur runique",
+	cavern_seeker = "Scrute-grottes",
+	ebonstone_golem = "Golem d'ébène",
+	earthen_guardian = "Garde-terre",
+	infinite_agent = "Agent infini",
 
-	L.door_open_desc = "Affiche une barre lorsque les Nains perdus ouvrent la porte après Bromach."
-end
+	door_open_desc = "Affiche une barre lorsque les Nains perdus ouvrent la porte après Bromach.",
+})

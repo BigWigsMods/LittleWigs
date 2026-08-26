@@ -32,33 +32,32 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- [[ The ring ]] --
-	L.cultist = "Risen Cultist"
-	L.warlord = "Risen Warlord"
-	L.enraged = "Enraged Spirit"
-	L.speaker = "Death Speaker"
+	cultist = "Risen Cultist",
+	warlord = "Risen Warlord",
+	enraged = "Enraged Spirit",
+	speaker = "Death Speaker",
 
 	-- [[ Path to Hakkar ]] --
-	L.deathwalker = "Atal'ai Deathwalker"
-	L.priest = "Atal'ai High Priest"
-	L.hexxer = "Atal'ai Hoodoo Hexxer"
+	deathwalker = "Atal'ai Deathwalker",
+	priest = "Atal'ai High Priest",
+	hexxer = "Atal'ai Hoodoo Hexxer",
 
 	-- [[ Path to the Manastorms ]] --
-	L.drill = "Defunct Dental Drill"
-	L.arf_arf = "4.RF-4.RF"
-	L.lubricator = "Lubricator"
-	L.headless = "Headless Client"
+	drill = "Defunct Dental Drill",
+	arf_arf = "4.RF-4.RF",
+	lubricator = "Lubricator",
+	headless = "Headless Client",
 
 	-- [[ Path to Xyexa ]] --
-	L.shimmermoth = "Weald Shimmermoth"
-	L.mythresh = "Mythresh, Sky's Talons"
+	shimmermoth = "Weald Shimmermoth",
+	mythresh = "Mythresh, Sky's Talons",
 
-	L.soporific_shimmerdust = 334496
-	L.soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks."
-	L.soporific_shimmerdust_icon = "spell_nature_drowsy"
-end
+	soporific_shimmerdust = 334496,
+	soporific_shimmerdust_desc = "Curse that makes your character fall asleep at 10 stacks. Jumping resets stacks.",
+	soporific_shimmerdust_icon = "spell_nature_drowsy",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

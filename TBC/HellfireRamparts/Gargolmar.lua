@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Watchkeeper Gargolmar", {543, 2849}, 527)
@@ -11,8 +11,8 @@ mod:RegisterEnableMob(
 --mod:SetEncounterID(1893) -- no boss frames
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 if mod:Classic() then

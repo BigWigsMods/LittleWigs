@@ -16,19 +16,20 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.overseer_kaskel = "Overseer Kaskel"
-end
+local L = mod:SetDefaultLocale({
+	overseer_kaskel = "Overseer Kaskel",
+})
+mod.displayName = L.overseer_kaskel
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(449038, CL.spikes) -- Impaling Spikes (Spikes)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.overseer_kaskel
-	self:SetSpellRename(449038, CL.spikes) -- Impaling Spikes (Spikes)
-end
 
 function mod:GetOptions()
 	return {

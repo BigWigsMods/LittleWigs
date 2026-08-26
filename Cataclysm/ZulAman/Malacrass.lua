@@ -1,15 +1,15 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Hex Lord Malacrass", 568, 190)
 if not mod then return end
 mod:RegisterEnableMob(24239)
--- mod.engageId = 1193 -- it works, but... it returns status 0 on a kill triggering the respawn timer
--- mod.respawnTime = 30
+--mod.engageId = 1193 -- it works, but... it returns status 0 on a kill triggering the respawn timer
+--mod.respawnTime = 30
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -40,8 +40,8 @@ function mod:OnEngage()
 	self:CDBar(43383, 30) -- Spirit Bolts
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:SpiritBolts(args)

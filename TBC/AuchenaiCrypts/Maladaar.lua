@@ -1,24 +1,26 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Exarch Maladaar", 558, 524)
 if not mod then return end
 mod:RegisterEnableMob(18373)
--- mod.engageId = 1889 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1889 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
+--
 
-local L = mod:GetLocale()
-if L then
-	L.avatar = -5046 -- Avatar of the Martyred
-	L.avatar_desc = -5045 -- EJ entry of the summoning spell, has better description than that of the actual spell
-	L.avatar_icon = -5045
-end
+local L = mod:SetDefaultLocale({
+	avatar = -5046, -- Avatar of the Martyred
+	avatar_desc = -5045, -- EJ entry of the summoning spell, has better description than that of the actual spell
+	avatar_icon = -5045,
+})
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -40,8 +42,9 @@ function mod:OnEngage()
 	self:RegisterEvent("UNIT_HEALTH")
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
 function mod:StolenSoul(args)
 	self:TargetMessage(args.spellId, "orange", args.destName)

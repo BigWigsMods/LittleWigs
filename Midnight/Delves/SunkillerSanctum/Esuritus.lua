@@ -11,18 +11,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.esuritus = "Esuritus"
-end
+local L = mod:SetDefaultLocale({
+	esuritus = "Esuritus",
+})
+mod.displayName = L.esuritus
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.esuritus
-end
 
 function mod:GetOptions()
 	return {

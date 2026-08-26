@@ -17,14 +17,13 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.entropic_eye = "Entropic Eye"
-	L.sightless_eye = "Sightless Eye"
-	L.soul_eater = "Eredar Soul-Eater"
-	L.temptress = "Spiteful Temptress"
-	L.abyssal = "Gargantuan Abyssal"
-end
+local L = mod:SetDefaultLocale({
+	entropic_eye = "Entropic Eye",
+	sightless_eye = "Sightless Eye",
+	soul_eater = "Eredar Soul-Eater",
+	temptress = "Spiteful Temptress",
+	abyssal = "Gargantuan Abyssal",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

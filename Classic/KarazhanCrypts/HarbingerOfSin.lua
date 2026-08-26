@@ -13,18 +13,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.harbinger_of_sin = "Harbinger of Sin"
-end
+local L = mod:SetDefaultLocale({
+	harbinger_of_sin = "Harbinger of Sin",
+})
+mod.displayName = L.harbinger_of_sin
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.harbinger_of_sin
-end
 
 function mod:GetOptions()
 	return {

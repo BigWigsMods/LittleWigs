@@ -7,7 +7,7 @@ local mod, CL = BigWigs:NewBoss("Warchief Kargath Bladefist", 540, 569)
 if not mod then return end
 mod:RegisterEnableMob(16808)
 mod.engageId = 1938
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization

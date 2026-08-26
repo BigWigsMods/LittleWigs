@@ -17,11 +17,10 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.destroying_sha = "Destroying Sha"
-	L.slain_shado_pan_defender = "Slain Shado-Pan Defender"
-end
+local L = mod:SetDefaultLocale({
+	destroying_sha = "Destroying Sha",
+	slain_shado_pan_defender = "Slain Shado-Pan Defender",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

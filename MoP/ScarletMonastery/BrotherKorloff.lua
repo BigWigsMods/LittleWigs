@@ -11,16 +11,15 @@ mod:RegisterEnableMob(59223)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.engage_yell = "I will break you."
+local L = mod:SetDefaultLocale({
+	engage_yell = "I will break you.",
 
-	L.fists = -5601 -- Blazing Fists
-	L.fists_icon = 114807
+	fists = -5601, -- Blazing Fists
+	fists_icon = 114807,
 
-	L.firestorm = -5602 -- Firestorm Kick
-	L.firestorm_icon = 113764
-end
+	firestorm = -5602, -- Firestorm Kick
+	firestorm_icon = 113764,
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

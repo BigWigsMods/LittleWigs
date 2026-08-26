@@ -13,24 +13,25 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.the_underpin = "The Underpin (Tier 8)"
-	L.crony = "Crony"
-end
+local L = mod:SetDefaultLocale({
+	the_underpin = "The Underpin (Tier 8)",
+	crony = "Crony",
+})
+mod.displayName = L.the_underpin
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(1213852, CL.leap) -- Crush (Leap)
+mod:SetSpellRename(1217371, CL.frontal_cone) -- Flamethrower (Frontal Cone)
+mod:SetSpellRename(1214147, CL.bombs) -- Time Bomb Launcher (Bombs)
+mod:SetSpellRename(1215521, CL.adds) -- Signal Cronies (Adds)
+mod:SetSpellRename(1214052, CL.shield) -- Divert Energy to Shields (Shield)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.the_underpin
-	self:SetSpellRename(1213852, CL.leap) -- Crush (Leap)
-	self:SetSpellRename(1217371, CL.frontal_cone) -- Flamethrower (Frontal Cone)
-	self:SetSpellRename(1214147, CL.bombs) -- Time Bomb Launcher (Bombs)
-	self:SetSpellRename(1215521, CL.adds) -- Signal Cronies (Adds)
-	self:SetSpellRename(1214052, CL.shield) -- Divert Energy to Shields (Shield)
-end
 
 function mod:GetOptions()
 	return {

@@ -17,10 +17,9 @@ end
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_text = "L'ura Active"
-end
+local L = mod:SetDefaultLocale({
+	warmup_text = "L'ura Active",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

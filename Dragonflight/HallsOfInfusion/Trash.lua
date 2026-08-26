@@ -31,30 +31,29 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.custom_on_autotalk = CL.autotalk
-	L.custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs."
-	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
+local L = mod:SetDefaultLocale({
+	custom_on_autotalk = CL.autotalk,
+	custom_on_autotalk_desc = "Instantly selects the gossip options to get profession buffs.",
+	custom_on_autotalk_icon = mod:GetMenuIcon("SAY"),
 
-	L.primalist_ravager = "Primalist Ravager"
-	L.primalist_geomancer = "Primalist Geomancer"
-	L.containment_apparatus = "Containment Apparatus"
-	L.refti_defender = "Refti Defender"
-	L.dazzling_dragonfly = "Dazzling Dragonfly"
-	L.curious_swoglet = "Curious Swoglet"
-	L.primalist_shocktrooper = "Primalist Shocktrooper"
-	L.flamecaller_aymi = "Flamecaller Aymi"
-	L.squallbringer_cyraz = "Squallbringer Cyraz"
-	L.primalist_earthshaker = "Primalist Earthshaker"
-	L.primalist_galesinger = "Primalist Galesinger"
-	L.primalist_icecaller = "Primalist Icecaller"
-	L.gusting_protodragon = "Gusting Proto-Dragon"
-	L.glacial_protodragon = "Glacial Proto-Dragon"
-	L.subterranean_protodragon = "Subterranean Proto-Dragon"
-	L.aqua_rager = "Aqua Rager"
-	L.infuser_sariya = "Infuser Sariya"
-end
+	primalist_ravager = "Primalist Ravager",
+	primalist_geomancer = "Primalist Geomancer",
+	containment_apparatus = "Containment Apparatus",
+	refti_defender = "Refti Defender",
+	dazzling_dragonfly = "Dazzling Dragonfly",
+	curious_swoglet = "Curious Swoglet",
+	primalist_shocktrooper = "Primalist Shocktrooper",
+	flamecaller_aymi = "Flamecaller Aymi",
+	squallbringer_cyraz = "Squallbringer Cyraz",
+	primalist_earthshaker = "Primalist Earthshaker",
+	primalist_galesinger = "Primalist Galesinger",
+	primalist_icecaller = "Primalist Icecaller",
+	gusting_protodragon = "Gusting Proto-Dragon",
+	glacial_protodragon = "Glacial Proto-Dragon",
+	subterranean_protodragon = "Subterranean Proto-Dragon",
+	aqua_rager = "Aqua Rager",
+	infuser_sariya = "Infuser Sariya",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

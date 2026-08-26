@@ -1,5 +1,6 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Bloodlord Mandokir", 859, 176)
 if not mod then return end
@@ -7,8 +8,9 @@ mod:RegisterEnableMob(52151, 52157) -- Bloodlord Mandokir, Ohgan
 mod.engageId = 1179
 mod.respawnTime = 30
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -28,8 +30,9 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "ReanimateOhgan", 96724)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
 function mod:DevastatingSlam(args)
 	self:MessageOld(args.spellId, "red", "info")

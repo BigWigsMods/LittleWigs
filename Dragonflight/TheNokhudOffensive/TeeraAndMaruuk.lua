@@ -15,10 +15,9 @@ mod:SetRespawnTime(40.5) -- 30s respawn + 10.5s RP run
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_icon = "achievement_dungeon_centaurplains"
-end
+local L = mod:SetDefaultLocale({
+	warmup_icon = "achievement_dungeon_centaurplains",
+})
 
 --------------------------------------------------------------------------------
 -- Locals

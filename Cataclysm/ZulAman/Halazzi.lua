@@ -1,32 +1,31 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Halazzi", 568, 189)
 if not mod then return end
 mod:RegisterEnableMob(23577)
 mod.engageId = 1192
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local spiritPhasesLeft = 2
 local nextPhaseWarning = 65
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.spirit_message = "Spirit Phase"
-	L.normal_message = "Normal Phase"
-end
+local L = mod:SetDefaultLocale({
+	spirit_message = "Spirit Phase",
+	normal_message = "Normal Phase",
+})
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -54,8 +53,8 @@ function mod:OnEngage()
 	nextPhaseWarning = 65 -- 60% and 30%
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:FlameShock(args)

@@ -6,17 +6,17 @@
 local mod, CL = BigWigs:NewBoss("Kael'thas Sunstrider Magisters' Terrace", 585, 533)
 if not mod then return end
 mod:RegisterEnableMob(24664)
--- mod.engageId = 1894 - doesn't fire ENCOUNTER_END on a wipe
--- mod.respawnTime = 30
+--mod.engageId = 1894 - doesn't fire ENCOUNTER_END on a wipe
+--mod.respawnTime = 30
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
+--
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- Don't look so smug! I know what you're thinking, but Tempest Keep was merely a setback. Did you honestly believe I would trust the future to some blind, half-night elf mongrel?
-	L.warmup_trigger = "Don't look so smug!"
-end
+	warmup_trigger = "Don't look so smug!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

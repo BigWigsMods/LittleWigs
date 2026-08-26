@@ -37,36 +37,37 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.goblin_trash = "Goblin Trash"
+local L = mod:SetDefaultLocale({
+	goblin_trash = "Goblin Trash",
 
-	L.bopper_bot = "Bopper Bot"
-	L.aerial_support_bot = "Aerial Support Bot"
-	L.masked_freelancer = "Masked Freelancer"
-	L.underpaid_brute = "Underpaid Brute"
-	L.drill_sergeant = "Drill Sergeant"
-	L.punchy_thug = "Punchy Thug"
-	L.flinging_flicker = "Flinging Flicker"
-	L.bomb_bot = "Bomb Bot"
-	L.rad_rat = "Rad Rat"
-end
+	bopper_bot = "Bopper Bot",
+	aerial_support_bot = "Aerial Support Bot",
+	masked_freelancer = "Masked Freelancer",
+	underpaid_brute = "Underpaid Brute",
+	drill_sergeant = "Drill Sergeant",
+	punchy_thug = "Punchy Thug",
+	flinging_flicker = "Flinging Flicker",
+	bomb_bot = "Bomb Bot",
+	rad_rat = "Rad Rat",
+})
+mod.displayName = L.goblin_trash
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(474001, CL.enrage) -- Bathe in Blood (Enrage)
+mod:SetSpellRename(473972, CL.charge) -- Reckless Charge (Charge)
+mod:SetSpellRename(473541, CL.frontal_cone) -- Flurry of Punches (Frontal Cone)
+mod:SetSpellRename(473537, CL.knockback) -- Uppercut (Knockback)
+mod:SetSpellRename(472842, CL.fixate) -- Destroy (Fixate)
+
+-- Obedient-ish Predator (231930)
+mod:SetSpellRename(473533, CL.enrage) -- Ferocious Howl (Enrage)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.goblin_trash
-	self:SetSpellRename(474001, CL.enrage) -- Bathe in Blood (Enrage)
-	self:SetSpellRename(473972, CL.charge) -- Reckless Charge (Charge)
-	self:SetSpellRename(473541, CL.frontal_cone) -- Flurry of Punches (Frontal Cone)
-	self:SetSpellRename(473537, CL.knockback) -- Uppercut (Knockback)
-	self:SetSpellRename(472842, CL.fixate) -- Destroy (Fixate)
-
-	-- Obedient-ish Predator (231930)
-	self:SetSpellRename(473533, CL.enrage) -- Ferocious Howl (Enrage)
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

@@ -48,32 +48,31 @@ local taenerGUID = nil
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.sacred_flame = "Sacred Flame"
-	L.guard_captain_suleyman = "Guard Captain Suleyman"
-	L.forge_master_damian = "Forge Master Damian"
-	L.high_priest_aemya = "High Priest Aemya"
-	L.sergeant_shaynemail = "Sergeant Shaynemail"
-	L.elaena_emberlanz = "Elaena Emberlanz"
-	L.taener_duelmal = "Taener Duelmal"
-	L.arathi_knight = "Arathi Knight"
-	L.arathi_footman = "Arathi Footman"
-	L.fervent_sharpshooter = "Fervent Sharpshooter"
-	L.war_lynx = "War Lynx"
-	L.devout_priest = "Devout Priest"
-	L.fanatical_conjuror = "Fanatical Conjuror"
-	L.lightspawn = "Lightspawn"
-	L.ardent_paladin = "Ardent Paladin"
-	L.zealous_templar = "Zealous Templar"
-	L.risen_mage = "Risen Mage"
-	L.sir_braunpyke = "Sir Braunpyke"
+local L = mod:SetDefaultLocale({
+	sacred_flame = "Sacred Flame",
+	guard_captain_suleyman = "Guard Captain Suleyman",
+	forge_master_damian = "Forge Master Damian",
+	high_priest_aemya = "High Priest Aemya",
+	sergeant_shaynemail = "Sergeant Shaynemail",
+	elaena_emberlanz = "Elaena Emberlanz",
+	taener_duelmal = "Taener Duelmal",
+	arathi_knight = "Arathi Knight",
+	arathi_footman = "Arathi Footman",
+	fervent_sharpshooter = "Fervent Sharpshooter",
+	war_lynx = "War Lynx",
+	devout_priest = "Devout Priest",
+	fanatical_conjuror = "Fanatical Conjuror",
+	lightspawn = "Lightspawn",
+	ardent_paladin = "Ardent Paladin",
+	zealous_templar = "Zealous Templar",
+	risen_mage = "Risen Mage",
+	sir_braunpyke = "Sir Braunpyke",
 
-	L.baron_braunpyke_warmup_trigger = "They've served their purpose. Baron, demonstrate your worth."
-	L.custom_on_autotalk = CL.autotalk
-	L.custom_on_autotalk_desc = "|cFFFF0000Requires Priest or Paladin.|r Automatically select the NPC dialog option that grants you the 'Blessing of the Sacred Flame' aura."
-	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
-end
+	baron_braunpyke_warmup_trigger = "They've served their purpose. Baron, demonstrate your worth.",
+	custom_on_autotalk = CL.autotalk,
+	custom_on_autotalk_desc = "|cFFFF0000Requires Priest or Paladin.|r Automatically select the NPC dialog option that grants you the 'Blessing of the Sacred Flame' aura.",
+	custom_on_autotalk_icon = mod:GetMenuIcon("SAY"),
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

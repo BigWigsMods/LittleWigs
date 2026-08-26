@@ -28,36 +28,35 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.custom_on_recruiter_autotalk = CL.autotalk
-	L.custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff."
-	L.custom_on_recruiter_autotalk_icon = mod:GetMenuIcon("SAY")
-	L.critical_strike = "Critical Strike"
-	L.haste = "Haste"
-	L.mastery = "Mastery"
-	L.versatility = "Versatility"
-	L.healing_taken = "Healing taken"
+local L = mod:SetDefaultLocale({
+	custom_on_recruiter_autotalk = CL.autotalk,
+	custom_on_recruiter_autotalk_desc = "Instantly pledge to the Dragonflight Recruiters for a buff.",
+	custom_on_recruiter_autotalk_icon = mod:GetMenuIcon("SAY"),
+	critical_strike = "Critical Strike",
+	haste = "Haste",
+	mastery = "Mastery",
+	versatility = "Versatility",
+	healing_taken = "Healing taken",
 
 	-- Ah! Here we are! Ahem--long ago, members of the blue dragonflight accidentally overloaded an arcane elemental and created a powerful construct named Vexamus that quickly started to wreak havoc!
-	L.vexamus_warmup_trigger = "created a powerful construct named Vexamus"
+	vexamus_warmup_trigger = "created a powerful construct named Vexamus",
 	-- Perfect, we are just about--wait, Ichistrasz! There is too much life magic! What are you doing?
-	L.overgrown_ancient_warmup_trigger = "Ichistrasz! There is too much life magic"
+	overgrown_ancient_warmup_trigger = "Ichistrasz! There is too much life magic",
 	-- At least we know that works. Watch yourselves.
-	L.crawth_warmup_trigger = "At least we know that works. Watch yourselves."
+	crawth_warmup_trigger = "At least we know that works. Watch yourselves.",
 
-	L.corrupted_manafiend = "Corrupted Manafiend"
-	L.spellbound_battleaxe = "Spellbound Battleaxe"
-	L.spellbound_scepter = "Spellbound Scepter"
-	L.arcane_ravager = "Arcane Ravager"
-	L.unruly_textbook = "Unruly Textbook"
-	L.guardian_sentry = "Guardian Sentry"
-	L.alpha_eagle = "Alpha Eagle"
-	L.vile_lasher = "Vile Lasher"
-	L.algethar_echoknight = "Algeth'ar Echoknight"
-	L.spectral_invoker = "Spectral Invoker"
-	L.ethereal_restorer = "Ethereal Restorer"
-end
+	corrupted_manafiend = "Corrupted Manafiend",
+	spellbound_battleaxe = "Spellbound Battleaxe",
+	spellbound_scepter = "Spellbound Scepter",
+	arcane_ravager = "Arcane Ravager",
+	unruly_textbook = "Unruly Textbook",
+	guardian_sentry = "Guardian Sentry",
+	alpha_eagle = "Alpha Eagle",
+	vile_lasher = "Vile Lasher",
+	algethar_echoknight = "Algeth'ar Echoknight",
+	spectral_invoker = "Spectral Invoker",
+	ethereal_restorer = "Ethereal Restorer",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

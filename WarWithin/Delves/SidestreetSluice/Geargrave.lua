@@ -19,19 +19,20 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.geargrave = "Geargrave"
-end
+local L = mod:SetDefaultLocale({
+	geargrave = "Geargrave",
+})
+mod.displayName = L.geargrave
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(1215975, CL.enrage) -- Juice It Up! (Enrage)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.geargrave
-	self:SetSpellRename(1215975, CL.enrage) -- Juice It Up! (Enrage)
-end
 
 function mod:GetOptions()
 	return {

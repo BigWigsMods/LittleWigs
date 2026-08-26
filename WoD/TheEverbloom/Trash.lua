@@ -23,26 +23,25 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.dreadpetal = "Dreadpetal"
-	L.everbloom_naturalist = "Everbloom Naturalist"
-	L.everbloom_cultivator = "Everbloom Cultivator"
-	L.rockspine_stinger = "Rockspine Stinger"
-	L.everbloom_mender = "Everbloom Mender"
-	L.gnarlroot = "Gnarlroot"
-	L.melded_berserker = "Melded Berserker"
-	L.twisted_abomination = "Twisted Abomination"
-	L.infested_icecaller = "Infested Icecaller"
-	L.putrid_pyromancer = "Putrid Pyromancer"
-	L.addled_arcanomancer = "Addled Arcanomancer"
+local L = mod:SetDefaultLocale({
+	dreadpetal = "Dreadpetal",
+	everbloom_naturalist = "Everbloom Naturalist",
+	everbloom_cultivator = "Everbloom Cultivator",
+	rockspine_stinger = "Rockspine Stinger",
+	everbloom_mender = "Everbloom Mender",
+	gnarlroot = "Gnarlroot",
+	melded_berserker = "Melded Berserker",
+	twisted_abomination = "Twisted Abomination",
+	infested_icecaller = "Infested Icecaller",
+	putrid_pyromancer = "Putrid Pyromancer",
+	addled_arcanomancer = "Addled Arcanomancer",
 
-	L.gate_open = CL.gate_open
-	L.gate_open_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu."
-	L.gate_open_icon = "spell_fire_fireball02"
+	gate_open = CL.gate_open,
+	gate_open_desc = "Show a bar indicating when Undermage Kesalon will open the gate to Yalnu.",
+	gate_open_icon = "spell_fire_fireball02",
 
-	L.yalnu_warmup_trigger = "The portal is lost! We must stop this beast before it can escape!"
-end
+	yalnu_warmup_trigger = "The portal is lost! We must stop this beast before it can escape!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

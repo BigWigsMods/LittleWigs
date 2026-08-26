@@ -27,31 +27,32 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.kobyss_trash = "Kobyss Trash"
+local L = mod:SetDefaultLocale({
+	kobyss_trash = "Kobyss Trash",
 
-	L.kobyss_necromancer = "Kobyss Necromancer"
-	L.kobyss_spearfisher = "Kobyss Spearfisher"
-	L.kobyss_witherer = "Kobyss Witherer"
-	L.wandering_gutter = "Wandering Gutter"
-	L.crazed_predator = "Crazed Predator"
-	L.deepwater_makura = "Deepwater Makura"
-	L.kobyss_trickster = "Kobyss Trickster"
-end
+	kobyss_necromancer = "Kobyss Necromancer",
+	kobyss_spearfisher = "Kobyss Spearfisher",
+	kobyss_witherer = "Kobyss Witherer",
+	wandering_gutter = "Wandering Gutter",
+	crazed_predator = "Crazed Predator",
+	deepwater_makura = "Deepwater Makura",
+	kobyss_trickster = "Kobyss Trickster",
+})
+mod.displayName = L.kobyss_trash
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(455932, CL.frontal_cone) -- Defiling Breath (Frontal Cone)
+mod:SetSpellRename(445252, CL.explosion) -- Necrotic End (Explosion)
+mod:SetSpellRename(440622, CL.curse) -- Curse of the Depths (Curse)
+mod:SetSpellRename(470588, CL.curse) -- Curse of the Depths (Curse)
+mod:SetSpellRename(445407, CL.extra:format(CL.fixate, CL.enrage)) -- Bloodthirsty (Fixate (Enrage))
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.kobyss_trash
-	self:SetSpellRename(455932, CL.frontal_cone) -- Defiling Breath (Frontal Cone)
-	self:SetSpellRename(445252, CL.explosion) -- Necrotic End (Explosion)
-	self:SetSpellRename(440622, CL.curse) -- Curse of the Depths (Curse)
-	self:SetSpellRename(470588, CL.curse) -- Curse of the Depths (Curse)
-	self:SetSpellRename(445407, CL.extra:format(CL.fixate, CL.enrage)) -- Bloodthirsty (Fixate (Enrage))
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

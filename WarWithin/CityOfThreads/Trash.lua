@@ -32,30 +32,29 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.herald_of_ansurek = "Herald of Ansurek"
-	L.sureki_venomblade = "Sureki Venomblade"
-	L.sureki_silkbinder = "Sureki Silkbinder"
-	L.royal_swarmguard = "Royal Swarmguard"
-	L.xephitik = "Xeph'itik"
-	L.pale_priest = "Pale Priest"
-	L.eye_of_the_queen = "Eye of the Queen"
-	L.covert_webmancer = "Covert Webmancer"
-	L.web_marauder = "Web Marauder"
-	L.royal_venomshell = "Royal Venomshell"
-	L.unstable_test_subject = "Unstable Test Subject"
-	L.sureki_unnaturaler = "Sureki Unnaturaler"
-	L.elder_shadeweaver = "Elder Shadeweaver"
-	L.hulking_warshell = "Hulking Warshell"
+local L = mod:SetDefaultLocale({
+	herald_of_ansurek = "Herald of Ansurek",
+	sureki_venomblade = "Sureki Venomblade",
+	sureki_silkbinder = "Sureki Silkbinder",
+	royal_swarmguard = "Royal Swarmguard",
+	xephitik = "Xeph'itik",
+	pale_priest = "Pale Priest",
+	eye_of_the_queen = "Eye of the Queen",
+	covert_webmancer = "Covert Webmancer",
+	web_marauder = "Web Marauder",
+	royal_venomshell = "Royal Venomshell",
+	unstable_test_subject = "Unstable Test Subject",
+	sureki_unnaturaler = "Sureki Unnaturaler",
+	elder_shadeweaver = "Elder Shadeweaver",
+	hulking_warshell = "Hulking Warshell",
 
-	L.xephitik_defeated_trigger = "Enough!"
-	L.fangs_of_the_queen_warmup_trigger = "The Transformatory was once the home of our sacred evolution."
-	L.izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in."
-	L.custom_on_autotalk = CL.autotalk
-	L.custom_on_autotalk_desc = "|cFFFF0000Requires Rogue, Priest, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you the 'Stolen Power' aura."
-	L.custom_on_autotalk_icon = mod:GetMenuIcon("SAY")
-end
+	xephitik_defeated_trigger = "Enough!",
+	fangs_of_the_queen_warmup_trigger = "The Transformatory was once the home of our sacred evolution.",
+	izo_warmup_trigger = "Enough! You've earned a place in my collection. Let me usher you in.",
+	custom_on_autotalk = CL.autotalk,
+	custom_on_autotalk_desc = "|cFFFF0000Requires Rogue, Priest, or 25 skill in Khaz Algar Engineering.|r Automatically select the NPC dialog option that grants you the 'Stolen Power' aura.",
+	custom_on_autotalk_icon = mod:GetMenuIcon("SAY"),
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

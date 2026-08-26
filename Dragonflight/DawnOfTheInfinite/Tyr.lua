@@ -20,10 +20,9 @@ local infiniteHandCastCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_icon = "achievement_dungeon_ulduarraid_titan_01"
-end
+local L = mod:SetDefaultLocale({
+	warmup_icon = "achievement_dungeon_ulduarraid_titan_01",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

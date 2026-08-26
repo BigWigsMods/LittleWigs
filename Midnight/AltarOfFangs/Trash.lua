@@ -22,12 +22,11 @@ mod:SetAuraData({
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.custom_on_mixture_autotalk = CL.autotalk
-	L.custom_on_mixture_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Cooking or Midnight Alchemy.|r Automatically select the NPC dialog option to gain the 'Mutating Elixir' buff.\n\n|T136242:16|tMutating Elixir\n{1310012}"
-	L.custom_on_mixture_autotalk_icon = mod:GetMenuIcon("SAY")
-end
+mod:SetDefaultLocale({
+	custom_on_mixture_autotalk = CL.autotalk,
+	custom_on_mixture_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Cooking or Midnight Alchemy.|r Automatically select the NPC dialog option to gain the 'Mutating Elixir' buff.\n\n|T136242:16|tMutating Elixir\n{1310012}",
+	custom_on_mixture_autotalk_icon = mod:GetMenuIcon("SAY"),
+})
 
 --------------------------------------------------------------------------------
 -- Renames

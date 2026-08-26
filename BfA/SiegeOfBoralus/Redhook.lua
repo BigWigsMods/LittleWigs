@@ -22,18 +22,19 @@ local ordnanceCollector = {}
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L["274002_icon"] = "inv_misc_groupneedmore"
-end
+local L = mod:SetDefaultLocale({
+	["274002_icon"] = "inv_misc_groupneedmore",
+})
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(257459, CL.fixate) -- On the Hook (Fixate)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self:SetSpellRename(257459, CL.fixate) -- On the Hook (Fixate)
-end
 
 function mod:GetOptions()
 	return {

@@ -1,13 +1,15 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Hadronox", 601, 586)
 if not mod then return end
 mod:RegisterEnableMob(28921)
 --mod:SetEncounterID(mod:Classic() and 217 or 1972) -- ENCOUNTER_START fires when you enter the area, not when you actually pull the boss. Also it doesn't get assigned a boss1 unit.
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
@@ -22,8 +24,9 @@ function mod:OnBossEnable()
 	self:Death("Win", 28921)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
 function mod:AcidCloud()
 	self:Message(53400, "yellow")

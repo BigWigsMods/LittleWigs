@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Thorngrin the Tender", 553, 560)
 if not mod then return end
 mod:RegisterEnableMob(17978)
 mod.engageId = 1928
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Initialization

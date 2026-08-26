@@ -1,452 +1,419 @@
 -- Atal'Dazar
 
-local L = BigWigs:NewBossLocale("Atal'Dazar Trash", "deDE")
-if L then
-	L.skyscreamer = "Fressender Himmelskreischer"
-	L.tlonja = "T'lonja"
-	L.monzumi = "Monzumi"
-	L.shieldbearer = "Zuls Schildträger"
-	L.witchdoctor = "Hexendoktorin der Zanchuli"
-	L.kisho = "Dinomantin Kish'o"
-	L.dazarai_juggernaut = "Moloch der Dazar'ai"
-	L.priestess = "Goldene Priesterin"
-	L.stalker = "Schattenklingenpirscher"
-	L.confessor = "Bekenner der Dazar'ai"
-	L.augur = "Augur der Dazar'ai"
-	L.reanimated_honor_guard = "Reanimierte Ehrenwache"
+BigWigsAPI.SetBossModuleLocale("Atal'Dazar Trash", {
+	skyscreamer = "Fressender Himmelskreischer",
+	tlonja = "T'lonja",
+	monzumi = "Monzumi",
+	shieldbearer = "Zuls Schildträger",
+	witchdoctor = "Hexendoktorin der Zanchuli",
+	kisho = "Dinomantin Kish'o",
+	dazarai_juggernaut = "Moloch der Dazar'ai",
+	priestess = "Goldene Priesterin",
+	stalker = "Schattenklingenpirscher",
+	confessor = "Bekenner der Dazar'ai",
+	augur = "Augur der Dazar'ai",
+	reanimated_honor_guard = "Reanimierte Ehrenwache",
 
-	L.stairs_open = "Treppen geöffnet"
-	L.stairs_open_desc = "Zeigt eine Leiste wann die Treppen zu Yazma geöffnet sind."
-	L.stairs_open_trigger = "Beeindruckend. Ihr seid weiter gekomm', als ich gedacht hab... aber ich werd trotzdem Euer Blut trink'n."
-end
+	stairs_open = "Treppen geöffnet",
+	stairs_open_desc = "Zeigt eine Leiste wann die Treppen zu Yazma geöffnet sind.",
+	stairs_open_trigger = "Beeindruckend. Ihr seid weiter gekomm', als ich gedacht hab... aber ich werd trotzdem Euer Blut trink'n.",
+})
 
 -- Freehold
 
-L = BigWigs:NewBossLocale("Freehold Trash", "deDE")
-if L then
-	L.sharkbait = "Haihappen"
-	L.irontide_enforcer = "Vollstrecker der Eisenfluträuber"
-	L.irontide_bonesaw = "Knochensäger der Eisenfluträuber"
-	L.irontide_crackshot = "Kunstschütze der Eisenfluträuber"
-	L.irontide_corsair = "Korsarin der Eisenfluträuber"
-	L.cutwater_duelist = "Duellant der Schwertwasserkorsaren"
-	L.irontide_oarsman = "Ruderer der Eisenfluträuber"
-	L.cutwater_knife_juggler = "Messerwerfer der Schwertwasserkorsaren"
-	L.bilge_rat_brinescale = "Salzschuppe der Bilgeratten"
-	L.blacktooth_scrapper = "Klopper der Schwarzzahnvandalen"
-	L.blacktooth_knuckleduster = "Prügler der Schwarzzahnvandalen"
-	L.bilge_rat_swabby = "Deckschrubber der Bilgeratten"
-	L.vermin_trapper = "Ungezieferfänger"
-	L.bilge_rat_buccaneer = "Bukanier der Bilgeratten"
-	L.bilge_rat_padfoot = "Samtpfote der Bilgeratten"
-	L.soggy_shiprat = "Durchnässte Schiffsratte"
-	L.irontide_crusher = "Zermalmer der Eisenfluträuber"
-	L.irontide_buccaneer = "Bukanier der Eisenfluträuber"
-	L.irontide_ravager = "Verheerer der Eisenfluträuber"
-	L.irontide_officer = "Offizierin der Eisenfluträuber"
-	L.irontide_stormcaller = "Sturmrufer der Eisenfluträuber"
-end
+BigWigsAPI.SetBossModuleLocale("Freehold Trash", {
+	sharkbait = "Haihappen",
+	irontide_enforcer = "Vollstrecker der Eisenfluträuber",
+	irontide_bonesaw = "Knochensäger der Eisenfluträuber",
+	irontide_crackshot = "Kunstschütze der Eisenfluträuber",
+	irontide_corsair = "Korsarin der Eisenfluträuber",
+	cutwater_duelist = "Duellant der Schwertwasserkorsaren",
+	irontide_oarsman = "Ruderer der Eisenfluträuber",
+	cutwater_knife_juggler = "Messerwerfer der Schwertwasserkorsaren",
+	bilge_rat_brinescale = "Salzschuppe der Bilgeratten",
+	blacktooth_scrapper = "Klopper der Schwarzzahnvandalen",
+	blacktooth_knuckleduster = "Prügler der Schwarzzahnvandalen",
+	bilge_rat_swabby = "Deckschrubber der Bilgeratten",
+	vermin_trapper = "Ungezieferfänger",
+	bilge_rat_buccaneer = "Bukanier der Bilgeratten",
+	bilge_rat_padfoot = "Samtpfote der Bilgeratten",
+	soggy_shiprat = "Durchnässte Schiffsratte",
+	irontide_crusher = "Zermalmer der Eisenfluträuber",
+	irontide_buccaneer = "Bukanier der Eisenfluträuber",
+	irontide_ravager = "Verheerer der Eisenfluträuber",
+	irontide_officer = "Offizierin der Eisenfluträuber",
+	irontide_stormcaller = "Sturmrufer der Eisenfluträuber",
+})
 
-L = BigWigs:NewBossLocale("Council o' Captains", "deDE")
-if L then
-	L.crit_brew = "Krit-Bräu"
-	L.haste_brew = "Tempo-Bräu"
-	L.bad_brew = "Schlechtes Bräu"
-end
+BigWigsAPI.SetBossModuleLocale("Council o' Captains", {
+	crit_brew = "Krit-Bräu",
+	haste_brew = "Tempo-Bräu",
+	bad_brew = "Schlechtes Bräu",
+})
 
-L = BigWigs:NewBossLocale("Ring of Booty", "deDE")
-if L then
+BigWigsAPI.SetBossModuleLocale("Ring of Booty", {
 	-- Gather 'round and place yer bets! We got a new set of vict-- uh... competitors! Take it away, Gurgthok and Wodin!
-	L.lightning_warmup = "Wir haben Frischflei...."
+	lightning_warmup = "Wir haben Frischflei....",
 	-- It's a greased up pig? I'm beginning to think this is not a professional setup. Oh well... grab the pig and you win
-	L.lightning_warmup_2 = "hier sind Amateure am Werk"
+	lightning_warmup_2 = "hier sind Amateure am Werk",
 
-	L.lightning = "Blitz"
-	L.lightning_caught = "Blitz nach %.1f Sekunden gefangen!"
-	L.ludwig = "Ludwig Von Tortollen"
-	L.trothak = "Trothak"
-end
+	lightning = "Blitz",
+	lightning_caught = "Blitz nach %.1f Sekunden gefangen!",
+	ludwig = "Ludwig Von Tortollen",
+	trothak = "Trothak",
+})
 
 -- Horrific Vision of Orgrimmar
 
-L = BigWigs:NewBossLocale("Horrific Vision of Orgrimmar Trash", "deDE")
-if L then
-	L.sanity_change = "%d Geistige Gesundheit"
-	L.madnesses = "Wahnsinn"
-	L.potions = "Tränke"
-	L.buffs = "Buffs"
-	L.slowed = "Verlangsamt"
-	L.sluggish_potion_effect = "Heilt alle 5 Sek. 2%"
-	L.sickening_potion_effect = "5% weniger erlittener Schaden"
-	L.spicy_potion_effect = "Speit Feuer"
+BigWigsAPI.SetBossModuleLocale("Horrific Vision of Orgrimmar Trash", {
+	sanity_change = "%d Geistige Gesundheit",
+	madnesses = "Wahnsinn",
+	potions = "Tränke",
+	buffs = "Buffs",
+	slowed = "Verlangsamt",
+	sluggish_potion_effect = "Heilt alle 5 Sek. 2%",
+	sickening_potion_effect = "5% weniger erlittener Schaden",
+	spicy_potion_effect = "Speit Feuer",
 
-	L.voidbound_shaman = "Leerengebundener Schamane"
-	L.endless_hunger_totem = "Totem des endlosen Hungers"
-	L.crawling_corruption = "Krabbelnde Verderbnis"
-	L.void_globule = "Leerenkügelchen"
-	L.voidbound_ravager = "Leerengebundener Verheerer"
-	L.voidbound_honor_guard = "Leerengebundene Ehrenwache"
-	L.voidbound_shieldbearer = "Leerengebundener Schildträger"
-	L.naros = "Naros"
-	L.barkeep_morag = "Barkeeper Morag"
-	L.decimator_shiqvoth = "Dezimierer Shiq'voth"
-	L.voidbound_berserker = "Leerengebundener Berserker"
-	L.bwemba = "Bwemba"
-	L.greater_void_elemental = "Großer Leerenelementar"
-	L.faceless_willbreaker = "Gesichtsloser Willensbrecher"
-	L.burrowing_appendage = "Grabende Gliedmaße"
-	L.annihilator_lakhal = "Vernichter Lak'hal"
-	L.kthir_dominator = "Dominator der K'thir"
-	L.kthir_mindcarver = "Gedankenschnitzer der K'thir"
-	L.coagulated_horror = "Geronnener Horror"
-	L.voidcrazed_hulk = "Leerenbefallener Koloss"
-	L.misha = "Misha"
-	L.aqir_scarab = "Aqirskarabäus"
-	L.aqir_bonecrusher = "Knochenzermalmer der Aqir"
-	L.aqir_mindhunter = "Geistjäger der Aqir"
-	L.aqir_venomweaver = "Giftweber der Aqir"
-	L.gamon = "Gamon"
-end
+	voidbound_shaman = "Leerengebundener Schamane",
+	endless_hunger_totem = "Totem des endlosen Hungers",
+	crawling_corruption = "Krabbelnde Verderbnis",
+	void_globule = "Leerenkügelchen",
+	voidbound_ravager = "Leerengebundener Verheerer",
+	voidbound_honor_guard = "Leerengebundene Ehrenwache",
+	voidbound_shieldbearer = "Leerengebundener Schildträger",
+	naros = "Naros",
+	barkeep_morag = "Barkeeper Morag",
+	decimator_shiqvoth = "Dezimierer Shiq'voth",
+	voidbound_berserker = "Leerengebundener Berserker",
+	bwemba = "Bwemba",
+	greater_void_elemental = "Großer Leerenelementar",
+	faceless_willbreaker = "Gesichtsloser Willensbrecher",
+	burrowing_appendage = "Grabende Gliedmaße",
+	annihilator_lakhal = "Vernichter Lak'hal",
+	kthir_dominator = "Dominator der K'thir",
+	kthir_mindcarver = "Gedankenschnitzer der K'thir",
+	coagulated_horror = "Geronnener Horror",
+	voidcrazed_hulk = "Leerenbefallener Koloss",
+	misha = "Misha",
+	aqir_scarab = "Aqirskarabäus",
+	aqir_bonecrusher = "Knochenzermalmer der Aqir",
+	aqir_mindhunter = "Geistjäger der Aqir",
+	aqir_venomweaver = "Giftweber der Aqir",
+	gamon = "Gamon",
+})
 
-L = BigWigs:NewBossLocale("Thrall", "deDE")
-if L then
-	L.thrall = "Thrall"
-end
+BigWigsAPI.SetBossModuleLocale("Thrall", {
+	thrall = "Thrall",
+})
 
-L = BigWigs:NewBossLocale("Oblivion Elemental", "deDE")
-if L then
-	L.oblivion_elemental = "Auslöschungselementar"
-end
+BigWigsAPI.SetBossModuleLocale("Oblivion Elemental", {
+	oblivion_elemental = "Auslöschungselementar",
+})
 
-L = BigWigs:NewBossLocale("Inquisitor Gnshal", "deDE")
-if L then
-	L.inquisitor_gnshal = "Inquisitor Gnshal"
-end
+BigWigsAPI.SetBossModuleLocale("Inquisitor Gnshal", {
+	inquisitor_gnshal = "Inquisitor Gnshal",
+})
 
-L = BigWigs:NewBossLocale("Vez'okk the Lightless", "deDE")
-if L then
-	L.vezokk = "Vez'okk der Lichtlose"
-end
+BigWigsAPI.SetBossModuleLocale("Vez'okk the Lightless", {
+	vezokk = "Vez'okk der Lichtlose",
+})
 
-L = BigWigs:NewBossLocale("Rexxar", "deDE")
-if L then
-	L.rexxar = "Rexxar"
-	L.pet_trigger_1 = "Kommt, meine Tiere! Dient Eurem Meister!"
-	L.pet_trigger_2 = "Meine Tiere werden Euch verschlingen!"
-	L.pet_trigger_3 = "Schnappt sie euch!"
-end
+BigWigsAPI.SetBossModuleLocale("Rexxar", {
+	rexxar = "Rexxar",
+	pet_trigger_1 = "Kommt, meine Tiere! Dient Eurem Meister!",
+	pet_trigger_2 = "Meine Tiere werden Euch verschlingen!",
+	pet_trigger_3 = "Schnappt sie euch!",
+})
 
 -- Horrific Vision of Stormwind
 
-L = BigWigs:NewBossLocale("Horrific Vision of Stormwind Trash", "deDE")
-if L then
-	L.sanity_change = "%d Geistige Gesundheit"
-	L.portal_closed = "Portal geschlossen"
-	L.portal_closed_desc = "Zeigt eine Nachricht wenn ein Portal im Magierviertel geschlossen wird."
-	L.madnesses = "Wahnsinn"
-	L.potions = "Tränke"
-	L.buffs = "Buffs"
-	L.slowed = "Verlangsamt"
-	L.sluggish_potion_effect = "Heilt alle 5 Sek. 2%"
-	L.sickening_potion_effect = "5% weniger erlittener Schaden"
-	L.spicy_potion_effect = "Speit Feuer"
+BigWigsAPI.SetBossModuleLocale("Horrific Vision of Stormwind Trash", {
+	sanity_change = "%d Geistige Gesundheit",
+	portal_closed = "Portal geschlossen",
+	portal_closed_desc = "Zeigt eine Nachricht wenn ein Portal im Magierviertel geschlossen wird.",
+	madnesses = "Wahnsinn",
+	potions = "Tränke",
+	buffs = "Buffs",
+	slowed = "Verlangsamt",
+	sluggish_potion_effect = "Heilt alle 5 Sek. 2%",
+	sickening_potion_effect = "5% weniger erlittener Schaden",
+	spicy_potion_effect = "Speit Feuer",
 
-	L.crawling_corruption = "Krabbelnde Verderbnis"
-	L.enthralled_footman = "Bezauberter Fußsoldat"
-	L.fallen_voidspeaker = "Gefallener Leerensprecher"
-	L.void_globule = "Leerenkügelchen"
-	L.fallen_heartpiercer = "Gefallener Herzdurchbohrer"
-	L.fallen_riftwalker = "Gefallener Risswanderer"
-	L.cultist_slavedriver = "Sklaventreiber der Kultisten"
-	L.cultist_tormenter = "Peiniger der Kultisten"
-	L.inquisitor_darkspeak = "Inquisitor Dunkelwort"
-	L.fallen_taskmaster = "Gefallener Zuchtmeister"
-	L.faceless_willbreaker = "Gesichtsloser Willensbrecher"
-	L.enthralled_weaponsmith = "Bezauberter Waffenschmied"
-	L.forge_guard_hurrul = "Schmiedewache Hurrul"
-	L.si7_informant = "Informant des SI:7"
-	L.armsmaster_terenson = "Waffenmeisterin Terenson"
-	L.burrowing_appendage = "Grabende Gliedmaße"
-	L.dod = "Dod"
-	L.alxkov_the_infested = "Alx'kov der Befallene"
-	L.greater_void_elemental = "Großer Leerenelementar"
-	L.boundless_corruption = "Unendliche Verderbnis"
-	L.portal_keeper = "Portalhüter"
-	L.zardeth_of_the_black_claw = "Zardeth der Schwarzen Klaue"
-	L.unstable_servant = "Instabiler Diener"
-	L.hogger = "Hogger"
-	L.void_scarred_gryphon = "Leerenvernarbter Greif"
+	crawling_corruption = "Krabbelnde Verderbnis",
+	enthralled_footman = "Bezauberter Fußsoldat",
+	fallen_voidspeaker = "Gefallener Leerensprecher",
+	void_globule = "Leerenkügelchen",
+	fallen_heartpiercer = "Gefallener Herzdurchbohrer",
+	fallen_riftwalker = "Gefallener Risswanderer",
+	cultist_slavedriver = "Sklaventreiber der Kultisten",
+	cultist_tormenter = "Peiniger der Kultisten",
+	inquisitor_darkspeak = "Inquisitor Dunkelwort",
+	fallen_taskmaster = "Gefallener Zuchtmeister",
+	faceless_willbreaker = "Gesichtsloser Willensbrecher",
+	enthralled_weaponsmith = "Bezauberter Waffenschmied",
+	forge_guard_hurrul = "Schmiedewache Hurrul",
+	si7_informant = "Informant des SI:7",
+	armsmaster_terenson = "Waffenmeisterin Terenson",
+	burrowing_appendage = "Grabende Gliedmaße",
+	dod = "Dod",
+	alxkov_the_infested = "Alx'kov der Befallene",
+	greater_void_elemental = "Großer Leerenelementar",
+	boundless_corruption = "Unendliche Verderbnis",
+	portal_keeper = "Portalhüter",
+	zardeth_of_the_black_claw = "Zardeth der Schwarzen Klaue",
+	unstable_servant = "Instabiler Diener",
+	hogger = "Hogger",
+	void_scarred_gryphon = "Leerenvernarbter Greif",
 
-	L.therum_deepforge_warmup_trigger = "Ihr spielt wohl gern mit Sprengstoff, was? Dann lasst uns spielen!"
-	L.alleria_windrunner_warmup_trigger = "Mutter... hör nicht auf das Geflüster!"
-end
+	therum_deepforge_warmup_trigger = "Ihr spielt wohl gern mit Sprengstoff, was? Dann lasst uns spielen!",
+	alleria_windrunner_warmup_trigger = "Mutter... hör nicht auf das Geflüster!",
+})
 
-L = BigWigs:NewBossLocale("Alleria Windrunner", "deDE")
-if L then
-	L.alleria_windrunner = "Alleria Windläufer"
-end
+BigWigsAPI.SetBossModuleLocale("Alleria Windrunner", {
+	alleria_windrunner = "Alleria Windläufer",
+})
 
-L = BigWigs:NewBossLocale("Magister Umbric", "deDE")
-if L then
-	L.magister_umbric = "Magister Umbric"
-end
+BigWigsAPI.SetBossModuleLocale("Magister Umbric", {
+	magister_umbric = "Magister Umbric",
+})
 
-L = BigWigs:NewBossLocale("Overlord Mathias Shaw", "deDE")
-if L then
-	L.overlord_mathias_shaw = "Oberanführer Mathias Shaw"
-end
+BigWigsAPI.SetBossModuleLocale("Overlord Mathias Shaw", {
+	overlord_mathias_shaw = "Oberanführer Mathias Shaw",
+})
 
-L = BigWigs:NewBossLocale("Slavemaster Ul'rok", "deDE")
-if L then
-	L.slavemaster_ulrok = "Sklavenmeister Ul'rok"
-end
+BigWigsAPI.SetBossModuleLocale("Slavemaster Ul'rok", {
+	slavemaster_ulrok = "Sklavenmeister Ul'rok",
+})
 
-L = BigWigs:NewBossLocale("Therum Deepforge", "deDE")
-if L then
-	L.therum_deepforge = "Therum Tiefenschmied"
-end
+BigWigsAPI.SetBossModuleLocale("Therum Deepforge", {
+	therum_deepforge = "Therum Tiefenschmied",
+})
 
 -- Kings' Rest
 
-L = BigWigs:NewBossLocale("Dazar, The First King", "deDE")
-if L then
-	L.spears_active = "Durchbohrende Speere aktiv"
-end
+BigWigsAPI.SetBossModuleLocale("Dazar, The First King", {
+	spears_active = "Durchbohrende Speere aktiv",
+})
 
-L = BigWigs:NewBossLocale("King's Rest Trash", "deDE")
-if L then
-	L.guardian = "Belebter Wächter"
-	L.minion = "Diener von Zul"
-	L.champion = "Schattengeborener Champion"
-	L.shadow_witchdoctor = "Schattengeborener Hexendoktor"
-	L.warrior = "Schattengeborener Krieger"
-	L.timalji = "König Timalji"
-	L.wasi = "Königin Wasi"
-	L.rahuai = "König Rahu'ai"
-	L.atu = "Wachoffizier Atu"
-	L.mbara = "Seneschall M'bara"
-	L.patla = "Königin Patlaa"
-	L.raptor = "Skelettjagdraptor"
-	L.aakul = "König A'akul"
-	L.agent = "Blutverschworener Agent"
-	L.purification_construct = "Läuterungskonstrukt"
-	L.fluid = "Balsamierungsflüssigkeit"
-	L.interment_construct = "Bestattungskonstrukt"
-	L.hex_priest = "Spektraler Hexpriester"
-	L.berserker = "Spektrale Berserkerin"
-	L.spectral_witchdoctor = "Spektrale Hexendoktorin"
-	L.beastmaster = "Spektrale Bestienmeisterin"
-	L.brute = "Spektraler Schläger"
-	L.zul = "Zuls Schatten"
-end
+BigWigsAPI.SetBossModuleLocale("King's Rest Trash", {
+	guardian = "Belebter Wächter",
+	minion = "Diener von Zul",
+	champion = "Schattengeborener Champion",
+	shadow_witchdoctor = "Schattengeborener Hexendoktor",
+	warrior = "Schattengeborener Krieger",
+	timalji = "König Timalji",
+	wasi = "Königin Wasi",
+	rahuai = "König Rahu'ai",
+	atu = "Wachoffizier Atu",
+	mbara = "Seneschall M'bara",
+	patla = "Königin Patlaa",
+	raptor = "Skelettjagdraptor",
+	aakul = "König A'akul",
+	agent = "Blutverschworener Agent",
+	purification_construct = "Läuterungskonstrukt",
+	fluid = "Balsamierungsflüssigkeit",
+	interment_construct = "Bestattungskonstrukt",
+	hex_priest = "Spektraler Hexpriester",
+	berserker = "Spektrale Berserkerin",
+	spectral_witchdoctor = "Spektrale Hexendoktorin",
+	beastmaster = "Spektrale Bestienmeisterin",
+	brute = "Spektraler Schläger",
+	zul = "Zuls Schatten",
+})
 
 -- Operation: Mechagon
 
-L = BigWigs:NewBossLocale("Operation: Mechagon Trash", "deDE")
-if L then
-	L.scrapbone_shaman = "Schamane der Schrottknochen"
-	L.scrapbone_bully = "Schikanierer der Schrottknochen"
-	L.scrapbone_grinder = "Häcksler der Schrottknochen"
-	L.saurolisk_bonenipper = "Knochenbeißersaurolisk"
-	L.malfunctioning_scrapbot = "Defekter Schrottbot"
-	L.heavy_scrapbot = "Schwerer Schrottbot"
-	L.pistonhead_blaster = "Knaller der Kolbenköppe"
-	L.pistonhead_scrapper = "Schrotterin der Kolbenköppe"
-	L.weaponized_crawler = "Waffenfähiger Krabbler"
-	L.slime_elemental = "Schleimelementar"
-	L.toxic_monstrosity = "Toxische Monstrosität"
-	L.toxic_lurker = "Giftschleicher"
-	L.pistonhead_mechanic = "Mechaniker der Kolbenköppe"
-	L.scraphound = "Schrotthund"
-	L.mechagon_renormalizer = "Renormalisiererin von Mechagon"
-	L.mechagon_cavalry = "Kavallerist von Mechagon"
-	L.mechagon_trooper = "Mechagonsoldat"
-	L.anodized_coilbearer = "Anodisierter Spulenträger"
-	L.bomb_tonk = "Bombenpanzer"
-	L.rocket_tonk = "Raketenpanzer"
-	L.waste_processing_unit = "Müllverarbeitungseinheit"
-	L.metal_gunk = "Metallschleim"
-	L.junkyard_d0g = "T.Ö.L.3. des Schrottplatzes"
-	L.mechagon_tinkerer = "Tüftlerin von Mechagon"
-	L.anti_personnel_squirrel = "Antipersoneneichhörnchen"
-	L.defense_bot_mk_iii = "Verteidigungsbot Mk. III"
-	L.blastatron_x80 = "Rumsatron X-80"
-	L.mechagon_mechanic = "Mechaniker von Mechagon"
-	L.workshop_defender = "Werkstattverteidiger"
-end
+BigWigsAPI.SetBossModuleLocale("Operation: Mechagon Trash", {
+	scrapbone_shaman = "Schamane der Schrottknochen",
+	scrapbone_bully = "Schikanierer der Schrottknochen",
+	scrapbone_grinder = "Häcksler der Schrottknochen",
+	saurolisk_bonenipper = "Knochenbeißersaurolisk",
+	malfunctioning_scrapbot = "Defekter Schrottbot",
+	heavy_scrapbot = "Schwerer Schrottbot",
+	pistonhead_blaster = "Knaller der Kolbenköppe",
+	pistonhead_scrapper = "Schrotterin der Kolbenköppe",
+	weaponized_crawler = "Waffenfähiger Krabbler",
+	slime_elemental = "Schleimelementar",
+	toxic_monstrosity = "Toxische Monstrosität",
+	toxic_lurker = "Giftschleicher",
+	pistonhead_mechanic = "Mechaniker der Kolbenköppe",
+	scraphound = "Schrotthund",
+	mechagon_renormalizer = "Renormalisiererin von Mechagon",
+	mechagon_cavalry = "Kavallerist von Mechagon",
+	mechagon_trooper = "Mechagonsoldat",
+	anodized_coilbearer = "Anodisierter Spulenträger",
+	bomb_tonk = "Bombenpanzer",
+	rocket_tonk = "Raketenpanzer",
+	waste_processing_unit = "Müllverarbeitungseinheit",
+	metal_gunk = "Metallschleim",
+	junkyard_d0g = "T.Ö.L.3. des Schrottplatzes",
+	mechagon_tinkerer = "Tüftlerin von Mechagon",
+	anti_personnel_squirrel = "Antipersoneneichhörnchen",
+	defense_bot_mk_iii = "Verteidigungsbot Mk. III",
+	blastatron_x80 = "Rumsatron X-80",
+	mechagon_mechanic = "Mechaniker von Mechagon",
+	workshop_defender = "Werkstattverteidiger",
+})
 
-L = BigWigs:NewBossLocale("Tussle Tonks", "deDE")
-if L then
-	L.warmup_trigger = "Also, das ist mal eine statistische Anomalie. Unsere Besucher leben noch!"
-end
+BigWigsAPI.SetBossModuleLocale("Tussle Tonks", {
+	warmup_trigger = "Also, das ist mal eine statistische Anomalie. Unsere Besucher leben noch!",
+})
 
-L = BigWigs:NewBossLocale("King Mechagon", "deDE")
-if L then
-	L.hardmode_desc = "Warnung wenn der Annihilo-tron 5000 beginnt die Knopf-Reihenfolge anzuzeigen."
+BigWigsAPI.SetBossModuleLocale("King Mechagon", {
+	hardmode_desc = "Warnung wenn der Annihilo-tron 5000 beginnt die Knopf-Reihenfolge anzuzeigen.",
 
-	L.button = "Knopf"
-	L.button_desc = "Zeigt eine Warnung sobald jemand einen Knopf drückt."
-end
+	button = "Knopf",
+	button_desc = "Zeigt eine Warnung sobald jemand einen Knopf drückt.",
+})
 
 -- Shrine of the Storm
 
-L = BigWigs:NewBossLocale("Aqu'sirr", "deDE")
-if L then
-	L.warmup_trigger = "Wagt es nicht, diesen heiligen Ort mit Eurer Anwesenheit zu schänden!"
-end
+BigWigsAPI.SetBossModuleLocale("Aqu'sirr", {
+	warmup_trigger = "Wagt es nicht, diesen heiligen Ort mit Eurer Anwesenheit zu schänden!",
+})
 
-L = BigWigs:NewBossLocale("Lord Stormsong", "deDE")
-if L then
-	L.warmup_trigger_horde = "Eindringlinge?! Ich versenke Eure Leichen in den schwarzen Tiefen, wo sie auf ewig gemartert werden!"
-	L.warmup_trigger_alliance = "Meister! Stoppt diesen Wahnsinn! Die Flotte von Kul Tiras darf nicht der Dunkelheit anheimfallen!"
-end
+BigWigsAPI.SetBossModuleLocale("Lord Stormsong", {
+	warmup_trigger_horde = "Eindringlinge?! Ich versenke Eure Leichen in den schwarzen Tiefen, wo sie auf ewig gemartert werden!",
+	warmup_trigger_alliance = "Meister! Stoppt diesen Wahnsinn! Die Flotte von Kul Tiras darf nicht der Dunkelheit anheimfallen!",
+})
 
-L = BigWigs:NewBossLocale("Shrine of the Storm Trash", "deDE")
-if L then
-	L.templar = "Schreintempler"
-	L.spiritualist = "Spiritualistin der Gezeitenweisen"
-	L.galecaller_apprentice = "Sturmbeschwörerlehrling"
-	L.windspeaker = "Windsprecherin Heldis"
-	L.ironhull_apprentice = "Lehrling von Eisenkiel"
-	L.runecarver = "Runenmetz Sorn"
-	L.guardian_elemental = "Wächterelementar"
-	L.ritualist = "Tiefseeritualist"
-	L.cultist = "Abgrundkultist"
-	L.depthbringer = "Ertrunkener Tiefenbringer"
-	L.living_current = "Lebendige Strömung"
-	L.enforcer = "Vollstrecker der Gezeitenweisen"
-end
+BigWigsAPI.SetBossModuleLocale("Shrine of the Storm Trash", {
+	templar = "Schreintempler",
+	spiritualist = "Spiritualistin der Gezeitenweisen",
+	galecaller_apprentice = "Sturmbeschwörerlehrling",
+	windspeaker = "Windsprecherin Heldis",
+	ironhull_apprentice = "Lehrling von Eisenkiel",
+	runecarver = "Runenmetz Sorn",
+	guardian_elemental = "Wächterelementar",
+	ritualist = "Tiefseeritualist",
+	cultist = "Abgrundkultist",
+	depthbringer = "Ertrunkener Tiefenbringer",
+	living_current = "Lebendige Strömung",
+	enforcer = "Vollstrecker der Gezeitenweisen",
+})
 
 -- Siege of Boralus
 
-L = BigWigs:NewBossLocale("Siege of Boralus Trash", "deDE")
-if L then
-	L.enforcer = "Vollstrecker der Knochenritzer"
-	L.halberd = "Hellebardier von Kul Tiras"
-	L.gutter = "Schlächter der Knochenritzer"
-	L.bomber = "Schwarzteerbomber"
-	L.waveshaper = "Wellenformer der Eisenfluträuber"
-	L.wavetender = "Wellenzähmer von Kul Tiras"
-	L.raider = "Eisenfluträuber"
-	L.shredder = "Springflutschredder"
-	L.vanguard = "Vorhut von Kul Tiras"
-	L.commander = "Aschenwindkommandant"
-	L.curseblade = "Fluchklinge der Eisenfluträuber"
-	L.spotter = "Aschenwindkundschafter"
-	L.cannoneer = "Aschenwindkanonier"
-	L.demolisher = "Verwüster der Bilgeratten"
-	L.buccaneer = "Bukanier der Bilgeratten"
-	L.pillager = "Brandschatzer der Bilgeratten"
-	L.tempest = "Orkan der Bilgeratten"
-	L.cutthroat = "Halsabschneider der Bilgeratten"
-	L.invader = "Aschenwindeindringling"
+BigWigsAPI.SetBossModuleLocale("Siege of Boralus Trash", {
+	enforcer = "Vollstrecker der Knochenritzer",
+	halberd = "Hellebardier von Kul Tiras",
+	gutter = "Schlächter der Knochenritzer",
+	bomber = "Schwarzteerbomber",
+	waveshaper = "Wellenformer der Eisenfluträuber",
+	wavetender = "Wellenzähmer von Kul Tiras",
+	raider = "Eisenfluträuber",
+	shredder = "Springflutschredder",
+	vanguard = "Vorhut von Kul Tiras",
+	commander = "Aschenwindkommandant",
+	curseblade = "Fluchklinge der Eisenfluträuber",
+	spotter = "Aschenwindkundschafter",
+	cannoneer = "Aschenwindkanonier",
+	demolisher = "Verwüster der Bilgeratten",
+	buccaneer = "Bukanier der Bilgeratten",
+	pillager = "Brandschatzer der Bilgeratten",
+	tempest = "Orkan der Bilgeratten",
+	cutthroat = "Halsabschneider der Bilgeratten",
+	invader = "Aschenwindeindringling",
 
-	L.gate_open_desc = "Zeigt einen Timer wann das Tor zum nächsten Gebiet nach einer Bossbegegnung geöffnet wird."
-end
+	gate_open_desc = "Zeigt einen Timer wann das Tor zum nächsten Gebiet nach einer Bossbegegnung geöffnet wird.",
+})
 
-L = BigWigs:NewBossLocale("Dread Captain Lockwood", "deDE")
-if L then
-	L.ordnance_dropped = "Instabile Munition fallengelassen"
-end
+BigWigsAPI.SetBossModuleLocale("Dread Captain Lockwood", {
+	ordnance_dropped = "Instabile Munition fallengelassen",
+})
 
 -- Temple of Sethraliss
 
-L = BigWigs:NewBossLocale("Avatar of Sethraliss", "deDE")
-if L then
-	L.heal_boss = "Der Avatar kann geheilt werden"
-end
+BigWigsAPI.SetBossModuleLocale("Avatar of Sethraliss", {
+	heal_boss = "Der Avatar kann geheilt werden",
+})
 
-L = BigWigs:NewBossLocale("Temple of Sethraliss Trash", "deDE")
-if L then
-	L.dust_devil = "Aufgeladener Staubteufel"
-	L.marksman = "Sandgepeitschter Schütze"
-	L.fang = "Verhüllte Schlange"
-	L.rider = "Schuppenkroluskreiter"
-	L.tender = "Treuloser Eierhüter"
-	L.incubator = "Wahnsinniger Inkubator"
-	L.nimbus = "Aufgebrachter Nimbus"
-	L.doctor = "Seuchenärztin"
-end
+BigWigsAPI.SetBossModuleLocale("Temple of Sethraliss Trash", {
+	dust_devil = "Aufgeladener Staubteufel",
+	marksman = "Sandgepeitschter Schütze",
+	fang = "Verhüllte Schlange",
+	rider = "Schuppenkroluskreiter",
+	tender = "Treuloser Eierhüter",
+	incubator = "Wahnsinniger Inkubator",
+	nimbus = "Aufgebrachter Nimbus",
+	doctor = "Seuchenärztin",
+})
 
 -- The MOTHERLODE!!
 
-L = BigWigs:NewBossLocale("The MOTHERLODE!! Trash", "deDE")
-if L then
-	L.refreshment_vendor = "Snackverkäuferin"
-	L.mech_jockey = "Mechjockey"
-	L.mechanized_peacekeeper = "Mechanisierter Friedensbewahrer"
-	L.addled_thug = "Benebelter Rohling"
-	L.hired_assassin = "Auftragsmörder"
-	L.azerite_extractor = "Azeritextraktor"
-	L.venture_co_earthshaper = "Erdformer der Venture Co."
-	L.wanton_sapper = "Zerstörungswütige Pionierin"
-	L.stonefury = "Steinzorn"
-	L.taskmaster_askari = "Vorarbeiter Askari"
-	L.weapons_tester = "Waffentester"
-	L.venture_co_mastermind = "Genie der Venture Co."
-	L.venture_co_alchemist = "Alchemistin der Venture Co."
-	L.venture_co_war_machine = "Kriegsmaschine der Venture Co."
-	L.crawler_mine = "Kriechermine"
-	L.ordnance_specialist = "Geschützspezialist"
-end
+BigWigsAPI.SetBossModuleLocale("The MOTHERLODE!! Trash", {
+	refreshment_vendor = "Snackverkäuferin",
+	mech_jockey = "Mechjockey",
+	mechanized_peacekeeper = "Mechanisierter Friedensbewahrer",
+	addled_thug = "Benebelter Rohling",
+	hired_assassin = "Auftragsmörder",
+	azerite_extractor = "Azeritextraktor",
+	venture_co_earthshaper = "Erdformer der Venture Co.",
+	wanton_sapper = "Zerstörungswütige Pionierin",
+	stonefury = "Steinzorn",
+	taskmaster_askari = "Vorarbeiter Askari",
+	weapons_tester = "Waffentester",
+	venture_co_mastermind = "Genie der Venture Co.",
+	venture_co_alchemist = "Alchemistin der Venture Co.",
+	venture_co_war_machine = "Kriegsmaschine der Venture Co.",
+	crawler_mine = "Kriechermine",
+	ordnance_specialist = "Geschützspezialist",
+})
 
 -- Tol Dagor
 
-L = BigWigs:NewBossLocale("Tol Dagor Trash", "deDE")
-if L then
-	L.vicejaw = "Kanalisationszangenkiefer"
-	L.thug = "Schläger der Eisenfluträuber"
-	L.seaspeaker = "Seesprecher der Bilgeratten"
-	L.flamecaster = "Aschenwindflammenschleuderin"
-	L.officer = "Aschenwindoffizierin"
-	L.marine = "Aschenwindmarinesoldat"
-	L.priest = "Aschenwindpriesterin"
-end
+BigWigsAPI.SetBossModuleLocale("Tol Dagor Trash", {
+	vicejaw = "Kanalisationszangenkiefer",
+	thug = "Schläger der Eisenfluträuber",
+	seaspeaker = "Seesprecher der Bilgeratten",
+	flamecaster = "Aschenwindflammenschleuderin",
+	officer = "Aschenwindoffizierin",
+	marine = "Aschenwindmarinesoldat",
+	priest = "Aschenwindpriesterin",
+})
 
 -- The Underrot
 
-L = BigWigs:NewBossLocale("Underrot Trash", "deDE")
-if L then
-	L.spirit = "Besudelter Geist"
-	L.priest = "Ergebene Blutpriesterin"
-	L.maggot = "Eitrige Made"
-	L.matron = "Auserwählte Blutmatrone"
-	L.fanatical_headhunter = "Fanatischer Kopfjäger"
-	L.lasher = "Kranker Peitscher"
-	L.bloodswarmer = "Wilder Blutschwärmer"
-	L.rot = "Lebendige Fäulnis"
-	L.deathspeaker = "Gefallener Todessprecher"
-	L.grotesque_horror = "Grotesker Schrecken"
-	L.defiler = "Blutverschworener Schänder"
-	L.corruptor = "Gesichtsloser Verderber"
-end
+BigWigsAPI.SetBossModuleLocale("Underrot Trash", {
+	spirit = "Besudelter Geist",
+	priest = "Ergebene Blutpriesterin",
+	maggot = "Eitrige Made",
+	matron = "Auserwählte Blutmatrone",
+	fanatical_headhunter = "Fanatischer Kopfjäger",
+	lasher = "Kranker Peitscher",
+	bloodswarmer = "Wilder Blutschwärmer",
+	rot = "Lebendige Fäulnis",
+	deathspeaker = "Gefallener Todessprecher",
+	grotesque_horror = "Grotesker Schrecken",
+	defiler = "Blutverschworener Schänder",
+	corruptor = "Gesichtsloser Verderber",
+})
 
 -- Waycrest Manor
 
-L = BigWigs:NewBossLocale("Waycrest Manor Trash", "deDE")
-if L then
-	L.heartsbane_runeweaver = "Runenweberin des Herzbanns"
-	L.bewitched_captain = "Bezirzter Hauptmann"
-	L.thistle_acolyte = "Distelakolythin"
-	L.blight_toad = "Seuchenkröte"
-	L.dreadwing_raven = "Unheilschwingenrabe"
-	L.heartsbane_vinetwister = "Herzbannrankenwinderin"
-	L.runic_disciple = "Runenjüngerin"
-	L.coven_thornshaper = "Dornformerin des Zirkels"
-	L.thornguard = "Dornwächter"
-	L.matron_bryndle = "Matrone Brünndel"
-	L.devouring_maggot = "Verschlingende Made"
-	L.pallid_gorger = "Bleicher Schlinger"
-	L.banquet_steward = "Bankettbediensteter"
-	L.crazed_marksman = "Wahnsinniger Schütze"
-	L.maddened_survivalist = "Irrsinniger Überlebenskünstler"
-	L.faceless_maiden = "Gesichtslose Maid"
-	L.marked_sister = "Gezeichnete Schwester"
-	L.matron_alma = "Matrone Alma"
-	L.heartsbane_soulcharmer = "Seelenbetörerin des Herzbanns"
-end
+BigWigsAPI.SetBossModuleLocale("Waycrest Manor Trash", {
+	heartsbane_runeweaver = "Runenweberin des Herzbanns",
+	bewitched_captain = "Bezirzter Hauptmann",
+	thistle_acolyte = "Distelakolythin",
+	blight_toad = "Seuchenkröte",
+	dreadwing_raven = "Unheilschwingenrabe",
+	heartsbane_vinetwister = "Herzbannrankenwinderin",
+	runic_disciple = "Runenjüngerin",
+	coven_thornshaper = "Dornformerin des Zirkels",
+	thornguard = "Dornwächter",
+	matron_bryndle = "Matrone Brünndel",
+	devouring_maggot = "Verschlingende Made",
+	pallid_gorger = "Bleicher Schlinger",
+	banquet_steward = "Bankettbediensteter",
+	crazed_marksman = "Wahnsinniger Schütze",
+	maddened_survivalist = "Irrsinniger Überlebenskünstler",
+	faceless_maiden = "Gesichtslose Maid",
+	marked_sister = "Gezeichnete Schwester",
+	matron_alma = "Matrone Alma",
+	heartsbane_soulcharmer = "Seelenbetörerin des Herzbanns",
+})
 
-L = BigWigs:NewBossLocale("Gorak Tul", "deDE")
-if L then
-	L.add_killed = "Add getötet - Bereit zum Verbrennen"
-end
+BigWigsAPI.SetBossModuleLocale("Gorak Tul", {
+	add_killed = "Add getötet - Bereit zum Verbrennen",
+})

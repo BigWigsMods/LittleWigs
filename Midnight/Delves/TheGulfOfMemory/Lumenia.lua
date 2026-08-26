@@ -11,18 +11,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.lumenia = "Lumenia"
-end
+local L = mod:SetDefaultLocale({
+	lumenia = "Lumenia",
+})
+mod.displayName = L.lumenia
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.lumenia
-end
 
 function mod:GetOptions()
 	return {

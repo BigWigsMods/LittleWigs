@@ -1,94 +1,76 @@
 -- Demon Fall Canyon
 
-local L = BigWigs:NewBossLocale("Grimroot", "koKR")
-if not L then return end
-if L then
-	L.grimroot = "암울뿌리"
-end
+BigWigsAPI.SetBossModuleLocale("Grimroot", {
+	grimroot = "암울뿌리",
+})
 
-L = BigWigs:NewBossLocale("Destructor's Wraith", "koKR")
-if L then
-	L.destructors_wraith = "파괴자의 망령"
-end
+BigWigsAPI.SetBossModuleLocale("Destructor's Wraith", {
+	destructors_wraith = "파괴자의 망령",
+})
 
-L = BigWigs:NewBossLocale("Zilbagob", "koKR")
-if L then
-	L.zilbagob = "질바고브"
-end
+BigWigsAPI.SetBossModuleLocale("Zilbagob", {
+	zilbagob = "질바고브",
+})
 
-L = BigWigs:NewBossLocale("Pyranis", "koKR")
-if L then
-	L.pyranis = "피라니스"
-end
+BigWigsAPI.SetBossModuleLocale("Pyranis", {
+	pyranis = "피라니스",
+})
 
-L = BigWigs:NewBossLocale("Diathorus the Seeker", "koKR")
-if L then
-	L.diathorus_the_seeker = "수색자 디아토루스"
-end
+BigWigsAPI.SetBossModuleLocale("Diathorus the Seeker", {
+	diathorus_the_seeker = "수색자 디아토루스",
+})
 
-L = BigWigs:NewBossLocale("Hellscream's Phantom", "koKR")
-if L then
-	L.hellscreams_phantom = "헬스크림의 악령"
-end
+BigWigsAPI.SetBossModuleLocale("Hellscream's Phantom", {
+	hellscreams_phantom = "헬스크림의 악령",
+})
 
 -- Karazhan Crypts
 
-L = BigWigs:NewBossLocale("Kaigy Maryla", "koKR")
-if L then
-	L.kaigy_maryla = "카이기 메릴라"
-end
+BigWigsAPI.SetBossModuleLocale("Kaigy Maryla", {
+	kaigy_maryla = "카이기 메릴라",
+})
 
-L = BigWigs:NewBossLocale("Sairuh Maryla", "koKR")
-if L then
-	L.sairuh_maryla = "사이루 메릴라"
-end
+BigWigsAPI.SetBossModuleLocale("Sairuh Maryla", {
+	sairuh_maryla = "사이루 메릴라",
+})
 
-L = BigWigs:NewBossLocale("Barian Maryla", "koKR")
-if L then
-	L.barian_maryla = "바리안 메릴라"
-end
+BigWigsAPI.SetBossModuleLocale("Barian Maryla", {
+	barian_maryla = "바리안 메릴라",
+})
 
-L = BigWigs:NewBossLocale("Creeping Malison", "koKR")
-if L then
-	L.creeping_malison = "엄습하는 저주"
-end
+BigWigsAPI.SetBossModuleLocale("Creeping Malison", {
+	creeping_malison = "엄습하는 저주",
+})
 
-L = BigWigs:NewBossLocale("Trizivast", "koKR")
-if L then
-	L.trizivast = "트리지바스트"
-end
+BigWigsAPI.SetBossModuleLocale("Trizivast", {
+	trizivast = "트리지바스트",
+})
 
-L = BigWigs:NewBossLocale("Hans and Greta", "koKR")
-if L then
-	L.hans_and_greta = "한스와 그레타"
-	L.hans = "한스"
-	L.greta = "그레타"
-end
+BigWigsAPI.SetBossModuleLocale("Hans and Greta", {
+	hans_and_greta = "한스와 그레타",
+	hans = "한스",
+	greta = "그레타",
+})
 
-L = BigWigs:NewBossLocale("Goblins", "koKR")
-if L then
-	L.goblins = "고블린"
-	L.geenkle = "그린클"
-	L.jank = "쟁크"
-	L.gold_rustboot = "골드 러스트부트"
-end
+BigWigsAPI.SetBossModuleLocale("Goblins", {
+	goblins = "고블린",
+	geenkle = "그린클",
+	jank = "쟁크",
+	gold_rustboot = "골드 러스트부트",
+})
 
-L = BigWigs:NewBossLocale("Harbinger of Sin", "koKR")
-if L then
-	L.harbinger_of_sin = "죄악의 전령"
-end
+BigWigsAPI.SetBossModuleLocale("Harbinger of Sin", {
+	harbinger_of_sin = "죄악의 전령",
+})
 
-L = BigWigs:NewBossLocale("Kharon", "koKR")
-if L then
-	L.kharon = "카론"
-end
+BigWigsAPI.SetBossModuleLocale("Kharon", {
+	kharon = "카론",
+})
 
-L = BigWigs:NewBossLocale("Unk'omon", "koKR")
-if L then
-	L.unkomon = "운코몬"
-end
+BigWigsAPI.SetBossModuleLocale("Unk'omon", {
+	unkomon = "운코몬",
+})
 
-L = BigWigs:NewBossLocale("Dark Rider", "koKR")
-if L then
-	L.dark_rider = "암흑 기수"
-end
+BigWigsAPI.SetBossModuleLocale("Dark Rider", {
+	dark_rider = "암흑 기수",
+})

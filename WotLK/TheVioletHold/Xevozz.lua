@@ -8,17 +8,16 @@ mod:RegisterEnableMob(
 	29266, -- Xevozz
 	32231 -- Ethereal Wind Trader (replacement boss)
 )
--- mod.engageId = 0 -- no IEEU and ENCOUNTER_* events
--- mod.respawnTime = 0
+--mod.engageId = 0 -- no IEEU and ENCOUNTER_* events
+--mod.respawnTime = 0
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.sphere_name = "Ethereal Sphere"
-end
+local L = mod:SetDefaultLocale({
+	sphere_name = "Ethereal Sphere",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

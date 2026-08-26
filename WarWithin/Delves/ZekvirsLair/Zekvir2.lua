@@ -20,11 +20,17 @@ local callWebTerrorCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.zekvir = "Zekvir (Tier 11)"
-	L.web_terror = "Web Terror"
-end
+local L = mod:SetDefaultLocale({
+	zekvir = "Zekvir (Tier 11)",
+	web_terror = "Web Terror",
+})
+mod.displayName = L.zekvir
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(450492, CL.fear) -- Horrendous Roar (Fear)
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -56,13 +62,6 @@ function mod:GetOptions()
 		[451003] = CL.stage:format(2), -- Black Blood (Stage 2)
 		[453937] = CL.spawned:format(L.web_terror), -- Hatching... (Web Terror spawned)
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.zekvir
-	-- delayed for custom locale
-	webTerrorMarker = mod:AddMarkerOption(true, "npc", 8, "web_terror", 8)
-	self:SetSpellRename(450492, CL.fear) -- Horrendous Roar (Fear)
 end
 
 function mod:OnBossEnable()

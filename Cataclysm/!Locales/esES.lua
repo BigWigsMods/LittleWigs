@@ -1,145 +1,129 @@
 -- End Time
 
-local L = BigWigs:NewBossLocale("Echo of Baine", "esES")
-if not L then return end
-if L then
-	L.totemDrop = "Cae Tótem"
-	L.totemThrow = "Tótem lanzado por %s"
-end
+BigWigsAPI.SetBossModuleLocale("Echo of Baine", {
+	totemDrop = "Cae Tótem",
+	totemThrow = "Tótem lanzado por %s",
+})
 
 -- Grim Batol
 
-L = BigWigs:NewBossLocale("Erudax", "esES")
-if L then
-	L.summon = "Invoca Corruptor ignoto"
-	L.summon_desc = "Alerta cuando Erudax invoca a un Corruptor ignoto."
-	L.summon_message = "Corruptor ignoto invocado"
-	L.summon_trigger = "invoca un"
-end
+BigWigsAPI.SetBossModuleLocale("Erudax", {
+	summon = "Invoca Corruptor ignoto",
+	summon_desc = "Alerta cuando Erudax invoca a un Corruptor ignoto.",
+	summon_message = "Corruptor ignoto invocado",
+	summon_trigger = "invoca un",
+})
 
-L = BigWigs:NewBossLocale("Grim Batol Trash", "esES")
-if L then
-	L.twilight_earthcaller = "Clamatierras crepuscular"
-	L.twilight_brute = "Tosco Crepuscular"
-	L.twilight_destroyer = "Draco Crepuscular"
-	L.twilight_overseer = "Sobrestante Crepuscular"
-	L.twilight_beguiler = "Cautivador Crepuscular"
-	L.molten_giant = "Gigante fundido"
-	L.twilight_warlock = "Brujo crepuscular"
-	L.twilight_flamerender = "Desgarrallamas crepuscular"
-	L.twilight_lavabender = "Doblalava crepuscular"
-	L.faceless_corruptor = "Corruptor ignoto"
-end
+BigWigsAPI.SetBossModuleLocale("Grim Batol Trash", {
+	twilight_earthcaller = "Clamatierras crepuscular",
+	twilight_brute = "Tosco Crepuscular",
+	twilight_destroyer = "Draco Crepuscular",
+	twilight_overseer = "Sobrestante Crepuscular",
+	twilight_beguiler = "Cautivador Crepuscular",
+	molten_giant = "Gigante fundido",
+	twilight_warlock = "Brujo crepuscular",
+	twilight_flamerender = "Desgarrallamas crepuscular",
+	twilight_lavabender = "Doblalava crepuscular",
+	faceless_corruptor = "Corruptor ignoto",
+})
 
 -- Hour of Twilight
 
-L = BigWigs:NewBossLocale("The Hour of Twilight Trash", "esES")
-if L then
-	L.custom_on_autotalk_desc = "Selecciona al instante las opciones de conversación de Thrall."
-end
+BigWigsAPI.SetBossModuleLocale("The Hour of Twilight Trash", {
+	custom_on_autotalk_desc = "Selecciona al instante las opciones de conversación de Thrall.",
+})
 
 -- Lost City of the Tol'vir
 
-L = BigWigs:NewBossLocale("Siamat", "esES")
-if L then
-	L.servant = "Invocar Sirviente"
-	L.servant_desc = "Avisar cuando invoque un Sirviente de Siamat."
-end
+BigWigsAPI.SetBossModuleLocale("Siamat", {
+	servant = "Invocar Sirviente",
+	servant_desc = "Avisar cuando invoque un Sirviente de Siamat.",
+})
 
 -- Shadowfang Keep
 
-L = BigWigs:NewBossLocale("Lord Walden", "esES")
-if L then
+BigWigsAPI.SetBossModuleLocale("Lord Walden", {
 	-- %s will be either "Coagulante tóxico" or "Catalizador tóxico"
-	L.coagulant = "%s: Muévete para disipar"
-	L.catalyst = "%s: Crit Buff"
-	L.toxin_healer_message = "%s: DoT en todos"
-end
+	coagulant = "%s: Muévete para disipar",
+	catalyst = "%s: Crit Buff",
+	toxin_healer_message = "%s: DoT en todos",
+})
 
 -- The Stonecore
 
-L = BigWigs:NewBossLocale("Corborus", "esES")
-if L then
-	L.burrow = "Esconderse/emerger"
-	L.burrow_desc = "Avisar cuando Corborus se esconde o emerge."
-	L.burrow_message = "Corborus se esconde"
-	L.burrow_warning = "¡Se esconde en 5 seg!"
-	L.emerge_message = "¡Corborus emerge!"
-	L.emerge_warning = "¡Emerge en 5 seg!"
-end
+BigWigsAPI.SetBossModuleLocale("Corborus", {
+	burrow = "Esconderse/emerger",
+	burrow_desc = "Avisar cuando Corborus se esconde o emerge.",
+	burrow_message = "Corborus se esconde",
+	burrow_warning = "¡Se esconde en 5 seg!",
+	emerge_message = "¡Corborus emerge!",
+	emerge_warning = "¡Emerge en 5 seg!",
+})
 
 -- Throne of the Tides
 
-L = BigWigs:NewBossLocale("Throne of the Tides Trash", "esES")
-if L then
-	L.nazjar_oracle = "Oráculo Naz'jar"
-	L.vicious_snap_dragon = "Bocadragón sañoso"
-	L.nazjar_sentinel = "Centinela Naz'jar"
-	L.nazjar_ravager = "Devastador Naz'jar"
-	L.nazjar_tempest_witch = "Bruja de la tempestad Naz'jar"
-	L.faceless_seer = "Vidente ignoto"
-	L.faceless_watcher = "Vigía ignoto"
-	L.tainted_sentry = "Avizor corrupto"
+BigWigsAPI.SetBossModuleLocale("Throne of the Tides Trash", {
+	nazjar_oracle = "Oráculo Naz'jar",
+	vicious_snap_dragon = "Bocadragón sañoso",
+	nazjar_sentinel = "Centinela Naz'jar",
+	nazjar_ravager = "Devastador Naz'jar",
+	nazjar_tempest_witch = "Bruja de la tempestad Naz'jar",
+	faceless_seer = "Vidente ignoto",
+	faceless_watcher = "Vigía ignoto",
+	tainted_sentry = "Avizor corrupto",
 
-	L.ozumat_warmup_trigger = "¡La bestia ha regresado! ¡No debe contaminar mis aguas!"
-end
+	ozumat_warmup_trigger = "¡La bestia ha regresado! ¡No debe contaminar mis aguas!",
+})
 
-L = BigWigs:NewBossLocale("Lady Naz'jar", "esES")
-if L then
-	L.high_tide_trigger1 = "¡A lasss armasss, esbirrosss! ¡Alzaos de las heladas profundidadesss!"
-	L.high_tide_trigger2 = "¡Dessstruid a los intrusosss! ¡Que losss devore la ossscuridad del másss allá!"
-end
+BigWigsAPI.SetBossModuleLocale("Lady Naz'jar", {
+	high_tide_trigger1 = "¡A lasss armasss, esbirrosss! ¡Alzaos de las heladas profundidadesss!",
+	high_tide_trigger2 = "¡Dessstruid a los intrusosss! ¡Que losss devore la ossscuridad del másss allá!",
+})
 
 -- The Vortex Pinnacle
 
-L = BigWigs:NewBossLocale("The Vortex Pinnacle Trash", "esES")
-if L then
-	L.armored_mistral = "Mistral acorazado"
-	L.gust_soldier = "Soldado de ráfaga"
-	L.wild_vortex = "Vórtice salvaje"
-	L.lurking_tempest = "Tempestad acechante"
-	L.cloud_prince = "Príncipe de las Nubes"
-	L.turbulent_squall = "Borrasca turbulenta"
-	L.empyrean_assassin = "Asesino empíreo"
-	L.young_storm_dragon = "Dragón de tormenta joven"
-	L.executor_of_the_caliph = "Ejecutor del califa"
-	L.temple_adept = "Adepto del templo"
-	L.servant_of_asaad = "Sirviente de Asaad"
-	L.minister_of_air = "Ministro del Aire"
-end
+BigWigsAPI.SetBossModuleLocale("The Vortex Pinnacle Trash", {
+	armored_mistral = "Mistral acorazado",
+	gust_soldier = "Soldado de ráfaga",
+	wild_vortex = "Vórtice salvaje",
+	lurking_tempest = "Tempestad acechante",
+	cloud_prince = "Príncipe de las Nubes",
+	turbulent_squall = "Borrasca turbulenta",
+	empyrean_assassin = "Asesino empíreo",
+	young_storm_dragon = "Dragón de tormenta joven",
+	executor_of_the_caliph = "Ejecutor del califa",
+	temple_adept = "Adepto del templo",
+	servant_of_asaad = "Sirviente de Asaad",
+	minister_of_air = "Ministro del Aire",
+})
 
 -- Well of Eternity
 
-L = BigWigs:NewBossLocale("Well Of Eternity Trash", "esES")
-if L then
-	L.custom_on_autotalk_desc = "Selecciona al instante las opciones de conversación de Illidan."
-end
+BigWigsAPI.SetBossModuleLocale("Well Of Eternity Trash", {
+	custom_on_autotalk_desc = "Selecciona al instante las opciones de conversación de Illidan.",
+})
 
 -- Zul'Aman
 
-L = BigWigs:NewBossLocale("Daakara", "esES")
-if L then
-	L[42594] = "Forma de oso" -- short form for "Esencia del espíritu de oso"
-	L[42607] = "Forma de lince"
-	L[42606] = "Forma del águila"
-	L[42608] = "Forma de dracohalcón"
-end
+BigWigsAPI.SetBossModuleLocale("Daakara", {
+	[42594] = "Forma de oso", -- short form for "Esencia del espíritu de oso"
+	[42607] = "Forma de lince",
+	[42606] = "Forma del águila",
+	[42608] = "Forma de dracohalcón",
+})
 
-L = BigWigs:NewBossLocale("Halazzi", "esES")
-if L then
-	L.spirit_message = "Fase de espíritu"
-	L.normal_message = "Fase normal"
-end
+BigWigsAPI.SetBossModuleLocale("Halazzi", {
+	spirit_message = "Fase de espíritu",
+	normal_message = "Fase normal",
+})
 
-L = BigWigs:NewBossLocale("Nalorakk", "esES")
-if L then
-	L.troll_message = "Forma de troll"
-	L.troll_trigger = "¡Dejad paso al Nalorakk!"
-end
+BigWigsAPI.SetBossModuleLocale("Nalorakk", {
+	troll_message = "Forma de troll",
+	troll_trigger = "¡Dejad paso al Nalorakk!",
+})
 
 -- Zul'Gurub
 
-L = BigWigs:NewBossLocale("Jin'do the Godbreaker", "esES")
-if L then
-	L.barrier_down_message = "Barrera derribada, %d restantes" -- short name for "Barrera quebradiza" (97417)
-end
+BigWigsAPI.SetBossModuleLocale("Jin'do the Godbreaker", {
+	barrier_down_message = "Barrera derribada, %d restantes", -- short name for "Barrera quebradiza" (97417)
+})

@@ -57,52 +57,48 @@ local brawling = false
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.brawlers_guild = "Brawler's Guild"
-	L.rank = "Rank %d"
-	L.defeated = "%s defeated"
+local L = mod:SetDefaultLocale({
+	brawlers_guild = "Brawler's Guild",
+	rank = "Rank %d",
+	defeated = "%s defeated",
 
-	L.sunny = "Sunny"
-	L.doomflipper = "Doomflipper"
-	L.goredome = "Goredome"
-	L.dippy = "Dippy"
-	L.bruce = "Bruce"
-	L.bill_the_janitor = "Bill the Janitor"
-	L.oso = "Oso"
-	L.the_quacken = "The Quacken"
-	L.razorgrin = "Razorgrin"
-	L.blat = "Blat"
-	L.ooliss = "Ooliss"
-	L.king_kulaka = "King Kulaka"
-	L.meatball = "Meatball"
-	L.ash_katzuum = "Ash'katzuum"
-	L.crush = "Crush"
-	L.glorp = "Glorp"
-	L.klunk = "Klunk"
-	L.stitches = "Stitches"
-	L.topps = "Topps"
-	L.carl = "Carl"
-	L.leper_gnome_quintet = "Leper Gnome Quintet"
-	L.mecha_bruce = "Mecha-Bruce"
-	L.gg_engineering = "GG Engineering"
-	L.doopy = "Doopy"
-	L.renegade_swabbie = "Renegade Swabbie"
-	L.ogrewatch = "Ogrewatch"
-	L.blingtron_3000 = "Blingtron 3000"
-	L.epicus_maximus = "Epicus Maximus"
+	sunny = "Sunny",
+	doomflipper = "Doomflipper",
+	goredome = "Goredome",
+	dippy = "Dippy",
+	bruce = "Bruce",
+	bill_the_janitor = "Bill the Janitor",
+	oso = "Oso",
+	the_quacken = "The Quacken",
+	razorgrin = "Razorgrin",
+	blat = "Blat",
+	ooliss = "Ooliss",
+	king_kulaka = "King Kulaka",
+	meatball = "Meatball",
+	ash_katzuum = "Ash'katzuum",
+	crush = "Crush",
+	glorp = "Glorp",
+	klunk = "Klunk",
+	stitches = "Stitches",
+	topps = "Topps",
+	carl = "Carl",
+	leper_gnome_quintet = "Leper Gnome Quintet",
+	mecha_bruce = "Mecha-Bruce",
+	gg_engineering = "GG Engineering",
+	doopy = "Doopy",
+	renegade_swabbie = "Renegade Swabbie",
+	ogrewatch = "Ogrewatch",
+	blingtron_3000 = "Blingtron 3000",
+	epicus_maximus = "Epicus Maximus",
 
-	L["133359_icon"] = "spell_fire_immolation" -- Enraging Flames
-	L["133359_desc"] = 134545 -- Enraging Flames
-end
+	["133359_icon"] = "spell_fire_immolation", -- Enraging Flames
+	["133359_desc"] = 134545, -- Enraging Flames
+})
+mod.displayName = L.brawlers_guild
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.brawlers_guild
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

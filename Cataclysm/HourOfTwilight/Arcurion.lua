@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Arcurion", 940, 322)
@@ -10,7 +10,7 @@ mod:SetRespawnTime(30)
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 local icyTombMarker = mod:AddMarkerOption(true, "npc", 8, 103252, 8) -- Icy Tomb
@@ -37,7 +37,7 @@ function mod:OnEngage()
 end
 
 --------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 function mod:ChainsOfFrost(args)

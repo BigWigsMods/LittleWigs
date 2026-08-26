@@ -18,25 +18,25 @@ local annihilateCounter = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- NPC Names
-	L.name = "Highlord Kruul"
-	L.inquisitor = "Inquisitor Variss"
-	L.velen = "Prophet Velen"
+	name = "Highlord Kruul",
+	inquisitor = "Inquisitor Variss",
+	velen = "Prophet Velen",
 
 	-- Triggers
-	L.warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!"
-	L.win_trigger = "So be it. You will not stand in our way any longer."
+	warmup_trigger = "Arrogant fools! I am empowered by the souls of a thousand conquered worlds!",
+	win_trigger = "So be it. You will not stand in our way any longer.",
 
-	L.nether_aberration = 235110
-	L.nether_aberration_desc = "Summons portals around the room, spawning Nether Aberrations."
-	L.nether_aberration_icon = "ability_socererking_summonaberration"
+	nether_aberration = 235110,
+	nether_aberration_desc = "Summons portals around the room, spawning Nether Aberrations.",
+	nether_aberration_icon = "ability_socererking_summonaberration",
 
-	L.smoldering_infernal = "Smoldering Infernal"
-	L.smoldering_infernal_desc = "Summons a Smoldering Infernal."
-	L.smoldering_infernal_icon = "inv_infernalmountgreen"
-end
+	smoldering_infernal = "Smoldering Infernal",
+	smoldering_infernal_desc = "Summons a Smoldering Infernal.",
+	smoldering_infernal_icon = "inv_infernalmountgreen",
+})
+mod.displayName = L.name
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -70,10 +70,6 @@ function mod:GetOptions()
 		[234423] = L.inquisitor,
 		[236572] = L.name,
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

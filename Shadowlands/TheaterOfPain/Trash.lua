@@ -33,33 +33,32 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.battlefield_ritualist = "Battlefield Ritualist"
-	L.raging_bloodhorn = "Raging Bloodhorn"
-	L.diseased_horror = "Diseased Horror"
-	L.blighted_sludge_spewer = "Blighted Sludge-Spewer"
-	L.putrid_butcher = "Putrid Butcher"
-	L.disgusting_refuse = "Disgusting Refuse"
-	L.rancid_gasbag = "Rancid Gasbag"
-	L.shambling_arbalest = "Shambling Arbalest"
-	L.dokigg_the_brutalizer = "Dokigg the Brutalizer"
-	L.nekthara_the_mangler = "Nekthara the Mangler"
-	L.heavin_the_breaker = "Heavin the Breaker"
-	L.harugia_the_bloodthirsty = "Harugia the Bloodthirsty"
-	L.ancient_captain = "Ancient Captain"
-	L.advent_nevermore = "Advent Nevermore"
-	L.rek_the_hardened = "Rek the Hardened"
-	L.portal_guardian = "Portal Guardian"
-	L.maniacal_soulbinder = "Maniacal Soulbinder"
-	L.bone_magus = "Bone Magus"
-	L.nefarious_darkspeaker = "Nefarious Darkspeaker"
-	L.soulforged_bonereaver = "Soulforged Bonereaver"
+local L = mod:SetDefaultLocale({
+	battlefield_ritualist = "Battlefield Ritualist",
+	raging_bloodhorn = "Raging Bloodhorn",
+	diseased_horror = "Diseased Horror",
+	blighted_sludge_spewer = "Blighted Sludge-Spewer",
+	putrid_butcher = "Putrid Butcher",
+	disgusting_refuse = "Disgusting Refuse",
+	rancid_gasbag = "Rancid Gasbag",
+	shambling_arbalest = "Shambling Arbalest",
+	dokigg_the_brutalizer = "Dokigg the Brutalizer",
+	nekthara_the_mangler = "Nekthara the Mangler",
+	heavin_the_breaker = "Heavin the Breaker",
+	harugia_the_bloodthirsty = "Harugia the Bloodthirsty",
+	ancient_captain = "Ancient Captain",
+	advent_nevermore = "Advent Nevermore",
+	rek_the_hardened = "Rek the Hardened",
+	portal_guardian = "Portal Guardian",
+	maniacal_soulbinder = "Maniacal Soulbinder",
+	bone_magus = "Bone Magus",
+	nefarious_darkspeaker = "Nefarious Darkspeaker",
+	soulforged_bonereaver = "Soulforged Bonereaver",
 
-	L.mordretha_warmup_trigger = "Soldiers of Maldraxxus! Are you ready for some carnage?!"
+	mordretha_warmup_trigger = "Soldiers of Maldraxxus! Are you ready for some carnage?!",
 
-	L["334023_desc"] = 334025 -- Bloodthirsty Charge, 334023 has a broken description
-end
+	["334023_desc"] = 334025, -- Bloodthirsty Charge, 334023 has a broken description
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

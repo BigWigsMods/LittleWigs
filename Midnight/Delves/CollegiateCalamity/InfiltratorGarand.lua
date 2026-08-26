@@ -11,18 +11,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.infiltrator_garand = "Infiltrator Garand"
-end
+local L = mod:SetDefaultLocale({
+	infiltrator_garand = "Infiltrator Garand",
+})
+mod.displayName = L.infiltrator_garand
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.infiltrator_garand
-end
 
 function mod:GetOptions()
 	return {

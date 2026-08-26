@@ -36,12 +36,11 @@ local prevWave = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.portals = CL.portals
-	L.portals_desc = "Information about portals."
-	L.portals_icon = "spell_arcane_portaldalaran"
-end
+local L = mod:SetDefaultLocale({
+	portals = CL.portals,
+	portals_desc = "Information about portals.",
+	portals_icon = "spell_arcane_portaldalaran",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

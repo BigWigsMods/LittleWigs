@@ -21,19 +21,18 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.nazjar_oracle = "Naz'jar Oracle"
-	L.vicious_snap_dragon = "Vicious Snap Dragon"
-	L.nazjar_sentinel = "Naz'jar Sentinel"
-	L.nazjar_ravager = "Naz'jar Ravager"
-	L.nazjar_tempest_witch = "Naz'jar Tempest Witch"
-	L.faceless_seer = "Faceless Seer"
-	L.faceless_watcher = "Faceless Watcher"
-	L.tainted_sentry = "Tainted Sentry"
+local L = mod:SetDefaultLocale({
+	nazjar_oracle = "Naz'jar Oracle",
+	vicious_snap_dragon = "Vicious Snap Dragon",
+	nazjar_sentinel = "Naz'jar Sentinel",
+	nazjar_ravager = "Naz'jar Ravager",
+	nazjar_tempest_witch = "Naz'jar Tempest Witch",
+	faceless_seer = "Faceless Seer",
+	faceless_watcher = "Faceless Watcher",
+	tainted_sentry = "Tainted Sentry",
 
-	L.ozumat_warmup_trigger = "The beast has returned! It must not pollute my waters!"
-end
+	ozumat_warmup_trigger = "The beast has returned! It must not pollute my waters!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

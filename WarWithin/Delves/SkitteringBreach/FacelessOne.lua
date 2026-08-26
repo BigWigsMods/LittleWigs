@@ -13,20 +13,21 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.faceless_one = "Faceless One"
-end
+local L = mod:SetDefaultLocale({
+	faceless_one = "Faceless One",
+})
+mod.displayName = L.faceless_one
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(458849, CL.smash) -- Darkrift Smash (Smash)
+mod:SetSpellRename(458853, CL.health_drain) -- Shadow Drain (Health Drain)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.faceless_one
-	self:SetSpellRename(458849, CL.smash) -- Darkrift Smash (Smash)
-	self:SetSpellRename(458853, CL.health_drain) -- Shadow Drain (Health Drain)
-end
 
 function mod:GetOptions()
 	return {

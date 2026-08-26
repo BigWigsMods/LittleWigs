@@ -11,18 +11,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.antenorian = "Antenorian"
-end
+local L = mod:SetDefaultLocale({
+	antenorian = "Antenorian",
+})
+mod.displayName = L.antenorian
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.antenorian
-end
 
 function mod:GetOptions()
 	return {

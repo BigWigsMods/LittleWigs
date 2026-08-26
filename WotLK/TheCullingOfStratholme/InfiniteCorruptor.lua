@@ -1,31 +1,29 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
+--
 
 local mod, CL = BigWigs:NewBoss("Infinite Corruptor", 595)
 if not mod then return end
 mod:RegisterEnableMob(32273)
--- mod.engageId = 0 -- doesn't fire ENCOUNTER_* events, IEEU, doesn't even exist in the dungeon journal
+--mod.engageId = 0 -- doesn't fire ENCOUNTER_* events, IEEU, doesn't even exist in the dungeon journal
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.name = "Infinite Corruptor"
-end
+local L = mod:SetDefaultLocale({
+	name = "Infinite Corruptor",
+})
+mod.displayName = L.name
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
 function mod:GetOptions()
 	return {
 		60588, -- Corrupting Blight
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.name
 end
 
 function mod:OnBossEnable()
@@ -34,8 +32,9 @@ function mod:OnBossEnable()
 	self:Death("Win", 32273)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
+--
 
 function mod:CorruptingBlight(args)
 	self:TargetMessageOld(args.spellId, args.destName, "red")

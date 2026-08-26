@@ -21,12 +21,12 @@ local hopelessnessCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.thrall = "Thrall"
-end
+local L = mod:SetDefaultLocale({
+	thrall = "Thrall",
+})
+mod.displayName = L.thrall
 
-----------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -48,10 +48,6 @@ function mod:GetOptions()
 		[306828] = 306685, -- Fallen Servants: Vez'okk the Lightless
 		[304251] = 306076, -- Fallen Servants: Rexxar
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.thrall
 end
 
 function mod:OnBossEnable()

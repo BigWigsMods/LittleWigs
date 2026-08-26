@@ -13,18 +13,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.portalmaster_halsan = "Portalmaster Halsan"
-end
+local L = mod:SetDefaultLocale({
+	portalmaster_halsan = "Portalmaster Halsan",
+})
+mod.displayName = L.portalmaster_halsan
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.portalmaster_halsan
-end
 
 function mod:GetOptions()
 	return {

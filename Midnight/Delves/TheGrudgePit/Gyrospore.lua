@@ -11,18 +11,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.gyrospore = "Gyrospore"
-end
+local L = mod:SetDefaultLocale({
+	gyrospore = "Gyrospore",
+})
+mod.displayName = L.gyrospore
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.gyrospore
-end
 
 function mod:GetOptions()
 	return {

@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Novos the Summoner", 600, 589)
@@ -9,25 +9,24 @@ mod:SetEncounterID(mod:Classic() and 371 or 1976)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
 
--------------------------------------------------------------------------------
---  Locals
+--------------------------------------------------------------------------------
+-- Locals
 --
 
 local crystalHandlersSpawned = 1 -- to decide whether CDBar needs to be displayed
 local crystalHandlersLeft = 4 -- to display CL.mob_remaining messages
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.adds = -6378 -- Crystal Handler
-	L.adds_desc = -6375 -- The description of the first stage that mentions that 4 of those need to be killed.
-end
+mod:SetDefaultLocale({
+	adds = -6378, -- Crystal Handler
+	adds_desc = -6375, -- The description of the first stage that mentions that 4 of those need to be killed.
+})
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -73,8 +72,8 @@ function mod:OnEngage()
 	self:CDBar("adds", 15.5, CL.count:format(self:SpellName(-6378), crystalHandlersSpawned), "spell_shadow_raisedead")
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 -- Arcane Field, normal/heroic Blizzard

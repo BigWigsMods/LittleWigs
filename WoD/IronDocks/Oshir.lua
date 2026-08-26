@@ -12,12 +12,11 @@ mod:SetRespawnTime(33)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.freed = "Freed after %.1f sec!"
-	L.wolves = "Wolves"
-	L.rylak = "Rylak"
-end
+local L = mod:SetDefaultLocale({
+	freed = "Freed after %.1f sec!",
+	wolves = "Wolves",
+	rylak = "Rylak",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

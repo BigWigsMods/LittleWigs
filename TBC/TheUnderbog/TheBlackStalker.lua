@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("The Black Stalker", 546, 579)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(17882)
 mod:SetEncounterID(1948)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -30,8 +30,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_SUCCESS", "ChainLightningSuccess", 31717)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:Levitate(args)

@@ -11,18 +11,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.multhaul = "Mul'tha'ul"
-end
+local L = mod:SetDefaultLocale({
+	multhaul = "Mul'tha'ul",
+})
+mod.displayName = L.multhaul
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.multhaul
-end
 
 function mod:GetOptions()
 	return {

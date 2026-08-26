@@ -18,15 +18,14 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.defender = "Coilfang Defender"
-	L.enchantress = "Coilfang Enchantress"
-	L.healer = "Coilfang Scale-Healer"
-	L.collaborator = "Coilfang Collaborator"
-	L.soothsayer = "Coilfang Soothsayer"
-	L.ray = "Coilfang Ray"
-end
+local L = mod:SetDefaultLocale({
+	defender = "Coilfang Defender",
+	enchantress = "Coilfang Enchantress",
+	healer = "Coilfang Scale-Healer",
+	collaborator = "Coilfang Collaborator",
+	soothsayer = "Coilfang Soothsayer",
+	ray = "Coilfang Ray",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

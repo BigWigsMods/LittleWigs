@@ -16,20 +16,16 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.hans_and_greta = "Hans and Greta"
-	L.hans = "Hans"
-	L.greta = "Greta"
-end
+local L = mod:SetDefaultLocale({
+	hans_and_greta = "Hans and Greta",
+	hans = "Hans",
+	greta = "Greta",
+})
+mod.displayName = L.hans_and_greta
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.hans_and_greta
-end
 
 function mod:GetOptions()
 	return {

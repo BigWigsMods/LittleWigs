@@ -1,5 +1,5 @@
 --------------------------------------------------------------------------------
---  Module Declaration
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Asira Dawnslayer", 940, 342)
@@ -9,7 +9,7 @@ mod:SetEncounterID(1340)
 mod:SetRespawnTime(30)
 
 --------------------------------------------------------------------------------
---  Initialization
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -35,7 +35,7 @@ function mod:OnEngage()
 end
 
 --------------------------------------------------------------------------------
---  Event Handlers
+-- Event Handlers
 --
 
 do

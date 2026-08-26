@@ -1,15 +1,15 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Warlord Kalithresh", 545, 575)
 if not mod then return end
 mod:RegisterEnableMob(17798)
 mod.engageId = 1944
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -34,8 +34,8 @@ function mod:OnEngage()
 	self:CDBar(36453, 15) -- Warlord's Rage
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:HeadCrack(args)

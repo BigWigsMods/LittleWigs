@@ -13,19 +13,20 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.the_biggest_bug = "The Biggest Bug"
-end
+local L = mod:SetDefaultLocale({
+	the_biggest_bug = "The Biggest Bug",
+})
+mod.displayName = L.the_biggest_bug
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(448443, CL.curse) -- Curse of Agony (Curse)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.the_biggest_bug
-	self:SetSpellRename(448443, CL.curse) -- Curse of Agony (Curse)
-end
 
 function mod:GetOptions()
 	return {

@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Corla, Herald of Twilight", 645, 106)
@@ -14,8 +14,8 @@ mod.respawnTime = 30
 
 local warnedAboutEvolution = nil
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -34,8 +34,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_REMOVED", "DarkCommandRemoved", 75823)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:Evolution(args)

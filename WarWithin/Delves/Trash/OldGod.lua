@@ -20,24 +20,20 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.old_god_trash = "Old God Trash"
+local L = mod:SetDefaultLocale({
+	old_god_trash = "Old God Trash",
 
-	L.dark_walker = "Dark Walker"
-	L.hideous_amalgamation = "Hideous Amalgamation"
-	L.coagulated_mass = "Coagulated Mass"
-	L.silent_slitherer = "Silent Slitherer"
-	L.amalgamized_mass = "Amalgamized Mass"
-end
+	dark_walker = "Dark Walker",
+	hideous_amalgamation = "Hideous Amalgamation",
+	coagulated_mass = "Coagulated Mass",
+	silent_slitherer = "Silent Slitherer",
+	amalgamized_mass = "Amalgamized Mass",
+})
+mod.displayName = L.old_god_trash
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.old_god_trash
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

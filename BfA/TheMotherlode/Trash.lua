@@ -31,28 +31,27 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.refreshment_vendor = "Refreshment Vendor"
-	L.mech_jockey = "Mech Jockey"
-	L.mechanized_peacekeeper = "Mechanized Peacekeeper"
-	L.addled_thug = "Addled Thug"
-	L.hired_assassin = "Hired Assassin"
-	L.azerite_extractor = "Azerite Extractor"
-	L.venture_co_earthshaper = "Venture Co. Earthshaper"
-	L.wanton_sapper = "Wanton Sapper"
-	L.stonefury = "Stonefury"
-	L.taskmaster_askari = "Taskmaster Askari"
-	L.weapons_tester = "Weapons Tester"
-	L.venture_co_mastermind = "Venture Co. Mastermind"
-	L.venture_co_alchemist = "Venture Co. Alchemist"
-	L.venture_co_war_machine = "Venture Co. War Machine"
-	L.crawler_mine = "Crawler Mine"
-	L.ordnance_specialist = "Ordnance Specialist"
+local L = mod:SetDefaultLocale({
+	refreshment_vendor = "Refreshment Vendor",
+	mech_jockey = "Mech Jockey",
+	mechanized_peacekeeper = "Mechanized Peacekeeper",
+	addled_thug = "Addled Thug",
+	hired_assassin = "Hired Assassin",
+	azerite_extractor = "Azerite Extractor",
+	venture_co_earthshaper = "Venture Co. Earthshaper",
+	wanton_sapper = "Wanton Sapper",
+	stonefury = "Stonefury",
+	taskmaster_askari = "Taskmaster Askari",
+	weapons_tester = "Weapons Tester",
+	venture_co_mastermind = "Venture Co. Mastermind",
+	venture_co_alchemist = "Venture Co. Alchemist",
+	venture_co_war_machine = "Venture Co. War Machine",
+	crawler_mine = "Crawler Mine",
+	ordnance_specialist = "Ordnance Specialist",
 
-	L["1217279_desc"] = 1217280 -- Uppercut, 1217279 has no description
-	L["1214751_desc"] = 1214752 -- Brutal Charge, 1214752 has a better description
-end
+	["1217279_desc"] = 1217280, -- Uppercut, 1217279 has no description
+	["1214751_desc"] = 1214752, -- Brutal Charge, 1214752 has a better description
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -139,7 +138,7 @@ function mod:OnBossEnable()
 	self:Death("RefreshmentVendorDeath", 136470)
 
 	-- Mech Jockey
-	self:Log("SPELL_CAST_START", "ActivateMech", 267433) --  Heroic and Mythic only
+	self:Log("SPELL_CAST_START", "ActivateMech", 267433) -- Heroic and Mythic only
 	self:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED") -- Grease Gun
 
 	-- Mechanized Peacekeeper

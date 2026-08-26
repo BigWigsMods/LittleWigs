@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Jin'do the Godbreaker", 859, 185)
@@ -9,22 +9,21 @@ mod.engageId = 1182
 mod.respawnTime = 30
 
 --------------------------------------------------------------------------------
---  Locals
+-- Locals
 --
 
 local barriersLeft = 3
 
--------------------------------------------------------------------------------
---  Localization
+--------------------------------------------------------------------------------
+-- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.barrier_down_message = "Barrier down, %d remaining" -- short name for "Brittle Barrier" (97417)
-end
+local L = mod:SetDefaultLocale({
+	barrier_down_message = "Barrier down, %d remaining", -- short name for "Brittle Barrier" (97417)
+})
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -56,8 +55,8 @@ function mod:OnEngage()
 	self:CDBar(97172, 19) -- Shadows of Hakkar
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:ShadowsOfHakkar(args)

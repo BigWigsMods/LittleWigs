@@ -22,27 +22,28 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.nightfall_trash = "Nightfall Trash"
+local L = mod:SetDefaultLocale({
+	nightfall_trash = "Nightfall Trash",
 
-	L.dark_bombardier = "Dark Bombardier"
-	L.nightfall_inquisitor = "Nightfall Inquisitor"
-	L.devouring_shade = "Devouring Shade"
-	L.weeping_shade = "Weeping Shade"
-	L.nightfall_shadeguard = "Nightfall Shadeguard"
-	L.shadow_elemental = "Shadow Elemental"
-end
+	dark_bombardier = "Dark Bombardier",
+	nightfall_inquisitor = "Nightfall Inquisitor",
+	devouring_shade = "Devouring Shade",
+	weeping_shade = "Weeping Shade",
+	nightfall_shadeguard = "Nightfall Shadeguard",
+	shadow_elemental = "Shadow Elemental",
+})
+mod.displayName = L.nightfall_trash
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(443292, CL.frontal_cone) -- Umbral Slam (Frontal Cone)
+mod:SetSpellRename(434281, CL.explosion) -- Echo of Renilash (Explosion)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.nightfall_trash
-	self:SetSpellRename(443292, CL.frontal_cone) -- Umbral Slam (Frontal Cone)
-	self:SetSpellRename(434281, CL.explosion) -- Echo of Renilash (Explosion)
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

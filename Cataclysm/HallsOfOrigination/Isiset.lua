@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Isiset", 644, 127)
@@ -14,8 +14,8 @@ mod.respawnTime = 30
 
 local nextSplitWarning = 71
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -49,8 +49,8 @@ function mod:OnEngage()
 	self:RegisterUnitEvent("UNIT_HEALTH", nil, "boss1")
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:VeilOfSky()

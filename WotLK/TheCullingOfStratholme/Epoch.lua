@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Module Declaration
 --
 
@@ -8,17 +8,16 @@ mod:RegisterEnableMob(26532)
 mod:SetEncounterID(mod:Classic() and 295 or 2003)
 --mod:SetRespawnTime(0) -- couldn't wipe, Arthas refuses to die
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
+local L = mod:SetDefaultLocale({
 	-- Prince Arthas Menethil, on this day, a powerful darkness has taken hold of your soul. The death you are destined to visit upon others will this day be your own.
-	L.warmup_trigger = "on this day"
-end
+	warmup_trigger = "on this day",
+})
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -41,7 +40,7 @@ function mod:OnBossEnable()
 	self:Log("SPELL_AURA_APPLIED", "CurseOfExertionApplied", 52772)
 end
 
--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Event Handlers
 --
 

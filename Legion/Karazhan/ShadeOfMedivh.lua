@@ -19,11 +19,10 @@ local guardiansImagePhase = false
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.focused_power = -14036
-	L.focused_power_icon = "ability_mage_greaterinvisibility"
-end
+local L = mod:SetDefaultLocale({
+	focused_power = -14036,
+	focused_power_icon = "ability_mage_greaterinvisibility",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

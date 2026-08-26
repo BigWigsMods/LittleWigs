@@ -15,29 +15,29 @@ mod.otherMenu = 1716 -- Broken Shore Mage Tower
 local phase = 1
 local handGUID = ""
 
-----------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.name = "Raest Magespear"
+local L = mod:SetDefaultLocale({
+	name = "Raest Magespear",
 
-	L.handFromBeyond = "Hand from Beyond"
-	L.handFromBeyond_icon = 229022 -- Grasping Hand
+	handFromBeyond = "Hand from Beyond",
+	handFromBeyond_icon = 229022, -- Grasping Hand
 
-	L.rune = 236468
-	L.rune_desc = "Places a Rune of Summoning on the ground. If left unsoaked a Thing of Nightmare will spawn."
-	L.rune_icon = 236468
+	rune = 236468,
+	rune_desc = "Places a Rune of Summoning on the ground. If left unsoaked a Thing of Nightmare will spawn.",
+	rune_icon = 236468,
 
-	L.thing = 236470
-	L.thing_desc = "{236461}"
-	L.thing_icon = 236470
+	thing = 236470,
+	thing_desc = "{236461}",
+	thing_icon = 236470,
 
-	L.warmup_text = "Karam Magespear Active"
-	L.warmup_trigger = "You were a fool to follow me, brother. The Twisting Nether feeds my strength. I have become more powerful than you could ever imagine!"
-	L.warmup_trigger2 = "Kill this interloper, brother!"
-end
+	warmup_text = "Karam Magespear Active",
+	warmup_trigger = "You were a fool to follow me, brother. The Twisting Nether feeds my strength. I have become more powerful than you could ever imagine!",
+	warmup_trigger2 = "Kill this interloper, brother!",
+})
+mod.displayName = L.name
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -61,10 +61,6 @@ function mod:GetOptions()
 		["handFromBeyond"] = CL.stage:format(2),
 		["rune"] = CL.stage:format(3),
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.name
 end
 
 function mod:OnBossEnable()

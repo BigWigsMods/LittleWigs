@@ -21,25 +21,26 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.kobold_trash = "Kobold Trash"
+local L = mod:SetDefaultLocale({
+	kobold_trash = "Kobold Trash",
 
-	L.kobold_taskfinder = "Kobold Taskfinder"
-	L.spitfire_charger = "Spitfire Charger"
-	L.spitfire_fusetender = "Spitfire Fusetender"
-end
+	kobold_taskfinder = "Kobold Taskfinder",
+	spitfire_charger = "Spitfire Charger",
+	spitfire_fusetender = "Spitfire Fusetender",
+})
+mod.displayName = L.kobold_trash
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(448399, CL.enrage) -- Battle Cry (Enrage)
+mod:SetSpellRename(449071, CL.frontal_cone) -- Blazing Wick (Frontal Cone)
+mod:SetSpellRename(445210, CL.charge) -- Fire Charge (Charge)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.kobold_trash
-	self:SetSpellRename(448399, CL.enrage) -- Battle Cry (Enrage)
-	self:SetSpellRename(449071, CL.frontal_cone) -- Blazing Wick (Frontal Cone)
-	self:SetSpellRename(445210, CL.charge) -- Fire Charge (Charge)
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

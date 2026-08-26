@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Jan'alai", 568, 188)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(23578)
 mod.engageId = 1191
 mod.respawnTime = 30
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -32,8 +32,8 @@ function mod:OnEngage()
 	self:CDBar(-2625, 12, nil, "achievement_character_troll_male") -- Amani'shi Hatchers
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 do

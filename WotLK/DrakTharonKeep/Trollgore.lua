@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Trollgore", 600, 588)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(26630)
 --mod:SetEncounterID(mod:Classic() and 369 or 1974) -- starts randomly when other trash mobs attack him
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -44,8 +44,8 @@ function mod:OnEngage()
 	self:CDBar(49637, 19.2) -- Infected Wound
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:InfectedWound(args)

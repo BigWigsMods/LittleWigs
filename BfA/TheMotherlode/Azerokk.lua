@@ -19,12 +19,14 @@ local resonantQuakeCount = 1
 local tectonicSmashCount = 1
 
 --------------------------------------------------------------------------------
--- Initialization
+-- Renames
 --
 
-function mod:OnRegister()
-	self:SetSpellRename(257582, CL.fixate) -- Raging Gaze (Fixate)
-end
+mod:SetSpellRename(257582, CL.fixate) -- Raging Gaze (Fixate)
+
+--------------------------------------------------------------------------------
+-- Initialization
+--
 
 local azeriteInfusionMarker = mod:AddMarkerOption(true, "npc_aura", 8, 271698, 8) -- Azerite Infusion
 function mod:GetOptions()

@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("High Priestess Kilnara", 859, 181)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(52059)
 mod.engageId = 1180
 mod.respawnTime = 30
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -44,8 +44,8 @@ function mod:OnEngage()
 	self:MessageOld("stages", "yellow", "info", CL.stage:format(1), false)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:TearsOfBlood(args)

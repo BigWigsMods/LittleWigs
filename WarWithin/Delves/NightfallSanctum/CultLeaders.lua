@@ -24,20 +24,16 @@ local bossesEngaged = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.cult_leaders = "Cult Leaders"
-	L.inquisitor_speaker = "Inquisitor Speaker"
-	L.shadeguard_speaker = "Shadeguard Speaker"
-end
+local L = mod:SetDefaultLocale({
+	cult_leaders = "Cult Leaders",
+	inquisitor_speaker = "Inquisitor Speaker",
+	shadeguard_speaker = "Shadeguard Speaker",
+})
+mod.displayName = L.cult_leaders
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.cult_leaders
-end
 
 function mod:GetOptions()
 	return {

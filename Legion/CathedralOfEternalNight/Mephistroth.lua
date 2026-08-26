@@ -19,13 +19,12 @@ local upheavalWarned = {}
 -- Localization
 --
 
-local L = mod:GetLocale("enUS", true)
-if L then
-	L.custom_on_time_lost = "Time lost during Shadow Fade"
-	L.custom_on_time_lost_desc = "Show the time lost during Shadow Fade on the bar in |cffff0000red|r."
-	L.custom_on_time_lost_icon = "ability_racial_timeismoney"
-	L.time_lost = "%s |cffff0000(+%ds)|r"
-end
+local L = mod:SetDefaultLocale({
+	custom_on_time_lost = "Time lost during Shadow Fade",
+	custom_on_time_lost_desc = "Show the time lost during Shadow Fade on the bar in |cffff0000red|r.",
+	custom_on_time_lost_icon = "ability_racial_timeismoney",
+	time_lost = "%s |cffff0000(+%ds)|r",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

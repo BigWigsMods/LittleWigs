@@ -13,18 +13,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.grimroot = "Grimroot"
-end
+local L = mod:SetDefaultLocale({
+	grimroot = "Grimroot",
+})
+mod.displayName = L.grimroot
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.grimroot
-end
 
 local poisonedSaplingMarker = mod:AddMarkerOption(true, "npc", 8, 460664, 8) -- Poisoned Sapling
 function mod:GetOptions()

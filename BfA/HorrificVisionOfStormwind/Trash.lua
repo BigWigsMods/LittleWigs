@@ -55,49 +55,48 @@ local portalsClosed = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.sanity_change = "%d Sanity"
-	L.portal_closed = "Portal Closed"
-	L.portal_closed_desc = "Show a message when a portal is closed in the Mage Quarter."
-	L.portal_closed_icon = "spell_arcane_teleportstormwind"
-	L.madnesses = "Madnesses"
-	L.potions = "Potions"
-	L.buffs = "Buffs"
-	L.slowed = "Slowed"
-	L.sluggish_potion_effect = "Heal 2% every 5 sec"
-	L.sickening_potion_effect = "5% damage reduction"
-	L.spicy_potion_effect = "Breathe fire"
+local L = mod:SetDefaultLocale({
+	sanity_change = "%d Sanity",
+	portal_closed = "Portal Closed",
+	portal_closed_desc = "Show a message when a portal is closed in the Mage Quarter.",
+	portal_closed_icon = "spell_arcane_teleportstormwind",
+	madnesses = "Madnesses",
+	potions = "Potions",
+	buffs = "Buffs",
+	slowed = "Slowed",
+	sluggish_potion_effect = "Heal 2% every 5 sec",
+	sickening_potion_effect = "5% damage reduction",
+	spicy_potion_effect = "Breathe fire",
 
-	L.crawling_corruption = "Crawling Corruption"
-	L.enthralled_footman = "Enthralled Footman"
-	L.fallen_voidspeaker = "Fallen Voidspeaker"
-	L.void_globule = "Void Globule"
-	L.fallen_heartpiercer = "Fallen Heartpiercer"
-	L.fallen_riftwalker = "Fallen Riftwalker"
-	L.cultist_slavedriver = "Cultist Slavedriver"
-	L.cultist_tormenter = "Cultist Tormenter"
-	L.inquisitor_darkspeak = "Inquisitor Darkspeak"
-	L.fallen_taskmaster = "Fallen Taskmaster"
-	L.faceless_willbreaker = "Faceless Willbreaker"
-	L.enthralled_weaponsmith = "Enthralled Weaponsmith"
-	L.forge_guard_hurrul = "Forge-Guard Hurrul"
-	L.si7_informant = "SI:7 Informant"
-	L.armsmaster_terenson = "Armsmaster Terenson"
-	L.burrowing_appendage = "Burrowing Appendage"
-	L.dod = "Dod"
-	L.alxkov_the_infested = "Alx'kov the Infested"
-	L.greater_void_elemental = "Greater Void Elemental"
-	L.boundless_corruption = "Boundless Corruption"
-	L.portal_keeper = "Portal Keeper"
-	L.zardeth_of_the_black_claw = "Zardeth of the Black Claw"
-	L.unstable_servant = "Unstable Servant"
-	L.hogger = "Hogger"
-	L.void_scarred_gryphon = "Void-Scarred Gryphon"
+	crawling_corruption = "Crawling Corruption",
+	enthralled_footman = "Enthralled Footman",
+	fallen_voidspeaker = "Fallen Voidspeaker",
+	void_globule = "Void Globule",
+	fallen_heartpiercer = "Fallen Heartpiercer",
+	fallen_riftwalker = "Fallen Riftwalker",
+	cultist_slavedriver = "Cultist Slavedriver",
+	cultist_tormenter = "Cultist Tormenter",
+	inquisitor_darkspeak = "Inquisitor Darkspeak",
+	fallen_taskmaster = "Fallen Taskmaster",
+	faceless_willbreaker = "Faceless Willbreaker",
+	enthralled_weaponsmith = "Enthralled Weaponsmith",
+	forge_guard_hurrul = "Forge-Guard Hurrul",
+	si7_informant = "SI:7 Informant",
+	armsmaster_terenson = "Armsmaster Terenson",
+	burrowing_appendage = "Burrowing Appendage",
+	dod = "Dod",
+	alxkov_the_infested = "Alx'kov the Infested",
+	greater_void_elemental = "Greater Void Elemental",
+	boundless_corruption = "Boundless Corruption",
+	portal_keeper = "Portal Keeper",
+	zardeth_of_the_black_claw = "Zardeth of the Black Claw",
+	unstable_servant = "Unstable Servant",
+	hogger = "Hogger",
+	void_scarred_gryphon = "Void-Scarred Gryphon",
 
-	L.therum_deepforge_warmup_trigger = "So ye like tae play with explosives, do ye? Then let's play."
-	L.alleria_windrunner_warmup_trigger = "Mother... do not listen to the whispers!"
-end
+	therum_deepforge_warmup_trigger = "So ye like tae play with explosives, do ye? Then let's play.",
+	alleria_windrunner_warmup_trigger = "Mother... do not listen to the whispers!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

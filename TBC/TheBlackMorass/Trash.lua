@@ -24,14 +24,13 @@ local prevWave = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.wave = "Wave Warnings"
-	L.wave_desc = "Announce approximate warning messages for the waves."
+local L = mod:SetDefaultLocale({
+	wave = "Wave Warnings",
+	wave_desc = "Announce approximate warning messages for the waves.",
 
-	L.medivh = "Medivh"
-	L.rift = "Time Rift"
-end
+	medivh = "Medivh",
+	rift = "Time Rift",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

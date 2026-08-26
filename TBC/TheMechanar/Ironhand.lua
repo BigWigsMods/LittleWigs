@@ -5,17 +5,17 @@
 local mod, CL = BigWigs:NewBoss("Gatewatcher Iron-Hand", 554)
 if not mod then return end
 mod:RegisterEnableMob(19710)
--- mod.engageId = 1934 -- no boss frames
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.engageId = 1934 -- no boss frames
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.bossName = "Gatewatcher Iron-Hand"
-end
+local L = mod:SetDefaultLocale({
+	bossName = "Gatewatcher Iron-Hand",
+})
+mod.displayName = L.bossName -- no journal entry
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -27,10 +27,6 @@ function mod:GetOptions()
 		35311, -- Stream of Machine Fluid
 		{39194, "CASTBAR"}, -- Jackhammer
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.bossName -- no journal entry
 end
 
 function mod:OnBossEnable()

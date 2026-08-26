@@ -12,11 +12,10 @@ mod:SetEncounterID(mod:Retail() and 2972 or 2747)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L["5200_icon"] = "ability_rogue_masterofsubtlety"
-	L["450564_desc"] = -29832 -- Shadowstep
-end
+local L = mod:SetDefaultLocale({
+	["5200_icon"] = "ability_rogue_masterofsubtlety",
+	["450564_desc"] = -29832, -- Shadowstep
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

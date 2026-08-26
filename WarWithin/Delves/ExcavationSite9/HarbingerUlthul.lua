@@ -16,21 +16,22 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.harbinger_ulthul = "Harbinger Ul'thul"
-end
+local L = mod:SetDefaultLocale({
+	harbinger_ulthul = "Harbinger Ul'thul",
+})
+mod.displayName = L.harbinger_ulthul
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(1213776, CL.curse) -- Hopeless Curse (Curse)
+mod:SetSpellRename(1213700, CL.fixate) -- Unanswered Call (Fixate)
+mod:SetSpellRename(1213838, CL.fixate) -- Unanswered Call (Fixate)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.harbinger_ulthul
-	self:SetSpellRename(1213776, CL.curse) -- Hopeless Curse (Curse)
-	self:SetSpellRename(1213700, CL.fixate) -- Unanswered Call (Fixate)
-	self:SetSpellRename(1213838, CL.fixate) -- Unanswered Call (Fixate)
-end
 
 function mod:GetOptions()
 	return {

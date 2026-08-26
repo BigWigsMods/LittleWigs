@@ -22,19 +22,18 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.twilight_earthcaller = "Twilight Earthcaller"
-	L.twilight_brute = "Twilight Brute"
-	L.twilight_destroyer = "Twilight Destroyer"
-	L.twilight_overseer = "Twilight Overseer"
-	L.twilight_beguiler = "Twilight Beguiler"
-	L.molten_giant = "Molten Giant"
-	L.twilight_warlock = "Twilight Warlock"
-	L.twilight_flamerender = "Twilight Flamerender"
-	L.twilight_lavabender = "Twilight Lavabender"
-	L.faceless_corruptor = "Faceless Corruptor"
-end
+local L = mod:SetDefaultLocale({
+	twilight_earthcaller = "Twilight Earthcaller",
+	twilight_brute = "Twilight Brute",
+	twilight_destroyer = "Twilight Destroyer",
+	twilight_overseer = "Twilight Overseer",
+	twilight_beguiler = "Twilight Beguiler",
+	molten_giant = "Molten Giant",
+	twilight_warlock = "Twilight Warlock",
+	twilight_flamerender = "Twilight Flamerender",
+	twilight_lavabender = "Twilight Lavabender",
+	faceless_corruptor = "Faceless Corruptor",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

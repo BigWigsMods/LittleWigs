@@ -23,12 +23,11 @@ mod:SetAuraData({
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.snitches_interrogated = "Snitches Interrogated"
-	L.snitches_interrogated_desc = "Show an alert when a snitch has been interrogated."
-	L.snitches_interrogated_icon = "ui_chat"
-end
+mod:SetDefaultLocale({
+	snitches_interrogated = "Snitches Interrogated",
+	snitches_interrogated_desc = "Show an alert when a snitch has been interrogated.",
+	snitches_interrogated_icon = "ui_chat",
+})
 
 --------------------------------------------------------------------------------
 -- Locals

@@ -24,10 +24,9 @@ local nextVoraciousBite = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_icon = "inv_achievement_dungeon_arak-ara"
-end
+local L = mod:SetDefaultLocale({
+	warmup_icon = "inv_achievement_dungeon_arak-ara",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

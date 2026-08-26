@@ -24,40 +24,41 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.rares = "Underpin Rares"
+local L = mod:SetDefaultLocale({
+	rares = "Underpin Rares",
 
-	L.treasure_wraith = "Treasure Wraith"
-	L.treasure_crab = "Treasure Crab"
-	L.hovering_menace = "Hovering Menace"
-	L.malfunctioning_pummeler = "Malfunctioning Pummeler"
-	L.underpins_adoring_fan = "Underpin's Adoring Fan"
-	L.underpins_well_connected_friend = "Underpin's Well-Connected Friend"
-	L.underpins_explosive_ally = "Underpin's Explosive Ally"
-	L.underpins_bodyguards_intern = "Underpin's Bodyguard's Intern"
-	L.aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin"
-	L.the_underpin = "The Underpin (Random Spawn)"
+	treasure_wraith = "Treasure Wraith",
+	treasure_crab = "Treasure Crab",
+	hovering_menace = "Hovering Menace",
+	malfunctioning_pummeler = "Malfunctioning Pummeler",
+	underpins_adoring_fan = "Underpin's Adoring Fan",
+	underpins_well_connected_friend = "Underpin's Well-Connected Friend",
+	underpins_explosive_ally = "Underpin's Explosive Ally",
+	underpins_bodyguards_intern = "Underpin's Bodyguard's Intern",
+	aggressively_lost_hobgoblin = "Aggressively Lost Hobgoblin",
+	the_underpin = "The Underpin (Random Spawn)",
 
-	L.underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!"
+	underpin_retreat_trigger = "People always messin' around on my perfectly legal, deeded land!",
 
-	L["1216937_icon"] = "inv_goblinshreddermech_black" -- Underpin's Grand Entrance
-end
+	["1216937_icon"] = "inv_goblinshreddermech_black", -- Underpin's Grand Entrance
+})
+mod.displayName = L.rares
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(1216790, CL.charge) -- Forward Charge (Charge)
+mod:SetSpellRename(1216806, CL.frontal_cone) -- There's the Door (Frontal Cone)
+mod:SetSpellRename(1213497, CL.enrage) -- Me Go Mad (Enrage)
+mod:SetSpellRename(1217301, CL.charge) -- Heedless Charge (Charge)
+mod:SetSpellRename(1213852, CL.leap) -- Crush (Leap)
+mod:SetSpellRename(1217371, CL.frontal_cone) -- Flamethrower (Frontal Cone)
+mod:SetSpellRename(1214147, CL.bombs) -- Time Bomb Launcher (Bombs)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.rares
-	self:SetSpellRename(1216790, CL.charge) -- Forward Charge (Charge)
-	self:SetSpellRename(1216806, CL.frontal_cone) -- There's the Door (Frontal Cone)
-	self:SetSpellRename(1213497, CL.enrage) -- Me Go Mad (Enrage)
-	self:SetSpellRename(1217301, CL.charge) -- Heedless Charge (Charge)
-	self:SetSpellRename(1213852, CL.leap) -- Crush (Leap)
-	self:SetSpellRename(1217371, CL.frontal_cone) -- Flamethrower (Frontal Cone)
-	self:SetSpellRename(1214147, CL.bombs) -- Time Bomb Launcher (Bombs)
-end
 
 function mod:GetOptions()
 	return {

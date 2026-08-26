@@ -13,18 +13,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.tomb_raider_drywhisker = "Tomb-Raider Drywhisker"
-end
+local L = mod:SetDefaultLocale({
+	tomb_raider_drywhisker = "Tomb-Raider Drywhisker",
+})
+mod.displayName = L.tomb_raider_drywhisker
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.tomb_raider_drywhisker
-end
 
 function mod:GetOptions()
 	return {

@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Akil'zon", 568, 186)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(23574)
 mod:SetEncounterID(1189)
 mod:SetRespawnTime(60)
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -30,8 +30,8 @@ function mod:OnEngage()
 	self:CDBar(43648, 50) -- Electrical Storm
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:ElectricalStorm(args)

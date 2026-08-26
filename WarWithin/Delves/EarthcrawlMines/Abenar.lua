@@ -13,19 +13,20 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.web_general_abenar = "Web General Ab'enar"
-end
+local L = mod:SetDefaultLocale({
+	web_general_abenar = "Web General Ab'enar",
+})
+mod.displayName = L.web_general_abenar
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(448443, CL.curse) -- Curse of Agony (Curse)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.web_general_abenar
-	self:SetSpellRename(448443, CL.curse) -- Curse of Agony (Curse)
-end
 
 function mod:GetOptions()
 	return {

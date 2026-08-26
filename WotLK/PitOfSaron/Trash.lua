@@ -11,12 +11,11 @@ mod:SetTrashModule(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.quarry_camps_liberated = "Quarry Camps Liberated"
-	L.quarry_camps_liberated_desc = "Show an alert when a quarry camp has been liberated."
-	L.quarry_camps_liberated_icon = "inv_axe_2h_6miningpick"
-end
+local L = mod:SetDefaultLocale({
+	quarry_camps_liberated = "Quarry Camps Liberated",
+	quarry_camps_liberated_desc = "Show an alert when a quarry camp has been liberated.",
+	quarry_camps_liberated_icon = "inv_axe_2h_6miningpick",
+})
 
 --------------------------------------------------------------------------------
 -- Locals

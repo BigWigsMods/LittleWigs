@@ -15,12 +15,11 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.spellflinger = "Ahn'kahar Spell Flinger"
-	L.eye = "Eye of Taldaram"
-	L.darkcaster = "Twilight Darkcaster"
-end
+local L = mod:SetDefaultLocale({
+	spellflinger = "Ahn'kahar Spell Flinger",
+	eye = "Eye of Taldaram",
+	darkcaster = "Twilight Darkcaster",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

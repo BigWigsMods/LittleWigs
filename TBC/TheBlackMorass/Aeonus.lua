@@ -11,10 +11,9 @@ mod:RegisterEnableMob(17881)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.reset_trigger = "No! Damn this feeble, mortal coil!" -- XXX implement?
-end
+mod:SetDefaultLocale({
+	reset_trigger = "No! Damn this feeble, mortal coil!", -- XXX implement?
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

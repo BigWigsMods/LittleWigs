@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Drakos the Interrogator", 578, 622)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(27654)
 mod:SetEncounterID(mod:Classic() and 528 or 2016)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -26,8 +26,8 @@ function mod:OnEngage()
 	self:CDBar(50774, 14.7) -- Thundering Stomp
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:ThunderingStomp(args)

@@ -11,18 +11,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.hydrangea = "Hydrangea"
-end
+local L = mod:SetDefaultLocale({
+	hydrangea = "Hydrangea",
+})
+mod.displayName = L.hydrangea
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.hydrangea
-end
 
 function mod:GetOptions()
 	return {

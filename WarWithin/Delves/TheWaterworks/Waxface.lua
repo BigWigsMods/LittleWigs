@@ -21,18 +21,14 @@ local nextNoxiousGas = 0
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.waxface = "Waxface"
-end
+local L = mod:SetDefaultLocale({
+	waxface = "Waxface",
+})
+mod.displayName = L.waxface
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.waxface
-end
 
 function mod:GetOptions()
 	return {

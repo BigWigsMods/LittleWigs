@@ -13,18 +13,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.creeping_malison = "Creeping Malison"
-end
+local L = mod:SetDefaultLocale({
+	creeping_malison = "Creeping Malison",
+})
+mod.displayName = L.creeping_malison
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.creeping_malison
-end
 
 function mod:GetOptions()
 	return {

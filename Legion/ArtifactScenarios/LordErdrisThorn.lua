@@ -26,17 +26,17 @@ local castCollector = {}
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.erdris = "Lord Erdris Thorn"
+local L = mod:SetDefaultLocale({
+	erdris = "Lord Erdris Thorn",
 
-	L.warmup_trigger = "Your arrival is well-timed."
-	L.warmup_trigger2 = "What's... happening?" -- Stage 5
+	warmup_trigger = "Your arrival is well-timed.",
+	warmup_trigger2 = "What's... happening?", -- Stage 5
 
-	L.mage = "Corrupted Risen Mage"
-	L.soldier = "Corrupted Risen Soldier"
-	L.arbalest = "Corrupted Risen Arbalest"
-end
+	mage = "Corrupted Risen Mage",
+	soldier = "Corrupted Risen Soldier",
+	arbalest = "Corrupted Risen Arbalest",
+})
+mod.displayName = L.erdris
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -66,10 +66,6 @@ function mod:GetOptions()
 		[235823] = L.soldier,
 		[237188] = L.erdris
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.erdris
 end
 
 function mod:OnBossEnable()

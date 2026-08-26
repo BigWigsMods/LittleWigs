@@ -20,12 +20,11 @@ end
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.adds_icon = "icon_petfamily_mechanical"
-	L.solar_zealot = "Solar Zealot"
-	L.construct = "Skyreach Shield Construct" -- NPC ID 76292
-end
+local L = mod:SetDefaultLocale({
+	adds_icon = "icon_petfamily_mechanical",
+	solar_zealot = "Solar Zealot",
+	construct = "Skyreach Shield Construct", -- NPC ID 76292
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -41,11 +40,6 @@ function mod:GetOptions()
 	},nil,{
 		["adds"] = L.construct, -- Adds (Skyreach Shield Construct)
 	}
-end
-
-function mod:OnRegister()
-	-- delayed for custom locale
-	solarZealotMarker = mod:AddMarkerOption(true, "npc", 8, "solar_zealot", 8)
 end
 
 function mod:OnBossEnable()

@@ -12,10 +12,9 @@ mod:SetRespawnTime(30)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.lance_ready = "Lance Ready"
-end
+local L = mod:SetDefaultLocale({
+	lance_ready = "Lance Ready",
+})
 
 --------------------------------------------------------------------------------
 -- Locals

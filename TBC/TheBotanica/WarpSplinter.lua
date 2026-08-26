@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("Warp Splinter", 553, 562)
 if not mod then return end
 mod:RegisterEnableMob(17977)
 mod.engageId = 1929
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Locals

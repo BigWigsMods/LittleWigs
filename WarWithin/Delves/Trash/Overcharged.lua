@@ -17,22 +17,18 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.overcharged_trash = "Overcharged Trash"
+local L = mod:SetDefaultLocale({
+	overcharged_trash = "Overcharged Trash",
 
-	L.awakened_defensive_construct = "Awakened Defensive Construct"
-	L.awakened_defense_matrix = "Awakened Defense Matrix"
-	L.overcharged_bot = "Overcharged Bot"
-end
+	awakened_defensive_construct = "Awakened Defensive Construct",
+	awakened_defense_matrix = "Awakened Defense Matrix",
+	overcharged_bot = "Overcharged Bot",
+})
+mod.displayName = L.overcharged_trash
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.overcharged_trash
-end
 
 function mod:GetOptions()
 	return {

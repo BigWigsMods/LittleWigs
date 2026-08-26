@@ -20,10 +20,9 @@ local stanceOfTheMountainCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.hands = "Hands" -- Short for "Stone Hands"
-end
+local L = mod:SetDefaultLocale({
+	hands = "Hands", -- Short for "Stone Hands"
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

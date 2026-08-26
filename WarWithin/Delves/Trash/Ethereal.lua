@@ -27,26 +27,22 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.ethereal_trash = "Ethereal Trash"
+local L = mod:SetDefaultLocale({
+	ethereal_trash = "Ethereal Trash",
 
-	L.shadeye_observer = "Shadeye Observer"
-	L.shadowguard_phasecutter = "Shadowguard Phasecutter"
-	L.shadowguard_arcanotech = "Shadowguard Arcanotech"
-	L.shadowguard_soulbreaker = "Shadowguard Soulbreaker"
-	L.shadowguard_steelsoul = "Shadowguard Steelsoul"
-	L.siphoned_drake = "Siphoned Drake"
-	L.steelsoul_arcanoward = "Steelsoul Arcanoward"
-end
+	shadeye_observer = "Shadeye Observer",
+	shadowguard_phasecutter = "Shadowguard Phasecutter",
+	shadowguard_arcanotech = "Shadowguard Arcanotech",
+	shadowguard_soulbreaker = "Shadowguard Soulbreaker",
+	shadowguard_steelsoul = "Shadowguard Steelsoul",
+	siphoned_drake = "Siphoned Drake",
+	steelsoul_arcanoward = "Steelsoul Arcanoward",
+})
+mod.displayName = L.ethereal_trash
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.ethereal_trash
-end
 
 local autotalk = mod:AddAutoTalkOption(false)
 function mod:GetOptions()

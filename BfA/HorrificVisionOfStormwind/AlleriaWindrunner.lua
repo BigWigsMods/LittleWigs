@@ -15,13 +15,13 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.alleria_windrunner = "Alleria Windrunner"
-	L["312260_icon"] = 305672 -- Explosive Ordnance
-	L["312260_desc"] = 305672 -- Explosive Ordnance
-	L.warmup_icon = "spell_arcane_teleportstormwind"
-end
+local L = mod:SetDefaultLocale({
+	alleria_windrunner = "Alleria Windrunner",
+	["312260_icon"] = 305672, -- Explosive Ordnance
+	["312260_desc"] = 305672, -- Explosive Ordnance
+	warmup_icon = "spell_arcane_teleportstormwind",
+})
+mod.displayName = L.alleria_windrunner
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -46,10 +46,6 @@ function mod:GetOptions()
 		[312260] = 312226, -- Fallen Servants: Therum Deepforge
 		[308669] = 312229, -- Fallen Servants: Overlord Shaw
 	}
-end
-
-function mod:OnRegister()
-	self.displayName = L.alleria_windrunner
 end
 
 function mod:OnBossEnable()

@@ -17,14 +17,13 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.legionnaire = "Shattered Hand Legionnaire"
-	L.brawler = "Shattered Hand Brawler"
-	L.acolyte = "Shadowmoon Acolyte"
-	L.darkcaster = "Shadowmoon Darkcaster"
-	L.assassin = "Shattered Hand Assassin"
-end
+local L = mod:SetDefaultLocale({
+	legionnaire = "Shattered Hand Legionnaire",
+	brawler = "Shattered Hand Brawler",
+	acolyte = "Shadowmoon Acolyte",
+	darkcaster = "Shadowmoon Darkcaster",
+	assassin = "Shattered Hand Assassin",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

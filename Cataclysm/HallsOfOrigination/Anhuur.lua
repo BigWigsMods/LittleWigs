@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Temple Guardian Anhuur", 644, 124)
@@ -14,8 +14,8 @@ mod:SetRespawnTime(30)
 
 local nextShieldOfLightWarning = 0
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -37,8 +37,8 @@ function mod:OnEngage()
 	nextShieldOfLightWarning = 71 -- 66% and 33%
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:UNIT_HEALTH(event, unit)

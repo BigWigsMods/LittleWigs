@@ -32,10 +32,9 @@ local platinumPlatingOnBoss = false
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.warmup_trigger = "Now this is a statistical anomaly! Our visitors are still alive!"
-end
+local L = mod:SetDefaultLocale({
+	warmup_trigger = "Now this is a statistical anomaly! Our visitors are still alive!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

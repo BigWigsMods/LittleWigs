@@ -16,10 +16,9 @@ mod:SetStage(1)
 -- Locales
 --
 
-local L = mod:GetLocale()
-if L then
-	L.stage_2_trigger = "Now, Lilian, it is time for your transformation."
-end
+local L = mod:SetDefaultLocale({
+	stage_2_trigger = "Now, Lilian, it is time for your transformation.",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

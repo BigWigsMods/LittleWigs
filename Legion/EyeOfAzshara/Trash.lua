@@ -21,16 +21,15 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.wrangler = "Hatecoil Wrangler"
-	L.stormweaver = "Hatecoil Stormweaver"
-	L.crusher = "Hatecoil Crusher"
-	L.oracle = "Hatecoil Oracle"
-	L.siltwalker = "Mak'rana Siltwalker"
-	L.tides = "Restless Tides"
-	L.arcanist = "Hatecoil Arcanist"
-end
+local L = mod:SetDefaultLocale({
+	wrangler = "Hatecoil Wrangler",
+	stormweaver = "Hatecoil Stormweaver",
+	crusher = "Hatecoil Crusher",
+	oracle = "Hatecoil Oracle",
+	siltwalker = "Mak'rana Siltwalker",
+	tides = "Restless Tides",
+	arcanist = "Hatecoil Arcanist",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

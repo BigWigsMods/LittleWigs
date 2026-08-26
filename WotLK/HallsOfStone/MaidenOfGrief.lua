@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Maiden of Grief", 599, 605)
@@ -8,14 +8,14 @@ mod:RegisterEnableMob(27975)
 mod:SetEncounterID(mod:Classic() and 565 or 1996)
 --mod:SetRespawnTime(0) -- resets, doesn't respawn
 
--------------------------------------------------------------------------------
---  Locals
+--------------------------------------------------------------------------------
+-- Locals
 --
 
 local playersIncapacitated, shouldBeTakingDamage = 0, false
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -37,8 +37,8 @@ function mod:OnEngage()
 	playersIncapacitated, shouldBeTakingDamage = 0, false
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:ShockOfSorrow(args)

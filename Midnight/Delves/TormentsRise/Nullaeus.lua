@@ -31,11 +31,11 @@ local backupBars = {}
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.nullaeus = "Nullaeus"
-	L.adds_icon = "inv_babyvoidwalker_silver"
-end
+local L = mod:SetDefaultLocale({
+	nullaeus = "Nullaeus",
+	adds_icon = "inv_babyvoidwalker_silver",
+})
+mod.displayName = L.nullaeus
 
 --------------------------------------------------------------------------------
 -- Renames
@@ -51,10 +51,6 @@ mod:SetRenames({
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.nullaeus
-end
 
 function mod:GetOptions()
 	return {

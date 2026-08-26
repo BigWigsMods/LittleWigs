@@ -13,10 +13,9 @@ mod:SetStage(1)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.stacks_left = "%s (%d/%d)"
-end
+local L = mod:SetDefaultLocale({
+	stacks_left = "%s (%d/%d)",
+})
 
 --------------------------------------------------------------------------------
 -- Locals

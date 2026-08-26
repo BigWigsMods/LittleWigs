@@ -26,12 +26,11 @@ mod:SetAuraData({
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.offerings_acquired = "Offerings Acquired"
-	L.offerings_acquired_desc = "Show an alert when an offering has been acquired."
-	L.offerings_acquired_icon = "inv_misc_coinbag09"
-end
+mod:SetDefaultLocale({
+	offerings_acquired = "Offerings Acquired",
+	offerings_acquired_desc = "Show an alert when an offering has been acquired.",
+	offerings_acquired_icon = "inv_misc_coinbag09",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

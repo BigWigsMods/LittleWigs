@@ -6,7 +6,7 @@ local mod, CL = BigWigs:NewBoss("High Botanist Freywinn", 553, 559)
 if not mod then return end
 mod:RegisterEnableMob(17975)
 mod.engageId = 1926
--- mod.respawnTime = 0 -- resets, doesn't respawn
+--mod.respawnTime = 0 -- resets, doesn't respawn
 
 --------------------------------------------------------------------------------
 -- Locals

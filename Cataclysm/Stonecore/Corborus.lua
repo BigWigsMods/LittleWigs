@@ -13,15 +13,14 @@ mod.respawnTime = 30
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.burrow = "Burrow/emerge"
-	L.burrow_desc = "Warn when Corborus burrows or emerges."
-	L.burrow_message = "Corborus burrows!"
-	L.burrow_warning = "Burrow in 5 sec!"
-	L.emerge_message = "Corborus emerges!"
-	L.emerge_warning = "Emerge in 5 sec!"
-end
+local L = mod:SetDefaultLocale({
+	burrow = "Burrow/emerge",
+	burrow_desc = "Warn when Corborus burrows or emerges.",
+	burrow_message = "Corborus burrows!",
+	burrow_warning = "Burrow in 5 sec!",
+	emerge_message = "Corborus emerges!",
+	emerge_warning = "Emerge in 5 sec!",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

@@ -1,5 +1,5 @@
--------------------------------------------------------------------------------
---  Module Declaration
+--------------------------------------------------------------------------------
+-- Module Declaration
 --
 
 local mod, CL = BigWigs:NewBoss("Ammunae", 644, 128)
@@ -8,8 +8,8 @@ mod:RegisterEnableMob(39731)
 mod.engageId = 1074
 mod.respawnTime = 30
 
--------------------------------------------------------------------------------
---  Initialization
+--------------------------------------------------------------------------------
+-- Initialization
 --
 
 function mod:GetOptions()
@@ -31,8 +31,8 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "RampantGrowth", 75790)
 end
 
--------------------------------------------------------------------------------
---  Event Handlers
+--------------------------------------------------------------------------------
+-- Event Handlers
 --
 
 function mod:Wither(args)

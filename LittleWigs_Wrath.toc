@@ -29,10 +29,10 @@
 #@do-not-package@
 ## X-LittleWigs-Repo: 1
 ## X-BigWigs-LoadOn-InstanceId: 36,209,229,329,429, 269,540,542,543,545,546,547,552,553,554,555,556,557,558,560,585, 536,574,575,576,578,595,599,600,601,602,604,608,619,632,650,658,668
-Classic\modules_TBC.xml
 Classic\!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
-TBC\modules.xml
+Classic\modules_TBC.xml
 TBC\!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
-WotLK\modules.xml
+TBC\modules.xml
 WotLK\!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+WotLK\modules.xml
 #@end-do-not-package@

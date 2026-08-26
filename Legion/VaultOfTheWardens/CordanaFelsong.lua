@@ -19,19 +19,18 @@ local warnedForCreepingDoom = nil
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.kick_combo = "Kick Combo"
-	L.kick_combo_desc = "{197251}\n{197250}" -- Knockdown Kick & Turn Kick
-	L.kick_combo_icon = 197251
+local L = mod:SetDefaultLocale({
+	kick_combo = "Kick Combo",
+	kick_combo_desc = "{197251}\n{197250}", -- Knockdown Kick & Turn Kick
+	kick_combo_icon = 197251,
 
-	L.light_dropped = "%s dropped the Light."
-	L.light_picked = "%s picked up the Light."
+	light_dropped = "%s dropped the Light.",
+	light_picked = "%s picked up the Light.",
 
-	L.warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!"
-	L.warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark."
-	L.warmup_icon = "achievement_dungeon_vaultofthewardens"
-end
+	warmup_trigger = "I have what I was after. But I stayed just so that I could put an end to you... once and for all!",
+	warmup_trigger_2 = "And now you fools have fallen into my trap. Let's see how you fare in the dark.",
+	warmup_icon = "achievement_dungeon_vaultofthewardens",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

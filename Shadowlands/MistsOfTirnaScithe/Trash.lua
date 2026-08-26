@@ -34,32 +34,31 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.tirnenn_villager = "Tirnenn Villager"
-	L.drust_harvester = "Drust Harvester"
-	L.drust_soulcleaver = "Drust Soulcleaver"
-	L.drust_spiteclaw = "Drust Spiteclaw"
-	L.drust_boughbreaker = "Drust Boughbreaker"
-	L.mistveil_defender = "Mistveil Defender"
-	L.mistveil_gorgegullet = "Mistveil Gorgegullet"
-	L.mistveil_guardian = "Mistveil Guardian"
-	L.mistveil_matriarch = "Mistveil Matriarch"
-	L.mistveil_nightblossom = "Mistveil Nightblossom"
-	L.mistveil_shaper = "Mistveil Shaper"
-	L.mistveil_stalker = "Mistveil Stalker"
-	L.mistveil_stinger = "Mistveil Stinger"
-	L.mistveil_tender = "Mistveil Tender"
-	L.spinemaw_acidgullet = "Spinemaw Acidgullet"
-	L.spinemaw_staghorn = "Spinemaw Staghorn"
-	L.spinemaw_gorger = "Spinemaw Gorger"
-	L.gormling_larva = "Gormling Larva"
-	L.spinemaw_reaver = "Spinemaw Reaver"
+local L = mod:SetDefaultLocale({
+	tirnenn_villager = "Tirnenn Villager",
+	drust_harvester = "Drust Harvester",
+	drust_soulcleaver = "Drust Soulcleaver",
+	drust_spiteclaw = "Drust Spiteclaw",
+	drust_boughbreaker = "Drust Boughbreaker",
+	mistveil_defender = "Mistveil Defender",
+	mistveil_gorgegullet = "Mistveil Gorgegullet",
+	mistveil_guardian = "Mistveil Guardian",
+	mistveil_matriarch = "Mistveil Matriarch",
+	mistveil_nightblossom = "Mistveil Nightblossom",
+	mistveil_shaper = "Mistveil Shaper",
+	mistveil_stalker = "Mistveil Stalker",
+	mistveil_stinger = "Mistveil Stinger",
+	mistveil_tender = "Mistveil Tender",
+	spinemaw_acidgullet = "Spinemaw Acidgullet",
+	spinemaw_staghorn = "Spinemaw Staghorn",
+	spinemaw_gorger = "Spinemaw Gorger",
+	gormling_larva = "Gormling Larva",
+	spinemaw_reaver = "Spinemaw Reaver",
 
-	L.gate_open = CL.gate_open
-	L.gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss."
-	L.gate_open_icon = "achievement_dungeon_mistsoftirnascithe"
-end
+	gate_open = CL.gate_open,
+	gate_open_desc = "Show a bar indicating when the gate to the next area will open after defeating each boss.",
+	gate_open_icon = "achievement_dungeon_mistsoftirnascithe",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

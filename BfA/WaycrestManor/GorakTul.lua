@@ -18,10 +18,9 @@ local dreadEssenceCount = 1
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.add_killed = "Add killed - Ready to burn"
-end
+local L = mod:SetDefaultLocale({
+	add_killed = "Add killed - Ready to burn",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

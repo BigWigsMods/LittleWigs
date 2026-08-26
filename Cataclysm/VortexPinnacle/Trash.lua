@@ -24,21 +24,20 @@ mod:RegisterEnableMob(
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.armored_mistral = "Armored Mistral"
-	L.gust_soldier = "Gust Soldier"
-	L.wild_vortex = "Wild Vortex"
-	L.lurking_tempest = "Lurking Tempest"
-	L.cloud_prince = "Cloud Prince"
-	L.turbulent_squall = "Turbulent Squall"
-	L.empyrean_assassin = "Empyrean Assassin"
-	L.young_storm_dragon = "Young Storm Dragon"
-	L.executor_of_the_caliph = "Executor of the Caliph"
-	L.temple_adept = "Temple Adept"
-	L.servant_of_asaad = "Servant of Asaad"
-	L.minister_of_air = "Minister of Air"
-end
+local L = mod:SetDefaultLocale({
+	armored_mistral = "Armored Mistral",
+	gust_soldier = "Gust Soldier",
+	wild_vortex = "Wild Vortex",
+	lurking_tempest = "Lurking Tempest",
+	cloud_prince = "Cloud Prince",
+	turbulent_squall = "Turbulent Squall",
+	empyrean_assassin = "Empyrean Assassin",
+	young_storm_dragon = "Young Storm Dragon",
+	executor_of_the_caliph = "Executor of the Caliph",
+	temple_adept = "Temple Adept",
+	servant_of_asaad = "Servant of Asaad",
+	minister_of_air = "Minister of Air",
+})
 
 --------------------------------------------------------------------------------
 -- Initialization

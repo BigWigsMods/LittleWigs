@@ -13,20 +13,21 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.researcher_venkex = "Researcher Ven'kex"
-end
+local L = mod:SetDefaultLocale({
+	researcher_venkex = "Researcher Ven'kex",
+})
+mod.displayName = L.researcher_venkex
+
+--------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetSpellRename(446832, CL.beams) -- Infusion of Poison (Beams)
+mod:SetSpellRename(463408, CL.beams) -- Infusion of Frost (Beams)
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.researcher_venkex
-	self:SetSpellRename(446832, CL.beams) -- Infusion of Poison (Beams)
-	self:SetSpellRename(463408, CL.beams) -- Infusion of Frost (Beams)
-end
 
 function mod:GetOptions()
 	return {

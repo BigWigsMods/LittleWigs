@@ -13,18 +13,14 @@ mod:SetAllowWin(true)
 -- Localization
 --
 
-local L = mod:GetLocale()
-if L then
-	L.kaigy_maryla = "Kaigy Maryla"
-end
+local L = mod:SetDefaultLocale({
+	kaigy_maryla = "Kaigy Maryla",
+})
+mod.displayName = L.kaigy_maryla
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
-
-function mod:OnRegister()
-	self.displayName = L.kaigy_maryla
-end
 
 function mod:GetOptions()
 	return {
