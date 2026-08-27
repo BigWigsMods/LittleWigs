@@ -229,10 +229,12 @@ BigWigs:AddSounds("Nalorakk Den", {
 })
 
 BigWigs:AddColors("Den of Nalorakk Trash", {
+	[1271545] = "green",
 	["offerings_acquired"] = "green",
 })
 
 BigWigs:AddSounds("Den of Nalorakk Trash", {
+	[1271545] = "info",
 	["offerings_acquired"] = "info",
 })
 

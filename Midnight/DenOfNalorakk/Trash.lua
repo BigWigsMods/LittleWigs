@@ -33,6 +33,14 @@ mod:SetDefaultLocale({
 })
 
 --------------------------------------------------------------------------------
+-- Renames
+--
+
+mod:SetRenames({
+	[1271545] = {CL.casting:format(CL.on_group:format(mod:SpellName(1271545))), original = {CL.casting:format(CL.on_group:format(mod:SpellName(1271545)))}}, -- Warding Incense
+})
+
+--------------------------------------------------------------------------------
 -- Initialization
 --
 
@@ -40,6 +48,7 @@ local autotalk = mod:AddAutoTalkOption(true)
 function mod:GetOptions()
 	return {
 		autotalk,
+		1271545, -- Warding Incense
 		"offerings_acquired",
 	}
 end
@@ -67,6 +76,8 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(137694) then -- Warding Incense (Versatility buff)
 			-- 137694:<You light the incense, its aroma fortifying the resolve of nearby allies.>\r\n\r\n[Requires at least 25 skill in Midnight Alchemy or Druid Bear Form.]
 			self:SelectGossipID(137694)
+			self:Message(1271545, "green", self:GetRename(1271545))
+			self:PlaySound(1271545, "info")
 		end
 	end
 end
