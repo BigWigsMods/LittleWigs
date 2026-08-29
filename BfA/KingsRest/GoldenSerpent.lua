@@ -7,13 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(135322) -- The Golden Serpent
 mod:SetEncounterID(2139)
 mod:SetRespawnTime(30)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{1306736, note = CL.preDebuffNote}, -- Spit Gold (pre-application)
-		{265773, note = CL.mainDebuffNote}, -- Spit Gold (DoT)
-		{265914, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Molten Gold
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -66,6 +59,18 @@ if mod:Retail() then -- Midnight+
 		[265910] = {265910}, -- Tail Thrash
 		[265781] = {265781}, -- Serpentine Gust
 		[265923] = {265923}, -- Lucre's Call
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{1306736, duration = 2.5, note = CL.debuffTargetedNote:format(mod:SpellName(265773))}, -- Spit Gold (pre-application)
+		{265773, duration = 6, note = CL.debuffDotAfterCastNote:format(mod:SpellName(265773))}, -- Spit Gold (DoT)
+		{265914, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Molten Gold
 	})
 end
 
