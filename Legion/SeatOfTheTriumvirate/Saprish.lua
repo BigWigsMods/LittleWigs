@@ -7,13 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(122316, 122319, 125340) -- Saprish, Darkfang, Duskwing
 mod:SetEncounterID(2066)
 mod:SetRespawnTime(30)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{245742, soundOnApplied = "alert", note = CL.bleed}, -- Shadow Pounce
-		{246026, soundOnApplied = "alarm", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(246026))}, -- Void Bomb
-		{1263523, soundOnApplied = "info", note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1263523), CL.explosion))}, -- Overload
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -83,6 +76,18 @@ if mod:Retail() then -- Midnight+
 		[1248219] = {CL.bombs}, -- Void Bomb (Bombs)
 		[1280065] = {CL.clear_bombs}, -- Phase Dash (Clear Bombs)
 		[1263523] = {CL.explosion}, -- Overload (Explosion)
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{245742, duration = 5, dispel = "bleed", mechanic = "bleeding", soundOnApplied = "alert", note = CL.bleed}, -- Shadow Pounce
+		{246026, duration = 15, soundOnApplied = "alarm", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(246026))}, -- Void Bomb
+		{1263523, duration = 8, soundOnApplied = "info", note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1263523), CL.explosion))}, -- Overload
 	})
 end
 

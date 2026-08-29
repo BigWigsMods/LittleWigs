@@ -7,13 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(122056) -- Viceroy Nezhar
 mod:SetEncounterID(2067)
 mod:SetRespawnTime(30)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{1263532, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Void Storm
-		{1263542, note = CL.group_damage}, -- Mass Void Infusion
-		{1268733, note = CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(1263538), CL.adds))}, -- Mind Flay
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -106,6 +99,18 @@ if mod:Retail() then -- Midnight+
 		[1263542] = {CL.group_damage}, -- Mass Void Infusion (Group Damage)
 		[1263538] = {CL.adds}, -- Umbral Tentacles (Adds)
 		[1263528] = {CL.knockback}, -- Repulse (Knockback)
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{1263532, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Void Storm
+		{1263542, duration = 5, note = CL.group_damage}, -- Mass Void Infusion
+		{1268733, duration = 10, note = CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(1263538), CL.adds))}, -- Mind Flay
 	})
 end
 
