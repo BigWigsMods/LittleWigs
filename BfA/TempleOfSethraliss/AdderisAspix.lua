@@ -8,13 +8,6 @@ mod:RegisterEnableMob(133379, 133944) -- Adderis, Aspix
 mod:SetEncounterID(2124)
 if mod:Retail() then -- Midnight+
 	mod:SetRespawnTime(30)
-	mod:SetAuraData({
-		{1288457, duration = 4, note = CL.debuffDotAfterCastNote:format(mod:SpellName(1288457))}, -- Gust
-		{1289059, duration = 4, note = CL.debuffTargetedNote:format(mod:SpellName(1289059))}, -- Gale Force
-		{1288874, duration = 5, soundOnRemoved = "alarm", note = CL.debuffTargetedNote:format(mod:SpellName(1311805))}, -- Tempest Winds
-		{1288885, duration = 4, mechanic = "silenced", note = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1311805))}, -- Tempest Winds
-		{1288074, duration = 4.5, soundOnRemoved = "alarm", note = CL.debuffTargetedNote:format(mod:SpellName(1288049))}, -- Thunder and Lightning
-	})
 else
 	mod:SetRespawnTime(20)
 end
@@ -86,6 +79,20 @@ if mod:Retail() then -- Midnight+
 		[1311805] = {1311805, CL.you:format(mod:SpellName(1311805)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1311805, CL.you:format(mod:SpellName(1311805))}}, -- Tempest Winds
 		[1288049] = {1288049}, -- Thunder and Lightning
 		[1311804] = {1311804}, -- Overload
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{1288457, duration = 4, note = CL.debuffDotAfterCastNote:format(mod:SpellName(1288457))}, -- Gust
+		{1289059, duration = 4, note = CL.debuffTargetedNote:format(mod:SpellName(1289059))}, -- Gale Force
+		{1288874, duration = 5, soundOnRemoved = "alarm", note = CL.debuffTargetedNote:format(mod:SpellName(1311805))}, -- Tempest Winds
+		{1288885, duration = 4, mechanic = "silenced", note = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1311805))}, -- Tempest Winds
+		{1288074, duration = 4.5, soundOnRemoved = "alarm", note = CL.debuffTargetedNote:format(mod:SpellName(1288049))}, -- Thunder and Lightning
 	})
 end
 
