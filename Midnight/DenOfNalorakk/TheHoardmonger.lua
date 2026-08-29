@@ -6,10 +6,15 @@ local mod, CL = BigWigs:NewBoss("The Hoardmonger", 2825, 2776)
 if not mod then return end
 mod:SetEncounterID(3207)
 mod:SetRespawnTime(30)
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
 mod:SetAuraData({
-	{1234846, soundOnApplied = "info", soundOnAppliedDose = "info"}, -- Toxic Spores
-	{1234681}, -- Ravenous Bellow
-	{1235125}, -- Hearty Bellow
+	{1234846, duration = 12, dispel = "poison", soundOnApplied = "info", soundOnAppliedDose = "info", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(-32665))}, -- Toxic Spores
+	{1234681, duration = 10, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1235118))}, -- Ravenous Bellow
+	{1235125, duration = 10, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1235125))}, -- Hearty Bellow
 	{1235405, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Bonespiked
 })
 
