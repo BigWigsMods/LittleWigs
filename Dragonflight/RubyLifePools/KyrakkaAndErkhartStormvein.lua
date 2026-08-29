@@ -11,15 +11,6 @@ mod:RegisterEnableMob(
 mod:SetEncounterID(2623)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{381515, duration = 30, dispel = "magic", soundOnAppliedDose = "none", note = CL.debuffTankAfterCastNote:format(mod:SpellName(381512))}, -- Stormslam
-		{381518, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(381517))}, -- Winds of Change
-		{381862, duration = 6, note = CL.debuffDotAfterCastNote:format(mod:SpellName(381862))}, -- Inferno Spit
-		{384773, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Flaming Embers
-		{381526, soundOnApplied = "alarm", note = CL.debuffHitByCastNote:format(mod:SpellName(381525))}, -- Roaring Firebreath
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -135,6 +126,20 @@ if mod:Retail() then -- Midnight+
 		},
 		[381862] = {381862, CL.you:format(mod:SpellName(381862)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {381862, CL.you:format(mod:SpellName(381862))}}, -- Inferno Spit
 		[381516] = {381516, CL.cast:format(mod:SpellName(381516)), notes = {CL.generalNote, CL.castTimerNote}, original = false}, -- Interrupting Cloudburst
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{381515, duration = 30, dispel = "magic", soundOnAppliedDose = "none", note = CL.debuffTankAfterCastNote:format(mod:SpellName(381512))}, -- Stormslam
+		{381518, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(381517))}, -- Winds of Change
+		{381862, duration = 6, note = CL.debuffDotAfterCastNote:format(mod:SpellName(381862))}, -- Inferno Spit
+		{384773, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Flaming Embers
+		{381526, soundOnApplied = "alarm", note = CL.debuffHitByCastNote:format(mod:SpellName(381525))}, -- Roaring Firebreath
 	})
 end
 

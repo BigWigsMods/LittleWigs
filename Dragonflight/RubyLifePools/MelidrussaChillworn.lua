@@ -8,15 +8,6 @@ mod:RegisterEnableMob(188252) -- Melidrussa Chillworn
 mod:SetEncounterID(2609)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{385518, duration = 4.5, note = CL.debuffTargetedNote:format(mod:SpellName(1307308))}, -- Chillstorm
-		{397077, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1307308))}, -- Chillstorm
-		{372963, note = CL.debuffUnderYouNote}, -- Storm's Eye
-		{373688, duration = 3, soundOnAppliedDose = "none", note = CL.debuffGroupAfterCastNote:format(mod:SpellName(373686))}, -- Frost Overload
-		{384024, duration = 20, soundOnApplied = "warning", note = CL.debuffHitByCastNote:format(mod:SpellName(1307297))}, -- Hailbombs
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -85,6 +76,20 @@ if mod:Retail() then -- Midnight+
 		[1307308] = {1307308, CL.you:format(mod:SpellName(1307308)), CL.cast:format(CL.knockback), notes = {CL.generalNote, CL.messageOnYouNote, CL.castTimerNote}, original = {1307308, CL.you:format(mod:SpellName(1307308)), CL.cast:format(mod:SpellName(1307308))}}, -- Chillstorm
 		[373046] = {373046}, -- Awaken Whelps
 		[373686] = {373686, CL.over:format(mod:SpellName(373686)), notes = {CL.generalNote, CL.messageCastOverNote}, original = {373686, CL.over:format(mod:SpellName(373686))}}, -- Frost Overload
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{385518, duration = 4.5, note = CL.debuffTargetedNote:format(mod:SpellName(1307308))}, -- Chillstorm
+		{397077, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1307308))}, -- Chillstorm
+		{372963, note = CL.debuffUnderYouNote}, -- Storm's Eye
+		{373688, duration = 3, soundOnAppliedDose = "none", note = CL.debuffGroupAfterCastNote:format(mod:SpellName(373686))}, -- Frost Overload
+		{384024, duration = 20, soundOnApplied = "warning", note = CL.debuffHitByCastNote:format(mod:SpellName(1307297))}, -- Hailbombs
 	})
 end
 

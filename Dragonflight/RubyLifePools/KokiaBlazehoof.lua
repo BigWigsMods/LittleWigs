@@ -7,15 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(189232) -- Kokia Blazehoof
 mod:SetEncounterID(2606)
 mod:SetRespawnTime(30)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{372865, duration = 15, note = CL.debuffTargetedNote:format(mod:SpellName(372864))}, -- Ritual of Blazebinding
-		{384823, duration = 8, soundOnAppliedDose = "none", note = CL.debuffGroupAfterCastNote:format(mod:SpellName(384823))}, -- Inferno
-		{372820, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Scorched Earth
-		{372858, duration = 3, note = CL.debuffTankAfterCastNote:format(mod:SpellName(372858))}, -- Searing Blows
-		{372860, duration = 8, soundOnAppliedDose = "none", note = CL.debuffDotAfterCastNote:format(mod:SpellName(372858))}, -- Searing Wounds
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -79,6 +70,20 @@ if mod:Retail() then -- Midnight+
 		[372864] = {372864}, -- Ritual of Blazebinding
 		[372110] = {372110}, -- Molten Boulder
 		[372858] = {372858}, -- Searing Blows
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{372865, duration = 15, note = CL.debuffTargetedNote:format(mod:SpellName(372864))}, -- Ritual of Blazebinding
+		{384823, duration = 8, soundOnAppliedDose = "none", note = CL.debuffGroupAfterCastNote:format(mod:SpellName(384823))}, -- Inferno
+		{372820, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Scorched Earth
+		{372858, duration = 3, note = CL.debuffTankAfterCastNote:format(mod:SpellName(372858))}, -- Searing Blows
+		{372860, duration = 8, soundOnAppliedDose = "none", note = CL.debuffDotAfterCastNote:format(mod:SpellName(372858))}, -- Searing Wounds
 	})
 end
 
