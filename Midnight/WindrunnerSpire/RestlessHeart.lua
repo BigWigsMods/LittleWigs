@@ -6,15 +6,6 @@ local mod, CL = BigWigs:NewBoss("Restless Heart", 2805, 2658)
 if not mod then return end
 mod:SetEncounterID(3059)
 mod:SetRespawnTime(30)
-mod:SetAuraData({
-	{468442, soundOnApplied = "warning", note = CL.other:format(CL.leap, CL.debuffFailureNote)}, -- Billowing Wind
-	{472662, soundOnApplied = "alarm", note = CL.tank_knockback}, -- Tempest Slash
-	{474528, soundOnApplied = "warning", note = CL.other:format(CL.frontal_cone, CL.mainDebuffNote)}, -- Bolt Gale
-	{1282911, soundOnApplied = "warning", note = CL.other:format(CL.frontal_cone, CL.preDebuffNote)}, -- Bolt Gale
-	{1216042, soundOnApplied = "alert"}, -- Squall Leap
-	{1253979, soundOnApplied = "warning", note = CL.clear_pools}, -- Gust Shot
-	{1282955, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Storming Soulfont
-})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -37,6 +28,20 @@ mod:SetRenames({
 	[1253986] = {CL.clear_pools}, -- Gust Shot
 	[468429] = {CL.leap}, -- Bullseye Windblast
 	[474528] = {CL.frontal_cone, CL.you:format(CL.frontal_cone), notes = {CL.generalNote, CL.messageOnYouNote}, original = {474528, CL.you:format(mod:SpellName(474528))}}, -- Bolt Gale (Frontal Cone)
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{468442, duration = 4, mechanic = "stunned", soundOnApplied = "warning", note = CL.other:format(CL.leap, CL.debuffFailureNote)}, -- Billowing Wind
+	{472662, duration = 10, soundOnApplied = "alarm", soundOnAppliedDose = "none", note = CL.tank_knockback}, -- Tempest Slash
+	{474528, duration = 5, soundOnApplied = "warning", note = CL.other:format(CL.frontal_cone, CL.mainDebuffNote)}, -- Bolt Gale
+	{1282911, duration = 60, soundOnApplied = "warning", note = CL.other:format(CL.frontal_cone, CL.preDebuffNote)}, -- Bolt Gale
+	{1216042, soundOnApplied = "alert"}, -- Squall Leap
+	{1253979, duration = 6, soundOnApplied = "warning", note = CL.clear_pools}, -- Gust Shot
+	{1282955, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Storming Soulfont
 })
 
 --------------------------------------------------------------------------------

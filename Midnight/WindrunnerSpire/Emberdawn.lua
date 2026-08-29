@@ -7,12 +7,6 @@ if not mod then return end
 mod:SetEncounterID(3056)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-mod:SetAuraData({
-	{466091, soundOnApplied = "alarm", note = CL.tank_hit}, -- Searing Beak
-	{466559, soundOnApplied = "warning", note = CL.fire_debuffs}, -- Flaming Updraft
-	{470212, soundOnApplied = "warning"}, -- Flaming Twisters
-	{472118, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Ignited Embers
-})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -34,6 +28,17 @@ mod:SetRenames({
 	[466556] = {CL.fire_debuffs, CL.you:format(CL.fire), notes = {CL.generalNote, CL.messageOnYouNote}, original = {466556, CL.you:format(mod:SpellName(466556))}}, -- Flaming Updraft (Fire Debuffs)
 	[466064] = {CL.tank_hit}, -- Searing Beak (Tank Hit)
 	[465904] = {465904, CL.cast:format(mod:SpellName(465904)), CL.over:format(mod:SpellName(465904)), notes = {CL.generalNote, CL.castTimerNote, CL.messageCastOverNote}, original = false}, -- Burning Gale
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{466091, duration = 8, soundOnApplied = "alarm", note = CL.tank_hit}, -- Searing Beak
+	{466559, duration = 6, soundOnApplied = "warning", note = CL.fire_debuffs}, -- Flaming Updraft
+	{470212, duration = 2, mechanic = "stunned", soundOnApplied = "warning"}, -- Flaming Twisters
+	{472118, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Ignited Embers
 })
 
 --------------------------------------------------------------------------------
