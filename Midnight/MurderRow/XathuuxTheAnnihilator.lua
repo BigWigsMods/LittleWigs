@@ -214,7 +214,7 @@ function mod:DemonicRageTimeline(eventInfo) -- Demonic Rage
 		callback = function()
 			self:StopBlizzMessages(1)
 			self:Message(474197, "yellow", barText)
-			self:CastBar(474197, 4, self:GetRename(474197, 2))
+			self:CastBar(474197, 4, 2)
 			self:ScheduleTimer(function()
 				self:Message(474197, "yellow", self:GetRename(474197, 3))
 				self:Bar(474197, 15, self:GetRename(474197, 3))
