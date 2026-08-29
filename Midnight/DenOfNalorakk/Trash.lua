@@ -5,22 +5,6 @@
 local mod, CL = BigWigs:NewBoss("Den of Nalorakk Trash", 2825)
 if not mod then return end
 mod:SetTrashModule(true)
-mod:SetAuraData({
-	{1239428}, -- Carrying Supplies
-	{1238439, soundOnAppliedDose = "none"}, -- Razor Dive
-	{1238801}, -- Insatiable Hunger
-	{1238687}, -- Feast of Misery
-	{1297701, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Rotten Ground
-	{1241217, soundOnAppliedDose = "none"}, -- Shredding Claws
-	{1252825}, -- Harsh Winds
-	{1233904, soundOnApplied = "info"}, -- Sheltered
-	{1266193}, -- Snowdrift
-	{1241464}, -- Glacial Tomb
-	{1309919}, -- Frigid Roar
-	{1309964}, -- Harsh Winter
-	{1246957}, -- Primal Echo
-	{1247367, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Earthquake
-})
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -39,6 +23,28 @@ mod:SetDefaultLocale({
 mod:SetRenames({
 	[1271545] = {CL.casting:format(CL.on_group:format(mod:SpellName(1271545))), original = {CL.casting:format(CL.on_group:format(mod:SpellName(1271545)))}}, -- Warding Incense
 	[1252825] = {1252825, CL.cast:format(mod:SpellName(1252825)), notes = {CL.generalNote, CL.castTimerNote}, original = {1252825, CL.cast:format(mod:SpellName(1252825))}},
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1239428, header = mod:SpellName(1239428)}, -- Carrying Supplies (environmental)
+	{1238439, header = 241816, duration = 10, dispel = "bleed", mechanic = "bleeding", soundOnAppliedDose = "none", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1238439))}, -- Razor Dive (Keen-Eyed Striker)
+	{1238801, header = 245567, duration = 25, dispel = "curse", soundOnAppliedDose = "none", note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1238801))}, -- Insatiable Hunger (Starvation Effigy)
+	{1238687, header = 245855, duration = 5, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1238725))}, -- Feast of Misery (Spirit of Hunger)
+	{1297701, header = 241813, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Rotten Ground (Thornclaw Gatherer)
+	{1241217, soundOnAppliedDose = "none", note = CL.debuffTankAfterCastNote:format(mod:SpellName(1241217))}, -- Shredding Claws (Thornclaw Gatherer)
+	{1252825, header = mod:SpellName(1252825), note = CL.debuffFailureSafeZoneNote}, -- Harsh Winds (environmental)
+	{1233904, soundOnApplied = "info"}, -- Sheltered (environmental)
+	{1266193, header = 241876, note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1235841))}, -- Snowdrift (Glacial Revenant)
+	{1239860, duration = 10, dispel = "magic", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1239860))}, -- Cryo Surge (Glacial Revenant)
+	{1241464, header = 241869, mechanic = "rooted", note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1241464))}, -- Glacial Tomb (Avatar of Determination)
+	{1309919, header = 241872, duration = 15, mechanic = "snared", soundOnAppliedDose = "none", note = CL.debuffFailureInterruptNote:format(mod:SpellName(1309919))}, -- Frigid Roar (Frigid Mauler)
+	{1309964, header = 250478, note = CL.debuffUnderYouNote}, -- Harsh Winter (The Winter Squall)
+	{1246957, header = 245146, duration = 3, soundOnAppliedDose = "none", note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1246957))}, -- Primal Echo (Grizzled Warbringer)
+	{1247367, header = 244889, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Earthquake (Loa Speaker Nanea)
 })
 
 --------------------------------------------------------------------------------
