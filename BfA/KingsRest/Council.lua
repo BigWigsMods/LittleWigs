@@ -8,14 +8,6 @@ mod:RegisterEnableMob(135475, 135470, 135472) -- Kula the Butcher, Aka'ali the C
 mod:SetEncounterID(2140)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{266191}, -- Whirling Axe
-		{266231}, -- Severing Axe
-		{267494}, -- Barrel Through
-		{266238}, -- Shattered Defenses
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -97,6 +89,19 @@ if mod:Retail() then -- Midnight+
 		[1305810] = {1305810}, -- Arc Lightning
 		[267273] = {267273}, -- Poison Nova
 		[267060] = {267060}, -- Call of the Elements
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{266191, duration = 6, dispel = "bleed", mechanic = "bleeding", note = CL.debuffHitByCastNote:format(mod:SpellName(266206))}, -- Whirling Axe
+		{266231, duration = 8, dispel = "bleed", mechanic = "bleeding", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(266231))}, -- Severing Axe
+		{267494, duration = 6.2, note = CL.debuffTargetedNote:format(mod:SpellName(267494))}, -- Barrel Through
+		{266238, duration = 10, note = CL.debuffTankAfterCastNote:format(mod:SpellName(266237))}, -- Shattered Defenses
 	})
 end
 
