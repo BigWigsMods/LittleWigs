@@ -15,23 +15,6 @@ mod:RegisterEnableMob(
 	136076, -- Agitated Nimbus
 	139949  -- Plague Doctor
 )
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{1291399}, -- Serrated Charge
-		{1291468, soundOnAppliedDose = "none"}, -- Sunder Slam
-		{1308113}, -- Arrow Barrage
-		{1308100}, -- Poisoned Cheap Shot
-		{1308148}, -- Cytotoxin
-		{1293133}, -- Lingering Storm
-		{1296052}, -- Imbued Conduction
-		{1303596}, -- Siphon Energy
-		{1308546}, -- Venomous Slash
-		{1303486}, -- Caustic Stomp
-		{1300704}, -- Fixate
-		{1311981}, -- Latent Hex
-		{1300684}, -- Hex Muck
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -101,6 +84,30 @@ function mod:OnBossEnable()
 	self:Log("SPELL_CAST_START", "AccumulateCharge", 265912)
 	self:Log("SPELL_CAST_START", "SnakeCharm", 268008)
 	self:Log("SPELL_AURA_APPLIED", "SnakeCharmApplied", 268008)
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{1291399, header = 134629, duration = 6, dispel = "bleed", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1291399))}, -- Serrated Charge (Sand-Sworn Rider)
+		{272655, duration = 4, mechanic = "disoriented", note = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(272655))}, -- Scouring Sand (Sand-Sworn Rider)
+		{1291468, header = 134991, duration = 10, soundOnAppliedDose = "none", note = CL.debuffTankAfterCastNote:format(mod:SpellName(1291468))}, -- Sunder Slam (Sandfury Stonefist)
+		{1308113, header = 134600, duration = 9, note = CL.debuffTargetedNote:format(mod:SpellName(1308113))}, -- Arrow Barrage (Sandswept Hunter)
+		{1308100, header = 134602, duration = 5, dispel = "poison", mechanic = "stunned", note = CL.debuffFailureInterruptNote:format(mod:SpellName(1308100))}, -- Poisoned Cheap Shot (Shrouded Fang)
+		{1308148, header = 135562, duration = 10, dispel = "poison", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1308148))}, -- Cytotoxin (Poisonous Viper)
+		{1293133, header = 135846, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Lingering Storm (Lightning Serpent)
+		{1293307, header = 134364, duration = 5, dispel = "curse", mechanic = "disoriented", note = CL.debuffFailureInterruptNote:format(mod:SpellName(1293307))}, -- Addle Mind (Faithless Subjugator)
+		{1296052, header = 134599, duration = 20, dispel = "magic", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1296052))}, -- Imbued Conduction (Imbued Stormcaller)
+		{1303596, header = 240681, soundOnApplied = "info", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(269443))}, -- Siphon Energy (Eye of Sethraliss)
+		{1308546, header = 135007, duration = 10, note = CL.debuffTankAfterCastNote:format(mod:SpellName(1308546))}, -- Venomous Slash (Orb Watcher)
+		{1303486, duration = 10, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1303486))}, -- Caustic Stomp (Orb Watcher)
+		{1300704, header = 268317, note = CL.debuffTargetedNote:format(mod:SpellName(1300702))}, -- Fixate (Faithless Tormentor)
+		{1311981, header = 136250, duration = 5, note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1311980))}, -- Latent Hex (Twisted Hexxer)
+		{1300684, mechanic = "polymorphed", note = CL.debuffUnderYouNote}, -- Hex Muck (Twisted Hexxer)
+	})
 end
 
 --------------------------------------------------------------------------------
