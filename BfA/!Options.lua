@@ -1234,6 +1234,7 @@ BigWigs:AddColors("Adderis and Aspix", {
 	[263424] = "orange",
 	[1288049] = "orange",
 	[1289059] = "blue",
+	[1310311] = "cyan",
 	[1311804] = "purple",
 	[1311805] = {"blue","yellow"},
 })
@@ -1246,6 +1247,7 @@ BigWigs:AddSounds("Adderis and Aspix", {
 	[263424] = "alert",
 	[1288049] = "info",
 	[1289059] = "alarm",
+	[1310311] = "long",
 	[1311804] = "alert",
 	[1311805] = "warning",
 })
