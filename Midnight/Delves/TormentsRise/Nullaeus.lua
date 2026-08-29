@@ -7,14 +7,6 @@ if not mod then return end
 mod:SetEncounterID({3372, 3430}) -- Tier 8, Tier 11
 mod:SetAllowWin(true)
 mod:SetRespawnTime(15)
-mod:SetAuraData({
-	{1256045, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Null Zone
-	{1256167, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Void Hole
-	{1256358}, -- Devouring Essence
-	{1256366}, -- Jagged Rip
-	{1256518}, -- Poisonous Spit
-	{1256526, soundOnApplied = "info"}, -- Curse of Hesitation
-})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -46,6 +38,19 @@ mod:SetRenames({
 	[1280087] = {1280087}, -- Imploding Strike
 	[1280088] = {1280088}, -- Devouring Essence
 	["adds"] = {CL.adds_spawning}, -- Adds spawning
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1256045, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Null Zone
+	{1256167, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Void Hole
+	{1256358, duration = 18, dispel = "magic"}, -- Devouring Essence
+	{1256366, duration = 18, dispel = "bleed", mechanic = "bleeding"}, -- Jagged Rip
+	{1256518, duration = 8, soundOnAppliedDose = "none"}, -- Poisonous Spit
+	{1256526, duration = 300, dispel = "curse", soundOnApplied = "info"}, -- Curse of Hesitation
 })
 
 --------------------------------------------------------------------------------
