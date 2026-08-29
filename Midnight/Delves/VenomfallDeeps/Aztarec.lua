@@ -7,13 +7,6 @@ if not mod then return end
 mod:SetEncounterID({3508, 3525}) -- Tier 8, Tier 11
 mod:SetAllowWin(true)
 mod:SetRespawnTime(15)
-mod:SetAuraData({
-	{1291555, duration = 21, note = CL.debuffHitByCastNote:format(mod:SpellName(1291555))}, -- Noxious Bile
-	{1293824, duration = 18, dispel = "magic", note = CL.debuffDotAfterCastNote:format(mod:SpellName(1293824))}, -- Void Toxin
-	{1298887, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Noxious Venom
-	{1297422, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Deadly Venom
-	{1313213, soundOnApplied = "warning", note = CL.debuffHitByCastNote:format(mod:SpellName(1288125))}, -- Ula'tek's Mark
-})
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
@@ -52,6 +45,18 @@ mod:SetRenames({
 	[1309418] = {1309418}, -- Venom Storm
 	[1288103] = {1288103}, -- Sermon of Ula'tek
 	[1288125] = {1288125}, -- Echo of Ula'tek
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1291555, duration = 21, note = CL.debuffHitByCastNote:format(mod:SpellName(1291555))}, -- Noxious Bile
+	{1293824, duration = 18, dispel = "magic", note = CL.debuffDotAfterCastNote:format(mod:SpellName(1293824))}, -- Void Toxin
+	{1298887, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Noxious Venom
+	{1297422, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Deadly Venom
+	{1313213, soundOnApplied = "warning", note = CL.debuffHitByCastNote:format(mod:SpellName(1288125))}, -- Ula'tek's Mark
 })
 
 --------------------------------------------------------------------------------
