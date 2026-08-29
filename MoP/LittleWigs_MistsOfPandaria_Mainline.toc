@@ -19,5 +19,5 @@
 ## X-Category: Party
 ## X-BigWigs-LoadOn-InstanceId: 959, 960, 961, 962, 994, 1001, 1004, 1007, 1011, 1112, 2849
 
-modules.xml
 !Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+modules.xml
