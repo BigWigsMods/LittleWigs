@@ -7,10 +7,6 @@ if not mod then return end
 mod:SetEncounterID(3071)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-mod:SetAuraData({
-	{1214038, note = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1214032), CL.dispels))}, -- Ethereal Shackles
-	{1214089, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Arcane Residue
-})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -31,6 +27,15 @@ mod:SetRenames({
 	[1214081] = {CL.group_damage}, -- Arcane Expulsion (Group Damage)
 	[1214032] = {CL.dispels}, -- Ethereal Shackles (Dispels)
 	[474345] = {CL.intermission, CL.intermission_over, notes = {CL.generalNote, CL.messageCastOverNote}, original = {474345, CL.over:format(mod:SpellName(474345))}}, -- Refueling Protocol (Intermission)
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1214038, duration = 15, dispel = "magic", mechanic = "rooted", note = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1214032), CL.dispels))}, -- Ethereal Shackles
+	{1214089, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Arcane Residue
 })
 
 --------------------------------------------------------------------------------

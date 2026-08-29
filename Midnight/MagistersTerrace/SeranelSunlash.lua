@@ -6,12 +6,6 @@ local mod, CL = BigWigs:NewBoss("Seranel Sunlash", 2811, 2661)
 if not mod then return end
 mod:SetEncounterID(3072)
 mod:SetRespawnTime(30)
-mod:SetAuraData({
-	{1225015, note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Suppression Zone
-	{1225205, note = CL.debuffFailureNote}, -- Wave of Silence
-	{1225792, soundOnApplied = "warning", note = CL.mark}, -- Runic Mark
-	{1246446, soundOnApplied = "alarm", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Null Reaction
-})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -34,6 +28,17 @@ mod:SetRenames({
 	[1224903] = {1224903}, -- Suppression Zone
 	[1248689] = {CL.dispel_boss, CL.magic_buff_boss:format(mod:SpellName(1248689)), notes = {CL.generalNote, CL.messageNote}, original = {1248689, false}}, -- Hastening Ward (Dispel Boss)
 	[1225193] = {1225193, CL.cast:format(mod:SpellName(1225193)), notes = {CL.generalNote, CL.castTimerNote}, original = false}, -- Wave of Silence
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1225015, note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Suppression Zone
+	{1225205, duration = 8, mechanic = "silenced", note = CL.debuffFailureSafeZoneNote}, -- Wave of Silence
+	{1225792, soundOnApplied = "warning", soundOnAppliedDose = "none", note = CL.mark}, -- Runic Mark
+	{1246446, duration = 3, soundOnApplied = "alarm", soundOnAppliedDose = "none", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Null Reaction
 })
 
 --------------------------------------------------------------------------------
