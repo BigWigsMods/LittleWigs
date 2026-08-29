@@ -7,12 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(75964)
 mod:SetEncounterID(1698)
 mod:SetRespawnTime(15)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{153757, soundOnApplied = "alert", note = CL.bleed}, -- Fan of Blades
-		{1252733, soundOnApplied = "warning", note = CL.knockback}, -- Gale Surge
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -56,6 +50,17 @@ if mod:Retail() then -- Midnight+
 		[153757] = {CL.bleeds}, -- Fan of Blades (Bleeds)
 		[1258152] = {CL.chakram}, -- Wind Chakram (Chakram)
 		[156793] = {CL.tornadoes}, -- Chakram Vortex (Tornadoes)
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{153757, duration = 6, dispel = "bleed", soundOnApplied = "alert", note = CL.bleed}, -- Fan of Blades
+		{1252733, duration = 3.5, soundOnApplied = "warning", note = CL.knockback}, -- Gale Surge
 	})
 end
 

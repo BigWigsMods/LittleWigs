@@ -7,14 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(76266)
 mod:SetEncounterID(1701)
 mod:SetRespawnTime(15)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{153954, note = CL.add}, -- Cast Down
-		{1253541, soundOnApplied = "alert", note = CL.other:format(CL.fire_debuffs, CL.preDebuffNote)}, -- Scorching Ray
-		{1253543, note = CL.other:format(CL.fire_debuffs, CL.mainDebuffNote)}, -- Scorching Ray
-		{1253531, soundOnApplied = "warning", note = CL.beam}, -- Lens Flare
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -75,6 +67,19 @@ if mod:Retail() then -- Midnight+
 		[154396] = {CL.kick}, -- Solar Blast (Kick)
 		[153954] = {CL.add}, -- Cast Down (Add)
 		[1253840] = {CL.beam, CL.you:format(CL.beam), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1253840, CL.you:format(mod:SpellName(1253840))}}, -- Lens Flare (Beam)
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{153954, duration = 60, note = CL.add}, -- Cast Down
+		{1253541, soundOnApplied = "alert", note = CL.other:format(CL.fire_debuffs, CL.preDebuffNote)}, -- Scorching Ray
+		{1253543, duration = 5, note = CL.other:format(CL.fire_debuffs, CL.mainDebuffNote)}, -- Scorching Ray
+		{1253531, duration = 12, soundOnApplied = "warning", note = CL.beam}, -- Lens Flare
 	})
 end
 

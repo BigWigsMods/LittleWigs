@@ -7,12 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(76143)
 mod:SetEncounterID(1700)
 mod:SetRespawnTime(15)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{1253511, soundOnApplied = "info", note = CL.fixate}, -- Burning Pursuit
-		{1253520, soundOnApplied = "alarm", note = CL.tank_hit}, -- Burning Claws
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -69,6 +63,17 @@ if mod:Retail() then -- Midnight+
 			notes = {CL.generalNote, CL.castTimerNote, CL.messageDuringCastNote, CL.messageCastOverNote},
 			original = {159382, CL.cast:format(mod:SpellName(159382)), 159382, CL.over:format(mod:SpellName(159382))}
 		},
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{1253511, soundOnApplied = "info", note = CL.fixate}, -- Burning Pursuit
+		{1253520, duration = 8, soundOnApplied = "alarm", soundOnAppliedDose = "none", note = CL.tank_hit}, -- Burning Claws
 	})
 end
 
