@@ -106,7 +106,7 @@ if mod:Retail() then -- Midnight+
 		{1303486, duration = 10, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1303486))}, -- Caustic Stomp (Orb Watcher)
 		{1300704, header = 268317, note = CL.debuffTargetedNote:format(mod:SpellName(1300702))}, -- Fixate (Faithless Tormentor)
 		{1311981, header = 136250, duration = 5, note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1311980))}, -- Latent Hex (Twisted Hexxer)
-		{1300684, mechanic = "polymorphed", note = CL.debuffUnderYouNote}, -- Hex Muck (Twisted Hexxer)
+		{1300684, mechanic = "polymorphed", soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Hex Muck (Twisted Hexxer)
 	})
 end
 
