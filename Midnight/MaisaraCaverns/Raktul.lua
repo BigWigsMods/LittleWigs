@@ -6,12 +6,6 @@ local mod, CL = BigWigs:NewBoss("Rak'tul, Vessel of Souls", 2874, 2812)
 if not mod then return end
 mod:SetEncounterID(3214)
 mod:SetRespawnTime(30)
-mod:SetAuraData({
-	{1252675, soundOnApplied = "warning", note = CL.leap}, -- Crush Souls
-	{1252777, note = CL.debuffAddsCast:format(mod:SpellName(-33914))}, -- Soulbind
-	{1252816, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Chill of Death
-	{1253779, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Spectral Decay
-})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -35,6 +29,17 @@ mod:SetRenames({
 		original = {1252676, CL.incoming:format(mod:SpellName(1252676)), CL.you:format(mod:SpellName(1252676))}
 	},
 	[1253788] = {CL.intermission}, -- Soulrending Roar (Intermission)
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1252675, duration = 8, soundOnApplied = "warning", note = CL.leap}, -- Crush Souls
+	{1252777, note = CL.debuffAddsCast:format(mod:SpellName(-33914))}, -- Soulbind
+	{1252816, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Chill of Death
+	{1253779, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Spectral Decay
 })
 
 --------------------------------------------------------------------------------

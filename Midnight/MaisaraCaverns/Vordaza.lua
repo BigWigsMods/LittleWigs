@@ -7,13 +7,6 @@ if not mod then return end
 mod:SetEncounterID(3213)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-mod:SetAuraData({
-	{1251568}, -- Drain Soul
-	{1251775, soundOnApplied = "warning", note = CL.other:format(CL.fixate, CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(-33734), CL.add)))}, -- Final Pursuit
-	{1251833, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Soulrot
-	{1252130, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Unmake
-	{1266706, soundOnApplied = "warning", note = CL.debuffWalkIntoObjectNote:format(CL.extra:format(mod:SpellName(-33734), CL.add))}, -- Haunting Remains
-})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -36,6 +29,18 @@ mod:SetRenames({
 	[1252054] = {CL.frontal}, -- Unmake (Frontal)
 	[1250708] = {CL.shield, CL.onboss:format(CL.shield), notes = {CL.timerNote, CL.messageNote}, original = {1250708, CL.onboss:format(mod:SpellName(1250708))}}, -- Necrotic Convergence (Shield)
 	[1251775] = {CL.you:format(CL.fixate), notes = {CL.messageOnYouNote}, original = {CL.you:format(mod:SpellName(1251775))}}, -- Final Pursuit (Fixate)
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1251568}, -- Drain Soul
+	{1251775, soundOnApplied = "warning", note = CL.other:format(CL.fixate, CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(-33734), CL.add)))}, -- Final Pursuit
+	{1251833, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Soulrot
+	{1252130, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Unmake
+	{1266706, duration = 20, soundOnApplied = "warning", soundOnAppliedDose = "none", note = CL.debuffWalkIntoObjectNote:format(CL.extra:format(mod:SpellName(-33734), CL.add))}, -- Haunting Remains
 })
 
 --------------------------------------------------------------------------------

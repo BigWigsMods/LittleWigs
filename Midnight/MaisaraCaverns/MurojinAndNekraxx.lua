@@ -6,14 +6,6 @@ local mod, CL = BigWigs:NewBoss("Muro'jin and Nekraxx", 2874, 2810)
 if not mod then return end
 mod:SetEncounterID(3212)
 mod:SetRespawnTime(30)
-mod:SetAuraData({
-	{1243741, note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1266480))}, -- Freezing Trap
-	{1243752, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Icy Slick
-	{1246666, note = CL.disease}, -- Infected Pinions
-	{1249478, soundOnApplied = "warning", note = CL.charge}, -- Carrion Swoop
-	{1260643, soundOnApplied = "warning"}, -- Barrage
-	{1266488, soundOnApplied = "alert", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1266480), CL.tank_knockback))}, -- Open Wound
-})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -48,6 +40,19 @@ mod:SetRenames({
 	[1243900] = {CL.dodge}, -- Fetid Quillstorm (Dodge)
 	[1246666] = {CL.disease}, -- Infected Pinions (Disease)
 	[1249947] = {1249947}, -- Bestial Wrath
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1243741, duration = 8, mechanic = "frozen", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1266480))}, -- Freezing Trap
+	{1243752, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Icy Slick
+	{1246666, duration = 30, dispel = "disease", note = CL.disease}, -- Infected Pinions
+	{1249478, duration = 5, soundOnApplied = "warning", note = CL.charge}, -- Carrion Swoop
+	{1260643, duration = 5, soundOnApplied = "warning"}, -- Barrage
+	{1266488, duration = 10, dispel = "bleed", mechanic = "bleeding", soundOnApplied = "alert", soundOnAppliedDose = "none", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1266480), CL.tank_knockback))}, -- Open Wound
 })
 
 --------------------------------------------------------------------------------
