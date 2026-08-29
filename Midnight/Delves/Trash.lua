@@ -5,9 +5,6 @@
 local mod, CL = BigWigs:NewBoss("Midnight Delve Trash", {2933, 2952, 2953, 2961, 2962, 2963, 2964, 2965, 2979, 3003, 3038, 3077}) -- All Midnight Delves (except Nemesis Delves)
 if not mod then return end
 mod:SetTrashModule(true)
---mod:SetAuraData({
-	--{1256045, soundOnApplied = "underyou"}, -- Null Zone (Season 1)
---})
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -16,6 +13,14 @@ mod:SetTrashModule(true)
 --local L = mod:GetLocale()
 --if L then
 --end
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+--mod:SetAuraData({
+	--{1256045, soundOnApplied = "underyou"}, -- Null Zone (Season 1)
+--})
 
 --------------------------------------------------------------------------------
 -- Initialization
