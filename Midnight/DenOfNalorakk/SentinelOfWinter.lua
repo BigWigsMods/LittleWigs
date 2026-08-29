@@ -6,15 +6,6 @@ local mod, CL = BigWigs:NewBoss("Sentinel of Winter", 2825, 2777)
 if not mod then return end
 mod:SetEncounterID(3208)
 mod:SetRespawnTime(30)
-mod:SetAuraData({
-	{1235549, soundOnApplied = "alert"}, -- Glacial Torment
-	{1235829, soundOnApplied = "warning", soundOnAppliedDose = "warning", note = CL.debuffFailureInterruptNote:format(mod:SpellName(1235829))}, -- Winter's Shroud
-	{1235841, soundOnApplied = "info"}, -- Snowdrift
-	{1263597, note = CL.debuffFailureNote}, -- Rime Detonation
-	{1235641, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Raging Squall
-	{1236289, note = CL.debuffUnderYouNote}, -- Blizzard's Wrath
-	{1297749, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Frozen Tempest
-})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -37,6 +28,20 @@ mod:SetRenames({
 	[1235623] = {1235623}, -- Raging Squall
 	[1235783] = {1235783}, -- Shattering Frostspike
 	[1235656] = {1235656}, -- Frozen Tempest
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1235549, duration = 16, dispel = "magic", soundOnApplied = "alert", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1235548))}, -- Glacial Torment
+	{1235829, duration = 20, soundOnApplied = "warning", soundOnAppliedDose = "warning", note = CL.debuffFailureInterruptNote:format(mod:SpellName(1235829))}, -- Winter's Shroud
+	{1235841, soundOnApplied = "info"}, -- Snowdrift
+	{1263597, duration = 4, note = CL.debuffFailureNote}, -- Rime Detonation
+	{1235641, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Raging Squall
+	{1236289, note = CL.debuffUnderYouNote}, -- Blizzard's Wrath
+	{1297749, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Frozen Tempest
 })
 
 --------------------------------------------------------------------------------
