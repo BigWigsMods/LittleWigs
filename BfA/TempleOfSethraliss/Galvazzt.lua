@@ -8,11 +8,6 @@ mod:RegisterEnableMob(133389)
 mod:SetEncounterID(2126)
 if mod:Retail() then -- Midnight+
 	mod:SetRespawnTime(30)
-	mod:SetAuraData({
-		{266923}, -- Galvanize
-		{1291815, soundOnApplied = "underyou"}, -- Induction Field
-		{266512}, -- Consume Charge
-	})
 else
 	mod:SetRespawnTime(25)
 end
@@ -67,6 +62,18 @@ if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[1291618] = {1291618}, -- Lightning Spire
 		[1309525] = {1309525}, -- Induction
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{266923, soundOnApplied = "info", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1291618))}, -- Galvanize
+		{1291815, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Induction Field
+		{266512, duration = 20, note = CL.debuffFailureGroupSoakNote:format(mod:SpellName(1291618))}, -- Consume Charge
 	})
 end
 
