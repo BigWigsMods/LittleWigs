@@ -8,14 +8,6 @@ mod:RegisterEnableMob(36658, 36661)
 mod:SetEncounterID(mod:Classic() and 837 or 2000)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{1262596, note = CL.tank_knockback}, -- Scourgelord's Brand
-		{1262772, soundOnApplied = "warning"}, -- Rime Blast
-		{1263716, note = CL.postDebuffNote:format(mod:SpellName(1262772))}, -- Frostbite
-		{1276648, note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1276648), CL.group_damage))}, -- Bone Infusion
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -62,6 +54,19 @@ if mod:Retail() then -- Midnight+
 		[1263406] = {CL.adds}, -- Army of the Dead
 		[1276948] = {CL.dodge}, -- Ice Barrage (Dodge)
 		[1276648] = {CL.group_damage}, -- Bone Infusion (Group Damage)
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{1262596, duration = 6, note = CL.tank_knockback}, -- Scourgelord's Brand
+		{1262772, duration = 12, soundOnApplied = "warning"}, -- Rime Blast
+		{1263716, duration = 8, note = CL.postDebuffNote:format(mod:SpellName(1262772))}, -- Frostbite
+		{1276648, duration = 8, note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1276648), CL.group_damage))}, -- Bone Infusion
 	})
 end
 
