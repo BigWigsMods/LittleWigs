@@ -7,13 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(190609) -- Echo of Doragosa
 mod:SetEncounterID(2565)
 mod:SetRespawnTime(30)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{389007, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Wild Energy
-		{389011}, -- Overwhelming Power
-		{374350, soundOnApplied = "warning", note = CL.bomb}, -- Energy Bomb
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -82,6 +75,18 @@ if mod:Retail() then -- Midnight+
 		[1282251] = {CL.tank_hit}, -- Astral Blast (Tank Hit)
 		[374343] = {CL.bombs, CL.you:format(CL.bomb), notes = {CL.generalNote, CL.messageOnYouNote}, original = {374343, CL.you:format(mod:SpellName(374343))}}, -- Energy Bomb (Bombs)
 		[388822] = {CL.pull_in}, -- Power Vacuum (Pull In)
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{389007, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Wild Energy
+		{389011, soundOnAppliedDose = "none"}, -- Overwhelming Power
+		{374350, duration = 6, dispel = "magic", soundOnApplied = "warning", note = CL.bomb}, -- Energy Bomb
 	})
 end
 

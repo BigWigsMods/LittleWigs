@@ -7,13 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(194181) -- Vexamus
 mod:SetEncounterID(2562)
 mod:SetRespawnTime(30)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{386181, soundOnApplied = "warning", note = CL.bomb}, -- Mana Bomb
-		{386201, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Corrupted Mana
-		{391977, note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(386544))}, -- Oversurge
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -89,6 +82,18 @@ if mod:Retail() then -- Midnight+
 		[388537] = {CL.full_energy}, -- Arcane Fissure (Full Energy)
 		[386173] = {CL.bombs}, -- Mana Bombs (Bombs)
 		[385958] = {CL.tank_frontal}, -- Arcane Expulsion (Tank Frontal)
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{386181, duration = 4, soundOnApplied = "warning", note = CL.bomb}, -- Mana Bomb
+		{386201, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Corrupted Mana
+		{391977, duration = 18, soundOnAppliedDose = "none", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(386544))}, -- Oversurge
 	})
 end
 

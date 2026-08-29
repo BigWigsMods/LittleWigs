@@ -10,13 +10,6 @@ mod:RegisterEnableMob(
 )
 mod:SetEncounterID(2564)
 mod:SetRespawnTime(30)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{376760, soundOnApplied = "info", note = CL.debuffWalkIntoObjectNote:format(CL.orb)}, -- Gale Force
-		{376997, note = CL.debuffTankAfterCastNote:format(mod:SpellName(376997))}, -- Savage Peck
-		{377009, note = CL.debuffDotAfterCastNote:format(mod:SpellName(377009))}, -- Deafening Screech
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -116,6 +109,18 @@ if mod:Retail() then -- Midnight+
 		[377004] = {CL.silence, CL.cast:format(CL.silence), notes = {CL.generalNote, CL.castTimerNote}, original = {377004, CL.cast:format(mod:SpellName(377004))}}, -- Deafening Screech
 		[377034] = {CL.frontal}, -- Overpowering Gust
 		[376997] = {CL.tank_hit}, -- Savage Peck
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{376760, duration = 20, soundOnApplied = "info", note = CL.debuffWalkIntoObjectNote:format(CL.orb)}, -- Gale Force
+		{376997, duration = 10, dispel = "bleed", note = CL.debuffTankAfterCastNote:format(mod:SpellName(376997))}, -- Savage Peck
+		{377009, duration = 8, note = CL.debuffDotAfterCastNote:format(mod:SpellName(377009))}, -- Deafening Screech
 	})
 end
 

@@ -7,12 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(196482) -- Overgrown Ancient
 mod:SetEncounterID(2563)
 mod:SetRespawnTime(30)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{388544, note = CL.debuffTankAfterCastNote:format(mod:SpellName(388544))}, -- Barkbreaker
-		{396716, note = CL.debuffDotAfterCastNote:format(mod:SpellName(388623))}, -- Splinterbark
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Localization
@@ -102,6 +96,17 @@ if mod:Retail() then -- Midnight+
 		[388923] = {CL.full_energy}, -- Burst Forth (Full Energy)
 		[388623] = {CL.big_add}, -- Branch Out (Big Add)
 		[388544] = {CL.tank_hit}, -- Barkbreaker (Tank Hit)
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{388544, duration = 9, note = CL.debuffTankAfterCastNote:format(mod:SpellName(388544))}, -- Barkbreaker
+		{396716, duration = 60, dispel = "bleed", mechanic = "bleeding", soundOnAppliedDose = "none", note = CL.debuffDotAfterCastNote:format(mod:SpellName(388623))}, -- Splinterbark
 	})
 end
 
