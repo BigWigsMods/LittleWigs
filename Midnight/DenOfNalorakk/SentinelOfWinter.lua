@@ -37,11 +37,11 @@ mod:SetRenames({
 mod:SetAuraData({
 	{1235549, duration = 16, dispel = "magic", soundOnApplied = "alert", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1235548))}, -- Glacial Torment
 	{1235829, duration = 20, soundOnApplied = "warning", soundOnAppliedDose = "warning", note = CL.debuffFailureInterruptNote:format(mod:SpellName(1235829))}, -- Winter's Shroud
-	{1235841, soundOnApplied = "info"}, -- Snowdrift
+	{1235841, soundOnApplied = "info", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1235841))}, -- Snowdrift
 	{1263597, duration = 4, note = CL.debuffFailureNote}, -- Rime Detonation
 	{1235641, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Raging Squall
 	{1236289, note = CL.debuffUnderYouNote}, -- Blizzard's Wrath
-	{1297749, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Frozen Tempest
+	{1297749, soundOnApplied = "underyou", note = CL.debuffFailureSafeZoneNote}, -- Frozen Tempest
 })
 
 --------------------------------------------------------------------------------
