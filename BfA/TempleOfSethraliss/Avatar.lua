@@ -8,14 +8,6 @@ mod:RegisterEnableMob(133392, 137204) -- Avatar of Sethraliss, Hoodoo Hexer (bos
 mod:SetEncounterID(2127)
 if mod:Retail() then -- Midnight+
 	mod:SetRespawnTime(30)
-	mod:SetAuraData({
-		{1300714}, -- Shadowlash
-		{1300877}, -- Corruption
-		{1303446}, -- Tainted Strike
-		{1302618}, -- Vile Charge
-		{1311979}, -- Latent Hex
-		{1302826}, -- Corruption Burst
-	})
 else
 	mod:SetRespawnTime(20)
 end
@@ -99,6 +91,22 @@ if mod:Retail() then -- Midnight+
 	mod:SetRenames({
 		[1301202] = {1301202, L.heal_boss, notes = {CL.generalNote, CL.messageCastOverNote}, original = {1301202, CL.removed:format(mod:SpellName(1301202))}}, -- Defiling Taint
 		[1273408] = {1273408}, -- Stage One
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{1300714, duration = 20, soundOnAppliedDose = "none", note = CL.debuffTargetedNote:format(mod:SpellName(1300702))}, -- Shadowlash
+		{1300877, duration = 15, soundOnAppliedDose = "none", note = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1300869))}, -- Corruption
+		{1303446, duration = 10, note = CL.debuffTankAfterCastNote:format(mod:SpellName(1300803))}, -- Tainted Strike
+		{1302618, duration = 8, note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1302616))}, -- Vile Charge
+		{1311979, duration = 4, note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1302153))}, -- Latent Hex
+		{1302158, duration = 8, note = CL.debuffFailureInterruptNote:format(mod:SpellName(1302158))}, -- Flame Shock
+		{1302826, duration = 3, soundOnAppliedDose = "none", note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1302826))}, -- Corruption Burst
 	})
 end
 
