@@ -6,13 +6,6 @@ local mod, CL = BigWigs:NewBoss("Nalorakk Den", 2825, 2778)
 if not mod then return end
 mod:SetEncounterID(3209)
 mod:SetRespawnTime(30)
-mod:SetAuraData({
-	{1242869}, -- Echoing Maul
-	{1243590, soundOnApplied = "alarm"}, -- Overwhelming Onslaught
-	{1255577, soundOnApplied = "alarm", soundOnAppliedDose = "alarm"}, -- Spectral Slash
-	{1262253, soundOnApplied = "alarm"}, -- Demoralizing Scream
-	{1261781, soundOnApplied = "info"}, -- Defensive Stance
-})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -33,6 +26,18 @@ mod:SetRenames({
 	[1242860] = {1242860}, -- Echoing Maul
 	[1243569] = {1243569}, -- Overwhelming Onslaught
 	[1243011] = {1243011}, -- Fury of the War God
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1242869, duration = 4, note = CL.debuffTargetedNote:format(mod:SpellName(1242860))}, -- Echoing Maul
+	{1243590, duration = 5, soundOnApplied = "alarm", soundOnAppliedDose = "none", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1243569))}, -- Overwhelming Onslaught
+	{1255577, duration = 12, soundOnApplied = "alarm", soundOnAppliedDose = "alarm", note = CL.debuffUnderYouNote}, -- Spectral Slash
+	{1262253, duration = 30, mechanic = "infected", soundOnApplied = "alarm", soundOnAppliedDose = "alarm", note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1262253))}, -- Demoralizing Scream
+	{1261781, soundOnApplied = "info"}, -- Defensive Stance
 })
 
 --------------------------------------------------------------------------------
