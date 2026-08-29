@@ -7,14 +7,6 @@ if not mod then return end
 mod:RegisterEnableMob(134993) -- Mchimba the Embalmer
 mod:SetEncounterID(2142)
 mod:SetRespawnTime(30)
-if mod:Retail() then -- Midnight+
-	mod:SetAuraData({
-		{267618}, -- Drain Fluids
-		{267626}, -- Desiccation
-		{267874, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Burning Ground
-		{267702}, -- Entomb
-	})
-end
 
 --------------------------------------------------------------------------------
 -- Initialization
@@ -63,6 +55,19 @@ if mod:Retail() then -- Midnight+
 		[1311956] = {1311956, CL.you:format(mod:SpellName(1311956)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1311956, CL.you:format(mod:SpellName(1311956))}}, -- Burn Corruption
 		[1312146] = {1312146}, -- Awakening Slam
 		[267702] = {267702}, -- Entomb
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{267618, duration = 6, note = CL.debuffDotAfterCastNote:format(mod:SpellName(267618))}, -- Drain Fluids
+		{267626, note = CL.postDebuffNote:format(mod:SpellName(267618))}, -- Desiccation
+		{267874, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Burning Ground
+		{267702, note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(267702))}, -- Entomb
 	})
 end
 
