@@ -8,13 +8,6 @@ mod:RegisterEnableMob(133384, 134487) -- Creature and Vehicle
 mod:SetEncounterID(2125)
 if mod:Retail() then -- Midnight+
 	mod:SetRespawnTime(30)
-	mod:SetAuraData({
-		{1290030}, -- A Knot of Snakes
-		{1289109}, -- Thunder Spit
-		{1289588}, -- Thunder Spit
-		{1289589, soundOnApplied = "underyou"}, -- Lingering Storm
-		{1297034, soundOnApplied = "underyou"}, -- Electrified Ground
-	})
 else
 	mod:SetRespawnTime(20)
 end
@@ -82,6 +75,24 @@ if mod:Retail() then -- Midnight+
 		[1293048] = {1293048}, -- Serpentstorm
 		[1289205] = {1289205}, -- Hatch
 		[264172] = {264172, CL.cast:format(mod:SpellName(264172)), CL.over:format(mod:SpellName(264172)), notes = {CL.generalNote, CL.castTimerNote, CL.messageCastOverNote}, original = {264172, CL.cast:format(mod:SpellName(264172)), CL.over:format(mod:SpellName(264172))}}, -- Burrow
+	})
+end
+
+--------------------------------------------------------------------------------
+-- Midnight Auras
+--
+
+if mod:Retail() then -- Midnight+
+	mod:SetAuraData({
+		{1308838, duration = 7, note = CL.debuffTankAfterCastNote:format(mod:SpellName(1290797))}, -- Lightning Bite
+		{1290030, duration = 4, note = CL.debuffTargetedNote:format(mod:SpellName(1290030))}, -- A Knot of Snakes
+		{1289109, duration = 3.5, note = CL.debuffTargetedNote:format(mod:SpellName(1289109))}, -- Thunder Spit
+		{1289588, duration = 4, note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1289109))}, -- Thunder Spit
+		{1289589, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Lingering Storm
+		{1293048, duration = 8, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1293048))}, -- Serpentstorm
+		{264206, duration = 4, mechanic = "stunned", note = CL.debuffHitByCastNote:format(mod:SpellName(264172))}, -- Burrow
+		{1300227, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(264172))}, -- Burrowquake
+		{1297034, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Electrified Ground
 	})
 end
 
