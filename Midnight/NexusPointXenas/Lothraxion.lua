@@ -6,12 +6,6 @@ local mod, CL = BigWigs:NewBoss("Lothraxion", 2915, 2815)
 if not mod then return end
 mod:SetEncounterID(3333)
 mod:SetRespawnTime(30)
-mod:SetAuraData({
-	{1255310, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Radiant Scar
-	{1255335, soundOnApplied = "alert", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1255335), CL.tank_hit))}, -- Searing Rend
-	-- Add the Brilliant Dispersion pre-debuff if one is ever added
-	--{1255503, note = CL.bomb}, -- Brilliant Dispersion (This is the post debuff, no pre debuff exists...)
-})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -32,6 +26,17 @@ mod:SetRenames({
 	[1253855] = {CL.bombs, CL.you:format(CL.bomb), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1253855, CL.you:format(mod:SpellName(1253855))}}, -- Brilliant Dispersion (Bombs)
 	[1255531] = {CL.charge}, -- Flicker (Charge)
 	[1257595] = {CL.full_energy}, -- Divine Guile (Full Energy)
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1255310, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Radiant Scar
+	{1255335, duration = 6, soundOnApplied = "alert", soundOnAppliedDose = "none", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1255335), CL.tank_hit))}, -- Searing Rend
+	-- Add the Brilliant Dispersion pre-debuff if one is ever added
+	--{1255503, note = CL.bomb}, -- Brilliant Dispersion (This is the post debuff, no pre debuff exists...)
 })
 
 --------------------------------------------------------------------------------

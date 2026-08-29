@@ -7,12 +7,6 @@ if not mod then return end
 mod:SetEncounterID(3328)
 mod:SetRespawnTime(30)
 mod:SetStage(1)
-mod:SetAuraData({
-	{1251626, soundOnApplied = "info", note = CL.debuffWalkIntoObjectNote:format(CL.extra:format(mod:SpellName(1251626), CL.beam))}, -- Leyline Array
-	{1251772, soundOnApplied = "warning"}, -- Reflux Charge
-	{1264042, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Arcane Spill
-	{1276485, soundOnApplied = "alert", note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1257509), CL.full_energy))}, -- Sparkburn
-})
 
 --------------------------------------------------------------------------------
 -- Locals
@@ -40,6 +34,17 @@ mod:SetRenames({
 	[1251772] = {1251772, CL.you:format(mod:SpellName(1251772)), notes = {CL.generalNote, CL.messageOnYouNote}, original = false}, -- Reflux Charge
 	[1264048] = {CL.dodge}, -- Flux Collapse (Dodge)
 	[1257509] = {CL.full_energy, CL.cast:format(CL.explosion), notes = {CL.generalNote, CL.castTimerNote}, original = {1257509, CL.cast:format(mod:SpellName(1257509))}}, -- Corespark Detonation (Full Energy)
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1251626, duration = 8, soundOnApplied = "info", soundOnAppliedDose = "none", note = CL.debuffWalkIntoObjectNote:format(CL.extra:format(mod:SpellName(1251626), CL.beam))}, -- Leyline Array
+	{1251772, soundOnApplied = "warning", soundOnAppliedDose = "none"}, -- Reflux Charge
+	{1264042, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Arcane Spill
+	{1276485, soundOnApplied = "alert", note = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1257509), CL.full_energy))}, -- Sparkburn
 })
 
 --------------------------------------------------------------------------------

@@ -6,10 +6,6 @@ local mod, CL = BigWigs:NewBoss("Corewarden Nysarra", 2915, 2814)
 if not mod then return end
 mod:SetEncounterID(3332)
 mod:SetRespawnTime(30)
-mod:SetAuraData({
-	{1249020, soundOnApplied = "warning", note = CL.bomb}, -- Eclipsing Step
-	{1252828, soundOnApplied = "alarm", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1247937), CL.tank_hit))}, -- Void Gash
-})
 mod:SetStage(1)
 
 --------------------------------------------------------------------------------
@@ -39,6 +35,15 @@ mod:SetRenames({
 		original = {1264439, CL.cast:format(mod:SpellName(1264439)), 1264439, CL.soon:format(mod:SpellName(1264439))},
 	},
 	[1271684] = {CL.eat_adds}, -- Devour the Unworthy (Eat Adds)
+})
+
+--------------------------------------------------------------------------------
+-- Auras
+--
+
+mod:SetAuraData({
+	{1249020, duration = 7, soundOnApplied = "warning", note = CL.bomb}, -- Eclipsing Step
+	{1252828, duration = 10, soundOnApplied = "alarm", note = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1247937), CL.tank_hit))}, -- Void Gash
 })
 
 --------------------------------------------------------------------------------
