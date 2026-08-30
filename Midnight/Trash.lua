@@ -5,6 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Common Trash", {2813, 2825, 2859, 2923, 2993, 2521, 1877, 1762}) -- S2 dungeons
 if not mod then return end
 mod:SetTrashModule(true)
+mod:SetSortOrder(1)
 
 --------------------------------------------------------------------------------
 -- Localization
