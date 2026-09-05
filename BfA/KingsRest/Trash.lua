@@ -40,23 +40,23 @@ mod:RegisterEnableMob(
 )
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{269936}, -- Fixate
-		{269972}, -- Hex Volley
-		{1306763}, -- Serpent Strike
-		{270931, soundOnApplied = "underyou"}, -- Shadow Volley
-		{270927}, -- Bladestorm
-		{1297918}, -- Mortal Bleed
-		{1297781}, -- Sudden Rupture
-		{270292, soundOnApplied = "underyou"}, -- Purifying Flame
-		{271555}, -- Entomb
-		{1301851}, -- Bloodthirsty Axe
-		{1302028}, -- Soul Crush
-		{270492}, -- Hex
-		{272388}, -- Shadow Barrage
-		{1298304}, -- Dark Revelation
-		{276031}, -- Pit of Despair
-		{274387}, -- Absorbed in Darkness
-		{272021}, -- Erupting Darkness
+		{269936, tip = "A Minion of Zul has fixated on you, kite it away from the raid."}, -- Fixate
+		{269972, tip = "You've been hit by a Hex Volley."}, -- Hex Volley
+		{1306763, tip = "You've been hit by a Serpent Strike."}, -- Serpent Strike
+		{270931, soundOnApplied = "underyou", tip = "You're standing in a Shadow Volley, move out of it."}, -- Shadow Volley
+		{270927, tip = "The caster is Bladestorming, move away from them."}, -- Bladestorm
+		{1297918, mechanic = "bleeding", tip = "A bleed effect from Mortal Bleed, heal through it."}, -- Mortal Bleed
+		{1297781, tip = "You've been hit by a Sudden Rupture."}, -- Sudden Rupture
+		{270292, soundOnApplied = "underyou", tip = "You're standing in Purifying Flame, move out of it."}, -- Purifying Flame
+		{271555, tip = "You've been Entombed and need help to break free."}, -- Entomb
+		{1301851, tip = "You've been hit by a Bloodthirsty Axe."}, -- Bloodthirsty Axe
+		{1302028, tip = "You've been hit by Soul Crush."}, -- Soul Crush
+		{270492, dispel = "Curse", tip = "You've been Hexed, dispel this curse to free yourself."}, -- Hex
+		{272388, tip = "You've been hit by a Shadow Barrage."}, -- Shadow Barrage
+		{1298304, tip = "You've been marked by Dark Revelation, get ready to move away from the raid."}, -- Dark Revelation
+		{276031, tip = "You've fallen into a Pit of Despair."}, -- Pit of Despair
+		{274387, tip = "You've been Absorbed in Darkness."}, -- Absorbed in Darkness
+		{272021, tip = "You've been caught in Erupting Darkness."}, -- Erupting Darkness
 	})
 end
 

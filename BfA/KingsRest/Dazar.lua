@@ -115,10 +115,10 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{1303039, duration = 4, note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1303039))}, -- Hunting Leap
-		{1302945, duration = 5, dispel = "bleed", note = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1302945))}, -- Impaling Spear
-		{1303490, duration = 10, dispel = "bleed", note = CL.debuffTankAfterCastNote:format(mod:SpellName(1303488))}, -- Savage Maul
-		{1303267, duration = 15, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1303267))}, -- Gilded Destruction
+		{1303039, duration = 4, note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1303039)), tip = "You've been marked by Hunting Leap, get ready to move away from the raid."}, -- Hunting Leap
+		{1302945, duration = 5, mechanic = "bleeding", note = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1302945)), tip = "You failed to move away from Impaling Spear and are bleeding as a result."}, -- Impaling Spear
+		{1303490, duration = 10, mechanic = "bleeding", note = CL.debuffTankAfterCastNote:format(mod:SpellName(1303488)), tip = "The tank was hit by Savage Maul and is bleeding, requiring a taunt swap."}, -- Savage Maul
+		{1303267, duration = 15, note = CL.debuffGroupAfterCastNote:format(mod:SpellName(1303267)), tip = "A raid-wide debuff from Gilded Destruction, heal through the damage."}, -- Gilded Destruction
 	})
 end
 

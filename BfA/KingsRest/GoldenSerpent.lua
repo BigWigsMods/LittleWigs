@@ -68,9 +68,9 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{1306736, duration = 2.5, note = CL.debuffTargetedNote:format(mod:SpellName(265773))}, -- Spit Gold (pre-application)
-		{265773, duration = 6, note = CL.debuffDotAfterCastNote:format(mod:SpellName(265773))}, -- Spit Gold (DoT)
-		{265914, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Molten Gold
+		{1306736, duration = 2.5, note = CL.debuffTargetedNote:format(mod:SpellName(265773)), tip = "You've been targeted by Spit Gold, get ready to move away from the raid."}, -- Spit Gold (pre-application)
+		{265773, duration = 6, note = CL.debuffDotAfterCastNote:format(mod:SpellName(265773)), tip = "A DoT left behind by Spit Gold, heal through it."}, -- Spit Gold (DoT)
+		{265914, soundOnApplied = "underyou", note = CL.debuffUnderYouNote, tip = "You're standing in Molten Gold, move out of it."}, -- Molten Gold
 	})
 end
 
