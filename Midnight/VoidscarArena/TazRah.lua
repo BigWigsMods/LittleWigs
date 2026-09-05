@@ -7,8 +7,8 @@ if not mod then return end
 mod:SetEncounterID(3285)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	{1222103}, -- Nether Dash
-	{1296967, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Void Fissure
+	{1222103, tip = "Taz'Rah has dashed towards you, get ready to move away from the raid."}, -- Nether Dash
+	{1296967, soundOnApplied = "underyou", note = CL.debuffUnderYouNote, tip = "You're standing in a Void Fissure, move out of it."}, -- Void Fissure
 })
 
 --------------------------------------------------------------------------------

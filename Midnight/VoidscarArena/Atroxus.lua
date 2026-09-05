@@ -7,13 +7,13 @@ if not mod then return end
 mod:SetEncounterID(3286)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	{1222642, note = CL.debuffTankAfterCastNote:format(mod:SpellName(1222642))}, -- Hulking Claw
-	{1226031, note = CL.debuffHitByCastNote:format(mod:SpellName(1226120))}, -- Poison Splash
-	{1222484, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Poison Pool
-	{1263971}, -- Mind-Numbing Poison
-	{1222692}, -- Toxic Aura
-	{1283506, soundOnApplied = "warning"}, -- Fixate (doesn't work due to a Blizzard bug)
-	{1282892, soundOnApplied = "alarm", soundOnAppliedDose = "alarm", note = CL.debuffFailureNote}, -- Sickening Bite
+	{1222642, note = CL.debuffTankAfterCastNote:format(mod:SpellName(1222642)), tip = "The tank was hit by Hulking Claw."}, -- Hulking Claw
+	{1226031, note = CL.debuffHitByCastNote:format(mod:SpellName(1226120)), dispel = "Poison", tip = "A poison DoT from Poison Splash, dispel it before it gets out of hand."}, -- Poison Splash
+	{1222484, soundOnApplied = "underyou", note = CL.debuffUnderYouNote, tip = "You're standing in a Poison Pool, move out of it."}, -- Poison Pool
+	{1263971, dispel = "Poison", tip = "A poison DoT from Mind-Numbing Poison, dispel it before it gets out of hand."}, -- Mind-Numbing Poison
+	{1222692, dispel = "Poison", tip = "A stacking poison aura, dispel it before it gets out of hand."}, -- Toxic Aura
+	{1283506, soundOnApplied = "warning", tip = "Atroxus has fixated on you, kite it away from the raid."}, -- Fixate (doesn't work due to a Blizzard bug)
+	{1282892, soundOnApplied = "alarm", soundOnAppliedDose = "alarm", note = CL.debuffFailureNote, tip = "You failed to avoid Sickening Bite and are taking the resulting damage."}, -- Sickening Bite
 })
 
 --------------------------------------------------------------------------------

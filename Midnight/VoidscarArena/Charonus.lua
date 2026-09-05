@@ -7,13 +7,13 @@ if not mod then return end
 mod:SetEncounterID(3287)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	{1300372, note = CL.debuffDotAfterCastNote:format(mod:SpellName(1227264))}, -- Cosmic Crash
-	{1264188}, -- Unstable Singularity
-	{1310026, soundOnApplied = "warning", note = CL.debuffHitByCastNote:format(mod:SpellName(1282770))}, -- Atomized
-	{1287450, soundOnApplied = "warning", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1263982))}, -- Condensed Mass
-	{1263983}, -- Condensed Mass
-	{1311933, soundOnApplied = "info"}, -- Dark Waves
-	{1227247, soundOnApplied = "underyou", note = CL.debuffFailureNote}, -- Void Cascade
+	{1300372, note = CL.debuffDotAfterCastNote:format(mod:SpellName(1227264)), dispel = "Magic", tip = "A lingering DoT after Cosmic Crash, dispel it or heal through it."}, -- Cosmic Crash
+	{1264188, tip = "You've been caught in an Unstable Singularity, break free of its pull."}, -- Unstable Singularity
+	{1310026, soundOnApplied = "warning", note = CL.debuffHitByCastNote:format(mod:SpellName(1282770)), tip = "You've been Atomized, move away from other players."}, -- Atomized
+	{1287450, soundOnApplied = "warning", note = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1263982)), tip = "You've picked up a Condensed Mass orb, move away from the raid."}, -- Condensed Mass
+	{1263983, tip = "You're carrying a Condensed Mass orb, move away from the raid."}, -- Condensed Mass
+	{1311933, soundOnApplied = "info", tip = "You're caught in Dark Waves, move out of them."}, -- Dark Waves
+	{1227247, soundOnApplied = "underyou", note = CL.debuffFailureNote, tip = "You failed to avoid Void Cascade and are taking the resulting damage."}, -- Void Cascade
 })
 
 --------------------------------------------------------------------------------
