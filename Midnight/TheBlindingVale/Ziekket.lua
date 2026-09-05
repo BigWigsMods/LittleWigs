@@ -7,10 +7,10 @@ if not mod then return end
 mod:SetEncounterID(3202)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	{1247052, soundOnAppliedDose = "none"}, -- Lightbloom's Might
-	{1246751, soundOnApplied = "warning"}, -- Concentrated Lightbeam
-	{1246753, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Lightsap
-	{1247746}, -- Thornspike
+	{1247052, soundOnAppliedDose = "none", dispel = "Magic", tip = "A stacking buff Ziekket gains from Lightbloom's Might, interrupt or dispel it if possible."}, -- Lightbloom's Might
+	{1246751, soundOnApplied = "warning", tip = "You've been targeted by Concentrated Lightbeam, move away from other players."}, -- Concentrated Lightbeam
+	{1246753, soundOnApplied = "underyou", note = CL.debuffUnderYouNote, tip = "You're standing in Lightsap, move out of it."}, -- Lightsap
+	{1247746, tip = "You've been hit by Thornspike."}, -- Thornspike
 })
 
 --------------------------------------------------------------------------------

@@ -7,11 +7,11 @@ if not mod then return end
 mod:SetEncounterID(3200)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	{1236747}, -- Verdant Stomp
-	{1259365, soundOnApplied = "info"}, -- Bloodthorn Roots
-	{1237091}, -- Bloodthirsty Gaze
-	{1237267, soundOnApplied = "warning", note = CL.debuffFailureNote}, -- Incise
-	{1272290, note = CL.debuffFailureNote}, -- Crunched
+	{1236747, tip = "You've been hit by Verdant Stomp's shockwave."}, -- Verdant Stomp
+	{1259365, soundOnApplied = "info", tip = "You've been rooted by Bloodthorn Roots."}, -- Bloodthorn Roots
+	{1237091, tip = "Ikuzz has fixed a Bloodthirsty Gaze on you, get ready to move away from the raid."}, -- Bloodthirsty Gaze
+	{1237267, soundOnApplied = "warning", note = CL.debuffFailureNote, tip = "You failed to avoid Incise and are taking the resulting damage."}, -- Incise
+	{1272290, note = CL.debuffFailureNote, tip = "You failed to avoid being Crunched and are taking the resulting damage."}, -- Crunched
 })
 
 --------------------------------------------------------------------------------

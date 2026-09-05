@@ -7,12 +7,12 @@ if not mod then return end
 mod:SetEncounterID(3199)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	{1276586}, -- Bedrock Surge
-	{1234802, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Fertile Loam
-	{1235574, soundOnApplied = "info"}, -- Lightblossom Beam
-	{1235828, soundOnApplied = "underyou", note = CL.debuffUnderYouNote}, -- Light-Scorched Earth
+	{1276586, dispel = "Magic", tip = "The impact of Bedrock Slam causes an aftershock that inflicts Nature damage to all players every 1 sec for 8 sec."}, -- Bedrock Surge
+	{1234802, soundOnApplied = "underyou", note = CL.debuffUnderYouNote, dispel = "Poison", tip = "Vile fertilizer floods the ground, dealing damage to players standing in it."}, -- Fertile Loam
+	{1235574, soundOnApplied = "info", dispel = "Curse", tip = "A beam of blinding light sweeps the room, dealing damage to anyone it touches."}, -- Lightblossom Beam
+	{1235828, soundOnApplied = "underyou", note = CL.debuffUnderYouNote, dispel = "Disease", tip = "Scorched ground left behind by the boss's attack continues to burn anyone standing on it."}, -- Light-Scorched Earth
 	{1261276, note = CL.preDebuffNote},
-	{1235865, soundOnApplied = "alert", note = CL.mainDebuffNote}, -- Thornblade
+	{1235865, soundOnApplied = "alert", note = CL.mainDebuffNote, dispel = "Curse", tip = "A blade of thorns pierces the target, causing a bleeding wound that deals damage over time."}, -- Thornblade
 })
 
 --------------------------------------------------------------------------------

@@ -7,10 +7,10 @@ if not mod then return end
 mod:SetEncounterID(3201)
 mod:SetRespawnTime(30)
 mod:SetAuraData({
-	{1239825}, -- Lightfire
-	{1239919, soundOnApplied = "underyou"}, -- Lightfire Beams
-	{1241058}, -- Grievous Thrash
-	{1257094}, -- Pulverized
+	{1239825, dispel = "Magic", tip = "You've been marked by Lightfire, move away from other players."}, -- Lightfire
+	{1239919, soundOnApplied = "underyou", tip = "You're standing in a Lightfire Beam, move out of it."}, -- Lightfire Beams
+	{1241058, tip = "You've been hit by Grievous Thrash."}, -- Grievous Thrash
+	{1257094, tip = "You've been Pulverized."}, -- Pulverized
 })
 mod:SetStage(1)
 
