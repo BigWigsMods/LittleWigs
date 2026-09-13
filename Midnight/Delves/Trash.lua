@@ -73,6 +73,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(139585) then -- Gnarldor Isle, start Delve (Minchi)
 			-- 139585:|cFF0000FF(Delve)|r Education is important. Let's go.
 			self:SelectGossipID(139585)
+		elseif self:GetGossipID(139462) then -- Gnarldor Isle, start Delve (Tormunda)
+			-- 139462:Rescue the elderly and grab supplies. On it!
+			self:SelectGossipID(139462)
 		elseif self:GetGossipID(136477) then -- Parhelion Plaza, start Delve (Grand Artificer Romuul)
 			-- 136477:|cFF0000FF(Delve)|r I will break that shield and eliminate the units inside.
 			self:SelectGossipID(136477)
