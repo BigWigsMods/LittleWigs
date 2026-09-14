@@ -99,8 +99,11 @@ end
 
 function mod:OfferingsAcquired(_, text)
 	-- [UPDATE_UI_WIDGET] widgetID:7092, widgetType:8, text:|TInterface\\ICONS\\inv_misc_coinbag09.blp:20|t Offerings Acquired: 1/6
-	local acquired = text:match("(%d+)/%d+")
-	if acquired and tonumber(acquired) > 0 then
+	local acquired = tonumber(text:match("(%d+)/%d+"))
+	if acquired and acquired > 0 then
+		if acquired == 6 then
+			self:StopBlizzMessages(1) -- suppress Blizzard's encounter warning for the final offering
+		end
 		self:Message("offerings_acquired", "green", text, false)
 		self:PlaySound("offerings_acquired", "info")
 	end
