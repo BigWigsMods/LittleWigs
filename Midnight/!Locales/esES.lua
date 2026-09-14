@@ -103,15 +103,15 @@ BigWigsAPI.SetBossModuleLocale("Midnight Delve Trash", {})
 -- Den of Nalorakk
 
 BigWigsAPI.SetBossModuleLocale("Den of Nalorakk Trash", {
-	--offerings_acquired = "Offerings Acquired",
-	--offerings_acquired_desc = "Show an alert when an offering has been acquired.",
+	offerings_acquired = "Ofrendas conseguidas",
+	offerings_acquired_desc = "Mostrar una alerta al conseguir una ofrenda.",
 })
 
 -- Maisara Caverns
 
 BigWigsAPI.SetBossModuleLocale("Maisara Caverns Trash", {
-	--prisoners_freed = "Prisoners Freed",
-	--prisoners_freed_desc = "Show an alert when a prisoner has been freed.",
+	prisoners_freed = "Prisioneros liberados",
+	prisoners_freed_desc = "Mostrar una alerta al liberar un prisionero.",
 	--custom_on_cooking_pot_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Hearty Vilebranch Stew' buff.\n\n|T4659336:16|tHearty Vilebranch Stew\n{1269056}",
 	--custom_on_ritual_cauldron_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Ritual Concoction' buff.\n\n|T236271:16|tRitual Concoction\n{1271300}",
 
@@ -122,8 +122,8 @@ BigWigsAPI.SetBossModuleLocale("Maisara Caverns Trash", {
 -- Murder Row
 
 BigWigsAPI.SetBossModuleLocale("Murder Row Trash", {
-	--snitches_interrogated = "Snitches Interrogated",
-	--snitches_interrogated_desc = "Show an alert when a snitch has been interrogated.",
+	snitches_interrogated = "Soplones interrogados",
+	snitches_interrogated_desc = "Mostrar una alerta al interrogar un soplón.",
 })
 
 -- Nexus-Point Xenas
@@ -135,9 +135,9 @@ BigWigsAPI.SetBossModuleLocale("Nexus-Point Xenas Trash", {
 -- Common Trash
 
 BigWigsAPI.SetBossModuleLocale("Common Trash", {
-	--common_trash = "Common Trash",
-	--trash_cast = "Cast",
-	--trash_cast_desc = "Alert when a standard trash mob casts a spell.",
+	common_trash = "Bichos comunes",
+	trash_cast = "Lanzamiento",
+	trash_cast_desc = "Aletar cuando un bicho estándar lanza un hechizo.",
 	--lieutenant_cast = "Cast (Lieutenant)",
 	--lieutenant_cast_desc = "Alert when a Lieutenant trash mob casts a spell.",
 	--trash_channel = "Channel",
@@ -156,7 +156,7 @@ BigWigsAPI.SetBossModuleLocale("Common Trash", {
 	--custom_select_throttle_type_value2 = "Sounds only",
 	--custom_select_throttle_duration = "Throttle duration",
 	--custom_select_throttle_duration_desc = "How long to wait between alerts. Your target is never throttled.",
-	--custom_select_throttle_duration_value1 = "2 seconds",
-	--custom_select_throttle_duration_value2 = "1 second",
-	--custom_select_throttle_duration_value3 = "3 seconds",
+	custom_select_throttle_duration_value1 = "2 segundos",
+	custom_select_throttle_duration_value2 = "1 segundo",
+	custom_select_throttle_duration_value3 = "3 segundos",
 })
