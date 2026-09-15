@@ -146,6 +146,8 @@ BigWigsAPI.SetBossModuleLocale("Common Trash", {
 	all_units = "Mostra messaggi e riproduci suoni per tutte le unità",
 	messages_all_sounds_target = "Mostra messaggi per tutte le unità, ma riproduci suoni solo per il tuo bersaglio",
 	target_only = "Mostra messaggi e riproduci suoni solo per il tuo bersaglio",
+	--custom_on_show_target = "Show spell targets",
+	--custom_on_show_target_desc = "Include the target of spells in the message.",
 	custom_select_unit_standard = "Mob standard",
 	custom_select_unit_standard_desc = "Seleziona i mob trash standard per cui mostrare messaggi e riprodurre suoni.",
 	custom_select_unit_lieutenant = "Luogotenenti",

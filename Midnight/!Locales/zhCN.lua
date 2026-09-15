@@ -146,6 +146,8 @@ BigWigsAPI.SetBossModuleLocale("Common Trash", {
 	all_units = "所有单位显示信息并播放音效",
 	messages_all_sounds_target = "所有单位显示信息，仅当前目标播放音效",
 	target_only = "仅当前目标显示信息并播放音效",
+	--custom_on_show_target = "Show spell targets",
+	--custom_on_show_target_desc = "Include the target of spells in the message.",
 	custom_select_unit_standard = "标准小怪",
 	custom_select_unit_standard_desc = "选择哪些标准普通小怪显示消息并播放音效。",
 	custom_select_unit_lieutenant = "副官",

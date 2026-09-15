@@ -146,6 +146,8 @@ BigWigsAPI.SetBossModuleLocale("Common Trash", {
 	all_units = "Alle Einheiten zeigen Nachrichten und geben Sounds wieder",
 	messages_all_sounds_target = "Alle Einheiten zeigen Nachrichten, aber nur Dein Ziel gibt Sounds wieder",
 	target_only = "Nur Dein Ziel zeigt Nachrichten und gibt Sounds wieder",
+	--custom_on_show_target = "Show spell targets",
+	--custom_on_show_target_desc = "Include the target of spells in the message.",
 	custom_select_unit_standard = "Normale Gegner",
 	custom_select_unit_standard_desc = "Wähle welche normalen Gegner Nachrichten anzeigen und Sounds wiedergeben.",
 	custom_select_unit_lieutenant = "Leutnants",
