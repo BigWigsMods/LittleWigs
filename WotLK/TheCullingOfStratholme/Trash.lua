@@ -78,7 +78,7 @@ function mod:GOSSIP_SHOW()
 			elseif self:GetGossipID(36608) then -- Chromie (no skip 3/3)
 				-- 36608:So how does the Infinite Dragonflight plan to interfere?
 				self:SelectGossipID(36608)
-			elseif self:SelectGossipID(36217) then -- Arthas
+			elseif self:GetGossipID(36217) then -- Arthas
 				-- 36217:Yes, my prince. We are ready.
 				self:SelectGossipID(36217)
 			end
