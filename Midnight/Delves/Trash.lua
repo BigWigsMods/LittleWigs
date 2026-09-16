@@ -27,15 +27,30 @@ mod:SetTrashModule(true)
 --
 
 local autotalk = mod:AddAutoTalkOption(false)
+local autochoice = mod:AddAutoPlayerChoiceOption(true, "delve_power")
 function mod:GetOptions()
 	return {
 		autotalk,
+		autochoice,
 	}
 end
 
 function mod:OnBossEnable()
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
+	-- Auto power select
+	local frames = {GetFramesRegisteredForEvent("PLAYER_CHOICE_UPDATE")}
+	for i = 1, #frames do
+		if frames[i].UnregisterEvent then
+			frames[i]:UnregisterEvent("PLAYER_CHOICE_UPDATE")
+		end
+	end
+	self:RegisterEvent("PLAYER_CHOICE_UPDATE")
+	for i = 1, #frames do
+		if frames[i].RegisterEvent then
+			frames[i]:RegisterEvent("PLAYER_CHOICE_UPDATE")
+		end
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -130,6 +145,24 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(135811) then -- Twilight Crypts, start Delve (Scout Lok'aemon)
 			-- 135811:|cFF0000FF(Delve)|r Drink this if the Bound Loa gets close? But what's it taste like?
 			self:SelectGossipID(135811)
+		end
+	end
+end
+
+-- Auto power select
+
+function mod:PLAYER_CHOICE_UPDATE()
+	if self:GetOption(autochoice) then
+		local choiceInfo = self:GetPlayerChoiceOptions()
+		if choiceInfo then
+			local numChoices = self:GetPlayerChoiceCount(choiceInfo)
+			if numChoices == 1 then
+				local numButtons = self:GetPlayerChoiceButtonCount(choiceInfo, numChoices)
+				if numButtons == 1 then
+					local buttonID = self:GetPlayerChoiceButtonID(choiceInfo, numChoices, numButtons)
+					self:SelectPlayerChoice(numChoices, buttonID)
+				end
+			end
 		end
 	end
 end
