@@ -159,8 +159,7 @@ function mod:PLAYER_CHOICE_UPDATE()
 			if numChoices == 1 then
 				local numButtons = self:GetPlayerChoiceButtonCount(choiceInfo, numChoices)
 				if numButtons == 1 then
-					local buttonID = self:GetPlayerChoiceButtonID(choiceInfo, numChoices, numButtons)
-					self:SelectPlayerChoice(numChoices, buttonID)
+					self:SelectPlayerChoiceButton(choiceInfo, numChoices, numButtons)
 				end
 			end
 		end
