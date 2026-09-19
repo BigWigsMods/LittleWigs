@@ -1,4 +1,5 @@
-## Interface: 120100, 120105, 120007
+## Interface: 50503, 50504, 120007, 120100, 120105
+## AllowLoadGameType: mists, standard
 
 ## Title: LittleWigs [|cffeda55fMists of Pandaria|r]
 ## Title-deDE: LittleWigs [|cffeda55fMists of Pandaria|r]
@@ -17,7 +18,8 @@
 ## Dependencies: BigWigs
 
 ## X-Category: Party
-## X-BigWigs-LoadOn-InstanceId: 959, 960, 961, 962, 994, 1001, 1004, 1007, 1011, 1112, 2849
+## X-BigWigs-LoadOn-InstanceId: 959, 960, 961, 962, 994, 1001, 1004, 1007, 1011, 1112 [AllowLoadGameType mists]
+## X-BigWigs-LoadOn-InstanceId: 959, 960, 961, 962, 994, 1001, 1004, 1007, 1011, 1112, 2849 [AllowLoadGameType standard]
 
 !Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 modules.xml

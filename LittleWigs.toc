@@ -1,0 +1,68 @@
+## Interface: 11508, 11509, 20505, 20506, 30405, 38002, 40402, 50503, 50504, 120007, 120100, 120105
+
+## Title: LittleWigs
+## Notes: Boss warnings for 5-man dungeons & scenarios.
+## Notes-deDE: Boss Warnungen für 5-Spieler Dungeons & Szenarien.
+## Notes-esES: Boss warnings for 5-man dungeons & scenarios.
+## Notes-esMX: Boss warnings for 5-man dungeons & scenarios.
+## Notes-frFR: Boss warnings for 5-man dungeons & scenarios.
+## Notes-itIT: Avvisi per i boss delle spedizioni & scenari
+## Notes-koKR: 5인 던전 & 시나리오의 우두머리 경보입니다.
+## Notes-ptBR: Boss warnings for 5-man dungeons & scenarios.
+## Notes-ruRU: Предупреждения о боссах для подземелий на 5 игроков и сценариев.
+## Notes-zhCN: 5人地下城和场景战役首领警报。
+## Notes-zhTW: 5人地城和情境地圖首領警報。
+## Author: Funkeh, Delk
+## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
+## X-Category: Party
+## X-Credits: Ulic, Oppzippy, Zirael
+## X-License: All Rights Reserved: You are free to fork and modify on GitHub, please ask us about anything else.
+## X-Curse-Project-ID: 4383
+## X-WoWI-ID: 9577
+## X-Wago-ID: 5bGolnN0
+
+## Dependencies: BigWigs
+## LoadOnDemand: 1
+## Version: @project-version@
+
+## X-BigWigs-Minimum: 425
+## X-BigWigs-LoadOn-InstanceId: 2805,2811,2813,2825,2859,2874,2915,2923,2993, 2933,2952,2953,2961,2962,2963,2964,2965,2966,2979,3003,3038,3077,3079 [AllowLoadGameType standard]
+#@do-not-package@
+## X-LittleWigs-Repo: 1
+## X-BigWigs-ExtraMenu: 1716 [AllowLoadGameType standard]
+## X-BigWigs-NoMenu: 1616,1673,1684,1698,1702,1703,1710, 2827,2828 [AllowLoadGameType standard]
+## X-BigWigs-LoadOn-InstanceId: 36,209,229,329,429, 2784,2875 [AllowLoadGameType vanilla]
+## X-BigWigs-LoadOn-InstanceId: 36,209,229,329,429, 269,540,542,543,545,546,547,552,553,554,555,556,557,558,560,585 [AllowLoadGameType tbc]
+## X-BigWigs-LoadOn-InstanceId: 36,209,229,329,429, 269,540,542,543,545,546,547,552,553,554,555,556,557,558,560,585, 536,574,575,576,578,595,599,600,601,602,604,608,619,632,650,658,668 [AllowLoadGameType wrath]
+## X-BigWigs-LoadOn-InstanceId: 209,229,329,429, 269,540,542,543,545,546,547,552,553,554,555,556,557,558,560,585, 536,574,575,576,578,595,599,600,601,602,604,608,619,632,650,658,668, 33,36,568,643,644,645,657,670,725,755,859,938,939,940 [AllowLoadGameType cata]
+## X-BigWigs-LoadOn-InstanceId: 209,229,329,429, 269,540,542,543,545,546,547,552,553,554,555,556,557,558,560,585, 536,574,575,576,578,595,599,600,601,602,604,608,619,632,650,658,668, 33,36,568,643,644,645,657,670,725,755,859,938,939,940, 959,960,961,962,994,1001,1004,1007,1011,1112 [AllowLoadGameType mists]
+## X-BigWigs-LoadOn-InstanceId: 36,209,329,429, 269,540,542,543,545,546,547,552,553,554,555,556,557,558,560,585, 536,574,575,576,578,595,599,600,601,602,604,608,619,632,650,658,668, 33,568,643,644,645,657,670,725,755,859,938,939,940, 959,960,961,962,994,1001,1004,1007,1011,1112, 1175,1176,1182,1195,1208,1209,1279,1358, 1456,1466,1477,1458,1492,1493,1501,1516,1544,1571,1616,1651,1673,1677,1684,1698,1702,1703,1710,1753, 1594,1754,1762,1763,1771,1822,1841,1862,1864,1877,2097,2212,2213,2827,2828, 2284,2285,2286,2287,2289,2290,2291,2293,2441, 2520,2527,2519,2521,2526,2515,2516,2451,2579, 2648,2649,2651,2652,2660,2661,2662,2669,2773,2830, 2710,369,1043, 2664,2679,2680,2681,2682,2683,2684,2685,2686,2687,2688,2689,2690,2803,2815,2826,2831,2849,2951, 2805,2811,2813,2825,2859,2874,2915,2923,2993, 2933,2952,2953,2961,2962,2963,2964,2965,2966,2979,3003,3038,3077,3079 [AllowLoadGameType standard]
+Classic\!Locales\[TextLocale].lua [AllowLoadGameType classic, standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+Classic\!Locales\[TextLocale]_Vanilla.lua [AllowLoadGameType vanilla][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+Classic\modules_Vanilla.xml [AllowLoadGameType vanilla]
+Classic\modules_TBC.xml [AllowLoadGameType tbc, wrath]
+Classic\modules_Cata.xml [AllowLoadGameType cata, mists]
+Classic\modules.xml [AllowLoadGameType standard]
+TBC\!Locales\[TextLocale].lua [AllowLoadGameType tbc, wrath, cata, mists, standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+TBC\modules.xml [AllowLoadGameType tbc, wrath, cata, mists, standard]
+WotLK\!Locales\[TextLocale].lua [AllowLoadGameType wrath, cata, mists, standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+WotLK\modules.xml [AllowLoadGameType wrath, cata, mists, standard]
+Cataclysm\!Locales\[TextLocale].lua [AllowLoadGameType cata, mists, standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+Cataclysm\modules.xml [AllowLoadGameType cata, mists, standard]
+MoP\!Locales\[TextLocale].lua [AllowLoadGameType mists, standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+MoP\modules.xml [AllowLoadGameType mists, standard]
+WoD\!Locales\[TextLocale].lua [AllowLoadGameType standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+WoD\modules.xml [AllowLoadGameType standard]
+Legion\!Locales\[TextLocale].lua [AllowLoadGameType standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+Legion\modules.xml [AllowLoadGameType standard]
+BfA\!Locales\[TextLocale].lua [AllowLoadGameType standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+BfA\modules.xml [AllowLoadGameType standard]
+Shadowlands\!Locales\[TextLocale].lua [AllowLoadGameType standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+Shadowlands\modules.xml [AllowLoadGameType standard]
+Dragonflight\!Locales\[TextLocale].lua [AllowLoadGameType standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+Dragonflight\modules.xml [AllowLoadGameType standard]
+WarWithin\!Locales\[TextLocale].lua [AllowLoadGameType standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+WarWithin\modules.xml [AllowLoadGameType standard]
+#@end-do-not-package@
+Midnight\!Locales\[TextLocale].lua [AllowLoadGameType standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+Midnight\modules.xml [AllowLoadGameType standard]

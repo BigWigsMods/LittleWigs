@@ -1,4 +1,5 @@
-## Interface: 120100, 120105, 120007
+## Interface: 30405, 38002, 40402, 50503, 50504, 120007, 120100, 120105
+## AllowLoadGameType: wrath, cata, mists, standard
 
 ## Title: LittleWigs [|cffeda55fWrath of the Lich King|r]
 ## Title-deDE: LittleWigs [|cffeda55fWrath of the Lich King|r]
@@ -17,7 +18,8 @@
 ## Dependencies: BigWigs
 
 ## X-Category: Party
-## X-BigWigs-LoadOn-InstanceId: 536, 574, 575, 576, 578, 595, 599, 600, 601, 602, 604, 608, 619, 632, 650, 658, 668, 2849
+## X-BigWigs-LoadOn-InstanceId: 536, 574, 575, 576, 578, 595, 599, 600, 601, 602, 604, 608, 619, 632, 650, 658, 668 [AllowLoadGameType wrath, cata, mists]
+## X-BigWigs-LoadOn-InstanceId: 536, 574, 575, 576, 578, 595, 599, 600, 601, 602, 604, 608, 619, 632, 650, 658, 668, 2849 [AllowLoadGameType standard]
 
 !Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 modules.xml
