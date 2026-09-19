@@ -1,4 +1,4 @@
-## Interface: 50504, 50503
+## Interface: 40402, 50503, 50504, 120007, 120100, 120105
 
 ## Title: LittleWigs [|cffeda55fCataclysm|r]
 ## Title-deDE: LittleWigs [|cffeda55fCataclysm|r]
@@ -17,7 +17,8 @@
 ## Dependencies: BigWigs
 
 ## X-Category: Party
-## X-BigWigs-LoadOn-InstanceId: 33, 36, 568, 643, 644, 645, 657, 670, 725, 755, 859, 938, 939, 940
+## X-BigWigs-LoadOn-InstanceId: 33, 36, 568, 643, 644, 645, 657, 670, 725, 755, 859, 938, 939, 940 [AllowLoadGameType cata, mists]
+## X-BigWigs-LoadOn-InstanceId: 33, 36, 568, 643, 644, 645, 657, 670, 725, 755, 859, 938, 939, 940, 2849 [AllowLoadGameType standard]
 
 !Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 modules.xml
