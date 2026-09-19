@@ -61,7 +61,10 @@ end
 
 function mod:GOSSIP_SHOW()
 	if self:GetOption(autotalk) then
-		if self:GetGossipID(136318) then -- Atal'Aman, start Delve (Fleek)
+		if self:GetGossipID(140123) then -- All Delves, make abundant (Dundun)
+			-- 140123:Make my delve Abundantly Bountiful!
+			self:SelectGossipID(140123)
+		elseif self:GetGossipID(136318) then -- Atal'Aman, start Delve (Fleek)
 			-- 136318:|cFF0000FF(Delve)|r I will save them!
 			self:SelectGossipID(136318)
 		elseif self:GetGossipID(136385) then -- Atal'Aman, start Delve (Kasha)
