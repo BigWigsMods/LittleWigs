@@ -1,5 +1,5 @@
 ## Interface: 11508, 11509, 20505, 20506, 30405, 38002, 40402, 50503, 50504, 120007, 120100, 120105
-## AllowLoadGameType: vanilla, tbc, wrath, cata, mists, standard
+## AllowLoadGameType: classic, standard
 
 ## Title: LittleWigs [|cffeda55fClassic|r]
 ## Title-deDE: LittleWigs [|cffeda55fClassic|r]
@@ -23,7 +23,7 @@
 ## X-BigWigs-LoadOn-InstanceId: 209, 229, 329, 429 [AllowLoadGameType cata, mists]
 ## X-BigWigs-LoadOn-InstanceId: 36, 209, 329, 429 [AllowLoadGameType standard]
 
-!Locales\[TextLocale].lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+!Locales\[TextLocale].lua [AllowLoadGameType classic, standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 !Locales\[TextLocale]_Vanilla.lua [AllowLoadGameType vanilla][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 modules_Vanilla.xml [AllowLoadGameType vanilla]
 modules_TBC.xml [AllowLoadGameType tbc, wrath]
