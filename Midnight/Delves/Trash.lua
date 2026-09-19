@@ -121,6 +121,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(136141) then -- The Darkway, start Delve (Technician Mireille)
 			-- 136141:I'll help you restore the ley lines... and show these cultists a thing or two!
 			self:SelectGossipID(136141)
+		elseif self:GetGossipID(141485) then -- The Darkway, start Delve (Technician Mireille)
+			-- 141485:Clear the pylons and destroy the eggs before they hatch. Got it.
+			self:SelectGossipID(141485)
 		elseif self:GetGossipID(137248) then -- The Gulf of Memory, start Delve (Ashayo)
 			-- 137248:Release the moths near Lightbloom patches on the ground and they'll eat it. Seems easy enough.
 			self:SelectGossipID(137248)
