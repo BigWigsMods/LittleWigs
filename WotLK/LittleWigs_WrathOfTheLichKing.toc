@@ -1,4 +1,5 @@
 ## Interface: 30405, 38002, 40402, 50503, 50504, 120007, 120100, 120105
+## AllowLoadGameType: wrath, cata, mists, standard
 
 ## Title: LittleWigs [|cffeda55fWrath of the Lich King|r]
 ## Title-deDE: LittleWigs [|cffeda55fWrath of the Lich King|r]

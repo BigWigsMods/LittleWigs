@@ -1,4 +1,5 @@
 ## Interface: 20505, 20506, 30405, 38002, 40402, 50503, 50504, 120007, 120100, 120105
+## AllowLoadGameType: tbc, wrath, cata, mists, standard
 
 ## Title: LittleWigs [|cffeda55fBurning Crusade|r]
 ## Title-deDE: LittleWigs [|cffeda55fBurning Crusade|r]

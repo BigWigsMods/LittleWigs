@@ -1,4 +1,5 @@
 ## Interface: 120100, 120105, 120007
+## AllowLoadGameType: standard
 
 ## Title: LittleWigs [|cffeda55fBattle for Azeroth|r]
 ## Title-deDE: LittleWigs [|cffeda55fBattle for Azeroth|r]
