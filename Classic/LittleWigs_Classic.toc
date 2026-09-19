@@ -22,7 +22,7 @@
 ## X-BigWigs-LoadOn-InstanceId: 209, 229, 329, 429 [AllowLoadGameType cata, mists]
 ## X-BigWigs-LoadOn-InstanceId: 36, 209, 329, 429 [AllowLoadGameType standard]
 
-!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+!Locales\[TextLocale].lua [AllowLoadGameType vanilla, tbc, wrath, cata, mists, standard][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 !Locales\[TextLocale]_Vanilla.lua [AllowLoadGameType vanilla][AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
 modules_Vanilla.xml [AllowLoadGameType vanilla]
 modules_TBC.xml [AllowLoadGameType tbc, wrath]
