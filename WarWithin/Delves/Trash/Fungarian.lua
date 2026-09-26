@@ -28,6 +28,9 @@ mod:RegisterEnableMob(
 	207459, -- Fungal Rotcaster
 	220432 -- Particularly Bad Guy
 )
+if not mod:Retail() then -- Pre-Midnight
+	mod:SetUsesRangeChecks(true)
+end
 
 --------------------------------------------------------------------------------
 -- Localization

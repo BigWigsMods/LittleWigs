@@ -8,6 +8,9 @@ if not mod then return end
 mod:RegisterEnableMob(134058, 134063) -- Galecaller Faye, Brother Ironhull
 mod.engageId = 2131
 mod.respawnTime = 30
+if not mod:Retail() then -- Pre-Midnight
+	mod:SetUsesRangeChecks(true)
+end
 
 --------------------------------------------------------------------------------
 -- Initialization
