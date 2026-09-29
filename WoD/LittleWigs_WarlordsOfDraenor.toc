@@ -21,4 +21,43 @@
 ## X-BigWigs-LoadOn-InstanceId: 1175, 1176, 1182, 1195, 1208, 1209, 1279, 1358
 
 !Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
-modules.xml
+Auchindoun\Kaathar.lua
+Auchindoun\Nyami.lua
+Auchindoun\Azzakel.lua
+Auchindoun\Terongor.lua
+Auchindoun\Trash.lua
+BloodmaulSlagMines\Magmolatus.lua
+BloodmaulSlagMines\Crushto.lua
+BloodmaulSlagMines\Roltall.lua
+BloodmaulSlagMines\Gugrokk.lua
+BloodmaulSlagMines\Trash.lua
+GrimrailDepot\Rocketspark.lua
+GrimrailDepot\NitroggThundertower.lua
+GrimrailDepot\SkylordTovra.lua
+GrimrailDepot\Trash.lua
+IronDocks\Nokgar.lua
+IronDocks\Enforcers.lua
+IronDocks\Oshir.lua
+IronDocks\Skulloc.lua
+IronDocks\Trash.lua
+ShadowmoonBurialGrounds\Sadana.lua
+ShadowmoonBurialGrounds\Nhallish.lua
+ShadowmoonBurialGrounds\Bonemaw.lua
+ShadowmoonBurialGrounds\Nerzhul.lua
+ShadowmoonBurialGrounds\Trash.lua
+Skyreach\Ranjit.lua
+Skyreach\Araknath.lua
+Skyreach\Rukhran.lua
+Skyreach\Viryx.lua
+TheEverbloom\Witherbark.lua
+TheEverbloom\AncientProtectors.lua
+TheEverbloom\Xeritac.lua
+TheEverbloom\ArchmageSol.lua
+TheEverbloom\Yalnu.lua
+TheEverbloom\Trash.lua
+UpperBlackrockSpire\Gorashan.lua
+UpperBlackrockSpire\Kyrak.lua
+UpperBlackrockSpire\Tharbek.lua
+UpperBlackrockSpire\Ragewing.lua
+UpperBlackrockSpire\Zaela.lua
+!Options.lua

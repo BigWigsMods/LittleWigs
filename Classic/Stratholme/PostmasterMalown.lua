@@ -1,4 +1,3 @@
-if not BigWigsLoader.isVanilla and not BigWigsLoader.isRetail then return end -- not an encounter in Cataclysm
 --------------------------------------------------------------------------------
 -- Module Declaration
 --
