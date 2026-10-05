@@ -115,7 +115,7 @@ BigWigsAPI.SetBossModuleLocale("Black Rook Hold Trash", {
 	risen_swordsman = "Epéiste ressuscité",
 	risen_lancer = "Lancier ressuscité",
 
-	--door_open_desc = "Show a bar indicating when the door is opened to the Hidden Passageway.",
+	door_open_desc = "Affiche une barre indiquant lorsque la porte s'ouvre vers le passage caché.",
 })
 
 BigWigsAPI.SetBossModuleLocale("Kurtalos Ravencrest", {
@@ -131,11 +131,11 @@ BigWigsAPI.SetBossModuleLocale("Mephistroth", {
 })
 
 BigWigsAPI.SetBossModuleLocale("Domatrax", {
-	--custom_on_autotalk_desc = "Instantly selects the Aegis of Aggramar's gossip option to start the Domatrax encounter.",
+	custom_on_autotalk_desc = "Sélectionne instantanément le dialogue de l'Égide d'Aggramar pour commencer la rencontre contre Domatrax.",
 
-	--missing_aegis = "You're not standing in Aegis", -- Aegis is a short name for Aegis of Aggramar
-	--aegis_healing = "Aegis: Reduced Healing Done",
-	--aegis_damage = "Aegis: Reduced Damage Done",
+	missing_aegis = "Vous n'êtes pas dans l'Égide", -- Aegis is a short name for Aegis of Aggramar
+	aegis_healing = "Égide : Réduit les soins prodigués",
+	aegis_damage = "Égide : Réduit les dégâts infligés",
 })
 
 BigWigsAPI.SetBossModuleLocale("Cathedral of Eternal Night Trash", {
