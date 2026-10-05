@@ -67,7 +67,7 @@ function mod:OnEngage()
 
 	self:CDBar(268586, 18.2) -- Blade Combo
 	self:CDBar(268932, 12.1) -- Quaking Leap
-	self:CDBar(268932, 12.1) -- Gale Slash
+	self:CDBar(268403, 12.1) -- Gale Slash
 end
 
 function mod:VerifyEnable(unit)
