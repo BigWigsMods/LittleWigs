@@ -86,6 +86,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if duration < 1 or duration > 100 then return end -- filter placeholder bars
+	if eventInfo.duration > 16 and eventInfo.duration < 17 then return end -- filter fake Legion Strike on win
 	if duration == 6 or duration == 27 then -- Legion Strike
 		-- TODO the first 27 Legion Strike seems to happen several seconds early. any way we can improve?
 		if duration == 27 and count27 % 2 == 0 then
