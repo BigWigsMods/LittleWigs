@@ -88,6 +88,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(135798) then -- Collegiate Calamity, start Delve (Thalandri Fatesinger)
 			-- 135798:|cFF0000FF(Delve)|r I'll stop this invasion!
 			self:SelectGossipID(135798)
+		elseif self:GetGossipID(138592) then -- Collegiate Calamity, start Delve (Sir Finley Mrrgglton)
+			-- 138592:|cFF0000FF(Delve)|r Never did enjoy homework.
+			self:SelectGossipID(138592)
 		elseif self:GetGossipID(139635) then -- Gnarldor Isle, start Delve (Artolla)
 			-- 139635:They'll never know what hit them.
 			self:SelectGossipID(139635)
