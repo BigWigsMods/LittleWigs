@@ -35,7 +35,7 @@ mod:SetAuraData({
 	{1238801, header = 245567, duration = 25, dispel = "curse", soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1238801))}, -- Insatiable Hunger (Starvation Effigy)
 	{1238687, header = 245855, duration = 5, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1238725))}, -- Feast of Misery (Spirit of Hunger)
 	{1297701, header = 241813, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Rotten Ground (Thornclaw Gatherer)
-	{1241217, soundOnAppliedDose = "none", tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1241217))}, -- Shredding Claws (Thornclaw Gatherer)
+	{1238247, soundOnAppliedDose = "none", tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1238247))}, -- Shredding Claws (Thornclaw Gatherer)
 	{1252825, header = mod:SpellName(1252825), tip = CL.debuffFailureSafeZoneNote}, -- Harsh Winds (environmental)
 	{1233904, soundOnApplied = "info"}, -- Sheltered (environmental)
 	{1266193, header = 241876, tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1235841))}, -- Snowdrift (Glacial Revenant)
