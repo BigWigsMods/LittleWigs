@@ -24,7 +24,7 @@ local backupBars = {}
 --
 
 mod:SetRenames({
-	[473898] = {473898},  -- Legion Strike
+	[473898] = {473898}, -- Legion Strike
 	[1214637] = {1214637, CL.you:format(mod:SpellName(1214637)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1214637, CL.you:format(mod:SpellName(1214637))}}, -- Axe Toss
 	[1295453] = {1295453}, -- Infernal Crush
 	[474197] = {474197, CL.cast:format(mod:SpellName(474197)), CL.onboss:format(mod:SpellName(474197)), notes = {CL.generalNote, CL.castTimerNote, CL.messageCastOverNote}, original = {474197, CL.cast:format(mod:SpellName(474197)), CL.onboss:format(mod:SpellName(474197))}}, -- Demonic Rage
@@ -35,10 +35,10 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{473898, duration = 8, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(473898))}, -- Legion Strike
-	{1214637, duration = 5, tip = CL.debuffTargetedNote:format(mod:SpellName(1214637))}, -- Axe Toss
+	{473898, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(473898))}, -- Legion Strike
+	{1214637, tip = CL.debuffTargetedNote:format(mod:SpellName(1214637))}, -- Axe Toss
 	{1214650, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1214637))}, -- Fel Lightning
-	{1295455, duration = 8, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1295453))}, -- Infernal Crush
+	{1295455, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1295453))}, -- Infernal Crush
 	{474234, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Burning Steps
 })
 

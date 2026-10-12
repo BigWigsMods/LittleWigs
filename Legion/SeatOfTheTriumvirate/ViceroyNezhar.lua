@@ -109,8 +109,8 @@ end
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
 		{1263532, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Void Storm
-		{1263542, duration = 5, note = CL.group_damage}, -- Mass Void Infusion
-		{1268733, duration = 10, tip = CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(1263538), CL.adds))}, -- Mind Flay
+		{1263542, note = CL.group_damage}, -- Mass Void Infusion
+		{1268733, tip = CL.debuffAddsCast:format(CL.extra:format(mod:SpellName(1263538), CL.adds))}, -- Mind Flay
 	})
 end
 

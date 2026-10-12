@@ -39,10 +39,10 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1239825, duration = 6, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1239824))}, -- Lightfire
-	{1239919, duration = 6, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Lightfire Beams
-	{1241058, duration = 40, dispel = "bleed", mechanic = "bleeding", soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1241058))}, -- Grievous Thrash
-	{1257094, duration = 6, soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1240210))}, -- Pulverized
+	{1239825, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1239824))}, -- Lightfire
+	{1239919, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Lightfire Beams
+	{1241058, dispel = "bleed", mechanic = "bleeding", soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1241058))}, -- Grievous Thrash
+	{1257094, soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1240210))}, -- Pulverized
 })
 
 --------------------------------------------------------------------------------

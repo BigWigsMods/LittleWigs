@@ -91,9 +91,9 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{386181, duration = 4, soundOnApplied = "warning", note = CL.bomb}, -- Mana Bomb
+		{386181, soundOnApplied = "warning", note = CL.bomb}, -- Mana Bomb
 		{386201, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Corrupted Mana
-		{391977, duration = 18, soundOnAppliedDose = "none", tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(386544))}, -- Oversurge
+		{391977, soundOnAppliedDose = "none", tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(386544))}, -- Oversurge
 	})
 end
 

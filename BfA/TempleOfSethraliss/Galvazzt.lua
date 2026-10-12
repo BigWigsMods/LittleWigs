@@ -73,7 +73,7 @@ if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
 		{266923, soundOnApplied = "info", tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1291618))}, -- Galvanize
 		{1291815, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Induction Field
-		{266512, duration = 20, tip = CL.debuffFailureGroupSoakNote:format(mod:SpellName(1291618))}, -- Consume Charge
+		{266512, tip = CL.debuffFailureGroupSoakNote:format(mod:SpellName(1291618))}, -- Consume Charge
 	})
 end
 

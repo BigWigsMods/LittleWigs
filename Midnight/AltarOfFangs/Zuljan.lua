@@ -35,8 +35,8 @@ mod:SetRenames({
 
 mod:SetAuraData({
 	{1300885, soundOnApplied = "info", tip = CL.debuffWalkIntoObjectNote:format(CL.beam)}, -- Ritual of the Fang
-	{1300894, duration = 50, soundOnAppliedDose = "none", tip = CL.debuffWalkIntoObjectNote:format(CL.beam)}, -- Ritual Venom
-	{1301508, duration = 7, soundOnAppliedDose = "none", tip = CL.debuffHitByCastNote:format(mod:SpellName(1301413))}, -- Boneslicer
+	{1300894, soundOnAppliedDose = "none", tip = CL.debuffWalkIntoObjectNote:format(CL.beam)}, -- Ritual Venom
+	{1301508, soundOnAppliedDose = "none", tip = CL.debuffHitByCastNote:format(mod:SpellName(1301413))}, -- Boneslicer
 	{1301231, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Bloodletting
 })
 

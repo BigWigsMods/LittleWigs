@@ -36,9 +36,9 @@ mod:SetRenames({
 
 mod:SetAuraData({
 	{1225015, tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Suppression Zone
-	{1225205, duration = 8, mechanic = "silenced", tip = CL.debuffFailureSafeZoneNote}, -- Wave of Silence
+	{1225205, mechanic = "silenced", tip = CL.debuffFailureSafeZoneNote}, -- Wave of Silence
 	{1225792, soundOnApplied = "warning", soundOnAppliedDose = "none", note = CL.mark}, -- Runic Mark
-	{1246446, duration = 3, soundOnApplied = "alarm", soundOnAppliedDose = "none", tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Null Reaction
+	{1246446, soundOnApplied = "alarm", soundOnAppliedDose = "none", tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1224903))}, -- Null Reaction
 })
 
 --------------------------------------------------------------------------------

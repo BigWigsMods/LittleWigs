@@ -47,12 +47,12 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1243741, duration = 8, mechanic = "frozen", tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1266480))}, -- Freezing Trap
+	{1243741, mechanic = "frozen", tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1266480))}, -- Freezing Trap
 	{1243752, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Icy Slick
-	{1246666, duration = 30, dispel = "disease", note = CL.disease}, -- Infected Pinions
-	{1249478, duration = 5, soundOnApplied = "warning", note = CL.charge}, -- Carrion Swoop
-	{1260643, duration = 5, soundOnApplied = "warning"}, -- Barrage
-	{1266488, duration = 10, dispel = "bleed", mechanic = "bleeding", soundOnApplied = "alert", soundOnAppliedDose = "none", tip = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1266480), CL.tank_knockback))}, -- Open Wound
+	{1246666, dispel = "disease", note = CL.disease}, -- Infected Pinions
+	{1249478, soundOnApplied = "warning", note = CL.charge}, -- Carrion Swoop
+	{1260643, soundOnApplied = "warning"}, -- Barrage
+	{1266488, dispel = "bleed", mechanic = "bleeding", soundOnApplied = "alert", soundOnAppliedDose = "none", tip = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1266480), CL.tank_knockback))}, -- Open Wound
 })
 
 --------------------------------------------------------------------------------

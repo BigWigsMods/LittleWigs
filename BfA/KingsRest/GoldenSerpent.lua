@@ -68,8 +68,8 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{1306736, duration = 2.5, tip = CL.debuffTargetedNote:format(mod:SpellName(265773))}, -- Spit Gold (pre-application)
-		{265773, duration = 6, tip = CL.debuffDotAfterCastNote:format(mod:SpellName(265773))}, -- Spit Gold (DoT)
+		{1306736, tip = CL.debuffTargetedNote:format(mod:SpellName(265773))}, -- Spit Gold (pre-application)
+		{265773, tip = CL.debuffDotAfterCastNote:format(mod:SpellName(265773))}, -- Spit Gold (DoT)
 		{265914, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Molten Gold
 	})
 end

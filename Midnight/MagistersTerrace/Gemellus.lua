@@ -35,10 +35,10 @@ mod:SetRenames({
 
 mod:SetAuraData({
 	{1224401, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Cosmic Radiation
-	{1284958, duration = 6, soundOnApplied = "alert", soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1284954), CL.pools))}, -- Cosmic Sting
+	{1284958, soundOnApplied = "alert", soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1284954), CL.pools))}, -- Cosmic Sting
 	{1224104, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Void Secretions
-	{1224299, duration = 8, soundOnApplied = "warning", note = CL.grip}, -- Astral Grasp
-	{1253709, duration = 12, soundOnApplied = "warning", note = CL.break_shield}, -- Neural Link
+	{1224299, soundOnApplied = "warning", note = CL.grip}, -- Astral Grasp
+	{1253709, soundOnApplied = "warning", note = CL.break_shield}, -- Neural Link
 })
 
 --------------------------------------------------------------------------------

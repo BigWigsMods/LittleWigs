@@ -35,12 +35,12 @@ mod:SetRenames({
 
 mod:SetAuraData({
 	{472777, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Gunk Splatter
-	{472793, duration = 10, soundOnApplied = "warning"}, -- Heaving Yank
-	{472888, duration = 3, note = CL.tank_hit}, -- Bone Hack
-	{474129, duration = 30, soundOnApplied = "alarm", note = CL.spread}, -- Splattering Spew
-	{1253834, duration = 10, dispel = "curse", soundOnApplied = "info", tip = CL.preDebuffNote}, -- Curse of Darkness
-	{1215803, duration = 12, dispel = "curse", soundOnApplied = "alarm", tip = CL.mainDebuffNote}, -- Curse of Darkness
-	{1282272, duration = 10, tip = CL.postDebuffNote:format(CL.extra:format(mod:SpellName(474129), CL.spread))}, -- Splattered
+	{472793, soundOnApplied = "warning"}, -- Heaving Yank
+	{472888, note = CL.tank_hit}, -- Bone Hack
+	{474129, soundOnApplied = "alarm", note = CL.spread}, -- Splattering Spew
+	{1253834, dispel = "curse", soundOnApplied = "info", tip = CL.preDebuffNote}, -- Curse of Darkness
+	{1215803, dispel = "curse", soundOnApplied = "alarm", tip = CL.mainDebuffNote}, -- Curse of Darkness
+	{1282272, tip = CL.postDebuffNote:format(CL.extra:format(mod:SpellName(474129), CL.spread))}, -- Splattered
 })
 
 --------------------------------------------------------------------------------

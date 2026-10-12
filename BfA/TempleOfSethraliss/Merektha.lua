@@ -84,13 +84,13 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{1308838, duration = 7, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1290797))}, -- Lightning Bite
-		{1290030, duration = 4, difficulty = "mythic", tip = CL.debuffTargetedNote:format(mod:SpellName(1290030))}, -- A Knot of Snakes
-		{1289109, duration = 3.5, tip = CL.debuffTargetedNote:format(mod:SpellName(1289109))}, -- Thunder Spit
-		{1289588, duration = 4, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1289109))}, -- Thunder Spit
+		{1308838, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1290797))}, -- Lightning Bite
+		{1290030, difficulty = "mythic", tip = CL.debuffTargetedNote:format(mod:SpellName(1290030))}, -- A Knot of Snakes
+		{1289109, tip = CL.debuffTargetedNote:format(mod:SpellName(1289109))}, -- Thunder Spit
+		{1289588, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1289109))}, -- Thunder Spit
 		{1289589, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Lingering Storm
-		{1293048, duration = 8, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1293048))}, -- Serpentstorm
-		{264206, duration = 4, mechanic = "stunned", tip = CL.debuffHitByCastNote:format(mod:SpellName(264172))}, -- Burrow
+		{1293048, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1293048))}, -- Serpentstorm
+		{264206, mechanic = "stunned", tip = CL.debuffHitByCastNote:format(mod:SpellName(264172))}, -- Burrow
 		{1300227, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(264172))}, -- Burrowquake
 		{1297034, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Electrified Ground
 	})

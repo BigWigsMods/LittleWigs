@@ -52,8 +52,8 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1291555, duration = 21, tip = CL.debuffHitByCastNote:format(mod:SpellName(1291555))}, -- Noxious Bile
-	{1293824, duration = 18, dispel = "magic", tip = CL.debuffDotAfterCastNote:format(mod:SpellName(1293824))}, -- Void Toxin
+	{1291555, tip = CL.debuffHitByCastNote:format(mod:SpellName(1291555))}, -- Noxious Bile
+	{1293824, dispel = "magic", tip = CL.debuffDotAfterCastNote:format(mod:SpellName(1293824))}, -- Void Toxin
 	{1298887, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Noxious Venom
 	{1297422, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Deadly Venom
 	{1313213, soundOnApplied = "warning", tip = CL.debuffHitByCastNote:format(mod:SpellName(1288125))}, -- Ula'tek's Mark

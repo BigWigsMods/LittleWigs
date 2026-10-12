@@ -63,10 +63,10 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{1262596, duration = 6, note = CL.tank_knockback}, -- Scourgelord's Brand
-		{1262772, duration = 12, soundOnApplied = "warning"}, -- Rime Blast
-		{1263716, duration = 8, tip = CL.postDebuffNote:format(mod:SpellName(1262772))}, -- Frostbite
-		{1276648, duration = 8, tip = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1276648), CL.group_damage))}, -- Bone Infusion
+		{1262596, note = CL.tank_knockback}, -- Scourgelord's Brand
+		{1262772, soundOnApplied = "warning"}, -- Rime Blast
+		{1263716, tip = CL.postDebuffNote:format(mod:SpellName(1262772))}, -- Frostbite
+		{1276648, tip = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1276648), CL.group_damage))}, -- Bone Infusion
 	})
 end
 

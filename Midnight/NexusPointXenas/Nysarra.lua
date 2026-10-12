@@ -42,8 +42,8 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1249020, duration = 7, soundOnApplied = "warning", note = CL.bomb}, -- Eclipsing Step
-	{1252828, duration = 10, soundOnApplied = "alarm", tip = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1247937), CL.tank_hit))}, -- Void Gash
+	{1249020, soundOnApplied = "warning", note = CL.bomb}, -- Eclipsing Step
+	{1252828, soundOnApplied = "alarm", tip = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1247937), CL.tank_hit))}, -- Void Gash
 })
 
 --------------------------------------------------------------------------------

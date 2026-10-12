@@ -34,7 +34,7 @@ mod:SetRenames({
 
 mod:SetAuraData({
 	{1255310, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Radiant Scar
-	{1255335, duration = 6, soundOnApplied = "alert", soundOnAppliedDose = "none", tip = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1255335), CL.tank_hit))}, -- Searing Rend
+	{1255335, soundOnApplied = "alert", soundOnAppliedDose = "none", tip = CL.debuffTankAfterCastNote:format(CL.extra:format(mod:SpellName(1255335), CL.tank_hit))}, -- Searing Rend
 	-- Add the Brilliant Dispersion pre-debuff if one is ever added
 	--{1255503, note = CL.bomb}, -- Brilliant Dispersion (This is the post debuff, no pre debuff exists...)
 })

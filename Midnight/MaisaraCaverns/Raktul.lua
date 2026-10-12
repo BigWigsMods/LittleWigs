@@ -36,7 +36,7 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1252675, duration = 8, soundOnApplied = "warning", note = CL.leap}, -- Crush Souls
+	{1252675, soundOnApplied = "warning", note = CL.leap}, -- Crush Souls
 	{1252777, tip = CL.debuffAddsCast:format(mod:SpellName(-33914))}, -- Soulbind
 	{1252816, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Chill of Death
 	{1253779, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Spectral Decay

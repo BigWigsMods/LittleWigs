@@ -37,13 +37,13 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1222642, duration = 10, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1222642))}, -- Hulking Claw
-	{1226031, duration = 5, dispel = "poison", tip = CL.debuffHitByCastNote:format(mod:SpellName(1226120))}, -- Poison Splash
+	{1222642, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1222642))}, -- Hulking Claw
+	{1226031, dispel = "poison", tip = CL.debuffHitByCastNote:format(mod:SpellName(1226120))}, -- Poison Splash
 	{1222484, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Poison Pool
-	{1263971, duration = 5, dispel = "poison", tip = CL.debuffUnderYouNote}, -- Mind-Numbing Poison
+	{1263971, dispel = "poison", tip = CL.debuffUnderYouNote}, -- Mind-Numbing Poison
 	{1222692, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1262497))}, -- Toxic Aura
 	{1283506, soundOnApplied = "warning", tip = CL.debuffTargetedNote:format(mod:SpellName(1283506))}, -- Fixate (doesn't work due to a Blizzard bug)
-	{1282892, duration = 300, soundOnApplied = "alarm", soundOnAppliedDose = "alarm", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1283506))}, -- Sickening Bite
+	{1282892, soundOnApplied = "alarm", soundOnAppliedDose = "alarm", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1283506))}, -- Sickening Bite
 })
 
 --------------------------------------------------------------------------------

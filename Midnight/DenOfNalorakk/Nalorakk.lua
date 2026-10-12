@@ -33,10 +33,10 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1242869, duration = 4, tip = CL.debuffTargetedNote:format(mod:SpellName(1242860))}, -- Echoing Maul
-	{1243590, duration = 5, soundOnApplied = "alarm", soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1243569))}, -- Overwhelming Onslaught
-	{1255577, duration = 12, soundOnApplied = "alarm", soundOnAppliedDose = "alarm", tip = CL.debuffUnderYouNote}, -- Spectral Slash
-	{1262253, duration = 30, mechanic = "infected", soundOnApplied = "alarm", soundOnAppliedDose = "alarm", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1262253))}, -- Demoralizing Scream
+	{1242869, tip = CL.debuffTargetedNote:format(mod:SpellName(1242860))}, -- Echoing Maul
+	{1243590, soundOnApplied = "alarm", soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1243569))}, -- Overwhelming Onslaught
+	{1255577, soundOnApplied = "alarm", soundOnAppliedDose = "alarm", tip = CL.debuffUnderYouNote}, -- Spectral Slash
+	{1262253, mechanic = "infected", soundOnApplied = "alarm", soundOnAppliedDose = "alarm", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1262253))}, -- Demoralizing Scream
 	{1261781, soundOnApplied = "info"}, -- Defensive Stance
 })
 

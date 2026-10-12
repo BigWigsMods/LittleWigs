@@ -47,10 +47,10 @@ mod:SetRenames({
 mod:SetAuraData({
 	{1256045, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Null Zone
 	{1256167, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Void Hole
-	{1256358, duration = 18, dispel = "magic"}, -- Devouring Essence
-	{1256366, duration = 18, dispel = "bleed", mechanic = "bleeding"}, -- Jagged Rip
-	{1256518, duration = 8, soundOnAppliedDose = "none"}, -- Poisonous Spit
-	{1256526, duration = 300, dispel = "curse", soundOnApplied = "info"}, -- Curse of Hesitation
+	{1256358, dispel = "magic"}, -- Devouring Essence
+	{1256366, dispel = "bleed", mechanic = "bleeding"}, -- Jagged Rip
+	{1256518, soundOnAppliedDose = "none"}, -- Poisonous Spit
+	{1256526, dispel = "curse", soundOnApplied = "info"}, -- Curse of Hesitation
 })
 
 --------------------------------------------------------------------------------

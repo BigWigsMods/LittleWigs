@@ -76,10 +76,10 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{153954, duration = 60, note = CL.add}, -- Cast Down
+		{153954, note = CL.add}, -- Cast Down
 		{1253541, soundOnApplied = "alert", note = CL.fire_debuffs, tip = CL.preDebuffNote}, -- Scorching Ray
-		{1253543, duration = 5, note = CL.fire_debuffs, tip = CL.mainDebuffNote}, -- Scorching Ray
-		{1253531, duration = 12, soundOnApplied = "warning", note = CL.beam}, -- Lens Flare
+		{1253543, note = CL.fire_debuffs, tip = CL.mainDebuffNote}, -- Scorching Ray
+		{1253531, soundOnApplied = "warning", note = CL.beam}, -- Lens Flare
 	})
 end
 

@@ -35,12 +35,12 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{468442, duration = 4, mechanic = "stunned", soundOnApplied = "warning", note = CL.leap, tip = CL.debuffFailureNote}, -- Billowing Wind
-	{472662, duration = 10, soundOnApplied = "alarm", soundOnAppliedDose = "none", note = CL.tank_knockback}, -- Tempest Slash
-	{474528, duration = 5, soundOnApplied = "warning", note = CL.frontal_cone, tip = CL.mainDebuffNote}, -- Bolt Gale
-	{1282911, duration = 60, soundOnApplied = "warning", note = CL.frontal_cone, tip = CL.preDebuffNote}, -- Bolt Gale
+	{468442, mechanic = "stunned", soundOnApplied = "warning", note = CL.leap, tip = CL.debuffFailureNote}, -- Billowing Wind
+	{472662, soundOnApplied = "alarm", soundOnAppliedDose = "none", note = CL.tank_knockback}, -- Tempest Slash
+	{474528, soundOnApplied = "warning", note = CL.frontal_cone, tip = CL.mainDebuffNote}, -- Bolt Gale
+	{1282911, soundOnApplied = "warning", note = CL.frontal_cone, tip = CL.preDebuffNote}, -- Bolt Gale
 	{1216042, soundOnApplied = "alert"}, -- Squall Leap
-	{1253979, duration = 6, soundOnApplied = "warning", note = CL.clear_pools}, -- Gust Shot
+	{1253979, soundOnApplied = "warning", note = CL.clear_pools}, -- Gust Shot
 	{1282955, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Storming Soulfont
 })
 
