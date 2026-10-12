@@ -18,9 +18,10 @@ mod:SetTrashModule(true)
 -- Auras
 --
 
---mod:SetAuraData({
-	--{1256045, soundOnApplied = "underyou"}, -- Null Zone (Season 1)
---})
+mod:SetAuraData({
+	--{1256045, header = 252950, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Null Zone (Nullaeus, Season 1)
+	{1295701, header = 265525, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Noxious Poison (Azta'rec, Season 2)
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
