@@ -110,6 +110,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(136446) then -- Parhelion Plaza, start Delve (Vindicator Xayann)
 			-- 136446:|cFF0000FF(Delve)|r I'll drive back the attackers.
 			self:SelectGossipID(136446)
+		elseif self:GetGossipID(141655) then -- Labyrinth of Kindo'jan, continue Delve (Warlord Kaz'kara)
+			-- 141655:I will find your faithful steed.
+			self:SelectGossipID(141655)
 		elseif self:GetGossipID(134949) then -- Shadowguard Point, start Delve (Lysikas)
 			-- 134949:|cFF0000FF(Delve)|r Sounds like a plan.
 			self:SelectGossipID(134949)
