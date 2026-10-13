@@ -84,6 +84,12 @@ BigWigs:AddColors("Voidscorned Vagrant", {
 BigWigs:AddSounds("Voidscorned Vagrant", {
 })
 
+BigWigs:AddColors("Kindo'jan", {
+})
+
+BigWigs:AddSounds("Kindo'jan", {
+})
+
 BigWigs:AddColors("Gladius Slaurna", {
 })
 

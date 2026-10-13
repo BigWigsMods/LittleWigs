@@ -24,6 +24,12 @@ BigWigsAPI.SetBossModuleLocale("Voidscorned Vagrant", {
 	voidscorned_vagrant = "Обожженный Бездной бродяга",
 })
 
+-- Delves: Labyrinth of Kindo'jan
+
+BigWigsAPI.SetBossModuleLocale("Kindo'jan", {
+	--kindojan = "Kindo'jan",
+})
+
 -- Delves: Parhelion Plaza
 
 BigWigsAPI.SetBossModuleLocale("Gladius Slaurna", {
