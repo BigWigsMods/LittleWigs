@@ -176,8 +176,9 @@ function mod:PLAYER_CHOICE_UPDATE()
 		if choiceInfo then
 			local numChoices = self:GetPlayerChoiceCount(choiceInfo)
 			if numChoices == 1 then
+				local spellID = self:GetPlayerChoiceSpellID(choiceInfo, numChoices)
 				local numButtons = self:GetPlayerChoiceButtonCount(choiceInfo, numChoices)
-				if numButtons == 1 then
+				if numButtons == 1 and spellID then
 					self:SelectPlayerChoiceButton(choiceInfo, numChoices, numButtons)
 				end
 			end
