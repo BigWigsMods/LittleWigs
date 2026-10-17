@@ -84,6 +84,12 @@ BigWigs:AddColors("Voidscorned Vagrant", {
 BigWigs:AddSounds("Voidscorned Vagrant", {
 })
 
+BigWigs:AddColors("Den'Zara", {
+})
+
+BigWigs:AddSounds("Den'Zara", {
+})
+
 BigWigs:AddColors("Kindo'jan", {
 })
 

@@ -26,6 +26,10 @@ BigWigsAPI.SetBossModuleLocale("Voidscorned Vagrant", {
 
 -- Delves: Labyrinth of Kindo'jan
 
+BigWigsAPI.SetBossModuleLocale("Den'Zara", {
+	denzara = "登扎拉",
+})
+
 BigWigsAPI.SetBossModuleLocale("Kindo'jan", {
 	kindojan = "金多赞",
 })
