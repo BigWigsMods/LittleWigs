@@ -82,6 +82,12 @@ BigWigsAPI.SetBossModuleLocale("Mul'tha'ul", {
 	multhaul = "Мул'та'уль",
 })
 
+-- Delves: The Ring of Glory
+
+BigWigsAPI.SetBossModuleLocale("Drakta", {
+	drakta = "Дракта",
+})
+
 -- Delves: The Shadow Enclave
 
 BigWigsAPI.SetBossModuleLocale("Antenorian", {

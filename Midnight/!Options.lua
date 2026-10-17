@@ -150,6 +150,12 @@ BigWigs:AddColors("Mul'tha'ul", {
 BigWigs:AddSounds("Mul'tha'ul", {
 })
 
+BigWigs:AddColors("Drakta", {
+})
+
+BigWigs:AddSounds("Drakta", {
+})
+
 BigWigs:AddColors("Antenorian", {
 })
 
