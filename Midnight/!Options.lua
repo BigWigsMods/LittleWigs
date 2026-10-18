@@ -162,6 +162,18 @@ BigWigs:AddColors("Mul'tha'ul", {
 BigWigs:AddSounds("Mul'tha'ul", {
 })
 
+BigWigs:AddColors("Gnok", {
+})
+
+BigWigs:AddSounds("Gnok", {
+})
+
+BigWigs:AddColors("Gnok?", {
+})
+
+BigWigs:AddSounds("Gnok?", {
+})
+
 BigWigs:AddColors("Drakta", {
 })
 

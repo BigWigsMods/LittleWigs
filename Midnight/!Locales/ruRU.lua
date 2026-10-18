@@ -94,6 +94,14 @@ BigWigsAPI.SetBossModuleLocale("Mul'tha'ul", {
 
 -- Delves: The Ring of Glory
 
+BigWigsAPI.SetBossModuleLocale("Gnok", {
+	gnok = "Гнок",
+})
+
+BigWigsAPI.SetBossModuleLocale("Gnok?", {
+	gnok2 = "Гнок?",
+})
+
 BigWigsAPI.SetBossModuleLocale("Drakta", {
 	drakta = "Дракта",
 })
