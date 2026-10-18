@@ -84,6 +84,18 @@ BigWigs:AddColors("Voidscorned Vagrant", {
 BigWigs:AddSounds("Voidscorned Vagrant", {
 })
 
+BigWigs:AddColors("Gralka Snake-Eater", {
+})
+
+BigWigs:AddSounds("Gralka Snake-Eater", {
+})
+
+BigWigs:AddColors("Osseous Amalgamation", {
+})
+
+BigWigs:AddSounds("Osseous Amalgamation", {
+})
+
 BigWigs:AddColors("Den'Zara", {
 })
 

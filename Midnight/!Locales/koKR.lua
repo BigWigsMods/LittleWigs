@@ -24,6 +24,16 @@ BigWigsAPI.SetBossModuleLocale("Voidscorned Vagrant", {
 	voidscorned_vagrant = "공허멸시 부랑자",
 })
 
+-- Delves: Gnarldor Isle
+
+BigWigsAPI.SetBossModuleLocale("Gralka Snake-Eater", {
+	gralka_snake_eater = "그랄카 뱀포식자",
+})
+
+BigWigsAPI.SetBossModuleLocale("Osseous Amalgamation", {
+	osseous_amalgamation = "골화 융합체",
+})
+
 -- Delves: Labyrinth of Kindo'jan
 
 BigWigsAPI.SetBossModuleLocale("Den'Zara", {
