@@ -1,4 +1,4 @@
-## Interface: 50503, 50504, 120007, 120100, 120105
+## Interface: 50503, 50504, 120107, 120100, 120105
 ## AllowLoadGameType: mists, standard
 
 ## Title: LittleWigs [|cffeda55fMists of Pandaria|r]
