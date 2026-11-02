@@ -18,7 +18,7 @@ BigWigsAPI.SetBossModuleLocale("Ara-Kara, City of Echoes Trash", {
 	winged_carrier = "Portador alado",
 
 	avanoxx_warmup_trigger = "Los asistentes han sido silenciados… ¡algo emerge!",
-	custom_on_autotalk_desc = "|cFFFF0000Requiere 25 de habilidad en Sastrería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del NPC que te otorga 'Envoltura de Seda', la cual puedes usar haciendo clic en tu botón de acción extra.",
+	custom_on_autotalk_desc = "|cFFFF0000Requiere 25 puntos de habilidad en Sastrería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del PNJ que te otorga 'Envoltura de Seda', la cual puedes usar haciendo clic en tu botón de acción extra.",
 })
 
 BigWigsAPI.SetBossModuleLocale("Anub'zekt", {
@@ -44,8 +44,8 @@ BigWigsAPI.SetBossModuleLocale("Cinderbrew Meadery Trash", {
 	royal_jelly_purveyor = "Abastecedor de jalea real",
 	yes_man = "Subordinado",
 
-	custom_on_cooking_autotalk_desc = "|cFFFF0000Requiere 25 de habilidad en Alquimia o Cocina de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del NPC que te otorga 'Miel Pegajosa', la cual puedes usar haciendo clic en tu botón de acción extra.\n\n|T451169:16|tMiel Pegajosa\n{438997}",
-	custom_on_flamethrower_autotalk_desc = "|cFFFF0000Requiere Gnomo, Goblin, Mecagnomo, o 25 de habilidad en Ingeniería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del NPC que te otorga '¡Que arda todo!', la cual puedes usar haciendo clic en tu botón de acción extra.\n\n|T135789:16|t¡Que arda todo!\n{439616}",
+	custom_on_cooking_autotalk_desc = "|cFFFF0000Requiere 25 puntos de habilidad en Alquimia o Cocina de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del PNJ que te otorga 'Miel Pegajosa', la cual puedes usar haciendo clic en tu botón de acción extra.\n\n|T451169:16|tMiel Pegajosa\n{438997}",
+	custom_on_flamethrower_autotalk_desc = "|cFFFF0000Requiere Gnomo, Goblin, Mecagnomo o 25 puntos de habilidad en Ingeniería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del PNJ que te otorga '¡Que arda todo!', la cual puedes usar haciendo clic en tu botón de acción extra.\n\n|T135789:16|t¡Que arda todo!\n{439616}",
 })
 
 BigWigsAPI.SetBossModuleLocale("Brew Master Aldryr", {
@@ -73,7 +73,7 @@ BigWigsAPI.SetBossModuleLocale("City of Threads Trash", {
 	xephitik_defeated_trigger = "¡Basta!",
 	fangs_of_the_queen_warmup_trigger = "El Transformatorio fue el hogar de nuestra evolución sagrada.",
 	izo_warmup_trigger = "¡Basta! Os habéis ganado un hueco en mi colección. Os la mostraré.",
-	custom_on_autotalk_desc = "|cFFFF0000Requiere Pícaro, Sacerdote, o 25 de habilidad en Ingeniería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del NPC que te otorga el aura 'Poder Robado'.",
+	custom_on_autotalk_desc = "|cFFFF0000Requiere Pícaro, Sacerdote o 25 puntos de habilidad en Ingeniería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del PNJ que te otorga el aura 'Poder Robado'.",
 })
 
 BigWigsAPI.SetBossModuleLocale("Fangs of the Queen", {
@@ -98,7 +98,7 @@ BigWigsAPI.SetBossModuleLocale("Darkflame Cleft Trash", {
 
 	minecart = "Minijuego de la vagoneta",
 	hits = "Golpes",
-	minecart_over = "Ganador: %s (%d golpes)",
+	minecart_over = "Ganador: %s (golpes: %d)",
 })
 
 BigWigsAPI.SetBossModuleLocale("Ol' Waxbeard", {
@@ -112,38 +112,38 @@ BigWigsAPI.SetBossModuleLocale("The Darkness", {
 -- Delves: Archival Assault
 
 BigWigsAPI.SetBossModuleLocale("Captain Nil'hitan", {
-	--captain_nilhitan = "Captain Nil'hitan",
+	captain_nilhitan = "Capitán Nil'hitan",
 })
 
 BigWigsAPI.SetBossModuleLocale("Portalmaster Halsan", {
-	--portalmaster_halsan = "Portalmaster Halsan",
+	portalmaster_halsan = "Maestro de portales Halsan",
 })
 
 BigWigsAPI.SetBossModuleLocale("Voidrider Challnax", {
-	--voidripper = "Voidripper",
-	--voidrider_challnax= "Voidrider Challnax",
+	voidripper = "Desgarravacío",
+	voidrider_challnax= "Jinete del Vacío Challnax",
 })
 
 -- Delves: Demolition Dome
 
 BigWigsAPI.SetBossModuleLocale("The Underpin", {
-	--the_underpin = "The Underpin (Tier 8)",
-	--crony = "Crony",
+	the_underpin = "El Pez Hondo (Nivel 8)",
+	crony = "Compinche",
 })
 
 BigWigsAPI.SetBossModuleLocale("The Underpin 2", {
-	--the_underpin = "The Underpin (Tier 11)",
-	--crony = "Crony",
+	the_underpin = "El Pez Hondo (Nivel 11)",
+	crony = "Compinche",
 })
 
 -- Delves: Earthcrawl Mines
 
 BigWigsAPI.SetBossModuleLocale("Maklin Drillstab", {
-	--maklin_drillstab = "Maklin Drillstab",
+	maklin_drillstab = "Maklin Clavataladro",
 })
 
 BigWigsAPI.SetBossModuleLocale("The Biggest Bug", {
-	--the_biggest_bug = "The Biggest Bug",
+	the_biggest_bug = "El mayor de los insectos",
 })
 
 BigWigsAPI.SetBossModuleLocale("Web General Ab'enar", {
@@ -153,26 +153,26 @@ BigWigsAPI.SetBossModuleLocale("Web General Ab'enar", {
 -- Delves: Excavation Site 9
 
 BigWigsAPI.SetBossModuleLocale("Beste Glatisant", {
-	--beste_glatisant = "Beste Glatisant",
+	beste_glatisant = "Beste Glatisant",
 })
 
 BigWigsAPI.SetBossModuleLocale("Craggle Fritzbrains", {
-	--craggle_fritzbrains = "Craggle Fritzbrains",
+	craggle_fritzbrains = "Craggle Cerebrorroto",
 })
 
 BigWigsAPI.SetBossModuleLocale("Harbinger Ul'thul", {
-	--harbinger_ulthul = "Harbinger Ul'thul",
+	harbinger_ulthul = "Presagista Ul'thul",
 })
 
 BigWigsAPI.SetBossModuleLocale("Xel'anegh The Many", {
-	--xelanegh_the_many = "Xel'anegh The Many",
+	xelanegh_the_many = "Xel'anegh la Abundante",
 })
 
 -- Delves: Fungal Folly
 
 BigWigsAPI.SetBossModuleLocale("Maulspike", {
-	--maulspike = "Maulspike",
-	--darkfuse_cackler = "Darkfuse Cackler",
+	maulspike = "Vapuleapúas",
+	darkfuse_cackler = "Charlatán de Fundisombras",
 })
 
 BigWigsAPI.SetBossModuleLocale("Spinshroom", {
@@ -212,24 +212,24 @@ BigWigsAPI.SetBossModuleLocale("Speaker Wicke", {
 })
 
 BigWigsAPI.SetBossModuleLocale("Cult Leaders", {
-	--cult_leaders = "Cult Leaders",
-	--inquisitor_speaker = "Inquisitor Speaker",
-	--shadeguard_speaker = "Shadeguard Speaker",
+	cult_leaders = "Líderes del culto",
+	inquisitor_speaker = "Portavoz inquisidor",
+	shadeguard_speaker = "Portavoz guardia sombría",
 })
 
 -- Delves: Sidestreet Sluice
 
 BigWigsAPI.SetBossModuleLocale("Geargrave", {
-	--geargrave = "Geargrave",
+	geargrave = "Tumbaengranaje",
 })
 
 BigWigsAPI.SetBossModuleLocale("Gold Elemental", {
-	--gold_elemental = "Gold Elemental",
-	--gold_shaman = "Gold Shaman",
+	gold_elemental = "Elemental de oro",
+	gold_shaman = "Chamán de oro",
 })
 
 BigWigsAPI.SetBossModuleLocale("Vindle Snapcrank", {
-	--vindle_snapcrank = "Vindle Snapcrank",
+	vindle_snapcrank = "Vindle Rompevielas",
 })
 
 -- Delves: Skittering Breach
@@ -267,7 +267,7 @@ BigWigsAPI.SetBossModuleLocale("Mirror Master Murkna", {
 BigWigsAPI.SetBossModuleLocale("Leviathan Caller", {
 	leviathan_caller = "Invocador de leviatán",
 	guardian_tentacle = "Tentáculo guardián",
-	--slamming_tentacles = "Slamming Tentacles", -- plural
+	slamming_tentacles = "Tentáculos machacadores", -- plural
 })
 
 BigWigsAPI.SetBossModuleLocale("Cragpie", {
@@ -295,9 +295,9 @@ BigWigsAPI.SetBossModuleLocale("Researcher Xik'vik", {
 })
 
 BigWigsAPI.SetBossModuleLocale("Torque Clankfire and Sprok", {
-	--bossName = "Torque Clankfire and Sprok",
-	--torque_clankfire = "Torque Clankfire",
-	--sprok = "Sprok",
+	bossName = "Torque Vielafuego y Sprok",
+	torque_clankfire = "Torque Vielafuego",
+	sprok = "Sprok",
 })
 
 -- Delves: The Waterworks
@@ -313,32 +313,32 @@ BigWigsAPI.SetBossModuleLocale("Waxface", {
 -- Delves: Voidrazor Sanctuary
 
 BigWigsAPI.SetBossModuleLocale("Nexus-Princess Ky'veza (Tier 11)", {
-	--nexus_princess_kyveza = "Nexus-Princess Ky'veza",
+	nexus_princess_kyveza = "Princesa del Nexo Ky'veza",
 })
 
 -- Delves: Zekvir's Lair
 
 BigWigsAPI.SetBossModuleLocale("Zekvir", {
-	--zekvir = "Zekvir (Tier 8)",
+	zekvir = "Zekvir (Nivel 8)",
 	web_terror = "Terror de telarañas",
 })
 
 BigWigsAPI.SetBossModuleLocale("Zekvir 2", {
-	--zekvir = "Zekvir (Tier 11)",
+	zekvir = "Zekvir (Nivel 11)",
 	web_terror = "Terror de telarañas",
 })
 
 -- Delves: Trash
 
 BigWigsAPI.SetBossModuleLocale("Ethereal Trash", {
-	--ethereal_trash = "Ethereal Trash",
+	ethereal_trash = "Bichos etéreos",
 
-	--shadeye_observer = "Shadeye Observer",
-	--shadowguard_phasecutter = "Shadowguard Phasecutter",
-	--shadowguard_arcanotech = "Shadowguard Arcanotech",
-	--shadowguard_soulbreaker = "Shadowguard Soulbreaker",
-	--shadowguard_steelsoul = "Shadowguard Steelsoul",
-	--siphoned_drake = "Siphoned Drake",
+	shadeye_observer = "Observador ojosombra",
+	shadowguard_phasecutter = "Cortador de fase de la Guardia de las Sombras",
+	shadowguard_arcanotech = "Técnico Arcano de la Guardia de las Sombras",
+	shadowguard_soulbreaker = "Rompealmas de la Guardia de las Sombrasr",
+	shadowguard_steelsoul = "Almacero de la Guardia de las Sombras",
+	siphoned_drake = "Draco succionado",
 	steelsoul_arcanoward = "Arcanorresguardo alma de acero",
 })
 
@@ -356,17 +356,17 @@ BigWigsAPI.SetBossModuleLocale("Fungarian Delve Trash", {
 })
 
 BigWigsAPI.SetBossModuleLocale("Goblin Delve Trash", {
-	--goblin_trash = "Goblin Trash",
+	goblin_trash = "Bichos goblin",
 
-	--bopper_bot = "Bopper Bot",
-	--aerial_support_bot = "Aerial Support Bot",
-	--masked_freelancer = "Masked Freelancer",
-	--underpaid_brute = "Underpaid Brute",
-	--drill_sergeant = "Drill Sergeant",
+	bopper_bot = "Robot aporreador",
+	aerial_support_bot = "Robot de apoyo aéreo",
+	masked_freelancer = "Mercenario enmascarado",
+	underpaid_brute = "Bruto mal pagado",
+	drill_sergeant = "Sargento de maniobras",
 	punchy_thug = "Matón contundente",
-	--flinging_flicker = "Flinging Flicker",
+	flinging_flicker = "Lanzador titilante",
 	bomb_bot = "Bombabot",
-	--rad_rat = "Rad Rat",
+	rad_rat = "Rata irradiada",
 })
 
 BigWigsAPI.SetBossModuleLocale("Kobold Delve Trash", {
@@ -390,19 +390,19 @@ BigWigsAPI.SetBossModuleLocale("Kobyss Delve Trash", {
 })
 
 BigWigsAPI.SetBossModuleLocale("Ky'veza Rares", {
-	--rares = "Ky'veza Rares",
+	rares = "Raros de Ky'veza",
 
 	treasure_wraith = "Ánima del tesoro",
-	--invasive_phasecrawler = "Invasive Phasecrawler",
-	--drude = "D'rude",
-	--great_devourer = "Great Devourer",
+	invasive_phasecrawler = "Reptafases invasivo",
+	drude = "D'rude",
+	great_devourer = "Gran devorador",
 	mercenary_acquisitionist = "Adquirente mercenario",
-	--pactsworn_fraycaller = "Pactsworn Fraycaller",
-	--pactsworn_dustblade = "Pactsworn Dustblade",
-	--pactsworn_sandreaver = "Pactsworn Sandreaver",
-	--pactsworn_arcanist = "Pactsworn Arcanist",
-	--pactsworn_wildcaller = "Pactsworn Wildcaller",
-	--nexus_princess_kyveza = "Nexus-Princess Ky'veza (Random Spawn)",
+	pactsworn_fraycaller = "Llamaluchas jurapactos",
+	pactsworn_dustblade = "Hojapolvo jurapactos",
+	pactsworn_sandreaver = "Atracador de arena jurapactosr",
+	pactsworn_arcanist = "Arcanista jurapactos",
+	pactsworn_wildcaller = "Clamasalvaje jurapactos",
+	nexus_princess_kyveza = "Princesa del Nexo Ky'veza (apariciones aleatorias)",
 	zekvir = "Zekvir",
 	the_underpin = "El Pez Hondo",
 })
@@ -430,12 +430,12 @@ BigWigsAPI.SetBossModuleLocale("Nightfall Delve Trash", {
 })
 
 BigWigsAPI.SetBossModuleLocale("Old God Delve Trash", {
-	--old_god_trash = "Old God Trash",
+	old_god_trash = "Bichos de los dioses antiguos",
 
-	--dark_walker = "Dark Walker",
-	--hideous_amalgamation = "Hideous Amalgamation",
-	--coagulated_mass = "Coagulated Mass",
-	--silent_slitherer = "Silent Slitherer",
+	dark_walker = "Caminante oscuro",
+	hideous_amalgamation = "Amalgama hórrida",
+	coagulated_mass = "Masa coagulada",
+	silent_slitherer = "Deslizador silencioso",
 	amalgamized_mass = "Masa amalgamada",
 })
 
@@ -517,7 +517,7 @@ BigWigsAPI.SetBossModuleLocale("Priory of the Sacred Flame Trash", {
 	sir_braunpyke = "Sir Braunpyke",
 
 	baron_braunpyke_warmup_trigger = "Ya han cumplido su propósito. Barón, demuestra tu valía.",
-	custom_on_autotalk_desc = "|cFFFF0000Requiere Sacerdote o Paladín.|r Selecciona automáticamente la opción de diálogo del NPC que te otorga el aura 'Bendición de la Llama Sagrada'.",
+	custom_on_autotalk_desc = "|cFFFF0000Requiere Sacerdote o Paladín.|r Selecciona automáticamente la opción de diálogo del PNJ que te otorga el aura 'Bendición de la Llama Sagrada'.",
 })
 
 BigWigsAPI.SetBossModuleLocale("Baron Braunpyke", {
@@ -540,38 +540,38 @@ BigWigsAPI.SetBossModuleLocale("Awakening the Machine", {
 })
 
 BigWigsAPI.SetBossModuleLocale("Brawler's Guild", {
-	--brawlers_guild = "Brawler's Guild",
-	--rank = "Rank %d",
-	--defeated = "%s defeated",
+	brawlers_guild = "Hermandad de camorristas",
+	rank = "Rango %d",
+	defeated = "%s derrotado",
 
-	--sunny = "Sunny",
-	--doomflipper = "Doomflipper",
-	--goredome = "Goredome",
-	--dippy = "Dippy",
-	--bruce = "Bruce",
-	--bill_the_janitor = "Bill the Janitor",
-	--oso = "Oso",
-	--the_quacken = "The Quacken",
-	--razorgrin = "Razorgrin",
-	--blat = "Blat",
-	--ooliss = "Ooliss",
-	--king_kulaka = "King Kulaka",
-	--meatball = "Meatball",
-	--ash_katzuum = "Ash'katzuum",
-	--crush = "Crush",
-	--glorp = "Glorp",
-	--klunk = "Klunk",
-	--stitches = "Stitches",
-	--topps = "Topps",
-	--carl = "Carl",
-	--leper_gnome_quintet = "Leper Gnome Quintet",
-	--mecha_bruce = "Mecha-Bruce",
-	--gg_engineering = "GG Engineering",
-	--doopy = "Doopy",
-	--renegade_swabbie = "Renegade Swabbie",
-	--ogrewatch = "Ogrewatch",
-	--blingtron_3000 = "Blingtron 3000",
-	--epicus_maximus = "Epicus Maximus",
+	sunny = "Solete",
+	doomflipper = "Aletamuerte",
+	goredome = "Cocosangre",
+	dippy = "Chapuzón",
+	bruce = "Bruce",
+	bill_the_janitor = "Bill el Conserje",
+	oso = "Oso",
+	the_quacken = "El Cuaquen",
+	razorgrin = "Muecafilada ",
+	blat = "Blat",
+	ooliss = "Ooliss",
+	king_kulaka = "Rey Kulaka",
+	meatball = "Albóndiga",
+	ash_katzuum = "Ash'katzuum",
+	crush = "Amasijo",
+	glorp = "Glorp",
+	klunk = "Clank",
+	stitches = "Puntos",
+	topps = "Topps",
+	carl = "Carl",
+	leper_gnome_quintet = "Quinteto de gnomos parias",
+	mecha_bruce = "Meca-Bruce",
+	gg_engineering = "Ingeniería GG",
+	doopy = "Bobalicón",
+	renegade_swabbie = "Grumete renegada",
+	ogrewatch = "Ogrewatch",
+	blingtron_3000 = "Joyatrón 3000",
+	epicus_maximus = "Epicus Maximus",
 })
 
 -- The Dawnbreaker
@@ -628,5 +628,5 @@ BigWigsAPI.SetBossModuleLocale("The Stonevault Trash", {
 	rock_smasher = "Machacador de roca",
 
 	edna_warmup_trigger = "¿Qué es eso? ¿El gólem está fusionado con otra cosa?",
-	custom_on_autotalk_desc = "|cFFFF0000Requiere Guerrero, Enano, o 25 de habilidad en Herrería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del NPC que otorga a tu grupo el aura 'Energía de hierro imbuido'.",
+	custom_on_autotalk_desc = "|cFFFF0000Requiere Guerrero, Enano, o 25 puntos de habilidad en Herrería de Khaz Algar.|r Selecciona automáticamente la opción de diálogo del PNJ que otorga a tu grupo el aura 'Energía de hierro imbuido'.",
 })
