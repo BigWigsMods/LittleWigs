@@ -79,11 +79,11 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{372865, duration = 15, tip = CL.debuffTargetedNote:format(mod:SpellName(372864))}, -- Ritual of Blazebinding
-		{384823, duration = 8, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(384823))}, -- Inferno
+		{372865, tip = CL.debuffTargetedNote:format(mod:SpellName(372864))}, -- Ritual of Blazebinding
+		{384823, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(384823))}, -- Inferno
 		{372820, soundOnApplied = "underyou", difficulty = "mythic", tip = CL.debuffUnderYouNote}, -- Scorched Earth
-		{372858, duration = 3, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(372858))}, -- Searing Blows
-		{372860, duration = 8, soundOnAppliedDose = "none", tip = CL.debuffDotAfterCastNote:format(mod:SpellName(372858))}, -- Searing Wounds
+		{372858, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(372858))}, -- Searing Blows
+		{372860, soundOnAppliedDose = "none", tip = CL.debuffDotAfterCastNote:format(mod:SpellName(372858))}, -- Searing Wounds
 	})
 end
 

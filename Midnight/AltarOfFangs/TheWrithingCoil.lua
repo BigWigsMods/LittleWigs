@@ -49,10 +49,10 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1299080, duration = 60, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1299080))}, -- Death Rattle
-	{1300503, duration = 20, tip = CL.debuffTargetedNote:format(mod:SpellName(1300503))}, -- Spiteful Hunt
-	{1310974, duration = 60, soundOnAppliedDose = "none", tip = CL.debuffFailureInterruptNote:format(mod:SpellName(1310974))}, -- Toxic Atrophy
-	{1299189, duration = 35, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1299154))}, -- Synchronized Venom
+	{1299080, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1299080))}, -- Death Rattle
+	{1300503, tip = CL.debuffTargetedNote:format(mod:SpellName(1300503))}, -- Spiteful Hunt
+	{1310974, soundOnAppliedDose = "none", tip = CL.debuffFailureInterruptNote:format(mod:SpellName(1310974))}, -- Toxic Atrophy
+	{1299189, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1299154))}, -- Synchronized Venom
 })
 
 --------------------------------------------------------------------------------

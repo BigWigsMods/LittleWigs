@@ -32,11 +32,11 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1236747, duration = 4, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1236746))}, -- Verdant Stomp
+	{1236747, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1236746))}, -- Verdant Stomp
 	{1259365, dispel = "magic", mechanic = "rooted", soundOnApplied = "info", tip = CL.debuffUnderYouNote}, -- Bloodthorn Roots
-	{1237091, duration = 10, tip = CL.debuffTargetedNote:format(mod:SpellName(1237091))}, -- Bloodthirsty Gaze
-	{1237267, duration = 3, dispel = "bleed", mechanic = "bleeding", soundOnApplied = "warning", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1237091))}, -- Incise
-	{1272290, duration = 5, tip = CL.postDebuffNote:format(mod:SpellName(1237267))}, -- Crunched
+	{1237091, tip = CL.debuffTargetedNote:format(mod:SpellName(1237091))}, -- Bloodthirsty Gaze
+	{1237267, dispel = "bleed", mechanic = "bleeding", soundOnApplied = "warning", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1237091))}, -- Incise
+	{1272290, tip = CL.postDebuffNote:format(mod:SpellName(1237267))}, -- Crunched
 })
 
 --------------------------------------------------------------------------------

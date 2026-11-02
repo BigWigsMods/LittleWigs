@@ -39,9 +39,9 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1297876, duration = 10, soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1296220))}, -- Triple Shot
-	{1307700, duration = 9, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1296216))}, -- Carrion Burst
-	{1307915, duration = 2, soundOnApplied = "alarm", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1307894))}, -- Ravenous Stomp
+	{1297876, soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1296220))}, -- Triple Shot
+	{1307700, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1296216))}, -- Carrion Burst
+	{1307915, soundOnApplied = "alarm", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1307894))}, -- Ravenous Stomp
 })
 
 --------------------------------------------------------------------------------

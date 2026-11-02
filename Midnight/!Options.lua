@@ -84,6 +84,30 @@ BigWigs:AddColors("Voidscorned Vagrant", {
 BigWigs:AddSounds("Voidscorned Vagrant", {
 })
 
+BigWigs:AddColors("Gralka Snake-Eater", {
+})
+
+BigWigs:AddSounds("Gralka Snake-Eater", {
+})
+
+BigWigs:AddColors("Osseous Amalgamation", {
+})
+
+BigWigs:AddSounds("Osseous Amalgamation", {
+})
+
+BigWigs:AddColors("Den'Zara", {
+})
+
+BigWigs:AddSounds("Den'Zara", {
+})
+
+BigWigs:AddColors("Kindo'jan", {
+})
+
+BigWigs:AddSounds("Kindo'jan", {
+})
+
 BigWigs:AddColors("Gladius Slaurna", {
 })
 
@@ -136,6 +160,24 @@ BigWigs:AddColors("Mul'tha'ul", {
 })
 
 BigWigs:AddSounds("Mul'tha'ul", {
+})
+
+BigWigs:AddColors("Gnok", {
+})
+
+BigWigs:AddSounds("Gnok", {
+})
+
+BigWigs:AddColors("Gnok?", {
+})
+
+BigWigs:AddSounds("Gnok?", {
+})
+
+BigWigs:AddColors("Drakta", {
+})
+
+BigWigs:AddSounds("Drakta", {
 })
 
 BigWigs:AddColors("Antenorian", {

@@ -1,0 +1,63 @@
+## Interface: 50503, 50504, 120107, 120100, 120105
+## AllowLoadGameType: mists, standard
+
+## Title: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-deDE: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-esES: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-esMX: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-frFR: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-itIT: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-koKR: LittleWigs [|cffeda55f판다리아의 안개|r]
+## Title-ptBR: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-ruRU: LittleWigs [|cffeda55fMists of Pandaria|r]
+## Title-zhCN: LittleWigs [|cffeda55f熊猫人之谜|r]
+## Title-zhTW: LittleWigs [|cffeda55f潘達利亞之謎|r]
+## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-LoadOn-InstanceId: 959, 960, 961, 962, 994, 1001, 1004, 1007, 1011, 1112 [AllowLoadGameType mists]
+## X-BigWigs-LoadOn-InstanceId: 959, 960, 961, 962, 994, 1001, 1004, 1007, 1011, 1112, 2849 [AllowLoadGameType standard]
+
+!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+BlackTempleSolo\EssenceOfOrder.lua
+BlackTempleSolo\Kanrethad.lua
+GateOfTheSettingSun\Kiptilak.lua
+GateOfTheSettingSun\Gadok.lua
+GateOfTheSettingSun\Rimok.lua
+GateOfTheSettingSun\Raigonn.lua
+MogushanPalace\TrialOfTheKing.lua
+MogushanPalace\Gekkan.lua
+MogushanPalace\XinTheWeaponmaster.lua
+ScarletHalls\HoundmasterBraun.lua
+ScarletHalls\ArmsmasterHarlan.lua
+ScarletHalls\FlameweaverKoegler.lua
+ScarletMonastery\ThalnosTheSoulrender.lua
+ScarletMonastery\BrotherKorloff.lua
+ScarletMonastery\HighInquisitorWhitemane.lua
+ScarletMonastery\TheHeadlessHorseman.lua [AllowLoadGameType standard]
+Scholomance\InstructorChillheart.lua
+Scholomance\JandiceBarov.lua
+Scholomance\Rattlegore.lua
+Scholomance\LilianVoss.lua
+Scholomance\DarkmasterGandling.lua
+ShadoPanMonastery\GuCloudstrike.lua
+ShadoPanMonastery\MasterSnowdrift.lua
+ShadoPanMonastery\ShaOfViolence.lua
+ShadoPanMonastery\TaranZhu.lua
+ShadoPanMonastery\Trash.lua
+SiegeOfNiuzaoTemple\Jinbak.lua
+SiegeOfNiuzaoTemple\Vojak.lua
+SiegeOfNiuzaoTemple\Pavalak.lua
+SiegeOfNiuzaoTemple\Neronok.lua
+StormstoutBrewery\OokOok.lua
+StormstoutBrewery\Hoptallus.lua
+StormstoutBrewery\YanZhu.lua
+TempleOfTheJadeSerpent\WiseMari.lua
+TempleOfTheJadeSerpent\LorewalkerStonestep.lua
+TempleOfTheJadeSerpent\LiuFlameheart.lua
+TempleOfTheJadeSerpent\ShaOfDoubt.lua
+TempleOfTheJadeSerpent\Trash.lua
+!Options.lua

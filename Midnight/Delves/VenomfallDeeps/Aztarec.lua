@@ -52,8 +52,8 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1291555, duration = 21, tip = CL.debuffHitByCastNote:format(mod:SpellName(1291555))}, -- Noxious Bile
-	{1293824, duration = 18, dispel = "magic", tip = CL.debuffDotAfterCastNote:format(mod:SpellName(1293824))}, -- Void Toxin
+	{1291555, tip = CL.debuffHitByCastNote:format(mod:SpellName(1291555))}, -- Noxious Bile
+	{1293824, dispel = "magic", tip = CL.debuffDotAfterCastNote:format(mod:SpellName(1293824))}, -- Void Toxin
 	{1298887, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Noxious Venom
 	{1297422, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Deadly Venom
 	{1313213, soundOnApplied = "warning", tip = CL.debuffHitByCastNote:format(mod:SpellName(1288125))}, -- Ula'tek's Mark
@@ -114,15 +114,17 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local barInfo
 	-- DPS/Healer have shorter timers on Soul Extinction and Venom Storm in exchange for no Serpent's Strike
 	-- TODO can/should we check initial timers to differentiate between tank vs non-tank sets for the whole fight?
+	-- tank initial: 6/10/15/20/26
+	-- heal/dps initial: 6/10/18/23
 	if duration == 6 or (hardMode and (duration == 20.5 or duration == 20.75)) or duration == 21 or duration == 21.025 then -- Noxious Bile
 		barInfo = self:NoxiousBileTimeline(eventInfo)
 	elseif duration == 10 or duration == 21.25 or duration == 21.375 or duration == 21.5 or duration == 21.65 or duration == 21.815 then -- Void Toxin
 		barInfo = self:VoidToxinTimeline(eventInfo)
-	elseif (not self:IsWiping() and duration == 15) or duration == 17.5 then -- Serpent's Strike (tank only)
+	elseif (not self:IsWiping() and duration == 15) or duration == 17.5 or duration == 17.75 or duration == 18.025 then -- Serpent's Strike (tank only)
 		barInfo = self:SerpentsStrikeTimeline(eventInfo)
-	elseif duration == 18 or duration == 20 or duration == 20.42 or (not hardMode and duration == 20.5) or duration == 34.667 or duration == 35 or duration == 35.2 or duration == 35.42 then -- Soul Extinction
+	elseif duration == 18 or duration == 20 or duration == 20.2 or duration == 20.42 or (not hardMode and duration == 20.5) or duration == 34.667 or duration == 35 or duration == 35.2 or duration == 35.42 then -- Soul Extinction
 		barInfo = self:SoulExtinctionTimeline(eventInfo)
-	elseif duration == 23 or duration == 26 or duration == 28.5 or duration == 28.65 or duration == 28.815 or duration == 31.5 then -- Venom Storm
+	elseif duration == 23 or duration == 26 or duration == 28.5 or duration == 28.65 or duration == 28.815 or duration == 31.5 or duration == 31.65 then -- Venom Storm
 		barInfo = self:VenomStormTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)

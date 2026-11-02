@@ -81,7 +81,7 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{1265426, duration = 7.5, soundOnApplied = "warning", note = CL.beam}, -- Discordant Beam
+		{1265426, soundOnApplied = "warning", note = CL.beam}, -- Discordant Beam
 	})
 end
 

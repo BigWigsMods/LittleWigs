@@ -25,7 +25,7 @@ local backupBars = {}
 mod:SetRenames({
 	[1253811] = {1253811}, -- Fel Spray
 	[1264095] = {1264095}, -- Mirror Images
-	[474240] = {474240},   -- Fel Nova
+	[474240] = {474240}, -- Fel Nova
 	[1230304] = {1230304}, -- Light Infusion
 })
 
@@ -34,7 +34,7 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1228198, duration = 30, dispel = "magic", soundOnApplied = "alert", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1228198))}, -- Corroding Spittle
+	{1228198, dispel = "magic", soundOnApplied = "alert", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1228198))}, -- Corroding Spittle
 	{1253813, soundOnApplied = "underyou", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1253811))}, -- Fel Spray
 })
 

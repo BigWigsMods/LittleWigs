@@ -11,6 +11,9 @@ mod:RegisterEnableMob(
 	75193, -- Bloodmaul Overseer
 	75210 -- Bloodmaul Warder
 )
+if not mod:Retail() then -- Pre-Midnight
+	mod:SetUsesRangeChecks(true)
+end
 
 --------------------------------------------------------------------------------
 -- Localization

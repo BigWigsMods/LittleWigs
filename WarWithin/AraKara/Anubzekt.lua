@@ -132,7 +132,7 @@ do
 		inBurrowChargeCombo = true
 		burrowChargeRemaining = burrowChargeRemaining - 1
 		self:GetUnitTarget(printTarget, 0.2, args.sourceGUID)
-		if burrowChargeRemaining > 1 then
+		if burrowChargeRemaining > 0 then
 			self:CDBar(args.spellId, 30.2)
 		else
 			self:StopBar(args.spellId)

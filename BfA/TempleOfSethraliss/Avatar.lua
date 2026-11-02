@@ -100,13 +100,13 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{1300714, duration = 20, soundOnAppliedDose = "none", tip = CL.debuffTargetedNote:format(mod:SpellName(1300702))}, -- Shadowlash
-		{1300877, duration = 15, soundOnAppliedDose = "none", tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1300869))}, -- Corruption
-		{1303446, duration = 10, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1300803))}, -- Tainted Strike
-		{1302618, duration = 8, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1302616))}, -- Vile Charge
-		{1311979, duration = 4, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1302153))}, -- Latent Hex
-		{1302158, duration = 8, tip = CL.debuffFailureInterruptNote:format(mod:SpellName(1302158))}, -- Flame Shock
-		{1302826, duration = 3, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1302826))}, -- Corruption Burst
+		{1300714, soundOnAppliedDose = "none", tip = CL.debuffTargetedNote:format(mod:SpellName(1300702))}, -- Shadowlash
+		{1300877, soundOnAppliedDose = "none", tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1300869))}, -- Corruption
+		{1303446, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1300803))}, -- Tainted Strike
+		{1302618, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1302616))}, -- Vile Charge
+		{1311979, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1302153))}, -- Latent Hex
+		{1302158, tip = CL.debuffFailureInterruptNote:format(mod:SpellName(1302158))}, -- Flame Shock
+		{1302826, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1302826))}, -- Corruption Burst
 	})
 end
 

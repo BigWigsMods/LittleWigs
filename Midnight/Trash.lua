@@ -5,6 +5,7 @@
 local mod, CL = BigWigs:NewBoss("Common Trash", {2813, 2825, 2859, 2923, 2993, 2521, 1877, 1762}) -- S2 dungeons
 if not mod then return end
 mod:SetTrashModule(true)
+mod:SetUsesRangeChecks(true)
 mod:SetSortOrder(1)
 
 --------------------------------------------------------------------------------
@@ -23,6 +24,8 @@ local L = mod:SetDefaultLocale({
 	all_units = "All units show messages and play sounds",
 	messages_all_sounds_target = "All units show messages, but only your target plays sounds",
 	target_only = "Only your target shows messages and plays sounds",
+	custom_on_show_target = "Show spell targets",
+	custom_on_show_target_desc = "Include the target of spells in the message.",
 	custom_select_unit_standard = "Standard mobs",
 	custom_select_unit_standard_desc = "Select which standard trash mobs should show messages and play sounds.",
 	custom_select_unit_lieutenant = "Lieutenants",
@@ -68,12 +71,13 @@ function mod:GetOptions()
 		"trash_cast",
 		"lieutenant_cast",
 		"trash_channel",
+		"custom_on_show_target",
 		"custom_select_unit_standard",
 		"custom_select_unit_lieutenant",
 		"custom_select_throttle_type",
 		"custom_select_throttle_duration",
 	}, {
-		["custom_select_unit_standard"] = L.customization,
+		["custom_on_show_target"] = L.customization,
 	}
 end
 
@@ -144,12 +148,17 @@ do
 	function mod:ShowAlert(unit, spellID, event, allEventsPlaySounds, isLieutenant)
 		local t = GetTime()
 		local unitIsTarget = UnitIsUnit("target", unit)
+		local showTarget = self:GetOption("custom_on_show_target")
 		local throttleDuration = GetThrottleDuration(unitIsTarget, self:GetOption("custom_select_throttle_duration"))
 		local throttleSoundsOnly = self:GetOption("custom_select_throttle_type") == THROTTLE_TYPE_SOUNDS_ONLY
 		if event == "UNIT_SPELLCAST_CHANNEL_START" then -- channels
 			local shouldAlert = t - prevChannel > throttleDuration
 			if throttleSoundsOnly or shouldAlert then
-				self:SecretMessage("trash_channel", "yellow", spellID)
+				if showTarget then
+					self:SecretMessage("trash_channel", "yellow", spellID, unit)
+				else
+					self:SecretMessage("trash_channel", "yellow", spellID)
+				end
 			end
 			if shouldAlert then
 				prevChannel = t
@@ -160,7 +169,11 @@ do
 		elseif isLieutenant then -- lieutenant casts
 			local shouldAlert = t - prevLieutenant > throttleDuration
 			if throttleSoundsOnly or shouldAlert then
-				self:SecretMessage("lieutenant_cast", "orange", spellID)
+				if showTarget then
+					self:SecretMessage("lieutenant_cast", "orange", spellID, unit)
+				else
+					self:SecretMessage("lieutenant_cast", "orange", spellID)
+				end
 			end
 			if shouldAlert then
 				prevLieutenant = t
@@ -171,7 +184,11 @@ do
 		else -- standard casts
 			local shouldAlert = t - prevCast > throttleDuration
 			if throttleSoundsOnly or shouldAlert then
-				self:SecretMessage("trash_cast", "red", spellID)
+				if showTarget then
+					self:SecretMessage("trash_cast", "red", spellID, unit)
+				else
+					self:SecretMessage("trash_cast", "red", spellID)
+				end
 			end
 			if shouldAlert then
 				prevCast = t

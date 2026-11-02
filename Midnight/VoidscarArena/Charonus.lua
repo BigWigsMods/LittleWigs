@@ -36,13 +36,13 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1300372, duration = 20, tip = CL.debuffDotAfterCastNote:format(mod:SpellName(1227264))}, -- Cosmic Crash
+	{1300372, tip = CL.debuffDotAfterCastNote:format(mod:SpellName(1227264))}, -- Cosmic Crash
 	{1264188, tip = CL.debuffHitByCastNote:format(mod:SpellName(1282770))}, -- Unstable Singularity
-	{1310026, duration = 15, mechanic = "incapacitated", soundOnApplied = "warning", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1282770))}, -- Atomized
+	{1310026, mechanic = "incapacitated", soundOnApplied = "warning", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1282770))}, -- Atomized
 	{1263983, soundOnApplied = "warning", tip = CL.debuffTargetedNote:format(mod:SpellName(1263982))}, -- Condensed Mass
 	{1287450, mechanic = "snared", soundOnAppliedDose = "none", tip = CL.debuffDotAfterCastNote:format(mod:SpellName(1263982))}, -- Condensed Mass
-	{1311933, duration = 5, soundOnApplied = "info", tip = CL.debuffTargetedNote:format(mod:SpellName(1311923))}, -- Dark Waves
-	{1227247, duration = 3, soundOnApplied = "underyou", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1222755))}, -- Void Cascade
+	{1311933, soundOnApplied = "info", tip = CL.debuffTargetedNote:format(mod:SpellName(1311923))}, -- Dark Waves
+	{1227247, soundOnApplied = "underyou", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1222755))}, -- Void Cascade
 })
 
 --------------------------------------------------------------------------------

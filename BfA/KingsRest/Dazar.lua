@@ -67,7 +67,7 @@ function mod:OnEngage()
 
 	self:CDBar(268586, 18.2) -- Blade Combo
 	self:CDBar(268932, 12.1) -- Quaking Leap
-	self:CDBar(268932, 12.1) -- Gale Slash
+	self:CDBar(268403, 12.1) -- Gale Slash
 end
 
 function mod:VerifyEnable(unit)
@@ -115,10 +115,10 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{1303039, duration = 4, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1303039))}, -- Hunting Leap
-		{1302945, duration = 5, dispel = "bleed", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1302945))}, -- Impaling Spear
-		{1303490, duration = 10, dispel = "bleed", tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1303488))}, -- Savage Maul
-		{1303267, duration = 15, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1303267))}, -- Gilded Destruction
+		{1303039, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1303039))}, -- Hunting Leap
+		{1302945, dispel = "bleed", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1302945))}, -- Impaling Spear
+		{1303490, dispel = "bleed", tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1303488))}, -- Savage Maul
+		{1303267, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1303267))}, -- Gilded Destruction
 	})
 end
 

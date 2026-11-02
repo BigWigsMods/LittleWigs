@@ -54,10 +54,10 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{1261286, duration = 12, soundOnApplied = "warning"}, -- Throw Saronite
-		{1261540, duration = 12, soundOnApplied = "warning", note = CL.tank_hit}, -- Orebreaker
+		{1261286, soundOnApplied = "warning"}, -- Throw Saronite
+		{1261540, soundOnApplied = "warning", note = CL.tank_hit}, -- Orebreaker
 		{1261799, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Saronite Sludge
-		{1261921, duration = 12, dispel = "magic", mechanic = "snared", soundOnApplied = "alert", tip = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1261847), CL.stomp))}, -- Cryoshards
+		{1261921, dispel = "magic", mechanic = "snared", soundOnApplied = "alert", tip = CL.debuffPossibleAfterCastNote:format(CL.extra:format(mod:SpellName(1261847), CL.stomp))}, -- Cryoshards
 	})
 end
 

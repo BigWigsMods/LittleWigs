@@ -22,7 +22,7 @@ local backupBars = {}
 --
 
 mod:SetRenames({
-	[474408] = {474408},   -- Summon Vilefiend
+	[474408] = {474408}, -- Summon Vilefiend
 	[1218203] = {1218203}, -- Fingers of Gul'dan
 	[1224478] = {1224478}, -- Malefic Wave
 })
@@ -32,8 +32,8 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1214730, duration = 3.5, tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1214730))}, -- Demonic Gateway
-	{1217384, duration = 60, mechanic = "infected", soundOnApplied = "warning", soundOnAppliedDose = "none", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1224478))}, -- Malefic Wave
+	{1214730, tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1214730))}, -- Demonic Gateway
+	{1217384, mechanic = "infected", soundOnApplied = "warning", soundOnAppliedDose = "none", tip = CL.debuffFailureMoveFromCastNote:format(mod:SpellName(1224478))}, -- Malefic Wave
 	-- there is a Fixate but it doesn't log
 })
 

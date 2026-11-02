@@ -73,7 +73,7 @@ end
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
 		{1253511, soundOnApplied = "info", note = CL.fixate}, -- Burning Pursuit
-		{1253520, duration = 8, soundOnApplied = "alarm", soundOnAppliedDose = "none", note = CL.tank_hit}, -- Burning Claws
+		{1253520, soundOnApplied = "alarm", soundOnAppliedDose = "none", note = CL.tank_hit}, -- Burning Claws
 	})
 end
 

@@ -28,4 +28,4 @@ jobs:
         with:
           run_luacheck: false
           custom_script: https://raw.githubusercontent.com/BigWigsMods/BigWigs/refs/heads/master/gen_option_values.lua
-          custom_args: -q -n LittleWigs_Vanilla.toc LittleWigs_TBC.toc LittleWigs_Wrath.toc LittleWigs_Cata.toc LittleWigs_Mists.toc LittleWigs_Mainline.toc
+          custom_args: -q -n LittleWigs.toc

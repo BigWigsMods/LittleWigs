@@ -24,6 +24,26 @@ BigWigsAPI.SetBossModuleLocale("Voidscorned Vagrant", {
 	voidscorned_vagrant = "Leerenverschmähter Landstreicher",
 })
 
+-- Delves: Gnarldor Isle
+
+BigWigsAPI.SetBossModuleLocale("Gralka Snake-Eater", {
+	gralka_snake_eater = "Gralka Schlangenfresser",
+})
+
+BigWigsAPI.SetBossModuleLocale("Osseous Amalgamation", {
+	osseous_amalgamation = "Knöchernes Amalgam",
+})
+
+-- Delves: Labyrinth of Kindo'jan
+
+BigWigsAPI.SetBossModuleLocale("Den'Zara", {
+	denzara = "Den'Zara",
+})
+
+BigWigsAPI.SetBossModuleLocale("Kindo'jan", {
+	kindojan = "Kindo'jan",
+})
+
 -- Delves: Parhelion Plaza
 
 BigWigsAPI.SetBossModuleLocale("Gladius Slaurna", {
@@ -70,6 +90,20 @@ BigWigsAPI.SetBossModuleLocale("Lumenia", {
 
 BigWigsAPI.SetBossModuleLocale("Mul'tha'ul", {
 	multhaul = "Mul'tha'ul",
+})
+
+-- Delves: The Ring of Glory
+
+BigWigsAPI.SetBossModuleLocale("Gnok", {
+	gnok = "Gnok",
+})
+
+BigWigsAPI.SetBossModuleLocale("Gnok?", {
+	gnok2 = "Gnok?",
+})
+
+BigWigsAPI.SetBossModuleLocale("Drakta", {
+	drakta = "Drakta",
 })
 
 -- Delves: The Shadow Enclave
@@ -146,6 +180,8 @@ BigWigsAPI.SetBossModuleLocale("Common Trash", {
 	all_units = "Alle Einheiten zeigen Nachrichten und geben Sounds wieder",
 	messages_all_sounds_target = "Alle Einheiten zeigen Nachrichten, aber nur Dein Ziel gibt Sounds wieder",
 	target_only = "Nur Dein Ziel zeigt Nachrichten und gibt Sounds wieder",
+	custom_on_show_target = "Zauberziele anzeigen",
+	custom_on_show_target_desc = "Fügt die Ziele von Zaubern in die Nachrichten ein.",
 	custom_select_unit_standard = "Normale Gegner",
 	custom_select_unit_standard_desc = "Wähle welche normalen Gegner Nachrichten anzeigen und Sounds wiedergeben.",
 	custom_select_unit_lieutenant = "Leutnants",

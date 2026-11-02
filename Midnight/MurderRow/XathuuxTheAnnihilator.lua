@@ -24,7 +24,7 @@ local backupBars = {}
 --
 
 mod:SetRenames({
-	[473898] = {473898},  -- Legion Strike
+	[473898] = {473898}, -- Legion Strike
 	[1214637] = {1214637, CL.you:format(mod:SpellName(1214637)), notes = {CL.generalNote, CL.messageOnYouNote}, original = {1214637, CL.you:format(mod:SpellName(1214637))}}, -- Axe Toss
 	[1295453] = {1295453}, -- Infernal Crush
 	[474197] = {474197, CL.cast:format(mod:SpellName(474197)), CL.onboss:format(mod:SpellName(474197)), notes = {CL.generalNote, CL.castTimerNote, CL.messageCastOverNote}, original = {474197, CL.cast:format(mod:SpellName(474197)), CL.onboss:format(mod:SpellName(474197))}}, -- Demonic Rage
@@ -35,10 +35,10 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{473898, duration = 8, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(473898))}, -- Legion Strike
-	{1214637, duration = 5, tip = CL.debuffTargetedNote:format(mod:SpellName(1214637))}, -- Axe Toss
+	{473898, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(473898))}, -- Legion Strike
+	{1214637, tip = CL.debuffTargetedNote:format(mod:SpellName(1214637))}, -- Axe Toss
 	{1214650, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1214637))}, -- Fel Lightning
-	{1295455, duration = 8, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1295453))}, -- Infernal Crush
+	{1295455, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1295453))}, -- Infernal Crush
 	{474234, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Burning Steps
 })
 
@@ -86,6 +86,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if duration < 1 or duration > 100 then return end -- filter placeholder bars
+	if eventInfo.duration > 16 and eventInfo.duration < 17 then return end -- filter fake Legion Strike on win
 	if duration == 6 or duration == 27 then -- Legion Strike
 		-- TODO the first 27 Legion Strike seems to happen several seconds early. any way we can improve?
 		if duration == 27 and count27 % 2 == 0 then

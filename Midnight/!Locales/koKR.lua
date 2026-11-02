@@ -24,6 +24,26 @@ BigWigsAPI.SetBossModuleLocale("Voidscorned Vagrant", {
 	voidscorned_vagrant = "공허멸시 부랑자",
 })
 
+-- Delves: Gnarldor Isle
+
+BigWigsAPI.SetBossModuleLocale("Gralka Snake-Eater", {
+	gralka_snake_eater = "그랄카 뱀포식자",
+})
+
+BigWigsAPI.SetBossModuleLocale("Osseous Amalgamation", {
+	osseous_amalgamation = "골화 융합체",
+})
+
+-- Delves: Labyrinth of Kindo'jan
+
+BigWigsAPI.SetBossModuleLocale("Den'Zara", {
+	denzara = "덴자라",
+})
+
+BigWigsAPI.SetBossModuleLocale("Kindo'jan", {
+	kindojan = "킨도잔",
+})
+
 -- Delves: Parhelion Plaza
 
 BigWigsAPI.SetBossModuleLocale("Gladius Slaurna", {
@@ -70,6 +90,20 @@ BigWigsAPI.SetBossModuleLocale("Lumenia", {
 
 BigWigsAPI.SetBossModuleLocale("Mul'tha'ul", {
 	multhaul = "물타울",
+})
+
+-- Delves: The Ring of Glory
+
+BigWigsAPI.SetBossModuleLocale("Gnok", {
+	gnok = "똑똑",
+})
+
+BigWigsAPI.SetBossModuleLocale("Gnok?", {
+	gnok2 = "똑똑?",
+})
+
+BigWigsAPI.SetBossModuleLocale("Drakta", {
+	drakta = "드락타",
 })
 
 -- Delves: The Shadow Enclave
@@ -146,6 +180,8 @@ BigWigsAPI.SetBossModuleLocale("Common Trash", {
 	--all_units = "All units show messages and play sounds",
 	--messages_all_sounds_target = "All units show messages, but only your target plays sounds",
 	--target_only = "Only your target shows messages and plays sounds",
+	--custom_on_show_target = "Show spell targets",
+	--custom_on_show_target_desc = "Include the target of spells in the message.",
 	--custom_select_unit_standard = "Standard mobs",
 	--custom_select_unit_standard_desc = "Select which standard trash mobs should show messages and play sounds.",
 	--custom_select_unit_lieutenant = "Lieutenants",

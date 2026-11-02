@@ -1,4 +1,3 @@
-if not BigWigsLoader.isRetail then return end -- Midnight+
 --------------------------------------------------------------------------------
 -- Module Declaration
 --

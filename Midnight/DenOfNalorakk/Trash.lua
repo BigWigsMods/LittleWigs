@@ -31,19 +31,19 @@ mod:SetRenames({
 
 mod:SetAuraData({
 	{1239428, header = mod:SpellName(1239428)}, -- Carrying Supplies (environmental)
-	{1238439, header = 241816, duration = 10, dispel = "bleed", mechanic = "bleeding", soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1238439))}, -- Razor Dive (Keen-Eyed Striker)
-	{1238801, header = 245567, duration = 25, dispel = "curse", soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1238801))}, -- Insatiable Hunger (Starvation Effigy)
-	{1238687, header = 245855, duration = 5, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1238725))}, -- Feast of Misery (Spirit of Hunger)
+	{1238439, header = 241816, dispel = "bleed", mechanic = "bleeding", soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1238439))}, -- Razor Dive (Keen-Eyed Striker)
+	{1238801, header = 245567, dispel = "curse", soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1238801))}, -- Insatiable Hunger (Starvation Effigy)
+	{1238687, header = 245855, tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1238725))}, -- Feast of Misery (Spirit of Hunger)
 	{1297701, header = 241813, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Rotten Ground (Thornclaw Gatherer)
-	{1241217, soundOnAppliedDose = "none", tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1241217))}, -- Shredding Claws (Thornclaw Gatherer)
+	{1238247, soundOnAppliedDose = "none", tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1238247))}, -- Shredding Claws (Thornclaw Gatherer)
 	{1252825, header = mod:SpellName(1252825), tip = CL.debuffFailureSafeZoneNote}, -- Harsh Winds (environmental)
 	{1233904, soundOnApplied = "info"}, -- Sheltered (environmental)
 	{1266193, header = 241876, tip = CL.debuffWalkIntoObjectNote:format(mod:SpellName(1235841))}, -- Snowdrift (Glacial Revenant)
-	{1239860, duration = 10, dispel = "magic", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1239860))}, -- Cryo Surge (Glacial Revenant)
+	{1239860, dispel = "magic", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1239860))}, -- Cryo Surge (Glacial Revenant)
 	{1241464, header = 241869, mechanic = "rooted", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1241464))}, -- Glacial Tomb (Avatar of Determination)
-	{1309919, header = 241872, duration = 15, mechanic = "snared", soundOnAppliedDose = "none", tip = CL.debuffFailureInterruptNote:format(mod:SpellName(1309919))}, -- Frigid Roar (Frigid Mauler)
+	{1309919, header = 241872, mechanic = "snared", soundOnAppliedDose = "none", tip = CL.debuffFailureInterruptNote:format(mod:SpellName(1309919))}, -- Frigid Roar (Frigid Mauler)
 	{1309964, header = 250478, tip = CL.debuffUnderYouNote}, -- Harsh Winter (The Winter Squall)
-	{1246957, header = 245146, duration = 3, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1246957))}, -- Primal Echo (Grizzled Warbringer)
+	{1246957, header = 245146, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1246957))}, -- Primal Echo (Grizzled Warbringer)
 	{1247367, header = 244889, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Earthquake (Loa Speaker Nanea)
 })
 
@@ -87,10 +87,12 @@ function mod:GOSSIP_SHOW()
 			-- 135010:<Meditate on the sound of the flames.>
 			self:SelectGossipID(135010)
 		elseif self:GetGossipID(137694) then -- Warding Incense (Versatility buff)
-			-- 137694:<You light the incense, its aroma fortifying the resolve of nearby allies.>\r\n\r\n[Requires at least 25 skill in Midnight Alchemy or Druid Bear Form.]
-			self:SelectGossipID(137694)
-			self:Message(1271545, "green", self:GetRename(1271545))
-			self:PlaySound(1271545, "info")
+			if not UnitAffectingCombat("player") then -- can't be cast in combat
+				-- 137694:<You light the incense, its aroma fortifying the resolve of nearby allies.>\r\n\r\n[Requires at least 25 skill in Midnight Alchemy or Druid Bear Form.]
+				self:SelectGossipID(137694)
+				self:Message(1271545, "green", self:GetRename(1271545))
+				self:PlaySound(1271545, "info")
+			end
 		end
 	end
 end

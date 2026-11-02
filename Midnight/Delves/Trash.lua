@@ -2,7 +2,7 @@
 -- Module Declaration
 --
 
-local mod, CL = BigWigs:NewBoss("Midnight Delve Trash", {2933, 2952, 2953, 2961, 2962, 2963, 2964, 2965, 2979, 3003, 3038, 3077}) -- All Midnight Delves (except Nemesis Delves)
+local mod, CL = BigWigs:NewBoss("Midnight Delve Trash", {2933, 2952, 2953, 2961, 2962, 2963, 2964, 2965, 2979, 3003, 3038, 3043, 3077}) -- All Midnight Delves (except Nemesis Delves)
 if not mod then return end
 mod:SetTrashModule(true)
 
@@ -18,24 +18,40 @@ mod:SetTrashModule(true)
 -- Auras
 --
 
---mod:SetAuraData({
-	--{1256045, soundOnApplied = "underyou"}, -- Null Zone (Season 1)
---})
+mod:SetAuraData({
+	--{1256045, header = 252950, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Null Zone (Nullaeus, Season 1)
+	{1295701, header = 265525, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Noxious Poison (Azta'rec, Season 2)
+})
 
 --------------------------------------------------------------------------------
 -- Initialization
 --
 
 local autotalk = mod:AddAutoTalkOption(false)
+local autochoice = mod:AddAutoPlayerChoiceOption(true, "delve_power")
 function mod:GetOptions()
 	return {
 		autotalk,
+		autochoice,
 	}
 end
 
 function mod:OnBossEnable()
 	-- Autotalk
 	self:RegisterEvent("GOSSIP_SHOW")
+	-- Auto power select
+	local frames = {GetFramesRegisteredForEvent("PLAYER_CHOICE_UPDATE")}
+	for i = 1, #frames do
+		if frames[i].UnregisterEvent then
+			frames[i]:UnregisterEvent("PLAYER_CHOICE_UPDATE")
+		end
+	end
+	self:RegisterEvent("PLAYER_CHOICE_UPDATE")
+	for i = 1, #frames do
+		if frames[i].RegisterEvent then
+			frames[i]:RegisterEvent("PLAYER_CHOICE_UPDATE")
+		end
+	end
 end
 
 --------------------------------------------------------------------------------
@@ -46,7 +62,10 @@ end
 
 function mod:GOSSIP_SHOW()
 	if self:GetOption(autotalk) then
-		if self:GetGossipID(136318) then -- Atal'Aman, start Delve (Fleek)
+		if self:GetGossipID(140123) then -- All Delves, make abundant (Dundun)
+			-- 140123:Make my delve Abundantly Bountiful!
+			self:SelectGossipID(140123)
+		elseif self:GetGossipID(136318) then -- Atal'Aman, start Delve (Fleek)
 			-- 136318:|cFF0000FF(Delve)|r I will save them!
 			self:SelectGossipID(136318)
 		elseif self:GetGossipID(136385) then -- Atal'Aman, start Delve (Kasha)
@@ -58,6 +77,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(138496) then -- Atal'Aman, teleport to boss (Mojo)
 			-- 138496:Help me reach Spiritflayer Jin'Ma.
 			self:SelectGossipID(138496)
+		elseif self:GetGossipID(140366) then -- Atal'Aman, start Delve (Marla)
+			-- 140366:Snakes and Toxic Clouds? Must be Ula'tek...
+			self:SelectGossipID(140366)
 		elseif self:GetGossipID(135708) then -- Collegiate Calamity, start Delve (Bloomkeeper Thornflare)
 			-- 135708:|cFF0000FF(Delve)|r I'll get rid of these weeds!
 			self:SelectGossipID(135708)
@@ -67,6 +89,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(135798) then -- Collegiate Calamity, start Delve (Thalandri Fatesinger)
 			-- 135798:|cFF0000FF(Delve)|r I'll stop this invasion!
 			self:SelectGossipID(135798)
+		elseif self:GetGossipID(138592) then -- Collegiate Calamity, start Delve (Sir Finley Mrrgglton)
+			-- 138592:|cFF0000FF(Delve)|r Never did enjoy homework.
+			self:SelectGossipID(138592)
 		elseif self:GetGossipID(139635) then -- Gnarldor Isle, start Delve (Artolla)
 			-- 139635:They'll never know what hit them.
 			self:SelectGossipID(139635)
@@ -85,6 +110,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(136446) then -- Parhelion Plaza, start Delve (Vindicator Xayann)
 			-- 136446:|cFF0000FF(Delve)|r I'll drive back the attackers.
 			self:SelectGossipID(136446)
+		elseif self:GetGossipID(141655) then -- Labyrinth of Kindo'jan, continue Delve (Warlord Kaz'kara)
+			-- 141655:I will find your faithful steed.
+			self:SelectGossipID(141655)
 		elseif self:GetGossipID(134949) then -- Shadowguard Point, start Delve (Lysikas)
 			-- 134949:|cFF0000FF(Delve)|r Sounds like a plan.
 			self:SelectGossipID(134949)
@@ -106,6 +134,9 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(136141) then -- The Darkway, start Delve (Technician Mireille)
 			-- 136141:I'll help you restore the ley lines... and show these cultists a thing or two!
 			self:SelectGossipID(136141)
+		elseif self:GetGossipID(141485) then -- The Darkway, start Delve (Technician Mireille)
+			-- 141485:Clear the pylons and destroy the eggs before they hatch. Got it.
+			self:SelectGossipID(141485)
 		elseif self:GetGossipID(137248) then -- The Gulf of Memory, start Delve (Ashayo)
 			-- 137248:Release the moths near Lightbloom patches on the ground and they'll eat it. Seems easy enough.
 			self:SelectGossipID(137248)
@@ -130,6 +161,27 @@ function mod:GOSSIP_SHOW()
 		elseif self:GetGossipID(135811) then -- Twilight Crypts, start Delve (Scout Lok'aemon)
 			-- 135811:|cFF0000FF(Delve)|r Drink this if the Bound Loa gets close? But what's it taste like?
 			self:SelectGossipID(135811)
+		elseif self:GetGossipID(138141) then -- Twilight Crypts, start Delve (Harrison Jones)
+			-- 138141:|cFF0000FF(Delve)|r You got it, Dr. Jones!
+			self:SelectGossipID(138141)
+		end
+	end
+end
+
+-- Auto power select
+
+function mod:PLAYER_CHOICE_UPDATE()
+	if self:GetOption(autochoice) then
+		local choiceInfo = self:GetPlayerChoiceOptions()
+		if choiceInfo then
+			local numChoices = self:GetPlayerChoiceCount(choiceInfo)
+			if numChoices == 1 then
+				local spellID = self:GetPlayerChoiceSpellID(choiceInfo, numChoices)
+				local numButtons = self:GetPlayerChoiceButtonCount(choiceInfo, numChoices)
+				if numButtons == 1 and spellID then
+					self:SelectPlayerChoiceButton(choiceInfo, numChoices, numButtons)
+				end
+			end
 		end
 	end
 end

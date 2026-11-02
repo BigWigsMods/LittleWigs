@@ -30,15 +30,15 @@ mod:SetRenames({
 
 mod:SetAuraData({
 	{1306669, header = 261554, soundOnAppliedDose = "none", tip = CL.debuffHitByCastNote:format(mod:SpellName(1306668))}, -- Toxic Breath (Twinfang Harrower)
-	{1294569, duration = 20, dispel = "magic", mechanic = "snared", soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1294567))}, -- Paralyzing Shots (Twinfang Harrower)
+	{1294569, dispel = "magic", mechanic = "snared", soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1294567))}, -- Paralyzing Shots (Twinfang Harrower)
 	{1306232, header = 261550, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Septic Spatter (Venom Leech)
-	{1306550, header = 270306, duration = 60, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1306517))}, -- Blood Sacrifice (Ritual Chieftain)
-	{1294845, header = 262011, duration = 20, soundOnAppliedDose = "none", tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1294845))}, -- Corrosive Fangs (Rattling Writhe)
+	{1306550, header = 270306, soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1306517))}, -- Blood Sacrifice (Ritual Chieftain)
+	{1294845, header = 262011, soundOnAppliedDose = "none", tip = CL.debuffTankAfterCastNote:format(mod:SpellName(1294845))}, -- Corrosive Fangs (Rattling Writhe)
 	{1307531, header = 261552, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Bloodletting (Bloodletter)
-	{1307571, header = 261557, duration = 8, dispel = "poison", soundOnAppliedDose = "none", tip = CL.debuffFailureInterruptNote:format(mod:SpellName(1289426))}, -- Envenom (High Evolutionist)
-	{1308518, header = 271453, duration = 4, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1308512))}, -- Laced Edge (Blade of the Altar)
-	{1297422, header = mod:SpellName(1297422), duration = 1.2, tip = CL.debuffUnderYouNote}, -- Deadly Venom (environmental)
-	{1308865, header = 261573, duration = 5, soundOnApplied = "alert", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1308864))}, -- Infest (Ascendant Serpent)
+	{1307571, header = 261557, dispel = "poison", soundOnAppliedDose = "none", tip = CL.debuffFailureInterruptNote:format(mod:SpellName(1289426))}, -- Envenom (High Evolutionist)
+	{1308518, header = 271453, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1308512))}, -- Laced Edge (Blade of the Altar)
+	{1297422, header = mod:SpellName(1297422), tip = CL.debuffUnderYouNote}, -- Deadly Venom (environmental)
+	{1308865, header = 261573, soundOnApplied = "alert", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1308864))}, -- Infest (Ascendant Serpent)
 })
 
 --------------------------------------------------------------------------------

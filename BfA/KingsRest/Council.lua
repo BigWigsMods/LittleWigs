@@ -98,10 +98,10 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{266191, duration = 6, dispel = "bleed", mechanic = "bleeding", tip = CL.debuffHitByCastNote:format(mod:SpellName(266206))}, -- Whirling Axe
-		{266231, duration = 8, dispel = "bleed", mechanic = "bleeding", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(266231))}, -- Severing Axe
-		{267494, duration = 6.2, tip = CL.debuffTargetedNote:format(mod:SpellName(267494))}, -- Barrel Through
-		{266238, duration = 10, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(266237))}, -- Shattered Defenses
+		{266191, dispel = "bleed", mechanic = "bleeding", tip = CL.debuffHitByCastNote:format(mod:SpellName(266206))}, -- Whirling Axe
+		{266231, dispel = "bleed", mechanic = "bleeding", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(266231))}, -- Severing Axe
+		{267494, tip = CL.debuffTargetedNote:format(mod:SpellName(267494))}, -- Barrel Through
+		{266238, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(266237))}, -- Shattered Defenses
 	})
 end
 
@@ -177,7 +177,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		barInfo = self:DebilitatingBackhandTimeline(eventInfo)
 	elseif duration == 2 or duration == 7 then -- Arc Lightning
 		barInfo = self:ArcLightningTimeline(eventInfo)
-	elseif duration == 10 or duration == 24 or duration == 24.4 or duration == 25.2 then -- Poison Nova
+	elseif duration == 10 or duration == 24 or duration == 24.4 or duration == 24.7 or duration == 25.2 then -- Poison Nova
 		barInfo = self:PoisonNovaTimeline(eventInfo)
 	elseif duration == 20 or duration == 52.5 then -- Call of the Elements
 		barInfo = self:CallOfTheElementsTimeline(eventInfo)

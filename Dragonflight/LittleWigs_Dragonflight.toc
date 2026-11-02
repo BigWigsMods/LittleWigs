@@ -1,0 +1,73 @@
+## Interface: 120100, 120105, 120107
+## AllowLoadGameType: standard
+
+## Title: LittleWigs [|cffeda55fDragonflight|r]
+## Title-deDE: LittleWigs [|cffeda55fDragonflight|r]
+## Title-esES: LittleWigs [|cffeda55fDragonflight|r]
+## Title-esMX: LittleWigs [|cffeda55fDragonflight|r]
+## Title-frFR: LittleWigs [|cffeda55fDragonflight|r]
+## Title-itIT: LittleWigs [|cffeda55fDragonflight|r]
+## Title-koKR: LittleWigs [|cffeda55f용군단|r]
+## Title-ptBR: LittleWigs [|cffeda55fDragonflight|r]
+## Title-ruRU: LittleWigs [|cffeda55fDragonflight|r]
+## Title-zhCN: LittleWigs [|cffeda55f巨龙时代|r]
+## Title-zhTW: LittleWigs [|cffeda55f巨龍崛起|r]
+## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+## X-BigWigs-LoadOn-InstanceId: 2520, 2527, 2519, 2521, 2526, 2515, 2516, 2451, 2579
+
+!Locales\[TextLocale].lua [AllowLoadTextLocale deDE, esES, esMX, frFR, itIT, koKR, ptBR, ruRU, zhCN, zhTW]
+AlgetharAcademy\OvergrownAncient.lua
+AlgetharAcademy\Crawth.lua
+AlgetharAcademy\Vexamus.lua
+AlgetharAcademy\EchoOfDoragosa.lua
+AlgetharAcademy\Trash.lua
+BrackenhideHollow\HackclawsWarBand.lua
+BrackenhideHollow\Treemouth.lua
+BrackenhideHollow\Gutshot.lua
+BrackenhideHollow\DecatriarchWratheye.lua
+BrackenhideHollow\Trash.lua
+DawnOfTheInfinite\Chronikar.lua
+DawnOfTheInfinite\ManifestedTimeways.lua
+DawnOfTheInfinite\BlightOfGalakrond.lua
+DawnOfTheInfinite\Iridikron.lua
+DawnOfTheInfinite\Tyr.lua
+DawnOfTheInfinite\Morchie.lua
+DawnOfTheInfinite\TimeLostBattlefield.lua
+DawnOfTheInfinite\ChronoLordDeios.lua
+DawnOfTheInfinite\Trash.lua
+HallsOfInfusion\WatcherIrideus.lua
+HallsOfInfusion\GulpingGoliath.lua
+HallsOfInfusion\KhajinTheUnyielding.lua
+HallsOfInfusion\PrimalTsunami.lua
+HallsOfInfusion\Trash.lua
+Neltharus\ChargathBaneOfScales.lua
+Neltharus\ForgemasterGorek.lua
+Neltharus\Magmatusk.lua
+Neltharus\WarlordSargha.lua
+Neltharus\Trash.lua
+RubyLifePools\MelidrussaChillworn.lua
+RubyLifePools\KokiaBlazehoof.lua
+RubyLifePools\KyrakkaAndErkhartStormvein.lua
+RubyLifePools\Trash.lua
+TheAzureVault\Leymor.lua
+TheAzureVault\Azureblade.lua
+TheAzureVault\TelashGreywing.lua
+TheAzureVault\Umbrelskul.lua
+TheAzureVault\Trash.lua
+TheNokhudOffensive\Granyth.lua
+TheNokhudOffensive\TheRagingTempest.lua
+TheNokhudOffensive\TeeraAndMaruuk.lua
+TheNokhudOffensive\BalakarKhan.lua
+TheNokhudOffensive\Trash.lua
+UldamanLegacyOfTyr\TheLostDwarves.lua
+UldamanLegacyOfTyr\Bromach.lua
+UldamanLegacyOfTyr\SentinelTalondras.lua
+UldamanLegacyOfTyr\Emberon.lua
+UldamanLegacyOfTyr\ChronoLordDeios.lua
+UldamanLegacyOfTyr\Trash.lua
+!Options.lua

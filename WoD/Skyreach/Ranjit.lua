@@ -59,8 +59,8 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{153757, duration = 6, dispel = "bleed", soundOnApplied = "alert", note = CL.bleed}, -- Fan of Blades
-		{1252733, duration = 3.5, soundOnApplied = "warning", note = CL.knockback}, -- Gale Surge
+		{153757, dispel = "bleed", soundOnApplied = "alert", note = CL.bleed}, -- Fan of Blades
+		{1252733, soundOnApplied = "warning", note = CL.knockback}, -- Gale Surge
 	})
 end
 

@@ -39,10 +39,10 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1239825, duration = 6, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1239824))}, -- Lightfire
-	{1239919, duration = 6, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Lightfire Beams
-	{1241058, duration = 40, dispel = "bleed", mechanic = "bleeding", soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1241058))}, -- Grievous Thrash
-	{1257094, duration = 6, soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1240210))}, -- Pulverized
+	{1239825, tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1239824))}, -- Lightfire
+	{1239919, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Lightfire Beams
+	{1241058, dispel = "bleed", mechanic = "bleeding", soundOnAppliedDose = "none", tip = CL.debuffGroupAfterCastNote:format(mod:SpellName(1241058))}, -- Grievous Thrash
+	{1257094, soundOnAppliedDose = "none", tip = CL.debuffPossibleAfterCastNote:format(mod:SpellName(1240210))}, -- Pulverized
 })
 
 --------------------------------------------------------------------------------
@@ -112,13 +112,13 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 		elseif duration == 31.3 or (duration == 32 and sharedCount % 4 == 0) then
 			barInfo = self:PulverizingStrikesTimeline(eventInfo)
 		end
-	elseif duration == 5 or (self:GetStage() == 1 and duration >= 19.9 and duration <= 21 and sharedCount % 2 == 1) then
+	elseif duration == 5 or (self:GetStage() == 1 and duration >= 19 and duration <= 21 and sharedCount % 2 == 1) then
 		barInfo = self:LightfireTimeline(eventInfo)
-	elseif duration == 18 or (self:GetStage() == 1 and duration >= 19.9 and duration <= 21 and sharedCount % 2 == 0) then
+	elseif duration == 18 or (self:GetStage() == 1 and duration >= 19 and duration <= 21 and sharedCount % 2 == 0) then
 		barInfo = self:LightfallTimeline(eventInfo)
-	elseif duration == 3 or (self:GetStage() == 2 and duration >= 19.9 and duration <= 21 and sharedCount % 2 == 1) then
+	elseif duration == 3 or (self:GetStage() == 2 and duration >= 19 and duration <= 21 and sharedCount % 2 == 1) then
 		barInfo = self:GrievousThrashTimeline(eventInfo)
-	elseif duration == 9 or (self:GetStage() == 2 and duration >= 19.9 and duration <= 21 and sharedCount % 2 == 0) then
+	elseif duration == 9 or (self:GetStage() == 2 and duration >= 19 and duration <= 21 and sharedCount % 2 == 0) then
 		barInfo = self:PulverizingStrikesTimeline(eventInfo)
 	elseif not self:IsWiping() then
 		self:ErrorForTimelineEvent(eventInfo)
@@ -129,7 +129,7 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 			self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
 		end
 	end
-	if (duration >= 20 and duration <= 21) or duration == 32 then
+	if (duration >= 19 and duration <= 21) or duration == 32 then
 		sharedCount = sharedCount + 1
 	end
 	if barInfo then

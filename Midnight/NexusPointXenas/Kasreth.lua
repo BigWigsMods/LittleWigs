@@ -41,7 +41,7 @@ mod:SetRenames({
 --
 
 mod:SetAuraData({
-	{1251626, duration = 8, soundOnApplied = "info", soundOnAppliedDose = "none", tip = CL.debuffWalkIntoObjectNote:format(CL.extra:format(mod:SpellName(1251626), CL.beam))}, -- Leyline Array
+	{1251626, soundOnApplied = "info", soundOnAppliedDose = "none", tip = CL.debuffWalkIntoObjectNote:format(CL.extra:format(mod:SpellName(1251626), CL.beam))}, -- Leyline Array
 	{1251772, soundOnApplied = "warning", soundOnAppliedDose = "none"}, -- Reflux Charge
 	{1264042, soundOnApplied = "underyou", tip = CL.debuffUnderYouNote}, -- Arcane Spill
 	{1276485, soundOnApplied = "alert", tip = CL.debuffDotAfterCastNote:format(CL.extra:format(mod:SpellName(1257509), CL.full_energy))}, -- Sparkburn

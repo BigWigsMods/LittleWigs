@@ -24,6 +24,26 @@ BigWigsAPI.SetBossModuleLocale("Voidscorned Vagrant", {
 	voidscorned_vagrant = "蔑虚流浪者",
 })
 
+-- Delves: Gnarldor Isle
+
+BigWigsAPI.SetBossModuleLocale("Gralka Snake-Eater", {
+	gralka_snake_eater = "食蛇者格拉尔卡",
+})
+
+BigWigsAPI.SetBossModuleLocale("Osseous Amalgamation", {
+	osseous_amalgamation = "骨质融合体",
+})
+
+-- Delves: Labyrinth of Kindo'jan
+
+BigWigsAPI.SetBossModuleLocale("Den'Zara", {
+	denzara = "登扎拉",
+})
+
+BigWigsAPI.SetBossModuleLocale("Kindo'jan", {
+	kindojan = "金多赞",
+})
+
 -- Delves: Parhelion Plaza
 
 BigWigsAPI.SetBossModuleLocale("Gladius Slaurna", {
@@ -70,6 +90,20 @@ BigWigsAPI.SetBossModuleLocale("Lumenia", {
 
 BigWigsAPI.SetBossModuleLocale("Mul'tha'ul", {
 	multhaul = "穆尔萨乌",
+})
+
+-- Delves: The Ring of Glory
+
+BigWigsAPI.SetBossModuleLocale("Gnok", {
+	gnok = "咚咚",
+})
+
+BigWigsAPI.SetBossModuleLocale("Gnok?", {
+	gnok2 = "咚咚！",
+})
+
+BigWigsAPI.SetBossModuleLocale("Drakta", {
+	drakta = "德拉克塔",
 })
 
 -- Delves: The Shadow Enclave
@@ -138,24 +172,26 @@ BigWigsAPI.SetBossModuleLocale("Common Trash", {
 	common_trash = "普通小怪",
 	trash_cast = "施法",
 	trash_cast_desc = "当普通小怪施放法术时发出警报。",
-	lieutenant_cast = "施法（副官）",
-	lieutenant_cast_desc = "副官级小怪施放法术时发出警报。",
+	lieutenant_cast = "施法（精英）",
+	lieutenant_cast_desc = "精英小怪施放法术时发出警报。",
 	trash_channel = "引导法术",
 	trash_channel_desc = "任意小怪引导法术时发出警报。",
 	customization = "自定义设置",
 	all_units = "所有单位显示信息并播放音效",
 	messages_all_sounds_target = "所有单位显示信息，仅当前目标播放音效",
 	target_only = "仅当前目标显示信息并播放音效",
-	custom_select_unit_standard = "标准小怪",
-	custom_select_unit_standard_desc = "选择哪些标准普通小怪显示消息并播放音效。",
-	custom_select_unit_lieutenant = "副官",
-	custom_select_unit_lieutenant_desc = "选择哪些副官小怪显示消息并播放音效。",
-	custom_select_throttle_type = "间隔类型",
-	custom_select_throttle_type_desc = "选择对哪些功能进行间隔限制",
+	custom_on_show_target = "显示法术目标",
+	custom_on_show_target_desc = "在信息中显示法术的目标。",
+	custom_select_unit_standard = "普通小怪",
+	custom_select_unit_standard_desc = "选择哪些普通小怪显示消息并播放音效。",
+	custom_select_unit_lieutenant = "精英",
+	custom_select_unit_lieutenant_desc = "选择哪些精英小怪显示消息并播放音效。",
+	custom_select_throttle_type = "预警间隔类型",
+	custom_select_throttle_type_desc = "选择对哪些预警功能进行间隔限制",
 	custom_select_throttle_type_value1 = "信息和音效",
 	custom_select_throttle_type_value2 = "仅音效",
-	custom_select_throttle_duration = "间隔时长",
-	custom_select_throttle_duration_desc = "两次警报的间隔时间。当前目标不受限制。",
+	custom_select_throttle_duration = "预警间隔时长",
+	custom_select_throttle_duration_desc = "两次预警的间隔时间。当前目标不受限制。",
 	custom_select_throttle_duration_value1 = "2 秒",
 	custom_select_throttle_duration_value2 = "1 秒",
 	custom_select_throttle_duration_value3 = "3 秒",

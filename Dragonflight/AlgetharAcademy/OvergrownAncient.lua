@@ -105,8 +105,8 @@ end
 
 if mod:Retail() then -- Midnight+
 	mod:SetAuraData({
-		{388544, duration = 9, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(388544))}, -- Barkbreaker
-		{396716, duration = 60, dispel = "bleed", mechanic = "bleeding", soundOnAppliedDose = "none", tip = CL.debuffDotAfterCastNote:format(mod:SpellName(388623))}, -- Splinterbark
+		{388544, tip = CL.debuffTankAfterCastNote:format(mod:SpellName(388544))}, -- Barkbreaker
+		{396716, dispel = "bleed", mechanic = "bleeding", soundOnAppliedDose = "none", tip = CL.debuffDotAfterCastNote:format(mod:SpellName(388623))}, -- Splinterbark
 	})
 end
 
