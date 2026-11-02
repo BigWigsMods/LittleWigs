@@ -1,7 +1,7 @@
 -- Altar of Fangs
 
 BigWigsAPI.SetBossModuleLocale("Altar of Fangs Trash", {
-	--custom_on_mixture_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Cooking or Midnight Alchemy.|r Automatically select the NPC dialog option to gain the 'Mutating Elixir' buff.\n\n|T136242:16|tMutating Elixir\n{1310012}",
+	custom_on_mixture_autotalk_desc = "|cFFFF0000Requiere 25 puntos de habilidad en Cocina o Alquimia de Midnight.|r Seleccionar automáticamente el diálogo del PNJ para obtener el beneficio del 'Elixir mutante' buff.\n\n|T136242:16|tElixir mutante\n{1310012}",
 })
 
 -- Delves: Atal'Aman
@@ -146,11 +146,11 @@ BigWigsAPI.SetBossModuleLocale("Den of Nalorakk Trash", {
 BigWigsAPI.SetBossModuleLocale("Maisara Caverns Trash", {
 	prisoners_freed = "Prisioneros liberados",
 	prisoners_freed_desc = "Mostrar una alerta al liberar un prisionero.",
-	--custom_on_cooking_pot_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Hearty Vilebranch Stew' buff.\n\n|T4659336:16|tHearty Vilebranch Stew\n{1269056}",
-	--custom_on_ritual_cauldron_autotalk_desc = "Automatically select the NPC dialog option to grant the 'Ritual Concoction' buff.\n\n|T236271:16|tRitual Concoction\n{1271300}",
+	custom_on_cooking_pot_autotalk_desc = "Seleccionar automáticamente el diálogo del PNJ para obtener el beneficio del 'Estofado Vilrama suculento'.\n\n|T4659336:16|tEstofado Vilrama suculento\n{1269056}",
+	custom_on_ritual_cauldron_autotalk_desc = "Seleccionar automáticamente el diálogo del PNJ para obtener el beneficio del 'Brebaje ritual'.\n\n|T236271:16|tBrebaje ritual\n{1271300}",
 
-	--cooking_pot = "Cooking Pot",
-	--ritual_cauldron = "Ritual Cauldron",
+	cooking_pot = "Olla de cocina",
+	ritual_cauldron = "Caldera del ritual",
 })
 
 -- Murder Row
@@ -163,7 +163,7 @@ BigWigsAPI.SetBossModuleLocale("Murder Row Trash", {
 -- Nexus-Point Xenas
 
 BigWigsAPI.SetBossModuleLocale("Nexus-Point Xenas Trash", {
-	--custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requires 25 skill in Midnight Engineering.|r Automatically select the NPC dialog option to disable the Arcane Tripwire.",
+	custom_on_arcane_tripwire_autotalk_desc = "|cFFFF0000Requiere 25 puntos de habilidad en Ingeniería de Midnight.|r Selecciona automáticamente el diálogo del PNJ para deshabilitar la Cuerda con trampa arcana.",
 })
 
 -- Common Trash
@@ -171,27 +171,27 @@ BigWigsAPI.SetBossModuleLocale("Nexus-Point Xenas Trash", {
 BigWigsAPI.SetBossModuleLocale("Common Trash", {
 	common_trash = "Bichos comunes",
 	trash_cast = "Lanzamiento",
-	trash_cast_desc = "Aletar cuando un bicho estándar lanza un hechizo.",
-	--lieutenant_cast = "Cast (Lieutenant)",
-	--lieutenant_cast_desc = "Alert when a Lieutenant trash mob casts a spell.",
-	--trash_channel = "Channel",
-	--trash_channel_desc = "Alert when any trash mob channels a spell.",
-	--customization = "Customization",
-	--all_units = "All units show messages and play sounds",
-	--messages_all_sounds_target = "All units show messages, but only your target plays sounds",
-	--target_only = "Only your target shows messages and plays sounds",
-	--custom_on_show_target = "Show spell targets",
-	--custom_on_show_target_desc = "Include the target of spells in the message.",
-	--custom_select_unit_standard = "Standard mobs",
-	--custom_select_unit_standard_desc = "Select which standard trash mobs should show messages and play sounds.",
-	--custom_select_unit_lieutenant = "Lieutenants",
-	--custom_select_unit_lieutenant_desc = "Select which Lieutenant trash mobs should show messages and play sounds.",
-	--custom_select_throttle_type = "Throttle type",
-	--custom_select_throttle_type_desc = "What features should be throttled",
-	--custom_select_throttle_type_value1 = "Both messages and sounds",
-	--custom_select_throttle_type_value2 = "Sounds only",
-	--custom_select_throttle_duration = "Throttle duration",
-	--custom_select_throttle_duration_desc = "How long to wait between alerts. Your target is never throttled.",
+	trash_cast_desc = "Avisar cuando un bicho estándar lanza un hechizo.",
+	lieutenant_cast = "Lanzamiento (Teniente)",
+	lieutenant_cast_desc = "Avisar cuando un bicho tipo Teniente lanza un hechizo.",
+	trash_channel = "Canalizar",
+	trash_channel_desc = "Avisar cuando cualquier bicho canaliza un hechizo.",
+	customization = "Personalización",
+	all_units = "Todas las unidades muestran mensajen y reproducen sonidos",
+	messages_all_sounds_target = "Todas las unidades muestran sonidos, pero solo tu objetivo reproduce sonidos",
+	target_only = "Solo tu objetivo muestra mensajes y reproduce sonidos",
+	custom_on_show_target = "Mostrar los objetivos del hechizo",
+	custom_on_show_target_desc = "Incluye el objetivo de los hechizos en el mensaje.",
+	custom_select_unit_standard = "Bichos comunes",
+	custom_select_unit_standard_desc = "Selecciona qué tipo de bichos comunes deben mostrar mensajes y reproducir sonidos.",
+	custom_select_unit_lieutenant = "Tenientes",
+	custom_select_unit_lieutenant_desc = "Selecciona qué tipo de bichos Tenientes deben mostrar mensajes y reproducir sonido.",
+	custom_select_throttle_type = "Restricciones",
+	custom_select_throttle_type_desc = "Qué opciones deberían limitarse",
+	custom_select_throttle_type_value1 = "Tanto mensajes como sonidos",
+	custom_select_throttle_type_value2 = "Solo sonidos",
+	custom_select_throttle_duration = "Duración",
+	custom_select_throttle_duration_desc = "Tiempo de espera entre avisos. Tu objetivo nunca se limita.",
 	custom_select_throttle_duration_value1 = "2 segundos",
 	custom_select_throttle_duration_value2 = "1 segundo",
 	custom_select_throttle_duration_value3 = "3 segundos",
