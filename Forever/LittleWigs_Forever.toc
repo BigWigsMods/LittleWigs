@@ -1,0 +1,22 @@
+## Interface: 16001
+## AllowLoadGameType: camelot
+## ExcludeLoadGameType: standard, classic
+
+## Title: LittleWigs [|cffeda55fForever|r]
+## Title-deDE: LittleWigs [|cffeda55fForever|r]
+## Title-esES: LittleWigs [|cffeda55fForever|r]
+## Title-esMX: LittleWigs [|cffeda55fForever|r]
+## Title-frFR: LittleWigs [|cffeda55fForever|r]
+## Title-itIT: LittleWigs [|cffeda55fForever|r]
+## Title-koKR: LittleWigs [|cffeda55fForever|r]
+## Title-ptBR: LittleWigs [|cffeda55fForever|r]
+## Title-ruRU: LittleWigs [|cffeda55fForever|r]
+## Title-zhCN: LittleWigs [|cffeda55fForever|r]
+## Title-zhTW: LittleWigs [|cffeda55fForever|r]
+## IconTexture: Interface\AddOns\BigWigs\Media\Icons\minimap_party.tga
+
+## LoadOnDemand: 1
+## Dependencies: BigWigs
+
+## X-Category: Party
+

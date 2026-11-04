@@ -5,6 +5,7 @@ plain-copy:
   - "*.lua"
 
 move-folders:
+    LittleWigs/Forever: LittleWigs_Forever
     LittleWigs/Classic: LittleWigs_Classic
     LittleWigs/TBC: LittleWigs_BurningCrusade
     LittleWigs/WotLK: LittleWigs_WrathOfTheLichKing
