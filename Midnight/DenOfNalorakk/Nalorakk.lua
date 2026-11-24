@@ -14,7 +14,8 @@ mod:SetRespawnTime(30)
 local echoingMaulCount = 1
 local overwhemlingOnslaughtCount = 1
 local furyOfTheWarGodCount = 1
-local count25 = 1
+local last25WasEM = false
+local last25Time = 0
 local activeBars = {}
 local backupBars = {}
 
@@ -57,7 +58,8 @@ function mod:OnEncounterStart()
 	echoingMaulCount = 1
 	overwhemlingOnslaughtCount = 1
 	furyOfTheWarGodCount = 1
-	count25 = 1
+	last25WasEM = false
+	last25Time = 0
 	activeBars = {}
 	backupBars = {}
 	if self:ShouldShowBars() then
@@ -85,9 +87,21 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	local duration = self:RoundNumber(eventInfo.duration, 0)
 	local barInfo
 	if self:Mythic() then
-		if duration == 5 or (count25 % 2 == 1 and duration == 25) then -- Echoing Maul
+		-- repeating cycle: EM -> OO -> EM -> OO -> FotWG
+		-- initial timers: 5s EE, 13s OO, 54s FotWG
+		-- follow-up timers: 25s EE, 25s OO
+		-- 1s after the first EM cast in a cycle, there can be a reset of: 13s OO, 25s EM, 54s FotWG
+		if duration == 5 or (duration == 25 and (not last25WasEM or GetTime() - last25Time < 5)) then -- Echoing Maul
+			if duration == 25 then
+				last25Time = GetTime()
+				last25WasEM = true
+			end
 			barInfo = self:EchoingMaulTimeline(eventInfo)
-		elseif duration == 13 or (count25 % 2 == 0 and duration == 25) then -- Overwhelming Onslaught
+		elseif duration == 13 or duration == 25 then -- Overwhelming Onslaught
+			if duration == 25 then
+				last25Time = GetTime()
+				last25WasEM = false
+			end
 			barInfo = self:OverwhemlingOnslaughtTimeline(eventInfo)
 		elseif duration == 54 then -- Fury of the War God
 			barInfo = self:FuryOfTheWarGodTimeline(eventInfo)
@@ -99,9 +113,6 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 			if state == 1 then -- Enum.EncounterTimelineEventState.Paused = 1
 				self:SendMessage("BigWigs_PauseBar", nil, nil, eventInfo.id)
 			end
-		end
-		if duration == 25 then
-			count25 = count25 + 1
 		end
 	else -- Normal, Heroic
 		if duration == 5 or duration == 10 then -- Echoing Maul
