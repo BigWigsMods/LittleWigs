@@ -66,6 +66,7 @@ local count19 = 1
 local adderisDead = false
 local aspixDead = false
 local boss2Seen = false
+local encounterStartTime = 0
 local bossDeathTime = 0
 local activeBars = {}
 local backupBars = {}
@@ -133,6 +134,7 @@ if mod:Retail() then -- Midnight+
 		adderisDead = false
 		aspixDead = false
 		boss2Seen = false
+		encounterStartTime = GetTime()
 		bossDeathTime = 0
 		activeBars = {}
 		backupBars = {}
@@ -196,29 +198,33 @@ function mod:ENCOUNTER_TIMELINE_EVENT_ADDED(_, eventInfo)
 	if bossJustDied and (duration ~= 5 and duration ~= 12 and duration ~= 15 and duration ~= 22) then
 		return
 	end
-	local barInfo
-	-- initial: GF=5 TL=9 TW=29 OL=39 -> all 45
-	-- re-sync: GF=1 TL=5 TW=25 OL=35 -> all 45
-	-- Adderis dies: GF=5 TW=12 -> both 19
-	-- Aspix dies: OL=15 TL=22 -> both 19
-	-- during Storm Blessed (66%, 33%) bars pause. queued bars will be canceled and re-created with ~0.001s.
-	-- TODO: counts increment a lot because bars are started and canceled in weird orders.
-	if bossJustDied and (duration == 15 or duration == 22) and not adderisDead then -- Overload or Thunder and Lightning, after Aspix dies
+	-- "special timers" are the 5/12/15/22 which can only be reliably matched after a boss is dead. these are used
+	-- to detect which boss died. we also allow these in the first 1s (since detecting a one-shot is impossible).
+	-- the presence of 12/15/22 (5 excluded) in the first 1s indicates a one-shot.
+	local specialTimersAllowed = bossJustDied or GetTime() - encounterStartTime <= 1
+	if specialTimersAllowed and (duration == 15 or duration == 22) and not adderisDead then -- Overload or Thunder and Lightning, after Aspix dies
 		aspixDead = true
-	elseif bossJustDied and (duration == 5 or duration == 12) and not aspixDead then -- Gale Force or Tempest Winds, after Adderis dies
+	elseif ((bossJustDied and duration == 5) or (specialTimersAllowed and duration == 12)) and not aspixDead then -- Gale Force or Tempest Winds, after Adderis dies
 		adderisDead = true
 	end
 	if eventInfo.duration == 1 then -- detect the Gale Force that's cast as part of the re-sync
 		-- reset the shared ability counter during the re-sync in case anything weird happened during Storm Blessed
 		count45 = 1
 	end
-	if (galeForceCount == 1 and duration == 5) or duration == 1 or (bossJustDied and duration == 5) then -- Gale Force (Aspix)
+	-- initial: GF=5 TL=9 TW=29 OL=39 -> all 45
+	-- re-sync: GF=1 TL=5 TW=25 OL=35 -> all 45
+	-- Adderis dies: GF=5 TW=12 -> both 19
+	-- Aspix dies: OL=15 TL=22 -> both 19
+	-- during Storm Blessed (66%, 33%) bars pause. queued bars will be canceled and re-created with ~0.001s.
+	-- ability counts increment a lot because bars are started and canceled in weird orders.
+	local barInfo
+	if (galeForceCount == 1 and duration == 5) or duration == 1 or (specialTimersAllowed and duration == 5) then -- Gale Force (Aspix)
 		barInfo = self:GaleForceTimeline(eventInfo, duration == 1)
-	elseif duration == 9 or duration == 5 or (bossJustDied and duration == 22) then -- Thunder and Lightning (Adderis)
+	elseif duration == 9 or duration == 5 or (specialTimersAllowed and duration == 22) then -- Thunder and Lightning (Adderis)
 		barInfo = self:ThunderAndLightningTimeline(eventInfo, duration == 5)
-	elseif duration == 29 or duration == 25 or (bossJustDied and duration == 12) then -- Tempest Winds (Aspix)
+	elseif duration == 29 or duration == 25 or (specialTimersAllowed and duration == 12) then -- Tempest Winds (Aspix)
 		barInfo = self:TempestWindsTimeline(eventInfo, duration == 25)
-	elseif duration == 39 or duration == 35 or (bossJustDied and duration == 15) then -- Overload (Adderis)
+	elseif duration == 39 or duration == 35 or (specialTimersAllowed and duration == 15) then -- Overload (Adderis)
 		barInfo = self:OverloadTimeline(eventInfo, duration == 35)
 	elseif duration == 45 then
 		if count45 % 4 == 1 then -- Gale Force
